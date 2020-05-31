@@ -13,7 +13,7 @@
 # zmodload zsh/zprof
 
 export DOT_ZSHRC="$HOME/.zshrc"
-export DOT_ZSHRC_VERSION="0.23"
+export DOT_ZSHRC_VERSION="0.25"
 
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
@@ -38,8 +38,8 @@ export HISTCONTROL=ignoredups:ignorespace
 export HISTSIZE=10000
 export HISTFILESIZE=20000
 
+# export TERM=xterm-16color
 export TERM=xterm-256color
-#export TERM=screen-256color
 
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR=vim
@@ -199,6 +199,7 @@ fpath=(
   $fpath
 )
 
+eval "$(fasd --init posix-alias zsh-hook zsh-ccomp zsh-ccomp-install zsh-wcomp zsh-wcomp-install)"
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
 # ║ Aptitude for MacOS & Gentoo                                                ║
