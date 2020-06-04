@@ -182,3 +182,14 @@ let g:multi_cursor_prev_key='<C-p>'
 let g:multi_cursor_skip_key='<C-l>'
 let g:multi_cursor_quit_key='<Esc>'
 let g:multi_cursor_start_key='<C-L>'
+
+let g:vim_markdown_folding_disabled = 1
+
+autocmd BufRead,BufNewFile *.md set filetype=markdown
+autocmd BufRead,BufNewFile *.md setlocal textwidth=80
+autocmd BufRead,BufNewFile .{jscs,jshint,eslint}rc set filetype=json
+autocmd BufRead,BufNewFile aliases.local,zshrc.local,*/zsh/configs/* set filetype=sh
+autocmd BufRead,BufNewFile gitconfig.local set filetype=gitconfig
+autocmd BufRead,BufNewFile tmux.conf.local set filetype=tmux
+autocmd BufRead,BufNewFile vimrc.local set filetype=vim
+
