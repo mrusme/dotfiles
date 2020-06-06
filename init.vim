@@ -37,6 +37,8 @@ Plug 'wincent/command-t'
 Plug 'junegunn/goyo.vim'
 Plug 'Yggdroot/indentLine'
 Plug 'terryma/vim-multiple-cursors'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 
 call plug#end()
 
@@ -192,4 +194,6 @@ autocmd BufRead,BufNewFile aliases.local,zshrc.local,*/zsh/configs/* set filetyp
 autocmd BufRead,BufNewFile gitconfig.local set filetype=gitconfig
 autocmd BufRead,BufNewFile tmux.conf.local set filetype=tmux
 autocmd BufRead,BufNewFile vimrc.local set filetype=vim
+
+nnoremap <silent> <C-T> :Files<CR>
 
