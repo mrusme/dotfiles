@@ -44,7 +44,7 @@ call plug#end()
 
 
 " ╔════════════════════════════════════════════════════════════════════════════╗
-" ║ Theme                                                                      ║
+" ║ NerdTree                                                                   ║
 " ╚════════════════════════════════════════════════════════════════════════════╝
 
 " Open NERDTree with vim
@@ -66,7 +66,7 @@ let sbv_smart_shortcut=1
 " Indentation type [tab || space]
 let sbv_indentation_type="tab"
 " Indentation length
-let sbv_indentation_length=4
+let sbv_indentation_length=2
 " Relative numbers
 let sbv_enable_numbers=1
 
