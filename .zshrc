@@ -13,7 +13,7 @@
 # zmodload zsh/zprof
 
 export DOT_ZSHRC="$HOME/.zshrc"
-export DOT_ZSHRC_VERSION="0.25"
+export DOT_ZSHRC_VERSION="0.26"
 
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
@@ -95,8 +95,11 @@ export MANPATH="/usr/local/man:$MANPATH"
 [[ -d "$HOME/.cargo/bin" ]] \
 && export PATH=$HOME/.cargo/bin:$PATH
 
+# Go
 [[ $OS = "Darwin" ]] \
 && export GOROOT=/usr/local/opt/go/libexec
+go env -w GOPATH=$HOME/.go
+export PATH=$HOME/.go/bin:$PATH
 
 # Python virtualenv
 export VIRTUALENVWRAPPER_PYTHON=$(which python3)
