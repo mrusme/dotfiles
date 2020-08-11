@@ -64,7 +64,7 @@ let sbv_swap_file=0
 " Enabled / Disabled Shortcut
 let sbv_smart_shortcut=1
 " Indentation type [tab || space]
-let sbv_indentation_type="tab"
+let sbv_indentation_type="space"
 " Indentation length
 let sbv_indentation_length=2
 " Relative numbers
@@ -76,17 +76,17 @@ let sbv_enable_numbers=1
 " ╚════════════════════════════════════════════════════════════════════════════╝
 
 set termguicolors
-let ayucolor="dark"
+" let ayucolor="dark"
 colorscheme tech49
 
-function! ChangeColorscheme(scheme)
-	let g:ayucolor=a:scheme
-	colorscheme ayu
-endfunction
+" function! ChangeColorscheme(scheme)
+" 	let g:ayucolor=a:scheme
+" 	colorscheme ayu
+" endfunction
 
-map <C-v>.1 :call ChangeColorscheme("light")<CR>
-map <C-v>.2 :call ChangeColorscheme("mirage")<CR>
-map <C-v>.3 :call ChangeColorscheme("dark")<CR>
+" map <C-v>.1 :call ChangeColorscheme("light")<CR>
+" map <C-v>.2 :call ChangeColorscheme("mirage")<CR>
+" map <C-v>.3 :call ChangeColorscheme("dark")<CR>
 
 let g:indentLine_enabled = 1
 let g:indentLine_char = '⋮'
