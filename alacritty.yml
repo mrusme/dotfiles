@@ -36,14 +36,12 @@ window:
     x: 8
     y: 8
   dynamic_padding: true
+  dynamic_title: true
   decorations: buttonless
   startup_mode: Windowed
 scrolling:
   history: 10000
   multiplier: 3
-  faux_multiplier: 3
-  auto_scroll: false
-tabspaces: 4
 font:
   normal:
     family: 'Fira Code'
@@ -92,7 +90,7 @@ colors:
     cyan:    '0x76C8D9'
     white:   '0xF6F7E2'
   indexed_colors: []
-visual_bell:
+bell:
   animation: Linear
   duration: 0
   color: '0x320F09'
@@ -108,7 +106,6 @@ mouse:
 selection:
   semantic_escape_chars: ",│`|:\"' ()[]{}<>"
   save_to_clipboard: false
-dynamic_title: true
 cursor:
   style: Block
   unfocused_hollow: true
