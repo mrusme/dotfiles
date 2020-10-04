@@ -18,6 +18,12 @@
 			"languageId": "terraform",
 			"scopes": ["source.terraform"],
 			"syntaxes":  ["Packages/Terraform/Terraform.sublime-syntax"]
+		},
+		"haskell-language-server": {
+			"command": ["haskell-language-server-wrapper", "--lsp"],
+			"scopes": ["source.haskell"],
+			"syntaxes": ["Packages/Haskell/Haskell.sublime-syntax"],
+			"languageId": "haskell"
 		}
 	},
 	"auto_show_diagnostics_panel": "never",
