@@ -13,8 +13,10 @@
 # zmodload zsh/zprof
 
 export DOT_ZSHRC="$HOME/.zshrc"
-export DOT_ZSHRC_VERSION="0.26"
+export DOT_ZSHRC_VERSION="0.28"
 
+type /usr/local/bin/zsh > /dev/null \
+&& export SHELL=/usr/local/bin/zsh
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
 # ║ Tmux Magic (via SSH)                                                       ║
@@ -95,6 +97,9 @@ export MANPATH="/usr/local/man:$MANPATH"
 [[ -d "$HOME/.cargo/bin" ]] \
 && export PATH=$HOME/.cargo/bin:$PATH
 
+[[ -e "$HOME/.cargo/env" ]] \
+&& source $HOME/.cargo/env
+
 # Go
 [[ $OS = "Darwin" ]] \
 && export GOROOT=/usr/local/opt/go/libexec
@@ -130,7 +135,10 @@ function activate.nvm {
 type gem > /dev/null \
 && export PATH=$(gem env \
               | grep "EXECUTABLE DIRECTORY" \
-              | awk -F ': ' '{ print $2 }'):$PATH
+              | awk -F ': ' '{ print $2 }'):$PATH \
+&& export PATH=$(gem env \
+              | grep "USER INSTALLATION DIRECTORY" \
+              | awk -F ': ' '{ print $2 }')/bin:$PATH
 
 # GCloud
 function activate.gcloud {
@@ -647,6 +655,7 @@ alias fucking=sudo
 alias myip="curl http://ipecho.net/plain; echo"
 alias git-crypt-add-myself='git-crypt add-gpg-user D2908F9977E1FE0B8A36F357C228EF0A530AF06F'
 
+alias jrnl='cd ~/Projects/@mrusme/xn--gckvb8fzb.com/content/posts/'
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
 # ║ motd                                                                       ║
