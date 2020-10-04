@@ -72,23 +72,23 @@ colors:
     text: '0xF5F7E3'
     background: '0x314F78'
   normal:
-    black:   '0x263F45'
-    red:     '0x8A281A'
-    green:   '0x79815D'
-    yellow:  '0xC5CF8D'
-    blue:    '0x9DC3BF'
-    magenta: '0x9B6CBE'
-    cyan:    '0x60C5D8'
-    white:   '0xD1FEFC'
+    black:   '0x263F45' #0
+    red:     '0x8A281A' #1
+    green:   '0x79815D' #2
+    yellow:  '0xC5CF8D' #3
+    blue:    '0x9DC3BF' #4
+    magenta: '0x9B6CBE' #5
+    cyan:    '0x60C5D8' #6
+    white:   '0xD1FEFC' #7
   bright:
-    black:   '0x396269'
-    red:     '0xFC674E'
-    green:   '0xB3BD93'
-    yellow:  '0xFCFFC7'
-    blue:    '0xC4FEFD'
-    magenta: '0xAD7FA8'
-    cyan:    '0x76C8D9'
-    white:   '0xF6F7E2'
+    black:   '0x396269' #8
+    red:     '0xFC674E' #9
+    green:   '0xB3BD93' #A
+    yellow:  '0xFCFFC7' #B
+    blue:    '0xC4FEFD' #C
+    magenta: '0xAD7FA8' #D
+    cyan:    '0x76C8D9' #E
+    white:   '0xF6F7E2' #F
   indexed_colors: []
 bell:
   animation: Linear
