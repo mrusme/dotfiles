@@ -62,33 +62,32 @@ font:
   use_thin_strokes: true
 draw_bold_text_with_bright_colors: true
 colors:
+  # Default colors
   primary:
-    background: '0x000000'
-    foreground: '0xD0FFFC'
-  cursor:
-    text: '0xF5F7E3'
-    cursor: '0xD0FFFC'
-  selection:
-    text: '0xF5F7E3'
-    background: '0x314F78'
+    background: '#161821'
+    foreground: '#d2d4de'
+
+  # Normal colors
   normal:
-    black:   '0x263F45' #0
-    red:     '0x8A281A' #1
-    green:   '0x79815D' #2
-    yellow:  '0xC5CF8D' #3
-    blue:    '0x9DC3BF' #4
-    magenta: '0x9B6CBE' #5
-    cyan:    '0x60C5D8' #6
-    white:   '0xD1FEFC' #7
+    black:   '#161821'
+    red:     '#e27878'
+    green:   '#b4be82'
+    yellow:  '#e2a478'
+    blue:    '#84a0c6'
+    magenta: '#a093c7'
+    cyan:    '#89b8c2'
+    white:   '#c6c8d1'
+
+  # Bright colors
   bright:
-    black:   '0x396269' #8
-    red:     '0xFC674E' #9
-    green:   '0xB3BD93' #A
-    yellow:  '0xFCFFC7' #B
-    blue:    '0xC4FEFD' #C
-    magenta: '0xAD7FA8' #D
-    cyan:    '0x76C8D9' #E
-    white:   '0xF6F7E2' #F
+    black:   '#6b7089'
+    red:     '#e98989'
+    green:   '#c0ca8e'
+    yellow:  '#e9b189'
+    blue:    '#91acd1'
+    magenta: '#ada0d3'
+    cyan:    '#95c4ce'
+    white:   '#d2d4de'
   indexed_colors: []
 bell:
   animation: Linear

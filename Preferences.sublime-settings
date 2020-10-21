@@ -35,7 +35,7 @@
 		"phpbb": false
 	},
 	"codeformatter_php_path": "/usr/local/bin/php",
-	"color_scheme": "Packages/Theme - Tech49/Tech49.tmTheme",
+	"color_scheme": "Packages/Colorsublime - Themes/Facebook.tmTheme",
 	"dart_sdk_path": "/opt/flutter/bin/cache/dart-sdk",
 	"default_encoding": "UTF-8",
 	"detect_indentation": true,

@@ -17,7 +17,7 @@
 
 call plug#begin('~/.local/share/nvim/plugged')
 
-Plug 'ayu-theme/ayu-vim'
+"Plug 'ayu-theme/ayu-vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'preservim/nerdcommenter'
@@ -26,7 +26,7 @@ Plug 'scrooloose/syntastic'
 Plug 'airblade/vim-gitgutter'
 Plug 'leafgarland/typescript-vim'
 Plug 'godlygeek/tabular'
-Plug 'plasticboy/vim-markdown'
+"Plug 'plasticboy/vim-markdown'
 Plug 'elixir-lang/vim-elixir'
 Plug 'fatih/vim-go'
 Plug 'rust-lang/rust.vim'
@@ -39,6 +39,8 @@ Plug 'Yggdroot/indentLine'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'itchyny/lightline.vim'
+Plug 'cocopon/iceberg.vim'
 
 call plug#end()
 
@@ -48,7 +50,7 @@ call plug#end()
 " ╚════════════════════════════════════════════════════════════════════════════╝
 
 " Open NERDTree with vim
-let sbv_open_nerdtree_to_start=1
+let sbv_open_nerdtree_to_start=0
 " Open Nerd Panel with a new tab
 let sbv_open_nerdtree_with_new_tab=1
 " Enabled / Disabled placeholder chars
@@ -77,7 +79,10 @@ let sbv_enable_numbers=1
 
 set termguicolors
 " let ayucolor="dark"
-colorscheme tech49
+" colorscheme tech49
+colorscheme iceberg
+
+let g:lightline = { 'colorscheme': 'iceberg' }
 
 " function! ChangeColorscheme(scheme)
 " 	let g:ayucolor=a:scheme
@@ -196,4 +201,9 @@ autocmd BufRead,BufNewFile tmux.conf.local set filetype=tmux
 autocmd BufRead,BufNewFile vimrc.local set filetype=vim
 
 nnoremap <silent> <C-T> :Files<CR>
+
+" OVERRIDES
+highlight Normal ctermbg=none
+highlight Normal guibg=none
+highlight NonText ctermbg=none
 
