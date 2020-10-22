@@ -206,4 +206,6 @@ nnoremap <silent> <C-T> :Files<CR>
 highlight Normal ctermbg=none
 highlight Normal guibg=none
 highlight NonText ctermbg=none
-
+highlight NonText guibg=none
+highlight EndOfBuffer ctermbg=none guibg=none
+highlight LineNr ctermbg=none guibg=none
