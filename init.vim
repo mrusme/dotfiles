@@ -11,6 +11,10 @@
 " ║                                                                            ║
 " ╚════════════════════════════════════════════════════════════════════════════╝
 
+set nocompatible
+filetype off
+
+
 " ╔════════════════════════════════════════════════════════════════════════════╗
 " ║ Plugs                                                                      ║
 " ╚════════════════════════════════════════════════════════════════════════════╝
@@ -22,10 +26,14 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'preservim/nerdcommenter'
 Plug 'tpope/vim-surround'
+Plug 'gcmt/breeze.vim'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'tomtom/tcomment_vim'
 Plug 'scrooloose/syntastic'
 Plug 'airblade/vim-gitgutter'
-Plug 'leafgarland/typescript-vim'
+"Plug 'Valloric/YouCompleteMe'
 Plug 'godlygeek/tabular'
+Plug 'leafgarland/typescript-vim'
 "Plug 'plasticboy/vim-markdown'
 Plug 'elixir-lang/vim-elixir'
 Plug 'fatih/vim-go'
@@ -43,6 +51,163 @@ Plug 'itchyny/lightline.vim'
 Plug 'cocopon/iceberg.vim'
 
 call plug#end()
+
+
+" ╔════════════════════════════════════════════════════════════════════════════╗
+" ║ Configuration                                                              ║
+" ╚════════════════════════════════════════════════════════════════════════════╝
+
+filetype plugin indent on
+
+""""""""
+if has('autocmd')
+  filetype plugin indent on
+endif
+if has('syntax') && !exists('g:syntax_on')
+  syntax enable
+endif
+
+set clipboard=unnamed
+
+set encoding=utf-8
+set autoindent
+set number
+set backspace=indent,eol,start
+set showmatch
+set showmode
+set smarttab
+set complete-=i
+set nrformats-=octal
+set shiftround
+set ttimeout
+set ttimeoutlen=50
+
+set incsearch
+
+set laststatus=2
+set ruler
+set showcmd
+set wildmenu
+
+set autoread
+
+set tabstop=2 shiftwidth=2 expandtab
+set listchars=tab:▒░,trail:▓
+set list
+
+set number
+set hlsearch
+set ignorecase
+set smartcase
+
+map Q gq
+
+set hidden
+
+set nobackup
+set nowritebackup
+set noswapfile
+set fileformats=unix,dos,mac
+set completeopt=menuone,longest,preview
+set wildignore+=*/.git/*,*/.hg/*,*/.svn/*
+
+if maparg('<C-L>', 'n') ==# ''
+  nnoremap <silent> <C-L> :nohlsearch<CR><C-L>
+endif
+
+inoremap <C-U> <C-G>u<C-U>
+
+noremap  <C-S> :update<CR>
+vnoremap <C-S> <C-C>:update<CR>
+inoremap <C-S> <Esc>:update<CR>
+
+inoremap <C-c> <Esc>
+
+map <C-f> /
+
+vnoremap <Tab> >
+vnoremap <S-Tab> <
+
+vmap <C-m> gc
+
+vmap <C-w> S
+
+vmap <C-x> d
+vmap <C-v> p
+vmap <C-c> y
+
+nnoremap <C-z>  :undo<CR>
+inoremap <C-z>  <Esc>:undo<CR>
+nnoremap <C-y>  :redo<CR>
+inoremap <C-y>  <Esc>:redo<CR>
+
+nnoremap <C-b>  :tabprevious<CR>
+inoremap <C-b>  <Esc>:tabprevious<CR>i
+nnoremap <C-n>  :tabnext<CR>
+inoremap <C-n>  <Esc>:tabnext<CR>i
+nnoremap <C-t>  :tabnew<CR>
+inoremap <C-t>  <Esc>:tabnew<CR>i
+nnoremap <C-k>  :tabclose<CR>
+inoremap <C-k>  <Esc>:tabclose<CR>i
+
+map \ :
+let mapleader = ','
+nnoremap <Leader>p :set paste<CR>
+nnoremap <Leader>o :set nopaste<CR>
+noremap  <Leader>g :GitGutterToggle<CR>
+
+" map <C-v><C-c> :qa!<CR>
+" map <C-v><C-s> :w<CR>
+" map <C-v><C-S> :w!<CR>
+" map <C-v><C-q> :wq<CR>
+"
+" map <C-v><Left> <C-W>h
+" map <C-v><Up> <C-W>j
+" map <C-v><Down> <C-W>k
+" map <C-v><Right> <C-W>l
+
+let g:multi_cursor_next_key='<C-d>'
+let g:multi_cursor_prev_key='<C-p>'
+let g:multi_cursor_skip_key='<C-l>'
+let g:multi_cursor_quit_key='<Esc>'
+let g:multi_cursor_start_key='<C-L>'
+
+let g:tcomment#replacements_xml={}
+let g:vim_markdown_folding_disabled = 1
+
+autocmd BufRead,BufNewFile *.md set filetype=markdown
+autocmd BufRead,BufNewFile *.md setlocal textwidth=80
+autocmd BufRead,BufNewFile .{jscs,jshint,eslint}rc set filetype=json
+autocmd BufRead,BufNewFile aliases.local,zshrc.local,*/zsh/configs/* set filetype=sh
+autocmd BufRead,BufNewFile gitconfig.local set filetype=gitconfig
+autocmd BufRead,BufNewFile tmux.conf.local set filetype=tmux
+autocmd BufRead,BufNewFile vimrc.local set filetype=vim
+
+nnoremap <silent> <C-T> :Files<CR>
+
+
+" ╔════════════════════════════════════════════════════════════════════════════╗
+" ║ Theme                                                                      ║
+" ╚════════════════════════════════════════════════════════════════════════════╝
+
+set termguicolors
+colorscheme iceberg
+
+let g:lightline = { 'colorscheme': 'iceberg' }
+
+let g:indentLine_enabled = 1
+let g:indentLine_char = '⋮'
+let g:indentLine_first_char = '⋮'
+let g:indentLine_showFirstIndentLevel = 1
+let g:indentLine_setColors = 1
+
+" OVERRIDES
+highlight Normal ctermbg=none
+highlight Normal guibg=none
+highlight NonText ctermbg=none
+highlight NonText guibg=none
+highlight EndOfBuffer ctermbg=none guibg=none
+highlight LineNr ctermbg=none guibg=none
 
 
 " ╔════════════════════════════════════════════════════════════════════════════╗
@@ -72,34 +237,6 @@ let sbv_indentation_length=2
 " Relative numbers
 let sbv_enable_numbers=1
 
-
-" ╔════════════════════════════════════════════════════════════════════════════╗
-" ║ Theme                                                                      ║
-" ╚════════════════════════════════════════════════════════════════════════════╝
-
-set termguicolors
-" let ayucolor="dark"
-" colorscheme tech49
-colorscheme iceberg
-
-let g:lightline = { 'colorscheme': 'iceberg' }
-
-" function! ChangeColorscheme(scheme)
-" 	let g:ayucolor=a:scheme
-" 	colorscheme ayu
-" endfunction
-
-" map <C-v>.1 :call ChangeColorscheme("light")<CR>
-" map <C-v>.2 :call ChangeColorscheme("mirage")<CR>
-" map <C-v>.3 :call ChangeColorscheme("dark")<CR>
-
-let g:indentLine_enabled = 1
-let g:indentLine_char = '⋮'
-let g:indentLine_first_char = '⋮'
-let g:indentLine_showFirstIndentLevel = 1
-let g:indentLine_setColors = 1
-" let g:indentLine_color_term = 116
-" let g:indentLine_bgcolor_term = 0
 
 " ╔════════════════════════════════════════════════════════════════════════════╗
 " ║ NERDTree                                                                   ║
@@ -137,7 +274,7 @@ function! s:CloseIfOnlyNerdTreeLeft()
 		endif
 	endif
 endfunction
-map <C-v><C-n> :NERDTreeToggle<CR>
+nnoremap <S-n> :NERDTreeToggle<CR>
 
 
 " ╔════════════════════════════════════════════════════════════════════════════╗
@@ -159,53 +296,3 @@ let g:syntastic_check_on_wq = 0
 
 " typescript-vim
 let g:typescript_indent_disable = 1
-
-
-" ╔════════════════════════════════════════════════════════════════════════════╗
-" ║ Various                                                                    ║
-" ╚════════════════════════════════════════════════════════════════════════════╝
-
-set encoding=utf-8
-set number
-set backspace=2
-set showmatch
-set showmode
-syntax on
-syntax enable
-set clipboard=unnamed
-
-map <C-v><C-c> :qa!<CR>
-map <C-v><C-s> :w<CR>
-map <C-v><C-S> :w!<CR>
-map <C-v><C-q> :wq<CR>
-
-map <C-v><Left> <C-W>h
-map <C-v><Up> <C-W>j
-map <C-v><Down> <C-W>k
-map <C-v><Right> <C-W>l
-
-let g:multi_cursor_next_key='<C-d>'
-let g:multi_cursor_prev_key='<C-p>'
-let g:multi_cursor_skip_key='<C-l>'
-let g:multi_cursor_quit_key='<Esc>'
-let g:multi_cursor_start_key='<C-L>'
-
-let g:vim_markdown_folding_disabled = 1
-
-autocmd BufRead,BufNewFile *.md set filetype=markdown
-autocmd BufRead,BufNewFile *.md setlocal textwidth=80
-autocmd BufRead,BufNewFile .{jscs,jshint,eslint}rc set filetype=json
-autocmd BufRead,BufNewFile aliases.local,zshrc.local,*/zsh/configs/* set filetype=sh
-autocmd BufRead,BufNewFile gitconfig.local set filetype=gitconfig
-autocmd BufRead,BufNewFile tmux.conf.local set filetype=tmux
-autocmd BufRead,BufNewFile vimrc.local set filetype=vim
-
-nnoremap <silent> <C-T> :Files<CR>
-
-" OVERRIDES
-highlight Normal ctermbg=none
-highlight Normal guibg=none
-highlight NonText ctermbg=none
-highlight NonText guibg=none
-highlight EndOfBuffer ctermbg=none guibg=none
-highlight LineNr ctermbg=none guibg=none
