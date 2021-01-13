@@ -603,6 +603,14 @@ function dotfiles-update-remote() {
   cp ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/LSP.sublime-settings "$DOTFILES/LSP.sublime-settings"
 }
 
+function terminal-colors() {
+  if [[ $1 == "dark" ]]
+  then
+    sed -i .previous 's/\*light$/\*dark/g' ~/.config/alacritty/alacritty.yml
+  else
+    sed -i .previous 's/\*dark$/\*light/g' ~/.config/alacritty/alacritty.yml
+  fi
+}
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
 # ║ Aliases                                                                    ║
