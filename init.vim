@@ -27,6 +27,7 @@ Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'preservim/nerdcommenter'
 Plug 'tpope/vim-surround'
 Plug 'gcmt/breeze.vim'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'tomtom/tcomment_vim'
 Plug 'scrooloose/syntastic'
@@ -35,6 +36,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'godlygeek/tabular'
 Plug 'leafgarland/typescript-vim'
 "Plug 'plasticboy/vim-markdown'
+Plug 'reedes/vim-pencil'
 Plug 'elixir-lang/vim-elixir'
 Plug 'fatih/vim-go'
 Plug 'rust-lang/rust.vim'
@@ -58,6 +60,8 @@ call plug#end()
 " ╚════════════════════════════════════════════════════════════════════════════╝
 
 filetype plugin indent on
+filetype plugin on
+
 
 """"""""
 if has('autocmd')
@@ -275,6 +279,22 @@ function! s:CloseIfOnlyNerdTreeLeft()
 	endif
 endfunction
 nnoremap <S-n> :NERDTreeToggle<CR>
+
+
+" ╔════════════════════════════════════════════════════════════════════════════╗
+" ║ Deoplete                                                                   ║
+" ╚════════════════════════════════════════════════════════════════════════════╝
+let g:deoplete#enable_at_startup = 1
+
+
+" ╔════════════════════════════════════════════════════════════════════════════╗
+" ║ Pencil                                                                     ║
+" ╚════════════════════════════════════════════════════════════════════════════╝
+augroup pencil
+  autocmd!
+  autocmd FileType markdown,mkd call pencil#init({'wrap': 'hard', 'autoformat': 1})
+  autocmd FileType text         call pencil#init({'wrap': 'hard', 'autoformat': 1})
+augroup END
 
 
 " ╔════════════════════════════════════════════════════════════════════════════╗
