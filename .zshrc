@@ -12,6 +12,7 @@
 # ╚════════════════════════════════════════════════════════════════════════════╝
 # zmodload zsh/zprof
 
+export ZSH_TMUX_AUTOSTART=true
 export DOT_ZSHRC="$HOME/.zshrc"
 export DOT_ZSHRC_VERSION="0.28"
 
@@ -195,10 +196,10 @@ ZSH_AUTOSUGGESTIONS=${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestio
 [[ -d $ZSH_AUTOSUGGESTIONS && $(find "$ZSH_AUTOSUGGESTIONS/.git" -maxdepth 0 -type d -mmin +1440 | wc -l | tr -d '[:space:]') == "0" ]] \
 || git -C $ZSH_AUTOSUGGESTIONS pull
 
-[[ $OS = "Darwin" ]] && plugins=(docker encode64 extract git \
+[[ $OS = "Darwin" ]] && plugins=(tmux docker encode64 extract git \
   gpg-agent history mix ssh-agent urltools \
   zsh-autosuggestions brew osx fzf)
-[[ $OS = "Linux" ]]  && plugins=(docker encode64 extract git \
+[[ $OS = "Linux" ]]  && plugins=(tmux docker encode64 extract git \
   gpg-agent history mix ssh-agent urltools \
   zsh-autosuggestions fzf)
 
