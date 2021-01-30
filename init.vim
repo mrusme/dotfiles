@@ -285,7 +285,9 @@ nnoremap <S-n> :NERDTreeToggle<CR>
 " ║ Deoplete                                                                   ║
 " ╚════════════════════════════════════════════════════════════════════════════╝
 let g:deoplete#enable_at_startup = 1
-
+let b:deoplete_ignore_sources = ['buffer']
+autocmd FileType markdown 
+  \ call deoplete#custom#buffer_option('auto_complete', v:false)
 
 " ╔════════════════════════════════════════════════════════════════════════════╗
 " ║ Pencil                                                                     ║
