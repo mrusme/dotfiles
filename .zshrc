@@ -14,7 +14,7 @@
 
 export ZSH_TMUX_AUTOSTART=true
 export DOT_ZSHRC="$HOME/.zshrc"
-export DOT_ZSHRC_VERSION="0.28"
+export DOT_ZSHRC_VERSION="0.29"
 
 type /usr/local/bin/zsh > /dev/null \
 && export SHELL=/usr/local/bin/zsh
