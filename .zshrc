@@ -38,8 +38,11 @@ export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
 export HISTCONTROL=ignoredups:ignorespace
-export HISTSIZE=10000
-export HISTFILESIZE=20000
+export HISTSIZE=100000
+export HISTFILESIZE=200000
+export SAVEHIST=$HISTSIZE
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_IGNORE_SPACE
 
 # export TERM=xterm-16color
 export TERM=xterm-256color
