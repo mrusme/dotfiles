@@ -47,6 +47,7 @@ fzf
 gawk
 gd
 gdbm
+gdk-pixbuf
 gettext
 gh
 ghc
@@ -117,6 +118,7 @@ libmpc
 libogg
 libomp
 libpng
+librsvg
 libsamplerate
 libscrypt
 libsndfile
@@ -260,6 +262,7 @@ zimg
 zlib
 zola
 zsh
+achannarasappa/tap/ticker
 aws/tap/aws-sam-cli
 browsh-org/browsh/browsh
 bvaisvil/zenith/zenith
@@ -274,7 +277,7 @@ mongodb/brew/mongodb-community
 mongodb/brew/mongodb-database-tools
 orf/brew/gping
 osx-cross/avr/avr-binutils
-osx-cross/avr/avr-gcc
+osx-cross/avr/avr-gcc@9
 riscv/riscv/riscv-gnu-toolchain
 riscv/riscv/riscv-isa-sim
 riscv/riscv/riscv-pk
