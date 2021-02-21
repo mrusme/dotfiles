@@ -12,6 +12,7 @@ bat
 bdw-gc
 bettercap
 binutils
+boost
 boringtun
 c-ares
 cabal-install
@@ -144,6 +145,7 @@ lnav
 lsusb
 lua
 luajit
+luajit-openresty
 lzo
 make
 md5sha1sum
@@ -270,7 +272,6 @@ cjbassi/ytop/ytop
 clementtsang/bottom/bottom
 derailed/k9s/k9s
 extrawurst/tap/gitui
-getsentry/tools/sentry-cli
 lukechilds/tap/gifgen
 mgrachev/tap/dotenv-linter
 mongodb/brew/mongodb-community
