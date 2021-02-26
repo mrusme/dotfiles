@@ -19,6 +19,8 @@ imager v0.3.2:
     imager
 lares v0.2.0:
     lares
+rates v0.1.0:
+    rates
 rust-analyzer v0.1.0 (/Users/mrus/Projects/GitHub/rust-analyzer/crates/rust-analyzer):
     rust-analyzer
 viu v1.3.0:
