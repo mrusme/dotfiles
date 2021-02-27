@@ -73,8 +73,9 @@ export ERL_AFLAGS="-kernel shell_history enabled"
 # ║ Bound keys                                                                 ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
-bindkey "\e[1;3C" forward-word
-bindkey "\e[1;3D" backward-word
+[[ $OS = "Darwin" ]] \
+&& bindkey "\e[1;3C" forward-word \
+&& bindkey "\e[1;3D" backward-word
 
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
