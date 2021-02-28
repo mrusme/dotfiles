@@ -123,6 +123,11 @@ function activate.virtualenv {
   || echo "Could not load virtualenvwrapper."
 }
 
+export PYTHON_MAJOR_MINOR=$(python3 --version | sed -nr 's/.*([0-9]+\.[0-9]+)\..*/\1/p')
+
+[[ -d "$HOME/Library/Python/$PYTHON_MAJOR_MINOR/bin" ]] \
+&& export PATH="$HOME/Library/Python/$PYTHON_MAJOR_MINOR/bin":$PATH
+
 # NVM
 export NVM_DIR="$HOME/.nvm"
 function activate.nvm {
