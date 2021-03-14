@@ -215,7 +215,7 @@ highlight LineNr ctermbg=none guibg=none
 
 
 " ╔════════════════════════════════════════════════════════════════════════════╗
-" ║ NerdTree                                                                   ║
+" ║ NERDTree                                                                   ║
 " ╚════════════════════════════════════════════════════════════════════════════╝
 
 " Open NERDTree with vim
@@ -241,10 +241,6 @@ let sbv_indentation_length=2
 " Relative numbers
 let sbv_enable_numbers=1
 
-
-" ╔════════════════════════════════════════════════════════════════════════════╗
-" ║ NERDTree                                                                   ║
-" ╚════════════════════════════════════════════════════════════════════════════╝
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * call s:actionForOpen(sbv_open_nerdtree_to_start)
 function! s:actionForOpen(openNerdTree)
