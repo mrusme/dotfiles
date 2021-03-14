@@ -39,6 +39,19 @@
 	"dart_sdk_path": "/opt/flutter/bin/cache/dart-sdk",
 	"default_encoding": "UTF-8",
 	"detect_indentation": true,
+	"downloader_precedence":
+	{
+		"linux":
+		[
+			"curl",
+			"wget"
+		],
+		"osx":
+		[
+			"curl",
+			"wget"
+		]
+	},
 	"drag_text": false,
 	"draw_minimap_border": false,
 	"draw_shadows": false,
@@ -107,6 +120,7 @@
 	"show_panel_on_build": true,
 	"show_tab_close_buttons": false,
 	"smart_indent": true,
+	"submit_usage": false,
 	"tab_completion": true,
 	"tab_size": 4,
 	"theme": "gruvbox.sublime-theme",
