@@ -612,6 +612,7 @@ function dotfiles-update-remote() {
   cp ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/Preferences.sublime-settings "$DOTFILES/Preferences.sublime-settings"
   cp ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/LSP.sublime-settings "$DOTFILES/LSP.sublime-settings"
   brew ls --formula -1 --full-name > "$DOTFILES/brew_ls_-1"
+  brew ls --cask -1 --full-name > "$DOTFILES/brew_cask_ls_-1"
   cargo install --list > "$DOTFILES/cargo_install_--list"
 }
 
