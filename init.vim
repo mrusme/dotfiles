@@ -36,7 +36,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'godlygeek/tabular'
 Plug 'leafgarland/typescript-vim'
 "Plug 'plasticboy/vim-markdown'
-Plug 'reedes/vim-pencil'
+"Plug 'reedes/vim-pencil'
 Plug 'elixir-lang/vim-elixir'
 Plug 'fatih/vim-go'
 Plug 'rust-lang/rust.vim'
@@ -289,15 +289,18 @@ let b:deoplete_ignore_sources = ['buffer']
 autocmd FileType markdown 
   \ call deoplete#custom#buffer_option('auto_complete', v:false)
 
+
 " ╔════════════════════════════════════════════════════════════════════════════╗
 " ║ Pencil                                                                     ║
 " ╚════════════════════════════════════════════════════════════════════════════╝
-augroup pencil
-  autocmd!
-  autocmd FileType markdown,mkd call pencil#init({'wrap': 'hard', 'autoformat': 1})
-  autocmd FileType text         call pencil#init({'wrap': 'hard', 'autoformat': 1})
-augroup END
+"augroup pencil
+"  autocmd!
+"  autocmd FileType markdown,mkd call pencil#init({'wrap': 'hard', 'autoformat': 1})
+"  autocmd FileType text         call pencil#init({'wrap': 'hard', 'autoformat': 1})
+"augroup END
 
+"let g:pencil#textwidth = 80
+"let g:pencil#cursorwrap = 1
 
 " ╔════════════════════════════════════════════════════════════════════════════╗
 " ║ Syntastic                                                                  ║
