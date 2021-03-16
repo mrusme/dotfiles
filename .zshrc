@@ -617,6 +617,24 @@ function dotfiles-update-remote() {
   go list '...' | rg '^github.com' > "$DOTFILES/go_list_github.com"
 }
 
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ Functions                                                                  ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+
+function update-tools() {
+  echo "Updating Rust tools ..."
+  cargo install-update -a
+
+  echo ""
+
+  #echo "Updating Go tools ..."
+  #go list '...' | rg '^github.com' | while read pkg; do echo "Updating $pkg ..."; go get -u "$pkg"; done
+
+  #echo ""
+  echo "Tools updated"
+}
+
 function terminal-colors() {
   if [[ $1 == "dark" ]]
   then
