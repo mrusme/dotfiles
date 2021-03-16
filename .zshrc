@@ -64,6 +64,9 @@ export SSH_KEY_PATH="~/.ssh/id_rsa"
 # Enable Erlang/IEx shell history
 export ERL_AFLAGS="-kernel shell_history enabled"
 
+# https://github.com/oz/tz/
+export TZ_LIST='Pacific/Honolulu,America/Panama,America/New_York,Etc/UTC,Europe/Berlin,Asia/Bangkok,Asia/Tokyo,Australia/Melbourne'
+
 # Import color scheme via wal
 [[ $OS = "Linux" ]] \
 && type wal > /dev/null && (wal -r &)
