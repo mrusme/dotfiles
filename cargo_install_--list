@@ -1,3 +1,5 @@
+battop v0.2.4:
+    battop
 bingrep v0.8.5:
     bingrep
 cargo-generate v0.5.1:
@@ -7,23 +9,43 @@ cargo-update v5.1.0:
     cargo-install-update-config
 cmdr v0.1.0 (/Users/mrus/Projects/@mrusme/cmdr):
     cmdr
+code-minimap v0.5.1:
+    code-minimap
+csview v0.3.6:
+    csview
 dijo v0.2.7:
     dijo
 du-dust v0.5.4:
     dust
 eva v0.2.7:
     eva
+gfld v1.0.4:
+    gfld
+git-delta v0.7.1:
+    delta
 git-journal v1.8.1:
     git-journal
 imager v0.3.2:
     imager
+jwt-cli v4.0.0:
+    jwt
 lares v0.2.0:
     lares
-rates v0.1.0:
+pastel v0.8.0:
+    pastel
+pipe-rename v1.1.4:
+    renamer
+rates v0.2.0:
     rates
 rust-analyzer v0.1.0 (/Users/mrus/Projects/GitHub/rust-analyzer/crates/rust-analyzer):
     rust-analyzer
+shellcaster v1.1.0:
+    shellcaster
+tickrs v0.14.4:
+    tickrs
 viu v1.3.0:
     viu
 vocage v1.1.0:
     vocage
+websocat v1.7.0:
+    websocat

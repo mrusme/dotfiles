@@ -51,6 +51,7 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'cocopon/iceberg.vim'
+Plug 'wfxr/minimap.vim'
 
 call plug#end()
 
@@ -282,7 +283,7 @@ nnoremap <S-n> :NERDTreeToggle<CR>
 " ╚════════════════════════════════════════════════════════════════════════════╝
 let g:deoplete#enable_at_startup = 1
 let b:deoplete_ignore_sources = ['buffer']
-autocmd FileType markdown 
+autocmd FileType markdown
   \ call deoplete#custom#buffer_option('auto_complete', v:false)
 
 
@@ -310,6 +311,12 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
+" ╔════════════════════════════════════════════════════════════════════════════╗
+" ║ Minimap                                                                    ║
+" ╚════════════════════════════════════════════════════════════════════════════╝
+let g:minimap_width = 10
+let g:minimap_auto_start = 0
+let g:minimap_auto_start_win_enter = 0
 
 " ╔════════════════════════════════════════════════════════════════════════════╗
 " ║ Typescript                                                                 ║

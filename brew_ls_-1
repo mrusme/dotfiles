@@ -11,16 +11,18 @@ bash
 bat
 bdw-gc
 bettercap
-binutils
 boost
 boringtun
+brotli
 c-ares
 cabal-install
 caddy
 cairo
+capstone
 cmake
 cocoapods
 confuse
+coreutils
 dark-mode
 dav1d
 deno
@@ -39,6 +41,7 @@ fasd
 fd
 ffmpeg
 findutils
+fish
 flac
 fontconfig
 fpc
@@ -60,6 +63,7 @@ git-crypt
 git-flow
 git-lfs
 glib
+glow
 gmime
 gmp
 gnu-getopt
@@ -80,6 +84,7 @@ haskell-stack
 helm
 hexyl
 hidapi
+html-xml-utils
 httpie
 hugo
 hyperfine
@@ -120,6 +125,7 @@ libmpc
 libogg
 libomp
 libpng
+libpthread-stubs
 librsvg
 libsamplerate
 libscrypt
@@ -139,6 +145,12 @@ libvidstab
 libvorbis
 libvpx
 libvterm
+libx11
+libxau
+libxcb
+libxdmcp
+libxext
+libxrender
 libyaml
 little-cms2
 lmdb
@@ -147,7 +159,9 @@ lsusb
 lua
 luajit
 luajit-openresty
+luv
 lzo
+m4
 make
 md5sha1sum
 mdcat
@@ -156,6 +170,7 @@ midnight-commander
 minicom
 mmv
 mosh
+mpdecimal
 mpfr
 msgpack
 mu
@@ -167,6 +182,7 @@ netpbm
 nettle
 nghttp2
 nginx
+nikto
 ninja
 node
 notmuch
@@ -196,6 +212,7 @@ procs
 protobuf
 pyenv
 pyenv-virtualenv
+python-tabulate
 python@3.7
 python@3.8
 python@3.9
@@ -208,13 +225,13 @@ restic
 ripgrep
 rsnapshot
 rtmpdump
-rtv
 rubberband
 ruby
 s-lang
 sampler
 sdl2
 shared-mime-info
+shellcheck
 smartmontools
 snappy
 so
@@ -225,6 +242,8 @@ srt
 stlink
 syncthing
 talloc
+task
+taskwarrior-tui
 tcl-tk
 tealdeer
 telnet
@@ -257,6 +276,7 @@ x265
 xapian
 xidel
 xmlto
+xorgproto
 xvid
 xz
 youtube-dl
