@@ -2,9 +2,9 @@ battop v0.2.4:
     battop
 bingrep v0.8.5:
     bingrep
-cargo-generate v0.5.1:
+cargo-generate v0.6.1:
     cargo-generate
-cargo-update v5.1.0:
+cargo-update v6.0.0:
     cargo-install-update
     cargo-install-update-config
 cmdr v0.1.0 (/Users/mrus/Projects/@mrusme/cmdr):
@@ -29,8 +29,6 @@ imager v0.3.2:
     imager
 jwt-cli v4.0.0:
     jwt
-lares v0.2.0:
-    lares
 pastel v0.8.0:
     pastel
 pipe-rename v1.1.4:
