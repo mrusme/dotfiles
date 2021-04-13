@@ -23,8 +23,14 @@ call plug#begin('~/.local/share/nvim/plugged')
 
 "Plug 'ayu-theme/ayu-vim'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
-Plug 'preservim/nerdcommenter'
+Plug 'lambdalisue/fern.vim'
+Plug 'lambdalisue/nerdfont.vim'
+Plug 'lambdalisue/fern-renderer-nerdfont.vim'
+Plug 'lambdalisue/fern-git-status.vim'
+Plug 'lambdalisue/fern-hijack.vim'
+Plug 'lambdalisue/fern-bookmark.vim'
+Plug 'lambdalisue/fern-mapping-git.vim'
+Plug 'lambdalisue/glyph-palette.vim'
 Plug 'tpope/vim-surround'
 Plug 'gcmt/breeze.vim'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -216,66 +222,65 @@ highlight LineNr ctermbg=none guibg=none
 
 
 " ╔════════════════════════════════════════════════════════════════════════════╗
-" ║ NERDTree                                                                   ║
+" ║ Fern                                                                       ║
 " ╚════════════════════════════════════════════════════════════════════════════╝
 
-" Open NERDTree with vim
-let sbv_open_nerdtree_to_start=0
-" Open Nerd Panel with a new tab
-let sbv_open_nerdtree_with_new_tab=1
-" Enabled / Disabled placeholder chars
-let sbv_display_placeholder=1
-" Charactere placeholder for tabulation [2 char]
-let sbv_tab_placeholder='»·'
-" Charactere placeholder for space [1 char]
-let sbv_space_placeholder='·'
-" Enabled / Disabled space space for access in your vimrc
-let sbv_quick_access_config=0
-" Enabled / Disabled swap file
-let sbv_swap_file=0
-" Enabled / Disabled Shortcut
-let sbv_smart_shortcut=1
-" Indentation type [tab || space]
-let sbv_indentation_type="space"
-" Indentation length
-let sbv_indentation_length=2
-" Relative numbers
-let sbv_enable_numbers=1
+" fern-renderer-nerdfont
+let g:fern#renderer = "nerdfont"
 
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * call s:actionForOpen(sbv_open_nerdtree_to_start)
-function! s:actionForOpen(openNerdTree)
-	let filename = expand('%:t')
-	if !empty(a:openNerdTree)
-		NERDTree
-	endif
-	if !empty(filename)
-		wincmd l
-	endif
+" fern-git-status
+" Disable listing ignored files/directories
+let g:fern_git_status#disable_ignored = 0
+" Disable listing untracked files
+let g:fern_git_status#disable_untracked = 0
+" Disable listing status of submodules
+let g:fern_git_status#disable_submodules = 0
+" Disable listing status of directories
+let g:fern_git_status#disable_directories = 0
+
+" glyph-palette
+augroup my-glyph-palette
+  autocmd! *
+  autocmd FileType fern call glyph_palette#apply()
+  autocmd FileType nerdtree,startify call glyph_palette#apply()
+augroup END
+
+let g:fern#disable_default_mappings   = 1
+let g:fern#disable_drawer_auto_quit   = 1
+let g:fern#disable_viewer_hide_cursor = 1
+
+noremap <silent> <Leader>d :Fern . -drawer -width=35 -toggle<CR><C-w>=
+noremap <silent> <Leader>f :Fern . -drawer -reveal=% -width=35<CR><C-w>=
+noremap <silent> <Leader>. :Fern %:h -drawer -width=35<CR><C-w>=
+
+function! FernInit() abort
+  nmap <buffer><expr>
+        \ <Plug>(fern-my-open-expand-collapse)
+        \ fern#smart#leaf(
+        \   "\<Plug>(fern-action-open:select)",
+        \   "\<Plug>(fern-action-expand)",
+        \   "\<Plug>(fern-action-collapse)",
+        \ )
+  nmap <buffer> <CR> <Plug>(fern-my-open-expand-collapse)
+  nmap <buffer> <2-LeftMouse> <Plug>(fern-my-open-expand-collapse)
+  nmap <buffer> m <Plug>(fern-action-mark:toggle)j
+  nmap <buffer> N <Plug>(fern-action-new-file)
+  nmap <buffer> K <Plug>(fern-action-new-dir)
+  nmap <buffer> D <Plug>(fern-action-remove)
+  nmap <buffer> V <Plug>(fern-action-move)
+  nmap <buffer> R <Plug>(fern-action-rename)
+  nmap <buffer> s <Plug>(fern-action-open:split)
+  nmap <buffer> v <Plug>(fern-action-open:vsplit)
+  nmap <buffer> r <Plug>(fern-action-reload)
+  nmap <buffer> <nowait> d <Plug>(fern-action-hidden:toggle)
+  nmap <buffer> <nowait> < <Plug>(fern-action-leave)
+  nmap <buffer> <nowait> > <Plug>(fern-action-enter)
 endfunction
-autocmd BufCreate * call s:addingNewTab(sbv_open_nerdtree_with_new_tab)
-function! s:addingNewTab(openNerdTree)
-	let filename = expand('%:t')
-	if winnr('$') < 2 && exists('t:NERDTreeBufName') == 0
-		if !empty(a:openNerdTree)
-			NERDTree
-		endif
-		if !empty(filename)
-			wincmd l
-		endif
-	endif
-endfunction
-autocmd WinEnter * call s:CloseIfOnlyNerdTreeLeft()
-function! s:CloseIfOnlyNerdTreeLeft()
-	if exists("t:NERDTreeBufName")
-		if bufwinnr(t:NERDTreeBufName) != -1
-			if winnr("$") == 1
-				q
-			endif
-		endif
-	endif
-endfunction
-nnoremap <S-n> :NERDTreeToggle<CR>
+
+augroup FernEvents
+  autocmd!
+  autocmd FileType fern call FernInit()
+augroup END
 
 
 " ╔════════════════════════════════════════════════════════════════════════════╗
