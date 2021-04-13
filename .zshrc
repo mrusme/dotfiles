@@ -14,7 +14,7 @@
 
 export ZSH_TMUX_AUTOSTART=true
 export DOT_ZSHRC="$HOME/.zshrc"
-export DOT_ZSHRC_VERSION="0.29"
+export DOT_ZSHRC_VERSION="0.30"
 
 type /usr/local/bin/zsh > /dev/null \
 && export SHELL=/usr/local/bin/zsh
@@ -55,7 +55,7 @@ else
   export BROWSER=w3m
 
   [[ $OS = "Darwin" ]] \
-  && export EDITOR=subl \
+  && export EDITOR=vim \
   && export BROWSER=open
 fi
 
