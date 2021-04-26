@@ -7,17 +7,18 @@
 # ║                            ┏┛ ┗━┓ ┏━━┛┃ ┃ ┃ ┃ ┃                            ║
 # ║                            ┗━━━━┛ ┗━━━┛ ┗━┛ ┗━┛                            ║
 # ║                                                                            ║
-# ║         * github.com/mrusme * twitter.com/mrusme * mrus@mrus.me *          ║
+# ║      xn--gckvb8fzb.com * github.com/mrusme * marius@xn--gckvb8fzb.com      ║
 # ║                                                                            ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
 # zmodload zsh/zprof
 
 export ZSH_TMUX_AUTOSTART=true
 export DOT_ZSHRC="$HOME/.zshrc"
-export DOT_ZSHRC_VERSION="0.30"
+export DOT_ZSHRC_VERSION="0.31"
 
 type /usr/local/bin/zsh > /dev/null \
 && export SHELL=/usr/local/bin/zsh
+
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
 # ║ Tmux Magic (via SSH)                                                       ║
@@ -230,6 +231,7 @@ fpath=(
 )
 
 eval "$(fasd --init posix-alias zsh-hook zsh-ccomp zsh-ccomp-install zsh-wcomp zsh-wcomp-install)"
+
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
 # ║ Aptitude for MacOS & Gentoo                                                ║
@@ -705,6 +707,7 @@ alias myip="curl http://ipecho.net/plain; echo"
 alias git-crypt-add-myself='git-crypt add-gpg-user D2908F9977E1FE0B8A36F357C228EF0A530AF06F'
 
 alias jrnl='cd ~/Projects/@mrusme/xn--gckvb8fzb.com/content/posts/'
+
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
 # ║ motd                                                                       ║
