@@ -7,7 +7,7 @@
 " ║                            ╚████╔╝ ██║██║ ╚═╝ ██║                          ║
 " ║                             ╚═══╝  ╚═╝╚═╝     ╚═╝                          ║
 " ║                                                                            ║
-" ║         * github.com/mrusme * twitter.com/mrusme * mrus@mrus.me *          ║
+" ║      xn--gckvb8fzb.com * github.com/mrusme * marius@xn--gckvb8fzb.com      ║
 " ║                                                                            ║
 " ╚════════════════════════════════════════════════════════════════════════════╝
 
@@ -58,6 +58,8 @@ Plug 'junegunn/fzf.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'cocopon/iceberg.vim'
 Plug 'wfxr/minimap.vim'
+Plug 'vimwiki/vimwiki'
+Plug 'jamessan/vim-gnupg'
 
 call plug#end()
 
@@ -304,6 +306,7 @@ autocmd FileType markdown
 "let g:pencil#textwidth = 80
 "let g:pencil#cursorwrap = 1
 
+
 " ╔════════════════════════════════════════════════════════════════════════════╗
 " ║ Syntastic                                                                  ║
 " ╚════════════════════════════════════════════════════════════════════════════╝
@@ -316,12 +319,31 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
+
 " ╔════════════════════════════════════════════════════════════════════════════╗
 " ║ Minimap                                                                    ║
 " ╚════════════════════════════════════════════════════════════════════════════╝
 let g:minimap_width = 10
 let g:minimap_auto_start = 0
 let g:minimap_auto_start_win_enter = 0
+
+
+" ╔════════════════════════════════════════════════════════════════════════════╗
+" ║ Vimwiki                                                                    ║
+" ╚════════════════════════════════════════════════════════════════════════════╝
+let g:vimwiki_global_ext = 0
+let g:vimwiki_list = [
+  \{ 'path': '~/Cloud/Notes', 'path_html': '~/Cloud/Notes/.export',
+  \  'syntax': 'markdown', 'ext': '.md' }
+\]
+
+
+" ╔════════════════════════════════════════════════════════════════════════════╗
+" ║ Vimwiki                                                                    ║
+" ╚════════════════════════════════════════════════════════════════════════════╝
+autocmd User GnuPG setl textwidth=72
+let g:GPGFilePattern = '*.\(gpg\|asc\|pgp\)\(.wiki\|.md\)\='
+
 
 " ╔════════════════════════════════════════════════════════════════════════════╗
 " ║ Typescript                                                                 ║
