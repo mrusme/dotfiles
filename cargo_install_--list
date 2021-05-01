@@ -37,6 +37,8 @@ rates v0.2.0:
     rates
 rust-analyzer v0.1.0 (/Users/mrus/Projects/GitHub/rust-analyzer/crates/rust-analyzer):
     rust-analyzer
+rx v0.4.0 (/Users/mrus/Projects/GitHub/rx):
+    rx
 shellcaster v1.1.0:
     shellcaster
 tickrs v0.14.4:
