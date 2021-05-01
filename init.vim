@@ -60,6 +60,8 @@ Plug 'cocopon/iceberg.vim'
 Plug 'wfxr/minimap.vim'
 Plug 'vimwiki/vimwiki'
 Plug 'jamessan/vim-gnupg'
+Plug 'glepnir/dashboard-nvim'
+Plug 'robertbasic/vim-hugo-helper'
 
 call plug#end()
 
@@ -113,8 +115,6 @@ set hlsearch
 set ignorecase
 set smartcase
 
-map Q gq
-
 set hidden
 
 set nobackup
@@ -141,6 +141,9 @@ map <C-f> /
 vnoremap <Tab> >
 vnoremap <S-Tab> <
 
+nnoremap <Tab> >0
+nnoremap <S-Tab> <0
+
 vmap <C-m> gc
 
 vmap <C-w> S
@@ -148,6 +151,9 @@ vmap <C-w> S
 vmap <C-x> d
 vmap <C-v> p
 vmap <C-c> y
+
+nnoremap d "_d
+vnoremap d "_d
 
 nnoremap <C-z>  :undo<CR>
 inoremap <C-z>  <Esc>:undo<CR>
@@ -169,15 +175,18 @@ nnoremap <Leader>p :set paste<CR>
 nnoremap <Leader>o :set nopaste<CR>
 noremap  <Leader>g :GitGutterToggle<CR>
 
+noremap <C-q> :qa!<CR>
 " map <C-v><C-c> :qa!<CR>
 " map <C-v><C-s> :w<CR>
 " map <C-v><C-S> :w!<CR>
 " map <C-v><C-q> :wq<CR>
-"
-" map <C-v><Left> <C-W>h
-" map <C-v><Up> <C-W>j
-" map <C-v><Down> <C-W>k
-" map <C-v><Right> <C-W>l
+
+inoremap " ""<left>
+inoremap ( ()<left>
+inoremap [ []<left>
+inoremap { {}<left>
+inoremap {<CR> {<CR>}<ESC>O
+inoremap {;<CR> {<CR>};<ESC>O
 
 let g:multi_cursor_next_key='<C-d>'
 let g:multi_cursor_prev_key='<C-p>'
@@ -203,8 +212,14 @@ nnoremap <silent> <C-T> :Files<CR>
 " ║ Theme                                                                      ║
 " ╚════════════════════════════════════════════════════════════════════════════╝
 
-set termguicolors
+if has('termguicolors')
+  set termguicolors
+endif
+if (has('nvim'))
+  let $NVIM_TUI_ENABLE_TRUE_COLOR = 1
+endif
 colorscheme iceberg
+set t_Co=256
 
 let g:lightline = { 'colorscheme': 'iceberg' }
 
@@ -213,6 +228,7 @@ let g:indentLine_char = '⋮'
 let g:indentLine_first_char = '⋮'
 let g:indentLine_showFirstIndentLevel = 1
 let g:indentLine_setColors = 1
+let g:indentLine_fileTypeExclude = ['dashboard']
 
 " OVERRIDES
 highlight Normal ctermbg=none
@@ -221,6 +237,21 @@ highlight NonText ctermbg=none
 highlight NonText guibg=none
 highlight EndOfBuffer ctermbg=none guibg=none
 highlight LineNr ctermbg=none guibg=none
+
+
+set guifont=FiraCode\ Nerd\ Font:h13
+let g:neovide_cursor_antialiasing=v:true
+""let g:neovide_fullscreen=v:true
+let g:neovide_refresh_rate=60
+let g:neovide_keyboard_layout="qwerty"
+
+
+" ╔════════════════════════════════════════════════════════════════════════════╗
+" ║ Neovide                                                                    ║
+" ╚════════════════════════════════════════════════════════════════════════════╝
+
+let g:neovide_cursor_animation_length=0.01
+let g:neovide_cursor_trail_length=0.2
 
 
 " ╔════════════════════════════════════════════════════════════════════════════╗
@@ -247,13 +278,17 @@ augroup my-glyph-palette
   autocmd FileType nerdtree,startify call glyph_palette#apply()
 augroup END
 
-let g:fern#disable_default_mappings   = 1
-let g:fern#disable_drawer_auto_quit   = 1
+let g:fern#disable_default_mappings   = 0
+let g:fern#disable_drawer_auto_quit   = 0
 let g:fern#disable_viewer_hide_cursor = 1
 
-noremap <silent> <Leader>d :Fern . -drawer -width=35 -toggle<CR><C-w>=
-noremap <silent> <Leader>f :Fern . -drawer -reveal=% -width=35<CR><C-w>=
-noremap <silent> <Leader>. :Fern %:h -drawer -width=35<CR><C-w>=
+noremap <silent> <C-k><C-b> :Fern . -drawer -width=35 -toggle<CR>
+noremap <silent> <Leader>d :Fern . -drawer -width=35 -toggle<CR>
+noremap <silent> <Leader>f :Fern . -drawer -reveal=% -width=35<CR>
+noremap <silent> <Leader>. :Fern %:h -drawer -width=35<CR>
+
+noremap <silent> <C-k><C-B> :Fern bookmark:/// -drawer -width=35 -toggle<CR>
+noremap <silent> <Leader>b :Fern bookmark:/// -drawer -width=35 -toggle<CR>
 
 function! FernInit() abort
   nmap <buffer><expr>
@@ -326,6 +361,12 @@ let g:syntastic_check_on_wq = 0
 let g:minimap_width = 10
 let g:minimap_auto_start = 0
 let g:minimap_auto_start_win_enter = 0
+let g:minimap_block_filetypes = ['fern', 'fugitive', 'nerdtree', 'tagbar' ]
+let g:minimap_block_buftypes = [
+\'fern', 'nofile', 'nowrite', 'quickfix', 'terminal', 'prompt'
+\]
+
+noremap <silent> <C-k><C-m> :MinimapToggle<CR>
 
 
 " ╔════════════════════════════════════════════════════════════════════════════╗
@@ -339,10 +380,34 @@ let g:vimwiki_list = [
 
 
 " ╔════════════════════════════════════════════════════════════════════════════╗
-" ║ Vimwiki                                                                    ║
+" ║ GPG                                                                        ║
 " ╚════════════════════════════════════════════════════════════════════════════╝
 autocmd User GnuPG setl textwidth=72
 let g:GPGFilePattern = '*.\(gpg\|asc\|pgp\)\(.wiki\|.md\)\='
+
+
+" ╔════════════════════════════════════════════════════════════════════════════╗
+" ║ Dashboard                                                                  ║
+" ╚════════════════════════════════════════════════════════════════════════════╝
+let g:dashboard_default_executive ='fzf'
+let g:dashboard_preview_command = 'cat'
+"let g:dashboard_preview_pipeline = 'lolcat'
+let g:dashboard_preview_file = '~/.config/nvim/motd'
+let g:dashboard_preview_file_width = 80
+let g:dashboard_preview_file_height = 33
+let g:dashboard_custom_section = {
+\ 'a': {'description': [' New file                              SPC n f'], 'command': 'DashboardNewFile'},
+\ 'b': {'description': [' Recent files                          SPC r f'], 'command': 'DashboardFindHistory'},
+\ 'c': {'description': [' Find file                             SPC f f'], 'command': 'DashboardFindFile'},
+\ 'd': {'description': ['ﰍ Find word                             SPC f w'], 'command': 'DashboardFindWord'},
+\ }
+let g:dashboard_custom_footer = ['']
+
+
+" ╔════════════════════════════════════════════════════════════════════════════╗
+" ║ Typescript                                                                 ║
+" ╚════════════════════════════════════════════════════════════════════════════╝
+let g:hugohelper_update_lastmod_on_write = 1
 
 
 " ╔════════════════════════════════════════════════════════════════════════════╗
