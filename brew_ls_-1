@@ -1,5 +1,7 @@
 adns
 aom
+apr
+apr-util
 arduino-cli
 asciinema
 autoconf
@@ -23,6 +25,7 @@ cmake
 cocoapods
 confuse
 coreutils
+ctop
 dark-mode
 dav1d
 deno
@@ -44,6 +47,7 @@ findutils
 fish
 flac
 fontconfig
+fortune
 fpc
 freetype
 frei0r
@@ -156,11 +160,14 @@ libyaml
 little-cms2
 lmdb
 lnav
+lolcat
 lsusb
 lua
 luajit
 luajit-openresty
+luarocks
 luv
+lz4
 lzo
 m4
 make
@@ -241,6 +248,7 @@ speex
 sqlite
 srt
 stlink
+subversion
 syncthing
 talloc
 task
@@ -253,6 +261,7 @@ terraformer
 tesseract
 texinfo
 the_silver_searcher
+thefuck
 theora
 tig
 timewarrior
@@ -260,6 +269,7 @@ tmux
 tokyo-cabinet
 tor
 transmission-cli
+tree-sitter
 unbound
 unibilium
 unrar
