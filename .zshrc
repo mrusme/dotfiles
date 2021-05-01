@@ -80,15 +80,6 @@ export GELD_DB=~/.geld.db
 
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
-# ║ Bound keys                                                                 ║
-# ╚════════════════════════════════════════════════════════════════════════════╝
-
-[[ $OS = "Darwin" ]] \
-&& bindkey "\e[1;3C" forward-word \
-&& bindkey "\e[1;3D" backward-word
-
-
-# ╔════════════════════════════════════════════════════════════════════════════╗
 # ║ Secrets                                                                    ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
@@ -215,12 +206,12 @@ ZSH_AUTOSUGGESTIONS=${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestio
 [[ -d $ZSH_AUTOSUGGESTIONS && $(find "$ZSH_AUTOSUGGESTIONS/.git" -maxdepth 0 -type d -mmin +1440 | wc -l | tr -d '[:space:]') == "0" ]] \
 || git -C $ZSH_AUTOSUGGESTIONS pull
 
-[[ $OS = "Darwin" ]] && plugins=(tmux docker encode64 extract git \
-  gpg-agent history mix ssh-agent urltools \
-  zsh-autosuggestions brew osx fzf)
-[[ $OS = "Linux" ]]  && plugins=(tmux docker encode64 extract git \
-  gpg-agent history mix ssh-agent urltools \
-  zsh-autosuggestions fzf)
+[[ $OS = "Darwin" ]] && plugins=(tmux docker encode64 extract git git-flow \
+  gpg-agent history ssh-agent urltools \
+  zsh-autosuggestions mosh fzf terraform taskwarrior thefuck brew osx)
+[[ $OS = "Linux" ]]  && plugins=(tmux docker encode64 extract git git-flow \
+  gpg-agent history ssh-agent urltools \
+  zsh-autosuggestions mosh fzf terraform taskwarrior thefuck)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -532,34 +523,6 @@ function pushover() {
 
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
-# ║ Terraform                                                                  ║
-# ╚════════════════════════════════════════════════════════════════════════════╝
-
-function tf {
-  if [ -z "$1" ]; then
-    terraform -help
-  else
-    OPTION=$1
-    case $1 in
-      a)           terraform apply ${@:2};;
-      c)           terraform console ${@:2};;
-      d)           terraform destroy ${@:2};;
-      e)           terraform env ${@:2};;
-      i)           terraform import ${@:2};;
-      p)           terraform plan ${@:2};;
-      r)           terraform refresh ${@:2};;
-      s)           terraform show ${@:2};;
-      t)           terraform taint ${@:2};;
-      u)           terraform untaint ${@:2};;
-      v)           terraform validate ${@:2};;
-      w)           terraform workspace ${@:2};;
-      *)           terraform ${@:1};;
-    esac
-  fi
-}
-
-
-# ╔════════════════════════════════════════════════════════════════════════════╗
 # ║ zshrc management via gist                                                  ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
@@ -655,6 +618,22 @@ function terminal-colors() {
   fi
 }
 
+function git-add-all-remote() {
+  if git remote | grep -q '^all$'
+  then
+    echo "Remote 'all' already exists!"
+    return 1
+  else
+    git remote | while read remote
+    do
+      git config --add remote.all.url $(git remote get-url --all "$remote")
+      echo "Remote $remote added to 'all'"
+    done
+    return 0
+  fi
+}
+
+
 # ╔════════════════════════════════════════════════════════════════════════════╗
 # ║ Aliases                                                                    ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
@@ -703,10 +682,21 @@ type irssi > /dev/null \
 && alias irc='irssi'
 
 alias fucking=sudo
-alias myip="curl http://ipecho.net/plain; echo"
-alias git-crypt-add-myself='git-crypt add-gpg-user D2908F9977E1FE0B8A36F357C228EF0A530AF06F'
 
-alias jrnl='cd ~/Projects/@mrusme/xn--gckvb8fzb.com/content/posts/'
+alias my-ip="curl http://ipecho.net/plain; echo"
+
+alias git-crypt-add-myself='git-crypt add-gpg-user DD89748CC9036BF1FB30DCAFC18062A7464CC561'
+
+alias jrnl='cd ~/Projects/@mrusme/xn--gckvb8fzb.com/content/'
+
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ Bound keys                                                                 ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+
+[[ $OS = "Darwin" ]] \
+&& bindkey "\e[1;3C" forward-word \
+&& bindkey "\e[1;3D" backward-word
 
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
