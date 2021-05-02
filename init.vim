@@ -21,7 +21,6 @@ filetype off
 
 call plug#begin('~/.local/share/nvim/plugged')
 
-"Plug 'ayu-theme/ayu-vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'lambdalisue/fern.vim'
 Plug 'lambdalisue/nerdfont.vim'
@@ -33,22 +32,13 @@ Plug 'lambdalisue/fern-mapping-git.vim'
 Plug 'lambdalisue/glyph-palette.vim'
 Plug 'tpope/vim-surround'
 Plug 'gcmt/breeze.vim'
+Plug 'dense-analysis/ale'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'tomtom/tcomment_vim'
-Plug 'scrooloose/syntastic'
 Plug 'airblade/vim-gitgutter'
-"Plug 'Valloric/YouCompleteMe'
 Plug 'godlygeek/tabular'
-Plug 'leafgarland/typescript-vim'
-"Plug 'plasticboy/vim-markdown'
 "Plug 'reedes/vim-pencil'
-Plug 'elixir-lang/vim-elixir'
-Plug 'fatih/vim-go'
-Plug 'rust-lang/rust.vim'
-Plug 'docker/docker'
-Plug 'moll/vim-node'
-Plug 'heavenshell/vim-syntax-flowtype'
 Plug 'wincent/command-t'
 Plug 'junegunn/goyo.vim'
 Plug 'Yggdroot/indentLine'
@@ -56,12 +46,21 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'itchyny/lightline.vim'
-Plug 'cocopon/iceberg.vim'
 Plug 'wfxr/minimap.vim'
-Plug 'vimwiki/vimwiki'
 Plug 'jamessan/vim-gnupg'
 Plug 'glepnir/dashboard-nvim'
 Plug 'robertbasic/vim-hugo-helper'
+Plug 'cohama/lexima.vim'
+"Plug 'vimwiki/vimwiki'
+
+"Plug 'plasticboy/vim-markdown'
+Plug 'leafgarland/typescript-vim'
+Plug 'elixir-lang/vim-elixir'
+Plug 'fatih/vim-go'
+Plug 'rust-lang/rust.vim'
+Plug 'cespare/vim-toml'
+Plug 'moll/vim-node'
+Plug 'docker/docker'
 
 call plug#end()
 
@@ -73,8 +72,6 @@ call plug#end()
 filetype plugin indent on
 filetype plugin on
 
-
-""""""""
 if has('autocmd')
   filetype plugin indent on
 endif
@@ -176,17 +173,6 @@ nnoremap <Leader>o :set nopaste<CR>
 noremap  <Leader>g :GitGutterToggle<CR>
 
 noremap <C-q> :qa!<CR>
-" map <C-v><C-c> :qa!<CR>
-" map <C-v><C-s> :w<CR>
-" map <C-v><C-S> :w!<CR>
-" map <C-v><C-q> :wq<CR>
-
-inoremap " ""<left>
-inoremap ( ()<left>
-inoremap [ []<left>
-inoremap { {}<left>
-inoremap {<CR> {<CR>}<ESC>O
-inoremap {;<CR> {<CR>};<ESC>O
 
 let g:multi_cursor_next_key='<C-d>'
 let g:multi_cursor_prev_key='<C-p>'
@@ -197,13 +183,20 @@ let g:multi_cursor_start_key='<C-L>'
 let g:tcomment#replacements_xml={}
 let g:vim_markdown_folding_disabled = 1
 
-autocmd BufRead,BufNewFile *.md set filetype=markdown
-autocmd BufRead,BufNewFile *.md setlocal textwidth=80
-autocmd BufRead,BufNewFile .{jscs,jshint,eslint}rc set filetype=json
-autocmd BufRead,BufNewFile aliases.local,zshrc.local,*/zsh/configs/* set filetype=sh
-autocmd BufRead,BufNewFile gitconfig.local set filetype=gitconfig
-autocmd BufRead,BufNewFile tmux.conf.local set filetype=tmux
-autocmd BufRead,BufNewFile vimrc.local set filetype=vim
+autocmd BufRead,BufNewFile
+  \ *.md set filetype=markdown
+autocmd BufRead,BufNewFile
+  \ *.{md,txt} setlocal textwidth=80
+autocmd BufRead,BufNewFile
+  \ .{jscs,jshint,eslint}rc set filetype=json
+autocmd BufRead,BufNewFile
+  \ aliases.local,zshrc.local,.zshrc,*/zsh/configs/* set filetype=sh
+autocmd BufRead,BufNewFile
+  \ gitconfig.local,.gitconfig set filetype=gitconfig
+autocmd BufRead,BufNewFile
+  \ tmux.conf.local,tmux.conf,.tmux.conf set filetype=tmux
+autocmd BufRead,BufNewFile
+  \ vimrc.local,.vimrc,init.vim set filetype=vim
 
 nnoremap <silent> <C-T> :Files<CR>
 
@@ -218,10 +211,10 @@ endif
 if (has('nvim'))
   let $NVIM_TUI_ENABLE_TRUE_COLOR = 1
 endif
-colorscheme iceberg
 set t_Co=256
 
-let g:lightline = { 'colorscheme': 'iceberg' }
+colorscheme vap0r
+let g:lightline = { 'colorscheme': 'vap0r' }
 
 let g:indentLine_enabled = 1
 let g:indentLine_char = '⋮'
@@ -321,12 +314,105 @@ augroup END
 
 
 " ╔════════════════════════════════════════════════════════════════════════════╗
+" ║ EditorConfig                                                               ║
+" ╚════════════════════════════════════════════════════════════════════════════╝
+let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
+
+
+" ╔════════════════════════════════════════════════════════════════════════════╗
+" ║ rust.vim                                                                   ║
+" ╚════════════════════════════════════════════════════════════════════════════╝
+let g:rust_clip_command = 'pbcopy'
+
+
+" ╔════════════════════════════════════════════════════════════════════════════╗
+" ║ Ale                                                                        ║
+" ╚════════════════════════════════════════════════════════════════════════════╝
+let g:ale_linters_explicit = 1
+let g:ale_linters = {
+  \ 'asm':        ['gcc'],
+  \ 'c':          ['clang', 'clang-format', 'clangcheck', 'clangd',
+  \                'clang-tidy', 'gcc'],
+  \ 'cpp':        ['clang', 'clang-format', 'clangcheck', 'clangd',
+  \                'clang-tidy', 'gcc'],
+  \ 'css':        ['prettier', 'stylelint'],
+  \ 'dockerfile': ['hadolint'],
+  \ 'elixir':     ['elixir-ls', 'mix', 'credo'],
+  \ 'erlang':     ['dialyzer', 'erlc'],
+  \ 'go':         ['golangci-lint', 'golint', 'gofmt'],
+  \ 'haskell':    ['ghc', 'stack-build'],
+  \ 'hcl':        ['terraform-fmt'],
+  \ 'html':       ['alex', 'prettier'],
+  \ 'javascript': ['prettier'],
+  \ 'json':       ['prettier', 'spectral', 'jq'],
+  \ 'latex':      ['alex', 'textlint'],
+  \ 'less':       ['prettier', 'stylelint'],
+  \ 'llvm':       ['llc'],
+  \ 'lua':        ['luac'],
+  \ 'mail':       ['alex'],
+  \ 'make':       ['checkmake'],
+  \ 'markdown':   ['prettier', 'alex', 'markdownlint', 'remark-lint',
+  \                'textlint'],
+  \ 'openapi':    ['prettier'],
+  \ 'python':     ['pyls'],
+  \ 'ruby':       ['prettier', 'ruby'],
+  \ 'rust':       ['rustc', 'analyzer', 'rustfmt'],
+  \ 'sass':       ['stylelint'],
+  \ 'scss':       ['prettier', 'stylelint'],
+  \ 'sh':         ['shellcheck'],
+  \ 'sql':        ['sqlint'],
+  \ 'svelte':     ['prettier'],
+  \ 'terraform':  ['terraform', 'terraform-lsp', 'tflint'],
+  \ 'typescript': ['prettier', 'deno', 'tslint'],
+  \ 'vim':        ['vimls'],
+  \ 'vue':        ['prettier'],
+  \ 'yaml':       ['prettier', 'spectral']
+\}
+
+let g:ale_lint_on_text_changed = 1
+let g:ale_lint_on_enter = 0
+let g:ale_lint_on_save = 1
+let g:ale_set_signs = 1
+let g:ale_set_highlights = 1
+
+let g:ale_open_list = 0
+let g:ale_list_window_size = 3
+let g:ale_keep_list_window_open = 0
+" let g:ale_list_vertical = 1
+" let g:ale_set_loclist = 0
+let g:ale_sign_error = '●'
+let g:ale_sign_warning = '·'
+
+nmap <silent> <C-e> <Plug>(ale_next_wrap)
+
+function! LinterStatus() abort
+    let l:counts = ale#statusline#Count(bufnr(''))
+
+    let l:all_errors = l:counts.error + l:counts.style_error
+    let l:all_warnings = l:counts.total - l:all_errors
+
+    let l:errors_recap =
+      \ l:all_errors == 0 ? '' : printf('%d⨉ ', all_errors)
+    let l:warnings_recap =
+      \ l:all_warnings == 0 ? '' : printf('%d⚠ ', all_warnings)
+    return (errors_recap . warnings_recap)
+endfunction
+
+set statusline+=%=
+set statusline+=\ %{LinterStatus()}
+let g:ale_enabled = 1
+
+
+" ╔════════════════════════════════════════════════════════════════════════════╗
 " ║ Deoplete                                                                   ║
 " ╚════════════════════════════════════════════════════════════════════════════╝
 let g:deoplete#enable_at_startup = 1
 let b:deoplete_ignore_sources = ['buffer']
+
 autocmd FileType markdown
   \ call deoplete#custom#buffer_option('auto_complete', v:false)
+
+call deoplete#custom#option('sources', {'_': ['ale']})
 
 
 " ╔════════════════════════════════════════════════════════════════════════════╗
@@ -334,25 +420,14 @@ autocmd FileType markdown
 " ╚════════════════════════════════════════════════════════════════════════════╝
 "augroup pencil
 "  autocmd!
-"  autocmd FileType markdown,mkd call pencil#init({'wrap': 'hard', 'autoformat': 1})
-"  autocmd FileType text         call pencil#init({'wrap': 'hard', 'autoformat': 1})
+"  autocmd FileType markdown,mkd call pencil#init({
+"    \ 'wrap': 'hard', 'autoformat': 1})
+"  autocmd FileType text         call pencil#init({
+"    \ 'wrap': 'hard', 'autoformat': 1})
 "augroup END
 
 "let g:pencil#textwidth = 80
 "let g:pencil#cursorwrap = 1
-
-
-" ╔════════════════════════════════════════════════════════════════════════════╗
-" ║ Syntastic                                                                  ║
-" ╚════════════════════════════════════════════════════════════════════════════╝
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
 
 
 " ╔════════════════════════════════════════════════════════════════════════════╗
@@ -396,16 +471,24 @@ let g:dashboard_preview_file = '~/.config/nvim/motd'
 let g:dashboard_preview_file_width = 80
 let g:dashboard_preview_file_height = 33
 let g:dashboard_custom_section = {
-\ 'a': {'description': [' New file                              SPC n f'], 'command': 'DashboardNewFile'},
-\ 'b': {'description': [' Recent files                          SPC r f'], 'command': 'DashboardFindHistory'},
-\ 'c': {'description': [' Find file                             SPC f f'], 'command': 'DashboardFindFile'},
-\ 'd': {'description': ['ﰍ Find word                             SPC f w'], 'command': 'DashboardFindWord'},
+\ 'a': {'description': [
+        \ ' New file                              SPC n f'
+      \ ], 'command': 'DashboardNewFile'},
+\ 'b': {'description': [
+        \ ' Recent files                          SPC r f'
+      \ ], 'command': 'DashboardFindHistory'},
+\ 'c': {'description': [
+        \ ' Find file                             SPC f f'
+      \ ], 'command': 'DashboardFindFile'},
+\ 'd': {'description': [
+        \ 'ﰍ Find word                             SPC f w'
+      \ ], 'command': 'DashboardFindWord'},
 \ }
 let g:dashboard_custom_footer = ['']
 
 
 " ╔════════════════════════════════════════════════════════════════════════════╗
-" ║ Typescript                                                                 ║
+" ║ HugoHelper                                                                 ║
 " ╚════════════════════════════════════════════════════════════════════════════╝
 let g:hugohelper_update_lastmod_on_write = 1
 
