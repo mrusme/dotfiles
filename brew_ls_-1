@@ -77,12 +77,14 @@ gnutls
 go
 go@1.13
 gobject-introspection
+golangci-lint
 gpgme
 graphite2
 graphviz
 gron
 gts
 guile
+hadolint
 harfbuzz
 hashcat
 haskell-stack
@@ -260,6 +262,7 @@ terraform
 terraformer
 tesseract
 texinfo
+tflint
 the_silver_searcher
 thefuck
 theora
@@ -303,6 +306,7 @@ cjbassi/ytop/ytop
 clementtsang/bottom/bottom
 derailed/k9s/k9s
 extrawurst/tap/gitui
+hashicorp/tap/terraform-ls
 lukechilds/tap/gifgen
 mgrachev/tap/dotenv-linter
 mongodb/brew/mongodb-community
