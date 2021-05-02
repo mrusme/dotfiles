@@ -1,0 +1,23 @@
+/usr/local/lib
+├── @ionic/cli@6.10.0
+├── @stoplight/spectral@5.9.1
+├── alex@9.1.0
+├── camelcase@6.2.0
+├── dat@14.0.2
+├── dumpster-dive@5.4.0
+├── ghcal@2.3.11
+├── markdownlint@0.23.1
+├── npm@7.10.0
+├── postcss-cli@7.1.1
+├── prettier@2.2.1
+├── remark-lint@8.0.0
+├── serverless@2.0.0
+├── speed-test@2.1.0
+├── stylelint-config-standard@22.0.0
+├── stylelint@13.13.1
+├── terminalizer@0.7.2
+├── textlint@11.9.0
+├── vim-language-server@2.2.2
+├── wikit@4.4.1
+└── yarn@1.22.5
+
