@@ -66,7 +66,8 @@ export SSH_KEY_PATH="~/.ssh/id_rsa"
 export ERL_AFLAGS="-kernel shell_history enabled"
 
 # https://github.com/oz/tz/
-export TZ_LIST='Pacific/Honolulu,America/Panama,America/New_York,Etc/UTC,Europe/Berlin,Asia/Bangkok,Asia/Tokyo,Australia/Melbourne'
+export TZ_LIST="Pacific/Honolulu,America/Panama,America/New_York,Etc/UTC,\
+Europe/Berlin,Asia/Bangkok,Asia/Tokyo,Australia/Melbourne"
 
 # https://github.com/mrusme/zeit
 export ZEIT_DB=~/.zeit.db
@@ -124,7 +125,8 @@ function activate.virtualenv {
   || echo "Could not load virtualenvwrapper."
 }
 
-export PYTHON_MAJOR_MINOR=$(python3 --version | sed -nr 's/.*([0-9]+\.[0-9]+)\..*/\1/p')
+export PYTHON_MAJOR_MINOR=$(python3 \
+  --version | sed -nr 's/.*([0-9]+\.[0-9]+)\..*/\1/p')
 
 [[ -d "$HOME/Library/Python/$PYTHON_MAJOR_MINOR/bin" ]] \
 && export PATH="$HOME/Library/Python/$PYTHON_MAJOR_MINOR/bin":$PATH
@@ -133,7 +135,8 @@ export PYTHON_MAJOR_MINOR=$(python3 --version | sed -nr 's/.*([0-9]+\.[0-9]+)\..
 export NVM_DIR="$HOME/.nvm"
 function activate.nvm {
   [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"
-  # [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"
+  # [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] \
+  # && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"
 }
 
 # Ruby
@@ -197,13 +200,16 @@ DISABLE_UNTRACKED_FILES_DIRTY="false"
 # HIST_STAMPS="mm/dd/yyyy"
 # ZSH_CUSTOM=/usr/local/opt/zplug/repos
 
-ZSH_AUTOSUGGESTIONS=${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+ZSH_AUTOSUGGESTIONS=${ZSH_CUSTOM:-~/.oh-my-zsh/custom}\
+/plugins/zsh-autosuggestions
 
 [[ ! -d $ZSH_AUTOSUGGESTIONS ]] \
 && type git > /dev/null \
-&& git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+&& git clone https://github.com/zsh-users/zsh-autosuggestions \
+${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 
-[[ -d $ZSH_AUTOSUGGESTIONS && $(find "$ZSH_AUTOSUGGESTIONS/.git" -maxdepth 0 -type d -mmin +1440 | wc -l | tr -d '[:space:]') == "0" ]] \
+[[ -d $ZSH_AUTOSUGGESTIONS && $(find "$ZSH_AUTOSUGGESTIONS/.git" \
+  -maxdepth 0 -type d -mmin +1440 | wc -l | tr -d '[:space:]') == "0" ]] \
 || git -C $ZSH_AUTOSUGGESTIONS pull
 
 [[ $OS = "Darwin" ]] && plugins=(tmux docker encode64 extract git git-flow \
@@ -221,7 +227,8 @@ fpath=(
   $fpath
 )
 
-eval "$(fasd --init posix-alias zsh-hook zsh-ccomp zsh-ccomp-install zsh-wcomp zsh-wcomp-install)"
+eval "$(fasd --init \
+posix-alias zsh-hook zsh-ccomp zsh-ccomp-install zsh-wcomp zsh-wcomp-install)"
 
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
@@ -299,7 +306,9 @@ then
   }
 fi
 
-if [[ $OS = "Darwin" ]] || [[ $OS = "Linux" && "$(uname -a | grep -i gentoo)" ]] || type pacman > /dev/null
+if [[ $OS = "Darwin" ]] \
+|| [[ $OS = "Linux" && "$(uname -a | grep -i gentoo)" ]] \
+|| type pacman > /dev/null
 then
   _aptitude()
   {
@@ -500,7 +509,8 @@ function pushover() {
   message="$*"
 
   if [ ! -x "${CURL}" ]; then
-    echo "CURL is unset, empty, or does not point to curl executable. This script requires curl!" >&2
+    echo "CURL is unset, empty, or does not point to curl executable." >&2
+    echo "This script requires curl!" >&2
     return 1
   fi
 
@@ -576,20 +586,25 @@ fi
 
 export DOTFILES="$HOME/Projects/@mrusme/dotfiles"
 function dotfiles-update-remote() {
+  subldir=~/Library/Application\ Support/Sublime\ Text\ 3
   cp ~/.zshrc "$DOTFILES/.zshrc"
   cp ~/.tmux.conf "$DOTFILES/.tmux.conf"
   cp ~/.config/alacritty/alacritty.yml "$DOTFILES/alacritty.yml"
   cp ~/.config/nvim/init.vim "$DOTFILES/init.vim"
   cp ~/.motd "$DOTFILES/.motd"
   cp ~/.muttrc "$DOTFILES/.muttrc"
-  cp ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/Package\ Control.sublime-settings "$DOTFILES/Package Control.sublime-settings"
-  cp ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/Preferences.sublime-settings "$DOTFILES/Preferences.sublime-settings"
-  cp ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/LSP.sublime-settings "$DOTFILES/LSP.sublime-settings"
+  cp $subldir/Packages/User/Package\ Control.sublime-settings\
+    "$DOTFILES/Package\ Control.sublime-settings"
+  cp $subldir/Packages/User/Preferences.sublime-settings\
+    "$DOTFILES/Preferences.sublime-settings"
+  cp $subldir/Packages/User/LSP.sublime-settings\
+    "$DOTFILES/LSP.sublime-settings"
   brew ls --formula -1 --full-name > "$DOTFILES/brew_ls_-1"
   brew ls --cask -1 --full-name > "$DOTFILES/brew_cask_ls_-1"
   cargo install --list > "$DOTFILES/cargo_install_--list"
   npm list -g --depth=0 > "$DOTFILES/npm_list_-g_--depth_0"
   go list '...' | rg '^github.com' > "$DOTFILES/go_list_github.com"
+  return 0
 }
 
 
@@ -604,7 +619,8 @@ function update-tools() {
   echo ""
 
   #echo "Updating Go tools ..."
-  #go list '...' | rg '^github.com' | while read pkg; do echo "Updating $pkg ..."; go get -u "$pkg"; done
+  #go list '...' | rg '^github.com' | while read pkg;\
+  #do echo "Updating $pkg ..."; go get -u "$pkg"; done
 
   #echo ""
   echo "Tools updated"
@@ -686,7 +702,8 @@ alias fucking=sudo
 
 alias my-ip="curl http://ipecho.net/plain; echo"
 
-alias git-crypt-add-myself='git-crypt add-gpg-user DD89748CC9036BF1FB30DCAFC18062A7464CC561'
+alias git-crypt-add-myself="git-crypt add-gpg-user \
+DD89748CC9036BF1FB30DCAFC18062A7464CC561"
 
 alias jrnl='cd ~/Projects/@mrusme/xn--gckvb8fzb.com/content/'
 
