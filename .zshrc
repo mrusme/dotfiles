@@ -594,7 +594,7 @@ function dotfiles-update-remote() {
   cp ~/.motd "$DOTFILES/.motd"
   cp ~/.muttrc "$DOTFILES/.muttrc"
   cp $subldir/Packages/User/Package\ Control.sublime-settings\
-    "$DOTFILES/Package\ Control.sublime-settings"
+    "$DOTFILES/Package Control.sublime-settings"
   cp $subldir/Packages/User/Preferences.sublime-settings\
     "$DOTFILES/Preferences.sublime-settings"
   cp $subldir/Packages/User/LSP.sublime-settings\
