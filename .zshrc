@@ -606,9 +606,9 @@ function dotfiles-update-remote() {
     "$DOTFILES/st3/"
   brew ls --formula -1 --full-name > "$DOTFILES/brew/ls_-1"
   brew ls --cask -1 --full-name > "$DOTFILES/brew/cask_ls_-1"
-  cargo install --list > "$DOTFILES/cargo_install_--list"
-  npm list -g --depth=0 > "$DOTFILES/npm_list_-g_--depth_0"
-  go list '...' | rg '^github.com' > "$DOTFILES/go_list_github.com"
+  cargo install --list > "$DOTFILES/cargo/install_--list"
+  npm list -g --depth=0 > "$DOTFILES/npm/list_-g_--depth_0"
+  go list '...' | rg '^github.com' > "$DOTFILES/go/list_github.com"
   return 0
 }
 
