@@ -1,11 +1,13 @@
 # ╔════════════════════════════════════════════════════════════════════════════╗
 # ║                                                                            ║
-# ║                            ┏━━━━┓ ┏━━━┓ ┏━┓ ┏━┓                            ║
-# ║                            ┗━━┓ ┃ ┃┏━━┛ ┃ ┃ ┃ ┃                            ║
-# ║                              ┏┛┏┛ ┃┗━━┓ ┃ ┗━┛ ┃                            ║
-# ║                             ┏┛┏┛  ┗━━┓┃ ┃ ┏━┓ ┃                            ║
-# ║                            ┏┛ ┗━┓ ┏━━┛┃ ┃ ┃ ┃ ┃                            ║
-# ║                            ┗━━━━┛ ┗━━━┛ ┗━┛ ┗━┛                            ║
+# ║       ________  ________  ___  ___  _______   ___       ___                ║
+# ║      |\_____  \|\   ____\|\  \|\  \|\  ___ \ |\  \     |\  \               ║
+# ║       \|___/  /\ \  \___|\ \  \\\  \ \   __/|\ \  \    \ \  \              ║
+# ║           /  / /\ \_____  \ \   __  \ \  \_|/_\ \  \    \ \  \             ║
+# ║          /  /_/__\|____|\  \ \  \ \  \ \  \_|\ \ \  \____\ \  \____        ║
+# ║         |\________\____\_\  \ \__\ \__\ \_______\ \_______\ \_______\      ║
+# ║          \|_______|\_________\|__|\|__|\|_______|\|_______|\|_______|      ║
+# ║                   \|_________|                                             ║
 # ║                                                                            ║
 # ║      xn--gckvb8fzb.com * github.com/mrusme * marius@xn--gckvb8fzb.com      ║
 # ║                                                                            ║
@@ -14,7 +16,7 @@
 
 export ZSH_TMUX_AUTOSTART=true
 export DOT_ZSHRC="$HOME/.zshrc"
-export DOT_ZSHRC_VERSION="0.31"
+export DOT_ZSHRC_VERSION="0.32"
 
 type /usr/local/bin/zsh > /dev/null \
 && export SHELL=/usr/local/bin/zsh
@@ -52,12 +54,15 @@ if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR=vim
   export BROWSER=w3m
 else
-  export EDITOR=vim
-  export BROWSER=w3m
-
-  [[ $OS = "Darwin" ]] \
-  && export EDITOR=vim \
-  && export BROWSER=open
+  if [[ $OS = "Linux" ]]
+  then
+    export EDITOR=vim
+    export BROWSER=firefox
+  elif [[ $OS = "Darwin" ]]
+  then
+    export EDITOR=vim
+    export BROWSER=open
+  fi
 fi
 
 export SSH_KEY_PATH="~/.ssh/id_rsa"
@@ -97,8 +102,9 @@ DOT_SECRETS="$HOME/.secrets"
 && eval $(/usr/libexec/path_helper -s)
 
 # /usr/local/* (Homebrew, etc)
-export PATH=/usr/local/bin:/usr/local/sbin:/usr/local/opt/binutils/bin:$PATH
-export MANPATH="/usr/local/man:$MANPATH"
+[[ $OS = "Darwin" ]] \
+&& export PATH=/usr/local/bin:/usr/local/sbin:/usr/local/opt/binutils/bin:$PATH\
+&& export MANPATH="/usr/local/man:$MANPATH"
 
 # Cargo (Rust)
 [[ -d "$HOME/.cargo/bin" ]] \
@@ -131,14 +137,6 @@ export PYTHON_MAJOR_MINOR=$(python3 \
 [[ -d "$HOME/Library/Python/$PYTHON_MAJOR_MINOR/bin" ]] \
 && export PATH="$HOME/Library/Python/$PYTHON_MAJOR_MINOR/bin":$PATH
 
-# NVM
-export NVM_DIR="$HOME/.nvm"
-function activate.nvm {
-  [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"
-  # [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] \
-  # && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"
-}
-
 # Ruby
 [[ $OS = "Darwin" ]] \
 && export PATH=/usr/local/Cellar/ruby/$(ls -1 /usr/local/Cellar/ruby/ \
@@ -153,28 +151,6 @@ type gem > /dev/null \
 && export PATH=$(gem env \
               | grep "USER INSTALLATION DIRECTORY" \
               | awk -F ': ' '{ print $2 }')/bin:$PATH
-
-# GCloud
-function activate.gcloud {
-  local gclouddir="/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk"
-  local gclouddir_path="$gclouddir/path.zsh.inc"
-  local gclouddir_completion="$gclouddir/completion.zsh.inc"
-
-  [[ -d $gclouddir ]] \
-  || return
-
-  export GOOGLE_API_KEY="no"
-  export GOOGLE_DEFAULT_CLIENT_ID="no"
-  export GOOGLE_DEFAULT_CLIENT_SECRET="no"
-
-  # The next line updates PATH for the Google Cloud SDK.
-  [[ -e $gclouddir_path ]] \
-  && source $gclouddir_path
-
-  # The next line enables shell command completion for gcloud.
-  [[ -e $gclouddir_completion ]] \
-  && source $gclouddir_completion
-}
 
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
@@ -218,6 +194,7 @@ ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 [[ $OS = "Linux" ]]  && plugins=(tmux docker encode64 extract git git-flow \
   gpg-agent history ssh-agent urltools \
   zsh-autosuggestions mosh fzf terraform taskwarrior thefuck)
+# Disabled: gcloud, nvm, virtualenvwrapper
 
 source $ZSH/oh-my-zsh.sh
 
@@ -232,7 +209,90 @@ posix-alias zsh-hook zsh-ccomp zsh-ccomp-install zsh-wcomp zsh-wcomp-install)"
 
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
-# ║ Aptitude for MacOS & Gentoo                                                ║
+# ║ Aliases                                                                    ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+
+alias ..='cd ..'
+alias ...='cd ../../'
+alias re='cd -'
+
+alias cat=bat
+
+type fd > /dev/null \
+&& alias find='fd'
+
+type exa > /dev/null \
+&& alias ls='exa --git'
+
+type btm > /dev/null \
+&& alias top='btm'
+
+type neomutt > /dev/null \
+&& alias mutt=neomutt
+
+type nvim > /dev/null \
+&& alias vi=nvim \
+&& alias vim=nvim
+
+type fzf > /dev/null \
+&& alias preview='fzf --preview="bat {} --color=always"'
+
+type eva > /dev/null \
+&& alias calc='eva'
+
+type ghcal > /dev/null \
+&& alias contributions='ghcal -u mrusme'
+
+type gron > /dev/null \
+&& alias json='gron'
+
+type hexyl > /dev/null \
+&& alias hex='hexyl'
+
+type hyperfine > /dev/null \
+&& alias benchmark='hyperfine'
+
+type irssi > /dev/null \
+&& alias irc='irssi'
+
+alias fucking=sudo
+
+alias my-ip="curl http://ipecho.net/plain; echo"
+
+alias git-crypt-add-myself="git-crypt add-gpg-user \
+DD89748CC9036BF1FB30DCAFC18062A7464CC561"
+
+alias jrnl='cd ~/Projects/@mrusme/xn--gckvb8fzb.com/content/'
+
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ Bound keys                                                                 ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+
+[[ $OS = "Darwin" ]] \
+&& bindkey "\e[1;3C" forward-word \
+&& bindkey "\e[1;3D" backward-word
+
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ motd                                                                       ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+
+DOT_MOTD="$HOME/.motd"
+[[ -e "$DOT_MOTD" ]] && source "$DOT_MOTD"
+
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║    __ __    __                                                             ║
+# ║   / // /__ / /__  ___ _______                                              ║
+# ║  / _  / -_) / _ \/ -_) __(_-<                                              ║
+# ║ /_//_/\__/_/ .__/\__/_/ /___/                                              ║
+# ║           /_/                                                              ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ Poor-man's aptitude                                                        ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
 if [ $OS = "Darwin" ]
@@ -383,7 +443,7 @@ function openssl-decrypt () {
 
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
-# ║ Pushover                                                                   ║
+# ║ pushover                                                                   ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
 __pushover_usage() {
@@ -533,55 +593,7 @@ function pushover() {
 
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
-# ║ zshrc management via gist                                                  ║
-# ╚════════════════════════════════════════════════════════════════════════════╝
-
-if [ -n $GITHUB_TOKEN ]
-then
-  if type gem > /dev/null
-  then
-    export PATH=$(gem env \
-                   | grep "EXECUTABLE DIRECTORY" \
-                   | awk -F ': ' '{ print $2 }'):$PATH
-
-    if ! type gist > /dev/null
-    then
-      gem install gist
-    fi
-
-    # Workaround while waiting for
-    # https://github.com/defunkt/gist/pull/232#issuecomment-468937574
-    # GITHUB_TOKEN comes from .secrets
-    echo $GITHUB_TOKEN > "$HOME/.gist"
-
-    DOT_ZSHRC_DOT_GIST="$HOME/.zshrc.gist"
-    [[ -e $DOT_ZSHRC_DOT_GIST ]] \
-    || basename $(gist -l \
-                  | grep '\.zshrc $' \
-                  | awk '{ print $1 }') > $DOT_ZSHRC_DOT_GIST
-    export ZSHRC_GIST=$(cat $DOT_ZSHRC_DOT_GIST)
-
-    function zshrc-update-local() {
-      ZSHRC_DIFFS=$(gist -r $ZSHRC_GIST \
-                    | diff $DOT_ZSHRC - \
-                    | wc -l \
-                    | tr -d '[:space:]')
-      [[ $ZSHRC_DIFFS -eq 0 ]] || (mv $DOT_ZSHRC "$DOT_ZSHRC.previous" \
-                                  && gist -r $ZSHRC_GIST > $DOT_ZSHRC)
-    }
-
-    function zshrc-update-remote() {
-      local nxtversion=$(echo $DOT_ZSHRC_VERSION | awk -F '.' '{ print ++$2 }')
-      sed -i .previous \
-        's/^export DOT_ZSHRC_VERSION="\([0-9]*\)\.\([0-9]*\)"$/export DOT_ZSHRC_VERSION="\1\.'$nxtversion'"/g' $DOT_ZSHRC \
-      && gist -u "https://gist.github.com/$ZSHRC_GIST" $DOT_ZSHRC
-    }
-  fi
-fi
-
-
-# ╔════════════════════════════════════════════════════════════════════════════╗
-# ║ dotfiles                                                                   ║
+# ║ dotfiles-update-remote                                                     ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
 export DOTFILES="$HOME/Projects/@mrusme/dotfiles"
@@ -592,7 +604,8 @@ function dotfiles-update-remote() {
   cp ~/.config/alacritty/alacritty.yml "$DOTFILES/alacritty.yml"
   cp ~/.config/nvim/init.vim "$DOTFILES/nvim/init.vim"
   cp ~/.config/nvim/colors/*.vim "$DOTFILES/nvim/colors/"
-  cp ~/.config/nvim/autoload/lightline/colorscheme/*.vim "$DOTFILES/nvim/autoload/lightline/colorscheme/"
+  cp ~/.config/nvim/autoload/lightline/colorscheme/*.vim\
+    "$DOTFILES/nvim/autoload/lightline/colorscheme/"
   cp ~/.config/wtf/config.yml "$DOTFILES/wtfutil/config.yml"
   cp ~/.motd "$DOTFILES/.motd"
   cp ~/.muttrc "$DOTFILES/.muttrc"
@@ -608,13 +621,13 @@ function dotfiles-update-remote() {
   brew ls --cask -1 --full-name > "$DOTFILES/brew/cask_ls_-1"
   cargo install --list > "$DOTFILES/cargo/install_--list"
   npm list -g --depth=0 > "$DOTFILES/npm/list_-g_--depth_0"
-  go list '...' | rg '^github.com' > "$DOTFILES/go/list_github.com"
+  # go list '...' | rg '^github.com' > "$DOTFILES/go/list_github.com"
   return 0
 }
 
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
-# ║ Functions                                                                  ║
+# ║ update-tools                                                               ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
 function update-tools() {
@@ -631,6 +644,11 @@ function update-tools() {
   echo "Tools updated"
 }
 
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ terminal-colors                                                            ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+
 function terminal-colors() {
   if [[ $1 == "dark" ]]
   then
@@ -639,6 +657,11 @@ function terminal-colors() {
     sed -i .previous 's/\*dark$/\*light/g' ~/.config/alacritty/alacritty.yml
   fi
 }
+
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ git-add-all-remote                                                         ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
 
 function git-add-all-remote() {
   if git remote | grep -q '^all$'
@@ -654,80 +677,6 @@ function git-add-all-remote() {
     return 0
   fi
 }
-
-
-# ╔════════════════════════════════════════════════════════════════════════════╗
-# ║ Aliases                                                                    ║
-# ╚════════════════════════════════════════════════════════════════════════════╝
-
-alias ..='cd ..'
-alias ...='cd ../../'
-alias re='cd -'
-
-alias cat=bat
-
-type fd > /dev/null \
-&& alias find='fd'
-
-type exa > /dev/null \
-&& alias ls='exa --git'
-
-type btm > /dev/null \
-&& alias top='btm'
-
-type neomutt > /dev/null \
-&& alias mutt=neomutt
-
-type nvim > /dev/null \
-&& alias vi=nvim \
-&& alias vim=nvim
-
-type fzf > /dev/null \
-&& alias preview='fzf --preview="bat {} --color=always"'
-
-type eva > /dev/null \
-&& alias calc='eva'
-
-type ghcal > /dev/null \
-&& alias contributions='ghcal -u mrusme'
-
-type gron > /dev/null \
-&& alias json='gron'
-
-type hexyl > /dev/null \
-&& alias hex='hexyl'
-
-type hyperfine > /dev/null \
-&& alias benchmark='hyperfine'
-
-type irssi > /dev/null \
-&& alias irc='irssi'
-
-alias fucking=sudo
-
-alias my-ip="curl http://ipecho.net/plain; echo"
-
-alias git-crypt-add-myself="git-crypt add-gpg-user \
-DD89748CC9036BF1FB30DCAFC18062A7464CC561"
-
-alias jrnl='cd ~/Projects/@mrusme/xn--gckvb8fzb.com/content/'
-
-
-# ╔════════════════════════════════════════════════════════════════════════════╗
-# ║ Bound keys                                                                 ║
-# ╚════════════════════════════════════════════════════════════════════════════╝
-
-[[ $OS = "Darwin" ]] \
-&& bindkey "\e[1;3C" forward-word \
-&& bindkey "\e[1;3D" backward-word
-
-
-# ╔════════════════════════════════════════════════════════════════════════════╗
-# ║ motd                                                                       ║
-# ╚════════════════════════════════════════════════════════════════════════════╝
-
-DOT_MOTD="$HOME/.motd"
-[[ -e "$DOT_MOTD" ]] && source "$DOT_MOTD"
 
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
