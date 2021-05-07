@@ -603,8 +603,8 @@ function dotfiles-update-remote() {
     "$DOTFILES/st3/LSP.sublime-settings"
   cp $subldir/Packages/User/vap0r-*.tmTheme\
     "$DOTFILES/st3/"
-  brew ls --formula -1 --full-name > "$DOTFILES/brew_ls_-1"
-  brew ls --cask -1 --full-name > "$DOTFILES/brew_cask_ls_-1"
+  brew ls --formula -1 --full-name > "$DOTFILES/brew/ls_-1"
+  brew ls --cask -1 --full-name > "$DOTFILES/brew/cask_ls_-1"
   cargo install --list > "$DOTFILES/cargo_install_--list"
   npm list -g --depth=0 > "$DOTFILES/npm_list_-g_--depth_0"
   go list '...' | rg '^github.com' > "$DOTFILES/go_list_github.com"
