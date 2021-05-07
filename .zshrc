@@ -596,11 +596,13 @@ function dotfiles-update-remote() {
   cp ~/.motd "$DOTFILES/.motd"
   cp ~/.muttrc "$DOTFILES/.muttrc"
   cp $subldir/Packages/User/Package\ Control.sublime-settings\
-    "$DOTFILES/Package Control.sublime-settings"
+    "$DOTFILES/st3/Package Control.sublime-settings"
   cp $subldir/Packages/User/Preferences.sublime-settings\
-    "$DOTFILES/Preferences.sublime-settings"
+    "$DOTFILES/st3/Preferences.sublime-settings"
   cp $subldir/Packages/User/LSP.sublime-settings\
-    "$DOTFILES/LSP.sublime-settings"
+    "$DOTFILES/st3/LSP.sublime-settings"
+  cp $subldir/Packages/User/vap0r-*.tmTheme\
+    "$DOTFILES/st3/"
   brew ls --formula -1 --full-name > "$DOTFILES/brew_ls_-1"
   brew ls --cask -1 --full-name > "$DOTFILES/brew_cask_ls_-1"
   cargo install --list > "$DOTFILES/cargo_install_--list"
