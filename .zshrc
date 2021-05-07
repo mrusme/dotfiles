@@ -593,6 +593,7 @@ function dotfiles-update-remote() {
   cp ~/.config/nvim/init.vim "$DOTFILES/nvim/init.vim"
   cp ~/.config/nvim/colors/*.vim "$DOTFILES/nvim/colors/"
   cp ~/.config/nvim/autoload/lightline/colorscheme/*.vim "$DOTFILES/nvim/autoload/lightline/colorscheme/"
+  cp ~/.config/wtf/config.yml "$DOTFILES/wtfutil/config.yml"
   cp ~/.motd "$DOTFILES/.motd"
   cp ~/.muttrc "$DOTFILES/.muttrc"
   cp $subldir/Packages/User/Package\ Control.sublime-settings\

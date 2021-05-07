@@ -59,10 +59,7 @@ wtf:
           displayName: Market
           market:
           - BTC
-          - BCH
-          - DASH
           - ETH
           - LTC
           - XRP
-          - ZEC
           - ZRX
