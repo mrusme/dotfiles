@@ -31,7 +31,7 @@ jwt-cli v4.0.0:
     jwt
 pastel v0.8.0:
     pastel
-pipe-rename v1.1.4:
+pipe-rename v1.3.0:
     renamer
 rates v0.2.0:
     rates
@@ -41,11 +41,11 @@ rx v0.4.0 (/Users/mrus/Projects/GitHub/rx):
     rx
 shellcaster v1.1.0:
     shellcaster
-tickrs v0.14.4:
+tickrs v0.14.5:
     tickrs
 viu v1.3.0:
     viu
 vocage v1.1.0:
     vocage
-websocat v1.7.0:
+websocat v1.8.0:
     websocat
