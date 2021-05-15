@@ -1,0 +1,5 @@
+#!/bin/sh
+source $(which virtualenvwrapper_lazy.sh)
+workon local
+offlineimap
+
