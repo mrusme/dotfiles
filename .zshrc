@@ -263,6 +263,7 @@ alias git-crypt-add-myself="git-crypt add-gpg-user \
 DD89748CC9036BF1FB30DCAFC18062A7464CC561"
 
 alias jrnl='cd ~/Projects/@mrusme/xn--gckvb8fzb.com/content/'
+alias notes='cd ~/Cloud/Notes/'
 
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
