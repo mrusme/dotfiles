@@ -125,6 +125,16 @@ if maparg('<C-L>', 'n') ==# ''
   nnoremap <silent> <C-L> :nohlsearch<CR><C-L>
 endif
 
+inoremap <C-h> <Left>
+inoremap <C-j> <Down>
+inoremap <C-k> <Up>
+inoremap <C-l> <Right>
+
+cnoremap <C-h> <Left>
+cnoremap <C-j> <Down>
+cnoremap <C-k> <Up>
+cnoremap <C-l> <Right>
+
 inoremap <C-U> <C-G>u<C-U>
 
 noremap  <C-S> :update<CR>
@@ -152,19 +162,21 @@ vmap <C-c> y
 nnoremap d "_d
 vnoremap d "_d
 
+nnoremap <silent> <C-\> :Files<CR>
+
 nnoremap <C-z>  :undo<CR>
 inoremap <C-z>  <Esc>:undo<CR>
 nnoremap <C-y>  :redo<CR>
 inoremap <C-y>  <Esc>:redo<CR>
 
-nnoremap <C-b>  :tabprevious<CR>
-inoremap <C-b>  <Esc>:tabprevious<CR>i
-nnoremap <C-n>  :tabnext<CR>
-inoremap <C-n>  <Esc>:tabnext<CR>i
+nnoremap <C-[>  :tabprevious<CR>
+inoremap <C-[>  <Esc>:tabprevious<CR>i
+nnoremap <C-]>  :tabnext<CR>
+inoremap <C-]>  <Esc>:tabnext<CR>i
 nnoremap <C-t>  :tabnew<CR>
 inoremap <C-t>  <Esc>:tabnew<CR>i
-nnoremap <C-k>  :tabclose<CR>
-inoremap <C-k>  <Esc>:tabclose<CR>i
+nnoremap <C-x>  :tabclose<CR>
+inoremap <C-x>  <Esc>:tabclose<CR>i
 
 map \ :
 let mapleader = ','
@@ -197,8 +209,6 @@ autocmd BufRead,BufNewFile
   \ tmux.conf.local,tmux.conf,.tmux.conf set filetype=tmux
 autocmd BufRead,BufNewFile
   \ vimrc.local,.vimrc,init.vim set filetype=vim
-
-nnoremap <silent> <C-T> :Files<CR>
 
 
 " ╔════════════════════════════════════════════════════════════════════════════╗
@@ -492,6 +502,13 @@ let g:dashboard_custom_footer = ['']
 " ║ HugoHelper                                                                 ║
 " ╚════════════════════════════════════════════════════════════════════════════╝
 let g:hugohelper_update_lastmod_on_write = 1
+
+
+
+" ╔════════════════════════════════════════════════════════════════════════════╗
+" ║ Go                                                                         ║
+" ╚════════════════════════════════════════════════════════════════════════════╝
+let g:go_def_mapping_enabled = 0
 
 
 " ╔════════════════════════════════════════════════════════════════════════════╗

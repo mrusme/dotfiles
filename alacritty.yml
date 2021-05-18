@@ -285,6 +285,10 @@ key_bindings:
   - { key: Tab,      mods: Alt,       chars: "\x01n"                           }
   - { key: Tab,      mods: Alt|Shift, chars: "\x01p"                           }
   - { key: R,        mods: Command|Shift, chars: "\x01,"                       }
+  - { key: H,        mods: Control,   chars: "\x01\x1b\x5b\x44"                }
+  - { key: L,        mods: Control,   chars: "\x01\x1b\x5b\x43"                }
+  - { key: K,        mods: Control,   chars: "\x01\x1b\x5b\x41"                }
+  - { key: J,        mods: Control,   chars: "\x01\x1b\x5b\x42"                }
   - { key: Left,     mods: Command,   chars: "\x01\x1b\x5b\x44"                }
   - { key: Right,    mods: Command,   chars: "\x01\x1b\x5b\x43"                }
   - { key: Up,       mods: Command,   chars: "\x01\x1b\x5b\x41"                }
