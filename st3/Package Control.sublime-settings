@@ -10,7 +10,6 @@
 		"All Autocomplete",
 		"Autotools",
 		"ayu",
-		"Babel",
 		"Base16 Color Schemes",
 		"BracketHighlighter",
 		"C Improved",
@@ -31,7 +30,6 @@
 		"Elm Syntax Highlighting",
 		"Git blame",
 		"GitGutter",
-		"GitHub Theme",
 		"gruvbox",
 		"Handlebars",
 		"HTML5",
@@ -63,6 +61,6 @@
 		"Theme - Cyanide",
 		"Theme - Tech49",
 		"TOML",
-		"TypeScript"
-	]
+		"TypeScript",
+	],
 }

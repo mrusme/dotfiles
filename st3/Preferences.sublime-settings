@@ -32,7 +32,7 @@
 		"pear_newline_function": false,
 		"pear_newline_trait": true,
 		"pear_switch_without_indent": false,
-		"phpbb": false
+		"phpbb": false,
 	},
 	"codeformatter_php_path": "/usr/local/bin/php",
 	"color_scheme": "Packages/User/vap0r-dark.tmTheme",
@@ -50,7 +50,7 @@
 		[
 			"curl",
 			"wget"
-		]
+		],
 	},
 	"drag_text": false,
 	"draw_minimap_border": false,
@@ -86,7 +86,7 @@
 	"ignored_packages":
 	[
 		"CSS",
-		"Vintage"
+		"Vintage",
 	],
 	"line_padding_bottom": 1,
 	"line_padding_top": 1,
@@ -101,6 +101,7 @@
 	"material_theme_small_statusbar": true,
 	"material_theme_small_tab": true,
 	"material_theme_tabs_separator": true,
+	"meetio_status_badges": true,
 	"mdpopups.disable": false,
 	"mouse_wheel_switches_tabs": true,
 	"open_files_in_new_window": true,
@@ -123,12 +124,12 @@
 	"submit_usage": false,
 	"tab_completion": true,
 	"tab_size": 4,
-	"theme": "gruvbox.sublime-theme",
+	"theme": "Meetio-Theme.sublime-theme",
 	"theme.dark": "ayu-dark.sublime-theme",
 	"theme.light": "ayu-light.sublime-theme",
 	"translate_tabs_to_spaces": false,
 	"trim_trailing_white_space_on_save": true,
 	"wide_caret": false,
 	"word_wrap": false,
-	"wrap_width": 80
+	"wrap_width": 80,
 }
