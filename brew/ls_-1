@@ -99,11 +99,13 @@ icdiff
 icu4c
 ilmbase
 imagemagick
+imath
 ipfs
 irssi
 isl
 jansson
 jasper
+jbig2dec
 jemalloc
 jpeg
 jq
@@ -242,6 +244,7 @@ sampler
 sdl2
 shared-mime-info
 shellcheck
+six
 smartmontools
 snappy
 so
