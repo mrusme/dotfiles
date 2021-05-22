@@ -12,18 +12,20 @@ wtf:
     title: "white"
   grid:
     columns: [20, 20, 20, 20, 20, 20, 20, 20]
-    rows: [10, 10, 10, 10, 10, 10, 10, 10, 10, 10]
+    rows: [12, 10, 10, 10, 10, 10, 10, 10, 10, 10]
   refreshInterval: 1
   mods:
     clocks:
       colors:
         rows:
-          even: cyan
-          odd: white
+          even: white 
+          odd: grey
       enabled: true
       locations:
+        Berlin: "Europe/Berlin"
         London: "Europe/London"
         New York: "America/New York"
+        Panama: "America/Panama"
         Los Angeles: "America/Los Angeles"
         Honolulu: "Pacific/Honolulu"
         Tokyo: "Asia/Tokyo"
@@ -37,6 +39,32 @@ wtf:
         width: 2
       refreshInterval: 15
       sort: "chronological"
+      #    ipinfo:
+      #      colors:
+      #        name: "#75d5ff"
+      #        value: white
+      #      enabled: true
+      #      position:
+      #        top: 1
+      #        left: 0
+      #        height: 1
+      #        width: 2
+      #      refreshInterval: 150
+      #    exchangerates:
+      #      enabled: true
+      #      focusable: false
+      #      position:
+      #        top: 1
+      #        left: 0
+      #        height: 1
+      #        width: 2
+      #      precision: 3
+      #      rates:
+      #        USD:
+      #          - "EUR"
+      #        EUR:
+      #          - "USD"
+      #      title: "Rates"
     bittrex:
       title: "Crypto"
       colors:
@@ -44,9 +72,9 @@ wtf:
           name: white
           displayName: cyan
         market:
-          name: cyan
-          field: white
-          value: cyan
+          name: "#75d5ff"
+          field: "#cfcfd8"
+          value: white
       enabled: true
       position:
         top: 1
@@ -63,3 +91,4 @@ wtf:
           - LTC
           - XRP
           - ZRX
+
