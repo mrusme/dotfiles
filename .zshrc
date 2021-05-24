@@ -260,7 +260,7 @@ alias fucking=sudo
 alias my-ip="curl http://ipecho.net/plain; echo"
 
 alias git-crypt-add-myself="git-crypt add-gpg-user \
-DD89748CC9036BF1FB30DCAFC18062A7464CC561"
+F08DED9636A6624627E4970F6228016C5CE30C68"
 
 alias jrnl='cd ~/Projects/@mrusme/xn--gckvb8fzb.com/content/'
 alias notes='cd ~/Cloud/Notes/'
@@ -623,6 +623,7 @@ function dotfiles-update-remote() {
   cargo install --list > "$DOTFILES/cargo/install_--list"
   npm list -g --depth=0 > "$DOTFILES/npm/list_-g_--depth_0"
   # go list '...' | rg '^github.com' > "$DOTFILES/go/list_github.com"
+  git -C "$DOTFILES" commit -a -S
   return 0
 }
 
