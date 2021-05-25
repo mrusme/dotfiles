@@ -1,0 +1,13 @@
+#!/bin/sh
+
+echo 'OK Pleased to meet you'
+
+while read stdin; do
+	case $stdin in
+		*BYE*) break ;;
+		*SETDESC*) KEYNAME=${stdin#*:%0A%22}; KEYNAME=${KEYNAME%\%22\%0A*}; KEYID=${stdin#*ID }; KEYID=${KEYID%,*}; echo OK ;;
+		*GETPIN*) echo "D `DISPLAY=:0 wofi --show dmenu -P -p "gpg-agent: $KEYNAME ($KEYID)"`\nOK" ;;
+		*) echo OK
+	esac
+done
+
