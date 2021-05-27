@@ -50,17 +50,17 @@ setopt HIST_IGNORE_SPACE
 # export TERM=xterm-16color
 export TERM=xterm-256color
 
+type nvim > /dev/null \
+&& export EDITOR=nvim \
+|| export EDITOR=vim
 if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR=vim
   export BROWSER=w3m
 else
   if [[ $OS = "Linux" ]]
   then
-    export EDITOR=vim
     export BROWSER=firefox
   elif [[ $OS = "Darwin" ]]
   then
-    export EDITOR=vim
     export BROWSER=open
   fi
 fi
