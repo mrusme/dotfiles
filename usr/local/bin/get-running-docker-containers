@@ -1,0 +1,3 @@
+#!/bin/sh
+echo -n "{\"text\": \"$(docker ps -aq | wc -l)\", \"tooltip\": \"$(docker ps -a --format "{{.ID}} {{.Names}} {{.Image}} {{.Ports}} {{.Status}}" | sed ':a;N;$!ba;s/\n/\\n/g' | sed 's/"/\\"/g')\", \"alt\": \"\", \"class\": \"\" }"
+
