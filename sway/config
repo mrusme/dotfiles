@@ -1,0 +1,241 @@
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║                                                                            ║
+# ║              ______   _____                  ____    _____      _____      ║
+# ║          ___|\     \ |\    \   _____    ____|\   \  |\    \    /    /|     ║
+# ║         |    |\     \| |    | /    /|  /    /\    \ | \    \  /    / |     ║
+# ║         |    |/____/|\/     / |    || |    |  |    ||  \____\/    /  /     ║
+# ║      ___|    \|   | |/     /_  \   \/ |    |__|    | \ |    /    /  /      ║
+# ║     |    \    \___|/|     // \  \   \ |    .--.    |  \|___/    /  /       ║
+# ║     |    |\     \   |    |/   \ |    ||    |  |    |      /    /  /        ║
+# ║     |\ ___\|_____|  |\ ___/\   \|   /||____|  |____|     /____/  /         ║
+# ║     | |    |     |  | |   | \______/ ||    |  |    |    |`    | /          ║
+# ║      \|____|_____|   \|___|/\ |    | ||____|  |____|    |_____|/           ║
+# ║         \(    )/        \(   \|____|/   \(      )/         )/              ║
+# ║          '    '          '      )/       '      '          '               ║
+# ║                                 '                                          ║
+# ║                                                                            ║
+# ║      xn--gckvb8fzb.com * github.com/mrusme * marius@xn--gckvb8fzb.com      ║
+# ║                                                                            ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+
+set $mod Mod4
+set $left h
+set $down j
+set $up k
+set $right l
+set $term alacritty
+set $menu wofi --show run
+
+set {
+	$pink        #FC9EDF
+	$white		   #ffffff
+	$cyan		     #75d5ff
+	$magenta	   #ff89d8
+	$orange		   #CCAA60
+	$silver		   #e4e4e4
+	$dark      	 #18181E
+	$transparent #FF000000
+}
+
+client.focused        	 	$dark	$pink    $dark   $white   $pink
+client.unfocused        	$dark	$dark    $orange $white   $dark
+client.focused_inactive 	$dark $dark    $cyan   $magenta $cyan
+client.urgent	          	$dark	$magenta $silver $magenta $magenta
+client.placeholder	      $dark $magenta $silver $white   $magenta
+
+font pango: FiraCode Nerd Font
+
+default_border pixel 2
+smart_gaps off
+gaps inner 12
+gaps outer 2
+hide_edge_borders none
+
+focus_follows_mouse no
+focus_on_window_activation smart
+
+
+output * bg ~/.wallpaper.png fill
+
+exec swayidle -w \
+timeout 300 'swaylock -f -c 000000' \
+timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
+before-sleep 'swaylock -f -c 000000'
+
+exec wl-paste -t text --watch clipman store --no-persist
+bindsym $mod+Alt+Backslash exec clipman pick -t wofi
+
+exec dunst
+
+input "4815:3077:Mad_Catz_Global_MADCATZ_R.A.T._8+_gaming_mouse" {
+  natural_scroll enabled
+  pointer_accel 0
+  #accel_profile adaptive
+}
+
+# Start a terminal
+bindsym $mod+Return exec $term
+
+# Kill focused window
+bindsym $mod+Shift+q kill
+
+# Start your launcher
+bindsym $mod+Space exec $menu
+
+bindsym $mod+Shift+Return /usr/bin/firefox-wayland
+
+floating_modifier $mod normal
+
+# Reload the configuration file
+bindsym $mod+Shift+c reload
+
+# Exit sway
+bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
+
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+
+#bindsym XF86AudioRaiseVolume exec "amixer set Master 1%+ unmute"
+#bindsym XF86AudioLowerVolume exec "amixer set Master 1%- unmute"
+#bindsym XF86AudioMute exec "amixer set Master toggle"
+#bindsym XF86AudioMicMute exec "amixer set Capture toggle"
+
+bindsym Print exec grim -t png $HOME/downloads/$(date +'screenshot_%Y-%m-%d-%H%M%S.png')
+bindsym Shift+Print exec --no-startup-id slurp | grim -t png -g - $HOME/downloads/$(date +'screenshot_%Y-%m-%d-%H%M%S.png')
+
+
+# Move your focus around
+bindsym $mod+$left focus left
+bindsym $mod+$down focus down
+bindsym $mod+$up focus up
+bindsym $mod+$right focus right
+# Or use $mod+[up|down|left|right]
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+bindsym $mod+Tab focus next
+bindsym $mod+Shift+Tab focus prev
+
+# Move the focused window with the same, but add Shift
+bindsym $mod+Shift+$left move left
+bindsym $mod+Shift+$down move down
+bindsym $mod+Shift+$up move up
+bindsym $mod+Shift+$right move right
+# Ditto, with arrow keys
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# Switch to workspace
+bindsym $mod+1 workspace number 1
+bindsym $mod+2 workspace number 2
+bindsym $mod+3 workspace number 3
+bindsym $mod+4 workspace number 4
+bindsym $mod+5 workspace number 5
+bindsym $mod+6 workspace number 6
+bindsym $mod+7 workspace number 7
+bindsym $mod+8 workspace number 8
+bindsym $mod+9 workspace number 9
+bindsym $mod+0 workspace number 10
+# Move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace number 1
+bindsym $mod+Shift+2 move container to workspace number 2
+bindsym $mod+Shift+3 move container to workspace number 3
+bindsym $mod+Shift+4 move container to workspace number 4
+bindsym $mod+Shift+5 move container to workspace number 5
+bindsym $mod+Shift+6 move container to workspace number 6
+bindsym $mod+Shift+7 move container to workspace number 7
+bindsym $mod+Shift+8 move container to workspace number 8
+bindsym $mod+Shift+9 move container to workspace number 9
+bindsym $mod+Shift+0 move container to workspace number 10
+
+bindsym $mod+Alt+Left workspace prev
+bindsym $mod+Alt+Right workspace next
+
+# $mod+b or $mod+v, for horizontal and vertical splits
+bindsym $mod+b splith
+bindsym $mod+v splitv
+
+# Switch the current container between different layout styles
+#bindsym $mod+s layout stacking
+#bindsym $mod+w layout tabbed
+#bindsym $mod+e layout toggle split
+
+# Make the current focus fullscreen
+bindsym $mod+z fullscreen
+
+# Toggle the current focus between tiling and floating mode
+bindsym $mod+Shift+z floating toggle
+
+# Swap focus between the tiling area and the floating area
+bindsym $mod+Shift+t focus mode_toggle
+
+# Move focus to the parent container
+bindsym $mod+a focus parent
+
+# Move the currently focused window to the scratchpad
+bindsym $mod+Shift+minus move scratchpad
+
+# Show the next scratchpad window or hide the focused scratchpad window.
+# If there are multiple scratchpad windows, this command cycles through them.
+bindsym $mod+minus scratchpad show
+
+mode "resize" {
+  # left will shrink the containers width
+  # right will grow the containers width
+  # up will shrink the containers height
+  # down will grow the containers height
+  bindsym $left resize shrink width 10px
+  bindsym $down resize grow height 10px
+  bindsym $up resize shrink height 10px
+  bindsym $right resize grow width 10px
+
+  # Ditto, with arrow keys
+  bindsym Left resize shrink width 10px
+  bindsym Down resize grow height 10px
+  bindsym Up resize shrink height 10px
+  bindsym Right resize grow width 10px
+
+  # Return to default mode
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+}
+bindsym $mod+r mode "resize"
+
+
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="bubble"] floating enable
+for_window [window_role="task_dialog"] floating enable
+for_window [window_role="Preferences"] floating enable
+
+for_window [window_role="task_dialog|bubble|page-info|Preferences|pop-up"] floating enable
+for_window [window_role="Open Files"] floating enable sticky
+for_window [window_role="File Operation Progress"] floating enable sticky
+for_window [window_role="Save As"] floating enable
+
+#for_window [class="steam_app.*"] fullscreen enable
+#for_window [class="steam_app*"] inhibit_idle focus
+for_window [window_type="dialog"] floating enable
+for_window [window_type="menu"] floating enable
+
+# Sticky window
+for_window [instance="file_progress"]  sticky enable
+for_window [class="info|Mate-color-select|gcolor2|timesup|QtPass|GtkFileChooserDialog"] sticky enable
+
+# Focus window settings
+no_focus [window_role="pop-up"]
+focus_on_window_activation focus
+#for_window [class="(?i)"] focus
+
+bar {
+  swaybar_command waybar
+}
+
+exec proton-bridge
+exec /usr/local/bin/offlineimap
+
+include /etc/sway/config.d/*
