@@ -1,0 +1,199 @@
+// ╔═══════════════════════════════════════════════════════════════════════════╗
+// ║              ___       __________  ________________________               ║
+// ║              __ |     / /__    | \/ /__  __ )__    |__  __ \              ║
+// ║              __ | /| / /__  /| |_  /__  __  |_  /| |_  /_/ /              ║
+// ║              __ |/ |/ / _  ___ |  / _  /_/ /_  ___ |  _, _/               ║
+// ║              ____/|__/  /_/  |_/_/  /_____/ /_/  |_/_/ |_|                ║
+// ║                                                                           ║
+// ║     xn--gckvb8fzb.com * github.com/mrusme * marius@xn--gckvb8fzb.com      ║
+// ║                                                                           ║
+// ╚═══════════════════════════════════════════════════════════════════════════╝
+
+{
+  // -------------------------------------------------------------------------
+  // Global configuration
+  // -------------------------------------------------------------------------
+
+  "layer": "top",
+  "position": "top",
+  "height": 30,
+
+  "modules-left": [
+  "sway/workspaces",
+  "sway/mode"
+  ],
+  "modules-center": [
+  "sway/window"
+  ],
+  "modules-right": [
+  "tray",
+  "network",
+  "custom/vpn",
+  "custom/rslsync",
+  "custom/docker",
+  "cpu",
+  "temperature#cpu",
+  "temperature#gpu",
+  "memory",
+  "pulseaudio",
+  "clock"
+  ],
+
+  // -------------------------------------------------------------------------
+  // Modules
+  // -------------------------------------------------------------------------
+
+  "sway/workspaces": {
+    "disable-scroll": true,
+    "all-outputs": true,
+    "format": "{icon}",
+    "format-icons": {
+      "1": "一",
+      "2": "二",
+      "3": "三",
+      "4": "四",
+      "5": "五",
+      "6": "六",
+      "7": "七",
+      "8": "八",
+      "9": "九",
+      "10": "十"
+    }
+  },
+
+  "clock": {
+    "interval": 60,
+    "format": "  {:%e %b %Y %I:%M %p}",
+    "tooltip": true,
+    "tooltip-format": "<big>{:%B %Y}</big>\n<tt>{calendar}</tt>"
+  },
+
+  "cpu": {
+    "interval": 10,
+    "format": "  {usage}%",
+    "states": {
+      "warning": 70,
+      "critical": 90
+    }
+  },
+
+  "memory": {
+    "interval": 20,
+    "format": "  {used:0.1f}G",
+    "states": {
+      "warning": 70,
+      "critical": 90
+    }
+  },
+
+  "network": {
+    "interface": "enp6s0",
+    "interval": 20,
+    "format-wifi": "  {essid} ({signalStrength}%)",
+    "format-ethernet": "  {ipaddr}/{cidr}",
+    "format-disconnected": "⚠  Disconnected",
+    "tooltip-format": "{ifname}: {ipaddr}",
+    "on-click": "nm-connection-editor"
+  },
+
+  "custom/docker": {
+    "format": "  {}",
+    "return-type": "json",
+    "exec": "/usr/local/bin/get-running-docker-containers",
+    "exec-if": "rc-service docker status",
+    "interval": 10
+  },
+
+  "custom/vpn": {
+    "format": "  {}",
+    "exec": "/usr/local/bin/get-running-openvpn-config",
+    "exec-if": "test -d /proc/sys/net/ipv4/conf/tun0",
+    "on-click": "xdg-open https://ipecho.net/plain",
+    "interval": 10
+  },
+
+  "custom/rslsync": {
+    "format": "  {}",
+    "exec": "/usr/local/bin/get-running-rslsync-status",
+    "exec-if": "ps -eo args | rg '^/usr/bin/rslsync'",
+    "on-click": "xdg-open http://127.0.0.1:2510/gui/",
+    "on-click-middle": "killall -s SIGQUIT rslsync",
+    "interval": 10
+  },
+
+  "sway/mode": {
+    "format": "<span style=\"\">{}</span>",
+    "tooltip": false
+  },
+
+  "sway/window": {
+    "format": "{}",
+    "max-length": 240
+  },
+
+  "sway/workspaces": {
+    "all-outputs": true,
+    "disable-scroll": true,
+    "format": "{name}"
+  },
+
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "",
+      "deactivated": ""
+    }
+  },
+
+  "pulseaudio": {
+    "format": "{icon}  {volume}%",
+    "format-bluetooth": "{icon}  {volume}%",
+    "format-muted": "",
+    "format-icons": {
+      "headphones": "",
+      "handsfree": "",
+      "headset": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": ["", ""]
+    },
+    "on-click": "pavucontrol"
+  },
+
+  "temperature#cpu": {
+    "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+    "critical-threshold": 90,
+    "interval": 10,
+    "format": "{icon} CPU {temperatureC}°C",
+    "format-icons": [
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "tooltip": true
+  },
+
+  "temperature#gpu": {
+    "hwmon-path": "/sys/class/hwmon/hwmon0/temp1_input",
+    "critical-threshold": 90,
+    "interval": 10,
+    "format": "GPU {temperatureC}°C",
+    "format-icons": [
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "tooltip": true
+  },
+
+  "tray": {
+    "icon-size": 19,
+    "spacing": 0
+  }
+}
+
