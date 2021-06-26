@@ -303,6 +303,10 @@ key_bindings:
   - { key: Down,     mods: Command,   chars: "\x01\x1b\x5b\x42"                }
   - { key: Left,     mods: Command|Shift, chars: "\x01\x1b\x5b\x31\x3b\x32\x44"}
   - { key: Right,    mods: Command|Shift, chars: "\x01\x1b\x5b\x31\x3b\x32\x43"}
+  - { key: K,        mods: Command|Shift, chars: "\x01\x1b\x5b\x31\x3b\x32\x41"}
+  - { key: J,        mods: Command|Shift, chars: "\x01\x1b\x5b\x31\x3b\x32\x42"}
+  - { key: H,        mods: Command|Shift, chars: "\x01\x1b\x5b\x31\x3b\x32\x44"}
+  - { key: L,        mods: Command|Shift, chars: "\x01\x1b\x5b\x31\x3b\x32\x43"}
   - { key: Up,       mods: Command|Shift, chars: "\x01\x1b\x5b\x31\x3b\x32\x41"}
   - { key: Down,     mods: Command|Shift, chars: "\x01\x1b\x5b\x31\x3b\x32\x42"}
   - { key: Key1,     mods: Command,   chars: "\x01\x30"                        }
@@ -315,3 +319,5 @@ key_bindings:
   - { key: Key8,     mods: Command,   chars: "\x01\x37"                        }
   - { key: Key9,     mods: Command,   chars: "\x01\x38"                        }
   - { key: Key0,     mods: Command,   chars: "\x01\x39"                        }
+  - { key: B,        mods: Alt,       chars: "\x1b\x62"                        }
+  - { key: F,        mods: Alt,       chars: "\x1b\x66"                        }
