@@ -73,6 +73,9 @@ export SSH_KEY_PATH="~/.ssh/id_rsa"
 # Enable Erlang/IEx shell history
 export ERL_AFLAGS="-kernel shell_history enabled"
 
+# IPFS
+export IPFS_PATH="~/.ipfs"
+
 # https://github.com/oz/tz/
 export TZ_LIST="Pacific/Honolulu,America/Panama,America/New_York,Etc/UTC,\
 Europe/Berlin,Asia/Bangkok,Asia/Tokyo,Australia/Melbourne"
@@ -213,7 +216,7 @@ ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
   zsh-autosuggestions mosh fzf terraform taskwarrior thefuck)
 # Disabled: gcloud, nvm, virtualenvwrapper
 
-[[ "$USER" != "root" ]] && source $ZSH/oh-my-zsh.sh
+[[ -e "$ZSH/oh-my-zsh.sh" ]] && source $ZSH/oh-my-zsh.sh
 
 fpath=(
   /usr/local/share/zsh-completions
@@ -239,7 +242,7 @@ type fd > /dev/null \
 && alias find='fd'
 
 type exa > /dev/null \
-&& unalias ls \
+&& unalias ls &> /dev/null \
 && alias ls='exa --time-style=long-iso --git --icons -lag'
 
 type btm > /dev/null \
