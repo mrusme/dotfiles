@@ -15,6 +15,7 @@
 # zmodload zsh/zprof
 
 export ZSH_TMUX_AUTOSTART=true
+[[ "$USER" == "root" ]] && export ZSH_TMUX_AUTOSTART=false
 export DOT_ZSHRC="$HOME/.zshrc"
 export DOT_ZSHRC_VERSION="0.32"
 
@@ -29,6 +30,7 @@ type /usr/local/bin/zsh > /dev/null \
 type tmux > /dev/null \
 && [[ -n $SSH_CONNECTION ]] \
 && [[ -z $TMUX ]] \
+&& [[ "$USER" != "root" ]] \
 && tmux new-session -A -s ssh && exit
 
 
@@ -173,9 +175,9 @@ fi
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
 export ZSH=$HOME/.oh-my-zsh
-[[ -e $ZSH ]] \
-|| sh -c "$(curl -fsSL \
-    https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+[[ -e $ZSH ]] || \
+([[ "$USER" != "root" ]] && sh -c "$(curl -fsSL \
+    https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)")
 
 ZSH_THEME="geometry-zsh/geometry"
 CASE_SENSITIVE="true"
@@ -211,7 +213,7 @@ ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
   zsh-autosuggestions mosh fzf terraform taskwarrior thefuck)
 # Disabled: gcloud, nvm, virtualenvwrapper
 
-source $ZSH/oh-my-zsh.sh
+[[ "$USER" != "root" ]] && source $ZSH/oh-my-zsh.sh
 
 fpath=(
   /usr/local/share/zsh-completions
@@ -353,7 +355,7 @@ then
         safe-upgrade)emerge -avu --keep-going=y ${@:2};;
         full-upgrade)emerge -avuND --keep-going=y --with-bdeps=y ${@:2};;
         search)      emerge -s ${@:2};;
-        show)        emerge --info ${@:2};;
+        show)        equery meta ${@:2};;
         clean)       emerge -avc ${@:2};;
         reinstall)   emerge -ave ${@:2};;
         *)           echo "aptitude: '$1' - unknown action" ;;
@@ -397,7 +399,7 @@ then
                                 clean reinstall" -- $cur) )
   }
 fi
-
+alias apt='aptitude'
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
 # ║ OpenSSL                                                                    ║
