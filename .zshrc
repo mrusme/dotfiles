@@ -49,6 +49,7 @@ setopt HIST_IGNORE_SPACE
 
 # export TERM=xterm-16color
 export TERM=xterm-256color
+export COLUMNS=80
 
 type nvim > /dev/null \
 && export EDITOR=nvim \
@@ -152,6 +153,20 @@ type gem > /dev/null \
               | grep "USER INSTALLATION DIRECTORY" \
               | awk -F ': ' '{ print $2 }')/bin:$PATH
 
+# Wayland
+if [[ $OS = "Linux" ]]
+then
+  if test -z "${XDG_RUNTIME_DIR}"
+  then
+    export XDG_RUNTIME_DIR=/tmp/${UID}-runtime-dir
+    if ! test -d "${XDG_RUNTIME_DIR}"
+    then
+      mkdir "${XDG_RUNTIME_DIR}"
+      chmod 0700 "${XDG_RUNTIME_DIR}"
+    fi
+  fi
+fi
+
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
 # ║ ZSH                                                                        ║
@@ -222,7 +237,8 @@ type fd > /dev/null \
 && alias find='fd'
 
 type exa > /dev/null \
-&& alias ls='exa --git'
+&& unalias ls \
+&& alias ls='exa --time-style=long-iso --git --icons -lag'
 
 type btm > /dev/null \
 && alias top='btm'
@@ -260,9 +276,11 @@ alias fucking=sudo
 alias my-ip="curl http://ipecho.net/plain; echo"
 
 alias git-crypt-add-myself="git-crypt add-gpg-user \
-F08DED9636A6624627E4970F6228016C5CE30C68"
+4D3899AF73E7F5FE9B39C822272ED814BF63261F"
+alias gpa='git push all "$(git_current_branch)"'
 
 alias jrnl='cd ~/Projects/@mrusme/xn--gckvb8fzb.com/content/'
+alias bookmarks='vim ~/Projects/@mrusme/xn--gckvb8fzb.com/content/bookmarks/index.md'
 alias notes='cd ~/Cloud/Notes/'
 
 
