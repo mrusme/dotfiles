@@ -86,7 +86,6 @@
 	"ignored_packages":
 	[
 		"CSS",
-		"Vintage",
 	],
 	"line_padding_bottom": 1,
 	"line_padding_top": 1,
@@ -124,7 +123,7 @@
 	"submit_usage": false,
 	"tab_completion": true,
 	"tab_size": 4,
-	"theme": "Meetio-Theme.sublime-theme",
+	"theme": "Meetio Theme.sublime-theme",
 	"theme.dark": "ayu-dark.sublime-theme",
 	"theme.light": "ayu-light.sublime-theme",
 	"translate_tabs_to_spaces": false,
@@ -132,4 +131,5 @@
 	"wide_caret": false,
 	"word_wrap": false,
 	"wrap_width": 80,
+	"vintage_start_in_command_mode": true,
 }
