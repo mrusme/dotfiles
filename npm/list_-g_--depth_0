@@ -1,5 +1,6 @@
 /usr/local/lib
 ├── @ionic/cli@6.10.0
+├── @stoplight/prism-cli@4.2.5
 ├── @stoplight/spectral@5.9.1
 ├── alex@9.1.0
 ├── camelcase@6.2.0
@@ -8,7 +9,7 @@
 ├── ghcal@2.3.11
 ├── jira-cli@2.4.0
 ├── markdownlint@0.23.1
-├── npm@7.13.0
+├── npm@7.15.1
 ├── postcss-cli@7.1.1
 ├── prettier@2.2.1
 ├── remark-lint@8.0.0

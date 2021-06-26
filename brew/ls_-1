@@ -21,6 +21,7 @@ cabal-install
 caddy
 cairo
 capstone
+cloc
 cmake
 cocoapods
 confuse
@@ -39,6 +40,7 @@ elixir
 elm
 enscript
 erlang
+erlang@23
 exa
 fasd
 fd
@@ -52,6 +54,7 @@ fpc
 freetype
 frei0r
 fribidi
+fwup
 fzf
 gawk
 gd
@@ -112,8 +115,10 @@ jq
 lame
 lazygit
 leptonica
+libarchive
 libass
 libassuan
+libb2
 libbluray
 libde265
 libelf
@@ -178,6 +183,7 @@ make
 md5sha1sum
 mdcat
 meson
+micro
 midnight-commander
 minicom
 mmv
@@ -252,6 +258,7 @@ so
 socat
 speex
 sqlite
+squashfs
 srt
 stlink
 subversion
@@ -298,12 +305,14 @@ xmlto
 xorgproto
 xvid
 xz
+yj
 youtube-dl
 zeromq
 zimg
 zlib
 zola
 zsh
+zstd
 achannarasappa/tap/ticker
 browsh-org/browsh/browsh
 bvaisvil/zenith/zenith
@@ -312,6 +321,7 @@ clementtsang/bottom/bottom
 derailed/k9s/k9s
 extrawurst/tap/gitui
 hashicorp/tap/terraform-ls
+helix-editor/helix/helix
 lukechilds/tap/gifgen
 mgrachev/tap/dotenv-linter
 mongodb/brew/mongodb-community

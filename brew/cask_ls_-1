@@ -1,6 +1,8 @@
 1password-cli
 alacritty
 blender
+choosy
+chromium
 font-3270
 font-agave-nerd-font
 font-anonymous-pro
@@ -38,6 +40,8 @@ font-terminus
 freecad
 ganache
 gcc-arm-embedded
+gimp
+godot
 google-cloud-sdk
 gpg-suite
 jami
@@ -46,13 +50,16 @@ kicad
 matterhorn
 mockoon
 obs
+obs-websocket
 onionshare
 openemu
 openrct2
 openttd
+qmk-toolbox
 rq
 segger-jlink
 sublime-text
 tor-browser
+via
 zeronet
 apenngrace/vulkan/vulkan-sdk
