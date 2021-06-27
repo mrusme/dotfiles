@@ -76,6 +76,11 @@ export ERL_AFLAGS="-kernel shell_history enabled"
 # IPFS
 export IPFS_PATH="~/.ipfs"
 
+# Firefox
+export GDK_BACKEND="wayland"
+export MOZ_ENABLE_WAYLAND=1
+export MOZ_USE_XINPUT2="1"
+
 # https://github.com/oz/tz/
 export TZ_LIST="Pacific/Honolulu,America/Panama,America/New_York,Etc/UTC,\
 Europe/Berlin,Asia/Bangkok,Asia/Tokyo,Australia/Melbourne"
@@ -183,6 +188,8 @@ export ZSH=$HOME/.oh-my-zsh
     https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)")
 
 ZSH_THEME="geometry-zsh/geometry"
+[[ "$USER" == "root" ]] && GEOMETRY_SEPARATOR=" root"
+
 CASE_SENSITIVE="true"
 DISABLE_AUTO_UPDATE="false"
 UPDATE_ZSH_DAYS=10
