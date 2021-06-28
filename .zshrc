@@ -291,9 +291,9 @@ alias git-crypt-add-myself="git-crypt add-gpg-user \
 4D3899AF73E7F5FE9B39C822272ED814BF63261F"
 alias gpa='git push all "$(git_current_branch)"'
 
-alias jrnl='cd ~/Projects/@mrusme/xn--gckvb8fzb.com/content/'
-alias bookmarks='vim ~/Projects/@mrusme/xn--gckvb8fzb.com/content/bookmarks/index.md'
-alias notes='cd ~/Cloud/Notes/'
+alias jrnl='cd ~/[Pp]rojects/@mrusme/xn--gckvb8fzb.com/content/'
+alias bookmarks='vim ~/[Pp]rojects/@mrusme/xn--gckvb8fzb.com/content/bookmarks/index.md'
+alias notes='cd ~/[Cc]loud/Notes/'
 
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
