@@ -1,0 +1,59 @@
+/* ::root{ */
+/*     --accent: #5291e2; */
+/*     --dark: #383C4A; */
+/*     --light: #7C818C; */
+/*     --ld: #404552; */
+/*     --dl: #4B5162 */
+/*     --white: white; */
+/* } */
+
+*{
+    font-family: monospace;
+}
+
+window {
+    color: #CBD8EB;
+    background-color: rgba(27, 27, 28, 0.92);
+    border: 2px solid #75d5ff;
+    font-family: Fira Code;
+}
+
+#input {
+    margin: 10px 0px;
+    border-radius: 0px;
+    border: none;
+    background: transparent;
+    color: white;
+}
+
+#inner-box {
+    background-color: transparent;
+}
+
+#outer-box {
+    margin: 0px;
+    padding:5px;
+    background-color: transparent;
+
+}
+
+#scroll {
+}
+
+#text {
+    padding: 5px;
+    color: white;
+}
+
+
+#entry:selected {
+    color: #75d5ff;
+    background-color: transparent;
+    border: 0px;
+}
+
+#text:selected {
+    color: #75d5ff;
+    background-color: transparent;
+}
+
