@@ -77,7 +77,7 @@ export ERL_AFLAGS="-kernel shell_history enabled"
 export IPFS_PATH="~/.ipfs"
 
 # Firefox
-export GDK_BACKEND="wayland"
+#export GDK_BACKEND="wayland"
 export MOZ_ENABLE_WAYLAND=1
 export MOZ_USE_XINPUT2="1"
 
