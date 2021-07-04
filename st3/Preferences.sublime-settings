@@ -77,7 +77,7 @@
 		"no_italic",
 		"no_bold"
 	],
-	"font_size": 12,
+	"font_size": 11,
 	"gpu_window_buffer": true,
 	"gutter": true,
 	"highlight_line": true,
@@ -124,8 +124,6 @@
 	"tab_completion": true,
 	"tab_size": 4,
 	"theme": "Meetio Theme.sublime-theme",
-	"theme.dark": "ayu-dark.sublime-theme",
-	"theme.light": "ayu-light.sublime-theme",
 	"translate_tabs_to_spaces": false,
 	"trim_trailing_white_space_on_save": true,
 	"wide_caret": false,
