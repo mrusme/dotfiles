@@ -1,0 +1,42 @@
+[user]
+	name = マリウス
+	email = marius@xn--gckvb8fzb.com
+	signingkey = 4D3899AF73E7F5FE9B39C822272ED814BF63261F
+[core]
+	excludesfile = /Users/mrus/.gitignore_global
+  pager = delta
+	editor = nvim
+[interactive]
+  diffFilter = delta --color-only
+[delta]
+  features = side-by-side line-numbers decorations
+  whitespace-error-style = 22 reverse
+[delta "decorations"]
+  commit-decoration-style = bold yellow box ul
+  file-style = bold yellow ul
+  file-decoration-style = none
+[merge]
+  tool = vimdiff
+[mergetool]
+  prompt = true
+[mergetool "vimdiff"]
+  cmd = nvim -d "$LOCAL" "$REMOTE" "$MERGED" -c 'wincmd w' -c 'wincmd J'
+[difftool]
+  prompt = false
+[diff]
+  tool = vimdiff
+[commit]
+	gpgsign = true
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[gpg]
+	program = /usr/bin/gpg2
+[pull]
+	rebase = false
+[init]
+	defaultBranch = main
+[url "ssh://git@github.com/"]
+	insteadOf = https://github.com/
