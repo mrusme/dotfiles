@@ -29,7 +29,7 @@
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
 shell:
-  program: /usr/local/bin/zsh
+  program: /bin/zsh
   args:
     - --login
 window:
@@ -41,7 +41,7 @@ window:
     y: 8
   dynamic_padding: true
   dynamic_title: true
-  decorations: buttonless
+  decorations: None 
   startup_mode: Windowed
 scrolling:
   history: 10000
