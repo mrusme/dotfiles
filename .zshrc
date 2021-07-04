@@ -627,19 +627,28 @@ function pushover() {
 # ║ dotfiles-update-remote                                                     ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
-export DOTFILES="$HOME/Projects/@mrusme/dotfiles"
+[[ $OS = "Darwin" ]] \
+&& export DOTFILES="$HOME/Projects/@mrusme/dotfiles"
+[[ $OS = "Linux" ]] \
+&& export DOTFILES="$HOME/projects/@mrusme/dotfiles"
+
+[[ $OS = "Darwin" ]] \
+&& subldir=~/Library/Application\ Support/Sublime\ Text\ 3
+[[ $OS = "Linux" ]] \
+&& subldir=~/.config/sublime-text
+
 function dotfiles-update-remote() {
-  subldir=~/Library/Application\ Support/Sublime\ Text\ 3
   cp ~/.zshrc "$DOTFILES/.zshrc"
   cp ~/.tmux.conf "$DOTFILES/.tmux.conf"
-  cp ~/.config/alacritty/alacritty.yml "$DOTFILES/alacritty.yml"
+  cp ~/.config/alacritty/alacritty.yml\
+     "$DOTFILES/alacritty/alacritty.yml"
   cp ~/.config/nvim/init.vim "$DOTFILES/nvim/init.vim"
   cp ~/.config/nvim/colors/*.vim "$DOTFILES/nvim/colors/"
   cp ~/.config/nvim/autoload/lightline/colorscheme/*.vim\
     "$DOTFILES/nvim/autoload/lightline/colorscheme/"
   cp ~/.config/wtf/config.yml "$DOTFILES/wtfutil/config.yml"
   cp ~/.motd "$DOTFILES/.motd"
-  cp ~/.muttrc "$DOTFILES/.muttrc"
+  cp ~/.config/neomutt/neomuttrc "$DOTFILES/neomutt/neomuttrc"
   cp $subldir/Packages/User/Package\ Control.sublime-settings\
     "$DOTFILES/st3/Package Control.sublime-settings"
   cp $subldir/Packages/User/Preferences.sublime-settings\
@@ -648,12 +657,58 @@ function dotfiles-update-remote() {
     "$DOTFILES/st3/LSP.sublime-settings"
   cp $subldir/Packages/User/vap0r-*.tmTheme\
     "$DOTFILES/st3/"
-  brew ls --formula -1 --full-name > "$DOTFILES/brew/ls_-1"
-  brew ls --cask -1 --full-name > "$DOTFILES/brew/cask_ls_-1"
+  if [ $OS = "Darwin" ]
+  then
+    brew ls --formula -1 --full-name > "$DOTFILES/brew/ls_-1"
+    brew ls --cask -1 --full-name > "$DOTFILES/brew/cask_ls_-1"
+  fi
+  if [ $OS = "Linux" ]
+  then
+    /usr/bin/find /usr/local/bin -type f -exec sh -c '
+      case $( file -bi "$1" ) in (*/x-shellscript*) exit 0; esac
+      exit 1' sh {} \; -print | while read scriptfile
+      do
+        cp "$scriptfile" "$DOTFILES/usr/local/bin/"
+      done
+  fi
+
   cargo install --list > "$DOTFILES/cargo/install_--list"
   npm list -g --depth=0 > "$DOTFILES/npm/list_-g_--depth_0"
   # go list '...' | rg '^github.com' > "$DOTFILES/go/list_github.com"
   git -C "$DOTFILES" commit -a -S
+  return 0
+}
+
+function dotfiles-update-local() {
+  echo -n "are you sure? (y/n) "
+  read confirmation
+
+  [[ $confirmation != "y" ]] && return 1
+
+  cp "$DOTFILES/.zshrc" ~/.zshrc
+  cp "$DOTFILES/.tmux.conf" ~/.tmux.conf
+  cp "$DOTFILES/alacritty/alacritty.yml"\
+     ~/.config/alacritty/alacritty.yml
+  cp "$DOTFILES/nvim/init.vim" ~/.config/nvim/init.vim
+  cp "$DOTFILES/nvim/colors/*.vim" ~/.config/nvim/colors/
+  cp "$DOTFILES/nvim/autoload/lightline/colorscheme/*.vim"\
+     ~/.config/nvim/autoload/lightline/colorscheme/
+  cp "$DOTFILES/wtfutil/config.yml" ~/.config/wtf/config.yml
+  cp "$DOTFILES/.motd" ~/.motd
+  cp "$DOTFILES/neomutt/neomuttrc" ~/.config/neomutt/neomuttrc
+  cp "$DOTFILES/st3/Package Control.sublime-settings"\
+     $subldir/Packages/User/Package\ Control.sublime-settings
+  cp "$DOTFILES/st3/Preferences.sublime-settings"\
+     $subldir/Packages/User/Preferences.sublime-settings
+  cp "$DOTFILES/st3/LSP.sublime-settings"\
+     $subldir/Packages/User/LSP.sublime-settings
+  cp "$DOTFILES/st3/vap0r-*.tmTheme"
+     $subldir/Packages/User/
+
+  if [ $OS = "Linux" ]
+  then
+    cp "$DOTFILES/usr/local/bin/*" /usr/local/bin/
+  fi
   return 0
 }
 
