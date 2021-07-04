@@ -639,17 +639,21 @@ function pushover() {
 
 function dotfiles-update-remote() {
   cp ~/.zshrc "$DOTFILES/.zshrc"
+  cp ~/.taskrc "$DOTFILES/.taskrc"
   cp ~/.tmux.conf "$DOTFILES/.tmux.conf"
+  cp ~/.tmux.cheatsheet "$DOTFILES/.tmux.cheatsheet"
+  cp ~/.motd "$DOTFILES/.motd"
   cp ~/.gitconfig "$DOTFILES/.gitconfig"
+
   cp ~/.config/alacritty/alacritty.yml\
      "$DOTFILES/alacritty/alacritty.yml"
+  cp ~/.config/neomutt/neomuttrc "$DOTFILES/neomutt/neomuttrc"
   cp ~/.config/nvim/init.vim "$DOTFILES/nvim/init.vim"
   cp ~/.config/nvim/colors/*.vim "$DOTFILES/nvim/colors/"
   cp ~/.config/nvim/autoload/lightline/colorscheme/*.vim\
     "$DOTFILES/nvim/autoload/lightline/colorscheme/"
   cp ~/.config/wtf/config.yml "$DOTFILES/wtf/config.yml"
-  cp ~/.motd "$DOTFILES/.motd"
-  cp ~/.config/neomutt/neomuttrc "$DOTFILES/neomutt/neomuttrc"
+
   cp $subldir/Packages/User/Package\ Control.sublime-settings\
     "$DOTFILES/st3/Package Control.sublime-settings"
   cp $subldir/Packages/User/Preferences.sublime-settings\
@@ -658,6 +662,7 @@ function dotfiles-update-remote() {
     "$DOTFILES/st3/LSP.sublime-settings"
   cp $subldir/Packages/User/vap0r-*.tmTheme\
     "$DOTFILES/st3/"
+
   if [ $OS = "Darwin" ]
   then
     brew ls --formula -1 --full-name > "$DOTFILES/brew/ls_-1"
@@ -671,6 +676,11 @@ function dotfiles-update-remote() {
       do
         cp "$scriptfile" "$DOTFILES/usr/local/bin/"
       done
+
+    cp ~/.config/dunst/dunstrc "$DOTFILES/dunst/dunstrc"
+    cp ~/.config/sway/config "$DOTFILES/sway/config"
+    cp ~/.config/waybar/* "$DOTFILES/waybar/"
+    cp ~/.config/wofi/* "$DOTFILES/wofi/"
   fi
 
   cargo install --list > "$DOTFILES/cargo/install_--list"
@@ -687,17 +697,21 @@ function dotfiles-update-local() {
   [[ $confirmation != "y" ]] && return 1
 
   cp "$DOTFILES/.zshrc" ~/.zshrc
+  cp "$DOTFILES/.taskrc" ~/.taskrc
   cp "$DOTFILES/.tmux.conf" ~/.tmux.conf
+  cp "$DOTFILES/.tmux.cheatsheet" ~/.tmux.cheatsheet
+  cp "$DOTFILES/.motd" ~/.motd
   cp "$DOTFILES/.gitconfig" ~/.gitconfig
+
   cp "$DOTFILES/alacritty/alacritty.yml"\
      ~/.config/alacritty/alacritty.yml
+  cp "$DOTFILES/neomutt/neomuttrc" ~/.config/neomutt/neomuttrc
   cp "$DOTFILES/nvim/init.vim" ~/.config/nvim/init.vim
   cp "$DOTFILES/nvim/colors/*.vim" ~/.config/nvim/colors/
   cp "$DOTFILES/nvim/autoload/lightline/colorscheme/*.vim"\
      ~/.config/nvim/autoload/lightline/colorscheme/
   cp "$DOTFILES/wtf/config.yml" ~/.config/wtf/config.yml
-  cp "$DOTFILES/.motd" ~/.motd
-  cp "$DOTFILES/neomutt/neomuttrc" ~/.config/neomutt/neomuttrc
+
   cp "$DOTFILES/st3/Package Control.sublime-settings"\
      $subldir/Packages/User/Package\ Control.sublime-settings
   cp "$DOTFILES/st3/Preferences.sublime-settings"\
@@ -710,6 +724,11 @@ function dotfiles-update-local() {
   if [ $OS = "Linux" ]
   then
     cp "$DOTFILES/usr/local/bin/*" /usr/local/bin/
+
+    cp "$DOTFILES/dunst/dunstrc" ~/.config/dunst/dunstrc
+    cp "$DOTFILES/sway/config" ~/.config/sway/config
+    cp "$DOTFILES/waybar/*" ~/.config/waybar/
+    cp "$DOTFILES/wofi/*" ~/.config/wofi/
   fi
   return 0
 }
