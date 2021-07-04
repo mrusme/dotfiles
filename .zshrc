@@ -640,13 +640,14 @@ function pushover() {
 function dotfiles-update-remote() {
   cp ~/.zshrc "$DOTFILES/.zshrc"
   cp ~/.tmux.conf "$DOTFILES/.tmux.conf"
+  cp ~/.gitconfig "$DOTFILES/.gitconfig"
   cp ~/.config/alacritty/alacritty.yml\
      "$DOTFILES/alacritty/alacritty.yml"
   cp ~/.config/nvim/init.vim "$DOTFILES/nvim/init.vim"
   cp ~/.config/nvim/colors/*.vim "$DOTFILES/nvim/colors/"
   cp ~/.config/nvim/autoload/lightline/colorscheme/*.vim\
     "$DOTFILES/nvim/autoload/lightline/colorscheme/"
-  cp ~/.config/wtf/config.yml "$DOTFILES/wtfutil/config.yml"
+  cp ~/.config/wtf/config.yml "$DOTFILES/wtf/config.yml"
   cp ~/.motd "$DOTFILES/.motd"
   cp ~/.config/neomutt/neomuttrc "$DOTFILES/neomutt/neomuttrc"
   cp $subldir/Packages/User/Package\ Control.sublime-settings\
@@ -687,13 +688,14 @@ function dotfiles-update-local() {
 
   cp "$DOTFILES/.zshrc" ~/.zshrc
   cp "$DOTFILES/.tmux.conf" ~/.tmux.conf
+  cp "$DOTFILES/.gitconfig" ~/.gitconfig
   cp "$DOTFILES/alacritty/alacritty.yml"\
      ~/.config/alacritty/alacritty.yml
   cp "$DOTFILES/nvim/init.vim" ~/.config/nvim/init.vim
   cp "$DOTFILES/nvim/colors/*.vim" ~/.config/nvim/colors/
   cp "$DOTFILES/nvim/autoload/lightline/colorscheme/*.vim"\
      ~/.config/nvim/autoload/lightline/colorscheme/
-  cp "$DOTFILES/wtfutil/config.yml" ~/.config/wtf/config.yml
+  cp "$DOTFILES/wtf/config.yml" ~/.config/wtf/config.yml
   cp "$DOTFILES/.motd" ~/.motd
   cp "$DOTFILES/neomutt/neomuttrc" ~/.config/neomutt/neomuttrc
   cp "$DOTFILES/st3/Package Control.sublime-settings"\
