@@ -1,50 +1,62 @@
+bandwhich v0.20.0:
+    bandwhich
 battop v0.2.4:
     battop
 bingrep v0.8.5:
     bingrep
-cargo-generate v0.6.1:
-    cargo-generate
-cargo-update v6.0.0:
+bottom v0.6.2:
+    btm
+cargo-update v7.0.1:
     cargo-install-update
     cargo-install-update-config
-cmdr v0.1.0 (/Users/mrus/Projects/@mrusme/cmdr):
-    cmdr
-code-minimap v0.5.1:
+code-minimap v0.6.0:
     code-minimap
 csview v0.3.6:
     csview
 dijo v0.2.7:
     dijo
-du-dust v0.5.4:
+du-dust v0.6.0:
     dust
 eva v0.2.7:
     eva
-gfld v1.0.4:
-    gfld
-git-delta v0.7.1:
+git-delta v0.8.1:
     delta
 git-journal v1.8.1:
     git-journal
-gpg-tui v0.1.5:
+gitui v0.16.1:
+    gitui
+gpg-tui v0.6.1:
     completions
     gpg-tui
+gping v1.2.1:
+    gping
+hexyl v0.8.0:
+    hexyl
 imager v0.3.2:
     imager
 jwt-cli v4.0.0:
     jwt
+mdcat v0.22.4:
+    mdcat
 pastel v0.8.0:
     pastel
 pipe-rename v1.3.0:
     renamer
-rates v0.2.0:
+procs v0.11.9:
+    procs
+rates v0.5.0:
     rates
-rust-analyzer v0.1.0 (/Users/mrus/Projects/GitHub/rust-analyzer/crates/rust-analyzer):
-    rust-analyzer
-rx v0.4.0 (/Users/mrus/Projects/GitHub/rx):
-    rx
-shellcaster v1.1.0:
+shellcaster v1.2.0:
     shellcaster
-tickrs v0.14.5:
+so v0.4.3:
+    so
+taskwarrior-tui v0.13.24 (/home/mrus/projects/github/taskwarrior-tui):
+    taskwarrior-tui
+tealdeer v1.4.1:
+    tldr
+tickers v0.1.0:
+    tickers
+tickrs v0.14.4:
     tickrs
 viu v1.3.0:
     viu
@@ -52,3 +64,5 @@ vocage v1.1.0:
     vocage
 websocat v1.8.0:
     websocat
+zenith v0.0.2:
+    zenith
