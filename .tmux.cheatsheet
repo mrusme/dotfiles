@@ -1,0 +1,187 @@
+ ╔════════════════════════════════════════════════════════════════════════════╗
+ ║ Sessions                                                                   ║
+ ╚════════════════════════════════════════════════════════════════════════════╝
+ ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓  ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+ ┃ $ tmux                             ┃  ┃ $ tmux ls                          ┃
+ ┃ $ tmux new                         ┃  ┃ $ tmux list-sessions               ┃
+ ┃ $ tmux new-session                 ┃  ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+ ┃ : new                              ┃  [Ctrl] + [b] [s]
+ ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛  Show all sessions
+ Start a new session
+                                         ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+ ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓  ┃ $ tmux a                           ┃
+ ┃ $ tmux new -s mysession            ┃  ┃ $ tmux at                          ┃
+ ┃ : new -s mysession                 ┃  ┃ $ tmux attach                      ┃
+ ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛  ┃ $ tmux attach-session              ┃
+ Start a new session with the name       ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+ mysession                               Attach to last session
+
+ ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓  ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+ ┃ $ tmux kill-ses -t mysession       ┃  ┃ $ tmux a -t mysession              ┃
+ ┃ $ tmux kill-session -t mysession   ┃  ┃ $ tmux at -t mysession             ┃
+ ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛  ┃ $ tmux attach -t mysession         ┃
+ kill/delete session mysession           ┃ $ tmux attach-session -t mysession ┃
+                                         ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+ ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓  Attach to a session with the name
+ ┃ $ tmux kill-session -a             ┃  mysession
+ ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+ kill/delete all sessions but the        [Ctrl] + [b] [(]
+ current                                 Move to previous session
+
+ ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓  [Ctrl] + [b] [)]
+ ┃ $ tmux kill-session -a -t mysession┃  Move to next session
+ ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+ kill/delete all sessions but
+ mysession
+
+ [Ctrl] + [b] [$]
+ Rename session
+
+ [Ctrl] + [b] [d]
+ Detach from session
+
+ ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+ ┃ : attach -d                        ┃
+ ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+ Detach others on the session
+ (Maximize window by detach other
+ clients)
+
+ ╔════════════════════════════════════════════════════════════════════════════╗
+ ║ Windows                                                                    ║
+ ╚════════════════════════════════════════════════════════════════════════════╝
+ ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+ ┃ $ tmux new -s mysession -n mywindow┃  [Ctrl] + [b] [n]
+ ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛  Next window
+ start a new session with the name
+ mysession and window mywindow           [Ctrl] + [b] [0] ... [9]
+                                         Switch/select window by number
+ [Ctrl] + [b] [c]
+ Create window                           ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+                                         ┃ : swap-window -s 2 -t 1            ┃
+ [Ctrl] + [b] [,]                        ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+ Rename current window                   Reorder window, swap window number
+                                         2(src) and 1(dst)
+ [Ctrl] + [b] [&]
+ Close current window                    ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+                                         ┃ : swap-window -t -1                ┃
+ [Ctrl] + [b] [p]                        ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+ Previous window                         Move current window to the left by
+                                         one position
+
+ ╔════════════════════════════════════════════════════════════════════════════╗
+ ║ Panes                                                                      ║
+ ╚════════════════════════════════════════════════════════════════════════════╝
+
+ [Ctrl] + [b] [;]                        [Ctrl] + [b] [q]
+ Toggle last active pane                 Show pane numbers
+
+ [Ctrl + [b] [%]                         [Ctrl] + [b] [q] [0] ... [9]
+ Split pane vertically                   Switch/select pane by number
+
+ [Ctrl + [b] ["]                         [Ctrl] + [b] [z]
+ Split pane horizontally                 Toggle pane zoom
+
+ [Ctrl + [b] [{]                         [Ctrl] + [b] [!]
+ Move the current pane left              Convert pane into a window
+
+ [Ctrl + [b] [}]                         [Ctrl] + [b] + [Up]
+ Move the current pane right             [Ctrl] + [b] [Ctrl] + [Up]
+                                         [Ctrl] + [b] + [Down]
+ [Ctrl + [b] [Up]                        [Ctrl] + [b] [Ctrl] + [Down]
+ [Ctrl + [b] [Down]                      Resize current pane height
+ [Ctrl + [b] [Right]                     (holding second key is optional)
+ [Ctrl + [b] [Left]
+ Switch to pane to the direction         [Ctrl] + [b] + [Right]
+                                         [Ctrl] + [b] [Ctrl] + [Right]
+ ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓  [Ctrl] + [b] + [Left]
+ ┃ : setw synchronize-panes           ┃  [Ctrl] + [b] [Ctrl] + [Left]
+ ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛  Resize current pane width
+ Toggle synchronize-panes                (holding second key is optional)
+ (send command to all panes)
+                                         [Ctrl] + [b] [x]
+ [Ctrl] + [b] [Spacebar]                 Close current pane
+ Toggle between pane layouts
+
+ [Ctrl] + [b] [o]
+ Switch to next pane
+
+ ╔════════════════════════════════════════════════════════════════════════════╗
+ ║ Copy Mode                                                                  ║
+ ╚════════════════════════════════════════════════════════════════════════════╝
+ ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+ ┃ : setw -g mode-keys vi             ┃  [/]
+ ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛  Search forward
+ use vi keys in buffer
+                                         [?]
+ [Ctrl] + [b] [[]                        Search backward
+ Enter copy mode
+                                         [n]
+ [Ctrl] + [b] [PgUp]                     Next keyword occurance
+ Enter copy mode and scroll one
+ page up                                 [N]
+                                         Previous keyword occurance
+ [q]
+ Quit mode                               [Spacebar]
+                                         Start selection
+ [g]
+ Go to top line                          [Esc]
+                                         Clear selection
+ [G]
+ Go to bottom line                       [Enter]
+                                         Copy selection
+ [Up]
+ Scroll up                               [Ctrl] + [b] []]
+                                         Paste contents of buffer_0
+ [Down]
+ Scroll down                             ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+                                         ┃ : show-buffer                      ┃
+ [h]                                     ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+ Move cursor left                        display buffer_0 contents
+
+ [j]                                     ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+ Move cursor down                        ┃ : capture-pane                     ┃
+                                         ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+ [k]                                     copy entire visible contents of pane
+ Move cursor up                          to a buffer
+
+ [l]                                     ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+ Move cursor right                       ┃ : list-buffers                     ┃
+                                         ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+ [w]                                     Show all buffers
+ Move cursor forward one word
+ at a time                               ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+                                         ┃ : choose-buffer                    ┃
+ [b]                                     ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+ Move cursor backward one word           Show all buffers and paste selected
+ at a time
+                                         ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+                                         ┃ : save-buffer buf.txt              ┃
+                                         ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+                                         Save buffer contents to buf.txt
+
+                                         ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+                                         ┃ : delete-buffer -b 1               ┃
+                                         ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+                                         delete buffer_1
+
+ ╔════════════════════════════════════════════════════════════════════════════╗
+ ║ Misc                                                                       ║
+ ╚════════════════════════════════════════════════════════════════════════════╝
+                                         ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+ [Ctrl] + [b] [:]                        ┃ : setw -g OPTION                   ┃
+ Enter command mode                      ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+                                         Set OPTION for all windows
+ ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+ ┃ : set -g OPTION                    ┃
+ ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+ Set OPTION for all sessions
+
+ ╔════════════════════════════════════════════════════════════════════════════╗
+ ║ Help                                                                       ║
+ ╚════════════════════════════════════════════════════════════════════════════╝
+ ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+ ┃ $ tmux info                        ┃  [Ctrl] + [b] [?]
+ ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛  Show shortcuts
+ Show every session, window, pane,
+ etc...
