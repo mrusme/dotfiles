@@ -22,6 +22,10 @@ export DOT_ZSHRC_VERSION="0.32"
 type /usr/local/bin/zsh > /dev/null \
 && export SHELL=/usr/local/bin/zsh
 
+export OS=$(uname)
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
 # ║ Tmux Magic (via SSH)                                                       ║
@@ -37,10 +41,6 @@ type tmux > /dev/null \
 # ╔════════════════════════════════════════════════════════════════════════════╗
 # ║ General config                                                             ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
-
-export OS=$(uname)
-export LANG=en_US.UTF-8
-export LC_ALL=en_US.UTF-8
 
 export HISTCONTROL=ignoredups:ignorespace
 export HISTSIZE=100000
@@ -218,7 +218,7 @@ ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 [[ $OS = "Darwin" ]] && plugins=(tmux docker encode64 extract git git-flow \
   gpg-agent history ssh-agent urltools \
   zsh-autosuggestions mosh fzf terraform taskwarrior thefuck brew osx)
-[[ $OS = "Linux" ]]  && plugins=(tmux docker encode64 extract git git-flow \
+[[ $OS = "Linux" ]]  && plugins=(docker encode64 extract git git-flow \
   gpg-agent history ssh-agent urltools \
   zsh-autosuggestions mosh fzf terraform taskwarrior thefuck)
 # Disabled: gcloud, nvm, virtualenvwrapper
@@ -678,7 +678,10 @@ function dotfiles-update-remote() {
       done
 
     cp ~/.config/dunst/dunstrc "$DOTFILES/dunst/dunstrc"
+    cp ~/.config/mpd/mpd.conf "$DOTFILES/mpd/mpd.conf"
+    cp ~/.config/ncmpcpp/config "$DOTFILES/ncmpcpp/config"
     cp ~/.config/sway/config "$DOTFILES/sway/config"
+    cp ~/.config/swaylock/config "$DOTFILES/swaylock/config"
     cp ~/.config/waybar/* "$DOTFILES/waybar/"
     cp ~/.config/wofi/* "$DOTFILES/wofi/"
   fi
@@ -726,7 +729,10 @@ function dotfiles-update-local() {
     cp "$DOTFILES/usr/local/bin/*" /usr/local/bin/
 
     cp "$DOTFILES/dunst/dunstrc" ~/.config/dunst/dunstrc
+    cp "$DOTFILES/mpd/mpd.conf" ~/.config/mpd/mpd.conf
+    cp "$DOTFILES/ncmpcpp/config" ~/.config/ncmpcpp/config
     cp "$DOTFILES/sway/config" ~/.config/sway/config
+    cp "$DOTFILES/swaylock/config" ~/.config/swaylock/config
     cp "$DOTFILES/waybar/*" ~/.config/waybar/
     cp "$DOTFILES/wofi/*" ~/.config/wofi/
   fi
