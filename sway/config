@@ -58,14 +58,18 @@ focus_on_window_activation smart
 output * bg ~/.wallpaper.png fill
 
 exec swayidle -w \
-timeout 300 'swaylock -f -c 000000' \
+timeout 300 'swaylock' \
 timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
-before-sleep 'swaylock -f -c 000000'
+before-sleep 'swaylock'
+
+bindsym $mod+Ctrl+q exec swaylock
 
 exec wl-paste -t text --watch clipman store --no-persist
 bindsym $mod+Alt+Backslash exec clipman pick -t wofi
 
 exec dunst
+
+exec mpd
 
 input "4815:3077:Mad_Catz_Global_MADCATZ_R.A.T._8+_gaming_mouse" {
   natural_scroll enabled
