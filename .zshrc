@@ -81,6 +81,9 @@ export IPFS_PATH="~/.ipfs"
 export MOZ_ENABLE_WAYLAND=1
 export MOZ_USE_XINPUT2="1"
 
+# Qt
+export QT_STYLE_OVERRIDE=kvantum
+
 # https://github.com/oz/tz/
 export TZ_LIST="Pacific/Honolulu,America/Panama,America/New_York,Etc/UTC,\
 Europe/Berlin,Asia/Bangkok,Asia/Tokyo,Australia/Melbourne"
@@ -92,8 +95,8 @@ export ZEIT_DB=~/.zeit.db
 export GELD_DB=~/.geld.db
 
 # Import color scheme via wal
-[[ $OS = "Linux" ]] \
-&& type wal > /dev/null && (wal -r &)
+#[[ $OS = "Linux" ]] \
+#&& type wal > /dev/null && (wal -r &)
 
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
@@ -282,6 +285,9 @@ type hyperfine > /dev/null \
 
 type irssi > /dev/null \
 && alias irc='irssi'
+
+type xdg-open > /dev/null \
+&& alias open='xdg-open'
 
 alias fucking=sudo
 
