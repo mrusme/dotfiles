@@ -166,6 +166,11 @@ type gem > /dev/null \
               | grep "USER INSTALLATION DIRECTORY" \
               | awk -F ': ' '{ print $2 }')/bin:$PATH
 
+# NPM
+export NPM_PACKAGES="${HOME}/.local/lib64/node_modules"
+export PATH="$PATH:$NPM_PACKAGES/bin"
+export MANPATH="${MANPATH-$(manpath)}:$NPM_PACKAGES/share/man"
+
 # Wayland
 if [[ $OS = "Linux" ]]
 then
