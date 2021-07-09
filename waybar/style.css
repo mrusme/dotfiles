@@ -23,6 +23,10 @@ label#window {
   text-shadow: 0px 0px 3px #18181e;
 }
 
+#workspaces {
+  margin: 0px 10px 0px 0px;
+}
+
 #workspaces button {
   padding: 0 10px;
   background-color: rgba(27, 27, 28, 0.92);
@@ -63,6 +67,10 @@ label#window {
 
 .modules-right > widget:nth-child(2) > label  {
   border-radius: 0px 0px 0px 5px;
+}
+
+.modules-left > widget > label {
+  padding: 0px 14px;
 }
 
 #clock,
@@ -166,6 +174,9 @@ label:focus {
 
 #tray image {
   margin: 0px 10px 0px 0px;
+}
+
+#mpd {
 }
 
 #idle_inhibitor {
