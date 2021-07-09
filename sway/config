@@ -37,11 +37,12 @@ set {
 	$transparent #FF000000
 }
 
-client.focused        	 	$dark	$pink    $dark   $white   $pink
-client.unfocused        	$dark	$dark    $orange $white   $dark
-client.focused_inactive 	$dark $dark    $cyan   $magenta $cyan
-client.urgent	          	$dark	$magenta $silver $magenta $magenta
-client.placeholder	      $dark $magenta $silver $white   $magenta
+#                         border   backgrnd text    indic    chld
+client.focused        	 	$cyan	   $cyan    $dark   $white   $cyan
+client.unfocused        	$dark	   $dark    $cyan   $dark    $dark
+client.focused_inactive 	$dark    $dark    $cyan   $dark    $dark
+client.urgent	          	$magenta $magenta $dark   $magenta $magenta
+client.placeholder	      $dark    $dark    $white  $white   $dark
 
 font pango: FiraCode Nerd Font
 
