@@ -316,7 +316,7 @@ set sidebar_width = '20'
 # set pgp_sort_keys = 'address'
 # set pgp_strict_enc = yes
 # set pgp_timeout = '300'
-# set pgp_use_gpg_agent = no
+# set pgp_use_gpg_agent = yes
 # set pgp_verify_command = '(empty)'
 # set pgp_verify_key_command = '(empty)'
 
@@ -358,7 +358,8 @@ set sidebar_width = '20'
 # set hide_top_limited = no
 # set hide_top_missing = yes
 # set implicit_autoview = no
-# set mailcap_path = '(empty)'
+set mailcap_path = '~/.config/neomutt/mailcap'
+auto_view text/html
 # set move = no
 # set pager = 'builtin'
 # set simple_search = '~f %s | ~s %s'
@@ -390,7 +391,7 @@ set mime_forward = yes
 # set mix_entry_format = '%4n %c %-16s %a'
 # set mixmaster = 'mixmaster'
 # set record = "+Sent"
-# set send_charset = 'us-ascii:iso-8859-1:utf-8'
+set send_charset = 'utf-8'
 # set sendmail = '/usr/sbin/sendmail -oem -oi'
 # set sendmail_wait = '0'
 # set use_8bitmime = no
@@ -514,7 +515,7 @@ color message       cyan            default
 color markers       red             white
 color attachment    white           default
 color search        black           yellow
-color status        black           brightblack
+color status        cyan            default 
 color indicator     brightmagenta           default
 color tree          blue          default  # arrow in threads
 
