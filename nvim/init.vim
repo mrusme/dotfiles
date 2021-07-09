@@ -21,6 +21,7 @@ filetype off
 
 call plug#begin('~/.local/share/nvim/plugged')
 
+Plug 'neovim/nvim-lspconfig'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'lambdalisue/fern.vim'
 Plug 'lambdalisue/nerdfont.vim'
@@ -30,11 +31,9 @@ Plug 'lambdalisue/fern-hijack.vim'
 Plug 'lambdalisue/fern-bookmark.vim'
 Plug 'lambdalisue/fern-mapping-git.vim'
 Plug 'lambdalisue/glyph-palette.vim'
-Plug 'tpope/vim-surround'
 Plug 'gcmt/breeze.vim'
-Plug 'dense-analysis/ale'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'ctrlpvim/ctrlp.vim'
+Plug 'hrsh7th/vim-vsnip'
+Plug 'hrsh7th/nvim-compe'
 Plug 'tomtom/tcomment_vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'godlygeek/tabular'
@@ -43,8 +42,6 @@ Plug 'wincent/command-t'
 Plug 'junegunn/goyo.vim'
 Plug 'Yggdroot/indentLine'
 Plug 'terryma/vim-multiple-cursors'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'wfxr/minimap.vim'
 Plug 'jamessan/vim-gnupg'
@@ -52,6 +49,9 @@ Plug 'glepnir/dashboard-nvim'
 Plug 'robertbasic/vim-hugo-helper'
 Plug 'cohama/lexima.vim'
 "Plug 'vimwiki/vimwiki'
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
 
 "Plug 'plasticboy/vim-markdown'
 Plug 'leafgarland/typescript-vim'
@@ -139,9 +139,9 @@ inoremap <C-U> <C-G>u<C-U>
 
 noremap  <C-S> :update<CR>
 vnoremap <C-S> <C-C>:update<CR>
-inoremap <C-S> <Esc>:update<CR>
+inoremap <C-S> <Esc>:update<CR>a
 
-inoremap <C-c> <Esc>
+"inoremap <C-c> <Esc>
 
 map <C-f> /
 
@@ -185,6 +185,7 @@ nnoremap <Leader>o :set nopaste<CR>
 noremap  <Leader>g :GitGutterToggle<CR>
 
 noremap <C-q> :qa!<CR>
+inoremap <C-q> <Esc>:qa!<CR>
 
 let g:multi_cursor_next_key='<C-d>'
 let g:multi_cursor_prev_key='<C-p>'
@@ -333,97 +334,131 @@ let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 " ╔════════════════════════════════════════════════════════════════════════════╗
 " ║ rust.vim                                                                   ║
 " ╚════════════════════════════════════════════════════════════════════════════╝
-let g:rust_clip_command = 'pbcopy'
+let g:rust_clip_command = 'wl-copy'
 
 
 " ╔════════════════════════════════════════════════════════════════════════════╗
-" ║ Ale                                                                        ║
+" ║ compe                                                                      ║
 " ╚════════════════════════════════════════════════════════════════════════════╝
-let g:ale_linters_explicit = 1
-let g:ale_linters = {
-  \ 'asm':        ['gcc'],
-  \ 'c':          ['clang', 'clang-format', 'clangcheck', 'clangd',
-  \                'clang-tidy', 'gcc'],
-  \ 'cpp':        ['clang', 'clang-format', 'clangcheck', 'clangd',
-  \                'clang-tidy', 'gcc'],
-  \ 'css':        ['prettier', 'stylelint'],
-  \ 'dockerfile': ['hadolint'],
-  \ 'elixir':     ['elixir-ls', 'mix', 'credo'],
-  \ 'erlang':     ['dialyzer', 'erlc'],
-  \ 'go':         ['golangci-lint', 'golint', 'gofmt'],
-  \ 'haskell':    ['ghc', 'stack-build'],
-  \ 'hcl':        ['terraform-fmt'],
-  \ 'html':       ['alex', 'prettier'],
-  \ 'javascript': ['prettier'],
-  \ 'json':       ['prettier', 'spectral', 'jq'],
-  \ 'latex':      ['alex', 'textlint'],
-  \ 'less':       ['prettier', 'stylelint'],
-  \ 'llvm':       ['llc'],
-  \ 'lua':        ['luac'],
-  \ 'mail':       ['alex'],
-  \ 'make':       ['checkmake'],
-  \ 'markdown':   ['prettier', 'alex', 'markdownlint', 'remark-lint',
-  \                'textlint'],
-  \ 'openapi':    ['prettier'],
-  \ 'python':     ['pyls'],
-  \ 'ruby':       ['prettier', 'ruby'],
-  \ 'rust':       ['rustc', 'analyzer', 'rustfmt'],
-  \ 'sass':       ['stylelint'],
-  \ 'scss':       ['prettier', 'stylelint'],
-  \ 'sh':         ['shellcheck'],
-  \ 'sql':        ['sqlint'],
-  \ 'svelte':     ['prettier'],
-  \ 'terraform':  ['terraform', 'terraform-lsp', 'tflint'],
-  \ 'typescript': ['prettier', 'deno', 'tslint'],
-  \ 'vim':        ['vimls'],
-  \ 'vue':        ['prettier'],
-  \ 'yaml':       ['prettier', 'spectral']
-\}
+set completeopt=menuone,noselect
+let g:compe = {}
+let g:compe.enabled = v:true
+let g:compe.autocomplete = v:true
+let g:compe.debug = v:false
+let g:compe.min_length = 1
+let g:compe.preselect = 'enable'
+let g:compe.throttle_time = 80
+let g:compe.source_timeout = 200
+let g:compe.resolve_timeout = 800
+let g:compe.incomplete_delay = 400
+let g:compe.max_abbr_width = 100
+let g:compe.max_kind_width = 100
+let g:compe.max_menu_width = 100
+let g:compe.documentation = v:true
 
-let g:ale_lint_on_text_changed = 1
-let g:ale_lint_on_enter = 0
-let g:ale_lint_on_save = 1
-let g:ale_set_signs = 1
-let g:ale_set_highlights = 1
+let g:compe.source = {}
+let g:compe.source.path = v:true
+let g:compe.source.buffer = v:true
+let g:compe.source.calc = v:true
+let g:compe.source.nvim_lsp = v:true
+let g:compe.source.nvim_lua = v:true
+let g:compe.source.vsnip = v:true
+let g:compe.source.ultisnips = v:true
+let g:compe.source.luasnip = v:true
+let g:compe.source.emoji = v:true
 
-let g:ale_open_list = 0
-let g:ale_list_window_size = 3
-let g:ale_keep_list_window_open = 0
-" let g:ale_list_vertical = 1
-" let g:ale_set_loclist = 0
-let g:ale_sign_error = '●'
-let g:ale_sign_warning = '·'
+let g:lexima_no_default_rules = v:true
+call lexima#set_default_rules()
+inoremap <silent><expr> <CR>      compe#confirm(lexima#expand('<LT>CR>', 'i'))
+inoremap <silent><expr> <C-e>     compe#close('<C-e>')
+inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })
+inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
 
-nmap <silent> <C-e> <Plug>(ale_next_wrap)
+lua << EOF
+local t = function(str)
+  return vim.api.nvim_replace_termcodes(str, true, true, true)
+end
 
-function! LinterStatus() abort
-    let l:counts = ale#statusline#Count(bufnr(''))
+local check_back_space = function()
+    local col = vim.fn.col('.') - 1
+    if col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') then
+       return true
+    else
+        return false
+    end
+end
 
-    let l:all_errors = l:counts.error + l:counts.style_error
-    let l:all_warnings = l:counts.total - l:all_errors
+_G.tab_complete = function()
+  if vim.fn.pumvisible() == 1 then
+    return t "<C-n>"
+  elseif check_back_space() then
+    return t "<Tab>"
+  else
+    return vim.fn['compe#complete']()
+  end
+end
+_G.s_tab_complete = function()
+  if vim.fn.pumvisible() == 1 then
+    return t "<C-p>"
+  else
+    return t "<S-Tab>"
+  end
+end
 
-    let l:errors_recap =
-      \ l:all_errors == 0 ? '' : printf('%d⨉ ', all_errors)
-    let l:warnings_recap =
-      \ l:all_warnings == 0 ? '' : printf('%d⚠ ', all_warnings)
-    return (errors_recap . warnings_recap)
-endfunction
+vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.tab_complete()", {expr = true})
+vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
+vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
+vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
 
-set statusline+=%=
-set statusline+=\ %{LinterStatus()}
-let g:ale_enabled = 1
+vim.api.nvim_set_keymap("i", "<CR>", "compe#confirm({ 'keys': '<CR>', 'select': v:true })", { expr = true })
+EOF
 
-
-" ╔════════════════════════════════════════════════════════════════════════════╗
-" ║ Deoplete                                                                   ║
-" ╚════════════════════════════════════════════════════════════════════════════╝
-let g:deoplete#enable_at_startup = 1
-let b:deoplete_ignore_sources = ['buffer']
+highlight link CompeDocumentation NormalFloat
 
 autocmd FileType markdown
-  \ call deoplete#custom#buffer_option('auto_complete', v:false)
+  \ call compe#setup({'enabled': v:false}, 0)
 
-call deoplete#custom#option('sources', {'_': ['ale']})
+
+" ╔════════════════════════════════════════════════════════════════════════════╗
+" ║ LSP                                                                        ║
+" ╚════════════════════════════════════════════════════════════════════════════╝
+lua << EOF
+require'lspconfig'.gopls.setup{}
+require'lspconfig'.clangd.setup{}
+require'lspconfig'.denols.setup{}
+require'lspconfig'.elixirls.setup{
+    cmd = { "/home/mrus/projects/github/elixir-ls/release/language_server.sh" };
+}
+require'lspconfig'.pylsp.setup{}
+require'lspconfig'.rust_analyzer.setup{}
+require'lspconfig'.rls.setup{}
+require'lspconfig'.sorbet.setup{}
+require'lspconfig'.sqls.setup{}
+require'lspconfig'.terraformls.setup{}
+require'lspconfig'.tflint.setup{}
+
+require'lspconfig'.bashls.setup{}
+require'lspconfig'.cssls.setup{}
+require'lspconfig'.dockerls.setup{}
+require'lspconfig'.graphql.setup{}
+require'lspconfig'.html.setup{}
+require'lspconfig'.jsonls.setup{}
+require'lspconfig'.stylelint_lsp.setup{}
+require'lspconfig'.svelte.setup{}
+require'lspconfig'.tsserver.setup{}
+require'lspconfig'.vimls.setup{}
+require'lspconfig'.yamlls.setup{}
+EOF
+
+
+" ╔════════════════════════════════════════════════════════════════════════════╗
+" ║ Telescope                                                                  ║
+" ╚════════════════════════════════════════════════════════════════════════════╝
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+nnoremap <leader>lr <cmd>Telescope lsp_references<cr>
 
 
 " ╔════════════════════════════════════════════════════════════════════════════╗
@@ -514,6 +549,5 @@ let g:go_def_mapping_enabled = 0
 " ╔════════════════════════════════════════════════════════════════════════════╗
 " ║ Typescript                                                                 ║
 " ╚════════════════════════════════════════════════════════════════════════════╝
-
-" typescript-vim
 let g:typescript_indent_disable = 1
+
