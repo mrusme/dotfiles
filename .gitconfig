@@ -36,8 +36,23 @@
 [gpg]
 	program = /usr/bin/gpg2
 [pull]
-	rebase = false
+	rebase = true
+[push]
+  simple = true
 [init]
-	defaultBranch = main
+	defaultBranch = master
 [url "ssh://git@github.com/"]
 	insteadOf = https://github.com/
+[url "ssh://git@git.sr.ht/"]
+	insteadOf = https://git.sr.ht/
+[url "ssh://git@git.source.xn--gckvb8fzb.com/"]
+	insteadOf = https://got.source.xn--gckvb8fzb.com/
+[sendemail]
+	smtpserver = 127.0.0.1
+	smtpuser = marius@xn--gckvb8fzb.com
+	smtpencryption = tls
+  smtpserverport = 1025
+  smtpsslcertpath =
+[credential "smtp://marius%40xn--gckvb8fzb.com@127.0.0.1%3a1025"]
+  helper = !pass smtp/marius@xn--gckvb8fzb.com
+
