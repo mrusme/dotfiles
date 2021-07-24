@@ -80,7 +80,7 @@ if has('syntax') && !exists('g:syntax_on')
   syntax enable
 endif
 
-set clipboard=unnamed
+set clipboard=unnamed,unnamedplus
 
 set encoding=utf-8
 set autoindent
@@ -94,6 +94,7 @@ set nrformats-=octal
 set shiftround
 set ttimeout
 set ttimeoutlen=50
+set timeoutlen=500
 
 set incsearch
 
@@ -105,7 +106,8 @@ set wildmenu
 set autoread
 
 set tabstop=2 shiftwidth=2 expandtab
-set listchars=tab:▒░,trail:▓
+"set listchars=tab:▒░,trail:▓
+set listchars=tab:\ \ ,trail:˽,extends:→
 set list
 
 set number
@@ -138,9 +140,9 @@ cnoremap <C-l> <Right>
 
 inoremap <C-U> <C-G>u<C-U>
 
-noremap  <C-S> :update<CR>
-vnoremap <C-S> <C-C>:update<CR>
-inoremap <C-S> <Esc>:update<CR>a
+noremap  <C-s> :update<CR>
+vnoremap <C-s> <C-C>:update<CR>
+inoremap <C-s> <Esc>:update<CR>
 
 "inoremap <C-c> <Esc>
 
@@ -170,14 +172,18 @@ inoremap <C-z>  <Esc>:undo<CR>
 nnoremap <C-y>  :redo<CR>
 inoremap <C-y>  <Esc>:redo<CR>
 
-nnoremap <C-[>  :tabprevious<CR>
-inoremap <C-[>  <Esc>:tabprevious<CR>i
-nnoremap <C-]>  :tabnext<CR>
-inoremap <C-]>  <Esc>:tabnext<CR>i
-nnoremap <C-t>  :tabnew<CR>
-inoremap <C-t>  <Esc>:tabnew<CR>i
-nnoremap <C-x>  :tabclose<CR>
-inoremap <C-x>  <Esc>:tabclose<CR>i
+inoremap <C-v>  <Esc>V
+
+inoremap <C-a>  <Esc>ggVG
+
+nnoremap <M-[>  :tabprevious<CR>
+inoremap <M-[>  <Esc>:tabprevious<CR>i
+nnoremap <M-]>  :tabnext<CR>
+inoremap <M-]>  <Esc>:tabnext<CR>i
+nnoremap <M-t>  :tabnew<CR>
+inoremap <M-t>  <Esc>:tabnew<CR>i
+nnoremap <M-w>  :tabclose<CR>
+inoremap <M-w>  <Esc>:tabclose<CR>i
 
 map \ :
 let mapleader = ','
@@ -185,8 +191,10 @@ nnoremap <Leader>p :set paste<CR>
 nnoremap <Leader>o :set nopaste<CR>
 noremap  <Leader>g :GitGutterToggle<CR>
 
-noremap <C-q> :qa!<CR>
-inoremap <C-q> <Esc>:qa!<CR>
+noremap <C-q><C-q> :qa!<CR>
+inoremap <C-q><C-q> <Esc>:qa!<CR>
+noremap <C-q> :qa<CR>
+inoremap <C-q> <Esc>:qa<CR>
 
 let g:multi_cursor_next_key='<C-d>'
 let g:multi_cursor_prev_key='<C-p>'
@@ -489,6 +497,9 @@ nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 nnoremap <leader>lr <cmd>Telescope lsp_references<cr>
 
+nnoremap <C-o> <cmd>Telescope fd<CR>
+inoremap <C-o> <cmd>Telescope fd<CR>
+
 
 " ╔════════════════════════════════════════════════════════════════════════════╗
 " ║ Pencil                                                                     ║
@@ -573,6 +584,7 @@ let g:hugohelper_update_lastmod_on_write = 1
 " ║ Go                                                                         ║
 " ╚════════════════════════════════════════════════════════════════════════════╝
 let g:go_def_mapping_enabled = 0
+au FileType go map <C-b> <Plug>(go-build)
 
 
 " ╔════════════════════════════════════════════════════════════════════════════╗
