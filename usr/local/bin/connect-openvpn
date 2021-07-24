@@ -1,0 +1,8 @@
+#!/bin/sh
+CURRENT_OPENVPN_CONFIG=openvpn.$(ps -eo args | rg "^/usr/sbin/openvpn" | sed -r 's/.*--config \/etc\/openvpn\/([0-9a-z\.]+)\.conf.*/\1/g')
+sudo rc-service $CURRENT_OPENVPN_CONFIG stop
+
+OPENVPN_CONFIG=$(/bin/ls -1 /etc/init.d/openvpn.* | xargs -n 1 basename | wofi --dmenu --sort-order default)
+sleep 2
+sudo rc-service $OPENVPN_CONFIG start
+

@@ -107,10 +107,15 @@
   },
 
   "custom/vpn": {
-    "format": "  {}",
+    "format": "{icon}  {}",
+    "format-icons": {
+      "connected": "",
+      "disconnected": ""
+    },
+    "return-type": "json",
     "exec": "/usr/local/bin/get-running-openvpn-config",
-    "exec-if": "test -d /proc/sys/net/ipv4/conf/tun0",
-    "on-click": "xdg-open https://ipecho.net/plain",
+    //"exec-if": "test -d /proc/sys/net/ipv4/conf/tun0",
+    "on-click": "/usr/local/bin/connect-openvpn",
     "interval": 10
   },
 
