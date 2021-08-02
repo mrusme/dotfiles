@@ -162,8 +162,8 @@ vmap <C-x> d
 vmap <C-v> p
 vmap <C-c> y
 
-nnoremap d "_d
-vnoremap d "_d
+"nnoremap d "_d
+"vnoremap d "_d
 
 nnoremap <silent> <C-\> :Files<CR>
 
@@ -175,6 +175,7 @@ inoremap <C-y>  <Esc>:redo<CR>
 inoremap <C-v>  <Esc>V
 
 inoremap <C-a>  <Esc>ggVG
+inoremap <M-C-m> <C-O>o
 
 nnoremap <M-[>  :tabprevious<CR>
 inoremap <M-[>  <Esc>:tabprevious<CR>i
@@ -184,6 +185,27 @@ nnoremap <M-t>  :tabnew<CR>
 inoremap <M-t>  <Esc>:tabnew<CR>i
 nnoremap <M-w>  :tabclose<CR>
 inoremap <M-w>  <Esc>:tabclose<CR>i
+
+nnoremap <M-1>  :tabn 1<CR>
+inoremap <M-1>  <Esc>:tabn 1<CR>i
+nnoremap <M-2>  :tabn 2<CR>
+inoremap <M-2>  <Esc>:tabn 2<CR>i
+nnoremap <M-3>  :tabn 3<CR>
+inoremap <M-3>  <Esc>:tabn 3<CR>i
+nnoremap <M-4>  :tabn 4<CR>
+inoremap <M-4>  <Esc>:tabn 4<CR>i
+nnoremap <M-5>  :tabn 5<CR>
+inoremap <M-5>  <Esc>:tabn 5<CR>i
+nnoremap <M-6>  :tabn 6<CR>
+inoremap <M-6>  <Esc>:tabn 6<CR>i
+nnoremap <M-7>  :tabn 7<CR>
+inoremap <M-7>  <Esc>:tabn 7<CR>i
+nnoremap <M-8>  :tabn 8<CR>
+inoremap <M-8>  <Esc>:tabn 8<CR>i
+nnoremap <M-9>  :tabn 9<CR>
+inoremap <M-9>  <Esc>:tabn 9<CR>i
+nnoremap <M-0>  :tabn 10<CR>
+inoremap <M-0>  <Esc>:tabn 10<CR>i
 
 map \ :
 let mapleader = ','
@@ -491,14 +513,14 @@ highlight link LspSagaFinderSelection Search
 " ╔════════════════════════════════════════════════════════════════════════════╗
 " ║ Telescope                                                                  ║
 " ╚════════════════════════════════════════════════════════════════════════════╝
-nnoremap <leader>ff <cmd>Telescope find_files<cr>
-nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <M-f> <cmd>Telescope find_files<cr>
+nnoremap <M-/> <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 nnoremap <leader>lr <cmd>Telescope lsp_references<cr>
 
-nnoremap <C-o> <cmd>Telescope fd<CR>
-inoremap <C-o> <cmd>Telescope fd<CR>
+nnoremap <M-o> <cmd>Telescope fd<CR>
+inoremap <M-o> <cmd>Telescope fd<CR>
 
 
 " ╔════════════════════════════════════════════════════════════════════════════╗
