@@ -174,6 +174,7 @@ export MANPATH="${MANPATH-$(manpath)}:$NPM_PACKAGES/share/man"
 # Wayland
 if [[ $OS = "Linux" ]]
 then
+  alias sway-launch='dbus-launch --exit-with-session sway'
   if test -z "${XDG_RUNTIME_DIR}"
   then
     export XDG_RUNTIME_DIR=/tmp/${UID}-runtime-dir
