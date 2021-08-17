@@ -70,6 +70,8 @@ exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DE
 exec wl-paste -t text --watch clipman store --no-persist
 bindsym $mod+Alt+Backslash exec clipman pick -t wofi
 
+exec --no-startup-id pipewire
+
 exec dunst
 
 exec mpd
@@ -215,6 +217,8 @@ mode "resize" {
   bindsym Down resize grow height 10px
   bindsym Up resize shrink height 10px
   bindsym Right resize grow width 10px
+
+  bindsym 8 resize set width 740px
 
   # Return to default mode
   bindsym Return mode "default"
