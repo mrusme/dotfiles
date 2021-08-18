@@ -192,9 +192,9 @@ fi
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
 export ZSH=$HOME/.oh-my-zsh
-[[ -e $ZSH ]] || \
-([[ "$USER" != "root" ]] && sh -c "$(curl -fsSL \
-    https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)")
+# [[ -e $ZSH ]] || \
+# ([[ "$USER" != "root" ]] && sh -c "$(curl -fsSL \
+#     https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)")
 
 ZSH_THEME="geometry-zsh/geometry"
 [[ "$USER" == "root" ]] && GEOMETRY_SEPARATOR=" root"
@@ -215,14 +215,14 @@ DISABLE_UNTRACKED_FILES_DIRTY="false"
 ZSH_AUTOSUGGESTIONS=${ZSH_CUSTOM:-~/.oh-my-zsh/custom}\
 /plugins/zsh-autosuggestions
 
-[[ ! -d $ZSH_AUTOSUGGESTIONS ]] \
-&& type git > /dev/null \
-&& git clone https://github.com/zsh-users/zsh-autosuggestions \
-${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+# [[ ! -d $ZSH_AUTOSUGGESTIONS ]] \
+# && type git > /dev/null \
+# && git clone https://github.com/zsh-users/zsh-autosuggestions \
+# ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 
-[[ -d $ZSH_AUTOSUGGESTIONS && $(find "$ZSH_AUTOSUGGESTIONS/.git" \
-  -maxdepth 0 -type d -mmin +1440 | wc -l | tr -d '[:space:]') == "0" ]] \
-|| git -C $ZSH_AUTOSUGGESTIONS pull
+# [[ -d $ZSH_AUTOSUGGESTIONS && $(find "$ZSH_AUTOSUGGESTIONS/.git" \
+#   -maxdepth 0 -type d -mmin +1440 | wc -l | tr -d '[:space:]') == "0" ]] \
+# || git -C $ZSH_AUTOSUGGESTIONS pull
 
 [[ $OS = "Darwin" ]] && plugins=(tmux docker encode64 extract git git-flow \
   gpg-agent history ssh-agent urltools \
