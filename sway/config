@@ -89,7 +89,7 @@ input "4815:3077:Mad_Catz_Global_MADCATZ_R.A.T._8+_gaming_mouse" {
 bindsym $mod+Return exec $term
 
 # Open browser
-bindsym $mod+backspace exec firefox
+bindsym $mod+backspace exec /usr/local/bin/ff
 
 # Kill focused window
 bindsym $mod+Shift+q kill
@@ -97,7 +97,6 @@ bindsym $mod+Shift+q kill
 # Start your launcher
 bindsym $mod+Space exec $menu
 
-bindsym $mod+Shift+Return /usr/bin/firefox-wayland
 
 floating_modifier $mod normal
 
@@ -107,15 +106,21 @@ bindsym $mod+Shift+c reload
 # Exit sway
 bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
 
+# Media keys
 bindsym XF86AudioPlay exec playerctl play-pause
+bindsym $mod+F8 exec playerctl play-pause
+
 bindsym XF86AudioNext exec playerctl next
+bindsym $mod+F9 exec playerctl next
+
 bindsym XF86AudioPrev exec playerctl previous
+bindsym $mod+F7 exec playerctl previous
 
-#bindsym XF86AudioRaiseVolume exec "amixer set Master 1%+ unmute"
-#bindsym XF86AudioLowerVolume exec "amixer set Master 1%- unmute"
-#bindsym XF86AudioMute exec "amixer set Master toggle"
-#bindsym XF86AudioMicMute exec "amixer set Capture toggle"
+bindsym $mod+F10 exec pulsemixer --id sink-51 --change-volume -100
+bindsym $mod+F11 exec pulsemixer --id sink-51 --change-volume -10
+bindsym $mod+F12 exec pulsemixer --id sink-51 --change-volume +10
 
+# Screenshotting
 bindsym Print exec grim -t png $HOME/downloads/$(date +'screenshot_%Y-%m-%d-%H%M%S.png')
 bindsym Shift+Print exec --no-startup-id slurp | grim -t png -g - $HOME/downloads/$(date +'screenshot_%Y-%m-%d-%H%M%S.png')
 
