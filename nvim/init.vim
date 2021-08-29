@@ -30,6 +30,7 @@ Plug 'lambdalisue/fern-git-status.vim'
 Plug 'lambdalisue/fern-hijack.vim'
 Plug 'lambdalisue/fern-bookmark.vim'
 Plug 'lambdalisue/fern-mapping-git.vim'
+Plug 'ggandor/lightspeed.nvim'
 Plug 'lambdalisue/glyph-palette.vim'
 Plug 'hrsh7th/vim-vsnip'
 Plug 'hrsh7th/nvim-compe'
@@ -38,7 +39,7 @@ Plug 'gcmt/breeze.vim'
 Plug 'tomtom/tcomment_vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'godlygeek/tabular'
-"Plug 'reedes/vim-pencil'
+" Plug 'reedes/vim-pencil'
 Plug 'wincent/command-t'
 Plug 'junegunn/goyo.vim'
 Plug 'Yggdroot/indentLine'
@@ -146,13 +147,13 @@ inoremap <C-s> <Esc>:update<CR>
 
 "inoremap <C-c> <Esc>
 
-map <C-f> /
+"map <C-f> /
 
 vnoremap <Tab> >
 vnoremap <S-Tab> <
 
-nnoremap <Tab> >0
-nnoremap <S-Tab> <0
+"nnoremap <Tab> >0
+"nnoremap <S-Tab> <0
 
 vmap <C-m> gc
 
@@ -213,10 +214,18 @@ nnoremap <Leader>p :set paste<CR>
 nnoremap <Leader>o :set nopaste<CR>
 noremap  <Leader>g :GitGutterToggle<CR>
 
+" Double press Ctrl+q to force quit, discarding changes
 noremap <C-q><C-q> :qa!<CR>
 inoremap <C-q><C-q> <Esc>:qa!<CR>
+
+" Single press Ctrl+q to quit, get notified of changes
 noremap <C-q> :qa<CR>
 inoremap <C-q> <Esc>:qa<CR>
+
+" Reformat current paragraph
+noremap <Leader>` gq}<CR>
+" Reformat everything to EOF
+noremap <Leader>~ gqG<CR>
 
 let g:multi_cursor_next_key='<C-d>'
 let g:multi_cursor_prev_key='<C-p>'
@@ -256,7 +265,6 @@ endif
 set t_Co=256
 
 colorscheme vap0r
-let g:lightline = { 'colorscheme': 'vap0r' }
 
 let g:indentLine_enabled = 1
 let g:indentLine_char = '⋮'
@@ -274,12 +282,20 @@ highlight NonText guibg=none
 highlight EndOfBuffer ctermbg=none guibg=none
 highlight LineNr ctermbg=none guibg=none
 
-
 set guifont=FiraCode\ Nerd\ Font:h13
 let g:neovide_cursor_antialiasing=v:true
 ""let g:neovide_fullscreen=v:true
 let g:neovide_refresh_rate=60
 let g:neovide_keyboard_layout="qwerty"
+
+
+" ╔════════════════════════════════════════════════════════════════════════════╗
+" ║ Lightline                                                                  ║
+" ╚════════════════════════════════════════════════════════════════════════════╝
+
+let g:lightline = { 
+  \ 'colorscheme': 'vap0r' 
+  \ }
 
 
 " ╔════════════════════════════════════════════════════════════════════════════╗
@@ -527,16 +543,16 @@ inoremap <M-o> <cmd>Telescope fd<CR>
 " ╔════════════════════════════════════════════════════════════════════════════╗
 " ║ Pencil                                                                     ║
 " ╚════════════════════════════════════════════════════════════════════════════╝
-"augroup pencil
-"  autocmd!
+" augroup pencil
+"   autocmd!
 "  autocmd FileType markdown,mkd call pencil#init({
 "    \ 'wrap': 'hard', 'autoformat': 1})
 "  autocmd FileType text         call pencil#init({
 "    \ 'wrap': 'hard', 'autoformat': 1})
-"augroup END
-
-"let g:pencil#textwidth = 80
-"let g:pencil#cursorwrap = 1
+" augroup END
+"
+" let g:pencil#textwidth = 80
+" let g:pencil#cursorwrap = 1
 
 
 " ╔════════════════════════════════════════════════════════════════════════════╗
@@ -600,7 +616,6 @@ let g:dashboard_custom_footer = ['']
 " ║ HugoHelper                                                                 ║
 " ╚════════════════════════════════════════════════════════════════════════════╝
 let g:hugohelper_update_lastmod_on_write = 1
-
 
 
 " ╔════════════════════════════════════════════════════════════════════════════╗
