@@ -197,8 +197,8 @@
   exec "hi Folded ctermfg=".s:ctermshade4." ctermbg=".s:ctermshade1
   exec "hi FoldColumn guifg=".s:guishade4." guibg=".s:guishade1
   exec "hi FoldColumn ctermfg=".s:ctermshade4." ctermbg=".s:ctermshade1
-  exec "hi SignColumn guibg=".s:guishade0
-  exec "hi SignColumn ctermbg=".s:ctermshade0
+  exec "hi SignColumn guibg=none"
+  exec "hi SignColumn ctermbg=none"
   exec "hi IncSearch guifg=".s:guishade0." guibg=".s:guiaccent2
   exec "hi IncSearch ctermfg=".s:ctermshade0." ctermbg=".s:ctermaccent2
   exec "hi LineNr guifg=".s:guishade2." guibg=".s:guishade0
