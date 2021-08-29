@@ -606,6 +606,8 @@ let g:hugohelper_update_lastmod_on_write = 1
 " ╔════════════════════════════════════════════════════════════════════════════╗
 " ║ Go                                                                         ║
 " ╚════════════════════════════════════════════════════════════════════════════╝
+let g:go_fmt_autosave=0
+let g:go_asmfmt_autosave=0
 let g:go_def_mapping_enabled = 0
 au FileType go map <C-b> <Plug>(go-build)
 
