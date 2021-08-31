@@ -73,22 +73,23 @@ set include = ask-yes
 # set sig_dashes = yes
 # set sig_on_top = no
 # set signature = '~/.signature'
+unset signature
 
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
 # ║ Crypto                                                                     ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
-# set crypt_autoencrypt = no
-# set crypt_autopgp = yes
-# set crypt_autosign = no
+set crypt_autoencrypt = no
+set crypt_autopgp = yes
+set crypt_autosign = no
 # set crypt_autosmime = yes
-# set crypt_replyencrypt = yes
+set crypt_replyencrypt = yes
 # set crypt_replysign = no
 # set crypt_replysignencrypted = no
 # set crypt_timestamp = yes
-# set crypt_use_gpgme = no
-# set crypt_verify_sig = yes
+set crypt_use_gpgme = yes
+set crypt_verify_sig = yes
 
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
@@ -114,7 +115,7 @@ set include = ask-yes
 # set mark_macro_prefix = '''
 # set message_cache_clean = no
 # set pgp_decryption_okay = '(empty)'
-# set postpone_encrypt = no
+set postpone_encrypt = yes
 # set postpone_encrypt_as = '(empty)'
 # set prompt_after = yes
 # set query_command = '(empty)'
@@ -319,6 +320,7 @@ set sidebar_width = '20'
 # set pgp_use_gpg_agent = yes
 # set pgp_verify_command = '(empty)'
 # set pgp_verify_key_command = '(empty)'
+set pgp_self_encrypt = yes
 
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
@@ -670,3 +672,4 @@ bind index,pager \Cp sidebar-prev
 bind index,pager \Cn sidebar-next
 bind index,pager \Co sidebar-open
 
+macro index \Cr "!mbsync -a^M" "Update through mbsync"
