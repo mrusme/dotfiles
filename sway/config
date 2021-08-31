@@ -261,6 +261,6 @@ bar {
 }
 
 exec proton-bridge
-exec /usr/local/bin/offlineimap
+# exec /usr/local/bin/offlineimap
 
 include /etc/sway/config.d/*
