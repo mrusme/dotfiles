@@ -39,7 +39,6 @@ Plug 'gcmt/breeze.vim'
 Plug 'tomtom/tcomment_vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'godlygeek/tabular'
-" Plug 'reedes/vim-pencil'
 Plug 'wincent/command-t'
 Plug 'junegunn/goyo.vim'
 Plug 'Yggdroot/indentLine'
@@ -50,7 +49,7 @@ Plug 'jamessan/vim-gnupg'
 Plug 'glepnir/dashboard-nvim'
 Plug 'robertbasic/vim-hugo-helper'
 Plug 'cohama/lexima.vim'
-"Plug 'vimwiki/vimwiki'
+Plug 'lervag/wiki.vim'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
@@ -294,7 +293,13 @@ let g:neovide_keyboard_layout="qwerty"
 " ╚════════════════════════════════════════════════════════════════════════════╝
 
 let g:lightline = { 
-  \ 'colorscheme': 'vap0r' 
+  \ 'colorscheme': 'vap0r', 
+  \ 'active': {
+  \   'right': [ [ 'lineinfo' ], [ 'percent' ], [ 'indent', 'fileformat', 'fileencoding', 'filetype' ] ]
+  \ },
+  \ 'component': {
+  \   'indent': '%{&expandtab?"spaces":"tabs"}:%{&expandtab?&shiftwidth:&tabstop}',
+  \ },
   \ }
 
 
@@ -375,6 +380,7 @@ augroup END
 " ╔════════════════════════════════════════════════════════════════════════════╗
 " ║ EditorConfig                                                               ║
 " ╚════════════════════════════════════════════════════════════════════════════╝
+
 let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 au FileType gitcommit let b:EditorConfig_disable = 1
 
@@ -382,12 +388,14 @@ au FileType gitcommit let b:EditorConfig_disable = 1
 " ╔════════════════════════════════════════════════════════════════════════════╗
 " ║ rust.vim                                                                   ║
 " ╚════════════════════════════════════════════════════════════════════════════╝
+
 let g:rust_clip_command = 'wl-copy'
 
 
 " ╔════════════════════════════════════════════════════════════════════════════╗
 " ║ compe                                                                      ║
 " ╚════════════════════════════════════════════════════════════════════════════╝
+
 set completeopt=menuone,noselect
 let g:compe = {}
 let g:compe.enabled = v:true
@@ -470,6 +478,7 @@ autocmd FileType markdown
 " ╔════════════════════════════════════════════════════════════════════════════╗
 " ║ LSP                                                                        ║
 " ╚════════════════════════════════════════════════════════════════════════════╝
+
 lua << EOF
 require'lspconfig'.gopls.setup{}
 require'lspconfig'.clangd.setup{}
@@ -502,6 +511,7 @@ EOF
 " ╔════════════════════════════════════════════════════════════════════════════╗
 " ║ lspsaga                                                                    ║
 " ╚════════════════════════════════════════════════════════════════════════════╝
+
 nnoremap <silent> gh <cmd>lua require'lspsaga.provider'.lsp_finder()<CR>
 
 nnoremap <silent><leader>ca <cmd>lua require('lspsaga.codeaction').code_action()<CR>
@@ -530,6 +540,7 @@ highlight link LspSagaFinderSelection Search
 " ╔════════════════════════════════════════════════════════════════════════════╗
 " ║ Telescope                                                                  ║
 " ╚════════════════════════════════════════════════════════════════════════════╝
+
 nnoremap <M-f> <cmd>Telescope find_files<cr>
 nnoremap <M-/> <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
@@ -541,23 +552,9 @@ inoremap <M-o> <cmd>Telescope fd<CR>
 
 
 " ╔════════════════════════════════════════════════════════════════════════════╗
-" ║ Pencil                                                                     ║
-" ╚════════════════════════════════════════════════════════════════════════════╝
-" augroup pencil
-"   autocmd!
-"  autocmd FileType markdown,mkd call pencil#init({
-"    \ 'wrap': 'hard', 'autoformat': 1})
-"  autocmd FileType text         call pencil#init({
-"    \ 'wrap': 'hard', 'autoformat': 1})
-" augroup END
-"
-" let g:pencil#textwidth = 80
-" let g:pencil#cursorwrap = 1
-
-
-" ╔════════════════════════════════════════════════════════════════════════════╗
 " ║ Minimap                                                                    ║
 " ╚════════════════════════════════════════════════════════════════════════════╝
+
 let g:minimap_width = 10
 let g:minimap_auto_start = 0
 let g:minimap_auto_start_win_enter = 0
@@ -570,18 +567,9 @@ noremap <silent> <C-k><C-m> :MinimapToggle<CR>
 
 
 " ╔════════════════════════════════════════════════════════════════════════════╗
-" ║ Vimwiki                                                                    ║
-" ╚════════════════════════════════════════════════════════════════════════════╝
-let g:vimwiki_global_ext = 0
-let g:vimwiki_list = [
-  \{ 'path': '~/Cloud/Notes', 'path_html': '~/Cloud/Notes/.export',
-  \  'syntax': 'markdown', 'ext': '.md' }
-\]
-
-
-" ╔════════════════════════════════════════════════════════════════════════════╗
 " ║ GPG                                                                        ║
 " ╚════════════════════════════════════════════════════════════════════════════╝
+
 autocmd User GnuPG setl textwidth=72
 let g:GPGFilePattern = '*.\(gpg\|asc\|pgp\)\(.wiki\|.md\)\='
 
@@ -589,6 +577,7 @@ let g:GPGFilePattern = '*.\(gpg\|asc\|pgp\)\(.wiki\|.md\)\='
 " ╔════════════════════════════════════════════════════════════════════════════╗
 " ║ Dashboard                                                                  ║
 " ╚════════════════════════════════════════════════════════════════════════════╝
+
 let g:dashboard_default_executive ='fzf'
 let g:dashboard_preview_command = 'cat'
 "let g:dashboard_preview_pipeline = 'lolcat'
@@ -615,12 +604,23 @@ let g:dashboard_custom_footer = ['']
 " ╔════════════════════════════════════════════════════════════════════════════╗
 " ║ HugoHelper                                                                 ║
 " ╚════════════════════════════════════════════════════════════════════════════╝
+
 let g:hugohelper_update_lastmod_on_write = 1
 
 
 " ╔════════════════════════════════════════════════════════════════════════════╗
+" ║ Wiki.vim                                                                   ║
+" ╚════════════════════════════════════════════════════════════════════════════╝
+
+let g:wiki_root = '~/cloud/Notes'
+let g:wiki_filetypes = ['md']
+let g:wiki_link_extension = '.md'
+let g:wiki_link_target_type = 'md'
+
+" ╔════════════════════════════════════════════════════════════════════════════╗
 " ║ Go                                                                         ║
 " ╚════════════════════════════════════════════════════════════════════════════╝
+
 let g:go_fmt_autosave=0
 let g:go_asmfmt_autosave=0
 let g:go_def_mapping_enabled = 0
@@ -630,5 +630,6 @@ au FileType go map <C-b> <Plug>(go-build)
 " ╔════════════════════════════════════════════════════════════════════════════╗
 " ║ Typescript                                                                 ║
 " ╚════════════════════════════════════════════════════════════════════════════╝
+
 let g:typescript_indent_disable = 1
 
