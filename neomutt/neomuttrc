@@ -291,7 +291,7 @@ set sidebar_width = '20'
 # ║ PGP                                                                        ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
-# set pgp_auto_decode = no
+# set pgp_auto_decode = yes
 # set pgp_autoinline = no
 # set pgp_check_exit = yes
 # set pgp_clearsign_command = '(empty)'
