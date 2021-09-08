@@ -37,6 +37,8 @@
   "temperature#cpu",
   "temperature#gpu",
   "memory",
+  "custom/headphones",
+  "custom/speaker",
   "pulseaudio",
   "clock"
   ],
@@ -132,6 +134,30 @@
     "format": "{}",
     "exec": "/home/mrus/projects/@mrusme/zeit/extras/zeit-waybar-wofi.sh",
     "on-click": "/home/mrus/projects/@mrusme/zeit/extras/zeit-waybar-wofi.sh click",
+    "interval": 10
+  },
+
+  "custom/headphones": {
+    "format": "{icon}",
+    "format-icons": {
+      "connected": " ",
+      "disconnected": " "
+    },
+    "return-type": "json",
+    "exec": "/usr/local/bin/btdevices headphones",
+    "on-click": "/usr/local/bin/btdevices headphones toggle",
+    "interval": 10
+  },
+
+  "custom/speaker": {
+    "format": "{icon}",
+    "format-icons": {
+      "connected": " ",
+      "disconnected": " "
+    },
+    "return-type": "json",
+    "exec": "/usr/local/bin/btdevices speaker",
+    "on-click": "/usr/local/bin/btdevices speaker toggle",
     "interval": 10
   },
 

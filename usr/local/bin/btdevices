@@ -1,0 +1,38 @@
+#!/bin/sh
+
+device=''
+
+case $1 in
+  "headphones")
+    device='00:09:A7:2A:66:A0'
+    ;;
+  "speaker")
+    device='6C:47:60:1F:51:DD'
+    ;;
+  *)
+    echo "No device specified"
+    exit -1
+    ;;
+esac
+
+is_connected=$(bluetoothctl info $device | grep -i 'connected: yes')
+
+case $2 in
+  "toggle")
+    if [ "$is_connected" != "" ]
+    then
+      bluetoothctl disconnect $device
+    else
+      bluetoothctl connect $device
+    fi
+    ;;
+  *)
+    if [ "$is_connected" != "" ]
+    then
+      echo "{\"text\": \"Connected\", \"class\": \"custom-btdevice\", \"alt\": \"connected\" }"
+    else 
+      echo "{\"text\": \"Disconnected\", \"class\": \"custom-btdevice\", \"alt\": \"disconnected\" }"
+    fi
+    ;;
+esac
+
