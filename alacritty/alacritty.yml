@@ -68,7 +68,7 @@ draw_bold_text_with_bright_colors: true
 schemes:
   dark: &dark
     primary:
-      background: '#18181E'
+      background: '#181818'
       foreground: '#CBD8EB'
     cursor:
       text: '#000000'
