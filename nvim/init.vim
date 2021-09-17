@@ -336,8 +336,7 @@ augroup my-glyph-palette
 augroup END
 
 let g:fern#disable_default_mappings   = 0
-let g:fern#disable_drawer_auto_quit   = 0
-let g:fern#disable_viewer_hide_cursor = 1
+let g:fern#disable_drawer_smart_quit   = 0
 
 noremap <silent> <C-k><C-b> :Fern . -drawer -width=35 -toggle<CR>
 noremap <silent> <Leader>d :Fern . -drawer -width=35 -toggle<CR>
