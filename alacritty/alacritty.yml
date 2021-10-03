@@ -157,7 +157,7 @@ bell:
   color: '0x320F09'
 background_opacity: 0.92
 mouse_bindings:
-  - { mouse: Middle, action: PasteSelection }
+  - { mouse: Middle, action: None }
 mouse:
   double_click: { threshold: 300 }
   triple_click: { threshold: 300 }
