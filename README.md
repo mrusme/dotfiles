@@ -1,7 +1,3 @@
-dotfiles
---------
+![dotfile](dotfiles.png)
 
-They really whip the llama's ass!
-
-
-[(more info)](https://マリウス.com/computer/)
+[(More ...)](https://マリウス.com/computer/)
