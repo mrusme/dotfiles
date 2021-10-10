@@ -1,16 +1,19 @@
 #!/bin/sh
-OPENVPN_CONFIG=$(/bin/ls -1 /etc/init.d/openvpn.* | xargs -n 1 basename | wofi --dmenu --sort-order default)
+OPENVPN_CONFIG=$(/bin/ls -1 /etc/init.d/openvpn.* /etc/init.d/wg-quick.* | xargs -n 1 basename | wofi --dmenu --sort-order default)
 
 if [[ "$OPENVPN_CONFIG" == "" ]]
 then
   exit
 fi
 
-/bin/ls -1 /etc/init.d/openvpn.* | xargs -n 1 basename | while read ovpn
+/bin/ls -1 /etc/init.d/openvpn.* /etc/init.d/wg-quick.* | xargs -n 1 basename | while read ovpn
 do 
 	sudo rc-service $ovpn stop
 done
 
 sleep 2
 sudo rc-service $OPENVPN_CONFIG start
+
+sleep 10
+/usr/local/bin/get-public-ip-info
 

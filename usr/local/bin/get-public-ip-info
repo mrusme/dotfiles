@@ -1,0 +1,5 @@
+#!/bin/sh
+source ~/.secrets
+
+curl -s "http://api.ipstack.com/$(curl -s http://ipecho.net/plain)?access_key=$IPSTACK_KEY" | python3 -c 'import sys, json; resp=json.load(sys.stdin); print("IP: {}\n{}, {}".format(resp["ip"],resp["city"],resp["country_name"]));' | xargs -0 notify-send -a "VPN" "VPN"
+

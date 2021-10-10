@@ -1,10 +1,15 @@
 #!/bin/sh
-CONNECTED_VPN=$(ps -eo args | rg "^/usr/sbin/openvpn" | sed -r 's/.*--config \/etc\/openvpn\/([-0-9a-z\.]+)\.ovpn\.conf.*/\1/g' | awk -F '.' '{ print $1"/"$4 }' | tr '[:lower:]' '[:upper:]')
-
-if [[ "$CONNECTED_VPN" == "" ]]
+if ifconfig wg0 > /dev/null 2>&1
 then
-  echo "{\"text\": \"NO VPN\", \"class\": \"custom-openvpn\", \"alt\": \"disconnected\" }"
+  echo "{\"text\": \"WG0\", \"class\": \"custom-openvpn\", \"alt\": \"connected\" }"
 else
-  echo "{\"text\": \"$CONNECTED_VPN\", \"class\": \"custom-openvpn\", \"alt\": \"connected\" }"
+  CONNECTED_VPN=$(ps -eo args | rg "^/usr/sbin/openvpn" | sed -r 's/.*--config \/etc\/openvpn\/([-0-9a-z\.]+)\.ovpn\.conf.*/\1/g' | awk -F '.' '{ print $1"/"$4 }' | tr '[:lower:]' '[:upper:]')
+
+  if [[ "$CONNECTED_VPN" == "" ]]
+  then
+    echo "{\"text\": \"NO VPN\", \"class\": \"custom-openvpn\", \"alt\": \"disconnected\" }"
+  else
+    echo "{\"text\": \"$CONNECTED_VPN\", \"class\": \"custom-openvpn\", \"alt\": \"connected\" }"
+  fi
 fi
 
