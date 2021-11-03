@@ -373,7 +373,7 @@ then
         remove)      emerge -cav ${@:2};;
         purge)       emerge -Ccav ${@:2};;
         update)      emerge --sync ${@:2};;
-        upgrade)     emerge -avu --keep-going=y ${@:2};;
+        upgrade)     emerge --ask --update --deep --changed-use --verbose-conflicts --keep-going=y @world;;
         safe-upgrade)emerge -avu --keep-going=y ${@:2};;
         full-upgrade)emerge -avuND --keep-going=y --with-bdeps=y ${@:2};;
         search)      emerge -s ${@:2};;
