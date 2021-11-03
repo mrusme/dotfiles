@@ -42,7 +42,7 @@ Plug 'godlygeek/tabular'
 Plug 'wincent/command-t'
 Plug 'junegunn/goyo.vim'
 Plug 'Yggdroot/indentLine'
-Plug 'terryma/vim-multiple-cursors'
+Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'itchyny/lightline.vim'
 Plug 'wfxr/minimap.vim'
 Plug 'jamessan/vim-gnupg'
@@ -62,6 +62,7 @@ Plug 'rust-lang/rust.vim'
 Plug 'cespare/vim-toml'
 Plug 'moll/vim-node'
 Plug 'docker/docker'
+Plug 'evanleck/vim-svelte', {'branch': 'main'}
 
 call plug#end()
 
@@ -226,11 +227,11 @@ noremap <Leader>` gq}<CR>
 " Reformat everything to EOF
 noremap <Leader>~ gqG<CR>
 
-let g:multi_cursor_next_key='<C-d>'
-let g:multi_cursor_prev_key='<C-p>'
-let g:multi_cursor_skip_key='<C-l>'
-let g:multi_cursor_quit_key='<Esc>'
-let g:multi_cursor_start_key='<C-L>'
+let g:VM_maps = {}
+let g:VM_maps['Find Under']         = '<C-d>'
+let g:VM_maps['Find Subword Under'] = '<C-d>'
+let g:VM_maps["Select Cursor Down"] = '<M-C-Down>'
+let g:VM_maps["Select Cursor Up"]   = '<M-C-Up>'
 
 let g:tcomment#replacements_xml={}
 let g:vim_markdown_folding_disabled = 1
@@ -540,14 +541,23 @@ highlight link LspSagaFinderSelection Search
 " ║ Telescope                                                                  ║
 " ╚════════════════════════════════════════════════════════════════════════════╝
 
-nnoremap <M-f> <cmd>Telescope find_files<cr>
-nnoremap <M-/> <cmd>Telescope live_grep<cr>
-nnoremap <leader>fb <cmd>Telescope buffers<cr>
-nnoremap <leader>fh <cmd>Telescope help_tags<cr>
-nnoremap <leader>lr <cmd>Telescope lsp_references<cr>
+nnoremap <M-f> <cmd>lua require('telescope.builtin').find_files()<cr>
+nnoremap <M-/> <cmd>lua require('telescope.builtin').live_grep()<cr>
+nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
+nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
+nnoremap <leader>lr <cmd>lua require('telescope.builtin').lsp_references()<cr>
 
-nnoremap <M-o> <cmd>Telescope fd<CR>
-inoremap <M-o> <cmd>Telescope fd<CR>
+nnoremap <M-o> <cmd>lua require('telescope.builtin').fd()<cr>
+inoremap <M-o> <cmd>lua require('telescope.builtin').fd()<cr>
+
+" nnoremap <M-f> <cmd>Telescope find_files<cr>
+" nnoremap <M-/> <cmd>Telescope live_grep<cr>
+" nnoremap <leader>fb <cmd>Telescope buffers<cr>
+" nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+" nnoremap <leader>lr <cmd>Telescope lsp_references<cr>
+" 
+" nnoremap <M-o> <cmd>Telescope fd<CR>
+" inoremap <M-o> <cmd>Telescope fd<CR>
 
 
 " ╔════════════════════════════════════════════════════════════════════════════╗
