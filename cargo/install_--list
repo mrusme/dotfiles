@@ -13,6 +13,8 @@ code-minimap v0.6.0:
     code-minimap
 csview v0.3.6:
     csview
+deno v1.14.2:
+    deno
 dijo v0.2.7:
     dijo
 du-dust v0.6.0:
