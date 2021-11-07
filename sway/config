@@ -232,29 +232,57 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 
-for_window [window_role="pop-up"] floating enable
-for_window [window_role="bubble"] floating enable
-for_window [window_role="task_dialog"] floating enable
+#                                                                              #
+# Window specific configuration                                                #
+#                                                                              #
+for_window [window_role = "pop-up"] floating enable
+for_window [window_role = "bubble"] floating enable
+for_window [window_role = "dialog"] floating enable
+for_window [window_role = "page-info"] floating enable
+for_window [window_role = "task_dialog"] floating enable
 for_window [window_role="Preferences"] floating enable
-
-for_window [window_role="task_dialog|bubble|page-info|Preferences|pop-up"] floating enable
 for_window [window_role="Open Files"] floating enable sticky
 for_window [window_role="File Operation Progress"] floating enable sticky
 for_window [window_role="Save As"] floating enable
 
-#for_window [class="steam_app.*"] fullscreen enable
-#for_window [class="steam_app*"] inhibit_idle focus
-for_window [window_type="dialog"] floating enable
-for_window [window_type="menu"] floating enable
+for_window [window_type = "menu"] floating enable
+for_window [window_type = "dialog"] floating enable
 
-# Sticky window
-for_window [instance="file_progress"]  sticky enable
+for_window [class = "(?i)pinentry"] floating enable
 for_window [class="info|Mate-color-select|gcolor2|timesup|QtPass|GtkFileChooserDialog"] sticky enable
-
-# Focus window settings
-no_focus [window_role="pop-up"]
-focus_on_window_activation focus
+for_window [class="^Steam$" title="^Friends$"] floating enable
+for_window [class="^Steam$" title="Steam - News"] floating enable
+for_window [class="^Steam$" title=".* - Chat"] floating enable
+for_window [class="^Steam$" title="^Settings$"] floating enable
+for_window [class="^Steam$" title=".* - event started"] floating enable
+for_window [class="^Steam$" title=".* CD key"] floating enable
+for_window [class="^Steam$" title="^Steam - Self Updater$"] floating enable
+for_window [class="^Steam$" title="^Screenshot Uploader$"] floating enable
+for_window [class="^Steam$" title="^Steam Guard - Computer Authorization Required$"] floating enable
 #for_window [class="(?i)"] focus
+
+for_window [app_id = "floating"] floating enable
+for_window [app_id = "floating_update"] floating enable
+for_window [app_id = "virt-manager"] floating enable
+for_window [app_id = "pavucontrol"] floating enable
+for_window [app_id = "org.gnupg.pinentry-qt"] floating enable
+
+for_window [instance="file_progress"]  sticky enable
+
+for_window [title = "Firefox - Sharing Indicator"] floating enable
+for_window [title = "^Open File$"] floating enable
+for_window [title="^Steam Keyboard$"] floating enable
+
+no_focus [window_role="pop-up"]
+no_focus [app_id="waybar"]
+for_window [app_id="waybar" floating] {
+    move position cursor
+    move down 60px # adjust if some menus still don't fit
+}
+focus_on_window_activation focus
+
+for_window [shell="xwayland"] title_format "<span>[X] %title゜</span>"
+
 
 bar {
   swaybar_command waybar
