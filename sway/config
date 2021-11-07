@@ -59,8 +59,8 @@ focus_on_window_activation smart
 output * bg ~/.wallpaper.png fill
 
 exec swayidle -w \
-timeout 300 'swaylock' \
-timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
+timeout 600 'swaylock' \
+timeout 900 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
 before-sleep 'swaylock'
 
 bindsym $mod+Ctrl+q exec swaylock
@@ -92,7 +92,7 @@ bindsym $mod+Return exec $term
 bindsym $mod+backspace exec /usr/local/bin/ff
 
 # Kill focused window
-bindsym $mod+Shift+q kill
+bindsym $mod+Shift+Escape kill
 
 # Start your launcher
 bindsym $mod+Space exec $menu
