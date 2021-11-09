@@ -2,14 +2,14 @@ bandwhich v0.20.0:
     bandwhich
 battop v0.2.4:
     battop
-bingrep v0.8.5:
+bingrep v0.9.0:
     bingrep
-bottom v0.6.2:
+bottom v0.6.4:
     btm
 cargo-update v7.0.1:
     cargo-install-update
     cargo-install-update-config
-code-minimap v0.6.0:
+code-minimap v0.6.1:
     code-minimap
 csview v0.3.6:
     csview
@@ -17,40 +17,40 @@ deno v1.14.2:
     deno
 dijo v0.2.7:
     dijo
-du-dust v0.6.0:
+du-dust v0.7.0:
     dust
 eva v0.2.7:
     eva
-git-delta v0.8.1:
+git-delta v0.9.2:
     delta
 git-journal v1.8.1:
     git-journal
-gitui v0.16.1:
+gitui v0.18.0:
     gitui
 gpg-tui v0.6.1:
     completions
     gpg-tui
-gping v1.2.1:
+gping v1.2.6:
     gping
-hexyl v0.8.0:
+hexyl v0.9.0:
     hexyl
 imager v0.3.2:
     imager
 jwt-cli v4.0.0:
     jwt
-mdcat v0.22.4:
+mdcat v0.24.1:
     mdcat
-pastel v0.8.0:
+pastel v0.8.1:
     pastel
 pipe-rename v1.3.0:
     renamer
-procs v0.11.9:
+procs v0.11.10:
     procs
 rates v0.5.0:
     rates
-shellcaster v1.2.0:
+shellcaster v1.2.1:
     shellcaster
-so v0.4.3:
+so v0.4.5:
     so
 taskwarrior-tui v0.13.24 (/home/mrus/projects/github/taskwarrior-tui):
     taskwarrior-tui
@@ -64,7 +64,7 @@ viu v1.3.0:
     viu
 vocage v1.1.0:
     vocage
-websocat v1.8.0:
+websocat v1.9.0:
     websocat
 zenith v0.0.2:
     zenith
