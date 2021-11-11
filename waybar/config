@@ -125,7 +125,7 @@
 
   "custom/rslsync": {
     "format": "  {}",
-    "exec": "/usr/local/bin/get-running-rslsync-status",
+    //"exec": "/usr/local/bin/get-running-rslsync-status",
     "exec-if": "ps -eo args | rg '^/usr/bin/rslsync'",
     "on-click": "xdg-open http://127.0.0.1:2510/gui/",
     "on-click-middle": "killall -s SIGQUIT rslsync",
