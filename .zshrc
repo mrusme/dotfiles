@@ -259,7 +259,7 @@ type fd > /dev/null \
 
 type exa > /dev/null \
 && unalias ls &> /dev/null \
-&& alias ls='exa --time-style=long-iso --git --icons -lag'
+&& alias ls='exa --time-style=long-iso --git --icons -lg'
 
 type btm > /dev/null \
 && alias top='btm'
