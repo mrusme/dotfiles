@@ -250,6 +250,12 @@ autocmd BufRead,BufNewFile
   \ tmux.conf.local,tmux.conf,.tmux.conf set filetype=tmux
 autocmd BufRead,BufNewFile
   \ vimrc.local,.vimrc,init.vim set filetype=vim
+autocmd BufRead,BufNewFile
+  \ neomutt-* 
+    \ setlocal tw=72 | 
+    \ setlocal fo=awq | 
+    \ setlocal comments+=nb:> | 
+    \ match ErrorMsg '\s\+$'
 
 
 " ╔════════════════════════════════════════════════════════════════════════════╗
