@@ -125,6 +125,9 @@ set fileformats=unix,dos,mac
 set completeopt=menuone,longest,preview
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*
 
+set spelllang=en,ro,es,fr,jp,de,cjk
+set spellsuggest=best,9
+
 if maparg('<C-L>', 'n') ==# ''
   nnoremap <silent> <C-L> :nohlsearch<CR><C-L>
 endif
@@ -239,7 +242,9 @@ let g:vim_markdown_folding_disabled = 1
 autocmd BufRead,BufNewFile
   \ *.md set filetype=markdown
 autocmd BufRead,BufNewFile
-  \ *.{md,txt} setlocal textwidth=80
+  \ *.{md,txt} 
+    \ setlocal textwidth=80 |
+    \ setlocal spell
 autocmd BufRead,BufNewFile
   \ .{jscs,jshint,eslint}rc set filetype=json
 autocmd BufRead,BufNewFile
