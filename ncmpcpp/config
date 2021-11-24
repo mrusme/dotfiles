@@ -4,7 +4,7 @@ mpd_host = localhost
 mpd_port = 6600
 #mpd_password = ""
 #mpd_connection_timeout = 5
-mpd_music_dir = ~/music
+mpd_music_dir = ~/cloud/music
 #mpd_crossfade_time = 5
 random_exclude_pattern = "^(temp|midi_songs).*"
 
