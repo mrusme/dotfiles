@@ -76,8 +76,8 @@ exec dunst
 
 exec mpd
 
-exec openrgb -p white.orp
-
+#exec openrgb -p pirate.orp
+exec openrgb -d 0 -m direct -z 0 -c 'FF6200,FF6200,FF6200,FF6200,FF6200,FF6200,FF6200,000000,000000,000000,000000,000000,000000,000000,000000,FF6200'
 
 input "4815:3077:Mad_Catz_Global_MADCATZ_R.A.T._8+_gaming_mouse" {
   natural_scroll enabled
