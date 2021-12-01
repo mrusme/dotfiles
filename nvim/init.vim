@@ -125,7 +125,7 @@ set fileformats=unix,dos,mac
 set completeopt=menuone,longest,preview
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*
 
-set spelllang=en,ro,es,fr,jp,de,cjk
+set spelllang=en,ro,es,fr,de,cjk
 set spellsuggest=best,9
 
 if maparg('<C-L>', 'n') ==# ''
