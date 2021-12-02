@@ -136,6 +136,12 @@ bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
+bindsym $mod+Control+$left focus parent, focus left, focus child
+bindsym $mod+Control+$down focus parent, focus down, focus child
+bindsym $mod+Control+$up focus parent, focus up, focus child
+bindsym $mod+Control+$right focus parent, focus right, focus child
+bindsym $mod+Control+p focus parent
+
 bindsym $mod+Tab focus next
 bindsym $mod+Shift+Tab focus prev
 
