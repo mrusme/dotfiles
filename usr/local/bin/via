@@ -1,0 +1,3 @@
+#!/bin/sh
+DISABLE_SUDO_PROMPT=1 ~/apps/via-*-linux.AppImage
+
