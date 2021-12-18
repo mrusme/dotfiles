@@ -226,7 +226,7 @@ ZSH_AUTOSUGGESTIONS=${ZSH_CUSTOM:-~/.oh-my-zsh/custom}\
 
 [[ $OS = "Darwin" ]] && plugins=(tmux docker encode64 extract git git-flow \
   gpg-agent history ssh-agent urltools \
-  zsh-autosuggestions mosh fzf terraform taskwarrior thefuck brew osx)
+  zsh-autosuggestions mosh fzf terraform taskwarrior thefuck brew macos)
 [[ $OS = "Linux" ]]  && plugins=(docker encode64 extract git git-flow \
   gpg-agent history ssh-agent urltools \
   zsh-autosuggestions mosh fzf terraform taskwarrior thefuck)
@@ -253,9 +253,6 @@ alias ...='cd ../../'
 alias re='cd -'
 
 alias cat=bat
-
-type fd > /dev/null \
-&& alias find='fd'
 
 type exa > /dev/null \
 && unalias ls &> /dev/null \
@@ -802,6 +799,23 @@ function git-add-all-remote() {
     done
     return 0
   fi
+}
+
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ git-find-modified-repos                                                    ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+
+function git-find-modified-repos() {
+  find ./ -type d -name '.git' | while read dir
+  do 
+    repo=$(dirname "$dir")
+    repostatus=$(git -C "$repo" status -s)
+    if [[ -n "$repostatus" ]]
+    then 
+      echo $repo
+    fi 
+  done
 }
 
 
