@@ -19,7 +19,7 @@
 # set hostname = '(empty)'
 # set realname = '(empty)'
 # set reply_self = no
-# set reply_to = ask-yes
+set reply_to = ask-yes
 set reverse_name = yes
 # set reverse_realname = yes
 # set use_domain = yes
@@ -39,18 +39,18 @@ set reverse_name = yes
 # set abort_nosubject = ask-yes
 # set abort_unmodified = yes
 # set askbcc = no
-# set askcc = no
-# set attribution = 'On %d, %n wrote:'
+set askcc = yes
+set attribution = 'On %d, %n wrote:'
 # set autoedit = no
 # set compose_format = '-- Mutt: Compose  [Approx. msg size: %l   Atts: %a]%>-'
 # set content_type = 'text/plain'
-# set edit_headers = no
+set edit_headers = yes
 set editor = 'nvim'
 set fast_reply = yes
 # set fcc_clear = no
 # set followup_to = yes
 # set force_name = no
-# set forward_decode = yes
+set forward_decode = yes
 # set forward_decrypt = yes
 # set forward_edit = yes
 set forward_format = 'Fwd: %s'
@@ -69,7 +69,7 @@ set include = ask-yes
 # set postpone = ask-yes
 # set postponed = "+Drafts"
 # set recall = ask-yes
-# set reply_regexp = '^(re([\[0-9\]+])*|aw):[ \t]*'
+set reply_regexp = '^(re([\[0-9\]+])*|aw):[ \t]*'
 # set sig_dashes = yes
 # set sig_on_top = no
 # set signature = '~/.signature'
@@ -120,7 +120,7 @@ set postpone_encrypt = yes
 # set prompt_after = yes
 # set query_command = '(empty)'
 # set query_format = '%4c %t %-25.25a %-25.25n %?e?(%e)?'
-# set quote_regexp = '^([ \t]*[|>:}#])+'
+set quote_regexp = "^( {0,4}[>|:#%]| {0,4}[a-z0-9]+[>|]+)+"
 # set read_inc = '10'
 # set read_only = no
 # set reflow_space_quotes = yes
@@ -139,10 +139,11 @@ set rfc2047_parameters = yes
 # set score_threshold_read = '-1'
 # set search_context = '0'
 # set sidebar_delim_chars = '/.'
-# set sidebar_divider_char = '|'
-# set sidebar_folder_indent = no
+set sidebar_divider_char = '|'
+set sidebar_folder_indent = yes
+# set sidebar_format = '%B %* [%?N?%N / ?%S]'
 set sidebar_format = '%B%?F? [%F]?%* %?N?%N/? %?S?%S?'
-# set sidebar_indent_string = '  '
+set sidebar_indent_string = '  '
 # set sidebar_new_mail_only = no
 set sidebar_next_new_wrap = yes
 set sidebar_short_path = yes
@@ -159,7 +160,7 @@ set sidebar_short_path = yes
 # set status_format = '-%r-Mutt: %f [Msgs:%?M?%M/?%m%?n? New:%n?%?o? Old:%o?%?d? Del:%d?%?F? Flag:%F?%?t? Tag:%t?%?p? Post:%p?%?b? Inc:%b?%?l? %l?]---(%s/%S)-%>-(%P)---'
 # set status_on_top = no
 # set strict_threads = no
-# set text_flowed = no
+set text_flowed = yes
 # set thorough_search = yes
 # set time_inc = '0'
 # set timeout = '600'
@@ -184,17 +185,18 @@ set sidebar_short_path = yes
 # set charset = '(empty)'
 # set help = yes
 # set index_format = '%4C %Z %{%b %d} %-15.15L (%?l?%4l&%4c?) %s'
+set index_format = '[%Z] %?X?A&-? %D  %-20.20F  %s'
 set markers = no
 # set menu_context = '0'
 # set menu_move_off = yes
-# set menu_scroll = no
+set menu_scroll = yes
 # set narrow_tree = no
-# set pager_context = '0'
+set pager_context = 3
 # set pager_format = '-%Z- %C/%m: %-20.20n   %s%*  -- (%P)'
-# set pager_index_lines = '0'
-# set pager_stop = no
+set pager_index_lines = 10
+set pager_stop = yes
 # set sleep_time = '1'
-# set tilde = no
+set tilde = yes
 # set wait_key = yes
 # set write_inc = '10'
 
@@ -350,6 +352,7 @@ set pgp_self_encrypt = yes
 # set check_new = yes
 # set collapse_unread = yes
 # set date_format = '!%a, %b %d, %Y at %I:%M:%S%p %Z'
+set date_format = '%Y-%m-%d %H:%M'
 # set delete = ask-yes
 # set digest_collapse = yes
 # set display_filter = '(empty)'
@@ -368,7 +371,7 @@ auto_view text/html
 # set smart_wrap = yes
 # set smileys = '(>From )|(:[-^]?[][)(><}{|/DP])'
 # set thread_received = no
-# set uncollapse_jump = no
+set uncollapse_jump = yes
 # set weed = yes
 # set wrap_search = yes
 # set wrapmargin = '0'
@@ -658,9 +661,10 @@ color body          magenta             default         "([a-z][a-z0-9+-]*://(((
 #mailboxes `echo -n "+ "; find ~/cloud/.mail -maxdepth 1 -type d -name ".*" -printf "+'%f' "`
 
 # Macros
-macro index,pager <f2> '<sync-mailbox><enter-command>source ~/.config/neomutt/accounts/marius@xn--gckvb8fzb.com<enter><change-folder>!<enter>;<check-stats>'
+macro index,pager <f1> '<sync-mailbox><enter-command>source ~/.config/neomutt/accounts/01<enter><change-folder>!<enter>;<check-stats>'
+macro index,pager <f2> '<sync-mailbox><enter-command>source ~/.config/neomutt/accounts/02<enter><change-folder>!<enter>;<check-stats>'
 
-source ~/.config/neomutt/accounts/marius@xn--gckvb8fzb.com
+source ~/.config/neomutt/accounts/01
 
 macro index c "<change-folder>?<toggle-mailboxes>" "open a different folder"
 macro pager c "<change-folder>?<toggle-mailboxes>" "open a different folder"
@@ -672,4 +676,4 @@ bind index,pager \Cp sidebar-prev
 bind index,pager \Cn sidebar-next
 bind index,pager \Co sidebar-open
 
-macro index \Cr "!mbsync -a^M" "Update through mbsync"
+macro index,pager \Cr "!mbsync -a^M" "Update through mbsync"
