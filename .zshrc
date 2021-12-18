@@ -26,6 +26,8 @@ export OS=$(uname)
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
+export XDG_CONFIG_HOME=$HOME/.config
+
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
 # ║ Tmux Magic (via SSH)                                                       ║
@@ -644,7 +646,7 @@ function pushover() {
 [[ $OS = "Darwin" ]] \
 && subldir=~/Library/Application\ Support/Sublime\ Text\ 3
 [[ $OS = "Linux" ]] \
-&& subldir=~/.config/sublime-text
+&& subldir=$XDG_CONFIG_HOME/sublime-text
 
 function dotfiles-update-remote() {
   cp ~/.zshrc "$DOTFILES/.zshrc"
@@ -654,23 +656,29 @@ function dotfiles-update-remote() {
   cp ~/.motd "$DOTFILES/.motd"
   cp ~/.gitconfig "$DOTFILES/.gitconfig"
 
-  cp ~/.config/alacritty/alacritty.yml\
+  cp $XDG_CONFIG_HOME/alacritty/alacritty.yml\
      "$DOTFILES/alacritty/alacritty.yml"
-  cp ~/.config/neomutt/neomuttrc "$DOTFILES/neomutt/neomuttrc"
-  cp ~/.config/nvim/init.vim "$DOTFILES/nvim/init.vim"
-  cp ~/.config/nvim/colors/*.vim "$DOTFILES/nvim/colors/"
-  cp ~/.config/nvim/autoload/lightline/colorscheme/*.vim\
-    "$DOTFILES/nvim/autoload/lightline/colorscheme/"
-  cp ~/.config/wtf/config.yml "$DOTFILES/wtf/config.yml"
 
-  cp $subldir/Packages/User/Package\ Control.sublime-settings\
-    "$DOTFILES/st3/Package Control.sublime-settings"
-  cp $subldir/Packages/User/Preferences.sublime-settings\
-    "$DOTFILES/st3/Preferences.sublime-settings"
-  cp $subldir/Packages/User/LSP.sublime-settings\
-    "$DOTFILES/st3/LSP.sublime-settings"
-  cp $subldir/Packages/User/vap0r-*.tmTheme\
-    "$DOTFILES/st3/"
+  cp $XDG_CONFIG_HOME/neomutt/neomuttrc "$DOTFILES/neomutt/neomuttrc"
+  cp $XDG_CONFIG_HOME/neomutt/accounts/* "$DOTFILES/neomutt/accounts/"
+
+  cp $XDG_CONFIG_HOME/nvim/init.vim "$DOTFILES/nvim/init.vim"
+  cp $XDG_CONFIG_HOME/nvim/colors/*.vim "$DOTFILES/nvim/colors/"
+  cp $XDG_CONFIG_HOME/nvim/autoload/lightline/colorscheme/*.vim\
+    "$DOTFILES/nvim/autoload/lightline/colorscheme/"
+
+  cp $XDG_CONFIG_HOME/wtf/config.yml "$DOTFILES/wtf/config.yml"
+
+  # Phasing out Sublime Text as I'm not using it anymore
+  #
+  # cp $subldir/Packages/User/Package\ Control.sublime-settings\
+  #   "$DOTFILES/st3/Package Control.sublime-settings"
+  # cp $subldir/Packages/User/Preferences.sublime-settings\
+  #   "$DOTFILES/st3/Preferences.sublime-settings"
+  # cp $subldir/Packages/User/LSP.sublime-settings\
+  #   "$DOTFILES/st3/LSP.sublime-settings"
+  # cp $subldir/Packages/User/vap0r-*.tmTheme\
+  #   "$DOTFILES/st3/"
 
   if [ $OS = "Darwin" ]
   then
@@ -686,13 +694,19 @@ function dotfiles-update-remote() {
         cp "$scriptfile" "$DOTFILES/usr/local/bin/"
       done
 
-    cp ~/.config/dunst/dunstrc "$DOTFILES/dunst/dunstrc"
-    cp ~/.config/mpd/mpd.conf "$DOTFILES/mpd/mpd.conf"
-    cp ~/.config/ncmpcpp/config "$DOTFILES/ncmpcpp/config"
-    cp ~/.config/sway/config "$DOTFILES/sway/config"
-    cp ~/.config/swaylock/config "$DOTFILES/swaylock/config"
-    cp ~/.config/waybar/* "$DOTFILES/waybar/"
-    cp ~/.config/wofi/* "$DOTFILES/wofi/"
+    cp $XDG_CONFIG_HOME/dunst/dunstrc "$DOTFILES/dunst/dunstrc"
+
+    cp $XDG_CONFIG_HOME/mpd/mpd.conf "$DOTFILES/mpd/mpd.conf"
+
+    cp $XDG_CONFIG_HOME/ncmpcpp/config "$DOTFILES/ncmpcpp/config"
+
+    cp $XDG_CONFIG_HOME/sway/config "$DOTFILES/sway/config"
+
+    cp $XDG_CONFIG_HOME/swaylock/config "$DOTFILES/swaylock/config"
+
+    cp $XDG_CONFIG_HOME/waybar/* "$DOTFILES/waybar/"
+
+    cp $XDG_CONFIG_HOME/wofi/* "$DOTFILES/wofi/"
   fi
 
   cargo install --list > "$DOTFILES/cargo/install_--list"
@@ -715,35 +729,58 @@ function dotfiles-update-local() {
   cp "$DOTFILES/.motd" ~/.motd
   cp "$DOTFILES/.gitconfig" ~/.gitconfig
 
+  mkdir -p $XDG_CONFIG_HOME/alacritty
   cp "$DOTFILES/alacritty/alacritty.yml"\
-     ~/.config/alacritty/alacritty.yml
-  cp "$DOTFILES/neomutt/neomuttrc" ~/.config/neomutt/neomuttrc
-  cp "$DOTFILES/nvim/init.vim" ~/.config/nvim/init.vim
-  cp "$DOTFILES/nvim/colors/*.vim" ~/.config/nvim/colors/
-  cp "$DOTFILES/nvim/autoload/lightline/colorscheme/*.vim"\
-     ~/.config/nvim/autoload/lightline/colorscheme/
-  cp "$DOTFILES/wtf/config.yml" ~/.config/wtf/config.yml
+     $XDG_CONFIG_HOME/alacritty/alacritty.yml
 
-  cp "$DOTFILES/st3/Package Control.sublime-settings"\
-     $subldir/Packages/User/Package\ Control.sublime-settings
-  cp "$DOTFILES/st3/Preferences.sublime-settings"\
-     $subldir/Packages/User/Preferences.sublime-settings
-  cp "$DOTFILES/st3/LSP.sublime-settings"\
-     $subldir/Packages/User/LSP.sublime-settings
-  cp "$DOTFILES/st3/vap0r-*.tmTheme"
-     $subldir/Packages/User/
+  mkdir -p $XDG_CONFIG_HOME/neomutt/accounts
+  cp "$DOTFILES/neomutt/neomuttrc" $XDG_CONFIG_HOME/neomutt/neomuttrc
+
+  mkdir -p $XDG_CONFIG_HOME/nvim/colors
+  mkdir -p $XDG_CONFIG_HOME/nvim/autoload/lightline/colorscheme
+  cp "$DOTFILES/nvim/init.vim" $XDG_CONFIG_HOME/nvim/init.vim
+  cp "$DOTFILES/nvim/colors/*.vim" $XDG_CONFIG_HOME/nvim/colors/
+  cp "$DOTFILES/nvim/autoload/lightline/colorscheme/*.vim"\
+     $XDG_CONFIG_HOME/nvim/autoload/lightline/colorscheme/
+
+  mkdir -p $XDG_CONFIG_HOME/wtf
+  cp "$DOTFILES/wtf/config.yml" $XDG_CONFIG_HOME/wtf/config.yml
+
+  # Phasing out Sublime Text as I'm not using it anymore
+  #
+  # cp "$DOTFILES/st3/Package Control.sublime-settings"\
+  #    $subldir/Packages/User/Package\ Control.sublime-settings
+  # cp "$DOTFILES/st3/Preferences.sublime-settings"\
+  #    $subldir/Packages/User/Preferences.sublime-settings
+  # cp "$DOTFILES/st3/LSP.sublime-settings"\
+  #    $subldir/Packages/User/LSP.sublime-settings
+  # cp "$DOTFILES/st3/vap0r-*.tmTheme"
+  #    $subldir/Packages/User/
 
   if [ $OS = "Linux" ]
   then
     cp "$DOTFILES/usr/local/bin/*" /usr/local/bin/
 
-    cp "$DOTFILES/dunst/dunstrc" ~/.config/dunst/dunstrc
-    cp "$DOTFILES/mpd/mpd.conf" ~/.config/mpd/mpd.conf
-    cp "$DOTFILES/ncmpcpp/config" ~/.config/ncmpcpp/config
-    cp "$DOTFILES/sway/config" ~/.config/sway/config
-    cp "$DOTFILES/swaylock/config" ~/.config/swaylock/config
-    cp "$DOTFILES/waybar/*" ~/.config/waybar/
-    cp "$DOTFILES/wofi/*" ~/.config/wofi/
+    mkdir -p $XDG_CONFIG_HOME/dunst
+    cp "$DOTFILES/dunst/dunstrc" $XDG_CONFIG_HOME/dunst/dunstrc
+
+    mkdir -p $XDG_CONFIG_HOME/mpd
+    cp "$DOTFILES/mpd/mpd.conf" $XDG_CONFIG_HOME/mpd/mpd.conf
+
+    mkdir -p $XDG_CONFIG_HOME/ncmpcpp
+    cp "$DOTFILES/ncmpcpp/config" $XDG_CONFIG_HOME/ncmpcpp/config
+
+    mkdir -p $XDG_CONFIG_HOME/sway
+    cp "$DOTFILES/sway/config" $XDG_CONFIG_HOME/sway/config
+
+    mkdir -p $XDG_CONFIG_HOME/swaylock
+    cp "$DOTFILES/swaylock/config" $XDG_CONFIG_HOME/swaylock/config
+
+    mkdir -p $XDG_CONFIG_HOME/waybar
+    cp "$DOTFILES/waybar/*" $XDG_CONFIG_HOME/waybar/
+
+    mkdir -p $XDG_CONFIG_HOME/wofi
+    cp "$DOTFILES/wofi/*" $XDG_CONFIG_HOME/wofi/
   fi
   return 0
 }
@@ -775,9 +812,9 @@ function update-tools() {
 function terminal-colors() {
   if [[ $1 == "dark" ]]
   then
-    sed -i .previous 's/\*light$/\*dark/g' ~/.config/alacritty/alacritty.yml
+    sed -i .previous 's/\*light$/\*dark/g' $XDG_CONFIG_HOME/alacritty/alacritty.yml
   else
-    sed -i .previous 's/\*dark$/\*light/g' ~/.config/alacritty/alacritty.yml
+    sed -i .previous 's/\*dark$/\*light/g' $XDG_CONFIG_HOME/alacritty/alacritty.yml
   fi
 }
 
