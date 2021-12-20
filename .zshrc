@@ -862,6 +862,7 @@ function git-find-modified-repos() {
 
 export WIKIPEDIA_INDEX_ID="wikipedia"
 export WIKIPEDIA_METASTORE_URI="file:///home/mrus/projects/@mrusme/ulpia/wikipedia"
+export DISABLE_QUICKWIT_TELEMETRY=1
 
 function wikipedia() {
   search="$@"
