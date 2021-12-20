@@ -55,28 +55,29 @@ setopt HIST_IGNORE_SPACE
 export TERM=xterm-256color
 export COLUMNS=80
 
+export EDITOR=vim
 type nvim > /dev/null \
-&& export EDITOR=nvim \
-|| export EDITOR=vim
+&& export EDITOR=nvim
+
 if [[ -n $SSH_CONNECTION ]]; then
   export BROWSER=w3m
 else
-  if [[ $OS = "Linux" ]]
+  if [[ "$OS" = "Linux" ]]
   then
     export BROWSER=firefox
-  elif [[ $OS = "Darwin" ]]
+  elif [[ "$OS" = "Darwin" ]]
   then
     export BROWSER=open
   fi
 fi
 
-export SSH_KEY_PATH="~/.ssh/id_rsa"
+export SSH_KEY_PATH="$HOME/.ssh/id_rsa"
 
 # Enable Erlang/IEx shell history
 export ERL_AFLAGS="-kernel shell_history enabled"
 
 # IPFS
-export IPFS_PATH="~/.ipfs"
+export IPFS_PATH="$HOME/.ipfs"
 
 # Firefox
 #export GDK_BACKEND="wayland"
@@ -87,17 +88,17 @@ export MOZ_USE_XINPUT2="1"
 export QT_STYLE_OVERRIDE=kvantum
 
 # https://github.com/oz/tz/
-export TZ_LIST="Pacific/Honolulu,America/Panama,America/New_York,Etc/UTC,\
-Europe/Berlin,Asia/Bangkok,Asia/Tokyo,Australia/Melbourne"
+export TZ_LIST="Pacific/Honolulu;America/Panama;America/New_York;Etc/UTC;\
+Europe/Berlin;Asia/Bangkok;Asia/Tokyo;Australia/Melbourne"
 
 # https://github.com/mrusme/zeit
-export ZEIT_DB=~/.zeit.db
+export ZEIT_DB="$HOME/.zeit.db"
 
 # https://github.com/mrusme/geld
-export GELD_DB=~/.geld.db
+export GELD_DB="$HOME/.geld.db"
 
 # Import color scheme via wal
-#[[ $OS = "Linux" ]] \
+#[[ "$OS" = "Linux" ]] \
 #&& type wal > /dev/null && (wal -r &)
 
 
@@ -105,68 +106,68 @@ export GELD_DB=~/.geld.db
 # ║ Secrets                                                                    ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
-DOT_SECRETS="$HOME/.secrets"
-[[ -e $DOT_SECRETS ]]\
-&& source $DOT_SECRETS
+export DOT_SECRETS="$HOME/.secrets"
+[[ -e "$DOT_SECRETS" ]]\
+&& source "$DOT_SECRETS"
 
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
 # ║ $PATH                                                                      ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
-[[ $OS = "Darwin" ]] \
-&& eval $(/usr/libexec/path_helper -s)
+[[ "$OS" = "Darwin" ]] \
+&& eval "$(/usr/libexec/path_helper -s)"
 
 # /usr/local/* (Homebrew, etc)
-[[ $OS = "Darwin" ]] \
-&& export PATH=/usr/local/bin:/usr/local/sbin:/usr/local/opt/binutils/bin:$PATH\
+[[ "$OS" = "Darwin" ]] \
+&& export PATH="/usr/local/bin:/usr/local/sbin:/usr/local/opt/binutils/bin:$PATH"\
 && export MANPATH="/usr/local/man:$MANPATH"
 
 # Cargo (Rust)
 [[ -d "$HOME/.cargo/bin" ]] \
-&& export PATH=$HOME/.cargo/bin:$PATH
+&& export PATH="$HOME/.cargo/bin:$PATH"
 
 [[ -e "$HOME/.cargo/env" ]] \
-&& source $HOME/.cargo/env
+&& source "$HOME/.cargo/env"
 
 # Go
-[[ $OS = "Darwin" ]] \
-&& export GOROOT=/usr/local/opt/go/libexec
-go env -w GOPATH=$HOME/.go
+[[ "$OS" = "Darwin" ]] \
+&& export GOROOT="/usr/local/opt/go/libexec"
+go env -w GOPATH="$HOME/.go"
 export PATH=$HOME/.go/bin:$PATH
 
 # Python virtualenv
-export VIRTUALENVWRAPPER_PYTHON=$(which python3)
-export WORKON_HOME=$HOME/.virtualenvs
+export VIRTUALENVWRAPPER_PYTHON="$(which python3)"
+export WORKON_HOME="$HOME/.virtualenvs"
 function activate.virtualenv {
   type virtualenvwrapper_lazy.sh > /dev/null \
-  && source $(which virtualenvwrapper_lazy.sh) \
+  && source "$(which virtualenvwrapper_lazy.sh)" \
   && workon | grep local > /dev/null \
   && workon local \
   && echo "Activated local." \
   || echo "Could not load virtualenvwrapper."
 }
 
-export PYTHON_MAJOR_MINOR=$(python3 \
-  --version | sed -nr 's/.*([0-9]+\.[0-9]+)\..*/\1/p')
+export PYTHON_MAJOR_MINOR="$(python3 \
+  --version | sed -nr 's/.*([0-9]+\.[0-9]+)\..*/\1/p')"
 
 [[ -d "$HOME/Library/Python/$PYTHON_MAJOR_MINOR/bin" ]] \
-&& export PATH="$HOME/Library/Python/$PYTHON_MAJOR_MINOR/bin":$PATH
+&& export PATH="$HOME/Library/Python/$PYTHON_MAJOR_MINOR/bin:$PATH"
 
 # Ruby
-[[ $OS = "Darwin" ]] \
-&& export PATH=/usr/local/Cellar/ruby/$(ls -1 /usr/local/Cellar/ruby/ \
+[[ "$OS" = "Darwin" ]] \
+&& export PATH="/usr/local/Cellar/ruby/$(ls -1 /usr/local/Cellar/ruby/ \
                                         | sort \
-                                        | tail -n 1)/bin:$PATH
+                                        | tail -n 1)/bin:$PATH"
 
 # Rubygems
 type gem > /dev/null \
-&& export PATH=$(gem env \
+&& export PATH="$(gem env \
               | grep "EXECUTABLE DIRECTORY" \
-              | awk -F ': ' '{ print $2 }'):$PATH \
-&& export PATH=$(gem env \
+              | awk -F ': ' '{ print $2 }'):$PATH" \
+&& export PATH="$(gem env \
               | grep "USER INSTALLATION DIRECTORY" \
-              | awk -F ': ' '{ print $2 }')/bin:$PATH
+              | awk -F ': ' '{ print $2 }')/bin:$PATH"
 
 # NPM
 export NPM_PACKAGES="${HOME}/.local/lib64/node_modules"
@@ -174,7 +175,7 @@ export PATH="$PATH:$NPM_PACKAGES/bin"
 export MANPATH="${MANPATH-$(manpath)}:$NPM_PACKAGES/share/man"
 
 # Wayland
-if [[ $OS = "Linux" ]]
+if [[ "$OS" = "Linux" ]]
 then
   alias sway-launch='dbus-launch --exit-with-session sway'
   if test -z "${XDG_RUNTIME_DIR}"
@@ -193,7 +194,7 @@ fi
 # ║ ZSH                                                                        ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
-export ZSH=$HOME/.oh-my-zsh
+export ZSH="$HOME/.oh-my-zsh"
 # [[ -e $ZSH ]] || \
 # ([[ "$USER" != "root" ]] && sh -c "$(curl -fsSL \
 #     https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)")
@@ -214,27 +215,27 @@ DISABLE_UNTRACKED_FILES_DIRTY="false"
 # HIST_STAMPS="mm/dd/yyyy"
 # ZSH_CUSTOM=/usr/local/opt/zplug/repos
 
-ZSH_AUTOSUGGESTIONS=${ZSH_CUSTOM:-~/.oh-my-zsh/custom}\
-/plugins/zsh-autosuggestions
+ZSH_AUTOSUGGESTIONS="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}\
+/plugins/zsh-autosuggestions"
 
 # [[ ! -d $ZSH_AUTOSUGGESTIONS ]] \
 # && type git > /dev/null \
 # && git clone https://github.com/zsh-users/zsh-autosuggestions \
-# ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+# ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 
 # [[ -d $ZSH_AUTOSUGGESTIONS && $(find "$ZSH_AUTOSUGGESTIONS/.git" \
 #   -maxdepth 0 -type d -mmin +1440 | wc -l | tr -d '[:space:]') == "0" ]] \
 # || git -C $ZSH_AUTOSUGGESTIONS pull
 
-[[ $OS = "Darwin" ]] && plugins=(tmux docker encode64 extract git git-flow \
+[[ "$OS" = "Darwin" ]] && plugins=(tmux docker encode64 extract git git-flow \
   gpg-agent history ssh-agent urltools \
   zsh-autosuggestions mosh fzf terraform taskwarrior thefuck brew macos)
-[[ $OS = "Linux" ]]  && plugins=(docker encode64 extract git git-flow \
+[[ "$OS" = "Linux" ]]  && plugins=(docker encode64 extract git git-flow \
   gpg-agent history ssh-agent urltools \
   zsh-autosuggestions mosh fzf terraform taskwarrior thefuck)
 # Disabled: gcloud, nvm, virtualenvwrapper
 
-[[ -e "$ZSH/oh-my-zsh.sh" ]] && source $ZSH/oh-my-zsh.sh
+[[ -e "$ZSH/oh-my-zsh.sh" ]] && source "$ZSH/oh-my-zsh.sh"
 
 fpath=(
   /usr/local/share/zsh-completions
@@ -302,16 +303,16 @@ alias git-crypt-add-myself="git-crypt add-gpg-user \
 4D3899AF73E7F5FE9B39C822272ED814BF63261F"
 alias gpa='git push all "$(git_current_branch)"'
 
-alias jrnl='cd ~/[Pp]rojects/@mrusme/xn--gckvb8fzb.com/content/'
-alias bookmarks='vim ~/[Pp]rojects/@mrusme/xn--gckvb8fzb.com/content/bookmarks/index.md'
-alias notes='cd ~/[Cc]loud/Notes/'
+alias jrnl='cd $HOME/[Pp]rojects/@mrusme/xn--gckvb8fzb.com/content/'
+alias bookmarks='vim $HOME/[Pp]rojects/@mrusme/xn--gckvb8fzb.com/content/bookmarks/index.md'
+alias notes='cd $HOME/[Cc]loud/Notes/'
 
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
 # ║ Bound keys                                                                 ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
-[[ $OS = "Darwin" ]] \
+[[ "$OS" = "Darwin" ]] \
 && bindkey "\e[1;3C" forward-word \
 && bindkey "\e[1;3D" backward-word
 
@@ -337,79 +338,76 @@ DOT_MOTD="$HOME/.motd"
 # ║ Poor-man's aptitude                                                        ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
-if [ $OS = "Darwin" ]
+if [ "$OS" = "Darwin" ]
 then
   function aptitude {
     if [ -z "$1" ]; then
       echo "Usage: aptitude <action> [options] ..."
     else
-      OPTION=$1
       case $1 in
-        install)     brew install ${@:2};;
-        remove)      brew uninstall ${@:2};;
-        purge)       brew uninstall ${@:2}; brew cleanup;;
-        update)      brew update ${@:2};;
-        upgrade)     brew upgrade ${@:2};;
-        safe-upgrade)brew upgrade ${@:2};;
-        full-upgrade)brew upgrade ${@:2};;
-        search)      brew search ${@:2};;
-        show)        brew info ${@:2};;
-        clean)       brew cleanup ${@:2};;
-        reinstall)   brew uninstall ${@:2}; brew cleanup; brew install ${@:2};;
+        install)     brew install "${@:2}";;
+        remove)      brew uninstall "${@:2}";;
+        purge)       brew uninstall "${@:2}"; brew cleanup;;
+        update)      brew update "${@:2}";;
+        upgrade)     brew upgrade "${@:2}";;
+        safe-upgrade)brew upgrade "${@:2}";;
+        full-upgrade)brew upgrade "${@:2}";;
+        search)      brew search "${@:2}";;
+        show)        brew info "${@:2}";;
+        clean)       brew cleanup "${@:2}";;
+        reinstall)   brew uninstall "${@:2}"; brew cleanup; brew install "${@:2}";;
         *)           echo "aptitude: '$1' - unknown action" ;;
       esac
     fi
   }
-elif [[ $OS = "Linux" && "$(uname -a | grep -i gentoo)" ]]
+elif [[ "$OS" = "Linux" && "$(uname -a | grep -i gentoo)" ]]
 then
   function aptitude {
     if [ -z "$1" ]; then
       echo "Usage: aptitude <action> [options] ..."
     else
-      OPTION=$1
       case $1 in
-        install)     emerge -av --keep-going=y ${@:2};;
-        remove)      emerge -cav ${@:2};;
-        purge)       emerge -Ccav ${@:2};;
-        update)      emerge --sync ${@:2};;
-        upgrade)     emerge --ask --update --deep --changed-use --verbose-conflicts --keep-going=y @world;;
-        safe-upgrade)emerge -avu --keep-going=y ${@:2};;
-        full-upgrade)emerge -avuND --keep-going=y --with-bdeps=y ${@:2};;
-        search)      emerge -s ${@:2};;
-        show)        equery meta ${@:2};;
-        clean)       emerge -avc ${@:2};;
-        reinstall)   emerge -ave ${@:2};;
+        install)     emerge -av --keep-going=y "${@:2}";;
+        remove)      emerge -cav "${@:2}";;
+        purge)       emerge -Ccav "${@:2}";;
+        update)      emerge --sync "${@:2}";;
+        upgrade)     emerge --ask --update --deep --changed-use --verbose-conflicts --keep-going=y "${@:2}";;
+        safe-upgrade)emerge -avu --keep-going=y "${@:2}";;
+        full-upgrade)emerge -avuND --keep-going=y --with-bdeps=y "${@:2}";;
+        search)      emerge -s "${@:2}";;
+        show)        equery meta "${@:2}";;
+        clean)       emerge -avc "${@:2}";;
+        reinstall)   emerge -ave "${@:2}";;
         *)           echo "aptitude: '$1' - unknown action" ;;
       esac
     fi
   }
-elif [[ $OS = "Linux" && "$(type pacman > /dev/null)" ]]
+elif [[ "$OS" = "Linux" && "$(type pacman > /dev/null)" ]]
 then
   function aptitude {
     if [ -z "$1" ]; then
       echo "Usage: aptitude <action> [options] ..."
     else
-      OPTION=$1
       case $1 in
-        install)     pacman -S ${@:2};;
-        remove)      pacman -R ${@:2};;
-        purge)       pacman -Rs ${@:2};;
-        update)      pacman -y -y ${@:2};;
-        upgrade)     pacman -Syu ${@:2};;
-        safe-upgrade)pacman -Syu ${@:2};;
-        full-upgrade)pacman -Syu ${@:2};;
-        search)      pacman -Ss ${@:2};;
-        show)        pacman -Si ${@:2};;
-        clean)       pacman -Scc ${@:2};;
-        reinstall)   pacman -S ${@:2};;
+        install)     pacman -S "${@:2}";;
+        remove)      pacman -R "${@:2}";;
+        purge)       pacman -Rs "${@:2}";;
+        update)      pacman -y -y "${@:2}";;
+        upgrade)     pacman -Syu "${@:2}";;
+        safe-upgrade)pacman -Syu "${@:2}";;
+        full-upgrade)pacman -Syu "${@:2}";;
+        search)      pacman -Ss "${@:2}";;
+        show)        pacman -Si "${@:2}";;
+        clean)       pacman -Scc "${@:2}";;
+        reinstall)   pacman -S "${@:2}";;
         *)           echo "aptitude: '$1' - unknown action" ;;
       esac
     fi
   }
 fi
 
-if [[ $OS = "Darwin" ]] \
-|| [[ $OS = "Linux" && "$(uname -a | grep -i gentoo)" ]] \
+if [[ "$OS" = "Darwin" ]] \
+|| [[ "$OS" = "Linux" && "$(uname -a | grep -i gentoo)" ]] \
 || type pacman > /dev/null
 then
   _aptitude()
@@ -450,7 +448,7 @@ function openssl-client () {
 # (used by nginx, Apache, and other openssl apps) to a PKCS12 file
 # (typically for use with Windows or Tomcat)
 function openssl-convert-pem-to-p12 () {
-    openssl pkcs12 -export -inkey "${1}" -in "${2}" -certfile ${3} -out ${4}
+    openssl pkcs12 -export -inkey "${1}" -in "${2}" -certfile "${3}" -out "${4}"
 }
 
 # Convert a PKCS12 file to PEM
@@ -509,7 +507,7 @@ __pushover_opt_field() {
   field=$1
   shift
   value="${*}"
-  if [ ! -z "${value}" ]; then
+  if [ -n "${value}" ]; then
     echo "-F \"${field}=${value}\""
   fi
 }
@@ -535,7 +533,7 @@ __pushover_send_message() {
     \"${PUSHOVER_URL}\""
 
   response="$(eval "${curl_cmd}")"
-  echo $response
+  echo "$response"
   # TODO: Parse response
   r="${?}"
   if [ "${r}" -ne 0 ]; then
@@ -616,7 +614,7 @@ function pushover() {
     return 1
   fi
 
-  devices="$(echo ${devices} | xargs -n1 | sort -u | uniq)"
+  devices="$(echo "${devices}" | xargs -n1 | sort -u | uniq)"
 
   if [ -z "${devices}" ]; then
     __pushover_send_message
@@ -638,36 +636,36 @@ function pushover() {
 # ║ dotfiles-update-remote                                                     ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
-[[ $OS = "Darwin" ]] \
+[[ "$OS" = "Darwin" ]] \
 && export DOTFILES="$HOME/Projects/@mrusme/dotfiles"
-[[ $OS = "Linux" ]] \
+[[ "$OS" = "Linux" ]] \
 && export DOTFILES="$HOME/projects/@mrusme/dotfiles"
 
-[[ $OS = "Darwin" ]] \
-&& subldir=~/Library/Application\ Support/Sublime\ Text\ 3
-[[ $OS = "Linux" ]] \
+[[ "$OS" = "Darwin" ]] \
+&& subldir=$HOME/Library/Application\ Support/Sublime\ Text\ 3
+[[ "$OS" = "Linux" ]] \
 && subldir=$XDG_CONFIG_HOME/sublime-text
 
 function dotfiles-update-remote() {
-  cp ~/.zshrc "$DOTFILES/.zshrc"
-  cp ~/.taskrc "$DOTFILES/.taskrc"
-  cp ~/.tmux.conf "$DOTFILES/.tmux.conf"
-  cp ~/.tmux.cheatsheet "$DOTFILES/.tmux.cheatsheet"
-  cp ~/.motd "$DOTFILES/.motd"
-  cp ~/.gitconfig "$DOTFILES/.gitconfig"
+  cp "$HOME/.zshrc" "$DOTFILES/.zshrc"
+  cp "$HOME/.taskrc" "$DOTFILES/.taskrc"
+  cp "$HOME/.tmux.conf" "$DOTFILES/.tmux.conf"
+  cp "$HOME/.tmux.cheatsheet" "$DOTFILES/.tmux.cheatsheet"
+  cp "$HOME/.motd" "$DOTFILES/.motd"
+  cp "$HOME/.gitconfig" "$DOTFILES/.gitconfig"
 
-  cp $XDG_CONFIG_HOME/alacritty/alacritty.yml\
+  cp "$XDG_CONFIG_HOME/alacritty/alacritty.yml"\
      "$DOTFILES/alacritty/alacritty.yml"
 
-  cp $XDG_CONFIG_HOME/neomutt/neomuttrc "$DOTFILES/neomutt/neomuttrc"
-  cp $XDG_CONFIG_HOME/neomutt/accounts/* "$DOTFILES/neomutt/accounts/"
+  cp "$XDG_CONFIG_HOME/neomutt/neomuttrc" "$DOTFILES/neomutt/neomuttrc"
+  cp "$XDG_CONFIG_HOME/neomutt/accounts/"* "$DOTFILES/neomutt/accounts/"
 
-  cp $XDG_CONFIG_HOME/nvim/init.vim "$DOTFILES/nvim/init.vim"
-  cp $XDG_CONFIG_HOME/nvim/colors/*.vim "$DOTFILES/nvim/colors/"
-  cp $XDG_CONFIG_HOME/nvim/autoload/lightline/colorscheme/*.vim\
+  cp "$XDG_CONFIG_HOME/nvim/init.vim" "$DOTFILES/nvim/init.vim"
+  cp "$XDG_CONFIG_HOME/nvim/colors/"*.vim "$DOTFILES/nvim/colors/"
+  cp "$XDG_CONFIG_HOME/nvim/autoload/lightline/colorscheme/"*.vim\
     "$DOTFILES/nvim/autoload/lightline/colorscheme/"
 
-  cp $XDG_CONFIG_HOME/wtf/config.yml "$DOTFILES/wtf/config.yml"
+  cp "$XDG_CONFIG_HOME/wtf/config.yml" "$DOTFILES/wtf/config.yml"
 
   # Phasing out Sublime Text as I'm not using it anymore
   #
@@ -680,33 +678,33 @@ function dotfiles-update-remote() {
   # cp $subldir/Packages/User/vap0r-*.tmTheme\
   #   "$DOTFILES/st3/"
 
-  if [ $OS = "Darwin" ]
+  if [ "$OS" = "Darwin" ]
   then
     brew ls --formula -1 --full-name > "$DOTFILES/brew/ls_-1"
     brew ls --cask -1 --full-name > "$DOTFILES/brew/cask_ls_-1"
   fi
-  if [ $OS = "Linux" ]
+  if [ "$OS" = "Linux" ]
   then
     /usr/bin/find /usr/local/bin -type f -exec sh -c '
       case $( file -bi "$1" ) in (*/x-shellscript*) exit 0; esac
-      exit 1' sh {} \; -print | while read scriptfile
+      exit 1' sh {} \; -print | while read -r scriptfile
       do
         cp "$scriptfile" "$DOTFILES/usr/local/bin/"
       done
 
-    cp $XDG_CONFIG_HOME/dunst/dunstrc "$DOTFILES/dunst/dunstrc"
+    cp "$XDG_CONFIG_HOME/dunst/dunstrc" "$DOTFILES/dunst/dunstrc"
 
-    cp $XDG_CONFIG_HOME/mpd/mpd.conf "$DOTFILES/mpd/mpd.conf"
+    cp "$XDG_CONFIG_HOME/mpd/mpd.conf" "$DOTFILES/mpd/mpd.conf"
 
-    cp $XDG_CONFIG_HOME/ncmpcpp/config "$DOTFILES/ncmpcpp/config"
+    cp "$XDG_CONFIG_HOME/ncmpcpp/config" "$DOTFILES/ncmpcpp/config"
 
-    cp $XDG_CONFIG_HOME/sway/config "$DOTFILES/sway/config"
+    cp "$XDG_CONFIG_HOME/sway/config" "$DOTFILES/sway/config"
 
-    cp $XDG_CONFIG_HOME/swaylock/config "$DOTFILES/swaylock/config"
+    cp "$XDG_CONFIG_HOME/swaylock/config" "$DOTFILES/swaylock/config"
 
-    cp $XDG_CONFIG_HOME/waybar/* "$DOTFILES/waybar/"
+    cp "$XDG_CONFIG_HOME/waybar/"* "$DOTFILES/waybar/"
 
-    cp $XDG_CONFIG_HOME/wofi/* "$DOTFILES/wofi/"
+    cp "$XDG_CONFIG_HOME/wofi/"* "$DOTFILES/wofi/"
   fi
 
   cargo install --list > "$DOTFILES/cargo/install_--list"
@@ -718,33 +716,33 @@ function dotfiles-update-remote() {
 
 function dotfiles-update-local() {
   echo -n "are you sure? (y/n) "
-  read confirmation
+  read -r confirmation
 
   [[ $confirmation != "y" ]] && return 1
 
-  cp "$DOTFILES/.zshrc" ~/.zshrc
-  cp "$DOTFILES/.taskrc" ~/.taskrc
-  cp "$DOTFILES/.tmux.conf" ~/.tmux.conf
-  cp "$DOTFILES/.tmux.cheatsheet" ~/.tmux.cheatsheet
-  cp "$DOTFILES/.motd" ~/.motd
-  cp "$DOTFILES/.gitconfig" ~/.gitconfig
+  cp "$DOTFILES/.zshrc" "$HOME/.zshrc"
+  cp "$DOTFILES/.taskrc" "$HOME/.taskrc"
+  cp "$DOTFILES/.tmux.conf" "$HOME/.tmux.conf"
+  cp "$DOTFILES/.tmux.cheatsheet" "$HOME/.tmux.cheatsheet"
+  cp "$DOTFILES/.motd" "$HOME/.motd"
+  cp "$DOTFILES/.gitconfig" "$HOME/.gitconfig"
 
-  mkdir -p $XDG_CONFIG_HOME/alacritty
+  mkdir -p "$XDG_CONFIG_HOME/alacritty"
   cp "$DOTFILES/alacritty/alacritty.yml"\
-     $XDG_CONFIG_HOME/alacritty/alacritty.yml
+     "$XDG_CONFIG_HOME/alacritty/alacritty.yml"
 
-  mkdir -p $XDG_CONFIG_HOME/neomutt/accounts
-  cp "$DOTFILES/neomutt/neomuttrc" $XDG_CONFIG_HOME/neomutt/neomuttrc
+  mkdir -p "$XDG_CONFIG_HOME/neomutt/accounts"
+  cp "$DOTFILES/neomutt/neomuttrc" "$XDG_CONFIG_HOME/neomutt/neomuttrc"
 
-  mkdir -p $XDG_CONFIG_HOME/nvim/colors
-  mkdir -p $XDG_CONFIG_HOME/nvim/autoload/lightline/colorscheme
-  cp "$DOTFILES/nvim/init.vim" $XDG_CONFIG_HOME/nvim/init.vim
-  cp "$DOTFILES/nvim/colors/"*.vim $XDG_CONFIG_HOME/nvim/colors/
+  mkdir -p "$XDG_CONFIG_HOME/nvim/colors"
+  mkdir -p "$XDG_CONFIG_HOME/nvim/autoload/lightline/colorscheme"
+  cp "$DOTFILES/nvim/init.vim" "$XDG_CONFIG_HOME/nvim/init.vim"
+  cp "$DOTFILES/nvim/colors/"*.vim "$XDG_CONFIG_HOME/nvim/colors/"
   cp "$DOTFILES/nvim/autoload/lightline/colorscheme/"*.vim\
-     $XDG_CONFIG_HOME/nvim/autoload/lightline/colorscheme/
+     "$XDG_CONFIG_HOME/nvim/autoload/lightline/colorscheme/"
 
-  mkdir -p $XDG_CONFIG_HOME/wtf
-  cp "$DOTFILES/wtf/config.yml" $XDG_CONFIG_HOME/wtf/config.yml
+  mkdir -p "$XDG_CONFIG_HOME/wtf"
+  cp "$DOTFILES/wtf/config.yml" "$XDG_CONFIG_HOME/wtf/config.yml"
 
   # Phasing out Sublime Text as I'm not using it anymore
   #
@@ -757,30 +755,30 @@ function dotfiles-update-local() {
   # cp "$DOTFILES/st3/vap0r-*.tmTheme"
   #    $subldir/Packages/User/
 
-  if [ $OS = "Linux" ]
+  if [ "$OS" = "Linux" ]
   then
     cp "$DOTFILES/usr/local/bin/"* /usr/local/bin/
 
-    mkdir -p $XDG_CONFIG_HOME/dunst
-    cp "$DOTFILES/dunst/dunstrc" $XDG_CONFIG_HOME/dunst/dunstrc
+    mkdir -p "$XDG_CONFIG_HOME/dunst" 
+    cp "$DOTFILES/dunst/dunstrc" "$XDG_CONFIG_HOME/dunst/dunstrc" 
 
-    mkdir -p $XDG_CONFIG_HOME/mpd
-    cp "$DOTFILES/mpd/mpd.conf" $XDG_CONFIG_HOME/mpd/mpd.conf
+    mkdir -p "$XDG_CONFIG_HOME/mpd" 
+    cp "$DOTFILES/mpd/mpd.conf" "$XDG_CONFIG_HOME/mpd/mpd.conf" 
 
-    mkdir -p $XDG_CONFIG_HOME/ncmpcpp
-    cp "$DOTFILES/ncmpcpp/config" $XDG_CONFIG_HOME/ncmpcpp/config
+    mkdir -p "$XDG_CONFIG_HOME/ncmpcpp" 
+    cp "$DOTFILES/ncmpcpp/config" "$XDG_CONFIG_HOME/ncmpcpp/config" 
 
-    mkdir -p $XDG_CONFIG_HOME/sway
-    cp "$DOTFILES/sway/config" $XDG_CONFIG_HOME/sway/config
+    mkdir -p "$XDG_CONFIG_HOME/sway" 
+    cp "$DOTFILES/sway/config" "$XDG_CONFIG_HOME/sway/config" 
 
-    mkdir -p $XDG_CONFIG_HOME/swaylock
-    cp "$DOTFILES/swaylock/config" $XDG_CONFIG_HOME/swaylock/config
+    mkdir -p "$XDG_CONFIG_HOME/swaylock" 
+    cp "$DOTFILES/swaylock/config" "$XDG_CONFIG_HOME/swaylock/config" 
 
-    mkdir -p $XDG_CONFIG_HOME/waybar
-    cp "$DOTFILES/waybar/"* $XDG_CONFIG_HOME/waybar/
+    mkdir -p "$XDG_CONFIG_HOME/waybar" 
+    cp "$DOTFILES/waybar/"* "$XDG_CONFIG_HOME/waybar/" 
 
-    mkdir -p $XDG_CONFIG_HOME/wofi
-    cp "$DOTFILES/wofi/"* $XDG_CONFIG_HOME/wofi/
+    mkdir -p "$XDG_CONFIG_HOME/wofi" 
+    cp "$DOTFILES/wofi/"* "$XDG_CONFIG_HOME/wofi/" 
   fi
   return 0
 }
@@ -812,9 +810,9 @@ function update-tools() {
 function terminal-colors() {
   if [[ $1 == "dark" ]]
   then
-    sed -i .previous 's/\*light$/\*dark/g' $XDG_CONFIG_HOME/alacritty/alacritty.yml
+    sed -i .previous 's/\*light$/\*dark/g' "$XDG_CONFIG_HOME/alacritty/alacritty.yml"
   else
-    sed -i .previous 's/\*dark$/\*light/g' $XDG_CONFIG_HOME/alacritty/alacritty.yml
+    sed -i .previous 's/\*dark$/\*light/g' "$XDG_CONFIG_HOME/alacritty/alacritty.yml"
   fi
 }
 
@@ -829,9 +827,9 @@ function git-add-all-remote() {
     echo "Remote 'all' already exists!"
     return 1
   else
-    git remote | while read remote
+    git remote | while read -r remote
     do
-      git config --add remote.all.url $(git remote get-url --all "$remote")
+      git config --add remote.all.url "$(git remote get-url --all $remote)"
       echo "Remote $remote added to 'all'"
     done
     return 0
@@ -844,13 +842,13 @@ function git-add-all-remote() {
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
 function git-find-modified-repos() {
-  find ./ -type d -name '.git' | while read dir
+  find ./ -type d -name '.git' | while read -r dir
   do 
     repo=$(dirname "$dir")
     repostatus=$(git -C "$repo" status -s)
     if [[ -n "$repostatus" ]]
     then 
-      echo $repo
+      echo "$repo"
     fi 
   done
 }
@@ -865,7 +863,7 @@ export WIKIPEDIA_METASTORE_URI="file:///home/mrus/projects/@mrusme/ulpia/wikiped
 export DISABLE_QUICKWIT_TELEMETRY=1
 
 function wikipedia() {
-  search="$@"
+  search="$*"
   query="title:\"$search\""
   json=$(quickwit index search \
     --index-id "$WIKIPEDIA_INDEX_ID" \
@@ -877,7 +875,7 @@ function wikipedia() {
   if [[ $numHits == 0 ]]
   then
     echo "Nothing found, sorry."
-    exit 1
+    return 1
   fi
 
   selection=$(printf '%s' "$json" \
@@ -894,10 +892,10 @@ function wikipedia() {
 
   if [[ $? == 130 ]]
   then
-    exit 2
+    return 2
   fi
 
-  index=$(echo $selection \
+  index=$(echo "$selection" \
     | awk '{ print $1-1 }' \
   )
 
@@ -913,7 +911,7 @@ function wikipedia() {
           | glow - -p 
   else
     echo "Err?"
-    exit 3
+    return 3
   fi
 }
 
