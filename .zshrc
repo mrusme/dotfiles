@@ -857,6 +857,134 @@ function git-find-modified-repos() {
 
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ Offline Wikipedia (https://xn--gckvb8fzb.com/lets-take-wikipedia-offline)  ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+
+export WIKIPEDIA_INDEX_ID="wikipedia"
+export WIKIPEDIA_METASTORE_URI="file:///home/mrus/projects/@mrusme/ulpia/wikipedia"
+
+function wikipedia() {
+  search="$@"
+  query="title:\"$search\""
+  json=$(quickwit index search \
+    --index-id "$WIKIPEDIA_INDEX_ID" \
+    --metastore-uri "$WIKIPEDIA_METASTORE_URI" \
+    --query "$query" \
+  )
+
+  numHits=$(printf '%s' "$json" | jq '.numHits')
+  if [[ $numHits == 0 ]]
+  then
+    echo "Nothing found, sorry."
+    exit 1
+  fi
+
+  selection=$(printf '%s' "$json" \
+    | jq \
+      --raw-output \
+      '.hits[].title[0]' \
+    | /bin/cat -n \
+    | fzf \
+      --no-multi \
+      -0 \
+      -q "$search" \
+      --with-nth 2.. \
+  )
+
+  if [[ $? == 130 ]]
+  then
+    exit 2
+  fi
+
+  index=$(echo $selection \
+    | awk '{ print $1-1 }' \
+  )
+
+  if [[ -n "$index" ]]
+  then
+    printf '%s' "$json" \
+      | jq \
+        --raw-output \
+        ".hits[$index].section_texts | join(\"\n\n\n\")" \
+        | pandoc \
+          -f mediawiki \
+          -t markdown_strict \
+          | glow - -p 
+  else
+    echo "Err?"
+    exit 3
+  fi
+}
+
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ Math functions                                                             ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+
+function calc-x-percent-of-y() {
+  eva "($1 / 100) * $2" | tr -d ' '
+}
+
+function calc-percentage-x-of-y() {
+  eva "($1 / $2) * 100" | tr -d ' '
+}
+
+function calc-percentage-change-x-to-y() {
+  eva "(($2 - $1) / $1) * 100" | tr -d ' '
+}
+
+function convert-fahrenheit-to-celsius() {
+  eva "($1 - 32) * (5/9)" | tr -d ' '
+}
+
+function convert-celsius-to-fahrenheit() {
+  eva "($1 * (9/5)) + 32" | tr -d ' '
+}
+
+function convert-in-to-cm() {
+  eva "$1 * 2.54" | tr -d ' '
+}
+
+function convert-cm-to-in() {
+  eva "$1 / 2.54" | tr -d ' '
+}
+
+function convert-ft-to-cm() {
+  eva "$1 * 30.48" | tr -d ' '
+}
+
+function convert-cm-to-ft() {
+  eva "$1 / 30.48" | tr -d ' '
+}
+
+function convert-ft-in-to-m() {
+  eva "$1 * 30.48 + $2 * 2.54" | tr -d ' '
+}
+
+function convert-cm-to-ft-in() {
+  ft=$(eva "floor($1 / 2.54) / 12" | tr -d ' ')
+  in=$(eva "($1 / 2.54) - 12 * $ft" | tr -d ' ')
+  echo "$ft ft $in in"
+}
+
+function convert-kn-to-kmh() {
+  eva "$1 * 1.852" | tr -d ' '
+}
+
+function convert-kmh-to-kn() {
+  eva "$1 / 1.852" | tr -d ' '
+}
+
+function convert-mph-to-kmh() {
+  eva "$1 * 1.609344" | tr -d ' '
+}
+
+function convert-kmh-to-mph() {
+  eva "$1 / 1.609344" | tr -d ' '
+}
+
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
 # ║ Stuff other programs dare to append goes here                              ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
 #
