@@ -739,8 +739,8 @@ function dotfiles-update-local() {
   mkdir -p $XDG_CONFIG_HOME/nvim/colors
   mkdir -p $XDG_CONFIG_HOME/nvim/autoload/lightline/colorscheme
   cp "$DOTFILES/nvim/init.vim" $XDG_CONFIG_HOME/nvim/init.vim
-  cp "$DOTFILES/nvim/colors/*.vim" $XDG_CONFIG_HOME/nvim/colors/
-  cp "$DOTFILES/nvim/autoload/lightline/colorscheme/*.vim"\
+  cp "$DOTFILES/nvim/colors/"*.vim $XDG_CONFIG_HOME/nvim/colors/
+  cp "$DOTFILES/nvim/autoload/lightline/colorscheme/"*.vim\
      $XDG_CONFIG_HOME/nvim/autoload/lightline/colorscheme/
 
   mkdir -p $XDG_CONFIG_HOME/wtf
@@ -759,7 +759,7 @@ function dotfiles-update-local() {
 
   if [ $OS = "Linux" ]
   then
-    cp "$DOTFILES/usr/local/bin/*" /usr/local/bin/
+    cp "$DOTFILES/usr/local/bin/"* /usr/local/bin/
 
     mkdir -p $XDG_CONFIG_HOME/dunst
     cp "$DOTFILES/dunst/dunstrc" $XDG_CONFIG_HOME/dunst/dunstrc
@@ -777,10 +777,10 @@ function dotfiles-update-local() {
     cp "$DOTFILES/swaylock/config" $XDG_CONFIG_HOME/swaylock/config
 
     mkdir -p $XDG_CONFIG_HOME/waybar
-    cp "$DOTFILES/waybar/*" $XDG_CONFIG_HOME/waybar/
+    cp "$DOTFILES/waybar/"* $XDG_CONFIG_HOME/waybar/
 
     mkdir -p $XDG_CONFIG_HOME/wofi
-    cp "$DOTFILES/wofi/*" $XDG_CONFIG_HOME/wofi/
+    cp "$DOTFILES/wofi/"* $XDG_CONFIG_HOME/wofi/
   fi
   return 0
 }
