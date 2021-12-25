@@ -85,6 +85,13 @@ input "4815:3077:Mad_Catz_Global_MADCATZ_R.A.T._8+_gaming_mouse" {
   #accel_profile adaptive
 }
 
+input "1133:50475:Logitech_USB_Receiver_Mouse" {
+  natural_scroll enabled
+  pointer_accel 0
+  #accel_profile adaptive
+}
+
+
 # Start a terminal
 bindsym $mod+Return exec $term
 
@@ -184,6 +191,9 @@ bindsym $mod+Alt+Right workspace next
 
 bindsym $mod+bracketleft workspace prev
 bindsym $mod+bracketright workspace next
+
+bindcode --whole-window 275 workspace prev
+bindcode --whole-window 276 workspace next
 
 # $mod+b or $mod+v, for horizontal and vertical splits
 bindsym $mod+equal splith
