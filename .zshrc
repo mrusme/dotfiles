@@ -371,9 +371,9 @@ then
         remove)      emerge -cav "${@:2}";;
         purge)       emerge -Ccav "${@:2}";;
         update)      emerge --sync "${@:2}";;
-        upgrade)     emerge --ask --update --deep --changed-use --verbose-conflicts --keep-going=y "${@:2}";;
-        safe-upgrade)emerge -avu --keep-going=y "${@:2}";;
-        full-upgrade)emerge -avuND --keep-going=y --with-bdeps=y "${@:2}";;
+        upgrade)     emerge --ask --update --deep --changed-use --verbose-conflicts --keep-going=y "${@[2]:-@world}";;
+        safe-upgrade)emerge -avu --keep-going=y "${@[2]:-@world}";;
+        full-upgrade)emerge -avuND --keep-going=y --with-bdeps=y "${@[2]:-@world}";;
         search)      emerge -s "${@:2}";;
         show)        equery meta "${@:2}";;
         clean)       emerge -avc "${@:2}";;
@@ -810,9 +810,9 @@ function update-tools() {
 function terminal-colors() {
   if [[ $1 == "dark" ]]
   then
-    sed -i .previous 's/\*light$/\*dark/g' "$XDG_CONFIG_HOME/alacritty/alacritty.yml"
+    sed -i=.previous 's/\*light$/\*dark/g' "$XDG_CONFIG_HOME/alacritty/alacritty.yml"
   else
-    sed -i .previous 's/\*dark$/\*light/g' "$XDG_CONFIG_HOME/alacritty/alacritty.yml"
+    sed -i=.previous 's/\*dark$/\*light/g' "$XDG_CONFIG_HOME/alacritty/alacritty.yml"
   fi
 }
 
