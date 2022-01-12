@@ -240,6 +240,7 @@ mode "resize" {
   bindsym Right resize grow width 10px
 
   bindsym 8 resize set width 740px
+  bindsym 0 resize set width 1024px height 768px
 
   # Return to default mode
   bindsym Return mode "default"
