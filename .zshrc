@@ -187,6 +187,7 @@ then
       chmod 0700 "${XDG_RUNTIME_DIR}"
     fi
   fi
+  export GTK2_RC_FILES="$HOME/.themes/Kripton/gtk-2.0/gtkrc"
 fi
 
 
@@ -258,8 +259,11 @@ alias re='cd -'
 alias cat=bat
 
 type exa > /dev/null \
-&& unalias ls &> /dev/null \
-&& alias ls='exa --time-style=long-iso --git --icons -lg'
+&& unalias ls la ll l lsa &> /dev/null \
+&& alias ls='exa --time-style=long-iso --git --icons --binary -lg' \
+&& alias la='exa --time-style=long-iso --git --icons --binary -la' \
+&& alias ll='exa --time-style=long-iso --git --icons --octal-permissions --binary --changed -lahHgnuU' \
+&& alias l='exa --time-style=long-iso --git --icons --binary -l --no-time'
 
 type btm > /dev/null \
 && alias top='btm'
