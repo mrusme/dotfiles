@@ -8,7 +8,7 @@
 }
 
 window#waybar {
-  background-color: rgba(0,0,0,0);
+  background-color: rgba(4,6,6,0);
   border-bottom: none;
   color: #eeeeee;
   transition-property: background-color;
@@ -29,7 +29,7 @@ label#window {
 
 #workspaces button {
   padding: 0 10px;
-  background-color: rgba(27, 27, 28, 0.92);
+  background-color: rgba(4, 6, 6, 0.92);
   color: #282828;
   border-radius:  0px;
 }
@@ -59,7 +59,7 @@ label#window {
 
 .modules-right > widget > label {
   color: #eeeeee;
-  background-color: rgba(27, 27, 28, 0.92);
+  background-color: rgba(4, 6, 6, 0.92);
   padding: 0 14px;
   margin: 0 0px;
   color: #ffffff;

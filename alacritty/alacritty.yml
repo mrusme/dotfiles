@@ -150,7 +150,55 @@ schemes:
       magenta: '#CC6EAD'
       cyan: '#4A829A'
       white: '#8a8a90'
-colors: *dark
+  grayscale-light: &grayscale-light
+    primary:
+      background: '0xf7f7f7'
+      foreground: '0x464646'
+    normal:
+      black:   '0x101010'
+      red:     '0x7c7c7c'
+      green:   '0x8e8e8e'
+      yellow:  '0xa0a0a0'
+      blue:    '0x686868'
+      magenta: '0x747474'
+      cyan:    '0x868686'
+      white:   '0xb9b9b9'
+    bright:
+      black:   '0x525252'
+      red:     '0x7c7c7c'
+      green:   '0x8e8e8e'
+      yellow:  '0xa0a0a0'
+      blue:    '0x686868'
+      magenta: '0x747474'
+      cyan:    '0x868686'
+      white:   '0xf7f7f7'
+  retro: &retro
+    primary:
+      background: '0x040606'
+      foreground: '0xbde7e5'
+
+    # Normal colors
+    normal:
+      black:   '0x0c0707'
+      red:     '0xf2777a'
+      green:   '0x99cc99'
+      yellow:  '0xffcc66'
+      blue:    '0x6699cc'
+      magenta: '0xcc99cc'
+      cyan:    '0x66cccc'
+      white:   '0xd3d0c8'
+
+    # Bright colors
+    bright:
+      black:   '0x747369'
+      red:     '0xf2777a'
+      green:   '0x99cc99'
+      yellow:  '0xffcc66'
+      blue:    '0x6699cc'
+      magenta: '0xcc99cc'
+      cyan:    '0x66cccc'
+      white:   '0xf2f0ec'
+colors: *retro
 bell:
   animation: Linear
   duration: 0
