@@ -4,12 +4,12 @@ battop v0.2.4:
     battop
 bingrep v0.9.0:
     bingrep
-bottom v0.6.4:
+bottom v0.6.8:
     btm
 cargo-update v8.1.2:
     cargo-install-update
     cargo-install-update-config
-code-minimap v0.6.1:
+code-minimap v0.6.4:
     code-minimap
 csview v0.3.6:
     csview
@@ -21,36 +21,38 @@ du-dust v0.7.0:
     dust
 eva v0.2.7:
     eva
-gfold v2.0.2:
+gfold v3.0.0:
     gfold
 git-delta v0.11.3:
     delta
 git-journal v1.8.1:
     git-journal
-gitui v0.19.0:
+gitui v0.20.1:
     gitui
 gpg-tui v0.8.2:
     gpg-tui
     gpg-tui-completions
-gping v1.2.6:
+gping v1.2.7:
     gping
 hexyl v0.9.0:
     hexyl
+htmlq v0.4.0:
+    htmlq
 hyperfine v1.12.0:
     hyperfine
 imager v0.3.2:
     imager
-jwt-cli v5.0.0:
+jwt-cli v5.0.2:
     jwt
 kmon v1.6.0:
     kmon
-mdcat v0.24.2:
+mdcat v0.25.1:
     mdcat
 pastel v0.8.1:
     pastel
-pipe-rename v1.4.1:
+pipe-rename v1.4.2:
     renamer
-procs v0.11.12:
+procs v0.12.1:
     procs
 rates v0.5.0:
     rates
@@ -64,7 +66,7 @@ so v0.4.5:
     so
 taskwarrior-tui v0.13.24 (/home/mrus/projects/github/taskwarrior-tui):
     taskwarrior-tui
-tealdeer v1.4.1:
+tealdeer v1.5.0:
     tldr
 tickers v0.1.0:
     tickers
@@ -72,13 +74,13 @@ tickrs v0.14.4:
     tickrs
 tre-command v0.3.6:
     tre
-viu v1.3.0:
+viu v1.4.0:
     viu
 vocage v1.1.0:
     vocage
 websocat v1.9.0:
     websocat
-xplr v0.17.0:
+xplr v0.17.2:
     xplr
 zenith v0.0.2:
     zenith
