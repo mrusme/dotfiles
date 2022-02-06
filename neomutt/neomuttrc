@@ -197,7 +197,7 @@ set pager_index_lines = 10
 set pager_stop = yes
 # set sleep_time = '1'
 set tilde = yes
-# set wait_key = yes
+set wait_key = no
 # set write_inc = '10'
 
 
@@ -676,4 +676,8 @@ bind index,pager \Cp sidebar-prev
 bind index,pager \Cn sidebar-next
 bind index,pager \Co sidebar-open
 
+startup-hook 'echo `proton-bridge &> /dev/null &`'
+shutdown-hook 'echo `killall -s SIGQUIT proton-bridge`'
+
 macro index,pager \Cr "!mbsync -a^M" "Update through mbsync"
+

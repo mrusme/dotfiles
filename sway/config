@@ -306,7 +306,4 @@ bar {
   swaybar_command waybar
 }
 
-exec proton-bridge
-# exec /usr/local/bin/offlineimap
-
 include /etc/sway/config.d/*
