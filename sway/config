@@ -27,29 +27,35 @@ set $term alacritty
 set $menu wofi --show run
 
 set {
+  $red         #B4140F
 	$pink        #FC9EDF
 	$white		   #ffffff
 	$cyan		     #75d5ff
 	$magenta	   #ff89d8
 	$orange		   #CCAA60
 	$silver		   #e4e4e4
-	$dark      	 #18181E
+	$dark      	 #040606
 	$transparent #FF000000
 }
 
 #                         border   backgrnd text    indic    chld
-client.focused        	 	$cyan	   $cyan    $dark   $white   $white
-client.unfocused        	$dark	   $dark    $cyan   $dark    $dark
-client.focused_inactive 	$dark    $dark    $cyan   $dark    $dark
+client.focused        	 	$red	   $red     $white  $red     $red
+client.unfocused        	$dark    $dark    $red    $dark    $dark
+client.focused_inactive 	$dark    $dark    $red    $dark    $dark
 client.urgent	          	$magenta $magenta $dark   $magenta $magenta
 client.placeholder	      $dark    $dark    $white  $white   $dark
 
-font pango: FiraCode Nerd Font
+font pango: ProggyVector 10
 
 default_border pixel 2
+titlebar_border_thickness 2
+
 smart_gaps off
+smart_borders off
+
 gaps inner 12
 gaps outer 2
+
 hide_edge_borders none
 
 focus_follows_mouse no

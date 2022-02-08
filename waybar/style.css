@@ -1,9 +1,9 @@
 * {
   border: none;
   border-radius: 0;
-  font-family: Fira Code Nerd Font;
-  font-size: 14px;
-  min-height: 0;
+  font-family: 'ProggyVector', 'Fira Code Nerd Font';
+  font-size: 12px;
+  min-height: 36px;
   margin: 0 0px;
 }
 
