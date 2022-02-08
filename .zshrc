@@ -798,11 +798,10 @@ function update-tools() {
 
   echo ""
 
-  #echo "Updating Go tools ..."
-  #go list '...' | rg '^github.com' | while read pkg;\
-  #do echo "Updating $pkg ..."; go get -u "$pkg"; done
+  echo "Updating Go tools ..."
+  /bin/ls -1 ~/.go/bin/ | while read bin; do go version -m ~/.go/bin/$bin | grep '^[[:space:]]mod' | awk '{ print $2 }' | grep '^github.com' | sort | uniq | xargs -I{} go install {}@latest; done
 
-  #echo ""
+  echo ""
   echo "Tools updated"
 }
 
