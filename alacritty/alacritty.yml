@@ -172,33 +172,49 @@ schemes:
       magenta: '0x747474'
       cyan:    '0x868686'
       white:   '0xf7f7f7'
-  retro: &retro
+  neutral: &neutral
     primary:
       background: '0x040606'
       foreground: '0xbde7e5'
-
+    cursor:
+      text: '#ffffff'
+      cursor: '#bb2626'
+    selection:
+      text: '#000000'
+      background: '#65cde0'
+    search:
+      matches:
+       foreground: '#000000'
+       background: '#5da3c0'
+      focused_match:
+       foreground: '#cfcfd8'
+       background: '#ff7d78'
+      bar:
+       background: '#454548'
+       foreground: '#799eff'
+ 
     # Normal colors
     normal:
       black:   '0x0c0707'
       red:     '0xf2777a'
-      green:   '0x99cc99'
-      yellow:  '0xffcc66'
-      blue:    '0x6699cc'
-      magenta: '0xcc99cc'
-      cyan:    '0x66cccc'
+      green:   '0xa5a5a5'
+      yellow:  '0x63a3bf'
+      blue:    '0x57666e'
+      magenta: '0x852d2d'
+      cyan:    '0x75d5ff'
       white:   '0xd3d0c8'
 
     # Bright colors
     bright:
-      black:   '0x747369'
+      black:   '0x73848b'
       red:     '0xf2777a'
-      green:   '0x99cc99'
-      yellow:  '0xffcc66'
-      blue:    '0x6699cc'
-      magenta: '0xcc99cc'
-      cyan:    '0x66cccc'
-      white:   '0xf2f0ec'
-colors: *retro
+      green:   '0xa5a5a5'
+      yellow:  '0x63a3bf'
+      blue:    '0x57666e'
+      magenta: '0x852d2d'
+      cyan:    '0x75d5ff'
+      white:   '0xcfcfd8'
+colors: *neutral
 bell:
   animation: Linear
   duration: 0

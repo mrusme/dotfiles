@@ -275,7 +275,7 @@ if (has('nvim'))
 endif
 set t_Co=256
 
-colorscheme vap0r
+colorscheme neutral
 
 let g:indentLine_enabled = 1
 let g:indentLine_char = '⋮'
@@ -305,7 +305,7 @@ let g:neovide_keyboard_layout="qwerty"
 " ╚════════════════════════════════════════════════════════════════════════════╝
 
 let g:lightline = { 
-  \ 'colorscheme': 'vap0r', 
+  \ 'colorscheme': 'neutral', 
   \ 'active': {
   \   'right': [ [ 'lineinfo' ], [ 'percent' ], [ 'indent', 'fileformat', 'fileencoding', 'filetype' ] ]
   \ },
