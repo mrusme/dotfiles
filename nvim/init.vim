@@ -653,3 +653,16 @@ au FileType go map <C-b> <Plug>(go-build)
 
 let g:typescript_indent_disable = 1
 
+
+" ╔════════════════════════════════════════════════════════════════════════════╗
+" ║ Reader                                                                     ║
+" ╚════════════════════════════════════════════════════════════════════════════╝
+
+function s:vertopen_url()
+  normal! "uyiW
+  let mycommand = "reader " . @u
+  execute "vertical terminal " . mycommand
+endfunction
+noremap <Plug>vertopen_url : call <SID>vertopen_url()<CR>
+nmap gx <Plug>vertopen_url
+
