@@ -663,6 +663,8 @@ color body          magenta             default         "([a-z][a-z0-9+-]*://(((
 # Macros
 macro index,pager <f1> '<sync-mailbox><enter-command>source ~/.config/neomutt/accounts/01<enter><change-folder>!<enter>;<check-stats>'
 macro index,pager <f2> '<sync-mailbox><enter-command>source ~/.config/neomutt/accounts/02<enter><change-folder>!<enter>;<check-stats>'
+macro index,pager <f3> '<sync-mailbox><enter-command>source ~/.config/neomutt/accounts/03<enter><change-folder>!<enter>;<check-stats>'
+macro index,pager <f4> '<sync-mailbox><enter-command>source ~/.config/neomutt/accounts/04<enter><change-folder>!<enter>;<check-stats>'
 
 source ~/.config/neomutt/accounts/01
 
@@ -676,7 +678,7 @@ bind index,pager \Cp sidebar-prev
 bind index,pager \Cn sidebar-next
 bind index,pager \Co sidebar-open
 
-startup-hook 'echo `proton-bridge &> /dev/null &`'
+startup-hook 'echo `proton-bridge --no-window &> /dev/null &`'
 shutdown-hook 'echo `killall -s SIGQUIT proton-bridge`'
 
 macro index,pager \Cr "!mbsync -a^M" "Update through mbsync"
