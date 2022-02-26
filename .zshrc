@@ -657,6 +657,7 @@ function dotfiles-update-remote() {
   cp "$HOME/.tmux.cheatsheet" "$DOTFILES/.tmux.cheatsheet"
   cp "$HOME/.motd" "$DOTFILES/.motd"
   cp "$HOME/.gitconfig" "$DOTFILES/.gitconfig"
+  cp "$HOME/.mbsyncrc" "$DOTFILES/.mbsyncrc"
 
   cp "$XDG_CONFIG_HOME/alacritty/alacritty.yml"\
      "$DOTFILES/alacritty/alacritty.yml"
@@ -730,6 +731,7 @@ function dotfiles-update-local() {
   cp "$DOTFILES/.tmux.cheatsheet" "$HOME/.tmux.cheatsheet"
   cp "$DOTFILES/.motd" "$HOME/.motd"
   cp "$DOTFILES/.gitconfig" "$HOME/.gitconfig"
+  cp "$DOTFILES/.mbsyncrc" "$HOME/.mbsyncrc"
 
   mkdir -p "$XDG_CONFIG_HOME/alacritty"
   cp "$DOTFILES/alacritty/alacritty.yml"\
