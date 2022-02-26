@@ -11,9 +11,9 @@ cargo-update v8.1.2:
     cargo-install-update-config
 code-minimap v0.6.4:
     code-minimap
-csview v0.3.6:
+csview v1.0.1:
     csview
-deno v1.14.2:
+deno v1.19.1:
     deno
 dijo v0.2.7:
     dijo
@@ -23,16 +23,16 @@ eva v0.2.7:
     eva
 gfold v3.0.0:
     gfold
-git-delta v0.11.3:
+git-delta v0.12.0:
     delta
 git-journal v1.8.1:
     git-journal
 gitui v0.20.1:
     gitui
-gpg-tui v0.8.2:
+gpg-tui v0.8.3:
     gpg-tui
     gpg-tui-completions
-gping v1.2.7:
+gping v1.3.0:
     gping
 hexyl v0.9.0:
     hexyl
@@ -42,13 +42,13 @@ hyperfine v1.12.0:
     hyperfine
 imager v0.3.2:
     imager
-jless v0.7.1:
+jless v0.7.2:
     jless
 jwt-cli v5.0.2:
     jwt
 kmon v1.6.0:
     kmon
-mdcat v0.25.1:
+mdcat v0.26.1:
     mdcat
 pastel v0.8.1:
     pastel
@@ -56,7 +56,7 @@ pipe-rename v1.4.2:
     renamer
 procs v0.12.1:
     procs
-rates v0.5.0:
+rates v0.7.0:
     rates
 rustscan v2.0.0:
     rustscan
@@ -64,7 +64,7 @@ shellcaster v1.2.1:
     shellcaster
 silicon v0.4.3:
     silicon
-so v0.4.5:
+so v0.4.6:
     so
 taskwarrior-tui v0.13.24 (/home/mrus/projects/github/taskwarrior-tui):
     taskwarrior-tui
