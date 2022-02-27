@@ -659,6 +659,9 @@ function dotfiles-update-remote() {
   cp "$HOME/.gitconfig" "$DOTFILES/.gitconfig"
   cp "$HOME/.mbsyncrc" "$DOTFILES/.mbsyncrc"
 
+  cp "$HOME/.mozilla/firefox/"*".default-release/chrome/userChrome.css"\
+      "$DOTFILES/.mozilla/firefox/default/chrome/userChrome.css"
+
   cp "$XDG_CONFIG_HOME/alacritty/alacritty.yml"\
      "$DOTFILES/alacritty/alacritty.yml"
 
