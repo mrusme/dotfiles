@@ -62,7 +62,7 @@ focus_follows_mouse no
 focus_on_window_activation smart
 
 
-output * bg ~/.wallpaper.png fill
+output * bg ~/.wallpaper03.png fill
 
 exec swayidle -w \
 timeout 600 'swaylock' \
