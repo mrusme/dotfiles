@@ -1,7 +1,9 @@
 #!/bin/sh
-if ifconfig wg0 > /dev/null 2>&1
+wg=$(ip -o addr show scope global | grep "10.5.0.2" | awk '{ print $2 }' | tr '[:lower:]' '[:upper:]')
+
+if [[ "$wg" != "" ]]
 then
-  echo "{\"text\": \"WG0\", \"class\": \"custom-openvpn\", \"alt\": \"connected\" }"
+  echo "{\"text\": \"$wg\", \"class\": \"custom-openvpn\", \"alt\": \"connected\" }"
 else
   CONNECTED_VPN=$(ps -eo args | rg "^/usr/sbin/openvpn" | sed -r 's/.*--config \/etc\/openvpn\/([-0-9a-z\.]+)\.ovpn\.conf.*/\1/g' | awk -F '.' '{ print $1"/"$4 }' | tr '[:lower:]' '[:upper:]')
 
