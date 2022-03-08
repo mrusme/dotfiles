@@ -108,7 +108,7 @@ set autoread
 
 set tabstop=2 shiftwidth=2 expandtab
 "set listchars=tab:▒░,trail:▓
-set listchars=tab:\ \ ,trail:˽,extends:→
+set listchars=tab:⇥\ ,trail:˽,extends:→
 set list
 
 set number
@@ -642,6 +642,7 @@ let g:wiki_link_target_type = 'md'
 " ╚════════════════════════════════════════════════════════════════════════════╝
 
 let g:go_fmt_autosave=0
+let g:go_imports_autosave = 0
 let g:go_asmfmt_autosave=0
 let g:go_def_mapping_enabled = 0
 au FileType go map <C-b> <Plug>(go-build)
