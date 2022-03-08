@@ -83,8 +83,8 @@ exec dunst
 exec mpd
 
 #exec openrgb -p pirate.orp
-#exec openrgb -d 0 -m direct -z 0 -c 'FF6200,FF6200,FF6200,FF6200,FF6200,FF6200,FF6200,000000,000000,000000,000000,000000,000000,000000,000000,FF6200'
-exec openrgb -d 0 -m direct -z 0 -c 'd40000,d40000,d40000,d40000,d40000,d40000,d40000,000000,000000,000000,000000,000000,000000,000000,000000,d40000'
+exec openrgb -d 0 -m direct -z 0 -c 'ff4500,ff4500,ff4500,ff4500,ff4500,ff4500,ff4500,000000,000000,000000,000000,000000,000000,000000,000000,ff4500'
+#exec openrgb -d 0 -m direct -z 0 -c 'd40000,d40000,d40000,d40000,d40000,d40000,d40000,000000,000000,000000,000000,000000,000000,000000,000000,d40000'
  
 input "4815:3077:Mad_Catz_Global_MADCATZ_R.A.T._8+_gaming_mouse" {
   natural_scroll enabled
@@ -312,4 +312,10 @@ bar {
   swaybar_command waybar
 }
 
+
+
+exec notify-send -u critical -a taskwarrior "$(task overdue | tail -n +4 | head -n -2 | cut -d ' ' -f9-)"
+
+
 include /etc/sway/config.d/*
+
