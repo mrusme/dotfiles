@@ -53,6 +53,7 @@ Plug 'lervag/wiki.vim'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
+Plug 'simnalamburt/vim-mundo'
 
 "Plug 'plasticboy/vim-markdown'
 Plug 'leafgarland/typescript-vim'
@@ -584,6 +585,13 @@ let g:minimap_block_buftypes = [
 \]
 
 noremap <silent> <C-k><C-m> :MinimapToggle<CR>
+
+"
+" ╔════════════════════════════════════════════════════════════════════════════╗
+" ║ Mundo                                                                      ║
+" ╚════════════════════════════════════════════════════════════════════════════╝
+
+nnoremap <F5> :MundoToggle<CR>
 
 
 " ╔════════════════════════════════════════════════════════════════════════════╗
