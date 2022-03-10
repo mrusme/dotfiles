@@ -39,9 +39,9 @@ set {
 }
 
 #                         border   backgrnd text    indic    chld
-client.focused        	 	$red	   $red     $white  $red     $red
-client.unfocused        	$dark    $dark    $red    $dark    $dark
-client.focused_inactive 	$dark    $dark    $red    $dark    $dark
+client.focused        	 	$orange	 $orange  $white  $orange  $orange
+client.unfocused        	$dark    $dark    $orange $dark    $dark
+client.focused_inactive 	$dark    $dark    $orange $dark    $dark
 client.urgent	          	$magenta $magenta $dark   $magenta $magenta
 client.placeholder	      $dark    $dark    $white  $white   $dark
 
