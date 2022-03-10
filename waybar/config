@@ -29,6 +29,7 @@
   ],
   "modules-right": [
   "tray",
+  "custom/pushover",
   "network",
   "custom/vpn",
   "custom/rslsync",
@@ -98,6 +99,16 @@
     "format-disconnected": "⚠  Disconnected",
     "tooltip-format": "{ifname}: {ipaddr}",
     "on-click": "nm-connection-editor"
+  },
+
+  "custom/pushover": {
+    "format": " {}",
+    "return-type": "json",
+    "exec": "/usr/local/bin/get-pushover-count",
+    //"on-click": "",
+    //"on-click-middle": "",
+    //"on-click-right": "",
+    "interval": 360
   },
 
   "custom/docker": {
