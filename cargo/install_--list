@@ -23,7 +23,7 @@ eva v0.2.7:
     eva
 gfold v3.0.0:
     gfold
-git-delta v0.12.0:
+git-delta v0.12.1:
     delta
 git-journal v1.8.1:
     git-journal
