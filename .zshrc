@@ -299,6 +299,9 @@ type irssi > /dev/null \
 type xdg-open > /dev/null \
 && alias open='xdg-open'
 
+type taskwarrior-tui > /dev/null \
+&& alias todo='taskwarrior-tui'
+
 alias fucking=sudo
 
 alias my-ip="curl http://ipecho.net/plain; echo"
@@ -309,7 +312,7 @@ alias gpa='git push all "$(git_current_branch)"'
 
 alias jrnl='cd $HOME/[Pp]rojects/@mrusme/xn--gckvb8fzb.com/content/'
 alias bookmarks='vim $HOME/[Pp]rojects/@mrusme/xn--gckvb8fzb.com/content/bookmarks/index.md'
-alias notes='cd $HOME/[Cc]loud/Notes/'
+alias notes='cd $HOME/[Cc]loud/notes/'
 
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
