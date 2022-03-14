@@ -1,0 +1,19 @@
+#!/bin/sh
+
+last_id=""
+tsv=$(curl -s "https://api.pushover.net/1/messages.json?secret=$PUSHOVER_SECRET&device_id=$PUSHOVER_DEVICE" | jq --raw-output '.messages[] | [.id, .title, .message] | @tsv') 
+
+while IFS=$'\t' read -r id title message
+do 
+  if [[ "$title" != "" ]]
+  then
+    notify-send -t 0 "$title" "$message"
+  fi
+  last_id="$id"
+done <<< $tsv
+
+if [[ "$last_id" != "" ]]
+then
+  curl -s --form-string "secret=$PUSHOVER_SECRET" --form-string "message=$last_id" "https://api.pushover.net/1/devices/$PUSHOVER_DEVICE/update_highest_message.json"
+fi
+
