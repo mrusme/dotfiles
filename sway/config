@@ -316,6 +316,7 @@ bar {
 
 exec notify-send -u critical -a taskwarrior "$(task overdue | tail -n +4 | head -n -2 | cut -d ' ' -f9-)"
 
+exec keepassxc
 
 include /etc/sway/config.d/*
 
