@@ -105,7 +105,7 @@
     "format": " {}",
     "return-type": "json",
     "exec": "/usr/local/bin/get-pushover-count",
-    //"on-click": "",
+    "on-click": "/usr/local/bin/read-pushover-messages",
     //"on-click-middle": "",
     //"on-click-right": "",
     "interval": 360
@@ -250,7 +250,7 @@
   },
 
   "mpd": {
-    "format": "  {artist} - {title}",
+    "format": "{stateIcon}  {randomIcon}{repeatIcon}{singleIcon} {artist} - {title}",
     "format-disconnected": "",
     "format-stopped": "",
     "interval": 10,
@@ -258,7 +258,7 @@
       "on": " " // Icon shows only when "consume" is on
     },
     "random-icons": {
-      "off": "<span color=\"#f53c3c\"></span> ", // Icon grayed out when "random" is off
+      "off": " ", // Icon grayed out when "random" is off
       "on": " "
     },
     "repeat-icons": {
@@ -269,8 +269,10 @@
     },
     "state-icons": {
       "paused": "",
-      "playing": ""
+      "playing": ""
     },
+    "on-scroll-up": "mpc prev",
+    "on-scroll-down": "mpc next",
     "tooltip-format": "MPD (connected)",
     "tooltip-format-disconnected": "MPD (disconnected)"
   }
