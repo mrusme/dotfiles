@@ -376,7 +376,7 @@ then
       case $1 in
         install)     emerge -av --keep-going=y "${@:2}";;
         remove)      emerge -cav "${@:2}";;
-        purge)       emerge -Ccav "${@:2}";;
+        purge)       emerge -Cav "${@:2}";;
         update)      emerge --sync "${@:2}";;
         upgrade)     emerge --ask --update --deep --changed-use --verbose-conflicts --keep-going=y "${@[2]:-@world}";;
         safe-upgrade)emerge -avu --keep-going=y "${@[2]:-@world}";;
