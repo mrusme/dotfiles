@@ -665,6 +665,7 @@ macro index,pager <f1> '<sync-mailbox><enter-command>source ~/.config/neomutt/ac
 macro index,pager <f2> '<sync-mailbox><enter-command>source ~/.config/neomutt/accounts/02<enter><change-folder>!<enter>;<check-stats>'
 macro index,pager <f3> '<sync-mailbox><enter-command>source ~/.config/neomutt/accounts/03<enter><change-folder>!<enter>;<check-stats>'
 macro index,pager <f4> '<sync-mailbox><enter-command>source ~/.config/neomutt/accounts/04<enter><change-folder>!<enter>;<check-stats>'
+macro index,pager <f5> '<sync-mailbox><enter-command>source ~/.config/neomutt/accounts/05<enter><change-folder>!<enter>;<check-stats>'
 
 source ~/.config/neomutt/accounts/01
 
