@@ -21,8 +21,15 @@ filetype off
 
 call plug#begin('~/.local/share/nvim/plugged')
 
-Plug 'neovim/nvim-lspconfig'
 Plug 'editorconfig/editorconfig-vim'
+Plug 'neovim/nvim-lspconfig'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-cmdline'
+Plug 'hrsh7th/nvim-cmp'
+Plug 'hrsh7th/cmp-vsnip'
+Plug 'hrsh7th/vim-vsnip'
 Plug 'lambdalisue/fern.vim'
 Plug 'lambdalisue/nerdfont.vim'
 Plug 'lambdalisue/fern-renderer-nerdfont.vim'
@@ -32,14 +39,11 @@ Plug 'lambdalisue/fern-bookmark.vim'
 Plug 'lambdalisue/fern-mapping-git.vim'
 Plug 'ggandor/lightspeed.nvim'
 Plug 'lambdalisue/glyph-palette.vim'
-Plug 'hrsh7th/vim-vsnip'
-Plug 'hrsh7th/nvim-compe'
 Plug 'glepnir/lspsaga.nvim'
 Plug 'gcmt/breeze.vim'
 Plug 'tomtom/tcomment_vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'godlygeek/tabular'
-Plug 'wincent/command-t'
 Plug 'junegunn/goyo.vim'
 Plug 'Yggdroot/indentLine'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
@@ -58,12 +62,13 @@ Plug 'simnalamburt/vim-mundo'
 "Plug 'plasticboy/vim-markdown'
 Plug 'leafgarland/typescript-vim'
 Plug 'elixir-lang/vim-elixir'
-Plug 'fatih/vim-go'
+"Plug 'fatih/vim-go'
 Plug 'rust-lang/rust.vim'
 Plug 'cespare/vim-toml'
 Plug 'moll/vim-node'
 Plug 'docker/docker'
 Plug 'evanleck/vim-svelte', {'branch': 'main'}
+Plug 'vim-scripts/dbext.vim'
 
 call plug#end()
 
@@ -123,7 +128,7 @@ set nobackup
 set nowritebackup
 set noswapfile
 set fileformats=unix,dos,mac
-set completeopt=menuone,longest,preview
+set completeopt=menu,menuone,noselect
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*
 
 set spelllang=en,ro,es,fr,de,cjk
@@ -278,14 +283,6 @@ set t_Co=256
 
 colorscheme neutral
 
-let g:indentLine_enabled = 1
-let g:indentLine_char = '⋮'
-let g:indentLine_first_char = '⋮'
-let g:indentLine_showFirstIndentLevel = 1
-let g:indentLine_setColors = 1
-let g:indentLine_setConceal = 0
-let g:indentLine_fileTypeExclude = ['dashboard']
-
 " OVERRIDES
 highlight Normal ctermbg=none
 highlight Normal guibg=none
@@ -299,6 +296,19 @@ let g:neovide_cursor_antialiasing=v:true
 ""let g:neovide_fullscreen=v:true
 let g:neovide_refresh_rate=60
 let g:neovide_keyboard_layout="qwerty"
+
+
+" ╔════════════════════════════════════════════════════════════════════════════╗
+" ║ indentLine                                                                 ║
+" ╚════════════════════════════════════════════════════════════════════════════╝
+
+let g:indentLine_enabled = 1
+let g:indentLine_char = '⋮'
+let g:indentLine_first_char = '⋮'
+let g:indentLine_showFirstIndentLevel = 1
+let g:indentLine_setColors = 1
+let g:indentLine_setConceal = 0
+let g:indentLine_fileTypeExclude = ['dashboard']
 
 
 " ╔════════════════════════════════════════════════════════════════════════════╗
@@ -405,89 +415,6 @@ let g:rust_clip_command = 'wl-copy'
 
 
 " ╔════════════════════════════════════════════════════════════════════════════╗
-" ║ compe                                                                      ║
-" ╚════════════════════════════════════════════════════════════════════════════╝
-
-set completeopt=menuone,noselect
-let g:compe = {}
-let g:compe.enabled = v:true
-let g:compe.autocomplete = v:true
-let g:compe.debug = v:false
-let g:compe.min_length = 1
-let g:compe.preselect = 'enable'
-let g:compe.throttle_time = 80
-let g:compe.source_timeout = 200
-let g:compe.resolve_timeout = 800
-let g:compe.incomplete_delay = 400
-let g:compe.max_abbr_width = 100
-let g:compe.max_kind_width = 100
-let g:compe.max_menu_width = 100
-let g:compe.documentation = v:true
-
-let g:compe.source = {}
-let g:compe.source.path = v:true
-let g:compe.source.buffer = v:true
-let g:compe.source.calc = v:true
-let g:compe.source.nvim_lsp = v:true
-let g:compe.source.nvim_lua = v:true
-let g:compe.source.vsnip = v:true
-let g:compe.source.ultisnips = v:true
-let g:compe.source.luasnip = v:true
-let g:compe.source.emoji = v:true
-
-let g:lexima_no_default_rules = v:true
-call lexima#set_default_rules()
-inoremap <silent><expr> <CR>      compe#confirm(lexima#expand('<LT>CR>', 'i'))
-inoremap <silent><expr> <C-e>     compe#close('<C-e>')
-inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })
-inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
-
-lua << EOF
-local t = function(str)
-  return vim.api.nvim_replace_termcodes(str, true, true, true)
-end
-
-local check_back_space = function()
-    local col = vim.fn.col('.') - 1
-    if col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') then
-       return true
-    else
-        return false
-    end
-end
-
-_G.tab_complete = function()
-  if vim.fn.pumvisible() == 1 then
-    return t "<C-n>"
-  elseif check_back_space() then
-    return t "<Tab>"
-  else
-    return vim.fn['compe#complete']()
-  end
-end
-_G.s_tab_complete = function()
-  if vim.fn.pumvisible() == 1 then
-    return t "<C-p>"
-  else
-    return t "<S-Tab>"
-  end
-end
-
-vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.tab_complete()", {expr = true})
-vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
-vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
-vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
-
-vim.api.nvim_set_keymap("i", "<CR>", "compe#confirm({ 'keys': '<CR>', 'select': v:true })", { expr = true })
-EOF
-
-highlight link CompeDocumentation NormalFloat
-
-autocmd FileType markdown
-  \ call compe#setup({'enabled': v:false}, 0)
-
-
-" ╔════════════════════════════════════════════════════════════════════════════╗
 " ║ LSP                                                                        ║
 " ╚════════════════════════════════════════════════════════════════════════════╝
 
@@ -518,6 +445,140 @@ require'lspconfig'.tsserver.setup{}
 require'lspconfig'.vimls.setup{}
 require'lspconfig'.yamlls.setup{}
 EOF
+
+
+" ╔════════════════════════════════════════════════════════════════════════════╗
+" ║ cmp                                                                        ║
+" ╚════════════════════════════════════════════════════════════════════════════╝
+
+lua <<EOF
+  local cmp = require'cmp'
+
+  cmp.setup({
+    snippet = {
+      expand = function(args)
+        vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+      end,
+    },
+    mapping = {
+      ['<C-b>'] = cmp.config.disable, -- cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
+      ['<C-f>'] = cmp.config.disable, -- cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
+      ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
+      ['<C-y>'] = cmp.config.disable,
+      ['<C-e>'] = cmp.mapping({
+        i = cmp.mapping.abort(),
+        c = cmp.mapping.close(),
+      }),
+      ['<CR>'] = cmp.mapping.confirm({ select = false }),
+    },
+    sources = cmp.config.sources({
+      { name = 'nvim_lsp' },
+      { name = 'vsnip' }, -- For vsnip users.
+    }, {
+      { name = 'buffer' },
+    })
+  })
+
+  cmp.setup.filetype('gitcommit', {
+    sources = cmp.config.sources({
+      { name = 'cmp_git' },
+    }, {
+      { name = 'buffer' },
+    })
+  })
+
+  cmp.setup.filetype('markdown', {
+    enabled = false
+  })
+
+  -- Use buffer source for `/` (if enabled `native_menu`, this won't work anymore).
+  cmp.setup.cmdline('/', {
+    sources = {
+      { name = 'buffer' }
+    }
+  })
+
+  -- Use cmdline & path source for ':' (if enabled `native_menu`, this won't work anymore).
+  cmp.setup.cmdline(':', {
+    sources = cmp.config.sources({
+      { name = 'path' }
+    }, {
+      { name = 'cmdline' }
+    })
+  })
+
+  local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+
+  require('lspconfig')['gopls'].setup {
+    capabilities = capabilities
+  }
+  require('lspconfig')['clangd'].setup {
+    capabilities = capabilities
+  }
+  require('lspconfig')['denols'].setup {
+    capabilities = capabilities
+  }
+  require('lspconfig')['elixirls'].setup {
+    capabilities = capabilities
+  }
+  require('lspconfig')['pylsp'].setup {
+    capabilities = capabilities
+  }
+  require('lspconfig')['rust_analyzer'].setup {
+    capabilities = capabilities
+  }
+  require('lspconfig')['rls'].setup {
+    capabilities = capabilities
+  }
+  require('lspconfig')['sorbet'].setup {
+    capabilities = capabilities
+  }
+  require('lspconfig')['sqls'].setup {
+    capabilities = capabilities
+  }
+  require('lspconfig')['terraformls'].setup {
+    capabilities = capabilities
+  }
+  require('lspconfig')['tflint'].setup {
+    capabilities = capabilities
+  }
+  require('lspconfig')['bashls'].setup {
+    capabilities = capabilities
+  }
+  require('lspconfig')['cssls'].setup {
+    capabilities = capabilities
+  }
+  require('lspconfig')['dockerls'].setup {
+    capabilities = capabilities
+  }
+  require('lspconfig')['graphql'].setup {
+    capabilities = capabilities
+  }
+  require('lspconfig')['html'].setup {
+    capabilities = capabilities
+  }
+  require('lspconfig')['jsonls'].setup {
+    capabilities = capabilities
+  }
+  require('lspconfig')['stylelint_lsp'].setup {
+    capabilities = capabilities
+  }
+  require('lspconfig')['svelte'].setup {
+    capabilities = capabilities
+  }
+  require('lspconfig')['tsserver'].setup {
+    capabilities = capabilities
+  }
+  require('lspconfig')['vimls'].setup {
+    capabilities = capabilities
+  }
+  require('lspconfig')['yamlls'].setup {
+    capabilities = capabilities
+  }
+EOF
+
+highlight link CompeDocumentation NormalFloat
+highlight link CmpDocumentation NormalFloat
 
 
 " ╔════════════════════════════════════════════════════════════════════════════╗
@@ -586,7 +647,16 @@ let g:minimap_block_buftypes = [
 
 noremap <silent> <C-k><C-m> :MinimapToggle<CR>
 
-"
+
+" ╔════════════════════════════════════════════════════════════════════════════╗
+" ║ lexima                                                                     ║
+" ╚════════════════════════════════════════════════════════════════════════════╝
+
+let g:lexima_enable_basic_rules = 1
+let g:lexima_enable_newline_rules = 1
+let g:lexima_enable_endwise_rules = 1
+
+
 " ╔════════════════════════════════════════════════════════════════════════════╗
 " ║ Mundo                                                                      ║
 " ╚════════════════════════════════════════════════════════════════════════════╝
@@ -640,20 +710,22 @@ let g:hugohelper_update_lastmod_on_write = 1
 " ║ Wiki.vim                                                                   ║
 " ╚════════════════════════════════════════════════════════════════════════════╝
 
-let g:wiki_root = '~/cloud/Notes'
+let g:wiki_root = '~/cloud/notes'
 let g:wiki_filetypes = ['md']
 let g:wiki_link_extension = '.md'
 let g:wiki_link_target_type = 'md'
 
+
 " ╔════════════════════════════════════════════════════════════════════════════╗
-" ║ Go                                                                         ║
+" ║ vim-go                                                                     ║
 " ╚════════════════════════════════════════════════════════════════════════════╝
 
-let g:go_fmt_autosave=0
-let g:go_imports_autosave = 0
-let g:go_asmfmt_autosave=0
-let g:go_def_mapping_enabled = 0
-au FileType go map <C-b> <Plug>(go-build)
+" let g:go_fmt_autosave=0
+" let g:go_mod_fmt_autosave=0
+" let g:go_imports_autosave = 0
+" let g:go_asmfmt_autosave=0
+" let g:go_def_mapping_enabled = 0
+" au FileType go map <C-b> <Plug>(go-build)
 
 
 " ╔════════════════════════════════════════════════════════════════════════════╗
@@ -661,6 +733,13 @@ au FileType go map <C-b> <Plug>(go-build)
 " ╚════════════════════════════════════════════════════════════════════════════╝
 
 let g:typescript_indent_disable = 1
+
+
+" ╔════════════════════════════════════════════════════════════════════════════╗
+" ║ Dbext                                                                      ║
+" ╚════════════════════════════════════════════════════════════════════════════╝
+
+let g:dbext_default_menu_mode = 0
 
 
 " ╔════════════════════════════════════════════════════════════════════════════╗
