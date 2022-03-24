@@ -42,7 +42,7 @@ set {
 client.focused        	 	$orange	 $orange  $white  $orange  $orange
 client.unfocused        	$dark    $dark    $orange $dark    $dark
 client.focused_inactive 	$dark    $dark    $orange $dark    $dark
-client.urgent	          	$magenta $magenta $dark   $magenta $magenta
+client.urgent	          	$red     $red     $white  $red     $red
 client.placeholder	      $dark    $dark    $white  $white   $dark
 
 font pango: ProggyVector 10
@@ -62,7 +62,7 @@ focus_follows_mouse no
 focus_on_window_activation smart
 
 
-output * bg ~/.wallpaper03.png fill
+output * bg ~/.wallpaper fill
 
 exec swayidle -w \
 timeout 600 'swaylock' \
