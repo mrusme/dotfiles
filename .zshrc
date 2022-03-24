@@ -661,6 +661,7 @@ function dotfiles-update-remote() {
   cp "$HOME/.motd" "$DOTFILES/.motd"
   cp "$HOME/.gitconfig" "$DOTFILES/.gitconfig"
   cp "$HOME/.mbsyncrc" "$DOTFILES/.mbsyncrc"
+  cp "$HOME/.wallpaper" "$DOTFILES/.wallpaper"
 
   cp "$HOME/.mozilla/firefox/"*".default-release/chrome/userChrome.css"\
       "$DOTFILES/.mozilla/firefox/default/chrome/userChrome.css"
@@ -738,6 +739,7 @@ function dotfiles-update-local() {
   cp "$DOTFILES/.motd" "$HOME/.motd"
   cp "$DOTFILES/.gitconfig" "$HOME/.gitconfig"
   cp "$DOTFILES/.mbsyncrc" "$HOME/.mbsyncrc"
+  cp "$DOTFILES/.wallpaper" "$HOME/.wallpaper"
 
   mkdir -p "$XDG_CONFIG_HOME/alacritty"
   cp "$DOTFILES/alacritty/alacritty.yml"\
