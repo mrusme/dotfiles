@@ -2,7 +2,7 @@ bandwhich v0.20.0:
     bandwhich
 battop v0.2.4:
     battop
-bingrep v0.9.1:
+bingrep v0.10.0:
     bingrep
 bottom v0.6.8:
     btm
@@ -38,11 +38,11 @@ hexyl v0.9.0:
     hexyl
 htmlq v0.4.0:
     htmlq
-hyperfine v1.12.0:
+hyperfine v1.13.0:
     hyperfine
 imager v0.3.2:
     imager
-jless v0.7.2:
+jless v0.8.0:
     jless
 jwt-cli v5.0.2:
     jwt
@@ -60,7 +60,7 @@ rates v0.7.0:
     rates
 rustscan v2.0.0:
     rustscan
-shellcaster v1.2.1:
+shellcaster v2.0.1:
     shellcaster
 silicon v0.4.3:
     silicon
