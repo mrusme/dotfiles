@@ -8,52 +8,50 @@
 /* } */
 
 *{
-    font-family: monospace;
+  font-family: 'ProggyVector', 'Fira Code Nerd Font';
 }
 
 window {
-    color: #CBD8EB;
-    background-color: rgba(27, 27, 28, 0.92);
-    border: 2px solid #75d5ff;
-    font-family: Fira Code;
+  color: #CBD8EB;
+  background-color: rgba(4, 6, 6, 0.92);
+  border: 2px solid #888888;
 }
 
 #input {
-    margin: 10px 0px;
-    border-radius: 0px;
-    border: none;
-    background: transparent;
-    color: white;
+  margin: 10px 0px;
+  border-radius: 0px;
+  border: none;
+  background: transparent;
+  color: #ffffff;
 }
 
 #inner-box {
-    background-color: transparent;
+  background-color: transparent;
 }
 
 #outer-box {
-    margin: 0px;
-    padding:5px;
-    background-color: transparent;
-
+  margin: 10px;
+  background-color: transparent;
 }
 
 #scroll {
+  margin: 8px 4px;
 }
 
 #text {
-    padding: 5px;
-    color: white;
+  padding: 5px;
+  color: #888888;
 }
 
 
 #entry:selected {
-    color: #75d5ff;
-    background-color: transparent;
-    border: 0px;
+  color: #ffffff;
+  background-color: transparent;
+  border: 0px;
 }
 
 #text:selected {
-    color: #75d5ff;
-    background-color: transparent;
+  color: #ffffff;
+  background-color: transparent;
 }
 
