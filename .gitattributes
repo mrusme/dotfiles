@@ -1,3 +1,2 @@
 .mbsyncrc filter=git-crypt diff=git-crypt
-.taskrc filter=git-crypt diff=git-crypt
 
