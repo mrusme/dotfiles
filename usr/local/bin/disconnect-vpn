@@ -1,7 +1,0 @@
-#!/bin/sh
-
-/bin/ls -1 /etc/init.d/openvpn.* /etc/init.d/wg-quick.* | xargs -n 1 basename | while read vpn
-do 
-  sudo rc-service "$vpn" stop
-done
-
