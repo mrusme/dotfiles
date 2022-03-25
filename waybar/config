@@ -129,7 +129,7 @@
     "exec": "/usr/local/bin/get-running-openvpn-config",
     //"exec-if": "test -d /proc/sys/net/ipv4/conf/tun0",
     "on-click": "/usr/local/bin/connect-openvpn",
-    //"on-click-middle": "",
+    "on-click-middle": "/usr/local/bin/disconnect-vpn",
     "on-click-right": "/usr/local/bin/get-public-ip-info",
     "interval": 10
   },
@@ -226,6 +226,7 @@
       "",
       ""
     ],
+    "on-click": "notify-send -t 0 \"CPU\" \"$(sensors nct6798-isa-0290)\"",
     "tooltip": true
   },
 
@@ -241,6 +242,7 @@
       "",
       ""
     ],
+    "on-click": "notify-send -t 0 \"GPU\" \"$(sensors amdgpu-pci-0a00)\"",
     "tooltip": true
   },
 
