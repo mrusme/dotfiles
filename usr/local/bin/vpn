@@ -1,0 +1,55 @@
+#!/bin/sh
+
+cmd=$1
+
+case "$cmd" in
+  disconnect)
+    /bin/ls -1 /etc/init.d/openvpn.* /etc/init.d/wg-quick.* | xargs -n 1 basename | while read vpn
+    do 
+      sudo rc-service "$vpn" stop
+    done
+    ;;
+  connect)
+    OPENVPN_CONFIG=$(/bin/ls -1 /etc/init.d/openvpn.* /etc/init.d/wg-quick.* | xargs -n 1 basename | sed 's/wg-quick\./Wireguard: /g' | sed -E -e 's/openvpn\.([a-z0-9]+).*/OpenVPN: \1/g' | wofi --dmenu --sort-order default | sed -E -e 's/OpenVPN: ([a-z0-9]+)/\1\.nordvpn\.com\.udp\.ovpn/g' | sed -E -e 's/Wireguard: ([a-z0-9]+)/wg-quick\.\1/g')
+    
+    if [[ "$OPENVPN_CONFIG" == "" ]]
+    then
+      exit
+    fi
+    
+    /bin/ls -1 /etc/init.d/openvpn.* /etc/init.d/wg-quick.* | xargs -n 1 basename | while read ovpn
+    do 
+    	sudo rc-service $ovpn stop
+    done
+    
+    sleep 2
+    sudo rc-service $OPENVPN_CONFIG start
+    
+    sleep 6
+    /usr/local/bin/get-public-ip-info
+    exit 0
+    ;;
+  current)
+    wg=$(ip -o addr show scope global | grep "10.5.0.2" | awk '{ print $2 }' | tr '[:lower:]' '[:upper:]')
+    
+    if [[ "$wg" != "" ]]
+    then
+      echo "{\"text\": \"$wg\", \"class\": \"custom-openvpn\", \"alt\": \"connected\" }"
+    else
+      CONNECTED_VPN=$(ps -eo args | rg "^/usr/sbin/openvpn" | sed -r 's/.*--config \/etc\/openvpn\/([-0-9a-z\.]+)\.ovpn\.conf.*/\1/g' | awk -F '.' '{ print $1"/"$4 }' | tr '[:lower:]' '[:upper:]')
+    
+      if [[ "$CONNECTED_VPN" == "" ]]
+      then
+        echo "{\"text\": \"NO VPN\", \"class\": \"custom-openvpn\", \"alt\": \"disconnected\" }"
+      else
+        echo "{\"text\": \"$CONNECTED_VPN\", \"class\": \"custom-openvpn\", \"alt\": \"connected\" }"
+      fi
+    fi
+    exit 0
+    ;;
+  *)
+    echo "usage: $0 {current|connect|disconnect}"
+    exit 1
+    ;;
+esac
+
