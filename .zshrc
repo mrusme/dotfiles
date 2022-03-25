@@ -655,7 +655,6 @@ function pushover() {
 
 function dotfiles-update-remote() {
   cp "$HOME/.zshrc" "$DOTFILES/.zshrc"
-  cp "$HOME/.taskrc" "$DOTFILES/.taskrc"
   cp "$HOME/.tmux.conf" "$DOTFILES/.tmux.conf"
   cp "$HOME/.tmux.cheatsheet" "$DOTFILES/.tmux.cheatsheet"
   cp "$HOME/.motd" "$DOTFILES/.motd"
@@ -714,6 +713,8 @@ function dotfiles-update-remote() {
 
     cp "$XDG_CONFIG_HOME/swaylock/config" "$DOTFILES/swaylock/config"
 
+    cp "$XDG_CONFIG_HOME/task/taskrc" "$DOTFILES/task/taskrc"
+
     cp "$XDG_CONFIG_HOME/waybar/"* "$DOTFILES/waybar/"
 
     cp "$XDG_CONFIG_HOME/wofi/"* "$DOTFILES/wofi/"
@@ -733,7 +734,6 @@ function dotfiles-update-local() {
   [[ $confirmation != "y" ]] && return 1
 
   cp "$DOTFILES/.zshrc" "$HOME/.zshrc"
-  cp "$DOTFILES/.taskrc" "$HOME/.taskrc"
   cp "$DOTFILES/.tmux.conf" "$HOME/.tmux.conf"
   cp "$DOTFILES/.tmux.cheatsheet" "$HOME/.tmux.cheatsheet"
   cp "$DOTFILES/.motd" "$HOME/.motd"
@@ -787,6 +787,9 @@ function dotfiles-update-local() {
 
     mkdir -p "$XDG_CONFIG_HOME/swaylock" 
     cp "$DOTFILES/swaylock/config" "$XDG_CONFIG_HOME/swaylock/config" 
+
+    mkdir -p "$XDG_CONFIG_HOME/task" 
+    cp "$DOTFILES/task/taskrc" "$XDG_CONFIG_HOME/task/taskrc" 
 
     mkdir -p "$XDG_CONFIG_HOME/waybar" 
     cp "$DOTFILES/waybar/"* "$XDG_CONFIG_HOME/waybar/" 
