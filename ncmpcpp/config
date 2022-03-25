@@ -40,7 +40,10 @@ random_exclude_pattern = "^(temp|midi_songs).*"
 #
 visualizer_data_source = /tmp/mpd.fifo
 visualizer_output_name = Visualizer feed
-visualizer_in_stereo = yes
+visualizer_in_stereo   = yes
+visualizer_type        = "wave_filled"
+visualizer_look        = ●● 
+visualizer_color       = "5,256, 2"
 ##
 ## Note: set below to >=10 only if you have synchronization issues with
 ## visualization and audio.
@@ -187,22 +190,27 @@ visualizer_in_stereo = yes
 ##
 #
 #song_list_format = {%a - }{%t}|{$8%f$9}$R{$3%l$9}
+song_list_format = "$(008)%t$R  $(247)%a$R$5  %l$8"
 #
 #song_status_format = {{%a{ "%b"{ (%y)}} - }{%t}}|{%f}
+song_status_format= "$7%t"
 #
 #song_library_format = {%n - }{%t}|{%f}
+song_library_format = {{%a - %t} (%b)}|{%f}
 #
 #alternative_header_first_line_format = $b$1$aqqu$/a$9 {%t}|{%f} $1$atqq$/a$9$/b
 #
 #alternative_header_second_line_format = {{$4$b%a$/b$9}{ - $7%b$9}{ ($4%y$9)}}|{%D}
 #
-#current_item_prefix = $(yellow)$r
+current_item_prefix = $(yellow)$r
 #
-#current_item_suffix = $/r$(end)
+current_item_suffix = $/r$(end)
 #
 #current_item_inactive_column_prefix = $(white)$r
+current_item_inactive_column_prefix = red
 #
 #current_item_inactive_column_suffix = $/r$(end)
+current_item_inactive_column_suffix = red
 #
 #now_playing_prefix = $b
 #
@@ -267,7 +275,8 @@ browser_sort_format = {%l}
 ##   available.
 ##
 #
-#song_columns_list_format = (20)[]{a} (6f)[green]{NE} (50)[white]{t|f:Title} (20)[cyan]{b} (7f)[magenta]{l}
+song_columns_list_format = (20)[]{a} (6f)[green]{NE} (50)[white]{t|f:Title} (20)[cyan]{b} (7f)[magenta]{l}
+#song_columns_list_format = "(53)[white]{tr} (45)[blue]{a}"
 #
 ##### various settings #####
 #
@@ -296,9 +305,9 @@ browser_sort_format = {%l}
 ##
 ## Note: Possible display modes: classic, columns.
 ##
-#playlist_display_mode = columns
+playlist_display_mode = classic
 #
-#browser_display_mode = classic
+browser_display_mode = columns
 #
 #search_engine_display_mode = classic
 #
@@ -322,7 +331,7 @@ browser_sort_format = {%l}
 ## Note: You can specify third character which will be used to build 'empty'
 ## part of progressbar.
 ##
-#progressbar_look = =>
+progressbar_look = "   "
 #
 ## Available values: database, playlist.
 ##
@@ -330,7 +339,7 @@ browser_sort_format = {%l}
 #
 ## Available values: classic, alternative.
 ##
-#user_interface = classic
+user_interface = classic
 #
 #data_fetching_delay = yes
 #
@@ -350,12 +359,12 @@ browser_sort_format = {%l}
 #
 #header_visibility = yes
 #
-#statusbar_visibility = yes
+statusbar_visibility = no
 #
 ## Show the "Connected to ..." message on startup
 #connected_message_on_startup = yes
 #
-#titles_visibility = yes
+titles_visibility = no
 #
 #header_text_scrolling = yes
 #
@@ -532,27 +541,30 @@ mouse_support = no
 ## are used there is a possibility that you'll be able to use only colors with
 ## transparent background.
 #
-#colors_enabled = yes
+colors_enabled = yes
 #
 #empty_tag_color = cyan
 #
 #header_window_color = default
 #
-#volume_color = default
+volume_color = white
 #
 #state_line_color = default
 #
 #state_flags_color = default:b
 #
 #main_window_color = yellow
+main_window_color = blue
 #
 #color1 = white
+color1 = "white"
 #
 #color2 = green
+color2 = "red"
 #
-#progressbar_color = black:b
+progressbar_color = black:b
 #
-#progressbar_elapsed_color = green:b
+progressbar_elapsed_color = yellow:b
 #
 #statusbar_color = default
 #
