@@ -219,6 +219,7 @@ inoremap <M-0>  <Esc>:tabn 10<CR>i
 
 map \ :
 let mapleader = ','
+
 nnoremap <Leader>p :set paste<CR>
 nnoremap <Leader>o :set nopaste<CR>
 noremap  <Leader>g :GitGutterToggle<CR>
@@ -235,6 +236,8 @@ inoremap <C-q> <Esc>:qa<CR>
 noremap <Leader>` gq}<CR>
 " Reformat everything to EOF
 noremap <Leader>~ gqG<CR>
+" Auto formatting per syntax
+nnoremap <Leader>fj :%!python -m json.tool<CR>
 
 let g:VM_maps = {}
 let g:VM_maps['Find Under']         = '<C-d>'
@@ -363,7 +366,7 @@ let g:fern#disable_drawer_smart_quit   = 0
 
 noremap <silent> <C-k><C-b> :Fern . -drawer -width=35 -toggle<CR>
 noremap <silent> <Leader>d :Fern . -drawer -width=35 -toggle<CR>
-noremap <silent> <Leader>f :Fern . -drawer -reveal=% -width=35<CR>
+"noremap <silent> <Leader>f :Fern . -drawer -reveal=% -width=35<CR>
 noremap <silent> <Leader>. :Fern %:h -drawer -width=35<CR>
 
 noremap <silent> <C-k><C-B> :Fern bookmark:/// -drawer -width=35 -toggle<CR>
