@@ -295,6 +295,7 @@ for_window [app_id = "floating_update"] floating enable
 for_window [app_id = "virt-manager"] floating enable
 for_window [app_id = "pavucontrol"] floating enable
 for_window [app_id = "org.gnupg.pinentry-qt"] floating enable
+for_window [app_id = "keepassxc"] floating enable
 
 for_window [instance="file_progress"]  sticky enable
 
