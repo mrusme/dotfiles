@@ -126,18 +126,18 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
 
 # Media keys
-bindsym XF86AudioPlay exec playerctl play-pause
-bindsym $mod+F8 exec playerctl play-pause
+# bindsym $mod+F8 exec playerctl play-pause
+bindsym $mod+F8 exec mpc toggle
 
-bindsym XF86AudioNext exec playerctl next
-bindsym $mod+F9 exec playerctl next
+# bindsym $mod+F9 exec playerctl next
+bindsym $mod+F9 exec mpc next
 
-bindsym XF86AudioPrev exec playerctl previous
-bindsym $mod+F7 exec playerctl previous
+# bindsym $mod+F7 exec playerctl previous
+bindsym $mod+F7 exec mpc prev
 
-bindsym $mod+F10 exec pulsemixer --id sink-51 --change-volume -100
-bindsym $mod+F11 exec pulsemixer --id sink-51 --change-volume -10
-bindsym $mod+F12 exec pulsemixer --id sink-51 --change-volume +10
+bindsym $mod+F10 exec pulsemixer --change-volume -100
+bindsym $mod+F11 exec pulsemixer --change-volume -10
+bindsym $mod+F12 exec pulsemixer --change-volume +10
 
 # Screenshotting
 bindsym Print exec grim -t png $HOME/downloads/$(date +'screenshot_%Y-%m-%d-%H%M%S.png')
