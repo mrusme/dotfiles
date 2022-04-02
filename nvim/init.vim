@@ -757,3 +757,11 @@ endfunction
 noremap <Plug>vertopen_url : call <SID>vertopen_url()<CR>
 nmap gx <Plug>vertopen_url
 
+
+" ╔════════════════════════════════════════════════════════════════════════════╗
+" ║ Custom replacements                                                        ║
+" ╚════════════════════════════════════════════════════════════════════════════╝
+
+inoreabbrev mariusu マリウス
+inoreabbrev mariusucom xn--gckvb8fzb.com
+
