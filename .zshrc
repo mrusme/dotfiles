@@ -231,7 +231,7 @@ ZSH_AUTOSUGGESTIONS="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}\
 [[ "$OS" = "Darwin" ]] && plugins=(tmux docker encode64 extract git git-flow \
   gpg-agent history ssh-agent urltools \
   zsh-autosuggestions mosh fzf terraform taskwarrior thefuck brew macos)
-[[ "$OS" = "Linux" ]]  && plugins=(docker encode64 extract git git-flow \
+[[ "$OS" = "Linux" && "$USER" != "root" ]]  && plugins=(docker encode64 extract git git-flow \
   gpg-agent history ssh-agent urltools \
   zsh-autosuggestions mosh fzf terraform taskwarrior thefuck)
 # Disabled: gcloud, nvm, virtualenvwrapper
