@@ -1,0 +1,7 @@
+#!/bin/sh
+task sync
+task +OVERDUE export | jq --raw-output '.[].description' | while read notification
+do
+  notify-send -u critical -a taskwarrior -i "$ICONS_PATH/taskwarrior.svg" "$notification"
+done
+
