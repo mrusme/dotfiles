@@ -11,6 +11,8 @@ cargo-update v8.1.2:
     cargo-install-update-config
 code-minimap v0.6.4:
     code-minimap
+conclusive v0.1.0:
+    conclusive
 csview v1.0.1:
     csview
 deno v1.19.1:
