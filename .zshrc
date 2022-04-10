@@ -28,6 +28,8 @@ export LC_ALL=en_US.UTF-8
 
 export XDG_CONFIG_HOME=$HOME/.config
 
+export ICONS_PATH="$HOME/projects/github/arcticons/icons/white"
+
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
 # ║ Tmux Magic (via SSH)                                                       ║
