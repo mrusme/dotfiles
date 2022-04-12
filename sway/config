@@ -319,10 +319,19 @@ bar {
 }
 
 
+#
+# Execute tools
+#
 
-exec notify-send -u critical -a taskwarrior "$(task overdue | tail -n +4 | head -n -2 | cut -d ' ' -f9-)"
+# Syncthing
+exec syncthing serve --no-browser
 
+# Sync taskwarrior and show overdue tasks notification
+exec /usr/local/bin/overdue-tasks
+
+# KeePassXC
 exec keepassxc
+
 
 include /etc/sway/config.d/*
 
