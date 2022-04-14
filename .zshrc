@@ -315,6 +315,7 @@ alias gpa='git push all "$(git_current_branch)"'
 alias jrnl='cd $HOME/[Pp]rojects/@mrusme/xn--gckvb8fzb.com/content/'
 alias bookmarks='vim $HOME/[Pp]rojects/@mrusme/xn--gckvb8fzb.com/content/bookmarks/index.md'
 alias notes='cd $HOME/[Cc]loud/notes/'
+alias cheatsheet-vim='vim $HOME/[Cc]loud/notes/tools/vim.md'
 
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
