@@ -679,6 +679,8 @@ function dotfiles-update-remote() {
   cp "$XDG_CONFIG_HOME/nvim/autoload/lightline/colorscheme/"*.vim\
     "$DOTFILES/nvim/autoload/lightline/colorscheme/"
 
+  cp "$XDG_CONFIG_HOME/lf/"* "$DOTFILES/lf/"
+
   cp "$XDG_CONFIG_HOME/wtf/config.yml" "$DOTFILES/wtf/config.yml"
 
   # Phasing out Sublime Text as I'm not using it anymore
@@ -757,6 +759,9 @@ function dotfiles-update-local() {
   cp "$DOTFILES/nvim/colors/"*.vim "$XDG_CONFIG_HOME/nvim/colors/"
   cp "$DOTFILES/nvim/autoload/lightline/colorscheme/"*.vim\
      "$XDG_CONFIG_HOME/nvim/autoload/lightline/colorscheme/"
+
+  mkdir -p "$XDG_CONFIG_HOME/lf"
+  cp "$DOTFILES/lf/"* "$XDG_CONFIG_HOME/lf/"
 
   mkdir -p "$XDG_CONFIG_HOME/wtf"
   cp "$DOTFILES/wtf/config.yml" "$XDG_CONFIG_HOME/wtf/config.yml"
