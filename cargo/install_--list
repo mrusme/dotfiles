@@ -34,7 +34,7 @@ gitui v0.20.1:
 gpg-tui v0.8.3:
     gpg-tui
     gpg-tui-completions
-gping v1.3.0:
+gping v1.3.1:
     gping
 hexyl v0.9.0:
     hexyl
