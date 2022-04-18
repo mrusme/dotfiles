@@ -252,6 +252,8 @@ mode "resize" {
   bindsym Right resize grow width 10px
 
   bindsym 8 resize set width 740px
+  bindsym 3 resize set width 320px height 340px
+  bindsym 6 resize set width 640px height 480px
   bindsym 0 resize set width 1024px height 768px
 
   # Return to default mode
