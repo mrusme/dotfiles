@@ -50,7 +50,7 @@ jwt-cli v5.0.2:
     jwt
 kmon v1.6.0:
     kmon
-mdcat v0.26.1:
+mdcat v0.27.1:
     mdcat
 pastel v0.8.1:
     pastel
@@ -84,7 +84,7 @@ vocage v1.1.0:
     vocage
 websocat v1.9.0:
     websocat
-xplr v0.17.3:
+xplr v0.17.4:
     xplr
 zenith v0.0.2:
     zenith
