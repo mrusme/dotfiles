@@ -311,6 +311,10 @@ alias my-ip="curl http://ipecho.net/plain; echo"
 alias git-crypt-add-myself="git-crypt add-gpg-user \
 4D3899AF73E7F5FE9B39C822272ED814BF63261F"
 alias gpa='git push all "$(git_current_branch)"'
+gtd() {
+  git tag -d "$1"
+  git push --delete origin "$1"
+}
 
 alias jrnl='cd $HOME/[Pp]rojects/@mrusme/xn--gckvb8fzb.com/content/'
 alias bookmarks='vim $HOME/[Pp]rojects/@mrusme/xn--gckvb8fzb.com/content/bookmarks/index.md'
