@@ -76,7 +76,8 @@ exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DE
 exec wl-paste -t text --watch clipman store --no-persist
 bindsym $mod+Alt+Backslash exec clipman pick -t wofi
 
-exec --no-startup-id pipewire
+#exec --no-startup-id pipewire
+exec gentoo-pipewire-launcher
 
 exec dunst
 
