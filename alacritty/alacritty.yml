@@ -219,7 +219,7 @@ bell:
   animation: Linear
   duration: 0
   color: '0x320F09'
-background_opacity: 0.92
+# background_opacity: 0.92
 mouse_bindings:
   - { mouse: Middle, action: None }
 mouse:
