@@ -30,6 +30,11 @@ export XDG_CONFIG_HOME=$HOME/.config
 
 export ICONS_PATH="$HOME/projects/github/arcticons/icons/white"
 
+# if [[ "$(lspci | grep -i geforce)" ]]
+# then
+#   export WLR_NO_HARDWARE_CURSORS=1
+# fi
+
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
 # ║ Tmux Magic (via SSH)                                                       ║
