@@ -25,6 +25,7 @@ set $up k
 set $right l
 set $term alacritty
 set $menu wofi --show run
+set $dmenu wofi -d
 
 set {
   $red         #B4140F
@@ -69,23 +70,18 @@ timeout 600 'swaylock' \
 timeout 900 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
 before-sleep 'swaylock'
 
-bindsym $mod+Ctrl+q exec swaylock
-
+# DBUS
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 
-exec wl-paste -t text --watch clipman store --no-persist
-bindsym $mod+Alt+Backslash exec clipman pick -t wofi
+# Clipboard (https://github.com/sentriz/cliphist)
+exec wl-paste --watch cliphist store
 
-#exec --no-startup-id pipewire
+# Pipewire
 exec gentoo-pipewire-launcher
 
+# Desktop notifications
 exec dunst
 
-exec mpd
-
-#exec openrgb -p pirate.orp
-exec openrgb -d 0 -m direct -z 0 -c 'ff4500,ff4500,ff4500,ff4500,ff4500,ff4500,ff4500,000000,000000,000000,000000,000000,000000,000000,000000,ff4500'
-#exec openrgb -d 0 -m direct -z 0 -c 'd40000,d40000,d40000,d40000,d40000,d40000,d40000,000000,000000,000000,000000,000000,000000,000000,000000,d40000'
  
 input "4815:3077:Mad_Catz_Global_MADCATZ_R.A.T._8+_gaming_mouse" {
   natural_scroll enabled
@@ -100,13 +96,19 @@ input "1133:50475:Logitech_USB_Receiver_Mouse" {
 }
 
 
-## Use wev to find keys
+##############################################################################
+## USE wev TO FIND KEYS AND STOP LOOKING UP HOW TO DO IT EVERY FSCKING TIME ##
+##############################################################################
 
 # Start a terminal
 bindsym $mod+Return exec $term
 
 # Open browser
 bindsym $mod+backspace exec /usr/local/bin/ff
+
+# Clipboard
+bindsym $mod+Alt+Backslash exec cliphist list | $dmenu | cliphist decode | wl-copy
+bindsym $mod+Alt+Bar exec cliphist list | $dmenu | cliphist delete
 
 # Recall notifications
 bindsym $mod+asciitildE exec dunstctl history-pop
@@ -122,6 +124,9 @@ floating_modifier $mod normal
 
 # Reload the configuration file
 bindsym $mod+Shift+c reload
+
+# Lock sway
+bindsym $mod+Ctrl+q exec swaylock
 
 # Exit sway
 bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
@@ -143,6 +148,8 @@ bindsym $mod+F12 exec pulsemixer --change-volume +10
 # Screenshotting
 bindsym Print exec grim -t png $HOME/downloads/$(date +'screenshot_%Y-%m-%d-%H%M%S.png')
 bindsym Shift+Print exec --no-startup-id slurp | grim -t png -g - $HOME/downloads/$(date +'screenshot_%Y-%m-%d-%H%M%S.png')
+bindsym Ctrl+Print exec --no-startup-id swaymsg -t get_tree | jq -r '.. | select(.pid? and .visible?) | .rect | "\(.x),\(.y) \(.width)x\(.height)"' | slurp | grim -t png -g - $HOME/downloads/$(date +'screenshot_%Y-%m-%d-%H%M%S.png')
+bindsym $mod+Print exec --no-startup-id slurp | xargs -I {} grim -s 2 -t png -g {} - | tesseract - - | wl-copy -n
 
 
 # Move your focus around
@@ -326,8 +333,16 @@ bar {
 # Execute tools
 #
 
+# Music Player daemon
+exec mpd
+
+# OpenRGB
+#exec openrgb -p pirate.orp
+exec openrgb -d 0 -m direct -z 0 -c 'ff4500,ff4500,ff4500,ff4500,ff4500,ff4500,ff4500,000000,000000,000000,000000,000000,000000,000000,000000,ff4500'
+#exec openrgb -d 0 -m direct -z 0 -c 'd40000,d40000,d40000,d40000,d40000,d40000,d40000,000000,000000,000000,000000,000000,000000,000000,000000,d40000'
+
 # Syncthing
-exec syncthing serve --no-browser
+#exec syncthing serve --no-browser
 
 # Sync taskwarrior and show overdue tasks notification
 exec /usr/local/bin/overdue-tasks
