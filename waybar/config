@@ -17,10 +17,12 @@
   "layer": "top",
   "position": "top",
   "height": 30,
+  "output": "DP-3",
 
   "modules-left": [
   "sway/workspaces",
   "sway/mode",
+  "tray",
   "custom/zeit",
   "mpd"
   ],
@@ -28,16 +30,12 @@
   "sway/window"
   ],
   "modules-right": [
-  "tray",
-  "custom/pushover",
-  "network",
+  //"custom/pushover",
   "custom/vpn",
   "custom/rslsync",
   "custom/docker",
   "cpu",
-  "temperature#cpu",
-  //"temperature#gpu",
-  "memory",
+  "custom/stats",
   "custom/headphones",
   "custom/speaker",
   "pulseaudio",
@@ -50,7 +48,7 @@
 
   "sway/workspaces": {
     "disable-scroll": true,
-    "all-outputs": true,
+    "all-outputs": false,
     "format": "{icon}",
     "format-icons": {
       "1": "一",
@@ -68,14 +66,14 @@
 
   "clock": {
     "interval": 60,
-    "format": "  {:%e %b %Y %I:%M %p}",
+    "format": "  <span color='#aaaaaa'>{:%e %b %Y %I:%M %p}</span>",
     "tooltip": true,
     "tooltip-format": "<big>{:%B %Y}</big>\n<tt>{calendar}</tt>"
   },
 
   "cpu": {
-    "interval": 10,
-    "format": "  {usage}%",
+    "interval": 30,
+    "format": "  {avg_frequency}GHz <span color='#aaaaaa'>{usage}%</span>",
     "states": {
       "warning": 70,
       "critical": 90
@@ -83,45 +81,36 @@
     "on-click": "/usr/local/bin/cpu.sh set"
   },
 
-  "memory": {
-    "interval": 20,
-    "format": "  {used:0.1f}G",
-    "states": {
-      "warning": 70,
-      "critical": 90
-    }
-  },
-
-  "network": {
-    "interface": "enp6s0",
-    "interval": 20,
-    "format-wifi": "  {essid} ({signalStrength}%)",
-    "format-ethernet": "  {ipaddr}/{cidr}",
-    "format-disconnected": "⚠  Disconnected",
-    "tooltip-format": "{ifname}: {ipaddr}",
-    "on-click": "nm-connection-editor"
-  },
-
-  "custom/pushover": {
-    "format": " {}",
+  "custom/stats": {
+    "format": "{}",
     "return-type": "json",
-    "exec": "/usr/local/bin/get-pushover-count",
-    "on-click": "/usr/local/bin/read-pushover-messages",
+    "exec": "/usr/local/bin/stats.sh",
+    "on-click": "",
     //"on-click-middle": "",
     //"on-click-right": "",
-    "interval": 360
+    "interval": 30
   },
+
+  //"custom/pushover": {
+    //"format": " {}",
+    //"return-type": "json",
+    //"exec": "/usr/local/bin/get-pushover-count",
+    //"on-click": "/usr/local/bin/read-pushover-messages",
+    ////"on-click-middle": "",
+    ////"on-click-right": "",
+    //"interval": 360
+  //},
 
   "custom/docker": {
     "format": "  {}",
     "return-type": "json",
     "exec": "/usr/local/bin/get-running-docker-containers",
     "exec-if": "rc-service docker status",
-    "interval": 10
+    "interval": 30
   },
 
   "custom/vpn": {
-    "format": "{icon}  {}",
+    "format": "{icon}  VPN <span color='#aaaaaa'>{}</span>",
     "format-icons": {
       "connected": "",
       "disconnected": ""
@@ -141,7 +130,7 @@
     "exec-if": "ps -eo args | rg '^/usr/bin/rslsync'",
     "on-click": "xdg-open http://127.0.0.1:2510/gui/",
     "on-click-middle": "killall -s SIGQUIT rslsync",
-    "interval": 10
+    "interval": 30
   },
 
   "custom/zeit": {
@@ -154,8 +143,8 @@
   "custom/headphones": {
     "format": "{icon}",
     "format-icons": {
-      "connected": " ",
-      "disconnected": " "
+      "connected": "<span color='#ff9900'> </span>",
+      "disconnected": "<span color='#aaaaaa'> </span>"
     },
     "return-type": "json",
     "exec": "/usr/local/bin/btdevices headphones",
@@ -166,8 +155,8 @@
   "custom/speaker": {
     "format": "{icon}",
     "format-icons": {
-      "connected": " ",
-      "disconnected": " "
+      "connected": "<span color='#ff9900'> </span>",
+      "disconnected": "<span color='#aaaaaa'> </span>"
     },
     "return-type": "json",
     "exec": "/usr/local/bin/btdevices speaker",
@@ -200,8 +189,8 @@
   },
 
   "pulseaudio": {
-    "format": "{icon}  {volume}%",
-    "format-bluetooth": "{icon}  {volume}%",
+    "format": "{icon}  {desc} <span color='#aaaaaa'>{volume}%</span>",
+    "format-bluetooth": "{icon}  {desc} <span color='#aaaaaa'>{volume}%</span>",
     "format-muted": "",
     "format-icons": {
       "headphones": "",
@@ -214,38 +203,6 @@
     },
     "on-click": "pavucontrol"
   },
-
-  "temperature#cpu": {
-    "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
-    "critical-threshold": 90,
-    "interval": 10,
-    "format": "{icon} CPU {temperatureC}°C",
-    "format-icons": [
-      "",
-      "",
-      "",
-      "",
-      ""
-    ],
-    "on-click": "notify-send -t 0 \"CPU\" \"$(sensors nct6798-isa-0290)\"",
-    "tooltip": true
-  },
-
-  //"temperature#gpu": {
-    //"hwmon-path": "/sys/class/hwmon/hwmon0/temp1_input",
-    //"critical-threshold": 90,
-    //"interval": 10,
-    //"format": "GPU {temperatureC}°C",
-    //"format-icons": [
-      //"",
-      //"",
-      //"",
-      //"",
-      //""
-    //],
-    //"on-click": "notify-send -t 0 \"GPU\" \"$(sensors amdgpu-pci-0a00)\"",
-    //"tooltip": true
-  //},
 
   "tray": {
     "icon-size": 19,
@@ -261,7 +218,7 @@
       "on": " " // Icon shows only when "consume" is on
     },
     "random-icons": {
-      "off": " ", // Icon grayed out when "random" is off
+      "off": " ",
       "on": " "
     },
     "repeat-icons": {

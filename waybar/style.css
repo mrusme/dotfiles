@@ -65,7 +65,7 @@ label#window {
   color: #ffffff;
 }
 
-.modules-right > widget:nth-child(2) > label  {
+.modules-right > widget:nth-child(1) > label  {
   border-radius: 0px 0px 0px 5px;
 }
 
