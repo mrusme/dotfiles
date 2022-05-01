@@ -62,8 +62,10 @@ hide_edge_borders none
 focus_follows_mouse no
 focus_on_window_activation smart
 
-
 output * bg ~/.wallpaper fill
+output DP-3 pos 0 0
+output HDMI-A-1 pos 0 2160
+output HDMI-A-1 scale 2
 
 exec swayidle -w \
 timeout 600 'swaylock' \
@@ -325,7 +327,16 @@ for_window [shell="xwayland"] title_format "<span>[X] %title゜</span>"
 
 
 bar {
+  id mainbar
+  output DP-3
   swaybar_command waybar
+}
+
+bar {
+  id sidebar
+  output HDMI-A-1
+  swaybar_command true
+  mode invisible
 }
 
 
