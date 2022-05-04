@@ -197,22 +197,22 @@ schemes:
     normal:
       black:   '0x0c0707'
       red:     '0xf2777a'
-      green:   '0xa5a5a5'
-      yellow:  '0x63a3bf'
-      blue:    '0x57666e'
-      magenta: '0x852d2d'
-      cyan:    '0x75d5ff'
+      green:   '0xccaa60'
+      yellow:  '0xb89956'
+      blue:    '0xa3884d'
+      magenta: '0x8f7743'
+      cyan:    '0x7a663a'
       white:   '0xd3d0c8'
 
     # Bright colors
     bright:
       black:   '0x73848b'
       red:     '0xf2777a'
-      green:   '0xa5a5a5'
-      yellow:  '0x63a3bf'
-      blue:    '0x57666e'
-      magenta: '0x852d2d'
-      cyan:    '0x75d5ff'
+      green:   '0xccaa60'
+      yellow:  '0xd1b370'
+      blue:    '0xd6bb80'
+      magenta: '0xdbc490'
+      cyan:    '0xe0cca0'
       white:   '0xcfcfd8'
 colors: *neutral
 bell:
