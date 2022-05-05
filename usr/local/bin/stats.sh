@@ -14,7 +14,7 @@ mem_free="0G"
 zpool_free="0G"
 
 
-if [[ "$(swaymsg -t get_outputs -r | jq -e '.[] | select(.name=="DP-3") | .dpms')" == "true" ]]
+if [[ "$(cat /sys/class/drm/card0-DP-3/dpms)" == "On" ]]
 then
   sensor_out=$(sensors -j)
 
