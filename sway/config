@@ -64,7 +64,7 @@ focus_on_window_activation smart
 
 output * bg ~/.wallpaper fill
 output DP-3 pos 0 0
-output HDMI-A-1 pos 0 2160
+output HDMI-A-1 pos 960 2160
 output HDMI-A-1 scale 2
 
 exec swayidle -w \
