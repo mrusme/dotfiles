@@ -43,6 +43,7 @@ window:
   dynamic_title: true
   decorations: None 
   startup_mode: Windowed
+  opacity: 0.92
 scrolling:
   history: 10000
   multiplier: 3
@@ -219,7 +220,6 @@ bell:
   animation: Linear
   duration: 0
   color: '0x320F09'
-background_opacity: 0.92
 mouse_bindings:
   - { mouse: Middle, action: None }
 mouse:
