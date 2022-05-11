@@ -6,7 +6,7 @@ bingrep v0.10.0:
     bingrep
 bottom v0.6.8:
     btm
-cargo-update v8.1.2:
+cargo-update v8.1.3:
     cargo-install-update
     cargo-install-update-config
 code-minimap v0.6.4:
@@ -15,7 +15,7 @@ conclusive v0.1.0:
     conclusive
 csview v1.0.1:
     csview
-deno v1.19.1:
+deno v1.21.2:
     deno
 dijo v0.2.7:
     dijo
@@ -23,7 +23,7 @@ du-dust v0.8.0:
     dust
 eva v0.2.7:
     eva
-gfold v3.0.0:
+gfold v4.0.0:
     gfold
 git-delta v0.12.1:
     delta
@@ -46,7 +46,7 @@ imager v0.3.2:
     imager
 jless v0.8.0:
     jless
-jwt-cli v5.0.2:
+jwt-cli v5.0.3:
     jwt
 kmon v1.6.0:
     kmon
@@ -56,11 +56,32 @@ pastel v0.8.1:
     pastel
 pipe-rename v1.4.2:
     renamer
-procs v0.12.1:
+procs v0.12.2:
     procs
+radicle-cli v0.5.1 (https://seed.alt-clients.radicle.xyz/radicle-cli.git#53d4c844):
+    git-remote-rad
+    rad
+    rad-account
+    rad-auth
+    rad-checkout
+    rad-clone
+    rad-ens
+    rad-gov
+    rad-help
+    rad-init
+    rad-inspect
+    rad-ls
+    rad-pull
+    rad-push
+    rad-remote
+    rad-rm
+    rad-self
+    rad-sync
+    rad-track
+    rad-untrack
 rates v0.7.0:
     rates
-rustscan v2.0.0:
+rustscan v2.1.0:
     rustscan
 shellcaster v2.0.1:
     shellcaster
@@ -84,7 +105,7 @@ vocage v1.1.0:
     vocage
 websocat v1.9.0:
     websocat
-xplr v0.17.4:
+xplr v0.17.6:
     xplr
 zenith v0.0.2:
     zenith
