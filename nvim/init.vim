@@ -647,8 +647,11 @@ let g:minimap_block_filetypes = ['fern', 'fugitive', 'nerdtree', 'tagbar' ]
 let g:minimap_block_buftypes = [
 \'fern', 'nofile', 'nowrite', 'quickfix', 'terminal', 'prompt'
 \]
+let g:minimap_highlight_search = 1
+let g:minimap_highlight_range = 1
+let g:minimap_git_colors = 1
 
-noremap <silent> <C-k><C-m> :MinimapToggle<CR>
+noremap <silent> <C-k><C-m> :MinimapToggle<CR>:MinimapRescan<CR>:MinimapRefresh<CR>
 
 
 " ╔════════════════════════════════════════════════════════════════════════════╗
