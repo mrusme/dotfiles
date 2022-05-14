@@ -68,9 +68,10 @@ output HDMI-A-1 pos 960 2160
 output HDMI-A-1 scale 2
 
 exec swayidle -w \
-timeout 600 'swaylock' \
-timeout 900 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
-before-sleep 'swaylock'
+timeout 600 'swaylock' 
+# \
+# timeout 900 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
+# before-sleep 'swaylock'
 
 # DBUS
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
