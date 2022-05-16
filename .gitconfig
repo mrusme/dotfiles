@@ -46,7 +46,7 @@
 [url "ssh://git@git.sr.ht/"]
 	insteadOf = https://git.sr.ht/
 [url "ssh://git@git.source.xn--gckvb8fzb.com/"]
-	insteadOf = https://got.source.xn--gckvb8fzb.com/
+	insteadOf = https://git.source.xn--gckvb8fzb.com/
 [sendemail]
 	smtpserver = 127.0.0.1
 	smtpuser = marius@xn--gckvb8fzb.com
