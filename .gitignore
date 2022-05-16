@@ -1,3 +1,5 @@
 .DS_Store
 usr/local/bin/img2fwup
 usr/local/bin/xmrig-wrmsr
+irssi/*.log
+
