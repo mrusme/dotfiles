@@ -112,15 +112,30 @@ set wildmenu
 
 set autoread
 
+" 2 spaces tab, expand tabs to spaces
 set tabstop=2 shiftwidth=2 expandtab
+
 "set listchars=tab:▒░,trail:▓
 set listchars=tab:⇥\ ,trail:˽,extends:→
+
 set list
 
+" set number relativenumber
 set number
+
 set hlsearch
+
+" highlight the current line
+set cursorline
+
+" ignore case when searching ...
 set ignorecase
+
+" ... unless the search contains mixed case, then don't ignore
 set smartcase
+
+" begin scrolling x lines before bottom
+set scrolloff=10
 
 set hidden
 
@@ -248,22 +263,45 @@ let g:VM_maps["Select Cursor Up"]   = '<M-C-Up>'
 let g:tcomment#replacements_xml={}
 let g:vim_markdown_folding_disabled = 1
 
+" save window position on exit
+autocmd BufWinLeave
+  \ *.* mkview
+
+" restore window position
+autocmd BufWinEnter
+  \ *.* silent! loadview
+
+" set markdown filetype
 autocmd BufRead,BufNewFile
   \ *.md set filetype=markdown
+
+" set textwidth=80 for types and enable spell
 autocmd BufRead,BufNewFile
   \ *.{md,txt} 
     \ setlocal textwidth=80 |
     \ setlocal spell
+
+" set json filetyep
 autocmd BufRead,BufNewFile
   \ .{jscs,jshint,eslint}rc set filetype=json
+
+" set sh filetype
 autocmd BufRead,BufNewFile
   \ aliases.local,zshrc.local,.zshrc,*/zsh/configs/* set filetype=sh
+
+" set gitconfig filetyep
 autocmd BufRead,BufNewFile
   \ gitconfig.local,.gitconfig set filetype=gitconfig
+
+" set tmux filetype
 autocmd BufRead,BufNewFile
   \ tmux.conf.local,tmux.conf,.tmux.conf set filetype=tmux
+
+" set vim filetype
 autocmd BufRead,BufNewFile
   \ vimrc.local,.vimrc,init.vim set filetype=vim
+
+" set neomutt settings
 autocmd BufRead,BufNewFile
   \ neomutt-* 
     \ setlocal tw=72 | 
