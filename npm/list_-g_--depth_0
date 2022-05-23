@@ -15,5 +15,6 @@
 ├── typescript@4.5.4
 ├── vim-language-server@2.2.5
 ├── vscode-langservers-extracted@3.0.2
-└── yaml-language-server@1.2.2
+├── yaml-language-server@1.2.2
+└── yarn@1.22.18
 
