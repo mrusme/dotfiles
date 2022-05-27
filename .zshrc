@@ -142,6 +142,7 @@ export DOT_SECRETS="$HOME/.secrets"
 && export GOROOT="/usr/local/opt/go/libexec"
 go env -w GOPATH="$HOME/.go"
 export PATH=$HOME/.go/bin:$PATH
+export GOPROXY=direct
 
 # Python virtualenv
 export VIRTUALENVWRAPPER_PYTHON="$(which python3)"
