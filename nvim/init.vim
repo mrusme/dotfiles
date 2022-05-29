@@ -22,14 +22,20 @@ filetype off
 call plug#begin('~/.local/share/nvim/plugged')
 
 Plug 'editorconfig/editorconfig-vim'
+
 Plug 'neovim/nvim-lspconfig'
+Plug 'onsails/lspkind.nvim'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/nvim-cmp'
+
 Plug 'hrsh7th/cmp-vsnip'
 Plug 'hrsh7th/vim-vsnip'
+
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
 Plug 'lambdalisue/fern.vim'
 Plug 'lambdalisue/nerdfont.vim'
 Plug 'lambdalisue/fern-renderer-nerdfont.vim'
@@ -41,7 +47,8 @@ Plug 'ggandor/lightspeed.nvim'
 Plug 'lambdalisue/glyph-palette.vim'
 Plug 'glepnir/lspsaga.nvim'
 Plug 'gcmt/breeze.vim'
-Plug 'tomtom/tcomment_vim'
+" Plug 'tomtom/tcomment_vim'
+Plug 'numToStr/Comment.nvim'
 Plug 'airblade/vim-gitgutter'
 Plug 'godlygeek/tabular'
 Plug 'junegunn/goyo.vim'
@@ -52,12 +59,15 @@ Plug 'wfxr/minimap.vim'
 Plug 'jamessan/vim-gnupg'
 Plug 'glepnir/dashboard-nvim'
 Plug 'robertbasic/vim-hugo-helper'
-Plug 'cohama/lexima.vim'
+" Plug 'cohama/lexima.vim'
+Plug 'windwp/nvim-autopairs'
 Plug 'lervag/wiki.vim'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'simnalamburt/vim-mundo'
+Plug 'kyazdani42/nvim-web-devicons'
+Plug 'folke/trouble.nvim'
 
 "Plug 'plasticboy/vim-markdown'
 Plug 'leafgarland/typescript-vim'
@@ -69,6 +79,10 @@ Plug 'moll/vim-node'
 Plug 'docker/docker'
 Plug 'evanleck/vim-svelte', {'branch': 'main'}
 Plug 'vim-scripts/dbext.vim'
+
+Plug 'folke/which-key.nvim'
+" Plug 'RRethy/nvim-base16'
+" Plug 'danilamihailov/beacon.nvim'
 
 call plug#end()
 
@@ -323,6 +337,26 @@ endif
 set t_Co=256
 
 colorscheme neutral
+" lua << EOF
+" require('base16-colorscheme').setup({
+"   base00 = '#161616',
+"   base01 = '#262626',
+"   base02 = '#393939',
+"   base03 = '#525252',
+"   base04 = '#6F6F6F',
+"   base05 = '#FAFAFA',
+"   base06 = '#FAFAFA',
+"   base07 = '#FFFFFF',
+"   base08 = '#be95ff',
+"   base09 = '#3ddbd9',
+"   base0A = '#0043ce',
+"   base0B = '#33b1ff',
+"   base0C = '#ff7eb6',
+"   base0D = '#42be65',
+"   base0E = '#be95ff',
+"   base0F = '#3ddbd9',
+" })
+" EOF
 
 " OVERRIDES
 highlight Normal ctermbg=none
@@ -493,31 +527,39 @@ EOF
 " ╚════════════════════════════════════════════════════════════════════════════╝
 
 lua <<EOF
+  local cmp_autopairs = require'nvim-autopairs.completion.cmp'
   local cmp = require'cmp'
+  local lspkind = require'lspkind'
 
   cmp.setup({
     snippet = {
       expand = function(args)
-        vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+        vim.fn["vsnip#anonymous"](args.body)
       end,
     },
-    mapping = {
-      ['<C-b>'] = cmp.config.disable, -- cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
-      ['<C-f>'] = cmp.config.disable, -- cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
-      ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
-      ['<C-y>'] = cmp.config.disable,
-      ['<C-e>'] = cmp.mapping({
-        i = cmp.mapping.abort(),
-        c = cmp.mapping.close(),
-      }),
-      ['<CR>'] = cmp.mapping.confirm({ select = false }),
+    window = {
+      -- completion = cmp.config.window.bordered(),
+      -- documentation = cmp.config.window.bordered(),
     },
+    mapping = cmp.mapping.preset.insert({
+      ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+      ['<C-f>'] = cmp.mapping.scroll_docs(4),
+      ['<C-Space>'] = cmp.mapping.complete(),
+      ['<C-e>'] = cmp.mapping.abort(),
+      ['<CR>'] = cmp.mapping.confirm({ select = true }),
+    }),
     sources = cmp.config.sources({
       { name = 'nvim_lsp' },
-      { name = 'vsnip' }, -- For vsnip users.
+      { name = 'vsnip' },
     }, {
       { name = 'buffer' },
-    })
+    }),
+    formatting = {
+      format = lspkind.cmp_format({
+        mode = 'symbol',
+        maxwidth = 50,
+      })
+    }
   })
 
   cmp.setup.filetype('gitcommit', {
@@ -547,6 +589,8 @@ lua <<EOF
       { name = 'cmdline' }
     })
   })
+
+  cmp.event:on( 'confirm_done', cmp_autopairs.on_confirm_done({  map_char = { tex = '' } }))
 
   local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
@@ -620,6 +664,65 @@ EOF
 
 highlight link CompeDocumentation NormalFloat
 highlight link CmpDocumentation NormalFloat
+
+
+"
+" ╔════════════════════════════════════════════════════════════════════════════╗
+" ║ Treesitter                                                                 ║
+" ╚════════════════════════════════════════════════════════════════════════════╝
+
+lua << EOF
+require'nvim-treesitter.configs'.setup {
+  -- A list of parser names, or "all"
+  ensure_installed = { 
+    "bash",
+    "c", 
+    "cmake",
+    "comment",
+    "cpp",
+    "css",
+    "dockerfile",
+    "eex",
+    "elixir",
+    "erlang",
+    "go", 
+    "gomod",
+    "graphql",
+    "haskell",
+    "html",
+    "http",
+    "javascript", 
+    "json",
+    "lua", 
+    "make",
+    "markdown",
+    "nix",
+    "regex",
+    "ruby",
+    "rust",
+    "scss",
+    "svelte",
+    "toml",
+    "typescript", 
+    "vim",
+    "yaml"
+  },
+
+  sync_install = false,
+  ignore_install = {},
+
+  highlight = {
+    enable = true,
+    disable = {},
+
+    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+    -- Using this option may slow down your editor, and you may see some duplicate highlights.
+    -- Instead of true it can also be a list of languages
+    additional_vim_regex_highlighting = false,
+  },
+}
+EOF
 
 
 " ╔════════════════════════════════════════════════════════════════════════════╗
@@ -720,12 +823,12 @@ let g:GPGFilePattern = '*.\(gpg\|asc\|pgp\)\(.wiki\|.md\)\='
 " ║ Dashboard                                                                  ║
 " ╚════════════════════════════════════════════════════════════════════════════╝
 
-let g:dashboard_default_executive ='fzf'
-let g:dashboard_preview_command = 'cat'
-"let g:dashboard_preview_pipeline = 'lolcat'
+let g:dashboard_default_executive ='telescope'
+let g:dashboard_preview_command = '/bin/cat'
+" let g:dashboard_preview_pipeline = 'tail'
 let g:dashboard_preview_file = '~/.config/nvim/motd'
-let g:dashboard_preview_file_width = 80
-let g:dashboard_preview_file_height = 33
+let g:dashboard_preview_file_width = 76
+let g:dashboard_preview_file_height = 32
 let g:dashboard_custom_section = {
 \ 'a': {'description': [
         \ ' New file                              SPC n f'
@@ -741,6 +844,61 @@ let g:dashboard_custom_section = {
       \ ], 'command': 'DashboardFindWord'},
 \ }
 let g:dashboard_custom_footer = ['']
+
+
+" ╔════════════════════════════════════════════════════════════════════════════╗
+" ║ trouble.vim                                                                ║
+" ╚════════════════════════════════════════════════════════════════════════════╝
+
+lua << EOF
+  require("trouble").setup {
+    position = "bottom", -- position of the list can be: bottom, top, left, right
+    height = 10, -- height of the trouble list when position is top or bottom
+    width = 50, -- width of the list when position is left or right
+    icons = true, -- use devicons for filenames
+    mode = "workspace_diagnostics", -- "workspace_diagnostics", "document_diagnostics", "quickfix", "lsp_references", "loclist"
+    fold_open = "", -- icon used for open folds
+    fold_closed = "", -- icon used for closed folds
+    group = true, -- group results by file
+    padding = true, -- add an extra new line on top of the list
+    action_keys = { -- key mappings for actions in the trouble list
+        -- map to {} to remove a mapping, for example:
+        -- close = {},
+        close = "q", -- close the list
+        cancel = "<esc>", -- cancel the preview and get back to your last window / buffer / cursor
+        refresh = "r", -- manually refresh
+        jump = {"<cr>", "<tab>"}, -- jump to the diagnostic or open / close folds
+        open_split = { "<c-x>" }, -- open buffer in new split
+        open_vsplit = { "<c-v>" }, -- open buffer in new vsplit
+        open_tab = { "<c-t>" }, -- open buffer in new tab
+        jump_close = {"o"}, -- jump to the diagnostic and close the list
+        toggle_mode = "m", -- toggle between "workspace" and "document" diagnostics mode
+        toggle_preview = "P", -- toggle auto_preview
+        hover = "K", -- opens a small popup with the full multiline message
+        preview = "p", -- preview the diagnostic location
+        close_folds = {"zM", "zm"}, -- close all folds
+        open_folds = {"zR", "zr"}, -- open all folds
+        toggle_fold = {"zA", "za"}, -- toggle fold of current file
+        previous = "k", -- preview item
+        next = "j" -- next item
+    },
+    indent_lines = true, -- add an indent guide below the fold icons
+    auto_open = true, -- automatically open the list when you have diagnostics
+    auto_close = false, -- automatically close the list when you have no diagnostics
+    auto_preview = true, -- automatically preview the location of the diagnostic. <esc> to close preview and go back to last window
+    auto_fold = false, -- automatically fold a file trouble list at creation
+    auto_jump = {"lsp_definitions"}, -- for the given modes, automatically jump if there is only a single result
+    signs = {
+        -- icons / text used for a diagnostic
+        error = "",
+        warning = "",
+        hint = "",
+        information = "",
+        other = "﫠"
+    },
+    use_diagnostic_signs = true -- enabling this will use the signs defined in your lsp client
+  }
+EOF
 
 
 " ╔════════════════════════════════════════════════════════════════════════════╗
@@ -784,6 +942,97 @@ let g:typescript_indent_disable = 1
 " ╚════════════════════════════════════════════════════════════════════════════╝
 
 let g:dbext_default_menu_mode = 0
+
+
+" ╔════════════════════════════════════════════════════════════════════════════╗
+" ║ Which Key                                                                  ║
+" ╚════════════════════════════════════════════════════════════════════════════╝
+
+lua << EOF
+  require("which-key").setup {
+    plugins = {
+      marks = true, -- shows a list of your marks on ' and `
+      registers = true, -- shows your registers on " in NORMAL or <C-r> in INSERT mode
+      spelling = {
+        enabled = false, -- enabling this will show WhichKey when pressing z= to select spelling suggestions
+        suggestions = 20, -- how many suggestions should be shown in the list?
+      },
+      -- the presets plugin, adds help for a bunch of default keybindings in Neovim
+      -- No actual key bindings are created
+      presets = {
+        operators = true, -- adds help for operators like d, y, ... and registers them for motion / text object completion
+        motions = true, -- adds help for motions
+        text_objects = true, -- help for text objects triggered after entering an operator
+        windows = true, -- default bindings on <c-w>
+        nav = true, -- misc bindings to work with windows
+        z = true, -- bindings for folds, spelling and others prefixed with z
+        g = true, -- bindings for prefixed with g
+      },
+    },
+    -- add operators that will trigger motion and text object completion
+    -- to enable all native operators, set the preset / operators plugin above
+    operators = { gc = "Comments" },
+    key_labels = {
+      -- override the label used to display some keys. It doesn't effect WK in any other way.
+      -- For example:
+      -- ["<space>"] = "SPC",
+      -- ["<cr>"] = "RET",
+      -- ["<tab>"] = "TAB",
+    },
+    icons = {
+      breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
+      separator = "➜", -- symbol used between a key and it's label
+      group = "+", -- symbol prepended to a group
+    },
+    popup_mappings = {
+      scroll_down = '<c-d>', -- binding to scroll down inside the popup
+      scroll_up = '<c-u>', -- binding to scroll up inside the popup
+    },
+    window = {
+      border = "none", -- none, single, double, shadow
+      position = "bottom", -- bottom, top
+      margin = { 1, 0, 1, 0 }, -- extra window margin [top, right, bottom, left]
+      padding = { 2, 2, 2, 2 }, -- extra window padding [top, right, bottom, left]
+      winblend = 0
+    },
+    layout = {
+      height = { min = 4, max = 25 }, -- min and max height of the columns
+      width = { min = 20, max = 50 }, -- min and max width of the columns
+      spacing = 3, -- spacing between columns
+      align = "left", -- align columns left, center or right
+    },
+    ignore_missing = false, -- enable this to hide mappings for which you didn't specify a label
+    hidden = { "<silent>", "<cmd>", "<Cmd>", "<CR>", "call", "lua", "^:", "^ "}, -- hide mapping boilerplate
+    show_help = true, -- show help message on the command line when the popup is visible
+    triggers = "auto", -- automatically setup triggers
+    -- triggers = {"<leader>"} -- or specify a list manually
+    triggers_blacklist = {
+      -- list of mode / prefixes that should never be hooked by WhichKey
+      -- this is mostly relevant for key maps that start with a native binding
+      -- most people should not need to change this
+      i = { "j", "k" },
+      v = { "j", "k" },
+    },
+  }
+EOF
+
+
+" ╔════════════════════════════════════════════════════════════════════════════╗
+" ║ Comment                                                                    ║
+" ╚════════════════════════════════════════════════════════════════════════════╝
+
+lua << EOF
+require('Comment').setup({
+  toggler = {
+    ---Line-comment toggle keymap
+    line = 'gcc',
+    ---Block-comment toggle keymap
+    block = 'gbc',
+  },
+})
+EOF
+nmap <C-_><C-_> gcc
+vmap <C-_><C-_> gbc<Esc>
 
 
 " ╔════════════════════════════════════════════════════════════════════════════╗
