@@ -349,9 +349,9 @@ bar {
 exec mpd
 
 # OpenRGB
-#exec openrgb -p pirate.orp
-exec openrgb -d 0 -m direct -z 0 -c 'ff4500,ff4500,ff4500,ff4500,ff4500,ff4500,ff4500,000000,000000,000000,000000,000000,000000,000000,000000,ff4500'
+# exec openrgb -d 0 -m direct -z 0 -c 'ff4500,ff4500,ff4500,ff4500,ff4500,ff4500,ff4500,000000,000000,000000,000000,000000,000000,000000,000000,ff4500'
 #exec openrgb -d 0 -m direct -z 0 -c 'd40000,d40000,d40000,d40000,d40000,d40000,d40000,000000,000000,000000,000000,000000,000000,000000,000000,d40000'
+exec openrgb -p cyber
 
 # Syncthing
 #exec syncthing serve --no-browser
