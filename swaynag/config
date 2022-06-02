@@ -1,0 +1,12 @@
+[msg]
+edge=bottom
+background=161821
+border=84a0c6
+border-bottom=161821
+text=FFFFFF
+button-text=FFFFFF
+button-background=161821
+button-border-size=2
+button-padding=4
+button-gap=10
+message-padding=8
