@@ -28,28 +28,32 @@ set $menu wofi --show run
 set $dmenu wofi -d
 
 set {
-  $red         #B4140F
-	$pink        #FC9EDF
-	$white		   #ffffff
-	$cyan		     #75d5ff
-	$magenta	   #ff89d8
-	$orange		   #CCAA60
-	$silver		   #e4e4e4
-	$dark      	 #040606
-	$transparent #FF000000
+  $dark        #040606
+  $black       #161821
+  $red         #e27878
+  $green       #b4be82
+  $yellow      #e2a478
+  $blue        #84a0c6
+  $magenta     #a093c7
+  $cyan        #89b8c2
+  $white       #c6c8d1
+  $bright      #ffffff
+  $transparent #FF000000
 }
 
 #                         border   backgrnd text    indic    chld
-client.focused        	 	$orange	 $orange  $white  $orange  $orange
-client.unfocused        	$dark    $dark    $orange $dark    $dark
-client.focused_inactive 	$dark    $dark    $orange $dark    $dark
-client.urgent	          	$red     $red     $white  $red     $red
-client.placeholder	      $dark    $dark    $white  $white   $dark
+client.focused            $black   $black   $bright $blue    $black
+client.unfocused          $dark    $dark    $blue   $dark    $dark
+client.focused_inactive   $dark    $dark    $blue   $dark    $dark
+client.urgent             $red     $red     $white  $red     $red
+client.placeholder        $dark    $dark    $white  $white   $dark
 
-font pango: ProggyVector 10
+font pango: ProggyVector 9
 
 default_border pixel 2
+default_floating_border pixel 2
 titlebar_border_thickness 2
+titlebar_padding 10 6
 
 smart_gaps off
 smart_borders off
@@ -74,7 +78,8 @@ timeout 600 'swaylock'
 # before-sleep 'swaylock'
 
 # DBUS
-exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+exec dbus-update-activation-environment \
+  --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 
 # Clipboard (https://github.com/sentriz/cliphist)
 exec wl-paste --watch cliphist store
@@ -110,8 +115,13 @@ bindsym $mod+Return exec $term
 bindsym $mod+backspace exec /usr/local/bin/ff
 
 # Clipboard
-bindsym $mod+Alt+Backslash exec cliphist list | $dmenu | cliphist decode | wl-copy
-bindsym $mod+Alt+Bar exec cliphist list | $dmenu | cliphist delete
+bindsym $mod+Alt+Backslash exec cliphist list \
+  | $dmenu \
+  | cliphist decode \
+  | wl-copy
+bindsym $mod+Alt+Bar exec cliphist list \
+  | $dmenu \
+  | cliphist delete
 
 # Recall notifications
 bindsym $mod+asciitildE exec dunstctl history-pop
@@ -132,7 +142,12 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Ctrl+q exec swaylock
 
 # Exit sway
-bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
+bindsym $mod+Shift+e exec swaynag -t msg -e bottom -m 'EXIT SWAY SESSION' \
+  -b '          YES          ' 'swaymsg exit' \
+  -s '          NO          '
+bindsym $mod+Shift+x exec swaynag -t msg -e bottom -m 'SHUTDOWN COMPUTER' \
+  -b '          YES          ' 'swaymsg exit && sudo halt' \
+  -s '          NO          '
 
 # Media keys
 # bindsym $mod+F8 exec playerctl play-pause
@@ -149,11 +164,20 @@ bindsym $mod+F11 exec pulsemixer --change-volume -10
 bindsym $mod+F12 exec pulsemixer --change-volume +10
 
 # Screenshotting
-bindsym Print exec grim -t png $HOME/downloads/$(date +'screenshot_%Y-%m-%d-%H%M%S.png')
-bindsym Shift+Print exec --no-startup-id slurp | grim -t png -g - $HOME/downloads/$(date +'screenshot_%Y-%m-%d-%H%M%S.png')
-bindsym Ctrl+Print exec --no-startup-id swaymsg -t get_tree | jq -r '.. | select(.pid? and .visible?) | .rect | "\(.x),\(.y) \(.width)x\(.height)"' | slurp | grim -t png -g - $HOME/downloads/$(date +'screenshot_%Y-%m-%d-%H%M%S.png')
-bindsym $mod+Print exec --no-startup-id slurp | xargs -I {} grim -s 2 -t png -g {} - | tesseract - - | wl-copy -n
-
+bindsym Print exec grim -t png \
+  $HOME/downloads/$(date +'screenshot_%Y-%m-%d-%H%M%S.png')
+bindsym Shift+Print exec --no-startup-id slurp \
+  | grim -t png -g - \
+  $HOME/downloads/$(date +'screenshot_%Y-%m-%d-%H%M%S.png')
+bindsym Ctrl+Print exec --no-startup-id swaymsg -t get_tree \
+  | jq -r '.. | select(.pid? and .visible?) | .rect | "\(.x),\(.y) \(.width)x\(.height)"' \
+  | slurp \
+  | grim -t png -g - \
+  $HOME/downloads/$(date +'screenshot_%Y-%m-%d-%H%M%S.png')
+bindsym $mod+Print exec --no-startup-id slurp \
+  | xargs -I {} grim -s 2 -t png -g {} - \
+  | tesseract - - \
+  | wl-copy -n
 
 # Move your focus around
 bindsym $mod+$left focus left
@@ -324,7 +348,7 @@ for_window [app_id="waybar" floating] {
 }
 focus_on_window_activation focus
 
-for_window [shell="xwayland"] title_format "<span>[X] %title゜</span>"
+for_window [shell="xwayland"] title_format "<span>[X11] %title゜</span>"
 
 
 bar {
@@ -349,9 +373,11 @@ bar {
 exec mpd
 
 # OpenRGB
-# exec openrgb -d 0 -m direct -z 0 -c 'ff4500,ff4500,ff4500,ff4500,ff4500,ff4500,ff4500,000000,000000,000000,000000,000000,000000,000000,000000,ff4500'
-#exec openrgb -d 0 -m direct -z 0 -c 'd40000,d40000,d40000,d40000,d40000,d40000,d40000,000000,000000,000000,000000,000000,000000,000000,000000,d40000'
-exec openrgb -p cyber
+# exec openrgb -d 0 -m direct -z 0 -c \
+# 'ff4500,ff4500,ff4500,ff4500,ff4500,ff4500,ff4500,000000,000000,000000,000000,000000,000000,000000,000000,ff4500'
+# exec openrgb -d 0 -m direct -z 0 -c \
+# 'd40000,d40000,d40000,d40000,d40000,d40000,d40000,000000,000000,000000,000000,000000,000000,000000,000000,d40000'
+exec openrgb -p sea
 
 # Syncthing
 #exec syncthing serve --no-browser
@@ -360,8 +386,8 @@ exec openrgb -p cyber
 exec /usr/local/bin/overdue-tasks
 
 # KeePassXC
-exec keepassxc
+exec /usr/local/bin/passwordmanager
 
-
+# Other configs
 include /etc/sway/config.d/*
 
