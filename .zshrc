@@ -104,6 +104,9 @@ export ZEIT_DB="$HOME/.zeit.db"
 # https://github.com/mrusme/geld
 export GELD_DB="$HOME/.geld.db"
 
+# https://github.com/mrusme/addrb
+export ADDRB_DB="$HOME/.cache/addrb.db"
+
 # Import color scheme via wal
 #[[ "$OS" = "Linux" ]] \
 #&& type wal > /dev/null && (wal -r &)
@@ -730,6 +733,8 @@ function dotfiles-update-remote() {
 
     cp "$XDG_CONFIG_HOME/swaylock/config" "$DOTFILES/swaylock/config"
 
+    cp "$XDG_CONFIG_HOME/swaynag/config" "$DOTFILES/swaynag/config"
+
     cp "$XDG_CONFIG_HOME/task/taskrc" "$DOTFILES/task/taskrc"
 
     cp "$XDG_CONFIG_HOME/waybar/"* "$DOTFILES/waybar/"
@@ -809,6 +814,9 @@ function dotfiles-update-local() {
 
     mkdir -p "$XDG_CONFIG_HOME/swaylock" 
     cp "$DOTFILES/swaylock/config" "$XDG_CONFIG_HOME/swaylock/config" 
+
+    mkdir -p "$XDG_CONFIG_HOME/swaynag" 
+    cp "$DOTFILES/swaynag/config" "$XDG_CONFIG_HOME/swaynag/config" 
 
     mkdir -p "$XDG_CONFIG_HOME/task" 
     cp "$DOTFILES/task/taskrc" "$XDG_CONFIG_HOME/task/taskrc" 
