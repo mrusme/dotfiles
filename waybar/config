@@ -31,6 +31,7 @@
   ],
   "modules-right": [
   //"custom/pushover",
+  "custom/screenrecord",
   "custom/vpn",
   "custom/rslsync",
   "custom/docker",
@@ -89,6 +90,14 @@
     //"on-click-middle": "",
     //"on-click-right": "",
     "interval": 30
+  },
+
+  "custom/screenrecord": {
+    "format": "{}",
+    "return-type": "json",
+    "exec": "/usr/local/bin/screenrecord",
+    "on-click": "/usr/local/bin/screenrecord toggle",
+    "interval": 3
   },
 
   //"custom/pushover": {
