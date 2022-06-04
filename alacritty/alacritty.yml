@@ -69,153 +69,39 @@ draw_bold_text_with_bright_colors: true
 schemes:
   dark: &dark
     primary:
-      background: '#181818'
-      foreground: '#CBD8EB'
-    cursor:
-      text: '#000000'
-      cursor: '#d783ff'
-    selection:
-      text: '#000000'
-      background: '#65E0BD'
-    search:
-      matches:
-       foreground: '#000000'
-       background: '#5da3c0'
-      focused_match:
-       foreground: '#cfcfd8'
-       background: '#ff7d78'
-      bar:
-       background: '#454548'
-       foreground: '#799eff'
-    normal:
-      black: '#454548'
-      red: '#ff7d78'
-      green: '#65E0BD'
-      yellow: '#ffd478'
-      blue: '#799eff'
-      magenta: '#ff89d8'
-      cyan: '#75d5ff'
-      white: '#cfcfd8'
-    bright:
-      black: '#67686c'
-      red: '#FC9492'
-      green: '#99F2B9'
-      yellow: '#FCDA92'
-      blue: '#91AFFE'
-      magenta: '#FC9EDF'
-      cyan: '#8EDBFE'
-      white: '#f1f2fc'
-    dim:
-      black: '#222324'
-      red: '#CC6460'
-      green: '#5BCAAA'
-      yellow: '#CCAA60'
-      blue: '#617ECC'
-      magenta: '#CC6EAD'
-      cyan: '#5EAACC'
-      white: '#acadb4'
-  light: &light
-    primary:
-      background: '#e8e9ec'
-      foreground: '#33374c'
-    cursor:
-      text: '#f1f2fc'
-      cursor: '#d783ff'
-    selection:
-      text: '#f1f2fc'
-      background: '#799eff'
-    normal:
-      black: '#222324'
-      red: '#ff7d78'
-      green: '#62d9b7'
-      yellow: '#ffd478'
-      blue: '#799eff'
-      magenta: '#ff89d8'
-      cyan: '#5da3c0'
-      white: '#acadb4'
-    bright:
-      black: '#454548'
-      red: '#FC9492'
-      green: '#7FDEC5'
-      yellow: '#FCDA92'
-      blue: '#91AFFE'
-      magenta: '#FC9EDF'
-      cyan: '#7BB3CC'
-      white: '#cfcfd8'
-    dim:
-      black: '#000000'
-      red: '#CC6460'
-      green: '#4EAE92'
-      yellow: '#CCAA60'
-      blue: '#617ECC'
-      magenta: '#CC6EAD'
-      cyan: '#4A829A'
-      white: '#8a8a90'
-  grayscale-light: &grayscale-light
-    primary:
-      background: '0xf7f7f7'
-      foreground: '0x464646'
-    normal:
-      black:   '0x101010'
-      red:     '0x7c7c7c'
-      green:   '0x8e8e8e'
-      yellow:  '0xa0a0a0'
-      blue:    '0x686868'
-      magenta: '0x747474'
-      cyan:    '0x868686'
-      white:   '0xb9b9b9'
-    bright:
-      black:   '0x525252'
-      red:     '0x7c7c7c'
-      green:   '0x8e8e8e'
-      yellow:  '0xa0a0a0'
-      blue:    '0x686868'
-      magenta: '0x747474'
-      cyan:    '0x868686'
-      white:   '0xf7f7f7'
-  neutral: &neutral
-    primary:
       background: '0x040606'
       foreground: '0xbde7e5'
     cursor:
-      text: '#ffffff'
-      cursor: '#bb2626'
-    selection:
-      text: '#000000'
-      background: '#65cde0'
-    search:
-      matches:
-       foreground: '#000000'
-       background: '#5da3c0'
-      focused_match:
-       foreground: '#cfcfd8'
-       background: '#ff7d78'
-      bar:
-       background: '#454548'
-       foreground: '#799eff'
- 
-    # Normal colors
+      text: '0xFEFFFF'
+      cursor: '0xc7c7c7'
     normal:
-      black:   '0x0c0707'
-      red:     '0xf2777a'
-      green:   '0xccaa60'
-      yellow:  '0xb89956'
-      blue:    '0xa3884d'
-      magenta: '0x8f7743'
-      cyan:    '0x7a663a'
-      white:   '0xd3d0c8'
-
-    # Bright colors
+      black:   '#161821'
+      red:     '#e27878'
+      green:   '#b4be82'
+      yellow:  '#e2a478'
+      blue:    '#84a0c6'
+      magenta: '#a093c7'
+      cyan:    '#89b8c2'
+      white:   '#c6c8d1'
     bright:
-      black:   '0x73848b'
-      red:     '0xf2777a'
-      green:   '0xccaa60'
-      yellow:  '0xd1b370'
-      blue:    '0xd6bb80'
-      magenta: '0xdbc490'
-      cyan:    '0xe0cca0'
-      white:   '0xcfcfd8'
-colors: *neutral
+      black:   '#6b7089'
+      red:     '#e98989'
+      green:   '#c0ca8e'
+      yellow:  '#e9b189'
+      blue:    '#91acd1'
+      magenta: '#ada0d3'
+      cyan:    '#95c4ce'
+      white:   '#d2d4de'
+    # dim:
+      # black:   '0x333366'
+      # red:     '0x6666cc'
+      # green:   '0x0099cc'
+      # yellow:  '0x3366cc'
+      # blue:    '0x006699'
+      # magenta: '0x0066ff'
+      # cyan:    '0x669999'
+      # white:   '0x99cccc'
+colors: *dark
 bell:
   animation: Linear
   duration: 0
