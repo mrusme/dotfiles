@@ -1,0 +1,33 @@
+#!/bin/sh
+
+output_lg='alsa_output.pci-0000_0c_00.1.hdmi-stereo-extra4'
+output_motu='alsa_output.usb-MOTU_M2_M2AE029AS5-00.pro-output-0'
+output_srsxb='bluez_output.6C_47_60_1F_51_DD.a2dp-sink'
+output_h9i=''
+
+set_output=$output_motu
+
+case $1 in
+  "lg")
+    set_output=$output_lg
+    ;;
+  "motu")
+    set_output=$output_motu
+    ;;
+  "srsxb")
+    set_output=$output_srsxb
+    ;;
+  "h9i")
+    set_output=$output_h9i
+    ;;
+  *)
+    echo "Unknown output: $1"
+    exit 1
+    ;;
+esac
+
+pactl list short sink-inputs | cut -f1 | while read input_id
+do
+  pactl move-sink-input $input_id $set_output
+done
+

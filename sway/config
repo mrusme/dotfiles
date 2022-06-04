@@ -163,6 +163,12 @@ bindsym $mod+F10 exec pulsemixer --change-volume -100
 bindsym $mod+F11 exec pulsemixer --change-volume -10
 bindsym $mod+F12 exec pulsemixer --change-volume +10
 
+bindsym $mod+Shift+F1 exec /usr/local/bin/audio-router lg
+bindsym $mod+Shift+F2 exec /usr/local/bin/audio-router motu
+bindsym $mod+Shift+F3 exec /usr/local/bin/audio-router srsxb
+bindsym $mod+Shift+F4 exec /usr/local/bin/audio-router hi9
+
+
 # Screenshotting
 bindsym Print exec grim -t png \
   $HOME/downloads/$(date +'screenshot_%Y-%m-%d-%H%M%S.png')
