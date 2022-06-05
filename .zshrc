@@ -71,7 +71,7 @@ if [[ -n $SSH_CONNECTION ]]; then
 else
   if [[ "$OS" = "Linux" ]]
   then
-    export BROWSER=firefox
+    export BROWSER=/usr/local/bin/browser
   elif [[ "$OS" = "Darwin" ]]
   then
     export BROWSER=open
@@ -740,6 +740,8 @@ function dotfiles-update-remote() {
     cp "$XDG_CONFIG_HOME/waybar/"* "$DOTFILES/waybar/"
 
     cp "$XDG_CONFIG_HOME/wofi/"* "$DOTFILES/wofi/"
+
+    cp "$HOME/.local/share/applications/browser.desktop" "$DOTFILES/local/share/applications/browser.desktop"
   fi
 
   cargo install --list > "$DOTFILES/cargo/install_--list"
@@ -826,6 +828,9 @@ function dotfiles-update-local() {
 
     mkdir -p "$XDG_CONFIG_HOME/wofi" 
     cp "$DOTFILES/wofi/"* "$XDG_CONFIG_HOME/wofi/" 
+
+    mkdir -p "$HOME/.local/share/applications/" 
+    cp "$DOTFILES/local/share/applications/browser.desktop" "$HOME/.local/share/applications/browser.desktop"
   fi
   return 0
 }

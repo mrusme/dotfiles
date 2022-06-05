@@ -1,2 +1,2 @@
 #!/bin/sh
-TZ=UTC /usr/bin/firefox
+TZ=UTC /usr/bin/firefox "$@"

@@ -1,0 +1,46 @@
+#!/bin/sh
+read -d '\n' browsers << EOF
+firefox
+librewolf
+chromium
+tor-browser
+nyxt
+EOF
+
+url="$1"
+
+# https://github.com/thegeeklab/url-parser
+host=$(url-parser host --url "$url")
+
+selected_browser="firefox"
+
+# if test "${url#*$".onion"}" != "$url"
+if [ $(expr "$host" : '^.*\.onion$') -gt 0 ]
+then
+  selected_browser="tor-browser"
+else
+  selected_browser=$(echo "$browsers" | wofi --dmenu)
+fi
+
+case $selected_browser in
+  "firefox")
+    exec /usr/local/bin/ff "$url"
+    ;;
+  "librewolf")
+    exec /usr/local/bin/lw "$url"
+    ;; 
+  "chromium")
+    exec chromium "$url"
+    ;;
+  "tor-browser")
+    exec /usr/local/bin/tb "$url"
+    ;;
+  "nyxt")
+    exec nyxt "$url"
+    ;;
+  *)
+    echo "No browser named $selected_browser found!"
+    exit 1
+    ;;
+esac
+
