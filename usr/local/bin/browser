@@ -1,4 +1,12 @@
 #!/bin/sh
+# 
+# For xdg-open to use this script run:
+# xdg-settings set default-web-browser browser.desktop
+#
+# browser.desktop is located in:
+# ~/.local/share/applications/browser.desktop
+#
+
 read -d '\n' browsers << EOF
 firefox
 librewolf
