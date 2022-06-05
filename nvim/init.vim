@@ -336,7 +336,7 @@ if (has('nvim'))
 endif
 set t_Co=256
 
-colorscheme neutral
+colorscheme iceberg
 " lua << EOF
 " require('base16-colorscheme').setup({
 "   base00 = '#161616',
@@ -391,7 +391,7 @@ let g:indentLine_fileTypeExclude = ['dashboard']
 " ╚════════════════════════════════════════════════════════════════════════════╝
 
 let g:lightline = { 
-  \ 'colorscheme': 'neutral', 
+  \ 'colorscheme': 'iceberg', 
   \ 'active': {
   \   'right': [ [ 'lineinfo' ], [ 'percent' ], [ 'indent', 'fileformat', 'fileencoding', 'filetype' ] ]
   \ },
