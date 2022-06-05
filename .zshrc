@@ -746,7 +746,15 @@ function dotfiles-update-remote() {
 
   cargo install --list > "$DOTFILES/cargo/install_--list"
   npm list -g --depth=0 > "$DOTFILES/npm/list_-g_--depth_0"
-  # go list '...' | rg '^github.com' > "$DOTFILES/go/list_github.com"
+  /bin/ls -1 ~/.go/bin/ \
+    | while read bin; \
+    do go version -m ~/.go/bin/$bin \
+    | grep '^[[:space:]]path' \
+    | awk '{ print $2 }' \
+    | grep '^github.com' \
+    | sort \
+    | uniq;\
+    done > "$DOTFILES/go/list_github.com"
   git -C "$DOTFILES" commit -a -S
   return 0
 }
