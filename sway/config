@@ -111,8 +111,14 @@ input "1133:50475:Logitech_USB_Receiver_Mouse" {
 # Start a terminal
 bindsym $mod+Return exec $term
 
+
 # Open browser
 bindsym $mod+backspace exec /usr/local/bin/ff
+bindsym $mod+Shift+backspace exec /usr/local/bin/ff -private-window
+
+bindsym $mod+Alt+backspace exec /usr/local/bin/lw
+bindsym $mod+Alt+Shift+backspace exec /usr/local/bin/lw -private-window
+
 
 # Clipboard
 bindsym $mod+Alt+Backslash exec cliphist list \
@@ -127,7 +133,7 @@ bindsym $mod+Alt+Bar exec cliphist list \
 bindsym $mod+asciitildE exec dunstctl history-pop
 
 # Kill focused window
-bindsym $mod+Shift+Escape kill
+bindsym $mod+Escape kill
 
 # Start your launcher
 bindsym $mod+Space exec $menu
@@ -339,6 +345,8 @@ for_window [app_id = "virt-manager"] floating enable
 for_window [app_id = "pavucontrol"] floating enable
 for_window [app_id = "org.gnupg.pinentry-qt"] floating enable
 for_window [app_id = "keepassxc"] floating enable
+for_window [app_id = "zenity"] floating enable
+for_window [app_id = "yad"] floating enable
 
 for_window [instance="file_progress"]  sticky enable
 
