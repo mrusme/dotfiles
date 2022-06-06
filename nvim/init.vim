@@ -1049,6 +1049,16 @@ nmap gx <Plug>vertopen_url
 
 
 " ╔════════════════════════════════════════════════════════════════════════════╗
+" ║ Custom commands                                                            ║
+" ╚════════════════════════════════════════════════════════════════════════════╝
+
+" Color picker
+vnoremap <M-c> c<C-R>=system('yad --color --init-color' . shellescape(@"))<CR><ESC>
+nnoremap <M-c> :put =system('yad --color')<CR>
+inoremap <M-c> <ESC>:put =system('yad --color')<CR>
+
+
+" ╔════════════════════════════════════════════════════════════════════════════╗
 " ║ Custom replacements                                                        ║
 " ╚════════════════════════════════════════════════════════════════════════════╝
 
