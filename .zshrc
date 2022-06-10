@@ -26,7 +26,11 @@ export OS=$(uname)
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
-export XDG_CONFIG_HOME=$HOME/.config
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_DOWNLOAD_DIR="$HOME/downloads"
+export XDG_DESKTOP_DIR="$HOME/desktop"
 
 export ICONS_PATH="$HOME/projects/github/arcticons/icons/white"
 
@@ -96,7 +100,7 @@ export QT_STYLE_OVERRIDE=kvantum
 
 # https://github.com/oz/tz/
 export TZ_LIST="Pacific/Honolulu;America/Panama;America/New_York;Etc/UTC;\
-Europe/Berlin;Asia/Bangkok;Asia/Tokyo;Australia/Melbourne"
+Europe/Berlin;Asia/Dubai;Asia/Karachi;Asia/Bangkok;Asia/Tokyo;Australia/Melbourne;Pacific/Auckland;"
 
 # https://github.com/mrusme/zeit
 export ZEIT_DB="$HOME/.zeit.db"
