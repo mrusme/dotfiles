@@ -6,7 +6,7 @@ bingrep v0.10.0:
     bingrep
 bottom v0.6.8:
     btm
-cargo-update v8.1.3:
+cargo-update v8.1.4:
     cargo-install-update
     cargo-install-update-config
 code-minimap v0.6.4:
@@ -25,22 +25,22 @@ eva v0.2.7:
     eva
 gfold v4.0.0:
     gfold
-git-delta v0.12.1:
+git-delta v0.13.0:
     delta
 git-journal v1.8.1:
     git-journal
 gitui v0.20.1:
     gitui
-gpg-tui v0.8.3:
+gpg-tui v0.9.0:
     gpg-tui
     gpg-tui-completions
 gping v1.3.1:
     gping
-hexyl v0.9.0:
+hexyl v0.10.0:
     hexyl
 htmlq v0.4.0:
     htmlq
-hyperfine v1.13.0:
+hyperfine v1.14.0:
     hyperfine
 imager v0.3.2:
     imager
@@ -52,11 +52,11 @@ kmon v1.6.0:
     kmon
 mdcat v0.27.1:
     mdcat
-pastel v0.8.1:
+pastel v0.9.0:
     pastel
 pipe-rename v1.4.2:
     renamer
-procs v0.12.2:
+procs v0.12.3:
     procs
 radicle-cli v0.5.1 (https://seed.alt-clients.radicle.xyz/radicle-cli.git#53d4c844):
     git-remote-rad
@@ -103,9 +103,9 @@ viu v1.4.0:
     viu
 vocage v1.1.0:
     vocage
-websocat v1.9.0:
+websocat v1.10.0:
     websocat
-xplr v0.17.6:
+xplr v0.18.0:
     xplr
 zenith v0.0.2:
     zenith
