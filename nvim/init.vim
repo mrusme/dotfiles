@@ -823,27 +823,47 @@ let g:GPGFilePattern = '*.\(gpg\|asc\|pgp\)\(.wiki\|.md\)\='
 " ║ Dashboard                                                                  ║
 " ╚════════════════════════════════════════════════════════════════════════════╝
 
-let g:dashboard_default_executive ='telescope'
-let g:dashboard_preview_command = '/bin/cat'
-" let g:dashboard_preview_pipeline = 'tail'
-let g:dashboard_preview_file = '~/.config/nvim/motd'
-let g:dashboard_preview_file_width = 76
-let g:dashboard_preview_file_height = 32
-let g:dashboard_custom_section = {
-\ 'a': {'description': [
-        \ ' New file                              SPC n f'
-      \ ], 'command': 'DashboardNewFile'},
-\ 'b': {'description': [
-        \ ' Recent files                          SPC r f'
-      \ ], 'command': 'DashboardFindHistory'},
-\ 'c': {'description': [
-        \ ' Find file                             SPC f f'
-      \ ], 'command': 'DashboardFindFile'},
-\ 'd': {'description': [
-        \ 'ﰍ Find word                             SPC f w'
-      \ ], 'command': 'DashboardFindWord'},
-\ }
-let g:dashboard_custom_footer = ['']
+lua << EOF
+local home = os.getenv('HOME')
+  local db = require('dashboard')
+  db.preview_command = '/bin/cat'
+  db.preview_file_path = home .. '/.config/nvim/motd'
+  db.preview_file_width = 76
+  db.preview_file_height = 32
+  db.custom_center = {
+    {
+      icon = ' ',
+      desc = 'New file',
+      shortcut = 'SPC n f',
+      action = 'enew'
+    },
+    {
+      icon = '  ',
+      desc = 'Recently opened files                   ',
+      action =  'DashboardFindHistory',
+      shortcut = 'SPC f h'
+    },
+    {
+      icon = '  ',
+      desc = 'Find  File                              ',
+      action = 'Telescope find_files find_command=rg,--hidden,--files',
+      shortcut = 'SPC f f'
+    },
+    {
+      icon = '  ',
+      desc ='File Browser                            ',
+      action =  'Telescope file_browser',
+      shortcut = 'SPC f b'
+    },
+    {
+      icon = '  ',
+      desc = 'Find  word                              ',
+      aciton = 'DashboardFindWord',
+      shortcut = 'SPC f w'
+    },
+  }
+  db.custom_footer = nil
+EOF
 
 
 " ╔════════════════════════════════════════════════════════════════════════════╗
