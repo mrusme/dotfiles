@@ -28,6 +28,7 @@ esac
 
 pactl list short sink-inputs | cut -f1 | while read input_id
 do
+  pactl set-sink-volume $set_output 16%
   pactl move-sink-input $input_id $set_output
 done
 
