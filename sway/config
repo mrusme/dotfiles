@@ -66,16 +66,34 @@ hide_edge_borders none
 focus_follows_mouse no
 focus_on_window_activation smart
 
-output * bg ~/.wallpaper fill
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ Outputs                                                                    ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+
+# LG 32UN500-W
 output DP-3 pos 0 0
+
+# UPERFECT 15.6 UHD
 output HDMI-A-1 pos 960 2160
 output HDMI-A-1 scale 2
 
+# Wallpaper
+output * bg ~/.wallpaper fill
+
+# swayidle
+# TODO: Fix GPU cycling issue (https://github.com/swaywm/sway/issues/6971) 
+# before re-enabling `dpms * off`. Until then, leave HDMI-A-1 on in order for 
+# the GPU to never sleep.
 exec swayidle -w \
-timeout 600 'swaylock' 
-# \
-# timeout 900 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
-# before-sleep 'swaylock'
+timeout 600 'swaylock' \
+timeout 900 'swaymsg "output DP-3 dpms off"' resume 'swaymsg "output DP-3 dpms on"' \
+before-sleep 'swaylock'
+
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ Service                                                                    ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
 
 # DBUS
 exec dbus-update-activation-environment \
@@ -90,13 +108,22 @@ exec gentoo-pipewire-launcher
 # Desktop notifications
 exec dunst
 
+# Music Player daemon
+exec mpd
+
  
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ Inputs                                                                     ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+
+# Mad Catz R.A.T. 8+
 input "4815:3077:Mad_Catz_Global_MADCATZ_R.A.T._8+_gaming_mouse" {
   natural_scroll enabled
   pointer_accel 0
   #accel_profile adaptive
 } 
  
+# Logitech MX Master 3
 input "1133:50475:Logitech_USB_Receiver_Mouse" {
   natural_scroll enabled
   pointer_accel 0
@@ -138,7 +165,6 @@ bindsym $mod+Escape kill
 # Start your launcher
 bindsym $mod+Space exec $menu
 
-
 floating_modifier $mod normal
 
 # Reload the configuration file
@@ -151,9 +177,9 @@ bindsym $mod+Ctrl+q exec swaylock
 bindsym $mod+Shift+e exec swaynag -t msg -e bottom -m 'EXIT SWAY SESSION' \
   -b '          YES          ' 'swaymsg exit' \
   -s '          NO          '
-bindsym $mod+Shift+x exec swaynag -t msg -e bottom -m 'SHUTDOWN COMPUTER' \
-  -b '          YES          ' 'swaymsg exit && sudo halt' \
-  -s '          NO          '
+# bindsym $mod+Shift+x exec swaynag -t msg -e bottom -m 'SHUTDOWN COMPUTER' \
+  # -b '          YES          ' 'swaymsg exit && sudo halt' \
+  # -s '          NO          '
 
 # Media keys
 # bindsym $mod+F8 exec playerctl play-pause
@@ -310,9 +336,10 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 
-#                                                                              #
-# Window specific configuration                                                #
-#                                                                              #
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ Windows                                                                    ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+
 for_window [window_role = "pop-up"] floating enable
 for_window [window_role = "bubble"] floating enable
 for_window [window_role = "dialog"] floating enable
@@ -365,6 +392,10 @@ focus_on_window_activation focus
 for_window [shell="xwayland"] title_format "<span>[X11] %title゜</span>"
 
 
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ Bars                                                                       ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+
 bar {
   id mainbar
   output DP-3
@@ -379,12 +410,9 @@ bar {
 }
 
 
-#
-# Execute tools
-#
-
-# Music Player daemon
-exec mpd
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ Tools                                                                      ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
 
 # OpenRGB
 # exec openrgb -d 0 -m direct -z 0 -c \
@@ -402,6 +430,10 @@ exec /usr/local/bin/overdue-tasks
 # KeePassXC
 exec /usr/local/bin/passwordmanager
 
-# Other configs
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ Other configs                                                              ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+
 include /etc/sway/config.d/*
 
