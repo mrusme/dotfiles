@@ -34,6 +34,8 @@ Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-vsnip'
 Plug 'hrsh7th/vim-vsnip'
 
+Plug 'jose-elias-alvarez/null-ls.nvim'
+
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 Plug 'lambdalisue/fern.vim'
@@ -666,7 +668,19 @@ highlight link CompeDocumentation NormalFloat
 highlight link CmpDocumentation NormalFloat
 
 
-"
+" ╔════════════════════════════════════════════════════════════════════════════╗
+" ║ null-ls                                                                    ║
+" ╚════════════════════════════════════════════════════════════════════════════╝
+
+lua << EOF
+require("null-ls").setup({
+  sources = {
+    require("null-ls").builtins.diagnostics.vale,
+  },
+})
+EOF
+
+
 " ╔════════════════════════════════════════════════════════════════════════════╗
 " ║ Treesitter                                                                 ║
 " ╚════════════════════════════════════════════════════════════════════════════╝
