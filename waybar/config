@@ -24,6 +24,7 @@
   "sway/mode",
   "tray",
   "custom/zeit",
+  "custom/crypto",
   "mpd"
   ],
   "modules-center": [
@@ -171,6 +172,16 @@
     "exec": "/usr/local/bin/btdevices speaker",
     "on-click": "/usr/local/bin/btdevices speaker toggle",
     "interval": 10
+  },
+
+  "custom/crypto": {
+    "format": "{}",
+    "return-type": "json",
+    "exec": "/usr/local/bin/cryptoprices",
+    "on-click": "",
+    //"on-click-middle": "",
+    //"on-click-right": "",
+    "interval": 3600
   },
 
   "sway/mode": {

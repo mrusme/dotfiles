@@ -1,0 +1,11 @@
+#!/bin/sh
+
+PRICES=$(cointop price -c btc,eth,ltc,xmr)
+BTC=$(echo "$PRICES" | head -n 1 | tail -n 1)
+ETH=$(echo "$PRICES" | head -n 2 | tail -n 1)
+LTC=$(echo "$PRICES" | head -n 3 | tail -n 1)
+XMR=$(echo "$PRICES" | head -n 4 | tail -n 1)
+
+printf "{\"text\": \"BTC <span color='#aaaaaa'>%s</span> · ETH <span color='#aaaaaa'>%s</span> · LTC <span color='#aaaaaa'>%s</span> · XMR <span color='#aaaaaa'>%s</span>\", \"tooltip\": \"\", \"alt\": \"\", \"class\": \"\" }" \
+  "$BTC" "$ETH" "$LTC" "$XMR"
+

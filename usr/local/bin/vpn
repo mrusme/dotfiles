@@ -30,7 +30,7 @@ case "$cmd" in
     exit 0
     ;;
   current)
-    wg=$(ip -o addr show scope global | rg "10.5.0.2|10.20.30.2" | awk '{ print $2 }' | tr '[:lower:]' '[:upper:]')
+    wg=$(ip -o addr show scope global | rg "10.5.0.2|10.20.30.2|10.2.0.2" | awk '{ print $2 }' | tr '[:lower:]' '[:upper:]')
     
     if [[ "$wg" != "" ]]
     then
