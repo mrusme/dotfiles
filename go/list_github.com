@@ -2,12 +2,14 @@ github.com/klauspost/asmfmt/cmd/asmfmt
 github.com/bettercap/bettercap
 github.com/mrusme/canard
 github.com/yory8/clipman
+github.com/cointop-sh/cointop
 github.com/go-delve/delve/cmd/dlv
 github.com/kisielk/errcheck
 github.com/davidrjenni/reftools/cmd/fillstruct
 github.com/knipferrc/fm
 github.com/ipfs/fs-repo-migrations
 github.com/mrusme/geld
+github.com/profclems/glab/cmd/glab
 github.com/charmbracelet/glow
 github.com/rogpeppe/godef
 github.com/mattn/goemon/cmd/goemon
@@ -31,6 +33,7 @@ github.com/therecipe/qt/cmd/qtrcc
 github.com/therecipe/qt/cmd/qtsetup
 github.com/lighttiger2505/sqls
 github.com/swaggo/swag/cmd/swag
+github.com/achannarasappa/ticker
 github.com/oz/tz
-github.com/errata-ai/vale
+github.com/errata-ai/vale/v2/cmd/vale
 github.com/sclevine/yj
