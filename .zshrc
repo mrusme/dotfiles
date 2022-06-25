@@ -1,3 +1,4 @@
+#!/bin/zsh
 # ╔════════════════════════════════════════════════════════════════════════════╗
 # ║                                                                            ║
 # ║       ________  ________  ___  ___  _______   ___       ___                ║
@@ -16,8 +17,6 @@
 
 export ZSH_TMUX_AUTOSTART=true
 [[ "$USER" == "root" ]] && export ZSH_TMUX_AUTOSTART=false
-export DOT_ZSHRC="$HOME/.zshrc"
-export DOT_ZSHRC_VERSION="0.32"
 
 type /usr/local/bin/zsh > /dev/null \
 && export SHELL=/usr/local/bin/zsh
@@ -82,7 +81,12 @@ else
   fi
 fi
 
-export SSH_KEY_PATH="$HOME/.ssh/id_rsa"
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ Programs & tools                                                           ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+
+export SSH_KEY_PATH="$HOME/.ssh/id_ed25519"
 
 # Enable Erlang/IEx shell history
 export ERL_AFLAGS="-kernel shell_history enabled"
@@ -100,7 +104,8 @@ export QT_STYLE_OVERRIDE=kvantum
 
 # https://github.com/oz/tz/
 export TZ_LIST="Pacific/Honolulu;America/Panama;America/New_York;Etc/UTC;\
-Europe/Berlin;Asia/Dubai;Asia/Karachi;Asia/Bangkok;Asia/Tokyo;Australia/Melbourne;Pacific/Auckland;"
+Europe/Berlin;Asia/Dubai;Asia/Karachi;Asia/Bangkok;Asia/Tokyo;\
+Australia/Melbourne;Pacific/Auckland;"
 
 # https://github.com/mrusme/zeit
 export ZEIT_DB="$HOME/.zeit.db"
@@ -134,7 +139,8 @@ export DOT_SECRETS="$HOME/.secrets"
 
 # /usr/local/* (Homebrew, etc)
 [[ "$OS" = "Darwin" ]] \
-&& export PATH="/usr/local/bin:/usr/local/sbin:/usr/local/opt/binutils/bin:$PATH"\
+&& export PATH="/usr/local/bin:/usr/local/sbin:\
+/usr/local/opt/binutils/bin:$PATH"\
 && export MANPATH="/usr/local/man:$MANPATH"
 
 # Cargo (Rust)
@@ -159,8 +165,8 @@ function activate.virtualenv {
   && source "$(which virtualenvwrapper_lazy.sh)" \
   && workon | grep local > /dev/null \
   && workon local \
-  && echo "Activated local." \
-  || echo "Could not load virtualenvwrapper."
+  && printf "Activated local.\n" \
+  || printf "Could not load virtualenvwrapper.\n"
 }
 
 export PYTHON_MAJOR_MINOR="$(python3 \
@@ -202,12 +208,13 @@ then
       chmod 0700 "${XDG_RUNTIME_DIR}"
     fi
   fi
-  export GTK2_RC_FILES="$HOME/.themes/Kripton/gtk-2.0/gtkrc"
+  GTK_THEME=$(gsettings get org.gnome.desktop.interface gtk-theme)
+  export GTK2_RC_FILES="$HOME/.themes/$GTK_THEME/gtk-2.0/gtkrc"
 fi
 
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
-# ║ ZSH                                                                        ║
+# ║ OMZ                                                                        ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
 export ZSH="$HOME/.oh-my-zsh"
@@ -220,6 +227,8 @@ ZSH_THEME="geometry-zsh/geometry"
 
 CASE_SENSITIVE="true"
 DISABLE_AUTO_UPDATE="false"
+[[ "$USER" == "root" ]] \
+&& DISABLE_AUTO_UPDATE="true"
 UPDATE_ZSH_DAYS=10
 DISABLE_LS_COLORS="false"
 DISABLE_AUTO_TITLE="false"
@@ -227,29 +236,23 @@ ENABLE_CORRECTION="false"
 COMPLETION_WAITING_DOTS="false"
 DISABLE_UNTRACKED_FILES_DIRTY="false"
 
-# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# HIST_STAMPS="mm/dd/yyyy"
-# ZSH_CUSTOM=/usr/local/opt/zplug/repos
-
 ZSH_AUTOSUGGESTIONS="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}\
 /plugins/zsh-autosuggestions"
 
-# [[ ! -d $ZSH_AUTOSUGGESTIONS ]] \
-# && type git > /dev/null \
-# && git clone https://github.com/zsh-users/zsh-autosuggestions \
-# ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-
-# [[ -d $ZSH_AUTOSUGGESTIONS && $(find "$ZSH_AUTOSUGGESTIONS/.git" \
-#   -maxdepth 0 -type d -mmin +1440 | wc -l | tr -d '[:space:]') == "0" ]] \
-# || git -C $ZSH_AUTOSUGGESTIONS pull
-
-[[ "$OS" = "Darwin" ]] && plugins=(tmux docker encode64 extract git git-flow \
-  gpg-agent history ssh-agent urltools \
-  zsh-autosuggestions mosh fzf terraform taskwarrior thefuck brew macos)
-[[ "$OS" = "Linux" && "$USER" != "root" ]]  && plugins=(docker encode64 extract git git-flow \
-  gpg-agent history ssh-agent urltools \
-  zsh-autosuggestions mosh fzf terraform taskwarrior thefuck)
-# Disabled: gcloud, nvm, virtualenvwrapper
+[[ "$OS" = "Darwin" ]] \
+&& plugins=( \
+  docker encode64 extract git git-flow git-extras gpg-agent history ssh-agent \
+  1password urltools ripgrep rsync ipfs \
+  golang rust mix gh \
+  zsh-autosuggestions mosh fzf terraform taskwarrior thefuck fasd \
+  brew tmux macos)
+[[ "$OS" = "Linux" && "$USER" != "root" ]]  \
+&& plugins=(\
+  docker encode64 extract git git-flow git-extras gpg-agent history ssh-agent \
+  1password urltools ripgrep rsync ipfs \
+  golang rust mix gh \
+  zsh-autosuggestions mosh fzf terraform taskwarrior thefuck fasd \
+  pass)
 
 [[ -e "$ZSH/oh-my-zsh.sh" ]] && source "$ZSH/oh-my-zsh.sh"
 
@@ -259,23 +262,17 @@ fpath=(
   $fpath
 )
 
-eval "$(fasd --init \
-posix-alias zsh-hook zsh-ccomp zsh-ccomp-install zsh-wcomp zsh-wcomp-install)"
-
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
 # ║ Aliases                                                                    ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
-alias ..='cd ..'
-alias ...='cd ../../'
-alias re='cd -'
-
-alias cat=bat
+type bat > /dev/null \
+&& alias cat=bat
 
 type exa > /dev/null \
 && unalias ls la ll l lsa &> /dev/null \
-&& alias ls='exa --time-style=long-iso --git --icons --binary -lg' \
+&& alias ls='exa --time-style=long-iso --git --binary -lg' \
 && alias la='exa --time-style=long-iso --git --icons --binary -la' \
 && alias ll='exa --time-style=long-iso --git --icons --octal-permissions --binary --changed -lahHgnuU' \
 && alias l='exa --time-style=long-iso --git --icons --binary -l --no-time'
@@ -321,18 +318,10 @@ alias fucking=sudo
 
 alias my-ip="curl http://ipecho.net/plain; echo"
 
-alias git-crypt-add-myself="git-crypt add-gpg-user \
-4D3899AF73E7F5FE9B39C822272ED814BF63261F"
-alias gpa='git push all "$(git_current_branch)"'
-gtd() {
-  git tag -d "$1"
-  git push --delete origin "$1"
-}
-
 alias jrnl='cd $HOME/[Pp]rojects/@mrusme/xn--gckvb8fzb.com/content/'
 alias bookmarks='vim $HOME/[Pp]rojects/@mrusme/xn--gckvb8fzb.com/content/bookmarks/index.md'
 alias notes='cd $HOME/[Cc]loud/notes/'
-alias cheatsheet-vim='vim $HOME/[Cc]loud/notes/tools/vim.md'
+alias cheatsheet.vim='vim $HOME/[Cc]loud/notes/tools/vim.md'
 
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
@@ -344,12 +333,6 @@ alias cheatsheet-vim='vim $HOME/[Cc]loud/notes/tools/vim.md'
 && bindkey "\e[1;3D" backward-word
 
 
-# ╔════════════════════════════════════════════════════════════════════════════╗
-# ║ motd                                                                       ║
-# ╚════════════════════════════════════════════════════════════════════════════╝
-
-DOT_MOTD="$HOME/.motd"
-[[ -e "$DOT_MOTD" ]] && source "$DOT_MOTD"
 
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
@@ -369,7 +352,7 @@ if [ "$OS" = "Darwin" ]
 then
   function aptitude {
     if [ -z "$1" ]; then
-      echo "Usage: aptitude <action> [options] ..."
+      printf "Usage: aptitude <action> [options] ...\n"
     else
       case $1 in
         install)     brew install "${@:2}";;
@@ -383,7 +366,7 @@ then
         show)        brew info "${@:2}";;
         clean)       brew cleanup "${@:2}";;
         reinstall)   brew uninstall "${@:2}"; brew cleanup; brew install "${@:2}";;
-        *)           echo "aptitude: '$1' - unknown action" ;;
+        *)           printf "aptitude: '$1' - unknown action\n" ;;
       esac
     fi
   }
@@ -391,7 +374,7 @@ elif [[ "$OS" = "Linux" && "$(uname -a | grep -i gentoo)" ]]
 then
   function aptitude {
     if [ -z "$1" ]; then
-      echo "Usage: aptitude <action> [options] ..."
+      printf "Usage: aptitude <action> [options] ...\n"
     else
       case $1 in
         install)     emerge -av --keep-going=y "${@:2}";;
@@ -405,7 +388,7 @@ then
         show)        equery meta "${@:2}";;
         clean)       emerge -avc "${@:2}";;
         reinstall)   emerge -ave "${@:2}";;
-        *)           echo "aptitude: '$1' - unknown action" ;;
+        *)           printf "aptitude: '$1' - unknown action\n" ;;
       esac
     fi
   }
@@ -413,7 +396,7 @@ elif [[ "$OS" = "Linux" && "$(type pacman > /dev/null)" ]]
 then
   function aptitude {
     if [ -z "$1" ]; then
-      echo "Usage: aptitude <action> [options] ..."
+      printf "Usage: aptitude <action> [options] ...\n"
     else
       case $1 in
         install)     pacman -S "${@:2}";;
@@ -427,7 +410,7 @@ then
         show)        pacman -Si "${@:2}";;
         clean)       pacman -Scc "${@:2}";;
         reinstall)   pacman -S "${@:2}";;
-        *)           echo "aptitude: '$1' - unknown action" ;;
+        *)           printf "aptitude: '$1' - unknown action\n" ;;
       esac
     fi
   }
@@ -514,19 +497,19 @@ function openssl-decrypt () {
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
 __pushover_usage() {
-  echo "pushover <options> <message>"
-  echo " -c <callback>"
-  echo " -d <device>"
-  echo " -D <timestamp>"
-  echo " -e <expire>"
-  echo " -p <priority>"
-  echo " -r <retry>"
-  echo " -t <title>"
-  echo " -T <TOKEN> (required if not in PUSHOVER_TOKEN env)"
-  echo " -s <sound>"
-  echo " -u <url>"
-  echo " -U <USER> (required if not in PUSHOVER_USER env)"
-  echo " -a <url_title>"
+  printf "pushover <options> <message>\n"
+  printf " -c <callback>\n"
+  printf " -d <device>\n"
+  printf " -D <timestamp>\n"
+  printf " -e <expire>\n"
+  printf " -p <priority>\n"
+  printf " -r <retry>\n"
+  printf " -t <title>\n"
+  printf " -T <TOKEN> (required if not in PUSHOVER_TOKEN env)\n"
+  printf " -s <sound>\n"
+  printf " -u <url>\n"
+  printf " -U <USER> (required if not in PUSHOVER_USER env)\n"
+  printf " -a <url_title>\n"
   return 1
 }
 
@@ -535,7 +518,7 @@ __pushover_opt_field() {
   shift
   value="${*}"
   if [ -n "${value}" ]; then
-    echo "-F \"${field}=${value}\""
+    printf "-F \"${field}=${value}\"\n"
   fi
 }
 
@@ -560,11 +543,11 @@ __pushover_send_message() {
     \"${PUSHOVER_URL}\""
 
   response="$(eval "${curl_cmd}")"
-  echo "$response"
+  printf "$response\n"
   # TODO: Parse response
   r="${?}"
   if [ "${r}" -ne 0 ]; then
-    echo "${0}: Failed to send message" >&2
+    printf "%s: Failed to send message\n" "${0}" >&2
   fi
 
   return "${r}"
@@ -636,12 +619,12 @@ function pushover() {
   message="$*"
 
   if [ ! -x "${CURL}" ]; then
-    echo "CURL is unset, empty, or does not point to curl executable." >&2
-    echo "This script requires curl!" >&2
+    printf "CURL is unset, empty, or does not point to curl executable.\n \
+      This script requires curl!\n" >&2
     return 1
   fi
 
-  devices="$(echo "${devices}" | xargs -n1 | sort -u | uniq)"
+  devices="$(printf "${devices}" | xargs -n1 | sort -u | uniq)\n"
 
   if [ -z "${devices}" ]; then
     __pushover_send_message
@@ -656,6 +639,229 @@ function pushover() {
     done
   fi
   return "${r}"
+}
+
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ update-tools                                                               ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+
+function update-tools() {
+  printf "Updating Rust tools ...\n"
+  cargo install-update -a
+
+  printf "\nUpdating Go tools ...\n"
+  /bin/ls -1 ~/.go/bin/ \
+    | while read bin; do go version -m ~/.go/bin/$bin \
+    | grep '^[[:space:]]path' \
+    | awk '{ print $2 }' \
+    | grep '^github.com' \
+    | sort \
+    | uniq \
+    | xargs -I{} go install {}@latest; done
+
+  printf "\nUpdating NPM tools ...\n"
+  npm update -g
+
+  printf "\nTools updated"
+}
+
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ terminal-colors                                                            ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+
+function terminal-colors() {
+  if [[ $1 == "dark" ]]
+  then
+    sed -i=.previous 's/\*light$/\*dark/g' "$XDG_CONFIG_HOME/alacritty/alacritty.yml"
+  else
+    sed -i=.previous 's/\*dark$/\*light/g' "$XDG_CONFIG_HOME/alacritty/alacritty.yml"
+  fi
+}
+
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ Custom git helpers                                                         ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+
+alias git-crypt-add-myself="git-crypt add-gpg-user \
+4D3899AF73E7F5FE9B39C822272ED814BF63261F"
+alias gpa='git push all "$(git_current_branch)"'
+# git tag delete
+gtd() {
+  git tag -d "$1"
+  git remote | while read remote; do git push --delete "$remote" "$1"; done
+}
+
+function git-add-all-remote() {
+  if git remote | grep -q '^all$'
+  then
+    printf "Remote 'all' already exists!\n"
+    return 1
+  else
+    git remote | while read -r remote
+    do
+      git config --add remote.all.url "$(git remote get-url --all $remote)"
+      printf "Remote $remote added to 'all'\n"
+    done
+    return 0
+  fi
+}
+
+function git-find-modified-repos() {
+  find ./ -type d -name '.git' | while read -r dir
+  do 
+    repo=$(dirname "$dir")
+    repostatus=$(git -C "$repo" status -s)
+    if [[ -n "$repostatus" ]]
+    then 
+      printf "$repo\n"
+    fi 
+  done
+}
+
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ Offline Wikipedia (https://xn--gckvb8fzb.com/lets-take-wikipedia-offline)  ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+
+export WIKIPEDIA_INDEX_ID="wikipedia"
+export WIKIPEDIA_METASTORE_URI="file:///home/mrus/projects/@mrusme/ulpia/wikipedia"
+export DISABLE_QUICKWIT_TELEMETRY=1
+
+function wikipedia() {
+  search="$*"
+  query="title:\"$search\""
+  json=$(quickwit index search \
+    --index-id "$WIKIPEDIA_INDEX_ID" \
+    --metastore-uri "$WIKIPEDIA_METASTORE_URI" \
+    --query "$query" \
+  )
+
+  numHits=$(printf '%s' "$json" | jq '.numHits')
+  if [[ $numHits == 0 ]]
+  then
+    printf "Nothing found, sorry.\n"
+    return 1
+  fi
+
+  selection=$(printf '%s' "$json" \
+    | jq \
+      --raw-output \
+      '.hits[].title[0]' \
+    | /bin/cat -n \
+    | fzf \
+      --no-multi \
+      -0 \
+      -q "$search" \
+      --with-nth 2.. \
+  )
+
+  if [[ $? == 130 ]]
+  then
+    return 2
+  fi
+
+  index=$(echo "$selection" \
+    | awk '{ print $1-1 }' \
+  )
+
+  if [[ -n "$index" ]]
+  then
+    printf '%s' "$json" \
+      | jq \
+        --raw-output \
+        ".hits[$index].section_texts | join(\"\n\n\n\")" \
+        | pandoc \
+          -f mediawiki \
+          -t markdown_strict \
+          | glow - -p 
+  else
+    printf "Err?\n"
+    return 3
+  fi
+}
+
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ Math functions                                                             ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+
+function calc-x-percent-of-y() {
+  eva "($1 / 100) * $2" | tr -d ' '
+}
+
+function calc-percentage-x-of-y() {
+  eva "($1 / $2) * 100" | tr -d ' '
+}
+
+function calc-percentage-change-x-to-y() {
+  eva "(($2 - $1) / $1) * 100" | tr -d ' '
+}
+
+function convert-fahrenheit-to-celsius() {
+  eva "($1 - 32) * (5/9)" | tr -d ' '
+}
+
+function convert-celsius-to-fahrenheit() {
+  eva "($1 * (9/5)) + 32" | tr -d ' '
+}
+
+function convert-in-to-cm() {
+  eva "$1 * 2.54" | tr -d ' '
+}
+
+function convert-cm-to-in() {
+  eva "$1 / 2.54" | tr -d ' '
+}
+
+function convert-ft-to-cm() {
+  eva "$1 * 30.48" | tr -d ' '
+}
+
+function convert-cm-to-ft() {
+  eva "$1 / 30.48" | tr -d ' '
+}
+
+function convert-ft-in-to-m() {
+  eva "$1 * 30.48 + $2 * 2.54" | tr -d ' '
+}
+
+function convert-cm-to-ft-in() {
+  ft=$(eva "floor($1 / 2.54) / 12" | tr -d ' ')
+  in=$(eva "($1 / 2.54) - 12 * $ft" | tr -d ' ')
+  printf "$ft ft $in in\n"
+}
+
+function convert-kn-to-kmh() {
+  eva "$1 * 1.852" | tr -d ' '
+}
+
+function convert-kmh-to-kn() {
+  eva "$1 / 1.852" | tr -d ' '
+}
+
+function convert-mph-to-kmh() {
+  eva "$1 * 1.609344" | tr -d ' '
+}
+
+function convert-kmh-to-mph() {
+  eva "$1 / 1.609344" | tr -d ' '
+}
+
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ Video conversion                                                           ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+
+function video-to-gif() {
+  ffmpeg \
+    -i "$1" \
+    -vf \
+    "fps=10,scale=800:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse" \
+    -loop 0 \
+    "$2"
 }
 
 
@@ -764,7 +970,7 @@ function dotfiles-update-remote() {
 }
 
 function dotfiles-update-local() {
-  echo -n "are you sure? (y/n) "
+  printf "are you sure? (y/n) "
   read -r confirmation
 
   [[ $confirmation != "y" ]] && return 1
@@ -849,222 +1055,11 @@ function dotfiles-update-local() {
 
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
-# ║ update-tools                                                               ║
+# ║ motd                                                                       ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
-function update-tools() {
-  echo "Updating Rust tools ..."
-  cargo install-update -a
-
-  echo ""
-
-  echo "Updating Go tools ..."
-  /bin/ls -1 ~/.go/bin/ \
-    | while read bin; do go version -m ~/.go/bin/$bin \
-    | grep '^[[:space:]]path' \
-    | awk '{ print $2 }' \
-    | grep '^github.com' \
-    | sort \
-    | uniq \
-    | xargs -I{} go install {}@latest; done
-
-  echo ""
-  echo "Tools updated"
-}
-
-
-# ╔════════════════════════════════════════════════════════════════════════════╗
-# ║ terminal-colors                                                            ║
-# ╚════════════════════════════════════════════════════════════════════════════╝
-
-function terminal-colors() {
-  if [[ $1 == "dark" ]]
-  then
-    sed -i=.previous 's/\*light$/\*dark/g' "$XDG_CONFIG_HOME/alacritty/alacritty.yml"
-  else
-    sed -i=.previous 's/\*dark$/\*light/g' "$XDG_CONFIG_HOME/alacritty/alacritty.yml"
-  fi
-}
-
-
-# ╔════════════════════════════════════════════════════════════════════════════╗
-# ║ git-add-all-remote                                                         ║
-# ╚════════════════════════════════════════════════════════════════════════════╝
-
-function git-add-all-remote() {
-  if git remote | grep -q '^all$'
-  then
-    echo "Remote 'all' already exists!"
-    return 1
-  else
-    git remote | while read -r remote
-    do
-      git config --add remote.all.url "$(git remote get-url --all $remote)"
-      echo "Remote $remote added to 'all'"
-    done
-    return 0
-  fi
-}
-
-
-# ╔════════════════════════════════════════════════════════════════════════════╗
-# ║ git-find-modified-repos                                                    ║
-# ╚════════════════════════════════════════════════════════════════════════════╝
-
-function git-find-modified-repos() {
-  find ./ -type d -name '.git' | while read -r dir
-  do 
-    repo=$(dirname "$dir")
-    repostatus=$(git -C "$repo" status -s)
-    if [[ -n "$repostatus" ]]
-    then 
-      echo "$repo"
-    fi 
-  done
-}
-
-
-# ╔════════════════════════════════════════════════════════════════════════════╗
-# ║ Offline Wikipedia (https://xn--gckvb8fzb.com/lets-take-wikipedia-offline)  ║
-# ╚════════════════════════════════════════════════════════════════════════════╝
-
-export WIKIPEDIA_INDEX_ID="wikipedia"
-export WIKIPEDIA_METASTORE_URI="file:///home/mrus/projects/@mrusme/ulpia/wikipedia"
-export DISABLE_QUICKWIT_TELEMETRY=1
-
-function wikipedia() {
-  search="$*"
-  query="title:\"$search\""
-  json=$(quickwit index search \
-    --index-id "$WIKIPEDIA_INDEX_ID" \
-    --metastore-uri "$WIKIPEDIA_METASTORE_URI" \
-    --query "$query" \
-  )
-
-  numHits=$(printf '%s' "$json" | jq '.numHits')
-  if [[ $numHits == 0 ]]
-  then
-    echo "Nothing found, sorry."
-    return 1
-  fi
-
-  selection=$(printf '%s' "$json" \
-    | jq \
-      --raw-output \
-      '.hits[].title[0]' \
-    | /bin/cat -n \
-    | fzf \
-      --no-multi \
-      -0 \
-      -q "$search" \
-      --with-nth 2.. \
-  )
-
-  if [[ $? == 130 ]]
-  then
-    return 2
-  fi
-
-  index=$(echo "$selection" \
-    | awk '{ print $1-1 }' \
-  )
-
-  if [[ -n "$index" ]]
-  then
-    printf '%s' "$json" \
-      | jq \
-        --raw-output \
-        ".hits[$index].section_texts | join(\"\n\n\n\")" \
-        | pandoc \
-          -f mediawiki \
-          -t markdown_strict \
-          | glow - -p 
-  else
-    echo "Err?"
-    return 3
-  fi
-}
-
-
-# ╔════════════════════════════════════════════════════════════════════════════╗
-# ║ Math functions                                                             ║
-# ╚════════════════════════════════════════════════════════════════════════════╝
-
-function calc-x-percent-of-y() {
-  eva "($1 / 100) * $2" | tr -d ' '
-}
-
-function calc-percentage-x-of-y() {
-  eva "($1 / $2) * 100" | tr -d ' '
-}
-
-function calc-percentage-change-x-to-y() {
-  eva "(($2 - $1) / $1) * 100" | tr -d ' '
-}
-
-function convert-fahrenheit-to-celsius() {
-  eva "($1 - 32) * (5/9)" | tr -d ' '
-}
-
-function convert-celsius-to-fahrenheit() {
-  eva "($1 * (9/5)) + 32" | tr -d ' '
-}
-
-function convert-in-to-cm() {
-  eva "$1 * 2.54" | tr -d ' '
-}
-
-function convert-cm-to-in() {
-  eva "$1 / 2.54" | tr -d ' '
-}
-
-function convert-ft-to-cm() {
-  eva "$1 * 30.48" | tr -d ' '
-}
-
-function convert-cm-to-ft() {
-  eva "$1 / 30.48" | tr -d ' '
-}
-
-function convert-ft-in-to-m() {
-  eva "$1 * 30.48 + $2 * 2.54" | tr -d ' '
-}
-
-function convert-cm-to-ft-in() {
-  ft=$(eva "floor($1 / 2.54) / 12" | tr -d ' ')
-  in=$(eva "($1 / 2.54) - 12 * $ft" | tr -d ' ')
-  echo "$ft ft $in in"
-}
-
-function convert-kn-to-kmh() {
-  eva "$1 * 1.852" | tr -d ' '
-}
-
-function convert-kmh-to-kn() {
-  eva "$1 / 1.852" | tr -d ' '
-}
-
-function convert-mph-to-kmh() {
-  eva "$1 * 1.609344" | tr -d ' '
-}
-
-function convert-kmh-to-mph() {
-  eva "$1 / 1.609344" | tr -d ' '
-}
-
-
-# ╔════════════════════════════════════════════════════════════════════════════╗
-# ║ Video conversion                                                           ║
-# ╚════════════════════════════════════════════════════════════════════════════╝
-
-function video-to-gif() {
-  ffmpeg \
-    -i "$1" \
-    -vf \
-    "fps=10,scale=800:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse" \
-    -loop 0 \
-    "$2"
-}
+DOT_MOTD="$HOME/.motd"
+[[ -e "$DOT_MOTD" ]] && source "$DOT_MOTD"
 
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
@@ -1072,7 +1067,7 @@ function video-to-gif() {
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
 fortune stoic
-echo ""
+printf "\n"
 
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
