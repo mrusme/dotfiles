@@ -17,6 +17,7 @@
 # Categories=Network;WebBrowser
 # MimeType=x-scheme-handler/unknown;x-scheme-handler/about;x-scheme-handler/https;x-scheme-handler/http;text/html;
 
+unset GDK_BACKEND
 
 read -d '\n' browsers << EOF
 firefox
@@ -38,15 +39,6 @@ if [ "$(expr "$host" : '^.*\.onion$')" -gt 0 ]
 then
   selected_browser="tor-browser"
 else
-  # When launched from an X11 application, this doesn't work and crashes with
-  # the following error:
-  #
-  # (wofi:3815): Gdk-CRITICAL **: 15:01:24.831: 
-  # gdk_wayland_display_get_wl_display: assertion 
-  # 'GDK_IS_WAYLAND_DISPLAY (display)' failed
-  # Failed to connect to wayland compositor
-  #
-  # Hence, the `*)` case defaults to firefox, so it will at least open the URL
   selected_browser=$(echo "$browsers" | wofi --dmenu)
 fi
 
@@ -67,8 +59,7 @@ case $selected_browser in
     exec nyxt "$url"
     ;;
   *)
-    # Default to firefox
-    exec /usr/local/bin/ff "$url"
+    exit 1
     ;;
 esac
 
