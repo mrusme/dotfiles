@@ -15,7 +15,7 @@ conclusive v0.1.0:
     conclusive
 csview v1.0.1:
     csview
-deno v1.21.2:
+deno v1.23.1:
     deno
 dijo v0.2.7:
     dijo
@@ -34,7 +34,7 @@ gitui v0.20.1:
 gpg-tui v0.9.0:
     gpg-tui
     gpg-tui-completions
-gping v1.3.1:
+gping v1.3.2:
     gping
 hexyl v0.10.0:
     hexyl
@@ -97,7 +97,7 @@ tickers v0.1.0:
     tickers
 tickrs v0.14.4:
     tickrs
-tre-command v0.3.6:
+tre-command v0.4.0:
     tre
 viu v1.4.0:
     viu
@@ -105,7 +105,9 @@ vocage v1.1.0:
     vocage
 websocat v1.10.0:
     websocat
-xplr v0.18.0:
+xplr v0.19.0:
     xplr
 zenith v0.0.2:
     zenith
+zoxide v0.8.1:
+    zoxide
