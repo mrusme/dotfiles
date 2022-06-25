@@ -1,3 +1,4 @@
 #!/bin/sh
-~/apps/monero-gui-v*/monero-wallet-gui.AppImage
+cd ~/apps/monero-gui-v*/
+exec ./monero-wallet-gui.AppImage
 
