@@ -242,14 +242,14 @@ ZSH_AUTOSUGGESTIONS="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}\
 [[ "$OS" = "Darwin" ]] \
 && plugins=( \
   docker encode64 extract git git-flow git-extras gpg-agent history ssh-agent \
-  1password urltools ripgrep rsync ipfs \
+  1password urltools ripgrep rsync ipfs web-search isodate \
   golang rust mix gh \
   zsh-autosuggestions mosh fzf terraform taskwarrior thefuck fasd \
   brew tmux macos)
 [[ "$OS" = "Linux" && "$USER" != "root" ]]  \
 && plugins=(\
   docker encode64 extract git git-flow git-extras gpg-agent history ssh-agent \
-  1password urltools ripgrep rsync ipfs \
+  1password urltools ripgrep rsync ipfs web-search isodate \
   golang rust mix gh \
   zsh-autosuggestions mosh fzf terraform taskwarrior thefuck fasd \
   pass)
@@ -266,6 +266,10 @@ fpath=(
 # ╔════════════════════════════════════════════════════════════════════════════╗
 # ║ Aliases                                                                    ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
+
+# https://github.com/ajeetdsouza/zoxide
+type zoxide > /dev/null \
+&& eval "$(zoxide init --cmd cd zsh)"
 
 type bat > /dev/null \
 && alias cat=bat
