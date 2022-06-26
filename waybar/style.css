@@ -37,6 +37,10 @@ label#window {
   color: #ffffff;
 }
 
+#custom-crypto  {
+  border-radius: 0px 0px 5px 0px;
+}
+
 .modules-right > widget:nth-child(1) > label  {
   border-radius: 0px 0px 0px 5px;
 }
@@ -69,20 +73,12 @@ label#window {
 
 #workspaces button.urgent {
   color: #ffffff;
-  background-color: #B4140F;
+  background-color: #e27878;
 }
 
 #language {
   margin: 0px 0px 0px 0px;
   color: #282828;
-}
-
-#custom-crypto {
-  padding: 0 14px;
-  margin: 0px 10px 0px 0px;
-  color: #ffffff;
-
-  border-radius: 0px 0px 5px 0px;
 }
 
 #mode {
@@ -101,6 +97,8 @@ label#window {
 }
 
 #tray {
+  background-color: rgba(0, 0, 0, 0);
+  margin-left: 10px;
 }
 
 #tray image {
