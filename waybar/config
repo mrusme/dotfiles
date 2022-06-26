@@ -21,10 +21,10 @@
 
   "modules-left": [
   "sway/workspaces",
-  "sway/mode",
-  "tray",
-  "custom/zeit",
   "custom/crypto",
+  "tray",
+  "sway/mode",
+  "custom/zeit",
   "mpd"
   ],
   "modules-center": [
@@ -185,7 +185,7 @@
   },
 
   "sway/mode": {
-    "format": "<span style=\"\">{}</span>",
+    "format": " {}",
     "tooltip": false
   },
 

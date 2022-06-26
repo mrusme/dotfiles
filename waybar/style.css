@@ -24,23 +24,23 @@ label#window {
 }
 
 #workspaces {
-  margin: 0px 10px 0px 0px;
+  margin: 0px 0px 0px 0px;
 }
 
 #workspaces button {
-  padding: 0 10px;
+  padding: 0px 0px;
   background-color: rgba(4, 6, 6, 0.92);
   color: #282828;
   border-radius:  0px;
 }
 
-#workspaces button:last-child {
+/* #workspaces button:last-child {
   border-radius: 0px 0px 5px 0px;
-}
+} */
 
 /* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
 #workspaces button:hover {
-  background: rgba(0, 0, 0, 0.2);
+  background-color: rgba(255, 255, 255, 0.92);
   box-shadow: inherit;
 }
 
@@ -48,13 +48,33 @@ label#window {
   color: #eeeeee;
 }
 
+#workspaces button.focused:hover {
+  color: #282828;
+}
+
 #workspaces button.urgent {
   background-color: #B4140F;
 }
 
+#custom-crypto {
+  color: #eeeeee;
+  background-color: rgba(4, 6, 6, 0.92);
+  padding: 0 14px;
+  margin: 0px 10px 0px 0px;
+  color: #ffffff;
+
+  border-radius: 0px 0px 5px 0px;
+}
+
 #mode {
-  background-color: #64727D;
-  border-bottom: 3px solid #ffffff;
+  border: 2px solid #e2a478;
+  margin: 0px 10px 0px 0px;
+  border-radius: 5px;
+}
+
+.modules-left > widget > label,
+.modules-right > widget > label {
+  margin: 2px 0px 2px 0px;
 }
 
 .modules-right > widget > label {
