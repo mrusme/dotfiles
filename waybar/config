@@ -21,6 +21,10 @@
   "modules-left": [
     "sway/workspaces",
     "sway/language",
+    "custom/screenrecord",
+    "custom/vpn",
+    "custom/rslsync",
+    "custom/docker",
     "custom/crypto",
     "tray",
     "sway/mode",
@@ -31,10 +35,6 @@
     "sway/window"
   ],
   "modules-right": [
-    "custom/screenrecord",
-    "custom/vpn",
-    "custom/rslsync",
-    "custom/docker",
     "cpu",
     "custom/stats",
     "custom/headphones",
@@ -56,6 +56,44 @@
 
   "sway/language": {
     "format": "<span text_transform='uppercase'>{short}</span> {variant}",
+  },
+
+  "custom/screenrecord": {
+    "format": "{}",
+    "return-type": "json",
+    "exec": "/usr/local/bin/screenrecord",
+    "on-click": "/usr/local/bin/screenrecord toggle",
+    "interval": 3
+  },
+
+  "custom/vpn": {
+    "format": "{icon}  VPN <span color='#aaaaaa'>{}</span>",
+    "format-icons": {
+      "connected": "",
+      "disconnected": ""
+    },
+    "return-type": "json",
+    "exec": "/usr/local/bin/vpn current",
+    "on-click": "/usr/local/bin/vpn connect",
+    "on-click-middle": "/usr/local/bin/vpn disconnect",
+    "on-click-right": "/usr/local/bin/get-public-ip-info",
+    "interval": 10
+  },
+
+  "custom/rslsync": {
+    "format": "  {}",
+    "exec-if": "ps -eo args | rg '^/usr/bin/rslsync'",
+    "on-click": "xdg-open http://127.0.0.1:2510/gui/",
+    "on-click-middle": "killall -s SIGQUIT rslsync",
+    "interval": 30
+  },
+
+  "custom/docker": {
+    "format": "  {}",
+    "return-type": "json",
+    "exec": "/usr/local/bin/get-running-docker-containers",
+    "exec-if": "rc-service docker status",
+    "interval": 30
   },
 
   "custom/crypto": {
@@ -125,44 +163,6 @@
   // -------------------------------------------------------------------------
   // modules-right
   // -------------------------------------------------------------------------
-
-  "custom/screenrecord": {
-    "format": "{}",
-    "return-type": "json",
-    "exec": "/usr/local/bin/screenrecord",
-    "on-click": "/usr/local/bin/screenrecord toggle",
-    "interval": 3
-  },
-
-  "custom/vpn": {
-    "format": "{icon}  VPN <span color='#aaaaaa'>{}</span>",
-    "format-icons": {
-      "connected": "",
-      "disconnected": ""
-    },
-    "return-type": "json",
-    "exec": "/usr/local/bin/vpn current",
-    "on-click": "/usr/local/bin/vpn connect",
-    "on-click-middle": "/usr/local/bin/vpn disconnect",
-    "on-click-right": "/usr/local/bin/get-public-ip-info",
-    "interval": 10
-  },
-
-  "custom/rslsync": {
-    "format": "  {}",
-    "exec-if": "ps -eo args | rg '^/usr/bin/rslsync'",
-    "on-click": "xdg-open http://127.0.0.1:2510/gui/",
-    "on-click-middle": "killall -s SIGQUIT rslsync",
-    "interval": 30
-  },
-
-  "custom/docker": {
-    "format": "  {}",
-    "return-type": "json",
-    "exec": "/usr/local/bin/get-running-docker-containers",
-    "exec-if": "rc-service docker status",
-    "interval": 30
-  },
 
   "cpu": {
     "interval": 30,
