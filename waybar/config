@@ -16,61 +16,152 @@
 
   "layer": "top",
   "position": "top",
-  "height": 30,
   "output": "DP-3",
 
   "modules-left": [
-  "sway/workspaces",
-  "custom/crypto",
-  "tray",
-  "sway/mode",
-  "custom/zeit",
-  "mpd"
+    "sway/workspaces",
+    "sway/language",
+    "custom/crypto",
+    "tray",
+    "sway/mode",
+    "custom/zeit",
+    "mpd"
   ],
   "modules-center": [
-  "sway/window"
+    "sway/window"
   ],
   "modules-right": [
-  //"custom/pushover",
-  "custom/screenrecord",
-  "custom/vpn",
-  "custom/rslsync",
-  "custom/docker",
-  "cpu",
-  "custom/stats",
-  "custom/headphones",
-  "custom/speaker",
-  "pulseaudio",
-  "clock"
+    "custom/screenrecord",
+    "custom/vpn",
+    "custom/rslsync",
+    "custom/docker",
+    "cpu",
+    "custom/stats",
+    "custom/headphones",
+    "custom/speaker",
+    "pulseaudio",
+    "clock"
   ],
 
+
   // -------------------------------------------------------------------------
-  // Modules
+  // modules-left
   // -------------------------------------------------------------------------
 
   "sway/workspaces": {
+    "all-outputs": true,
     "disable-scroll": true,
-    "all-outputs": false,
-    "format": "{icon}",
-    "format-icons": {
-      "1": "一",
-      "2": "二",
-      "3": "三",
-      "4": "四",
-      "5": "五",
-      "6": "六",
-      "7": "七",
-      "8": "八",
-      "9": "九",
-      "10": "十"
-    }
+    "format": "{name}"
   },
 
-  "clock": {
-    "interval": 60,
-    "format": "  <span color='#aaaaaa'>{:%e %b %Y %I:%M %p}</span>",
-    "tooltip": true,
-    "tooltip-format": "<big>{:%B %Y}</big>\n<tt>{calendar}</tt>"
+  "sway/language": {
+    "format": "<span text_transform='uppercase'>{short}</span> {variant}",
+  },
+
+  "custom/crypto": {
+    "format": "{}",
+    "return-type": "json",
+    "exec": "/usr/local/bin/cryptoprices",
+    "on-click": "",
+    "interval": 3600
+  },
+
+  "tray": {
+    "icon-size": 19,
+    "spacing": 0
+  },
+
+  "sway/mode": {
+    "format": " {}",
+    "tooltip": false
+  },
+
+  "custom/zeit": {
+    "format": "{}",
+    "exec": "/home/mrus/projects/@mrusme/zeit/extras/zeit-waybar-wofi.sh",
+    "on-click": "/home/mrus/projects/@mrusme/zeit/extras/zeit-waybar-wofi.sh click",
+    "interval": 10
+  },
+
+  "mpd": {
+    "format": "{stateIcon}  {randomIcon}{repeatIcon}{singleIcon} {artist} - {title}",
+    "format-disconnected": "",
+    "format-stopped": "",
+    "interval": 10,
+    "consume-icons": {
+      "on": " "
+    },
+    "random-icons": {
+      "off": " ",
+      "on": " "
+    },
+    "repeat-icons": {
+      "on": " "
+    },
+    "single-icons": {
+      "on": "1 "
+    },
+    "state-icons": {
+      "paused": "",
+      "playing": ""
+    },
+    "on-scroll-up": "mpc prev",
+    "on-scroll-down": "mpc next",
+    "tooltip-format": "MPD (connected)",
+    "tooltip-format-disconnected": "MPD (disconnected)"
+  },
+
+
+  // -------------------------------------------------------------------------
+  // modules-center
+  // -------------------------------------------------------------------------
+
+  "sway/window": {
+    "format": "{}",
+    "max-length": 240
+  },
+
+
+  // -------------------------------------------------------------------------
+  // modules-right
+  // -------------------------------------------------------------------------
+
+  "custom/screenrecord": {
+    "format": "{}",
+    "return-type": "json",
+    "exec": "/usr/local/bin/screenrecord",
+    "on-click": "/usr/local/bin/screenrecord toggle",
+    "interval": 3
+  },
+
+  "custom/vpn": {
+    "format": "{icon}  VPN <span color='#aaaaaa'>{}</span>",
+    "format-icons": {
+      "connected": "",
+      "disconnected": ""
+    },
+    "return-type": "json",
+    "exec": "/usr/local/bin/vpn current",
+    "on-click": "/usr/local/bin/vpn connect",
+    "on-click-middle": "/usr/local/bin/vpn disconnect",
+    "on-click-right": "/usr/local/bin/get-public-ip-info",
+    "interval": 10
+  },
+
+  "custom/rslsync": {
+    "format": "  {}",
+    "exec-if": "ps -eo args | rg '^/usr/bin/rslsync'",
+    "on-click": "xdg-open http://127.0.0.1:2510/gui/",
+    "on-click-middle": "killall -s SIGQUIT rslsync",
+    "interval": 30
+  },
+
+  "custom/docker": {
+    "format": "  {}",
+    "return-type": "json",
+    "exec": "/usr/local/bin/get-running-docker-containers",
+    "exec-if": "rc-service docker status",
+    "interval": 30
   },
 
   "cpu": {
@@ -87,67 +178,7 @@
     "format": "{}",
     "return-type": "json",
     "exec": "/usr/local/bin/stats.sh",
-    "on-click": "",
-    //"on-click-middle": "",
-    //"on-click-right": "",
     "interval": 30
-  },
-
-  "custom/screenrecord": {
-    "format": "{}",
-    "return-type": "json",
-    "exec": "/usr/local/bin/screenrecord",
-    "on-click": "/usr/local/bin/screenrecord toggle",
-    "interval": 3
-  },
-
-  //"custom/pushover": {
-    //"format": " {}",
-    //"return-type": "json",
-    //"exec": "/usr/local/bin/get-pushover-count",
-    //"on-click": "/usr/local/bin/read-pushover-messages",
-    ////"on-click-middle": "",
-    ////"on-click-right": "",
-    //"interval": 360
-  //},
-
-  "custom/docker": {
-    "format": "  {}",
-    "return-type": "json",
-    "exec": "/usr/local/bin/get-running-docker-containers",
-    "exec-if": "rc-service docker status",
-    "interval": 30
-  },
-
-  "custom/vpn": {
-    "format": "{icon}  VPN <span color='#aaaaaa'>{}</span>",
-    "format-icons": {
-      "connected": "",
-      "disconnected": ""
-    },
-    "return-type": "json",
-    "exec": "/usr/local/bin/vpn current",
-    //"exec-if": "test -d /proc/sys/net/ipv4/conf/tun0",
-    "on-click": "/usr/local/bin/vpn connect",
-    "on-click-middle": "/usr/local/bin/vpn disconnect",
-    "on-click-right": "/usr/local/bin/get-public-ip-info",
-    "interval": 10
-  },
-
-  "custom/rslsync": {
-    "format": "  {}",
-    //"exec": "/usr/local/bin/get-running-rslsync-status",
-    "exec-if": "ps -eo args | rg '^/usr/bin/rslsync'",
-    "on-click": "xdg-open http://127.0.0.1:2510/gui/",
-    "on-click-middle": "killall -s SIGQUIT rslsync",
-    "interval": 30
-  },
-
-  "custom/zeit": {
-    "format": "{}",
-    "exec": "/home/mrus/projects/@mrusme/zeit/extras/zeit-waybar-wofi.sh",
-    "on-click": "/home/mrus/projects/@mrusme/zeit/extras/zeit-waybar-wofi.sh click",
-    "interval": 10
   },
 
   "custom/headphones": {
@@ -174,39 +205,6 @@
     "interval": 10
   },
 
-  "custom/crypto": {
-    "format": "{}",
-    "return-type": "json",
-    "exec": "/usr/local/bin/cryptoprices",
-    "on-click": "",
-    //"on-click-middle": "",
-    //"on-click-right": "",
-    "interval": 3600
-  },
-
-  "sway/mode": {
-    "format": " {}",
-    "tooltip": false
-  },
-
-  "sway/window": {
-    "format": "{}",
-    "max-length": 240
-  },
-
-  "sway/workspaces": {
-    "all-outputs": true,
-    "disable-scroll": true,
-    "format": "{name}"
-  },
-
-  "idle_inhibitor": {
-    "format": "{icon}",
-    "format-icons": {
-      "activated": "",
-      "deactivated": ""
-    }
-  },
 
   "pulseaudio": {
     "format": "{icon}  {desc} <span color='#aaaaaa'>{volume}%</span>",
@@ -224,37 +222,12 @@
     "on-click": "pavucontrol"
   },
 
-  "tray": {
-    "icon-size": 19,
-    "spacing": 0
-  },
-
-  "mpd": {
-    "format": "{stateIcon}  {randomIcon}{repeatIcon}{singleIcon} {artist} - {title}",
-    "format-disconnected": "",
-    "format-stopped": "",
-    "interval": 10,
-    "consume-icons": {
-      "on": " " // Icon shows only when "consume" is on
-    },
-    "random-icons": {
-      "off": " ",
-      "on": " "
-    },
-    "repeat-icons": {
-      "on": " "
-    },
-    "single-icons": {
-      "on": "1 "
-    },
-    "state-icons": {
-      "paused": "",
-      "playing": ""
-    },
-    "on-scroll-up": "mpc prev",
-    "on-scroll-down": "mpc next",
-    "tooltip-format": "MPD (connected)",
-    "tooltip-format-disconnected": "MPD (disconnected)"
+  "clock": {
+    "interval": 60,
+    "format": "  <span color='#aaaaaa'>{:%e %b %Y %I:%M %p}</span>",
+    "tooltip": true,
+    "tooltip-format": "<big>{:%B %Y}</big>\n<tt>{calendar}</tt>"
   }
+
 }
 

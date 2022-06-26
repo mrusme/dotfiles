@@ -28,10 +28,11 @@ label#window {
 }
 
 #workspaces button {
-  padding: 0px 0px;
+  padding: 4px 6px;
   background-color: rgba(4, 6, 6, 0.92);
   color: #282828;
   border-radius:  0px;
+  min-width: 32px;
 }
 
 /* #workspaces button:last-child {
@@ -53,7 +54,14 @@ label#window {
 }
 
 #workspaces button.urgent {
+  color: #ffffff;
   background-color: #B4140F;
+}
+
+#language {
+  margin: 0px 0px 0px 0px;
+  background-color: rgba(4, 6, 6, 0.92);
+  color: #282828;
 }
 
 #custom-crypto {
