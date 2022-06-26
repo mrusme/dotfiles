@@ -27,7 +27,7 @@ then
   cpu_temp3=$(echo $sensor_out | jq '."k10temp-pci-00c3".Tccd2.temp4_input' | xargs printf '%.*f\n' 1 $a)
 
   gpu_temp=$(echo $sensor_out | jq '."amdgpu-pci-0c00".junction.temp2_input' | xargs printf '%.*f\n' 1 $a)
-  gpu_draw=$(echo $sensor_out | jq '."amdgpu-pci-0c00".slowPPT.power1_average' | xargs printf '%.*f\n' 0 $a)
+  gpu_draw=$(echo $sensor_out | jq '."amdgpu-pci-0c00".PPT.power1_average' | xargs printf '%.*f\n' 0 $a)
 
   nvme_1_temp=$(echo $sensor_out | jq '."nvme-pci-0100"."Sensor 2".temp3_input' | xargs printf '%.*f\n' 1 $a)
   nvme_2_temp=$(echo $sensor_out | jq '."nvme-pci-0400"."Sensor 2".temp3_input' | xargs printf '%.*f\n' 1 $a)
