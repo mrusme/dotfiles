@@ -25,15 +25,10 @@ label#window {
 
 .modules-left > widget > label,
 .modules-right > widget > label {
-  margin: 2px 0px 2px 0px;
-}
-
-.modules-left > widget > label,
-.modules-right > widget > label {
   color: #eeeeee;
   background-color: rgba(4, 6, 6, 0.92);
   padding: 0 14px;
-  margin: 0 0px;
+  margin: 0px 0px 0px 0px;
   color: #ffffff;
 }
 
@@ -81,6 +76,15 @@ label#window {
   color: #282828;
 }
 
+#tray {
+  background-color: rgba(0, 0, 0, 0);
+  margin-left: 10px;
+}
+
+#tray image {
+  margin: 0px 10px 0px 0px;
+}
+
 #mode {
   background-color: rgba(0, 0, 0, 0);
   border: 2px solid #e2a478;
@@ -90,18 +94,12 @@ label#window {
 
 #custom-zeit {
   background-color: rgba(0, 0, 0, 0);
+  text-shadow: 0px 0px 3px #18181e;
 }
 
 #mpd {
   background-color: rgba(0, 0, 0, 0);
+  text-shadow: 0px 0px 3px #18181e;
 }
 
-#tray {
-  background-color: rgba(0, 0, 0, 0);
-  margin-left: 10px;
-}
-
-#tray image {
-  margin: 0px 10px 0px 0px;
-}
 

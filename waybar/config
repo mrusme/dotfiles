@@ -122,7 +122,7 @@
   },
 
   "mpd": {
-    "format": "{stateIcon}  {randomIcon}{repeatIcon}{singleIcon} {artist} - {title}",
+    "format": "{stateIcon}  <span color='#aaaaaa'>{randomIcon}{repeatIcon}{singleIcon}</span> {artist} - {title}",
     "format-disconnected": "",
     "format-stopped": "",
     "interval": 10,
@@ -155,8 +155,22 @@
   // -------------------------------------------------------------------------
 
   "sway/window": {
+    "all-outputs": true,
     "format": "{}",
-    "max-length": 240
+    "icon": false,
+    "max-length": 240,
+    "rewrite": {
+       "(.*) — Mozilla Firefox": " $1",
+       "(.*) — LibreWolf"      : " $1",
+       "(.*) - Chromium"       : " $1",
+       "(.*) — Tor Browser"    : "﨩 $1",
+       "nvim (.*)"             : " $1",
+       "zsh (.*)"              : " $1",
+       "irssi"                 : " irc",
+       "Element | (.*)"        : "ﬧ $1",
+       "Session"               : "廬 session",
+       "Signal"                : " signal"
+    }
   },
 
 
@@ -204,7 +218,6 @@
     "on-click": "/usr/local/bin/btdevices speaker toggle",
     "interval": 10
   },
-
 
   "pulseaudio": {
     "format": "{icon}  {desc} <span color='#aaaaaa'>{volume}%</span>",
