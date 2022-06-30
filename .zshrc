@@ -104,8 +104,11 @@ export QT_STYLE_OVERRIDE=kvantum
 
 # https://github.com/oz/tz/
 export TZ_LIST="Pacific/Honolulu;America/Panama;America/New_York;Etc/UTC;\
-Europe/Berlin;Asia/Dubai;Asia/Karachi;Asia/Bangkok;Asia/Tokyo;\
+Europe/Berlin;Asia/Dubai;Asia/Bangkok;Asia/Tokyo;\
 Australia/Melbourne;Pacific/Auckland;"
+
+# https://notmuchmail.org/manpages/notmuch-1/
+export NOTMUCH_PROFILE=01
 
 # https://github.com/mrusme/zeit
 export ZEIT_DB="$HOME/.zeit.db"
@@ -238,6 +241,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="false"
 
 ZSH_AUTOSUGGESTIONS="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}\
 /plugins/zsh-autosuggestions"
+ZSH_COMPDUMP=$XDG_CACHE_HOME/.zcompdump-$HOST
 
 [[ "$OS" = "Darwin" ]] \
 && plugins=( \
@@ -261,6 +265,8 @@ fpath=(
   /usr/local/share/zsh/site-functions
   $fpath
 )
+
+ZSH_THEME_TERM_TITLE_IDLE='zsh %n@%m:%~'
 
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
@@ -878,10 +884,10 @@ function video-to-gif() {
 [[ "$OS" = "Linux" ]] \
 && export DOTFILES="$HOME/projects/@mrusme/dotfiles"
 
-[[ "$OS" = "Darwin" ]] \
-&& subldir=$HOME/Library/Application\ Support/Sublime\ Text\ 3
-[[ "$OS" = "Linux" ]] \
-&& subldir=$XDG_CONFIG_HOME/sublime-text
+# [[ "$OS" = "Darwin" ]] \
+# && subldir=$HOME/Library/Application\ Support/Sublime\ Text\ 3
+# [[ "$OS" = "Linux" ]] \
+# && subldir=$XDG_CONFIG_HOME/sublime-text
 
 function dotfiles-update-remote() {
   cp "$HOME/.zshrc" "$DOTFILES/.zshrc"
