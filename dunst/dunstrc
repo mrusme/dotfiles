@@ -54,6 +54,8 @@
     # Set to 0 to disable.
     frame_width = 1
 
+    gap_size = 10
+
     # Defines color of the frame around the notification window.
     # frame_color = "#000000"
 
