@@ -1,11 +1,11 @@
 [user]
-	name = マリウス
-	email = marius@xn--gckvb8fzb.com
-	signingkey = 4D3899AF73E7F5FE9B39C822272ED814BF63261F
+  name = マリウス
+  email = marius@xn--gckvb8fzb.com
+  signingkey = 4D3899AF73E7F5FE9B39C822272ED814BF63261F
 [core]
-	excludesfile = /Users/mrus/.gitignore_global
+  excludesfile = /Users/mrus/.gitignore_global
   pager = delta
-	editor = nvim
+  editor = nvim
 [interactive]
   diffFilter = delta --color-only
 [delta]
@@ -26,31 +26,32 @@
 [diff]
   tool = vimdiff
 [commit]
-	gpgsign = true
-	verbose = true
+  gpgsign = true
+  verbose = true
 [filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+  required = true
+[format]
+  signoff = yes
 [gpg]
-	program = /usr/bin/gpg2
+  program = /usr/bin/gpg2
 [pull]
-	rebase = true
+  rebase = true
 [push]
+  gpgsign = false
   simple = true
 [init]
-	defaultBranch = master
+  defaultBranch = master
 [url "ssh://git@github.com/"]
-	insteadOf = https://github.com/
+  insteadOf = https://github.com/
 [url "ssh://git@git.sr.ht/"]
-	insteadOf = https://git.sr.ht/
-[url "ssh://git@git.source.xn--gckvb8fzb.com/"]
-	insteadOf = https://git.source.xn--gckvb8fzb.com/
+  insteadOf = https://git.sr.ht/
 [sendemail]
-	smtpserver = 127.0.0.1
-	smtpuser = marius@xn--gckvb8fzb.com
-	smtpencryption = tls
+  smtpserver = 127.0.0.1
+  smtpuser = marius@xn--gckvb8fzb.com
+  smtpencryption = tls
   smtpserverport = 1025
   smtpsslcertpath =
 [credential "smtp://marius%40xn--gckvb8fzb.com@127.0.0.1%3a1025"]
