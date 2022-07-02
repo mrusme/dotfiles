@@ -673,6 +673,9 @@ function update-tools() {
   printf "\nUpdating NPM tools ...\n"
   npm update -g
 
+  printf "\nUpdating gh extensions ...\n"
+  gh extension upgrade --all
+
   printf "\nTools updated"
 }
 
@@ -729,6 +732,21 @@ function git-find-modified-repos() {
       printf "$repo\n"
     fi 
   done
+}
+
+function ghcoi() {
+  if [ "$1" = "" ]
+  then
+    printf "usage: %s <issue number>\n" "$0"
+    exit 1
+  fi
+
+  git checkout -b "$1-$(gh issue view $1 --json title \
+    | jq --raw-output '.title' \
+    | iconv -t ascii//TRANSLIT \
+    | sed -E 's/[^a-zA-Z0-9]+/-/g' \
+    | sed -E 's/^-+|-+$//g' \
+    | tr A-Z a-z)"
 }
 
 
@@ -975,6 +993,9 @@ function dotfiles-update-remote() {
     | sort \
     | uniq;\
     done > "$DOTFILES/go/list_github.com"
+
+  gh extension list > "$DOTFILES/gh_extension_list"
+
   git -C "$DOTFILES" commit -a -S
   return 0
 }
