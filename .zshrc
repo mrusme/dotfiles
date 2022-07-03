@@ -409,7 +409,7 @@ then
         install)     pacman -S "${@:2}";;
         remove)      pacman -R "${@:2}";;
         purge)       pacman -Rs "${@:2}";;
-        update)      pacman -y -y "${@:2}";;
+        update)      pacman -Syy "${@:2}";;
         upgrade)     pacman -Syu "${@:2}";;
         safe-upgrade)pacman -Syu "${@:2}";;
         full-upgrade)pacman -Syu "${@:2}";;
