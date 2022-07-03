@@ -31,6 +31,7 @@ github.com/therecipe/qt/cmd/qtminimal
 github.com/therecipe/qt/cmd/qtmoc
 github.com/therecipe/qt/cmd/qtrcc
 github.com/therecipe/qt/cmd/qtsetup
+github.com/abdfnx/resto
 github.com/lighttiger2505/sqls
 github.com/swaggo/swag/cmd/swag
 github.com/achannarasappa/ticker
