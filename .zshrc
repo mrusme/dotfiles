@@ -303,9 +303,6 @@ type fzf > /dev/null \
 type eva > /dev/null \
 && alias calc='eva'
 
-type ghcal > /dev/null \
-&& alias contributions='ghcal -u mrusme'
-
 type gron > /dev/null \
 && alias json='gron'
 
