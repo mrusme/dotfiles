@@ -25,6 +25,7 @@ github.com/josharian/impl
 github.com/mrusme/journalist
 github.com/gokcehan/lf
 github.com/fatih/motion
+github.com/caarlos0/org-stats
 github.com/ericchiang/pup
 github.com/therecipe/qt/cmd/qtdeploy
 github.com/therecipe/qt/cmd/qtminimal
