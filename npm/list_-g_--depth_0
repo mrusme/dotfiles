@@ -1,4 +1,5 @@
 /home/mrus/.local/lib64/node_modules/lib64
+├── @aws-amplify/cli@9.1.0
 ├── bash-language-server@3.0.4
 ├── dockerfile-language-server-nodejs@0.9.0
 ├── ghcal@2.3.12
