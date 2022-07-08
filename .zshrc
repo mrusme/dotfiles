@@ -103,9 +103,9 @@ export MOZ_USE_XINPUT2="1"
 export QT_STYLE_OVERRIDE=kvantum
 
 # https://github.com/oz/tz/
-export TZ_LIST="Pacific/Honolulu;America/Panama;America/New_York;Etc/UTC;\
-Europe/Berlin;Asia/Dubai;Asia/Bangkok;Asia/Tokyo;\
-Australia/Melbourne;Pacific/Auckland;"
+export TZ_LIST="Pacific/Honolulu;America/Panama;America/La_Paz;\
+America/New_York;Etc/UTC;Europe/Berlin;Egypt;Asia/Dubai;Asia/Bangkok;\
+Asia/Tokyo;Australia/Melbourne;Pacific/Auckland;"
 
 # https://notmuchmail.org/manpages/notmuch-1/
 export NOTMUCH_PROFILE=01
