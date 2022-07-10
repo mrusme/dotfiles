@@ -2,4 +2,4 @@
 usr/local/bin/img2fwup
 usr/local/bin/xmrig-wrmsr
 irssi/*.log
-
+irssi/otr/*
