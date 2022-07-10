@@ -352,6 +352,30 @@ alias cheatsheet.vim='vim $HOME/[Cc]loud/notes/tools/vim.md'
 
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ Mosh/SSH wrapper                                                           ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+
+function ssh {
+  if [ "$2" = "" ]
+  then
+    conn="$1"
+    sshhost=$(printf "%s" "$conn" | cut -d '@' -f2)
+    if rg -U -i "^#.*Features:.*mosh.*\nHost $sshhost" "$HOME/.ssh/config" > /dev/null
+    then
+      printf "connecting with mosh ...\n"
+      command mosh $conn
+    else
+      printf "connecting with ssh ...\n"
+      command ssh $conn
+    fi
+  else
+    printf "connecting with ssh ...\n"
+    command ssh $@
+  fi
+}
+
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
 # ║ Poor-man's aptitude                                                        ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
@@ -877,7 +901,7 @@ function convert-kmh-to-mph() {
 
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
-# ║ Video conversion                                                           ║
+# ║ Audio & video                                                              ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
 function video-to-gif() {
@@ -887,6 +911,17 @@ function video-to-gif() {
     "fps=10,scale=800:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse" \
     -loop 0 \
     "$2"
+}
+
+function rip() {
+  youtube-dl \
+    -f bestaudio \
+    --extract-audio \
+    --audio-format mp3 \
+    --audio-quality 0 \
+    --yes-playlist \
+    --add-metadata
+    "$1"
 }
 
 
@@ -912,6 +947,8 @@ function dotfiles-update-remote() {
   cp "$HOME/.gitconfig" "$DOTFILES/.gitconfig"
   cp "$HOME/.mbsyncrc" "$DOTFILES/.mbsyncrc"
   cp "$HOME/.wallpaper" "$DOTFILES/.wallpaper"
+
+  cp "$HOME/.ssh/config" "$DOTFILES/ssh/config"
 
   cp -R "$HOME/.irssi/"* "$DOTFILES/irssi/"
 
@@ -1010,6 +1047,8 @@ function dotfiles-update-local() {
   cp "$DOTFILES/.gitconfig" "$HOME/.gitconfig"
   cp "$DOTFILES/.mbsyncrc" "$HOME/.mbsyncrc"
   cp "$DOTFILES/.wallpaper" "$HOME/.wallpaper"
+
+  cp "$DOTFILES/ssh/config" "$HOME/.ssh/config"
 
   cp -R "$DOTFILES/irssi/"* "$HOME/.irssi/"
 
