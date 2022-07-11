@@ -445,9 +445,32 @@ then
       esac
     fi
   }
+elif [[ "$OS" = "OpenBSD" ]]
+then
+  function aptitude {
+    if [ -z "$1" ]; then
+      printf "Usage: aptitude <action> [options] ...\n"
+    else
+      case $1 in
+        install)     pkg_add "${@:2}";;
+        remove)      pkg_delete "${@:2}";;
+        purge)       pkg_delete -a "${@:2}";;
+        update)      pkg_add -Uuin "${@:2}";;
+        upgrade)     pkg_add -Uui "${@:2}";;
+        safe-upgrade)sysupgrade;;
+        full-upgrade)sysupgrade;;
+        search)      pkg_info -Q "${@:2}";;
+        show)        pkg_info "${@:2}";;
+        clean)       pkg_check "${@:2}";;
+        reinstall)   pkg_add -Uui "${@:2}";;
+        *)           printf "aptitude: '$1' - unknown action\n" ;;
+      esac
+    fi
+  }
 fi
 
 if [[ "$OS" = "Darwin" ]] \
+|| [[ "$OS" = "OpenBSD" ]] \
 || [[ "$OS" = "Linux" && "$(uname -a | grep -i gentoo)" ]] \
 || type pacman > /dev/null
 then
