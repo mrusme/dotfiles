@@ -15,7 +15,7 @@ conclusive v0.1.0:
     conclusive
 csview v1.0.1:
     csview
-deno v1.23.1:
+deno v1.23.3:
     deno
 dijo v0.2.7:
     dijo
@@ -23,7 +23,7 @@ du-dust v0.8.0:
     dust
 eva v0.2.7:
     eva
-gfold v4.0.0:
+gfold v4.0.1:
     gfold
 git-delta v0.13.0:
     delta
@@ -54,7 +54,7 @@ mdcat v0.27.1:
     mdcat
 pastel v0.9.0:
     pastel
-pipe-rename v1.4.2:
+pipe-rename v1.5.0:
     renamer
 procs v0.12.3:
     procs
@@ -109,5 +109,5 @@ xplr v0.19.0:
     xplr
 zenith v0.0.2:
     zenith
-zoxide v0.8.1:
+zoxide v0.8.2:
     zoxide
