@@ -943,7 +943,7 @@ function rip() {
     --audio-format mp3 \
     --audio-quality 0 \
     --yes-playlist \
-    --add-metadata
+    --add-metadata \
     "$1"
 }
 
