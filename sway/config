@@ -249,40 +249,40 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # Workspaces
-workspace I    output DP-3
-workspace II   output DP-3
-workspace III  output DP-3
-workspace IV   output DP-3
-workspace V    output DP-3
-workspace VI   output DP-3
-workspace VII  output DP-3
-workspace VIII output DP-3
-workspace IX   output DP-3
-workspace X    output HDMI-A-1
+workspace 1   1:I    output DP-3
+workspace 2   2:II   output DP-3
+workspace 3   3:III  output DP-3
+workspace 4   4:IV   output DP-3
+workspace 5   5:V    output DP-3
+workspace 6   6:VI   output DP-3
+workspace 7   7:VII  output DP-3
+workspace 8   8:VIII output DP-3
+workspace 9   9:IX   output DP-3
+workspace 10 10:X    output HDMI-A-1
 
 # Switch to workspace
-bindsym $mod+1 workspace  1:I
-bindsym $mod+2 workspace  2:II
-bindsym $mod+3 workspace  3:III 
-bindsym $mod+4 workspace  4:IV
-bindsym $mod+5 workspace  5:V
-bindsym $mod+6 workspace  6:VI
-bindsym $mod+7 workspace  7:VII
-bindsym $mod+8 workspace  8:VIII
-bindsym $mod+9 workspace  9:IX
-bindsym $mod+0 workspace 10:X
+bindsym $mod+1 workspace 1   1:I
+bindsym $mod+2 workspace 2   2:II
+bindsym $mod+3 workspace 3   3:III 
+bindsym $mod+4 workspace 4   4:IV
+bindsym $mod+5 workspace 5   5:V
+bindsym $mod+6 workspace 6   6:VI
+bindsym $mod+7 workspace 7   7:VII
+bindsym $mod+8 workspace 8   8:VIII
+bindsym $mod+9 workspace 9   9:IX
+bindsym $mod+0 workspace 10 10:X
 
 # Move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace  1:I
-bindsym $mod+Shift+2 move container to workspace  2:II
-bindsym $mod+Shift+3 move container to workspace  3:III
-bindsym $mod+Shift+4 move container to workspace  4:IV
-bindsym $mod+Shift+5 move container to workspace  5:V
-bindsym $mod+Shift+6 move container to workspace  6:VI
-bindsym $mod+Shift+7 move container to workspace  7:VII
-bindsym $mod+Shift+8 move container to workspace  8:VIII
-bindsym $mod+Shift+9 move container to workspace  9:IX
-bindsym $mod+Shift+0 move container to workspace 10:X
+bindsym $mod+Shift+1 move container to workspace 1   1:I
+bindsym $mod+Shift+2 move container to workspace 2   2:II
+bindsym $mod+Shift+3 move container to workspace 3   3:III
+bindsym $mod+Shift+4 move container to workspace 4   4:IV
+bindsym $mod+Shift+5 move container to workspace 5   5:V
+bindsym $mod+Shift+6 move container to workspace 6   6:VI
+bindsym $mod+Shift+7 move container to workspace 7   7:VII
+bindsym $mod+Shift+8 move container to workspace 8   8:VIII
+bindsym $mod+Shift+9 move container to workspace 9   9:IX
+bindsym $mod+Shift+0 move container to workspace 10 10:X
 
 bindsym $mod+Alt+Left workspace prev
 bindsym $mod+Alt+Right workspace next
