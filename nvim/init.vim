@@ -492,39 +492,6 @@ let g:rust_clip_command = 'wl-copy'
 
 
 " ╔════════════════════════════════════════════════════════════════════════════╗
-" ║ LSP                                                                        ║
-" ╚════════════════════════════════════════════════════════════════════════════╝
-
-lua << EOF
-require'lspconfig'.gopls.setup{}
-require'lspconfig'.clangd.setup{}
-require'lspconfig'.denols.setup{}
-require'lspconfig'.elixirls.setup{
-    cmd = { "/home/mrus/projects/github/elixir-ls/release/language_server.sh" };
-}
-require'lspconfig'.pylsp.setup{}
-require'lspconfig'.rust_analyzer.setup{}
-require'lspconfig'.rls.setup{}
-require'lspconfig'.sorbet.setup{}
-require'lspconfig'.sqls.setup{}
-require'lspconfig'.terraformls.setup{}
-require'lspconfig'.tflint.setup{}
-
-require'lspconfig'.bashls.setup{}
-require'lspconfig'.cssls.setup{}
-require'lspconfig'.dockerls.setup{}
-require'lspconfig'.graphql.setup{}
-require'lspconfig'.html.setup{}
-require'lspconfig'.jsonls.setup{}
-require'lspconfig'.stylelint_lsp.setup{}
-require'lspconfig'.svelte.setup{}
-require'lspconfig'.tsserver.setup{}
-require'lspconfig'.vimls.setup{}
-require'lspconfig'.yamlls.setup{}
-EOF
-
-
-" ╔════════════════════════════════════════════════════════════════════════════╗
 " ║ cmp                                                                        ║
 " ╚════════════════════════════════════════════════════════════════════════════╝
 
@@ -606,7 +573,8 @@ lua <<EOF
     capabilities = capabilities
   }
   require('lspconfig')['elixirls'].setup {
-    capabilities = capabilities
+    capabilities = capabilities;
+    cmd = { "/home/mrus/projects/github/elixir-ls/release/language_server.sh" };
   }
   require('lspconfig')['pylsp'].setup {
     capabilities = capabilities
@@ -618,7 +586,8 @@ lua <<EOF
     capabilities = capabilities
   }
   require('lspconfig')['sorbet'].setup {
-    capabilities = capabilities
+    capabilities = capabilities;
+    cmd = { "bundle", "exec", "srb", "tc", "--lsp" };
   }
   require('lspconfig')['sqls'].setup {
     capabilities = capabilities
