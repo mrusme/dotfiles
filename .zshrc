@@ -285,7 +285,8 @@ type exa > /dev/null \
 && alias ls='exa --time-style=long-iso --git --binary -lg' \
 && alias la='exa --time-style=long-iso --git --icons --binary -la' \
 && alias ll='exa --time-style=long-iso --git --icons --octal-permissions --binary --changed -lahHgnuU' \
-&& alias l='exa --time-style=long-iso --git --icons --binary -l --no-time'
+&& alias l='exa --time-style=long-iso --git --icons --binary -l --no-time' \
+&& alias lls='ls -s modified'
 
 type btm > /dev/null \
 && alias top='btm'
