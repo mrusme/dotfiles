@@ -319,10 +319,11 @@ autocmd BufRead,BufNewFile
 
 " set neomutt settings
 autocmd BufRead,BufNewFile
-  \ neomutt-* 
+  \ {neomutt-*,*.eml} 
     \ setlocal tw=72 | 
     \ setlocal fo=awq | 
     \ setlocal comments+=nb:> | 
+    \ setlocal spell |
     \ match ErrorMsg '\s\+$'
 
 
