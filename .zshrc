@@ -88,6 +88,9 @@ fi
 
 export SSH_KEY_PATH="$HOME/.ssh/id_ed25519"
 
+# Pass 
+export PASSWORD_STORE_DIR="$HOME/cloud/.password-store"
+
 # Enable Erlang/IEx shell history
 export ERL_AFLAGS="-kernel shell_history enabled"
 
@@ -111,10 +114,10 @@ Asia/Tokyo;Australia/Melbourne;Pacific/Auckland;"
 export NOTMUCH_PROFILE=01
 
 # https://github.com/mrusme/zeit
-export ZEIT_DB="$HOME/.zeit.db"
+export ZEIT_DB="$HOME/cloud/.zeit.db"
 
 # https://github.com/mrusme/geld
-export GELD_DB="$HOME/.geld.db"
+export GELD_DB="$HOME/cloud/.geld.db"
 
 # https://github.com/mrusme/addrb
 export ADDRB_DB="$HOME/.cache/addrb.db"
