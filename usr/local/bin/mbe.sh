@@ -11,8 +11,9 @@
 # ║      xn--gckvb8fzb.com * github.com/mrusme * marius@xn--gckvb8fzb.com      ║
 # ║                                                                            ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
-source ~/.secrets
-MBE_PASSWORD=$(pass show mbe)
+MBE_PASSWORD=$(pass show mbe/password)
+MBE_COUNTRY=$(pass show mbe/country)
+MBE_EMAIL=$(pass show mbe/email)
 
 curl -s 'https://mbe-latam.com/eboxweb/?lang=en' \
   -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36' \
