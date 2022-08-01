@@ -106,8 +106,8 @@ export MOZ_USE_XINPUT2="1"
 export QT_STYLE_OVERRIDE=kvantum
 
 # https://github.com/oz/tz/
-export TZ_LIST="Pacific/Honolulu;America/Panama;America/La_Paz;\
-America/New_York;Etc/UTC;Europe/Berlin;Egypt;Asia/Dubai;Asia/Bangkok;\
+export TZ_LIST="Pacific/Honolulu;America/Panama;\
+America/New_York;Etc/UTC;Europe/Berlin;Asia/Bangkok;\
 Asia/Tokyo;Australia/Melbourne;Pacific/Auckland;"
 
 # https://notmuchmail.org/manpages/notmuch-1/
@@ -125,15 +125,6 @@ export ADDRB_DB="$HOME/.cache/addrb.db"
 # Import color scheme via wal
 #[[ "$OS" = "Linux" ]] \
 #&& type wal > /dev/null && (wal -r &)
-
-
-# ╔════════════════════════════════════════════════════════════════════════════╗
-# ║ Secrets                                                                    ║
-# ╚════════════════════════════════════════════════════════════════════════════╝
-
-export DOT_SECRETS="$HOME/.secrets"
-[[ -e "$DOT_SECRETS" ]]\
-&& source "$DOT_SECRETS"
 
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
@@ -563,10 +554,10 @@ __pushover_usage() {
   printf " -p <priority>\n"
   printf " -r <retry>\n"
   printf " -t <title>\n"
-  printf " -T <TOKEN> (required if not in PUSHOVER_TOKEN env)\n"
+  printf " -T <TOKEN> (required if not in 'pass show pushover/token')\n"
   printf " -s <sound>\n"
   printf " -u <url>\n"
-  printf " -U <USER> (required if not in PUSHOVER_USER env)\n"
+  printf " -U <USER> (required if not in 'pass show pushover/user')\n"
   printf " -a <url_title>\n"
   return 1
 }
@@ -614,8 +605,8 @@ __pushover_send_message() {
 function pushover() {
   local CURL="$(which curl)"
   local PUSHOVER_URL="https://api.pushover.net/1/messages.json"
-  local TOKEN=$PUSHOVER_TOKEN
-  local USER=$PUSHOVER_USER
+  local TOKEN=$(pass show pushover/token)
+  local USER=$(pass show pushover/user)
   local CURL_OPTS=""
   local device_aliases=""
   local devices="${devices} ${device}"
@@ -960,6 +951,64 @@ function rip() {
     --yes-playlist \
     --add-metadata \
     "$1"
+}
+
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ addrb                                                                      ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+
+function addrb() {
+  export CARDDAV_USERNAME=$(pass show dav/username)
+  export CARDDAV_PASSWORD=$(pass show dav/password)
+  export CARDDAV_ENDPOINT=$(pass show dav/endpoint)
+  
+  command addrb $@
+}
+
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ planor                                                                     ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+
+function planor() {
+  export RENDER_API_TOKEN=$(pass show render/token)
+  export VULTR_API_KEY=$(pass show vultr/token)
+  
+  command planor $@
+}
+
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ conclusive                                                                 ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+
+function conclusive() {
+  export PLAUSIBLE_TOKEN=$(pass show plausible/token)
+  
+  command conclusive $@
+}
+
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ wtfutil                                                                    ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+
+function wtfutil() {
+  export WTF_GITHUB_TOKEN=$(pass show wtfutil/token)
+  
+  command wtfutil $@
+}
+
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ gh                                                                         ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+
+function gh() {
+  export GITHUB_TOKEN=$(pass show github/token)
+  
+  command gh $@
 }
 
 
