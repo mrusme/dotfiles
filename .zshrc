@@ -121,6 +121,7 @@ export GELD_DB="$HOME/cloud/.geld.db"
 
 # https://github.com/mrusme/addrb
 export ADDRB_DB="$HOME/.cache/addrb.db"
+export ADDRB_TEMPLATE="$HOME/.config/addrb.tmpl"
 
 # Import color scheme via wal
 #[[ "$OS" = "Linux" ]] \
@@ -972,8 +973,10 @@ function addrb() {
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
 function planor() {
-  export RENDER_API_TOKEN=$(pass show render/token)
   export VULTR_API_KEY=$(pass show vultr/token)
+  export RENDER_API_TOKEN=$(pass show render/token)
+  export FLEEK_API_TOKEN=$(pass show fleek/token)
+  export FLEEK_TEAM_ID=$(pass show fleek/team)
   
   command planor $@
 }
