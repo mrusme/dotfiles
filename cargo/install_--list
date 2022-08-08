@@ -11,11 +11,11 @@ cargo-update v8.1.4:
     cargo-install-update-config
 code-minimap v0.6.4:
     code-minimap
-conclusive v0.1.0:
+conclusive v1.0.0:
     conclusive
 csview v1.1.0:
     csview
-deno v1.24.1:
+deno v1.24.2:
     deno
 dijo v0.2.7:
     dijo
@@ -50,7 +50,7 @@ jwt-cli v5.0.3:
     jwt
 kmon v1.6.0:
     kmon
-mdcat v0.27.1:
+mdcat v0.28.0:
     mdcat
 pastel v0.9.0:
     pastel
