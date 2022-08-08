@@ -1,7 +1,8 @@
 #!/bin/sh
-
+# pactl list short sinks
 output_lg='alsa_output.pci-0000_0c_00.1.hdmi-stereo-extra4'
-output_motu='alsa_output.usb-MOTU_M2_M2AE029AS5-00.pro-output-0.2'
+# output_motu='alsa_output.usb-MOTU_M2_M2AE029AS5-00.pro-output-0.2'
+output_motu='alsa_output.usb-MOTU_M2_M2AE029AS5-00.Direct__hw_M2__sink'
 output_srsxb='bluez_output.6C_47_60_1F_51_DD.a2dp-sink'
 output_h9i=''
 
