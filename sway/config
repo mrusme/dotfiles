@@ -135,42 +135,51 @@ input "1133:50475:Logitech_USB_Receiver_Mouse" {
 ## USE wev TO FIND KEYS AND STOP LOOKING UP HOW TO DO IT EVERY FSCKING TIME ##
 ##############################################################################
 
-# Start a terminal
+# Show this help
+bindsym $mod+Shift+Slash exec /usr/local/bin/sway-help
+
+# Open terminal
 bindsym $mod+Return exec $term
 
-
-# Open browser
+# Open Firefox
 bindsym $mod+backspace exec /usr/local/bin/ff
+# Open Firefox (private window)
 bindsym $mod+Shift+backspace exec /usr/local/bin/ff -private-window
 
+# Open LibreWolf
 bindsym $mod+Alt+backspace exec /usr/local/bin/lw
+# Open LibreWolf (private window)
 bindsym $mod+Alt+Shift+backspace exec /usr/local/bin/lw -private-window
 
+# Open ungoogled Chromium
+bindsym $mod+Ctrl+backspace exec /usr/bin/chromium
 
-# Clipboard
+# Open Tor Browser
+bindsym $mod+Ctrl+Shift+backspace exec /usr/local/bin/tor-browser
+
+# Show clipboard (for copying)
 bindsym $mod+Alt+Backslash exec cliphist list \
   | $dmenu \
   | cliphist decode \
   | wl-copy
+# Show clipboard (for deleting)
 bindsym $mod+Alt+Bar exec cliphist list \
   | $dmenu \
   | cliphist delete
 
-# Recall notifications
+# Recall last notifications
 bindsym $mod+asciitildE exec dunstctl history-pop
 
 # Kill focused window
 bindsym $mod+Escape kill
 
-# Start your launcher
+# Open launcher
 bindsym $mod+Space exec $menu
 
-floating_modifier $mod normal
-
-# Reload the configuration file
+# Reload Sway
 bindsym $mod+Shift+c reload
 
-# Lock sway
+# Lock Sway
 bindsym $mod+Ctrl+q exec swaylock
 
 # Exit sway
@@ -181,74 +190,115 @@ bindsym $mod+Shift+e exec swaynag -t msg -e bottom -m 'EXIT SWAY SESSION' \
   # -b '          YES          ' 'swaymsg exit && sudo halt' \
   # -s '          NO          '
 
-# Media keys
+# === Media keys ===
+
 # bindsym $mod+F8 exec playerctl play-pause
+# MPD: Toggle playback
 bindsym $mod+F8 exec mpc toggle
 
 # bindsym $mod+F9 exec playerctl next
+# MPD: Next song
 bindsym $mod+F9 exec mpc next
 
 # bindsym $mod+F7 exec playerctl previous
+# MPD: Previous song
 bindsym $mod+F7 exec mpc prev
 
+# Mute audio volume
 bindsym $mod+F10 exec pulsemixer --change-volume -100
+
+# Decrease audio volume
 bindsym $mod+F11 exec pulsemixer --change-volume -10
+
+# Increase audio volume
 bindsym $mod+F12 exec pulsemixer --change-volume +10
 
+# Route audio to display
 bindsym $mod+Shift+F1 exec /usr/local/bin/audio-router lg
+
+# Route audio to MOTU
 bindsym $mod+Shift+F2 exec /usr/local/bin/audio-router motu
+
+# Route audio to SRS-XB23
 bindsym $mod+Shift+F3 exec /usr/local/bin/audio-router srsxb
-bindsym $mod+Shift+F4 exec /usr/local/bin/audio-router hi9
+
+# Route audio to B&O H9i
+bindsym $mod+Shift+F4 exec /usr/local/bin/audio-router h9i
 
 
-# Screenshotting
+# Screenshot whole screen
 bindsym Print exec grim -t png \
   $HOME/downloads/$(date +'screenshot_%Y-%m-%d-%H%M%S.png')
+
+# Screenshot region of screen
 bindsym Shift+Print exec --no-startup-id slurp \
   | grim -t png -g - \
   $HOME/downloads/$(date +'screenshot_%Y-%m-%d-%H%M%S.png')
+
+# Screenshot current window
 bindsym Ctrl+Print exec --no-startup-id swaymsg -t get_tree \
   | jq -r '.. | select(.pid? and .visible?) | .rect | "\(.x),\(.y) \(.width)x\(.height)"' \
   | slurp \
   | grim -t png -g - \
   $HOME/downloads/$(date +'screenshot_%Y-%m-%d-%H%M%S.png')
+
+# Parse text on screen and copy to clipboard
 bindsym $mod+Print exec --no-startup-id slurp \
   | xargs -I {} grim -s 2 -t png -g {} - \
   | tesseract - - \
   | wl-copy -n
 
-# Move your focus around
-bindsym $mod+$left focus left
-bindsym $mod+$down focus down
-bindsym $mod+$up focus up
-bindsym $mod+$right focus right
-# Or use $mod+[up|down|left|right]
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
 
-bindsym $mod+Control+$left focus parent, focus left, focus child
-bindsym $mod+Control+$down focus parent, focus down, focus child
+# === Window focus ===
+
+# Move focus up
+bindsym $mod+$up focus up
+bindsym $mod+Up focus up
+# Move focus right
+bindsym $mod+$right focus right
+bindsym $mod+Right focus right
+# Move focus down
+bindsym $mod+$down focus down
+bindsym $mod+Down focus down
+# Move focus left
+bindsym $mod+$left focus left
+bindsym $mod+Left focus left
+
+# Move focus of parent up
 bindsym $mod+Control+$up focus parent, focus up, focus child
+# Move focus of parent right
 bindsym $mod+Control+$right focus parent, focus right, focus child
+# Move focus of parent down
+bindsym $mod+Control+$down focus parent, focus down, focus child
+# Move focus of parent left
+bindsym $mod+Control+$left focus parent, focus left, focus child
+
+# Focus parent
 bindsym $mod+Control+p focus parent
 
+# Focus next
 bindsym $mod+Tab focus next
+
+# Focus previous
 bindsym $mod+Shift+Tab focus prev
 
-# Move the focused window with the same, but add Shift
-bindsym $mod+Shift+$left move left
-bindsym $mod+Shift+$down move down
-bindsym $mod+Shift+$up move up
-bindsym $mod+Shift+$right move right
-# Ditto, with arrow keys
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
+# === Window moving ===
 
-# Workspaces
+# Move focused window up
+bindsym $mod+Shift+$up move up
+bindsym $mod+Shift+Up move up
+# Move focused window right
+bindsym $mod+Shift+$right move right
+bindsym $mod+Shift+Right move right
+# Move focused window down
+bindsym $mod+Shift+$down move down
+bindsym $mod+Shift+Down move down
+# Move focused window left
+bindsym $mod+Shift+$left move left
+bindsym $mod+Shift+Left move left
+
+# === Workspaces ===
+
 workspace 1   1:I    output DP-3
 workspace 2   2:II   output DP-3
 workspace 3   3:III  output DP-3
@@ -260,59 +310,81 @@ workspace 8   8:VIII output DP-3
 workspace 9   9:IX   output DP-3
 workspace 10 10:X    output HDMI-A-1
 
-# Switch to workspace
+# Switch to workspace 1
 bindsym $mod+1 workspace 1   1:I
+# Switch to workspace 2
 bindsym $mod+2 workspace 2   2:II
+# Switch to workspace 3
 bindsym $mod+3 workspace 3   3:III 
+# Switch to workspace 4
 bindsym $mod+4 workspace 4   4:IV
+# Switch to workspace 5
 bindsym $mod+5 workspace 5   5:V
+# Switch to workspace 6
 bindsym $mod+6 workspace 6   6:VI
+# Switch to workspace 7
 bindsym $mod+7 workspace 7   7:VII
+# Switch to workspace 8
 bindsym $mod+8 workspace 8   8:VIII
+# Switch to workspace 9
 bindsym $mod+9 workspace 9   9:IX
+# Switch to workspace 10
 bindsym $mod+0 workspace 10 10:X
 
-# Move focused container to workspace
+# Move focused container to workspace 1
 bindsym $mod+Shift+1 move container to workspace 1   1:I
+# Move focused container to workspace 2
 bindsym $mod+Shift+2 move container to workspace 2   2:II
+# Move focused container to workspace 3
 bindsym $mod+Shift+3 move container to workspace 3   3:III
+# Move focused container to workspace 4
 bindsym $mod+Shift+4 move container to workspace 4   4:IV
+# Move focused container to workspace 5
 bindsym $mod+Shift+5 move container to workspace 5   5:V
+# Move focused container to workspace 6
 bindsym $mod+Shift+6 move container to workspace 6   6:VI
+# Move focused container to workspace 7
 bindsym $mod+Shift+7 move container to workspace 7   7:VII
+# Move focused container to workspace 8
 bindsym $mod+Shift+8 move container to workspace 8   8:VIII
+# Move focused container to workspace 9
 bindsym $mod+Shift+9 move container to workspace 9   9:IX
+# Move focused container to workspace 10
 bindsym $mod+Shift+0 move container to workspace 10 10:X
 
-bindsym $mod+Alt+Left workspace prev
-bindsym $mod+Alt+Right workspace next
-
+# Switch to previous workspace
 bindsym $mod+bracketleft workspace prev
-bindsym $mod+bracketright workspace next
-
 bindcode --whole-window 275 workspace prev
+
+# Switch to next workspace
+bindsym $mod+bracketright workspace next
 bindcode --whole-window 276 workspace next
 
-# $mod+b or $mod+v, for horizontal and vertical splits
+# Split view horizontally
 bindsym $mod+equal splith
+
+# Split view vertically
 bindsym $mod+minus splitv
 
-# Switch the current container between different layout styles
-#bindsym $mod+s layout stacking
+# === Layouts === 
+
+# Activate stacking layout
+bindsym $mod+Shift+s layout stacking
+
+# Activate tabbed layout
 bindsym $mod+t layout tabbed
+
+# Toggle split layout
 bindsym $mod+s layout toggle split
 
-# Make the current focus fullscreen
-bindsym $mod+z fullscreen
-
-# Toggle the current focus between tiling and floating mode
+# Toggle floating mode
 bindsym $mod+Shift+z floating toggle
 
-# Swap focus between the tiling area and the floating area
+# Switch focus between tiling area and floating area
 bindsym $mod+Shift+t focus mode_toggle
 
-# Move focus to the parent container
-bindsym $mod+a focus parent
+# Fullscreen currently focused window
+bindsym $mod+z fullscreen
 
 # Move the currently focused window to the scratchpad
 #bindsym $mod+Shift+grave move scratchpad
@@ -322,31 +394,36 @@ bindsym $mod+a focus parent
 #bindsym $mod+grave scratchpad show
 
 mode "resize" {
-  # left will shrink the containers width
-  # right will grow the containers width
-  # up will shrink the containers height
-  # down will grow the containers height
+  # Resize mode: Grow the container height
+  bindsym $up resize grow height 12px
+  bindsym Up resize grow height 10x
+  # Resize mode: Shrink the container height
+  bindsym $down resize shrink height 10px
+  bindsym Down resize shrink height 10px
+  # Resize mode: Shrink the container width
   bindsym $left resize shrink width 10px
-  bindsym $down resize grow height 10px
-  bindsym $up resize shrink height 10px
-  bindsym $right resize grow width 10px
-
-  # Ditto, with arrow keys
   bindsym Left resize shrink width 10px
-  bindsym Down resize grow height 10px
-  bindsym Up resize shrink height 10px
+  # Resize mode: Grow the container width
+  bindsym $right resize grow width 11px
   bindsym Right resize grow width 10px
 
-  bindsym 8 resize set width 740px
+  # Resize mode: Set container width to 320x340px
   bindsym 3 resize set width 320px height 340px
+  # Resize mode: Set container width to 640x480px
   bindsym 6 resize set width 640px height 480px
+  # Resize mode: Set container width to 740px
+  bindsym 8 resize set width 740px
+  # Resize mode: Set container width to 1024x768px
   bindsym 0 resize set width 1024px height 768px
 
-  # Return to default mode
-  bindsym Return mode "default"
+  # Resize mode: Exist
   bindsym Escape mode "default"
+  bindsym Return mode "default"
 }
+# Enter resize mode
 bindsym $mod+r mode "resize"
+
+floating_modifier $mod normal
 
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
