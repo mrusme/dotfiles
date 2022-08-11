@@ -1,0 +1,23 @@
+#!/bin/sh
+rg -NoU '^# (.*)\nbindsym ([^ ]*) .*' \
+  -r '$2|$1' \
+  "$HOME/.config/sway/config" \
+| awk -F '|' '{ printf "%26s: %s\n", $1, $2 }' \
+| yad \
+  --no-buttons \
+  --title 'Sway Help' \
+  --escape-ok \
+  --width 1024 \
+  --height 800 \
+  --center \
+  --splash \
+  --close-on-unfocus \
+  --text-info \
+  --css \
+    'box \
+    { background: transparent; border: 0px; } \
+    window { background-color: rgba(0, 0, 0, 0.9); } \
+    .view text, textview, textview text, \
+    textview text:backdrop, .view text:backdrop \
+    { background: transparent; border: 0px; }'
+
