@@ -132,14 +132,21 @@ export ADDRB_TEMPLATE="$HOME/.config/addrb.tmpl"
 # ║ $PATH                                                                      ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
-[[ "$OS" = "Darwin" ]] \
-&& eval "$(/usr/libexec/path_helper -s)"
+if [[ "$OS" = "Darwin" ]]
+then
+  eval "$(/usr/libexec/path_helper -s)"
+  # /usr/local/* (Homebrew, etc)
+  export PATH="/usr/local/bin:/usr/local/sbin:/usr/local/opt/binutils/bin:$PATH"
+  export MANPATH="/usr/local/man:$MANPATH"
 
-# /usr/local/* (Homebrew, etc)
-[[ "$OS" = "Darwin" ]] \
-&& export PATH="/usr/local/bin:/usr/local/sbin:\
-/usr/local/opt/binutils/bin:$PATH"\
-&& export MANPATH="/usr/local/man:$MANPATH"
+  # Go
+  export GOROOT="/usr/local/opt/go/libexec"
+
+  # Ruby
+  export PATH="/usr/local/Cellar/ruby/$(ls -1 /usr/local/Cellar/ruby/ \
+                                      | sort \
+                                      | tail -n 1)/bin:$PATH"
+fi
 
 # Cargo (Rust)
 [[ -d "$HOME/.cargo/bin" ]] \
@@ -149,10 +156,8 @@ export ADDRB_TEMPLATE="$HOME/.config/addrb.tmpl"
 && source "$HOME/.cargo/env"
 
 # Go
-[[ "$OS" = "Darwin" ]] \
-&& export GOROOT="/usr/local/opt/go/libexec"
 go env -w GOPATH="$HOME/.go"
-export PATH=$HOME/.go/bin:$PATH
+export PATH="$(go env GOPATH):$PATH"
 export GOPROXY=direct
 
 # Python virtualenv
@@ -172,12 +177,6 @@ export PYTHON_MAJOR_MINOR="$(python3 \
 
 [[ -d "$HOME/Library/Python/$PYTHON_MAJOR_MINOR/bin" ]] \
 && export PATH="$HOME/Library/Python/$PYTHON_MAJOR_MINOR/bin:$PATH"
-
-# Ruby
-[[ "$OS" = "Darwin" ]] \
-&& export PATH="/usr/local/Cellar/ruby/$(ls -1 /usr/local/Cellar/ruby/ \
-                                        | sort \
-                                        | tail -n 1)/bin:$PATH"
 
 # Rubygems
 type gem > /dev/null \
