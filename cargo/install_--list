@@ -52,6 +52,8 @@ kmon v1.6.0:
     kmon
 mdcat v0.28.0:
     mdcat
+neovide v0.10.0 (https://github.com/neovide/neovide#697480b9):
+    neovide
 pastel v0.9.0:
     pastel
 pipe-rename v1.5.0:
