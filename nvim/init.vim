@@ -10,7 +10,9 @@
 " ║      xn--gckvb8fzb.com * github.com/mrusme * marius@xn--gckvb8fzb.com      ║
 " ║                                                                            ║
 " ╚════════════════════════════════════════════════════════════════════════════╝
-
+"
+" TODO: https://kinbiko.com/posts/2021-08-23-rewriting-vimrc-in-lua/
+"
 set nocompatible
 filetype off
 
@@ -50,7 +52,7 @@ Plug 'lambdalisue/glyph-palette.vim'
 Plug 'glepnir/lspsaga.nvim'
 " Plug 'tomtom/tcomment_vim'
 Plug 'numToStr/Comment.nvim'
-Plug 'airblade/vim-gitgutter'
+Plug 'lewis6991/gitsigns.nvim'
 Plug 'godlygeek/tabular'
 Plug 'junegunn/goyo.vim'
 Plug 'Yggdroot/indentLine'
@@ -69,6 +71,8 @@ Plug 'nvim-telescope/telescope.nvim'
 Plug 'simnalamburt/vim-mundo'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'folke/trouble.nvim'
+
+Plug 'mhartington/formatter.nvim'
 
 "Plug 'plasticboy/vim-markdown'
 Plug 'leafgarland/typescript-vim'
@@ -252,7 +256,6 @@ let mapleader = ','
 
 nnoremap <Leader>p :set paste<CR>
 nnoremap <Leader>o :set nopaste<CR>
-noremap  <Leader>g :GitGutterToggle<CR>
 
 " Double press Ctrl+q to force quit, discarding changes
 noremap <C-q><C-q> :qa!<CR>
@@ -368,12 +371,6 @@ highlight NonText guibg=none
 highlight EndOfBuffer ctermbg=none guibg=none
 highlight LineNr ctermbg=none guibg=none
 
-set guifont=FiraCode\ Nerd\ Font:h13
-let g:neovide_cursor_antialiasing=v:true
-""let g:neovide_fullscreen=v:true
-let g:neovide_refresh_rate=60
-let g:neovide_keyboard_layout="qwerty"
-
 
 " ╔════════════════════════════════════════════════════════════════════════════╗
 " ║ indentLine                                                                 ║
@@ -389,26 +386,40 @@ let g:indentLine_fileTypeExclude = ['dashboard']
 
 
 " ╔════════════════════════════════════════════════════════════════════════════╗
+" ║ Neovide                                                                    ║
+" ╚════════════════════════════════════════════════════════════════════════════╝
+
+if exists("g:neovide")
+  set guifont=FiraCode\ Nerd\ Font:h10
+  let g:neovide_cursor_antialiasing=v:true
+  ""let g:neovide_fullscreen=v:true
+  let g:neovide_refresh_rate=60
+  let g:neovide_refresh_rate_idle=5
+  let g:neovide_keyboard_layout="qwerty"
+  let g:neovide_cursor_animation_length=0.01
+  let g:neovide_cursor_trail_length=0.2
+  let g:neovide_transparency=0.9
+endif
+
+
+" ╔════════════════════════════════════════════════════════════════════════════╗
 " ║ Lightline                                                                  ║
 " ╚════════════════════════════════════════════════════════════════════════════╝
 
 let g:lightline = { 
   \ 'colorscheme': 'iceberg', 
   \ 'active': {
-  \   'right': [ [ 'lineinfo' ], [ 'percent' ], [ 'indent', 'fileformat', 'fileencoding', 'filetype' ] ]
+  \   'left': [ [ 'mode', 'paste' ],
+  \             [ 'readonly', 'filename', 'gitsign', 'modified' ] ],
+  \   'right': [ [ 'lineinfo' ], [ 'percent' ], [ 'indent', 'fileformat', 'fileencoding', 'filetype', 'branch' ] ]
   \ },
   \ 'component': {
   \   'indent': '%{&expandtab?"spaces":"tabs"}:%{&expandtab?&shiftwidth:&tabstop}',
+  \   'gitsign': '%{get(b:,"gitsigns_status","")}',
+  \   'branch': '%{get(b:,"gitsigns_head","")}',
   \ },
   \ }
-
-
-" ╔════════════════════════════════════════════════════════════════════════════╗
-" ║ Neovide                                                                    ║
-" ╚════════════════════════════════════════════════════════════════════════════╝
-
-let g:neovide_cursor_animation_length=0.01
-let g:neovide_cursor_trail_length=0.2
+set noshowmode
 
 
 " ╔════════════════════════════════════════════════════════════════════════════╗
@@ -482,6 +493,75 @@ augroup END
 
 let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 au FileType gitcommit let b:EditorConfig_disable = 1
+
+
+" ╔════════════════════════════════════════════════════════════════════════════╗
+" ║ GitSigns                                                                   ║
+" ╚════════════════════════════════════════════════════════════════════════════╝
+
+lua <<EOF
+require('gitsigns').setup()
+EOF
+
+
+" ╔════════════════════════════════════════════════════════════════════════════╗
+" ║ formatter                                                                  ║
+" ╚════════════════════════════════════════════════════════════════════════════╝
+
+lua <<EOF
+-- Utilities for creating configurations
+local util = require "formatter.util"
+
+-- Provides the Format, FormatWrite, FormatLock, and FormatWriteLock commands
+require("formatter").setup {
+  -- Enable or disable logging
+  logging = true,
+  -- Set the log level
+  log_level = vim.log.levels.WARN,
+  -- All formatter configurations are opt-in
+  filetype = {
+    -- Formatter configurations for filetype "lua" go here
+    -- and will be executed in order
+    lua = {
+      -- "formatter.filetypes.lua" defines default configurations for the
+      -- "lua" filetype
+      require("formatter.filetypes.lua").stylua,
+
+      -- You can also define your own configuration
+      function()
+        -- Supports conditional formatting
+        if util.get_current_buffer_file_name() == "special.lua" then
+          return nil
+        end
+
+        -- Full specification of configurations is down below and in Vim help
+        -- files
+        return {
+          exe = "stylua",
+          args = {
+            "--search-parent-directories",
+            "--stdin-filepath",
+            util.escape_path(util.get_current_buffer_file_path()),
+            "--",
+            "-",
+          },
+          stdin = true,
+        }
+      end
+    },
+
+    -- Use the special "*" filetype for defining formatter configurations on
+    -- any filetype
+    ["*"] = {
+      -- "formatter.filetypes.any" defines default configurations for any
+      -- filetype
+      require("formatter.filetypes.any").remove_trailing_whitespace
+    }
+  }
+}
+EOF
+
+nnoremap <silent> <leader>f :Format<CR>
 
 
 " ╔════════════════════════════════════════════════════════════════════════════╗
