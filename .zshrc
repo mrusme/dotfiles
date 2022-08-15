@@ -157,7 +157,7 @@ fi
 
 # Go
 go env -w GOPATH="$HOME/.go"
-export PATH="$(go env GOPATH):$PATH"
+export PATH="$(go env GOPATH)/bin:$PATH"
 export GOPROXY=direct
 
 # Python virtualenv
