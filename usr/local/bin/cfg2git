@@ -1,0 +1,58 @@
+#!/bin/sh
+target="$1"
+
+if [ "$target" = "" ]
+then
+  printf "usage: %s <target>\n" "$0"
+  exit 1
+fi
+
+### ETC ###
+target_etc="$target/etc"
+if [ ! -d "$target_etc" ]
+then
+  mkdir "$target_etc"
+fi
+
+tmp_files_from=$(mktemp)
+
+find /etc \
+    -type f \
+    ! -executable \
+    ! -iname '*.example' \
+    ! -iname '*.sample' \
+    ! -iname '*.lock' > "$tmp_files_from"
+
+rsync -aH --files-from="$tmp_files_from" / "$target"
+
+### KERNEL ###
+target_kernel="$target/kernel"
+if [ ! -d "$target_kernel" ]
+then
+  mkdir "$target_kernel"
+fi
+zcat /proc/config.gz > "$target_kernel/config-$(uname -r)"
+
+### GRUB ###
+target_grub="$target/grub"
+if [ ! -d "$target_grub" ]
+then
+  mkdir "$target_grub"
+fi
+cp /boot/grub/grub.cfg "$target_grub/grub.cfg"
+
+### EMERGE ###
+eix-installed -a > "$target/eix-installed"
+
+### CRONTAB ###
+crontab -l > "$target/crontab"
+
+### ZSH HISTORY ###
+cp "$HOME/.zsh_history" "$target/zsh_history-$USER"
+sudo /bin/cat /root/.zsh_history > "$target/zsh_history-root"
+
+### COMMIT CHANGES ###
+git -C "$target" add "$target" \
+&& git -C "$target" commit --no-gpg-sign -m "Updated files" \
+&& git -C "$target" push
+
