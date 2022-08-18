@@ -1,9 +1,9 @@
 github.com/klauspost/asmfmt/cmd/asmfmt
 github.com/bettercap/bettercap
-github.com/mrusme/canard
 github.com/yory8/clipman
 github.com/cointop-sh/cointop
 github.com/go-delve/delve/cmd/dlv
+github.com/appleboy/drone-scp
 github.com/kisielk/errcheck
 github.com/davidrjenni/reftools/cmd/fillstruct
 github.com/knipferrc/fm
@@ -19,7 +19,6 @@ github.com/jstemmer/gotags
 github.com/tomnomnom/gron
 github.com/koron/iferr
 github.com/josharian/impl
-github.com/mrusme/journalist
 github.com/gokcehan/lf
 github.com/fatih/motion
 github.com/caarlos0/org-stats
