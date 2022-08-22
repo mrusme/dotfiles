@@ -29,9 +29,9 @@ git-delta v0.13.0:
     delta
 git-journal v1.8.1:
     git-journal
-gitui v0.20.1:
+gitui v0.21.0:
     gitui
-gpg-tui v0.9.0:
+gpg-tui v0.9.1:
     gpg-tui
     gpg-tui-completions
 gping v1.3.2:
@@ -89,7 +89,7 @@ shellcaster v2.0.1:
     shellcaster
 silicon v0.4.3:
     silicon
-so v0.4.6:
+so v0.4.7:
     so
 taskwarrior-tui v0.23.5 (/home/mrus/projects/github/taskwarrior-tui):
     taskwarrior-tui
@@ -97,7 +97,7 @@ tealdeer v1.5.0:
     tldr
 tickers v0.1.0:
     tickers
-tickrs v0.14.4:
+tickrs v0.14.6:
     tickrs
 tre-command v0.4.0:
     tre
