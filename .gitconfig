@@ -36,7 +36,7 @@
 [format]
   signoff = yes
 [gpg]
-  program = /usr/bin/gpg2
+  program = gpg2
 [pull]
   rebase = true
 [push]
