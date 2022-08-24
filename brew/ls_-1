@@ -53,12 +53,14 @@ npth
 openssl@1.1
 p11-kit
 pass
+pcre2
 pinentry
 pkg-config
 popt
 python@3.10
 qrencode
 readline
+ripgrep
 rsync
 ruby
 rust
@@ -71,6 +73,7 @@ unbound
 unibilium
 upx
 utf8proc
+vale
 xxhash
 xz
 zstd
