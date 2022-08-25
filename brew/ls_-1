@@ -21,6 +21,7 @@ guile
 hugo
 icu4c
 ipfs
+jq
 libassuan
 libevent
 libffi
@@ -50,6 +51,7 @@ neovim
 nettle
 node
 npth
+oniguruma
 openssl@1.1
 p11-kit
 pass
