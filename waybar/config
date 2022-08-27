@@ -16,7 +16,7 @@
 
   "layer": "top",
   "position": "top",
-  "output": "DP-3",
+  "output": "DP-1",
 
   "modules-left": [
     "sway/workspaces",

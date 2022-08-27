@@ -72,11 +72,11 @@ focus_on_window_activation smart
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
 # LG 32UN500-W
-output DP-3 pos 0 0
+output DP-1 pos 0 0
 
 # UPERFECT 15.6 UHD
-output HDMI-A-1 pos 960 2160
-output HDMI-A-1 scale 2
+#output HDMI-A-1 pos 960 2160
+#output HDMI-A-1 scale 2
 
 # Wallpaper
 output * bg ~/.wallpaper fill
@@ -87,7 +87,7 @@ output * bg ~/.wallpaper fill
 # the GPU to never sleep.
 exec swayidle -w \
 timeout 600 'swaylock' \
-timeout 900 'swaymsg "output DP-3 dpms off"' resume 'swaymsg "output DP-3 dpms on"' \
+timeout 900 'swaymsg "output DP-1 dpms off"' resume 'swaymsg "output DP-1 dpms on"' \
 before-sleep 'swaylock'
 
 
@@ -299,16 +299,16 @@ bindsym $mod+Shift+Left move left
 
 # === Workspaces ===
 
-workspace 1   1:I    output DP-3
-workspace 2   2:II   output DP-3
-workspace 3   3:III  output DP-3
-workspace 4   4:IV   output DP-3
-workspace 5   5:V    output DP-3
-workspace 6   6:VI   output DP-3
-workspace 7   7:VII  output DP-3
-workspace 8   8:VIII output DP-3
-workspace 9   9:IX   output DP-3
-workspace 10 10:X    output HDMI-A-1
+workspace 1   1:I    output DP-1
+workspace 2   2:II   output DP-1
+workspace 3   3:III  output DP-1
+workspace 4   4:IV   output DP-1
+workspace 5   5:V    output DP-1
+workspace 6   6:VI   output DP-1
+workspace 7   7:VII  output DP-1
+workspace 8   8:VIII output DP-1
+workspace 9   9:IX   output DP-1
+#workspace 10 10:X    output HDMI-A-1
 
 # Switch to workspace 1
 bindsym $mod+1 workspace 1   1:I
@@ -488,16 +488,16 @@ for_window [shell="xwayland"] title_format "<span>[X11] %title゜</span>"
 
 bar {
   id mainbar
-  output DP-3
+  output DP-1
   swaybar_command waybar
 }
 
-bar {
-  id sidebar
-  output HDMI-A-1
-  swaybar_command true
-  mode invisible
-}
+# bar {
+#   id sidebar
+#   output HDMI-A-1
+#   swaybar_command true
+#   mode invisible
+# }
 
 
 # ╔════════════════════════════════════════════════════════════════════════════╗

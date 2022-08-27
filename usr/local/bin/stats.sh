@@ -17,7 +17,7 @@ mem_free="0G"
 zpool_free="0G"
 
 
-if [[ "$(cat /sys/class/drm/card0-DP-3/dpms)" == "On" ]]
+if [[ "$(cat /sys/class/drm/card0-DP-1/dpms)" == "On" ]]
 then
   sensor_out=$(sensors -j)
 
