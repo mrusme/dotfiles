@@ -30,6 +30,13 @@ export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_DOWNLOAD_DIR="$HOME/downloads"
 export XDG_DESKTOP_DIR="$HOME/desktop"
+export XDG_TEMPLATES_DIR="$HOME/"
+export XDG_PUBLICSHARE_DIR="$HOME/shared/public"
+export XDG_DOCUMENTS_DIR="$HOME/cloud/documents"
+export XDG_MUSIC_DIR="$HOME/cloud/music"
+export XDG_PICTURES_DIR="$HOME/cloud/photos"
+export XDG_VIDEOS_DIR="$HOME/cloud/videos"
+# On change adjust `$XDG_CONFIG_HOME/user-dirs.dirs` as well!
 
 export ICONS_PATH="$HOME/projects/github/arcticons/icons/white"
 
@@ -1015,6 +1022,17 @@ function gh() {
 
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ duplicacy                                                                  ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+
+function duplicacy() {
+  sudo /bin/mount /dev/sda1 /mnt/backup
+  command duplicacy 
+  sudo /bin/umount /mnt/backup
+}
+
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
 # ║ dotfiles-update-remote                                                     ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
@@ -1043,6 +1061,9 @@ function dotfiles-update-remote() {
 
   cp "$HOME/.mozilla/firefox/"*".default-release/chrome/userChrome.css"\
       "$DOTFILES/.mozilla/firefox/default/chrome/userChrome.css"
+
+  cp "$XDG_CONFIG_HOME/user-dirs.dirs"\
+     "$DOTFILES/user-dirs.dirs"
 
   cp "$XDG_CONFIG_HOME/alacritty/alacritty.yml"\
      "$DOTFILES/alacritty/alacritty.yml"
@@ -1140,6 +1161,9 @@ function dotfiles-update-local() {
   cp "$DOTFILES/ssh/config" "$HOME/.ssh/config"
 
   cp -R "$DOTFILES/irssi/"* "$HOME/.irssi/"
+
+  cp "$DOTFILES/user-dirs.dirs"\
+     "$XDG_CONFIG_HOME/user-dirs.dirs"
 
   mkdir -p "$XDG_CONFIG_HOME/alacritty"
   cp "$DOTFILES/alacritty/alacritty.yml"\
