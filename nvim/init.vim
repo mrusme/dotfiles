@@ -711,6 +711,10 @@ lua <<EOF
   require('lspconfig')['yamlls'].setup {
     capabilities = capabilities
   }
+  require('lspconfig')['zls'].setup {
+    capabilities = capabilities;
+    cmd = { "/home/mrus/projects/github/zls/zig-out/bin/zls" };
+  }
 EOF
 
 highlight link CompeDocumentation NormalFloat
@@ -768,7 +772,8 @@ require'nvim-treesitter.configs'.setup {
     "toml",
     "typescript", 
     "vim",
-    "yaml"
+    "yaml",
+    "zig"
   },
 
   sync_install = false,
