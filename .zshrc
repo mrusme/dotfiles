@@ -17,8 +17,36 @@
 
 export OS="$(uname | tr '[:upper:]' '[:lower:]')"
 
-[ "${OS}" = "darwin" ] \
-&& type /usr/local/bin/zsh > /dev/null \
+function __is_available {
+  prog="${1}"
+  os="${2}"
+  forcecheck="${3}"
+
+  if [ "${os}" != "" ] && [ "${os}" != "${OS}" ]
+  then 
+    return 1
+  fi
+
+  if [ "${os}" = "" ] || [ "${os}" = "${OS}" ]
+  then 
+    if [ "${forcecheck}" != "true" ]
+    then 
+      case "${HOST}" in 
+        "cbrspc7")
+          return 0 
+          ;;
+        "d3lt4")
+          return 0 
+          ;;
+      esac
+    fi
+  fi
+
+  type "${prog}" > /dev/null 
+  return "$?"
+}
+
+__is_available /usr/local/bin/zsh darwin \
 && export SHELL=/usr/local/bin/zsh
 
 export ZSH_TMUX_AUTOSTART=true
@@ -53,7 +81,7 @@ export ICONS_PATH="${HOME}/projects/github/arcticons/icons/white"
 # ║ Tmux Magic (via SSH)                                                       ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
-type tmux > /dev/null \
+__is_available tmux \
 && [ -n "${SSH_CONNECTION}" ] \
 && [ -z "${TMUX}" ] \
 && [ "${USER}" != "root" ] \
@@ -76,7 +104,7 @@ export TERM="xterm-256color"
 export COLUMNS="80"
 
 export EDITOR="vim"
-type nvim > /dev/null \
+__is_available nvim \
 && export EDITOR="nvim"
 
 if [ -n "${SSH_CONNECTION}" ]
@@ -135,8 +163,8 @@ export ADDRB_DB="${HOME}/.cache/addrb.db"
 export ADDRB_TEMPLATE="${HOME}/.config/addrb.tmpl"
 
 # Import color scheme via wal
-#[ "${OS}" = "linux" ] \
-#&& type wal > /dev/null && (wal -r &)
+#__is_available wal linux \ 
+#&& (wal -r &)
 
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
@@ -175,7 +203,7 @@ export GOPROXY="direct"
 export VIRTUALENVWRAPPER_PYTHON="$(which python3)"
 export WORKON_HOME="${HOME}/.virtualenvs"
 function activate.virtualenv {
-  type virtualenvwrapper_lazy.sh > /dev/null \
+  __is_available virtualenvwrapper_lazy.sh \
   && source "$(which virtualenvwrapper_lazy.sh)" \
   && workon | grep local > /dev/null \
   && workon local \
@@ -190,7 +218,7 @@ export PYTHON_MAJOR_MINOR="$(python3 \
 && export PATH="${HOME}/Library/Python/${PYTHON_MAJOR_MINOR}/bin:${PATH}"
 
 # Rubygems
-type gem > /dev/null \
+__is_available gem \
 && export PATH="$(gem env \
               | grep "EXECUTABLE DIRECTORY" \
               | awk -F ': ' '{ print $2 }'):${PATH}" \
@@ -204,7 +232,7 @@ export PATH="${PATH}:${NPM_PACKAGES}/bin"
 export MANPATH="${MANPATH-$(manpath)}:${NPM_PACKAGES}/share/man"
 
 # Wayland
-if [ "${OS}" = "linux" ]
+if __is_available sway linux
 then
   alias sway-launch="dbus-launch --exit-with-session sway"
   if test -z "${XDG_RUNTIME_DIR}"
@@ -288,15 +316,15 @@ ZSH_THEME_TERM_TITLE_IDLE='zsh %n@%m:%~'
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
 # https://github.com/ajeetdsouza/zoxide
-type zoxide > /dev/null \
+__is_available zoxide \
 && eval "$(zoxide init --cmd cd zsh)"
 
 # https://github.com/sharkdp/bat
-type bat > /dev/null \
+__is_available bat \
 && alias cat=bat
 
 # https://github.com/ogham/exa
-type exa > /dev/null \
+__is_available exa \
 && unalias ls la ll l lsa > /dev/null 2>&1 \
 && alias ls='exa --time-style=long-iso --git --binary -lg' \
 && alias la='exa --time-style=long-iso --git --icons --binary -la' \
@@ -305,47 +333,47 @@ type exa > /dev/null \
 && alias lls='ls -s modified'
 
 # https://github.com/ClementTsang/bottom
-type btm > /dev/null \
+__is_available btm \
 && alias top='btm'
 
 # https://github.com/neomutt/neomutt
-type neomutt > /dev/null \
+__is_available neomutt \
 && alias mutt=neomutt
 
 # https://github.com/neovim/neovim
-type nvim > /dev/null \
+__is_available nvim \
 && alias vi=nvim \
 && alias vim=nvim
 
 # https://github.com/junegunn/fzf
-type fzf > /dev/null \
+__is_available fzf \
 && alias preview='fzf --preview="bat {} --color=always"'
 
 # https://github.com/nerdypepper/eva
-type eva > /dev/null \
+__is_available eva \
 && alias calc='eva'
 
 # https://github.com/TomNomNom/gron
-type gron > /dev/null \
+__is_available gron \
 && alias json='gron'
 
 # https://github.com/sharkdp/hexyl
-type hexyl > /dev/null \
+__is_available hexyl \
 && alias hex='hexyl'
 
 # https://github.com/sharkdp/hyperfine
-type hyperfine > /dev/null \
+__is_available hyperfine \
 && alias benchmark='hyperfine'
 
 # https://github.com/irssi/irssi
-type irssi > /dev/null \
+__is_available irssi \
 && alias irc='irssi'
 
 # https://github.com/kdheepak/taskwarrior-tui
-type taskwarrior-tui > /dev/null \
+__is_available taskwarrior-tui \
 && alias todo='taskwarrior-tui'
 
-type xdg-open > /dev/null \
+__is_available xdg-open linux \
 && alias open='xdg-open'
 
 alias fucking=sudo
@@ -407,7 +435,7 @@ function ssh {
 # ║ Poor-man's aptitude                                                        ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
-if ! type aptitude > /dev/null
+if ! __is_available aptitude linux true
 then
   _aptitude()
   {
@@ -445,7 +473,7 @@ then
       esac
     fi
   }
-elif [ "${OS}" = "linux" ] && type emerge > /dev/null
+elif __is_available emerge linux true
 then
   function aptitude {
     if [ -z "$1" ]; then
@@ -467,7 +495,7 @@ then
       esac
     fi
   }
-elif [ "${OS}" = "linux" ] && type pacman > /dev/null
+elif __is_available pacman linux true
 then
   function aptitude {
     if [ -z "$1" ]; then
@@ -489,7 +517,7 @@ then
       esac
     fi
   }
-elif [ "${OS}" = "openbsd" ] && type pkg_add > /dev/null
+elif __is_available pkg_add openbsd
 then
   function aptitude {
     if [ -z "$1" ]; then
@@ -685,7 +713,7 @@ function ghcoi() {
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
 function whats() {
-  if ! type units > /dev/null || ! type whatis > /dev/null
+  if ! __is_available units || ! __is_available whatis
   then 
     printf "This command requires units(1) and whatis(1)!\n"
     return 1 
