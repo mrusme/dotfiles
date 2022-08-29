@@ -1,0 +1,144 @@
+#!/bin/sh 
+
+__pushover_usage() {
+  printf "pushover <options> <message>\n"
+  printf " -c <callback>\n"
+  printf " -d <device>\n"
+  printf " -D <timestamp>\n"
+  printf " -e <expire>\n"
+  printf " -p <priority>\n"
+  printf " -r <retry>\n"
+  printf " -t <title>\n"
+  printf " -T <TOKEN> (required if not in 'pass show pushover/token')\n"
+  printf " -s <sound>\n"
+  printf " -u <url>\n"
+  printf " -U <USER> (required if not in 'pass show pushover/user')\n"
+  printf " -a <url_title>\n"
+  return 1
+}
+
+__pushover_opt_field() {
+  field=$1
+  shift
+  value="${*}"
+  if [ -n "${value}" ]; then
+    printf "-F \"${field}=${value}\"\n"
+  fi
+}
+
+__pushover_send_message() {
+  device="${1:-}"
+
+  curl_cmd="\"${CURL}\" -s -S \
+    ${CURL_OPTS} \
+    -F \"token=${TOKEN}\" \
+    -F \"user=${USER}\" \
+    -F \"message=${message}\" \
+    $(__pushover_opt_field device "${device}") \
+    $(__pushover_opt_field callback "${callback}") \
+    $(__pushover_opt_field timestamp "${timestamp}") \
+    $(__pushover_opt_field priority "${priority}") \
+    $(__pushover_opt_field retry "${retry}") \
+    $(__pushover_opt_field expire "${expire}") \
+    $(__pushover_opt_field title "${title}") \
+    $(__pushover_opt_field sound "${sound}") \
+    $(__pushover_opt_field url "${url}") \
+    $(__pushover_opt_field url_title "${url_title}") \
+    \"${PUSHOVER_URL}\""
+
+  response="$(eval "${curl_cmd}")"
+  printf "$response\n"
+  # TODO: Parse response
+  r="${?}"
+  if [ "${r}" -ne 0 ]; then
+    printf "%s: Failed to send message\n" "${0}" >&2
+  fi
+
+  return "${r}"
+}
+
+CURL="$(which curl)"
+PUSHOVER_URL="https://api.pushover.net/1/messages.json"
+TOKEN=$(pass show pushover/token)
+USER=$(pass show pushover/user)
+CURL_OPTS=""
+devices="${devices} ${device}"
+optstring="c:d:D:e:f:p:r:t:T:s:u:U:a:h"
+
+OPTIND=1
+while getopts ${optstring} c
+do
+  case ${c} in
+    c)
+      callback="${OPTARG}"
+      ;;
+    d)
+      devices="${devices} ${OPTARG}"
+      ;;
+    D)
+      timestamp="${OPTARG}"
+      ;;
+    e)
+      expire="${OPTARG}"
+      ;;
+    p)
+      priority="${OPTARG}"
+      ;;
+    r)
+      retry="${OPTARG}"
+      ;;
+    t)
+      title="${OPTARG}"
+      ;;
+    k)
+      TOKEN="${OPTARG}"
+      ;;
+    s)
+      sound="${OPTARG}"
+      ;;
+    u)
+      url="${OPTARG}"
+      ;;
+    U)
+      USER="${OPTARG}"
+      ;;
+    a)
+      url_title="${OPTARG}"
+      ;;
+
+    [h\?])
+      __pushover_usage
+      return 1
+      ;;
+  esac
+done
+shift $((OPTIND-1))
+
+if [ "$#" -lt 1 ]; then
+  __pushover_usage
+  return 1
+fi
+message="$*"
+
+if [ ! -x "${CURL}" ]; then
+  printf "CURL is unset, empty, or does not point to curl executable.\n \
+    This script requires curl!\n" >&2
+  return 1
+fi
+
+devices="$(printf "${devices}" | xargs -n1 | sort -u | uniq)\n"
+
+if [ -z "${devices}" ]; then
+  __pushover_send_message
+  r=${?}
+else
+  for device in ${devices}; do
+    __pushover_send_message "${device}"
+    r=${?}
+    if [ "${r}" -ne 0 ]; then
+      break;
+    fi
+  done
+fi
+return "${r}"
+
