@@ -903,9 +903,13 @@ function rip() {
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
 function addrb() {
-  export CARDDAV_USERNAME="$(pass show dav/username)"
-  export CARDDAV_PASSWORD="$(pass show dav/password)"
-  export CARDDAV_ENDPOINT="$(pass show dav/endpoint)"
+  match=$(echo "$*" | grep -o '\-r')
+  if [ "$match" != "" ]
+  then 
+    export CARDDAV_USERNAME="$(pass show dav/username)"
+    export CARDDAV_PASSWORD="$(pass show dav/password)"
+    export CARDDAV_ENDPOINT="$(pass show dav/endpoint)"
+  fi
   
   command addrb $@
 }
