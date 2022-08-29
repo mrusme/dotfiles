@@ -15,32 +15,35 @@
 # ╚════════════════════════════════════════════════════════════════════════════╝
 # zmodload zsh/zprof
 
-export ZSH_TMUX_AUTOSTART=true
-[[ "$USER" == "root" ]] && export ZSH_TMUX_AUTOSTART=false
+export OS="$(uname | tr '[:upper:]' '[:lower:]')"
 
-type /usr/local/bin/zsh > /dev/null \
+[ "${OS}" = "darwin" ] \
+&& type /usr/local/bin/zsh > /dev/null \
 && export SHELL=/usr/local/bin/zsh
 
-export OS=$(uname)
-export LANG=en_US.UTF-8
-export LC_ALL=en_US.UTF-8
+export ZSH_TMUX_AUTOSTART=true
+[ "${USER}" = "root" ] \
+&& export ZSH_TMUX_AUTOSTART="false"
 
-export XDG_CONFIG_HOME="$HOME/.config"
-export XDG_CACHE_HOME="$HOME/.cache"
-export XDG_DATA_HOME="$HOME/.local/share"
-export XDG_DOWNLOAD_DIR="$HOME/downloads"
-export XDG_DESKTOP_DIR="$HOME/desktop"
-export XDG_TEMPLATES_DIR="$HOME/"
-export XDG_PUBLICSHARE_DIR="$HOME/shared/public"
-export XDG_DOCUMENTS_DIR="$HOME/cloud/documents"
-export XDG_MUSIC_DIR="$HOME/cloud/music"
-export XDG_PICTURES_DIR="$HOME/cloud/photos"
-export XDG_VIDEOS_DIR="$HOME/cloud/videos"
-# On change adjust `$XDG_CONFIG_HOME/user-dirs.dirs` as well!
+export LANG="en_US.UTF-8"
+export LC_ALL="en_US.UTF-8"
 
-export ICONS_PATH="$HOME/projects/github/arcticons/icons/white"
+export XDG_CONFIG_HOME="${HOME}/.config"
+export XDG_CACHE_HOME="${HOME}/.cache"
+export XDG_DATA_HOME="${HOME}/.local/share"
+export XDG_DOWNLOAD_DIR="${HOME}/downloads"
+export XDG_DESKTOP_DIR="${HOME}/desktop"
+export XDG_TEMPLATES_DIR="${HOME}/"
+export XDG_PUBLICSHARE_DIR="${HOME}/shared/public"
+export XDG_DOCUMENTS_DIR="${HOME}/cloud/documents"
+export XDG_MUSIC_DIR="${HOME}/cloud/music"
+export XDG_PICTURES_DIR="${HOME}/cloud/photos"
+export XDG_VIDEOS_DIR="${HOME}/cloud/videos"
+# On change adjust `${XDG_CONFIG_HOME}/user-dirs.dirs` as well!
 
-# if [[ "$(lspci | grep -i geforce)" ]]
+export ICONS_PATH="${HOME}/projects/github/arcticons/icons/white"
+
+# if [ "$(lspci | grep -i geforce)" ]
 # then
 #   export WLR_NO_HARDWARE_CURSORS=1
 # fi
@@ -51,9 +54,9 @@ export ICONS_PATH="$HOME/projects/github/arcticons/icons/white"
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
 type tmux > /dev/null \
-&& [[ -n $SSH_CONNECTION ]] \
-&& [[ -z $TMUX ]] \
-&& [[ "$USER" != "root" ]] \
+&& [ -n "${SSH_CONNECTION}" ] \
+&& [ -z "${TMUX}" ] \
+&& [ "${USER}" != "root" ] \
 && tmux new-session -A -s ssh && exit
 
 
@@ -61,30 +64,31 @@ type tmux > /dev/null \
 # ║ General config                                                             ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
-export HISTCONTROL=ignoredups:ignorespace
-export HISTSIZE=100000
-export HISTFILESIZE=200000
-export SAVEHIST=$HISTSIZE
+export HISTCONTROL="ignoredups:ignorespace"
+export HISTSIZE="100000"
+export HISTFILESIZE="200000"
+export SAVEHIST="${HISTSIZE}"
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_IGNORE_SPACE
 
-# export TERM=xterm-16color
-export TERM=xterm-256color
-export COLUMNS=80
+# export TERM="xterm-16color"
+export TERM="xterm-256color"
+export COLUMNS="80"
 
-export EDITOR=vim
+export EDITOR="vim"
 type nvim > /dev/null \
-&& export EDITOR=nvim
+&& export EDITOR="nvim"
 
-if [[ -n $SSH_CONNECTION ]]; then
-  export BROWSER=w3m
+if [ -n "${SSH_CONNECTION}" ]
+then
+  export BROWSER="w3m"
 else
-  if [[ "$OS" = "Linux" ]]
+  if [ "${OS}" = "linux" ]
   then
-    export BROWSER=/usr/local/bin/browser
-  elif [[ "$OS" = "Darwin" ]]
+    export BROWSER="/usr/local/bin/browser"
+  elif [ "${OS}" = "darwin" ]
   then
-    export BROWSER=open
+    export BROWSER="open"
   fi
 fi
 
@@ -93,24 +97,24 @@ fi
 # ║ Programs & tools                                                           ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
-export SSH_KEY_PATH="$HOME/.ssh/id_ed25519"
+export SSH_KEY_PATH="${HOME}/.ssh/id_ed25519"
 
 # Pass 
-export PASSWORD_STORE_DIR="$HOME/cloud/.password-store"
+export PASSWORD_STORE_DIR="${HOME}/cloud/.password-store"
 
 # Enable Erlang/IEx shell history
 export ERL_AFLAGS="-kernel shell_history enabled"
 
 # IPFS
-export IPFS_PATH="$HOME/.ipfs"
+export IPFS_PATH="${HOME}/.ipfs"
 
 # Firefox
 #export GDK_BACKEND="wayland"
-export MOZ_ENABLE_WAYLAND=1
+export MOZ_ENABLE_WAYLAND="1"
 export MOZ_USE_XINPUT2="1"
 
 # Qt
-export QT_STYLE_OVERRIDE=kvantum
+export QT_STYLE_OVERRIDE="kvantum"
 
 # https://github.com/oz/tz/
 export TZ_LIST="Pacific/Honolulu;America/Panama;\
@@ -118,33 +122,33 @@ America/New_York;Etc/UTC;Europe/Berlin;Asia/Bangkok;\
 Asia/Tokyo;Australia/Melbourne;Pacific/Auckland;"
 
 # https://notmuchmail.org/manpages/notmuch-1/
-export NOTMUCH_PROFILE=01
+export NOTMUCH_PROFILE="01"
 
 # https://github.com/mrusme/zeit
-export ZEIT_DB="$HOME/cloud/.zeit.db"
+export ZEIT_DB="${HOME}/cloud/.zeit.db"
 
 # https://github.com/mrusme/geld
-export GELD_DB="$HOME/cloud/.geld.db"
+export GELD_DB="${HOME}/cloud/.geld.db"
 
 # https://github.com/mrusme/addrb
-export ADDRB_DB="$HOME/.cache/addrb.db"
-export ADDRB_TEMPLATE="$HOME/.config/addrb.tmpl"
+export ADDRB_DB="${HOME}/.cache/addrb.db"
+export ADDRB_TEMPLATE="${HOME}/.config/addrb.tmpl"
 
 # Import color scheme via wal
-#[[ "$OS" = "Linux" ]] \
+#[ "${OS}" = "linux" ] \
 #&& type wal > /dev/null && (wal -r &)
 
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
-# ║ $PATH                                                                      ║
+# ║ ${PATH}                                                                      ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
-if [[ "$OS" = "Darwin" ]]
+if [ "${OS}" = "darwin" ]
 then
   eval "$(/usr/libexec/path_helper -s)"
   # /usr/local/* (Homebrew, etc)
-  export PATH="/usr/local/bin:/usr/local/sbin:/usr/local/opt/binutils/bin:$PATH"
-  export MANPATH="/usr/local/man:$MANPATH"
+  export PATH="/usr/local/bin:/usr/local/sbin:/usr/local/opt/binutils/bin:${PATH}"
+  export MANPATH="/usr/local/man:${MANPATH}"
 
   # Go
   export GOROOT="/usr/local/opt/go/libexec"
@@ -152,24 +156,24 @@ then
   # Ruby
   export PATH="/usr/local/Cellar/ruby/$(ls -1 /usr/local/Cellar/ruby/ \
                                       | sort \
-                                      | tail -n 1)/bin:$PATH"
+                                      | tail -n 1)/bin:${PATH}"
 fi
 
 # Cargo (Rust)
-[[ -d "$HOME/.cargo/bin" ]] \
-&& export PATH="$HOME/.cargo/bin:$PATH"
+[ -d "${HOME}/.cargo/bin" ] \
+&& export PATH="${HOME}/.cargo/bin:${PATH}"
 
-[[ -e "$HOME/.cargo/env" ]] \
-&& source "$HOME/.cargo/env"
+[ -e "${HOME}/.cargo/env" ] \
+&& source "${HOME}/.cargo/env"
 
 # Go
-go env -w GOPATH="$HOME/.go"
-export PATH="$(go env GOPATH)/bin:$PATH"
-export GOPROXY=direct
+go env -w GOPATH="${HOME}/.go"
+export PATH="$(go env GOPATH)/bin:${PATH}"
+export GOPROXY="direct"
 
 # Python virtualenv
 export VIRTUALENVWRAPPER_PYTHON="$(which python3)"
-export WORKON_HOME="$HOME/.virtualenvs"
+export WORKON_HOME="${HOME}/.virtualenvs"
 function activate.virtualenv {
   type virtualenvwrapper_lazy.sh > /dev/null \
   && source "$(which virtualenvwrapper_lazy.sh)" \
@@ -182,38 +186,38 @@ function activate.virtualenv {
 export PYTHON_MAJOR_MINOR="$(python3 \
   --version | sed -nr 's/.*([0-9]+\.[0-9]+)\..*/\1/p')"
 
-[[ -d "$HOME/Library/Python/$PYTHON_MAJOR_MINOR/bin" ]] \
-&& export PATH="$HOME/Library/Python/$PYTHON_MAJOR_MINOR/bin:$PATH"
+[ -d "${HOME}/Library/Python/${PYTHON_MAJOR_MINOR}/bin" ] \
+&& export PATH="${HOME}/Library/Python/${PYTHON_MAJOR_MINOR}/bin:${PATH}"
 
 # Rubygems
 type gem > /dev/null \
 && export PATH="$(gem env \
               | grep "EXECUTABLE DIRECTORY" \
-              | awk -F ': ' '{ print $2 }'):$PATH" \
+              | awk -F ': ' '{ print $2 }'):${PATH}" \
 && export PATH="$(gem env \
               | grep "USER INSTALLATION DIRECTORY" \
-              | awk -F ': ' '{ print $2 }')/bin:$PATH"
+              | awk -F ': ' '{ print $2 }')/bin:${PATH}"
 
 # NPM
 export NPM_PACKAGES="${HOME}/.local/lib64/node_modules"
-export PATH="$PATH:$NPM_PACKAGES/bin"
-export MANPATH="${MANPATH-$(manpath)}:$NPM_PACKAGES/share/man"
+export PATH="${PATH}:${NPM_PACKAGES}/bin"
+export MANPATH="${MANPATH-$(manpath)}:${NPM_PACKAGES}/share/man"
 
 # Wayland
-if [[ "$OS" = "Linux" ]]
+if [ "${OS}" = "linux" ]
 then
-  alias sway-launch='dbus-launch --exit-with-session sway'
+  alias sway-launch="dbus-launch --exit-with-session sway"
   if test -z "${XDG_RUNTIME_DIR}"
   then
-    export XDG_RUNTIME_DIR=/tmp/${UID}-runtime-dir
+    export XDG_RUNTIME_DIR="/tmp/${UID}-runtime-dir"
     if ! test -d "${XDG_RUNTIME_DIR}"
     then
       mkdir "${XDG_RUNTIME_DIR}"
       chmod 0700 "${XDG_RUNTIME_DIR}"
     fi
   fi
-  GTK_THEME=$(gsettings get org.gnome.desktop.interface gtk-theme)
-  export GTK2_RC_FILES="$HOME/.themes/$GTK_THEME/gtk-2.0/gtkrc"
+  GTK_THEME="$(gsettings get org.gnome.desktop.interface gtk-theme)"
+  export GTK2_RC_FILES="${HOME}/.themes/${GTK_THEME}/gtk-2.0/gtkrc"
 fi
 
 
@@ -221,19 +225,22 @@ fi
 # ║ OMZ                                                                        ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
-export ZSH="$HOME/.oh-my-zsh"
-# [[ -e $ZSH ]] || \
-# ([[ "$USER" != "root" ]] && sh -c "$(curl -fsSL \
+export ZSH="${HOME}/.oh-my-zsh"
+# [ -e ${ZSH} ] || \
+# ([ "${USER}" != "root" ] && sh -c "$(curl -fsSL \
 #     https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)")
 
 ZSH_THEME="geometry-zsh/geometry"
-[[ "$USER" == "root" ]] && GEOMETRY_SEPARATOR=" root"
+[ "${USER}" = "root" ] \
+&& GEOMETRY_SEPARATOR=" root"
 
 CASE_SENSITIVE="true"
+
 DISABLE_AUTO_UPDATE="false"
-[[ "$USER" == "root" ]] \
+[ "${USER}" = "root" ] \
 && DISABLE_AUTO_UPDATE="true"
-UPDATE_ZSH_DAYS=10
+
+UPDATE_ZSH_DAYS="10"
 DISABLE_LS_COLORS="false"
 DISABLE_AUTO_TITLE="false"
 ENABLE_CORRECTION="false"
@@ -241,14 +248,14 @@ COMPLETION_WAITING_DOTS="false"
 DISABLE_UNTRACKED_FILES_DIRTY="false"
 
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
-ZSH_AUTOSUGGESTIONS="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}\
+ZSH_AUTOSUGGESTIONS="${ZSH_CUSTOM:-${HOME}/.oh-my-zsh/custom}\
 /plugins/zsh-autosuggestions"
-ZSH_COMPDUMP=$XDG_CACHE_HOME/.zcompdump-$HOST
+ZSH_COMPDUMP="${XDG_CACHE_HOME}/.zcompdump-${HOST}"
 
 # === PLUGINS ===
 plugins=(history zsh-autosuggestions fzf fasd)
 
-if [ "$USER" != "root" ]
+if [ "${USER}" != "root" ]
 then 
   plugins+=( \
     gpg-agent ssh-agent \
@@ -258,20 +265,19 @@ then
   )
 fi
 
-if [ "$OS" = "Darwin" ]
+if [ "${OS}" = "darwin" ]
 then 
-  plugins+=( \
-    brew tmux macos \ 
-  )
+  plugins+=(brew tmux macos)
 fi
 # ===         ===
 
-[[ -e "$ZSH/oh-my-zsh.sh" ]] && source "$ZSH/oh-my-zsh.sh"
+[ -e "${ZSH}/oh-my-zsh.sh" ] \
+&& source "${ZSH}/oh-my-zsh.sh"
 
 fpath=(
   /usr/local/share/zsh-completions
   /usr/local/share/zsh/site-functions
-  $fpath
+  ${fpath}
 )
 
 ZSH_THEME_TERM_TITLE_IDLE='zsh %n@%m:%~'
@@ -291,7 +297,7 @@ type bat > /dev/null \
 
 # https://github.com/ogham/exa
 type exa > /dev/null \
-&& unalias ls la ll l lsa &> /dev/null \
+&& unalias ls la ll l lsa > /dev/null 2>&1 \
 && alias ls='exa --time-style=long-iso --git --binary -lg' \
 && alias la='exa --time-style=long-iso --git --icons --binary -la' \
 && alias ll='exa --time-style=long-iso --git --icons --octal-permissions --binary --changed -lahHgnuU' \
@@ -335,28 +341,29 @@ type hyperfine > /dev/null \
 type irssi > /dev/null \
 && alias irc='irssi'
 
-type xdg-open > /dev/null \
-&& alias open='xdg-open'
-
 # https://github.com/kdheepak/taskwarrior-tui
 type taskwarrior-tui > /dev/null \
 && alias todo='taskwarrior-tui'
 
+type xdg-open > /dev/null \
+&& alias open='xdg-open'
+
 alias fucking=sudo
+alias uuid=uuidgen
 
 alias my-ip="curl http://ipecho.net/plain; echo"
 
-alias jrnl='cd $HOME/projects/@mrusme/xn--gckvb8fzb.com/content/'
-alias bookmarks='vim $HOME/projects/@mrusme/xn--gckvb8fzb.com/content/bookmarks/index.md'
-alias notes='cd $HOME/cloud/notes/'
-alias cheatsheet.vim='vim $HOME/cloud/notes/tools/vim.md'
+alias jrnl="cd ${HOME}/projects/@mrusme/xn--gckvb8fzb.com/content/"
+alias bookmarks="vim ${HOME}/projects/@mrusme/xn--gckvb8fzb.com/content/bookmarks/index.md"
+alias notes="cd ${HOME}/cloud/notes/"
+alias cheatsheet.vim="vim ${HOME}/cloud/notes/tools/vim.md"
 
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
 # ║ Bound keys                                                                 ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
-[[ "$OS" = "Darwin" ]] \
+[ "${OS}" = "darwin" ] \
 && bindkey "\e[1;3C" forward-word \
 && bindkey "\e[1;3D" backward-word
 
@@ -380,14 +387,14 @@ function ssh {
   if [ "$2" = "" ]
   then
     conn="$1"
-    sshhost=$(printf "%s" "$conn" | cut -d '@' -f2)
-    if rg -U -i "^#.*Features:.*mosh.*\nHost $sshhost" "$HOME/.ssh/config" > /dev/null
+    sshhost=$(printf "%s" "${conn}" | cut -d '@' -f2)
+    if rg -U -i "^#.*Features:.*mosh.*\nHost ${sshhost}" "${HOME}/.ssh/config" > /dev/null
     then
       printf "connecting with mosh ...\n"
-      command mosh $conn
+      command mosh ${conn}
     else
       printf "connecting with ssh ...\n"
-      command ssh $conn
+      command ssh ${conn}
     fi
   else
     printf "connecting with ssh ...\n"
@@ -400,7 +407,23 @@ function ssh {
 # ║ Poor-man's aptitude                                                        ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
-if [ "$OS" = "Darwin" ]
+if ! type aptitude > /dev/null
+then
+  _aptitude()
+  {
+    local cur 
+    COMPREPLY=()
+    cur="${COMP_WORDS[COMP_CWORD]}"
+    COMPREPLY=( $(compgen -W \
+      'install remove purge update upgrade safe-upgrade full-upgrade \
+       search show clean reinstall' -- "${cur}") )
+    return 0
+  }
+  complete -F "_aptitude" "aptitude"
+  alias apt='aptitude'
+fi
+
+if [ "${OS}" = "darwin" ]
 then
   function aptitude {
     if [ -z "$1" ]; then
@@ -418,11 +441,11 @@ then
         show)        brew info "${@:2}";;
         clean)       brew cleanup "${@:2}";;
         reinstall)   brew uninstall "${@:2}"; brew cleanup; brew install "${@:2}";;
-        *)           printf "aptitude: '$1' - unknown action\n" ;;
+        *)           printf "aptitude: '%s' - unknown action\n" "$1" ;;
       esac
     fi
   }
-elif [[ "$OS" = "Linux" && "$(uname -a | grep -i gentoo)" ]]
+elif [ "${OS}" = "linux" ] && type emerge > /dev/null
 then
   function aptitude {
     if [ -z "$1" ]; then
@@ -440,11 +463,11 @@ then
         show)        equery meta "${@:2}";;
         clean)       emerge -avc "${@:2}";;
         reinstall)   emerge -ave "${@:2}";;
-        *)           printf "aptitude: '$1' - unknown action\n" ;;
+        *)           printf "aptitude: '%s' - unknown action\n" "$1" ;;
       esac
     fi
   }
-elif [[ "$OS" = "Linux" && "$(type pacman > /dev/null)" ]]
+elif [ "${OS}" = "linux" ] && type pacman > /dev/null
 then
   function aptitude {
     if [ -z "$1" ]; then
@@ -462,11 +485,11 @@ then
         show)        pacman -Si "${@:2}";;
         clean)       pacman -Scc "${@:2}";;
         reinstall)   pacman -S "${@:2}";;
-        *)           printf "aptitude: '$1' - unknown action\n" ;;
+        *)           printf "aptitude: '%s' - unknown action\n" "$1" ;;
       esac
     fi
   }
-elif [[ "$OS" = "OpenBSD" ]]
+elif [ "${OS}" = "openbsd" ] && type pkg_add > /dev/null
 then
   function aptitude {
     if [ -z "$1" ]; then
@@ -484,26 +507,11 @@ then
         show)        pkg_info "${@:2}";;
         clean)       pkg_check "${@:2}";;
         reinstall)   pkg_add -Uui "${@:2}";;
-        *)           printf "aptitude: '$1' - unknown action\n" ;;
+        *)           printf "aptitude: '%s' - unknown action\n" "$1" ;;
       esac
     fi
   }
 fi
-
-if [[ "$OS" = "Darwin" ]] \
-|| [[ "$OS" = "OpenBSD" ]] \
-|| [[ "$OS" = "Linux" && "$(uname -a | grep -i gentoo)" ]] \
-|| type pacman > /dev/null
-then
-  _aptitude()
-  {
-      local cur=${COMP_WORDS[COMP_CWORD]}
-      COMPREPLY=( $(compgen -W "install remove purge update upgrade \
-                                safe-upgrade full-upgrade search show \
-                                clean reinstall" -- $cur) )
-  }
-fi
-alias apt='aptitude'
 
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
@@ -579,7 +587,7 @@ function update-tools() {
 
   printf "\nUpdating Go tools ...\n"
   /bin/ls -1 ~/.go/bin/ \
-    | while read bin; do go version -m ~/.go/bin/$bin \
+    | while read -r bin; do go version -m "${HOME}/.go/bin/${bin}" \
     | grep '^[[:space:]]path' \
     | awk '{ print $2 }' \
     | grep '^github.com' \
@@ -605,11 +613,11 @@ function update-tools() {
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
 function terminal-colors() {
-  if [[ $1 == "dark" ]]
+  if [ "$1" = "dark" ]
   then
-    sed -i=.previous 's/\*light$/\*dark/g' "$XDG_CONFIG_HOME/alacritty/alacritty.yml"
+    sed -i=.previous 's/\*light$/\*dark/g' "${XDG_CONFIG_HOME}/alacritty/alacritty.yml"
   else
-    sed -i=.previous 's/\*dark$/\*light/g' "$XDG_CONFIG_HOME/alacritty/alacritty.yml"
+    sed -i=.previous 's/\*dark$/\*light/g' "${XDG_CONFIG_HOME}/alacritty/alacritty.yml"
   fi
 }
 
@@ -630,8 +638,8 @@ function git-add-all-remote() {
   else
     git remote | while read -r remote
     do
-      git config --add remote.all.url "$(git remote get-url --all $remote)"
-      printf "Remote $remote added to 'all'\n"
+      git config --add remote.all.url "$(git remote get-url --all "${remote}")"
+      printf "Remote %s added to 'all'\n" "${remote}"
     done
     return 0
   fi
@@ -640,11 +648,11 @@ function git-add-all-remote() {
 function git-find-modified-repos() {
   find ./ -type d -name '.git' | while read -r dir
   do 
-    repo=$(dirname "$dir")
-    repostatus=$(git -C "$repo" status -s)
-    if [[ -n "$repostatus" ]]
+    repo=$(dirname "${dir}")
+    repostatus=$(git -C "${repo}" status -s)
+    if [ -n "${repostatus}" ]
     then 
-      printf "$repo\n"
+      printf "%s\n" "${repo}"
     fi 
   done
 }
@@ -652,7 +660,7 @@ function git-find-modified-repos() {
 # git tag delete
 gtd() {
   git tag -d "$1"
-  git remote | while read remote; do git push --delete "$remote" "$1"; done
+  git remote | while read -r remote; do git push --delete "${remote}" "$1"; done
 }
 
 # github checkout issue
@@ -663,23 +671,12 @@ function ghcoi() {
     exit 1
   fi
 
-  git checkout -b "$1-$(gh issue view $1 --json title \
+  git checkout -b "$1-$(gh issue view "$1" --json title \
     | jq --raw-output '.title' \
     | iconv -t ascii//TRANSLIT \
     | sed -E 's/[^a-zA-Z0-9]+/-/g' \
     | sed -E 's/^-+|-+$//g' \
-    | tr A-Z a-z)"
-}
-
-
-# ╔════════════════════════════════════════════════════════════════════════════╗
-# ║ Online tools                                                               ║
-# ╚════════════════════════════════════════════════════════════════════════════╝
-
-function jitsi-link() {
-  url=$(printf "https://meet.jit.si/%s" "$(uuidgen)")
-  printf "%s" "$url" | wl-copy
-  printf "%s\n" "$url"
+    | tr '[:upper:]' '[:lower:]')"
 }
 
 
@@ -688,7 +685,7 @@ function jitsi-link() {
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
 function whats() {
-  if ! type units >> /dev/null || ! type whatis >> /dev/null
+  if ! type units > /dev/null || ! type whatis > /dev/null
   then 
     printf "This command requires units(1) and whatis(1)!\n"
     return 1 
@@ -757,32 +754,32 @@ function whats() {
     return 1 
   fi
 
-  if [ "$value_unit" != "" ]
+  if [ "${value_unit}" != "" ]
   then
-    combined="$(printf "%s" "$value_unit" | grep -Eo '[[:alpha:]\$\%]+|[0-9]+')"
-    value="$(printf "%s" "$combined" | head -n 1)"
-    from_unit="$(printf "%s" "$combined" | tail -n 1)"
+    combined="$(printf "%s" "${value_unit}" | grep -Eo '[[:alpha:]\$\%]+|[0-9]+')"
+    value="$(printf "%s" "${combined}" | head -n 1)"
+    from_unit="$(printf "%s" "${combined}" | tail -n 1)"
   fi
 
-  from_unit=$(printf "%s" "$from_unit" | tr '[:upper:]' '[:lower:]')
-  to_unit=$(printf "%s" "$to_unit" | tr '[:upper:]' '[:lower:]')
+  from_unit=$(printf "%s" "${from_unit}" | tr '[:upper:]' '[:lower:]')
+  to_unit=$(printf "%s" "${to_unit}" | tr '[:upper:]' '[:lower:]')
 
-  units_from="$value$from_unit"
-  units_to="$to_unit"
+  units_from="${value}${from_unit}"
+  units_to="${to_unit}"
 
-  case "$from_unit" in 
+  case "${from_unit}" in 
     "f")
-      units_from="tempF($value)"
+      units_from="tempF(${value})"
       ;;
     "c")
-      units_from="tempC($value)"
+      units_from="tempC(${value})"
       ;;
     "kmh")
-      units_from="$value km/hour"
+      units_from="${value} km/hour"
       ;;
   esac 
 
-  case "$to_unit" in 
+  case "${to_unit}" in 
     "f")
       units_to="tempF"
       ;;
@@ -794,25 +791,36 @@ function whats() {
       ;;
   esac
   
-  if [ "$from_unit" = "%" ]
+  if [ "${from_unit}" = "%" ]
   then 
-    eva "($value / 100) * $units_to" | tr -d ' '
+    eva "(${value} / 100) * ${units_to}" | tr -d ' '
     return "$?"
-  elif [ "$_in" != "" ] && [ "$_in_unit" = "%" ]
+  elif [ "${_in}" != "" ] && [ "${_in_unit}" = "%" ]
   then 
-    if [ "$to" = "of" ]
+    if [ "${to}" = "of" ]
     then
-      eva "($value / $to_unit) * 100" | tr -d ' '
+      eva "(${value} / ${to_unit}) * 100" | tr -d ' '
       return "$?"
-    elif [ "$to" = "to" ]
+    elif [ "${to}" = "to" ]
     then 
-      eva "(($to_unit - $value) / $value) * 100" | tr -d ' '
+      eva "((${to_unit} - ${value}) / ${value}) * 100" | tr -d ' '
       return "$?"
     fi
   else
-    units --compact -1 "$units_from" "$units_to"
+    units --compact -1 "${units_from}" "${units_to}"
     return "$?"
   fi
+}
+
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ Online tools                                                               ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+
+function jitsi-link() {
+  url=$(printf "https://meet.jit.si/%s" "$(uuidgen)")
+  printf "%s" "${url}" | wl-copy
+  printf "%s\n" "${url}"
 }
 
 
@@ -842,38 +850,38 @@ function rip() {
 
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
-# ║ addrb                                                                      ║
+# ║ addrb (https://github.com/mrusme/addrb)                                    ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
 function addrb() {
-  export CARDDAV_USERNAME=$(pass show dav/username)
-  export CARDDAV_PASSWORD=$(pass show dav/password)
-  export CARDDAV_ENDPOINT=$(pass show dav/endpoint)
+  export CARDDAV_USERNAME="$(pass show dav/username)"
+  export CARDDAV_PASSWORD="$(pass show dav/password)"
+  export CARDDAV_ENDPOINT="$(pass show dav/endpoint)"
   
   command addrb $@
 }
 
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
-# ║ planor                                                                     ║
+# ║ planor (https://github.com/mrusme/planor)                                  ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
 function planor() {
-  export VULTR_API_KEY=$(pass show vultr/token)
-  export RENDER_API_TOKEN=$(pass show render/token)
-  export FLEEK_API_TOKEN=$(pass show fleek/token)
-  export FLEEK_TEAM_ID=$(pass show fleek/team)
+  export VULTR_API_KEY="$(pass show vultr/token)"
+  export RENDER_API_TOKEN="$(pass show render/token)"
+  export FLEEK_API_TOKEN="$(pass show fleek/token)"
+  export FLEEK_TEAM_ID="$(pass show fleek/team)"
   
   command planor $@
 }
 
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
-# ║ conclusive                                                                 ║
+# ║ conclusive (https://github.com/mrusme/conclusive)                          ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
 function conclusive() {
-  export PLAUSIBLE_TOKEN=$(pass show plausible/token)
+  export PLAUSIBLE_TOKEN="$(pass show plausible/token)"
   
   command conclusive $@
 }
@@ -884,7 +892,7 @@ function conclusive() {
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
 function wtfutil() {
-  export WTF_GITHUB_TOKEN=$(pass show wtfutil/token)
+  export WTF_GITHUB_TOKEN="$(pass show wtfutil/token)"
   
   command wtfutil $@
 }
@@ -895,7 +903,7 @@ function wtfutil() {
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
 function gh() {
-  export GITHUB_TOKEN=$(pass show github/token)
+  export GITHUB_TOKEN="$(pass show github/token)"
   
   command gh $@
 }
@@ -919,109 +927,93 @@ function duplicacy() {
 # ║ dotfiles-update-remote                                                     ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
-export DOTFILES="$HOME/projects/@mrusme/dotfiles"
-
-# [[ "$OS" = "Darwin" ]] \
-# && subldir=$HOME/Library/Application\ Support/Sublime\ Text\ 3
-# [[ "$OS" = "Linux" ]] \
-# && subldir=$XDG_CONFIG_HOME/sublime-text
+export DOTFILES="${HOME}/projects/@mrusme/dotfiles"
 
 function dotfiles-update-remote() {
-  cp "$HOME/.zshrc" "$DOTFILES/.zshrc"
-  cp "$HOME/.tmux.conf" "$DOTFILES/.tmux.conf"
-  cp "$HOME/.tmux.cheatsheet" "$DOTFILES/.tmux.cheatsheet"
-  cp "$HOME/.motd" "$DOTFILES/.motd"
-  cp "$HOME/.gitconfig" "$DOTFILES/.gitconfig"
-  cp "$HOME/.mbsyncrc" "$DOTFILES/.mbsyncrc"
-  cp "$HOME/.vale.ini" "$DOTFILES/.vale.ini"
-  cp "$HOME/.wallpaper" "$DOTFILES/.wallpaper"
+  cp "${HOME}/.zshrc" "${DOTFILES}/.zshrc"
+  cp "${HOME}/.tmux.conf" "${DOTFILES}/.tmux.conf"
+  cp "${HOME}/.tmux.cheatsheet" "${DOTFILES}/.tmux.cheatsheet"
+  cp "${HOME}/.motd" "${DOTFILES}/.motd"
+  cp "${HOME}/.gitconfig" "${DOTFILES}/.gitconfig"
+  cp "${HOME}/.mbsyncrc" "${DOTFILES}/.mbsyncrc"
+  cp "${HOME}/.vale.ini" "${DOTFILES}/.vale.ini"
+  cp "${HOME}/.wallpaper" "${DOTFILES}/.wallpaper"
 
-  cp "$HOME/.ssh/config" "$DOTFILES/ssh/config"
+  cp "${HOME}/.ssh/config" "${DOTFILES}/ssh/config"
 
-  cp -R "$HOME/.irssi/"* "$DOTFILES/irssi/"
+  cp -R "${HOME}/.irssi/"* "${DOTFILES}/irssi/"
 
-  cp "$HOME/.mozilla/firefox/"*".default-release/chrome/userChrome.css"\
-      "$DOTFILES/.mozilla/firefox/default/chrome/userChrome.css"
+  cp "${HOME}/.mozilla/firefox/"*".default-release/chrome/userChrome.css"\
+      "${DOTFILES}/.mozilla/firefox/default/chrome/userChrome.css"
 
-  cp "$XDG_CONFIG_HOME/user-dirs.dirs"\
-     "$DOTFILES/user-dirs.dirs"
+  cp "${XDG_CONFIG_HOME}/user-dirs.dirs"\
+     "${DOTFILES}/user-dirs.dirs"
 
-  cp "$XDG_CONFIG_HOME/alacritty/alacritty.yml"\
-     "$DOTFILES/alacritty/alacritty.yml"
+  cp "${XDG_CONFIG_HOME}/alacritty/alacritty.yml"\
+     "${DOTFILES}/alacritty/alacritty.yml"
 
-  cp "$XDG_CONFIG_HOME/neomutt/neomuttrc" "$DOTFILES/neomutt/neomuttrc"
-  cp "$XDG_CONFIG_HOME/neomutt/accounts/"* "$DOTFILES/neomutt/accounts/"
+  cp "${XDG_CONFIG_HOME}/neomutt/neomuttrc" "${DOTFILES}/neomutt/neomuttrc"
+  cp "${XDG_CONFIG_HOME}/neomutt/accounts/"* "${DOTFILES}/neomutt/accounts/"
 
-  cp "$XDG_CONFIG_HOME/nvim/init.vim" "$DOTFILES/nvim/init.vim"
-  cp "$XDG_CONFIG_HOME/nvim/colors/"*.vim "$DOTFILES/nvim/colors/"
-  cp "$XDG_CONFIG_HOME/nvim/autoload/lightline/colorscheme/"*.vim\
-    "$DOTFILES/nvim/autoload/lightline/colorscheme/"
+  cp "${XDG_CONFIG_HOME}/nvim/init.vim" "${DOTFILES}/nvim/init.vim"
+  cp "${XDG_CONFIG_HOME}/nvim/colors/"*.vim "${DOTFILES}/nvim/colors/"
+  cp "${XDG_CONFIG_HOME}/nvim/autoload/lightline/colorscheme/"*.vim\
+    "${DOTFILES}/nvim/autoload/lightline/colorscheme/"
 
-  cp "$XDG_CONFIG_HOME/lf/"* "$DOTFILES/lf/"
+  cp "${XDG_CONFIG_HOME}/lf/"* "${DOTFILES}/lf/"
 
-  cp "$XDG_CONFIG_HOME/wtf/config.yml" "$DOTFILES/wtf/config.yml"
+  cp "${XDG_CONFIG_HOME}/wtf/config.yml" "${DOTFILES}/wtf/config.yml"
 
-  # Phasing out Sublime Text as I'm not using it anymore
-  #
-  # cp $subldir/Packages/User/Package\ Control.sublime-settings\
-  #   "$DOTFILES/st3/Package Control.sublime-settings"
-  # cp $subldir/Packages/User/Preferences.sublime-settings\
-  #   "$DOTFILES/st3/Preferences.sublime-settings"
-  # cp $subldir/Packages/User/LSP.sublime-settings\
-  #   "$DOTFILES/st3/LSP.sublime-settings"
-  # cp $subldir/Packages/User/vap0r-*.tmTheme\
-  #   "$DOTFILES/st3/"
-
-  if [ "$OS" = "Darwin" ]
+  if [ "${OS}" = "darwin" ]
   then
-    brew ls --formula -1 --full-name > "$DOTFILES/brew/ls_-1"
-    brew ls --cask -1 --full-name > "$DOTFILES/brew/cask_ls_-1"
+    brew ls --formula -1 --full-name > "${DOTFILES}/brew/ls_-1"
+    brew ls --cask -1 --full-name > "${DOTFILES}/brew/cask_ls_-1"
   fi
-  if [ "$OS" = "Linux" ]
+  if [ "${OS}" = "linux" ]
   then
     /usr/bin/find /usr/local/bin -type f -exec sh -c '
       case $( file -bi "$1" ) in (*/x-shellscript*) exit 0; esac
       exit 1' sh {} \; -print | while read -r scriptfile
       do
-        cp "$scriptfile" "$DOTFILES/usr/local/bin/"
+        cp "${scriptfile}" "${DOTFILES}/usr/local/bin/"
       done
 
-    cp "$XDG_CONFIG_HOME/dunst/dunstrc" "$DOTFILES/dunst/dunstrc"
+    cp "${XDG_CONFIG_HOME}/dunst/dunstrc" "${DOTFILES}/dunst/dunstrc"
 
-    cp "$XDG_CONFIG_HOME/mpd/mpd.conf" "$DOTFILES/mpd/mpd.conf"
+    cp "${XDG_CONFIG_HOME}/mpd/mpd.conf" "${DOTFILES}/mpd/mpd.conf"
 
-    cp "$XDG_CONFIG_HOME/ncmpcpp/config" "$DOTFILES/ncmpcpp/config"
+    cp "${XDG_CONFIG_HOME}/ncmpcpp/config" "${DOTFILES}/ncmpcpp/config"
 
-    cp "$XDG_CONFIG_HOME/sway/config" "$DOTFILES/sway/config"
+    cp "${XDG_CONFIG_HOME}/sway/config" "${DOTFILES}/sway/config"
 
-    cp "$XDG_CONFIG_HOME/swaylock/config" "$DOTFILES/swaylock/config"
+    cp "${XDG_CONFIG_HOME}/swaylock/config" "${DOTFILES}/swaylock/config"
 
-    cp "$XDG_CONFIG_HOME/swaynag/config" "$DOTFILES/swaynag/config"
+    cp "${XDG_CONFIG_HOME}/swaynag/config" "${DOTFILES}/swaynag/config"
 
-    cp "$XDG_CONFIG_HOME/task/taskrc" "$DOTFILES/task/taskrc"
+    cp "${XDG_CONFIG_HOME}/task/taskrc" "${DOTFILES}/task/taskrc"
 
-    cp "$XDG_CONFIG_HOME/waybar/"* "$DOTFILES/waybar/"
+    cp "${XDG_CONFIG_HOME}/waybar/"* "${DOTFILES}/waybar/"
 
-    cp "$XDG_CONFIG_HOME/wofi/"* "$DOTFILES/wofi/"
+    cp "${XDG_CONFIG_HOME}/wofi/"* "${DOTFILES}/wofi/"
 
-    cp "$HOME/.local/share/applications/browser.desktop" "$DOTFILES/local/share/applications/browser.desktop"
+    cp "${HOME}/.local/share/applications/browser.desktop" "${DOTFILES}/local/share/applications/browser.desktop"
   fi
 
-  cargo install --list > "$DOTFILES/cargo/install_--list"
-  npm list -g --depth=0 > "$DOTFILES/npm/list_-g_--depth_0"
+  cargo install --list > "${DOTFILES}/cargo/install_--list"
+  npm list -g --depth=0 > "${DOTFILES}/npm/list_-g_--depth_0"
   /bin/ls -1 ~/.go/bin/ \
-    | while read bin; \
-    do go version -m ~/.go/bin/$bin \
+    | while read -r bin; \
+    do go version -m "${HOME}/.go/bin/${bin}" \
     | grep '^[[:space:]]path' \
     | awk '{ print $2 }' \
     | grep '^github.com' \
     | sort \
     | uniq;\
-    done > "$DOTFILES/go/list_github.com"
+    done > "${DOTFILES}/go/list_github.com"
 
-  gh extension list > "$DOTFILES/gh_extension_list"
+  gh extension list > "${DOTFILES}/gh_extension_list"
 
-  git -C "$DOTFILES" commit -a -S
+  git -C "${DOTFILES}" commit -a -S
   return 0
 }
 
@@ -1029,88 +1021,77 @@ function dotfiles-update-local() {
   printf "are you sure? (y/n) "
   read -r confirmation
 
-  [[ $confirmation != "y" ]] && return 1
+  [ "${confirmation}" != "y" ] && return 1
 
-  cp "$DOTFILES/.zshrc" "$HOME/.zshrc"
-  cp "$DOTFILES/.tmux.conf" "$HOME/.tmux.conf"
-  cp "$DOTFILES/.tmux.cheatsheet" "$HOME/.tmux.cheatsheet"
-  cp "$DOTFILES/.motd" "$HOME/.motd"
-  cp "$DOTFILES/.gitconfig" "$HOME/.gitconfig"
-  cp "$DOTFILES/.mbsyncrc" "$HOME/.mbsyncrc"
-  cp "$DOTFILES/.vale.ini" "$HOME/.vale.ini"
-  cp "$DOTFILES/.wallpaper" "$HOME/.wallpaper"
+  cp "${DOTFILES}/.zshrc" "${HOME}/.zshrc"
+  cp "${DOTFILES}/.tmux.conf" "${HOME}/.tmux.conf"
+  cp "${DOTFILES}/.tmux.cheatsheet" "${HOME}/.tmux.cheatsheet"
+  cp "${DOTFILES}/.motd" "${HOME}/.motd"
+  cp "${DOTFILES}/.gitconfig" "${HOME}/.gitconfig"
+  cp "${DOTFILES}/.mbsyncrc" "${HOME}/.mbsyncrc"
+  cp "${DOTFILES}/.vale.ini" "${HOME}/.vale.ini"
+  cp "${DOTFILES}/.wallpaper" "${HOME}/.wallpaper"
 
-  cp "$DOTFILES/ssh/config" "$HOME/.ssh/config"
+  cp "${DOTFILES}/ssh/config" "${HOME}/.ssh/config"
 
-  cp -R "$DOTFILES/irssi/"* "$HOME/.irssi/"
+  cp -R "${DOTFILES}/irssi/"* "${HOME}/.irssi/"
 
-  cp "$DOTFILES/user-dirs.dirs"\
-     "$XDG_CONFIG_HOME/user-dirs.dirs"
+  cp "${DOTFILES}/user-dirs.dirs"\
+     "${XDG_CONFIG_HOME}/user-dirs.dirs"
 
-  mkdir -p "$XDG_CONFIG_HOME/alacritty"
-  cp "$DOTFILES/alacritty/alacritty.yml"\
-     "$XDG_CONFIG_HOME/alacritty/alacritty.yml"
+  mkdir -p "${XDG_CONFIG_HOME}/alacritty"
+  cp "${DOTFILES}/alacritty/alacritty.yml"\
+     "${XDG_CONFIG_HOME}/alacritty/alacritty.yml"
 
-  mkdir -p "$XDG_CONFIG_HOME/neomutt/accounts"
-  cp "$DOTFILES/neomutt/neomuttrc" "$XDG_CONFIG_HOME/neomutt/neomuttrc"
+  mkdir -p "${XDG_CONFIG_HOME}/neomutt/accounts"
+  cp "${DOTFILES}/neomutt/neomuttrc" "${XDG_CONFIG_HOME}/neomutt/neomuttrc"
 
-  mkdir -p "$XDG_CONFIG_HOME/nvim/colors"
-  mkdir -p "$XDG_CONFIG_HOME/nvim/autoload/lightline/colorscheme"
-  cp "$DOTFILES/nvim/init.vim" "$XDG_CONFIG_HOME/nvim/init.vim"
-  cp "$DOTFILES/nvim/colors/"*.vim "$XDG_CONFIG_HOME/nvim/colors/"
-  cp "$DOTFILES/nvim/autoload/lightline/colorscheme/"*.vim\
-     "$XDG_CONFIG_HOME/nvim/autoload/lightline/colorscheme/"
+  mkdir -p "${XDG_CONFIG_HOME}/nvim/colors"
+  mkdir -p "${XDG_CONFIG_HOME}/nvim/autoload/lightline/colorscheme"
+  cp "${DOTFILES}/nvim/init.vim" "${XDG_CONFIG_HOME}/nvim/init.vim"
+  cp "${DOTFILES}/nvim/colors/"*.vim "${XDG_CONFIG_HOME}/nvim/colors/"
+  cp "${DOTFILES}/nvim/autoload/lightline/colorscheme/"*.vim\
+     "${XDG_CONFIG_HOME}/nvim/autoload/lightline/colorscheme/"
 
-  mkdir -p "$XDG_CONFIG_HOME/lf"
-  cp "$DOTFILES/lf/"* "$XDG_CONFIG_HOME/lf/"
+  mkdir -p "${XDG_CONFIG_HOME}/lf"
+  cp "${DOTFILES}/lf/"* "${XDG_CONFIG_HOME}/lf/"
 
-  mkdir -p "$XDG_CONFIG_HOME/wtf"
-  cp "$DOTFILES/wtf/config.yml" "$XDG_CONFIG_HOME/wtf/config.yml"
+  mkdir -p "${XDG_CONFIG_HOME}/wtf"
+  cp "${DOTFILES}/wtf/config.yml" "${XDG_CONFIG_HOME}/wtf/config.yml"
 
-  # Phasing out Sublime Text as I'm not using it anymore
-  #
-  # cp "$DOTFILES/st3/Package Control.sublime-settings"\
-  #    $subldir/Packages/User/Package\ Control.sublime-settings
-  # cp "$DOTFILES/st3/Preferences.sublime-settings"\
-  #    $subldir/Packages/User/Preferences.sublime-settings
-  # cp "$DOTFILES/st3/LSP.sublime-settings"\
-  #    $subldir/Packages/User/LSP.sublime-settings
-  # cp "$DOTFILES/st3/vap0r-*.tmTheme"
-  #    $subldir/Packages/User/
-
-  if [ "$OS" = "Linux" ]
+  if [ "${OS}" = "linux" ]
   then
-    cp "$DOTFILES/usr/local/bin/"* /usr/local/bin/
+    cp "${DOTFILES}/usr/local/bin/"* /usr/local/bin/
 
-    mkdir -p "$XDG_CONFIG_HOME/dunst" 
-    cp "$DOTFILES/dunst/dunstrc" "$XDG_CONFIG_HOME/dunst/dunstrc" 
+    mkdir -p "${XDG_CONFIG_HOME}/dunst" 
+    cp "${DOTFILES}/dunst/dunstrc" "${XDG_CONFIG_HOME}/dunst/dunstrc" 
 
-    mkdir -p "$XDG_CONFIG_HOME/mpd" 
-    cp "$DOTFILES/mpd/mpd.conf" "$XDG_CONFIG_HOME/mpd/mpd.conf" 
+    mkdir -p "${XDG_CONFIG_HOME}/mpd" 
+    cp "${DOTFILES}/mpd/mpd.conf" "${XDG_CONFIG_HOME}/mpd/mpd.conf" 
 
-    mkdir -p "$XDG_CONFIG_HOME/ncmpcpp" 
-    cp "$DOTFILES/ncmpcpp/config" "$XDG_CONFIG_HOME/ncmpcpp/config" 
+    mkdir -p "${XDG_CONFIG_HOME}/ncmpcpp" 
+    cp "${DOTFILES}/ncmpcpp/config" "${XDG_CONFIG_HOME}/ncmpcpp/config" 
 
-    mkdir -p "$XDG_CONFIG_HOME/sway" 
-    cp "$DOTFILES/sway/config" "$XDG_CONFIG_HOME/sway/config" 
+    mkdir -p "${XDG_CONFIG_HOME}/sway" 
+    cp "${DOTFILES}/sway/config" "${XDG_CONFIG_HOME}/sway/config" 
 
-    mkdir -p "$XDG_CONFIG_HOME/swaylock" 
-    cp "$DOTFILES/swaylock/config" "$XDG_CONFIG_HOME/swaylock/config" 
+    mkdir -p "${XDG_CONFIG_HOME}/swaylock" 
+    cp "${DOTFILES}/swaylock/config" "${XDG_CONFIG_HOME}/swaylock/config" 
 
-    mkdir -p "$XDG_CONFIG_HOME/swaynag" 
-    cp "$DOTFILES/swaynag/config" "$XDG_CONFIG_HOME/swaynag/config" 
+    mkdir -p "${XDG_CONFIG_HOME}/swaynag" 
+    cp "${DOTFILES}/swaynag/config" "${XDG_CONFIG_HOME}/swaynag/config" 
 
-    mkdir -p "$XDG_CONFIG_HOME/task" 
-    cp "$DOTFILES/task/taskrc" "$XDG_CONFIG_HOME/task/taskrc" 
+    mkdir -p "${XDG_CONFIG_HOME}/task" 
+    cp "${DOTFILES}/task/taskrc" "${XDG_CONFIG_HOME}/task/taskrc" 
 
-    mkdir -p "$XDG_CONFIG_HOME/waybar" 
-    cp "$DOTFILES/waybar/"* "$XDG_CONFIG_HOME/waybar/" 
+    mkdir -p "${XDG_CONFIG_HOME}/waybar" 
+    cp "${DOTFILES}/waybar/"* "${XDG_CONFIG_HOME}/waybar/" 
 
-    mkdir -p "$XDG_CONFIG_HOME/wofi" 
-    cp "$DOTFILES/wofi/"* "$XDG_CONFIG_HOME/wofi/" 
+    mkdir -p "${XDG_CONFIG_HOME}/wofi" 
+    cp "${DOTFILES}/wofi/"* "${XDG_CONFIG_HOME}/wofi/" 
 
-    mkdir -p "$HOME/.local/share/applications/" 
-    cp "$DOTFILES/local/share/applications/browser.desktop" "$HOME/.local/share/applications/browser.desktop"
+    mkdir -p "${HOME}/.local/share/applications/" 
+    cp "${DOTFILES}/local/share/applications/browser.desktop" "${HOME}/.local/share/applications/browser.desktop"
   fi
   return 0
 }
@@ -1120,8 +1101,9 @@ function dotfiles-update-local() {
 # ║ motd                                                                       ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
-DOT_MOTD="$HOME/.motd"
-[[ -e "$DOT_MOTD" ]] && source "$DOT_MOTD"
+DOT_MOTD="${HOME}/.motd"
+[ -e "${DOT_MOTD}" ] \
+&& source "${DOT_MOTD}"
 
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
