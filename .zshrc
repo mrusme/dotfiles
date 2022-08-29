@@ -176,6 +176,17 @@ export ADDRB_TEMPLATE="${HOME}/.config/addrb.tmpl"
 #__is_available wal linux \ 
 #&& (wal -r &)
 
+# https://github.com/Cloudef/bemenu
+export BEMENU_OPTS="-n -c -s -i \
+  -W 0.2 -H 26 -B 2 -l 10 \
+  --fn ProggyVector 9 \
+  --nb #040606aa --nf #bde7e5ff \
+  --ab #040606aa --af #bde7e5ff \
+  --hb #1e2132aa --hf #bde7e5ff \
+  --fb #040606aa --ff #bde7e5ff \
+  --tb #040606aa --tf #84a0c6ff \
+  --bdr #84a0c6ff"
+
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
 # ║ ${PATH}                                                                      ║
