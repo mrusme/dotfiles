@@ -240,24 +240,31 @@ ENABLE_CORRECTION="false"
 COMPLETION_WAITING_DOTS="false"
 DISABLE_UNTRACKED_FILES_DIRTY="false"
 
+ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 ZSH_AUTOSUGGESTIONS="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}\
 /plugins/zsh-autosuggestions"
 ZSH_COMPDUMP=$XDG_CACHE_HOME/.zcompdump-$HOST
 
-[[ "$OS" = "Darwin" ]] \
-&& plugins=( \
-  docker encode64 extract git git-flow git-extras gpg-agent history ssh-agent \
-  1password urltools ripgrep rsync ipfs web-search isodate \
-  golang rust mix gh \
-  zsh-autosuggestions mosh fzf terraform taskwarrior thefuck fasd \
-  brew tmux macos)
-[[ "$OS" = "Linux" && "$USER" != "root" ]]  \
-&& plugins=(\
-  docker encode64 extract git git-flow git-extras gpg-agent history ssh-agent \
-  1password urltools ripgrep rsync ipfs web-search isodate \
-  golang rust mix gh \
-  zsh-autosuggestions mosh fzf terraform taskwarrior thefuck fasd \
-  pass)
+# === PLUGINS ===
+plugins=(history zsh-autosuggestions fzf fasd)
+
+if [ "$USER" != "root" ]
+then 
+  plugins+=( \
+    gpg-agent ssh-agent \
+    git git-flow git-extras golang rust mix gh \
+    ripgrep rsync ipfs docker mosh terraform taskwarrior pass \
+    encode64 extract urltools web-search isodate \
+  )
+fi
+
+if [ "$OS" = "Darwin" ]
+then 
+  plugins+=( \
+    brew tmux macos \ 
+  )
+fi
+# ===         ===
 
 [[ -e "$ZSH/oh-my-zsh.sh" ]] && source "$ZSH/oh-my-zsh.sh"
 
@@ -278,9 +285,11 @@ ZSH_THEME_TERM_TITLE_IDLE='zsh %n@%m:%~'
 type zoxide > /dev/null \
 && eval "$(zoxide init --cmd cd zsh)"
 
+# https://github.com/sharkdp/bat
 type bat > /dev/null \
 && alias cat=bat
 
+# https://github.com/ogham/exa
 type exa > /dev/null \
 && unalias ls la ll l lsa &> /dev/null \
 && alias ls='exa --time-style=long-iso --git --binary -lg' \
@@ -289,37 +298,47 @@ type exa > /dev/null \
 && alias l='exa --time-style=long-iso --git --icons --binary -l --no-time' \
 && alias lls='ls -s modified'
 
+# https://github.com/ClementTsang/bottom
 type btm > /dev/null \
 && alias top='btm'
 
+# https://github.com/neomutt/neomutt
 type neomutt > /dev/null \
 && alias mutt=neomutt
 
+# https://github.com/neovim/neovim
 type nvim > /dev/null \
 && alias vi=nvim \
 && alias vim=nvim
 
+# https://github.com/junegunn/fzf
 type fzf > /dev/null \
 && alias preview='fzf --preview="bat {} --color=always"'
 
+# https://github.com/nerdypepper/eva
 type eva > /dev/null \
 && alias calc='eva'
 
+# https://github.com/TomNomNom/gron
 type gron > /dev/null \
 && alias json='gron'
 
+# https://github.com/sharkdp/hexyl
 type hexyl > /dev/null \
 && alias hex='hexyl'
 
+# https://github.com/sharkdp/hyperfine
 type hyperfine > /dev/null \
 && alias benchmark='hyperfine'
 
+# https://github.com/irssi/irssi
 type irssi > /dev/null \
 && alias irc='irssi'
 
 type xdg-open > /dev/null \
 && alias open='xdg-open'
 
+# https://github.com/kdheepak/taskwarrior-tui
 type taskwarrior-tui > /dev/null \
 && alias todo='taskwarrior-tui'
 
@@ -327,10 +346,10 @@ alias fucking=sudo
 
 alias my-ip="curl http://ipecho.net/plain; echo"
 
-alias jrnl='cd $HOME/[Pp]rojects/@mrusme/xn--gckvb8fzb.com/content/'
-alias bookmarks='vim $HOME/[Pp]rojects/@mrusme/xn--gckvb8fzb.com/content/bookmarks/index.md'
-alias notes='cd $HOME/[Cc]loud/notes/'
-alias cheatsheet.vim='vim $HOME/[Cc]loud/notes/tools/vim.md'
+alias jrnl='cd $HOME/projects/@mrusme/xn--gckvb8fzb.com/content/'
+alias bookmarks='vim $HOME/projects/@mrusme/xn--gckvb8fzb.com/content/bookmarks/index.md'
+alias notes='cd $HOME/cloud/notes/'
+alias cheatsheet.vim='vim $HOME/cloud/notes/tools/vim.md'
 
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
@@ -486,6 +505,7 @@ then
 fi
 alias apt='aptitude'
 
+
 # ╔════════════════════════════════════════════════════════════════════════════╗
 # ║ OpenSSL                                                                    ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
@@ -548,155 +568,6 @@ function openssl-decrypt () {
 }
 
 
-# ╔════════════════════════════════════════════════════════════════════════════╗
-# ║ pushover                                                                   ║
-# ╚════════════════════════════════════════════════════════════════════════════╝
-
-__pushover_usage() {
-  printf "pushover <options> <message>\n"
-  printf " -c <callback>\n"
-  printf " -d <device>\n"
-  printf " -D <timestamp>\n"
-  printf " -e <expire>\n"
-  printf " -p <priority>\n"
-  printf " -r <retry>\n"
-  printf " -t <title>\n"
-  printf " -T <TOKEN> (required if not in 'pass show pushover/token')\n"
-  printf " -s <sound>\n"
-  printf " -u <url>\n"
-  printf " -U <USER> (required if not in 'pass show pushover/user')\n"
-  printf " -a <url_title>\n"
-  return 1
-}
-
-__pushover_opt_field() {
-  field=$1
-  shift
-  value="${*}"
-  if [ -n "${value}" ]; then
-    printf "-F \"${field}=${value}\"\n"
-  fi
-}
-
-__pushover_send_message() {
-  local device="${1:-}"
-
-  curl_cmd="\"${CURL}\" -s -S \
-    ${CURL_OPTS} \
-    -F \"token=${TOKEN}\" \
-    -F \"user=${USER}\" \
-    -F \"message=${message}\" \
-    $(__pushover_opt_field device "${device}") \
-    $(__pushover_opt_field callback "${callback}") \
-    $(__pushover_opt_field timestamp "${timestamp}") \
-    $(__pushover_opt_field priority "${priority}") \
-    $(__pushover_opt_field retry "${retry}") \
-    $(__pushover_opt_field expire "${expire}") \
-    $(__pushover_opt_field title "${title}") \
-    $(__pushover_opt_field sound "${sound}") \
-    $(__pushover_opt_field url "${url}") \
-    $(__pushover_opt_field url_title "${url_title}") \
-    \"${PUSHOVER_URL}\""
-
-  response="$(eval "${curl_cmd}")"
-  printf "$response\n"
-  # TODO: Parse response
-  r="${?}"
-  if [ "${r}" -ne 0 ]; then
-    printf "%s: Failed to send message\n" "${0}" >&2
-  fi
-
-  return "${r}"
-}
-
-function pushover() {
-  local CURL="$(which curl)"
-  local PUSHOVER_URL="https://api.pushover.net/1/messages.json"
-  local TOKEN=$(pass show pushover/token)
-  local USER=$(pass show pushover/user)
-  local CURL_OPTS=""
-  local device_aliases=""
-  local devices="${devices} ${device}"
-  local optstring="c:d:D:e:f:p:r:t:T:s:u:U:a:h"
-
-  OPTIND=1
-  while getopts ${optstring} c
-  do
-    case ${c} in
-      c)
-        callback="${OPTARG}"
-        ;;
-      d)
-        devices="${devices} ${OPTARG}"
-        ;;
-      D)
-        timestamp="${OPTARG}"
-        ;;
-      e)
-        expire="${OPTARG}"
-        ;;
-      p)
-        priority="${OPTARG}"
-        ;;
-      r)
-        retry="${OPTARG}"
-        ;;
-      t)
-        title="${OPTARG}"
-        ;;
-      k)
-        TOKEN="${OPTARG}"
-        ;;
-      s)
-        sound="${OPTARG}"
-        ;;
-      u)
-        url="${OPTARG}"
-        ;;
-      U)
-        USER="${OPTARG}"
-        ;;
-      a)
-        url_title="${OPTARG}"
-        ;;
-
-      [h\?])
-        __pushover_usage
-        return 1
-        ;;
-    esac
-  done
-  shift $((OPTIND-1))
-
-  if [ "$#" -lt 1 ]; then
-    __pushover_usage
-    return 1
-  fi
-  message="$*"
-
-  if [ ! -x "${CURL}" ]; then
-    printf "CURL is unset, empty, or does not point to curl executable.\n \
-      This script requires curl!\n" >&2
-    return 1
-  fi
-
-  devices="$(printf "${devices}" | xargs -n1 | sort -u | uniq)\n"
-
-  if [ -z "${devices}" ]; then
-    __pushover_send_message
-    r=${?}
-  else
-    for device in ${devices}; do
-      __pushover_send_message "${device}"
-      r=${?}
-      if [ "${r}" -ne 0 ]; then
-        break;
-      fi
-    done
-  fi
-  return "${r}"
-}
-
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
 # ║ update-tools                                                               ║
@@ -721,6 +592,9 @@ function update-tools() {
 
   printf "\nUpdating gh extensions ...\n"
   gh extension upgrade --all
+
+  printf "\nUpdating vale ...\n"
+  vale sync
 
   printf "\nTools updated"
 }
@@ -747,11 +621,6 @@ function terminal-colors() {
 alias git-crypt-add-myself="git-crypt add-gpg-user \
 4D3899AF73E7F5FE9B39C822272ED814BF63261F"
 alias gpa='git push all "$(git_current_branch)"'
-# git tag delete
-gtd() {
-  git tag -d "$1"
-  git remote | while read remote; do git push --delete "$remote" "$1"; done
-}
 
 function git-add-all-remote() {
   if git remote | grep -q '^all$'
@@ -780,6 +649,13 @@ function git-find-modified-repos() {
   done
 }
 
+# git tag delete
+gtd() {
+  git tag -d "$1"
+  git remote | while read remote; do git push --delete "$remote" "$1"; done
+}
+
+# github checkout issue
 function ghcoi() {
   if [ "$1" = "" ]
   then
@@ -797,68 +673,6 @@ function ghcoi() {
 
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
-# ║ Offline Wikipedia (https://xn--gckvb8fzb.com/lets-take-wikipedia-offline)  ║
-# ╚════════════════════════════════════════════════════════════════════════════╝
-
-export WIKIPEDIA_INDEX_ID="wikipedia"
-export WIKIPEDIA_METASTORE_URI="file:///home/mrus/projects/@mrusme/ulpia/wikipedia"
-export DISABLE_QUICKWIT_TELEMETRY=1
-
-function wikipedia() {
-  search="$*"
-  query="title:\"$search\""
-  json=$(quickwit index search \
-    --index-id "$WIKIPEDIA_INDEX_ID" \
-    --metastore-uri "$WIKIPEDIA_METASTORE_URI" \
-    --query "$query" \
-  )
-
-  numHits=$(printf '%s' "$json" | jq '.numHits')
-  if [[ $numHits == 0 ]]
-  then
-    printf "Nothing found, sorry.\n"
-    return 1
-  fi
-
-  selection=$(printf '%s' "$json" \
-    | jq \
-      --raw-output \
-      '.hits[].title[0]' \
-    | /bin/cat -n \
-    | fzf \
-      --no-multi \
-      -0 \
-      -q "$search" \
-      --with-nth 2.. \
-  )
-
-  if [[ $? == 130 ]]
-  then
-    return 2
-  fi
-
-  index=$(echo "$selection" \
-    | awk '{ print $1-1 }' \
-  )
-
-  if [[ -n "$index" ]]
-  then
-    printf '%s' "$json" \
-      | jq \
-        --raw-output \
-        ".hits[$index].section_texts | join(\"\n\n\n\")" \
-        | pandoc \
-          -f mediawiki \
-          -t markdown_strict \
-          | glow - -p 
-  else
-    printf "Err?\n"
-    return 3
-  fi
-}
-
-
-# ╔════════════════════════════════════════════════════════════════════════════╗
 # ║ Online tools                                                               ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
@@ -870,69 +684,135 @@ function jitsi-link() {
 
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
-# ║ Math functions                                                             ║
+# ║ What's ...                                                                 ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
-function calc-x-percent-of-y() {
-  eva "($1 / 100) * $2" | tr -d ' '
-}
+function whats() {
+  if ! type units >> /dev/null || ! type whatis >> /dev/null
+  then 
+    printf "This command requires units(1) and whatis(1)!\n"
+    return 1 
+  fi 
 
-function calc-percentage-x-of-y() {
-  eva "($1 / $2) * 100" | tr -d ' '
-}
+  value=""
+  value_unit=""
+  from_unit=""
+  to=""
+  to_unit=""
+  _in=""
+  _in_unit=""
 
-function calc-percentage-change-x-to-y() {
-  eva "(($2 - $1) / $1) * 100" | tr -d ' '
-}
+  if [ "$#" -eq "1" ]
+  then
+    if [ "$1" = "love" ]
+    then 
+      printf "... got to do, got to do with it?\n"
+      return 0 
+    else 
+      whatis "$1"
+      return "$?"
+    fi 
+  elif [ "$#" -eq "2" ]
+  then
+    value_unit="$1"
+    to_unit="$2"
+  elif [ "$#" -eq "3" ]
+  then
+    if [ "$2" = "to" ] || [ "$2" = "in" ] || [ "$2" = "of" ]
+    then 
+      value_unit="$1"
+      to="$2"
+      to_unit="$3"
+    else 
+      value="$1"
+      from_unit="$2"
+      to_unit="$3"
+    fi
+  elif [ "$#" -eq "4" ]
+  then 
+    value="$1"
+    from_unit="$2"
+    to="$3"
+    to_unit="$4"
+  elif [ "$#" -eq "5" ]
+  then
+    value="$1"
+    from_unit=""
+    to="$2"
+    to_unit="$3"
+    _in="$4"
+    _in_unit="$5"
+  else
+    printf "usage: %s <value>[[ ]unit] [to/in|of] <to/in unit/value|of value> [in %%]\n" "$0"
+    printf "\n"
+    printf "examples:\n"
+    printf "\n"
+    printf "  %s 20 kmh in mph\n" "$0"
+    printf "  %s 3 cups in ml\n" "$0"
+    printf "  %s 6ft to m\n" "$0"
+    printf "  %s 10%% of 120\n" "$0"
+    printf "  %s 10 of 200 in %%\n" "$0"
+    printf "  %s 10 to 100 in %%\n" "$0"
+    printf "\n"
+    return 1 
+  fi
 
-function convert-fahrenheit-to-celsius() {
-  eva "($1 - 32) * (5/9)" | tr -d ' '
-}
+  if [ "$value_unit" != "" ]
+  then
+    combined="$(printf "%s" "$value_unit" | grep -Eo '[[:alpha:]\$\%]+|[0-9]+')"
+    value="$(printf "%s" "$combined" | head -n 1)"
+    from_unit="$(printf "%s" "$combined" | tail -n 1)"
+  fi
 
-function convert-celsius-to-fahrenheit() {
-  eva "($1 * (9/5)) + 32" | tr -d ' '
-}
+  from_unit=$(printf "%s" "$from_unit" | tr '[:upper:]' '[:lower:]')
+  to_unit=$(printf "%s" "$to_unit" | tr '[:upper:]' '[:lower:]')
 
-function convert-in-to-cm() {
-  eva "$1 * 2.54" | tr -d ' '
-}
+  units_from="$value$from_unit"
+  units_to="$to_unit"
 
-function convert-cm-to-in() {
-  eva "$1 / 2.54" | tr -d ' '
-}
+  case "$from_unit" in 
+    "f")
+      units_from="tempF($value)"
+      ;;
+    "c")
+      units_from="tempC($value)"
+      ;;
+    "kmh")
+      units_from="$value km/hour"
+      ;;
+  esac 
 
-function convert-ft-to-cm() {
-  eva "$1 * 30.48" | tr -d ' '
-}
-
-function convert-cm-to-ft() {
-  eva "$1 / 30.48" | tr -d ' '
-}
-
-function convert-ft-in-to-m() {
-  eva "$1 * 30.48 + $2 * 2.54" | tr -d ' '
-}
-
-function convert-cm-to-ft-in() {
-  ft=$(eva "floor($1 / 2.54) / 12" | tr -d ' ')
-  in=$(eva "($1 / 2.54) - 12 * $ft" | tr -d ' ')
-  printf "$ft ft $in in\n"
-}
-
-function convert-kn-to-kmh() {
-  eva "$1 * 1.852" | tr -d ' '
-}
-
-function convert-kmh-to-kn() {
-  eva "$1 / 1.852" | tr -d ' '
-}
-
-function convert-mph-to-kmh() {
-  eva "$1 * 1.609344" | tr -d ' '
-}
-
-function convert-kmh-to-mph() {
-  eva "$1 / 1.609344" | tr -d ' '
+  case "$to_unit" in 
+    "f")
+      units_to="tempF"
+      ;;
+    "c")
+      units_to="tempC"
+      ;;
+    "kmh")
+      units_to="km/hour"
+      ;;
+  esac
+  
+  if [ "$from_unit" = "%" ]
+  then 
+    eva "($value / 100) * $units_to" | tr -d ' '
+    return "$?"
+  elif [ "$_in" != "" ] && [ "$_in_unit" = "%" ]
+  then 
+    if [ "$to" = "of" ]
+    then
+      eva "($value / $to_unit) * 100" | tr -d ' '
+      return "$?"
+    elif [ "$to" = "to" ]
+    then 
+      eva "(($to_unit - $value) / $value) * 100" | tr -d ' '
+      return "$?"
+    fi
+  else
+    units --compact -1 "$units_from" "$units_to"
+    return "$?"
+  fi
 }
 
 
@@ -1026,7 +906,10 @@ function gh() {
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
 function duplicacy() {
-  sudo /bin/mount /dev/sda1 /mnt/backup
+  if ! sudo /bin/mount /dev/sda1 /mnt/backup
+  then
+    return 1 
+  fi 
   command duplicacy 
   sudo /bin/umount /mnt/backup
 }
@@ -1036,10 +919,7 @@ function duplicacy() {
 # ║ dotfiles-update-remote                                                     ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
-[[ "$OS" = "Darwin" ]] \
-&& export DOTFILES="$HOME/Projects/@mrusme/dotfiles"
-[[ "$OS" = "Linux" ]] \
-&& export DOTFILES="$HOME/projects/@mrusme/dotfiles"
+export DOTFILES="$HOME/projects/@mrusme/dotfiles"
 
 # [[ "$OS" = "Darwin" ]] \
 # && subldir=$HOME/Library/Application\ Support/Sublime\ Text\ 3
@@ -1053,6 +933,7 @@ function dotfiles-update-remote() {
   cp "$HOME/.motd" "$DOTFILES/.motd"
   cp "$HOME/.gitconfig" "$DOTFILES/.gitconfig"
   cp "$HOME/.mbsyncrc" "$DOTFILES/.mbsyncrc"
+  cp "$HOME/.vale.ini" "$DOTFILES/.vale.ini"
   cp "$HOME/.wallpaper" "$DOTFILES/.wallpaper"
 
   cp "$HOME/.ssh/config" "$DOTFILES/ssh/config"
@@ -1156,6 +1037,7 @@ function dotfiles-update-local() {
   cp "$DOTFILES/.motd" "$HOME/.motd"
   cp "$DOTFILES/.gitconfig" "$HOME/.gitconfig"
   cp "$DOTFILES/.mbsyncrc" "$HOME/.mbsyncrc"
+  cp "$DOTFILES/.vale.ini" "$HOME/.vale.ini"
   cp "$DOTFILES/.wallpaper" "$HOME/.wallpaper"
 
   cp "$DOTFILES/ssh/config" "$HOME/.ssh/config"
