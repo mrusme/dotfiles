@@ -1,0 +1,60 @@
+#!/bin/sh 
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ Offline Wikipedia (https://xn--gckvb8fzb.com/lets-take-wikipedia-offline)  ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+
+export WIKIPEDIA_INDEX_ID="wikipedia"
+export WIKIPEDIA_METASTORE_URI="file:///home/mrus/projects/@mrusme/ulpia/wikipedia"
+export DISABLE_QUICKWIT_TELEMETRY=1
+
+search="$*"
+query="title:\"$search\""
+json=$(quickwit index search \
+  --index-id "$WIKIPEDIA_INDEX_ID" \
+  --metastore-uri "$WIKIPEDIA_METASTORE_URI" \
+  --query "$query" \
+)
+
+numHits=$(printf '%s' "$json" | jq '.numHits')
+if [ "$numHits" = "0" ]
+then
+  printf "Nothing found, sorry.\n"
+  return 1
+fi
+
+selection=$(printf '%s' "$json" \
+  | jq \
+    --raw-output \
+    '.hits[].title[0]' \
+  | /bin/cat -n \
+  | fzf \
+    --no-multi \
+    -0 \
+    -q "$search" \
+    --with-nth 2.. \
+)
+
+if [ "$?" = "130" ]
+then
+  return 2
+fi
+
+index=$(echo "$selection" \
+  | awk '{ print $1-1 }' \
+)
+
+if [ -n "$index" ]
+then
+  printf '%s' "$json" \
+    | jq \
+      --raw-output \
+      ".hits[$index].section_texts | join(\"\n\n\n\")" \
+      | pandoc \
+        -f mediawiki \
+        -t markdown_strict \
+        | glow - -p 
+else
+  printf "Err?\n"
+  return 3
+fi
+
