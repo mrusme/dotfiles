@@ -24,7 +24,6 @@ firefox
 librewolf
 chromium
 tor-browser
-nyxt
 EOF
 
 url="$1"
@@ -39,7 +38,9 @@ if [ "$(expr "$host" : '^.*\.onion$')" -gt 0 ]
 then
   selected_browser="tor-browser"
 else
-  selected_browser=$(echo "$browsers" | wofi --dmenu)
+  # https://github.com/mrusme/cexec
+  selected_browser=$(printf "%s" "$browsers" \
+  | cexec -t 30 wofi --dmenu 2> /dev/null)
 fi
 
 case $selected_browser in
@@ -54,9 +55,6 @@ case $selected_browser in
     ;;
   "tor-browser")
     exec /usr/local/bin/tb "$url"
-    ;;
-  "nyxt")
-    exec nyxt "$url"
     ;;
   *)
     exit 1
