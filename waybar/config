@@ -116,8 +116,8 @@
 
   "custom/zeit": {
     "format": "{}",
-    "exec": "/home/mrus/projects/@mrusme/zeit/extras/zeit-waybar-wofi.sh",
-    "on-click": "/home/mrus/projects/@mrusme/zeit/extras/zeit-waybar-wofi.sh click",
+    "exec": "/home/mrus/projects/@mrusme/zeit/extras/zeit-waybar-bemenu.sh",
+    "on-click": "/home/mrus/projects/@mrusme/zeit/extras/zeit-waybar-bemenu.sh click",
     "interval": 10
   },
 
