@@ -24,8 +24,8 @@ set $down j
 set $up k
 set $right l
 set $term alacritty
-set $menu wofi --show run
-set $dmenu wofi -d
+set $menu bemenu-run
+set $dmenu bemenu
 
 set {
   $dark        #040606
