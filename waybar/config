@@ -25,6 +25,7 @@
     "custom/vpn",
     "custom/rslsync",
     "custom/docker",
+    "custom/cloudcash",
     "custom/crypto",
     "tray",
     "sway/mode",
@@ -94,6 +95,14 @@
     "exec": "/usr/local/bin/get-running-docker-containers",
     "exec-if": "rc-service docker status",
     "interval": 30
+  },
+
+  "custom/cloudcash": {
+    "format": "{}",
+    "return-type": "json",
+    "exec": "/usr/local/bin/cloudcash -waybar-pango",
+    "on-click": "",
+    "interval": 3600
   },
 
   "custom/crypto": {
