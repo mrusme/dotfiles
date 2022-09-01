@@ -1,0 +1,14 @@
+#!/bin/sh
+
+ADDRB_TEMPLATE=""
+
+birthdays=$(addrb -birthdays)
+if [ "$birthdays" != "" ]
+then 
+  notify-send \
+    -i "${ICONS_PATH}/calendar_$(date +%d).svg" \
+    -a "addrb" \
+    "Birthdays" \
+    "$birthdays"
+fi 
+

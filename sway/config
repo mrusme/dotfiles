@@ -517,6 +517,9 @@ exec openrgb -p sea
 # Sync taskwarrior and show overdue tasks notification
 exec /usr/local/bin/overdue-tasks
 
+# Show contact birthdays notification
+exec /usr/local/bin/birthdays
+
 # KeePassXC
 exec /usr/local/bin/passwordmanager
 
