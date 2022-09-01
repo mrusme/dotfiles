@@ -179,6 +179,7 @@ export ADDRB_TEMPLATE="${HOME}/.config/addrb.tmpl"
 # https://github.com/Cloudef/bemenu
 export BEMENU_OPTS="-n -c -s -i \
   -W 0.2 -H 26 -B 2 -l 10 \
+  -p '▲' -P '' \
   --fn ProggyVector 9 \
   --nb #040606aa --nf #bde7e5ff \
   --ab #040606aa --af #bde7e5ff \
@@ -189,7 +190,7 @@ export BEMENU_OPTS="-n -c -s -i \
 
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
-# ║ ${PATH}                                                                      ║
+# ║ ${PATH}                                                                    ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
 if [ "${OS}" = "darwin" ]
@@ -559,6 +560,38 @@ then
         *)           printf "aptitude: '%s' - unknown action\n" "$1" ;;
       esac
     fi
+  }
+fi
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ Gentoo packages helper                                                     ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+
+if __is_available equery
+then
+  function __packages_list() {
+    case "$1" in 
+      nongentoo)
+        eselect --brief repository list -i \
+        | awk '{ print $1 }' \
+        | while read -r repo; \
+          do 
+            [ "$repo" != "gentoo" ]  && equery has repository "$repo"; \
+          done
+        ;;
+      9999)
+        equery list '*' | rg '\-9999'
+        ;;
+      *) 
+        printf "unknown: %s\n" "$1"
+        ;;
+    esac 
+  }
+
+  function packages() {
+    case "$1" in
+      list) __packages_list "${@:2}";;
+    esac
   }
 fi
 
