@@ -95,8 +95,6 @@ so v0.4.9:
     so
 spotify-tui v0.25.0 (https://github.com/Rigellute/spotify-tui.git#c4dcf6b9):
     spt
-spotifyd v0.3.3 (https://github.com/Spotifyd/spotifyd.git#993336f7):
-    spotifyd
 taskwarrior-tui v0.23.5 (/home/mrus/projects/github/taskwarrior-tui):
     taskwarrior-tui
 tealdeer v1.5.0:
