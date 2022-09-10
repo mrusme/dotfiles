@@ -77,7 +77,7 @@ Plug 'mhartington/formatter.nvim'
 "Plug 'plasticboy/vim-markdown'
 Plug 'leafgarland/typescript-vim'
 Plug 'elixir-lang/vim-elixir'
-"Plug 'fatih/vim-go'
+Plug 'fatih/vim-go'
 Plug 'rust-lang/rust.vim'
 Plug 'cespare/vim-toml'
 Plug 'moll/vim-node'
@@ -492,6 +492,7 @@ augroup END
 " ╚════════════════════════════════════════════════════════════════════════════╝
 
 let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
+let g:EditorConfig_max_line_indicator = "line"
 au FileType gitcommit let b:EditorConfig_disable = 1
 
 
