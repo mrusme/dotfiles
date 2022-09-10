@@ -1,0 +1,10 @@
+#!/bin/sh
+
+RUNNING_CONTAINERS=$(docker ps --format "{{.ID}} | {{.Names}} | {{.Image}} | {{.Ports}} | {{.Status}}")
+RUNNING_CONTAINERS_STR=$(printf "%s" "$RUNNING_CONTAINERS" | sed ':a;N;$!ba;s/\n/\\n/g; s/"/\\"/g')
+NUMBER_RUNNING_CONTAINERS=$(printf "%s\n" "$RUNNING_CONTAINERS" | wc -l)
+NUMBER_TOTAL_CONTAINERS=$(docker ps -qa | wc -l)
+
+printf "{\"text\": \"  <span color='#aaaaaa'>%s</span> [<span color='#aaaaaa'>%s</span>]\", \"tooltip\": \"$RUNNING_CONTAINERS_STR\", \"alt\": \"\", \"class\": \"\" }" \
+  "$NUMBER_RUNNING_CONTAINERS" "$NUMBER_TOTAL_CONTAINERS"
+
