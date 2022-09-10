@@ -90,9 +90,9 @@
   },
 
   "custom/docker": {
-    "format": "  {}",
+    "format": "{}",
     "return-type": "json",
-    "exec": "/usr/local/bin/get-running-docker-containers",
+    "exec": "/usr/local/bin/docker-containers",
     "exec-if": "rc-service docker status",
     "interval": 30
   },
@@ -246,7 +246,7 @@
 
   "clock": {
     "interval": 60,
-    "format": "  <span color='#aaaaaa'>{:%e %b %Y %I:%M %p}</span>",
+    "format": "  <span color='#aaaaaa'>{:<span color='#ffffff'>%a</span> %e %b %Y <span color='#ffffff'>%I:%M</span> %p}</span>",
     "tooltip": true,
     "tooltip-format": "<big>{:%B %Y}</big>\n<tt>{calendar}</tt>"
   }
