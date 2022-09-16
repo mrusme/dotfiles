@@ -930,6 +930,21 @@ function rip() {
     "$1"
 }
 
+# Works with YouTube songs and live streams as well as Twitch streams, e.g.:
+# $ listen to https://www.twitch.tv/whistleface
+function listen() {
+  url="$1"
+  if [ "$1" = "to" ]
+  then 
+    url="$2"
+  fi 
+
+  mpv \
+    --quiet \
+    --no-video \
+    "$url"
+}
+
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
 # ║ addrb (https://github.com/mrusme/addrb)                                    ║
