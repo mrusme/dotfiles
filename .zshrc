@@ -120,13 +120,16 @@ __is_available nvim \
 if [ -n "${SSH_CONNECTION}" ]
 then
   export BROWSER="w3m"
+  export OPENER="w3m"
 else
   if [ "${OS}" = "linux" ]
   then
     export BROWSER="/usr/local/bin/browser"
+    export OPENER="xdg-open"
   elif [ "${OS}" = "darwin" ]
   then
     export BROWSER="open"
+    export OPENER="open"
   fi
 fi
 
