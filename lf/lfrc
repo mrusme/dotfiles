@@ -2,6 +2,8 @@ set shell zsh
 set shellopts '-eu'
 set ifs "\n"
 set scrolloff 10
+set drawbox
+
 map <enter> shell
 
 # execute file
@@ -15,14 +17,15 @@ map X !$f
 set previewer ~/.config/lf/scope.wrapper.sh
 map i $LESSOPEN='| ~/.config/lf/scope.wrapper.sh %s' less -R $f
 
-# custom 'open' command
-#cmd open ${{
-#    test -L $f && f=$(readlink -f $f)
-#    case $(file --mime-type $f -b) in
-#        text/*) $EDITOR $fx;;
-#        *) for f in $fx; do setsid $OPENER $f > /dev/null 2> /dev/null & done;;
-#    esac
-#}}
+cmd open ${{
+    test -L $f && f=$(readlink -f $f)
+    case $(file --mime-type $f -b) in
+        text/*) $EDITOR $fx;;
+        image/*) imv $fx;;
+        video/*) vlc $fx;;
+        *) for f in $fx; do setsid $OPENER $f > /dev/null 2> /dev/null & done;;
+    esac
+}}
 
 # define a custom 'rename' command without prompt for overwrite
 # cmd rename %[ -e $1 ] && printf "file exists" || mv $f $1

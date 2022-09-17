@@ -168,18 +168,18 @@ handle_image() {
             exit 7;;
 
         ## Video
-        # video/*)
-        #     # Get embedded thumbnail
-        #     ffmpeg -i "${FILE_PATH}" -map 0:v -map -0:V -c copy "${IMAGE_CACHE_PATH}" && exit 6
-        #     # Get frame 10% into video
-        #     ffmpegthumbnailer -i "${FILE_PATH}" -o "${IMAGE_CACHE_PATH}" -s 0 && exit 6
-        #     exit 1;;
+        video/*)
+            # Get embedded thumbnail
+            ffmpeg -i "${FILE_PATH}" -map 0:v -map -0:V -c copy "${IMAGE_CACHE_PATH}" && exit 6
+            # Get frame 10% into video
+            ffmpegthumbnailer -i "${FILE_PATH}" -o "${IMAGE_CACHE_PATH}" -s 0 && exit 6
+            exit 1;;
 
         ## Audio
-        # audio/*)
-        #     # Get embedded thumbnail
-        #     ffmpeg -i "${FILE_PATH}" -map 0:v -map -0:V -c copy \
-        #       "${IMAGE_CACHE_PATH}" && exit 6;;
+        audio/*)
+            # Get embedded thumbnail
+            ffmpeg -i "${FILE_PATH}" -map 0:v -map -0:V -c copy \
+              "${IMAGE_CACHE_PATH}" && exit 6;;
 
         ## PDF
         # application/pdf)
