@@ -2,11 +2,11 @@ bandwhich v0.20.0:
     bandwhich
 battop v0.2.4:
     battop
-bingrep v0.10.0:
+bingrep v0.10.1:
     bingrep
 bottom v0.6.8:
     btm
-cargo-update v8.1.4:
+cargo-update v9.0.0:
     cargo-install-update
     cargo-install-update-config
 code-minimap v0.6.4:
@@ -19,13 +19,13 @@ deno v1.24.3:
     deno
 dijo v0.2.7:
     dijo
-du-dust v0.8.2:
+du-dust v0.8.3:
     dust
 eva v0.2.7:
     eva
 gfold v4.0.1:
     gfold
-git-delta v0.13.0:
+git-delta v0.14.0:
     delta
 git-journal v1.8.1:
     git-journal
@@ -40,7 +40,7 @@ hexyl v0.10.0:
     hexyl
 htmlq v0.4.0:
     htmlq
-hyperfine v1.14.0:
+hyperfine v1.15.0:
     hyperfine
 imager v0.3.2:
     imager
@@ -111,9 +111,9 @@ vocage v1.1.0:
     vocage
 websocat v1.10.0:
     websocat
-xplr v0.19.0:
+xplr v0.19.3:
     xplr
 zenith v0.0.2:
     zenith
-zoxide v0.8.2:
+zoxide v0.8.3:
     zoxide
