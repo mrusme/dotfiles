@@ -64,6 +64,7 @@ Plug 'glepnir/dashboard-nvim'
 Plug 'robertbasic/vim-hugo-helper'
 " Plug 'cohama/lexima.vim'
 Plug 'windwp/nvim-autopairs'
+Plug 'tpope/vim-abolish'
 Plug 'lervag/wiki.vim'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
@@ -167,6 +168,10 @@ set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,**/node_modules/**
 
 set spelllang=en,ro,es,fr,de,cjk
 set spellsuggest=best,9
+
+if exists("+colorcolumn")
+  set colorcolumn=80
+endif
 
 if maparg('<C-L>', 'n') ==# ''
   nnoremap <silent> <C-L> :nohlsearch<CR><C-L>
@@ -323,6 +328,7 @@ autocmd BufRead,BufNewFile
 autocmd BufRead,BufNewFile
   \ {neomutt-*,*.eml} 
     \ setlocal tw=72 | 
+    \ setlocal colorcolumn=72 |
     \ setlocal fo=awq | 
     \ setlocal comments+=nb:> | 
     \ setlocal spell |
@@ -364,10 +370,9 @@ colorscheme iceberg
 " EOF
 
 " OVERRIDES
-highlight Normal ctermbg=none
-highlight Normal guibg=none
-highlight NonText ctermbg=none
-highlight NonText guibg=none
+highlight Normal ctermbg=none guibg=none
+highlight NonText ctermbg=none guibg=none
+highlight ColorColumn cterm=reverse ctermbg=238 ctermfg=233 gui=reverse guibg=#3e445e guifg=#0f1117
 highlight EndOfBuffer ctermbg=none guibg=none
 highlight LineNr ctermbg=none guibg=none
 
