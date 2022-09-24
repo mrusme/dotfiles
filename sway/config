@@ -106,7 +106,8 @@ exec wl-paste --watch cliphist store
 exec gentoo-pipewire-launcher
 
 # Desktop notifications
-exec dunst
+#exec dunst
+exec mako
 
 # Music Player daemon
 exec mpd
