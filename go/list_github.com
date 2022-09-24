@@ -20,7 +20,9 @@ github.com/tomnomnom/gron
 github.com/koron/iferr
 github.com/josharian/impl
 github.com/gokcehan/lf
+github.com/minio/mc
 github.com/fatih/motion
+github.com/nats-io/natscli/nats
 github.com/caarlos0/org-stats
 github.com/ericchiang/pup
 github.com/therecipe/qt/cmd/qtdeploy
