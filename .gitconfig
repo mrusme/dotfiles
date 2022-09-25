@@ -57,3 +57,5 @@
 [credential "smtp://marius%40xn--gckvb8fzb.com@127.0.0.1%3a1025"]
   helper = !pass smtp/marius@xn--gckvb8fzb.com
 
+[filter "gomodreplace"]
+	clean = rg -U -v 'replace ((?s)\\(.*\\)|.*)'
