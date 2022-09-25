@@ -1084,6 +1084,8 @@ function dotfiles-update-remote() {
 
     cp "${XDG_CONFIG_HOME}/dunst/dunstrc" "${DOTFILES}/dunst/dunstrc"
 
+    cp "${XDG_CONFIG_HOME}/mako/config" "${DOTFILES}/mako/config"
+
     cp "${XDG_CONFIG_HOME}/mpd/mpd.conf" "${DOTFILES}/mpd/mpd.conf"
 
     cp "${XDG_CONFIG_HOME}/ncmpcpp/config" "${DOTFILES}/ncmpcpp/config"
@@ -1169,6 +1171,9 @@ function dotfiles-update-local() {
 
     mkdir -p "${XDG_CONFIG_HOME}/dunst" 
     cp "${DOTFILES}/dunst/dunstrc" "${XDG_CONFIG_HOME}/dunst/dunstrc" 
+
+    mkdir -p "${XDG_CONFIG_HOME}/mako" 
+    cp "${DOTFILES}/mako/config" "${XDG_CONFIG_HOME}/mako/config" 
 
     mkdir -p "${XDG_CONFIG_HOME}/mpd" 
     cp "${DOTFILES}/mpd/mpd.conf" "${XDG_CONFIG_HOME}/mpd/mpd.conf" 
