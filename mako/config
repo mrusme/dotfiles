@@ -10,6 +10,13 @@ font=ProggyVector 9
 max-icon-size=38
 padding=12
 
+background-color=#000000aa
+text-color=#ffffff
+border-color=#ccccccdd
+border-size=2
+border-radius=5
+default-timeout=10000
+
 [urgency=low]
 background-color=#000000aa
 text-color=#aaaaaa
