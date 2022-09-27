@@ -241,7 +241,7 @@
       "car": "",
       "default": ["", ""]
     },
-    "on-click": "pavucontrol"
+    "on-click": "pavucontrol-qt"
   },
 
   "clock": {
