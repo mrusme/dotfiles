@@ -155,7 +155,9 @@ export MOZ_ENABLE_WAYLAND="1"
 export MOZ_USE_XINPUT2="1"
 
 # Qt
-export QT_STYLE_OVERRIDE="kvantum"
+#export QT_STYLE_OVERRIDE="kvantum"
+export QT_QPA_PLATFORM="wayland-egl"
+export QT_QPA_PLATFORMTHEME="qt5ct"
 
 # https://github.com/oz/tz/
 export TZ_LIST="Pacific/Honolulu;America/Panama;\
