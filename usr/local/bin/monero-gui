@@ -1,4 +1,4 @@
 #!/bin/sh
-cd ~/apps/monero-gui-v*/
-exec ./monero-wallet-gui.AppImage
+~/projects/github/monero-gui/build/release/bin/monero-wallet-gui
+
 
