@@ -25,6 +25,10 @@ eva v0.2.7:
     eva
 gfold v4.0.1:
     gfold
+git-cliff v0.9.2:
+    git-cliff
+    git-cliff-completions
+    git-cliff-mangen
 git-delta v0.14.0:
     delta
 git-journal v1.8.1:
