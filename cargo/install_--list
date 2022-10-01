@@ -54,6 +54,8 @@ jwt-cli v5.0.3:
     jwt
 kmon v1.6.0:
     kmon
+lemmeknow v0.6.0:
+    lemmeknow
 librespot v0.5.0-dev (https://github.com/librespot-org/librespot.git#5451d149):
     librespot
 mdcat v0.28.0:
