@@ -107,6 +107,9 @@ if has('syntax') && !exists('g:syntax_on')
   syntax enable
 endif
 
+" Jeez, who even wants that ...
+set mouse=
+
 set clipboard=unnamed,unnamedplus
 
 set encoding=utf-8
@@ -176,16 +179,6 @@ endif
 if maparg('<C-L>', 'n') ==# ''
   nnoremap <silent> <C-L> :nohlsearch<CR><C-L>
 endif
-
-inoremap <C-h> <Left>
-inoremap <C-j> <Down>
-inoremap <C-k> <Up>
-inoremap <C-l> <Right>
-
-cnoremap <C-h> <Left>
-cnoremap <C-j> <Down>
-cnoremap <C-k> <Up>
-cnoremap <C-l> <Right>
 
 inoremap <C-U> <C-G>u<C-U>
 
@@ -471,7 +464,7 @@ function! FernInit() abort
         \   "\<Plug>(fern-action-collapse)",
         \ )
   nmap <buffer> <CR> <Plug>(fern-my-open-expand-collapse)
-  nmap <buffer> <2-LeftMouse> <Plug>(fern-my-open-expand-collapse)
+  "nmap <buffer> <2-LeftMouse> <Plug>(fern-my-open-expand-collapse)
   nmap <buffer> m <Plug>(fern-action-mark:toggle)j
   nmap <buffer> N <Plug>(fern-action-new-file)
   nmap <buffer> K <Plug>(fern-action-new-dir)
@@ -1118,16 +1111,55 @@ EOF
 
 lua << EOF
 require('Comment').setup({
+  ---Add a space b/w comment and the line
+  padding = true,
+  ---Whether the cursor should stay at its position
+  sticky = true,
+  ---Lines to be ignored while (un)comment
+  ignore = nil,
+  ---LHS of toggle mappings in NORMAL mode
   toggler = {
     ---Line-comment toggle keymap
     line = 'gcc',
     ---Block-comment toggle keymap
     block = 'gbc',
   },
+  ---LHS of operator-pending mappings in NORMAL and VISUAL mode
+  opleader = {
+    ---Line-comment keymap
+    line = 'gc',
+    ---Block-comment keymap
+    block = 'gb',
+  },
+  ---LHS of extra mappings
+  extra = {
+    ---Add comment on the line above
+    above = 'gcO',
+    ---Add comment on the line below
+    below = 'gco',
+    ---Add comment at the end of line
+    eol = 'gcA',
+  },
+  ---Enable keybindings
+  mappings = {
+    ---Operator-pending mapping; 
+    ---`gcc` `gbc` `gc[count]{motion}` `gb[count]{motion}`
+    basic = true,
+    ---Extra mapping; 
+    ---`gco`, `gcO`, `gcA`
+    extra = true,
+    ---Extended mapping; 
+    ---`g>` `g<` `g>[count]{motion}` `g<[count]{motion}`
+    extended = false,
+  },
+  ---Function to call before (un)comment
+  pre_hook = nil,
+  ---Function to call after (un)comment
+  post_hook = nil,
 })
 EOF
 nmap <C-_><C-_> gcc
-vmap <C-_><C-_> gbc<Esc>
+vmap <C-_><C-_> gc<Esc>
 
 
 " ╔════════════════════════════════════════════════════════════════════════════╗
