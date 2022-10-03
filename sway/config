@@ -131,6 +131,16 @@ input "1133:50475:Logitech_USB_Receiver_Mouse" {
   #accel_profile adaptive
 }
 
+# RAMA M60-A
+input "21057:1546:RAMA_WORKS_RAMA_WORKS_M60-A_Keyboard" {
+  repeat_delay 200
+  repeat_rate 30
+}
+input "21057:1546:RAMA_WORKS_RAMA_WORKS_M60-A" {
+  repeat_delay 200
+  repeat_rate 30
+}
+
 
 ##############################################################################
 ## USE wev TO FIND KEYS AND STOP LOOKING UP HOW TO DO IT EVERY FSCKING TIME ##
