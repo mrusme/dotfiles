@@ -10,7 +10,7 @@
 ├── stylelint-lsp@1.2.4
 ├── svelte-language-server@0.14.36
 ├── terminalizer@0.9.0
-├── typescript-language-server@2.0.0
+├── typescript-language-server@2.0.1
 ├── typescript@4.8.4
 ├── vim-language-server@2.2.10
 ├── vscode-langservers-extracted@4.4.0
