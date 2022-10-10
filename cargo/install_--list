@@ -13,7 +13,7 @@ code-minimap v0.6.4:
     code-minimap
 conclusive v1.0.0:
     conclusive
-csview v1.2.1:
+csview v1.2.2:
     csview
 deno v1.26.0:
     deno
@@ -66,7 +66,7 @@ pastel v0.9.0:
     pastel
 pipe-rename v1.5.0:
     renamer
-procs v0.13.1:
+procs v0.13.2:
     procs
 radicle-cli v0.5.1 (https://seed.alt-clients.radicle.xyz/radicle-cli.git#53d4c844):
     git-remote-rad
@@ -103,7 +103,7 @@ spotify-tui v0.25.0 (https://github.com/Rigellute/spotify-tui.git#c4dcf6b9):
     spt
 taskwarrior-tui v0.23.5 (/home/mrus/projects/github/taskwarrior-tui):
     taskwarrior-tui
-tealdeer v1.5.0:
+tealdeer v1.6.0:
     tldr
 tickers v0.1.0:
     tickers
@@ -117,7 +117,7 @@ vocage v1.1.0:
     vocage
 websocat v1.11.0:
     websocat
-xplr v0.19.3:
+xplr v0.19.4:
     xplr
 zenith v0.0.2:
     zenith
