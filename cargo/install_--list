@@ -66,7 +66,7 @@ pastel v0.9.0:
     pastel
 pipe-rename v1.5.0:
     renamer
-procs v0.13.2:
+procs v0.13.3:
     procs
 radicle-cli v0.5.1 (https://seed.alt-clients.radicle.xyz/radicle-cli.git#53d4c844):
     git-remote-rad
