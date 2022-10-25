@@ -21,9 +21,9 @@ dijo v0.2.7:
     dijo
 du-dust v0.8.3:
     dust
-eva v0.2.7:
+eva v0.3.0:
     eva
-gfold v4.0.1:
+gfold v4.1.0:
     gfold
 git-cliff v0.9.2:
     git-cliff
@@ -40,6 +40,8 @@ gpg-tui v0.9.1:
     gpg-tui-completions
 gping v1.4.0:
     gping
+helix-term v0.6.0 (https://github.com/helix-editor/helix#801984c7):
+    hx
 hexyl v0.10.0:
     hexyl
 htmlq v0.4.0:
@@ -52,13 +54,13 @@ jless v0.8.0:
     jless
 jwt-cli v5.0.3:
     jwt
-kmon v1.6.0:
+kmon v1.6.2:
     kmon
-lemmeknow v0.6.0:
+lemmeknow v0.7.0:
     lemmeknow
 librespot v0.5.0-dev (https://github.com/librespot-org/librespot.git#5451d149):
     librespot
-mdcat v0.28.0:
+mdcat v0.29.0:
     mdcat
 neovide v0.10.0 (https://github.com/neovide/neovide#697480b9):
     neovide
@@ -95,7 +97,7 @@ rustscan v2.1.0:
     rustscan
 shellcaster v2.0.1:
     shellcaster
-silicon v0.4.3:
+silicon v0.5.1:
     silicon
 so v0.4.9:
     so
