@@ -227,14 +227,17 @@ bindsym $mod+F12 exec pulsemixer --change-volume +10
 # Route audio to display
 bindsym $mod+Shift+F1 exec /usr/local/bin/audio-router lg
 
+# Route audio to Nommo speakers
+bindsym $mod+Shift+F2 exec /usr/local/bin/audio-router nommo
+
 # Route audio to MOTU
-bindsym $mod+Shift+F2 exec /usr/local/bin/audio-router motu
+bindsym $mod+Shift+F3 exec /usr/local/bin/audio-router motu
 
 # Route audio to SRS-XB23
-bindsym $mod+Shift+F3 exec /usr/local/bin/audio-router srsxb
+bindsym $mod+Shift+F4 exec /usr/local/bin/audio-router srsxb
 
 # Route audio to B&O H9i
-bindsym $mod+Shift+F4 exec /usr/local/bin/audio-router h9i
+bindsym $mod+Shift+F5 exec /usr/local/bin/audio-router h9i
 
 
 # Screenshot whole screen
