@@ -3,7 +3,10 @@
 
 case $1 in
   "lg")
-    set_output=$(pactl list short sinks | rg -i 'hdmi' | cut -f2)
+    set_output=$(pactl list short sinks | rg -i 'hdmi-stereo' | cut -f2)
+    ;;
+  "nommo")
+    set_output=$(pactl list short sinks | rg -i 'analog-stereo' | cut -f2)
     ;;
   "motu")
     set_output=$(pactl list short sinks | rg -i 'motu.m2' | cut -f2)
