@@ -47,6 +47,7 @@ Plug 'lambdalisue/fern-git-status.vim'
 Plug 'lambdalisue/fern-hijack.vim'
 Plug 'lambdalisue/fern-bookmark.vim'
 Plug 'lambdalisue/fern-mapping-git.vim'
+Plug 'ggandor/leap.nvim'
 Plug 'ggandor/lightspeed.nvim'
 Plug 'lambdalisue/glyph-palette.vim'
 Plug 'glepnir/lspsaga.nvim'
@@ -820,6 +821,12 @@ nnoremap <silent> <A-d> <cmd>lua require('lspsaga.floaterm').open_float_terminal
 tnoremap <silent> <A-d> <C-\><C-n>:lua require('lspsaga.floaterm').close_float_terminal()<CR>
 
 highlight link LspSagaFinderSelection Search
+
+
+" ╔════════════════════════════════════════════════════════════════════════════╗
+" ║ Leap                                                                       ║
+" ╚════════════════════════════════════════════════════════════════════════════╝
+lua require('leap').add_default_mappings()
 
 
 " ╔════════════════════════════════════════════════════════════════════════════╗
