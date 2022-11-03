@@ -915,7 +915,7 @@ function jitsi-link() {
 
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
-# ║ Audio & video                                                              ║
+# ║ Multimedia                                                                 ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
 function video-to-gif() {
@@ -951,6 +951,14 @@ function listen() {
     --quiet \
     --no-video \
     "$url"
+}
+
+function compress-all-jpgs() {
+  find ./ \
+    -iname '*.jpg' \
+    -type f \
+    -size +2M \
+    -exec imager -f jpeg -i "{}" -o "{}" \;
 }
 
 
@@ -1105,6 +1113,8 @@ function dotfiles-update-remote() {
 
     cp "${XDG_CONFIG_HOME}/waybar/"* "${DOTFILES}/waybar/"
 
+    cp "${XDG_CONFIG_HOME}/wireplumber/main.lua.d/"* "${DOTFILES}/wireplumber/main.lua.d/"
+
     cp "${XDG_CONFIG_HOME}/wofi/"* "${DOTFILES}/wofi/"
 
     cp "${HOME}/.local/share/applications/browser.desktop" "${DOTFILES}/local/share/applications/browser.desktop"
@@ -1200,6 +1210,9 @@ function dotfiles-update-local() {
 
     mkdir -p "${XDG_CONFIG_HOME}/waybar" 
     cp "${DOTFILES}/waybar/"* "${XDG_CONFIG_HOME}/waybar/" 
+
+    mkdir -p "${XDG_CONFIG_HOME}/wireplumber/main.lua.d" 
+    cp "${DOTFILES}/wireplumber/main.lua.d/"* "${XDG_CONFIG_HOME}/wireplumber/main.lua.d/" 
 
     mkdir -p "${XDG_CONFIG_HOME}/wofi" 
     cp "${DOTFILES}/wofi/"* "${XDG_CONFIG_HOME}/wofi/" 
