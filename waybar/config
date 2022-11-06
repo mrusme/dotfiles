@@ -29,8 +29,8 @@
     "custom/crypto",
     "tray",
     "sway/mode",
-    "custom/zeit",
-    "mpd"
+    "custom/zeit"
+    // "mpd"
   ],
   "modules-center": [
     "sway/window"
@@ -130,33 +130,33 @@
     "interval": 10
   },
 
-  "mpd": {
-    "format": "{stateIcon}  <span color='#aaaaaa'>{randomIcon}{repeatIcon}{singleIcon}</span> {artist} - {title}",
-    "format-disconnected": "",
-    "format-stopped": "",
-    "interval": 10,
-    "consume-icons": {
-      "on": " "
-    },
-    "random-icons": {
-      "off": " ",
-      "on": " "
-    },
-    "repeat-icons": {
-      "on": " "
-    },
-    "single-icons": {
-      "on": "1 "
-    },
-    "state-icons": {
-      "paused": "",
-      "playing": ""
-    },
-    "on-scroll-up": "mpc prev",
-    "on-scroll-down": "mpc next",
-    "tooltip-format": "MPD (connected)",
-    "tooltip-format-disconnected": "MPD (disconnected)"
-  },
+  //  "mpd": {
+  //    "format": "{stateIcon}  <span color='#aaaaaa'>{randomIcon}{repeatIcon}{singleIcon}</span> {artist} - {title}",
+  //    "format-disconnected": "",
+  //    "format-stopped": "",
+  //    "interval": 10,
+  //    "consume-icons": {
+  //      "on": " "
+  //    },
+  //    "random-icons": {
+  //      "off": " ",
+  //      "on": " "
+  //    },
+  //    "repeat-icons": {
+  //      "on": " "
+  //    },
+  //    "single-icons": {
+  //      "on": "1 "
+  //    },
+  //    "state-icons": {
+  //      "paused": "",
+  //      "playing": ""
+  //    },
+  //    "on-scroll-up": "mpc prev",
+  //    "on-scroll-down": "mpc next",
+  //    "tooltip-format": "MPD (connected)",
+  //    "tooltip-format-disconnected": "MPD (disconnected)"
+  //  },
 
 
   // -------------------------------------------------------------------------
