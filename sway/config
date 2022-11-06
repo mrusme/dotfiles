@@ -110,7 +110,7 @@ exec gentoo-pipewire-launcher
 exec mako
 
 # Music Player daemon
-exec mpd
+#exec mpd
 
  
 # ╔════════════════════════════════════════════════════════════════════════════╗
