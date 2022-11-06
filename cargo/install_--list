@@ -103,7 +103,7 @@ so v0.4.9:
     so
 spotify-tui v0.25.0 (https://github.com/Rigellute/spotify-tui.git#c4dcf6b9):
     spt
-taskwarrior-tui v0.23.5 (/home/mrus/projects/github/taskwarrior-tui):
+taskwarrior-tui v0.23.6 (https://github.com/kdheepak/taskwarrior-tui#e650e038):
     taskwarrior-tui
 tealdeer v1.6.0:
     tldr
