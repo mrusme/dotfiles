@@ -24,6 +24,7 @@ github.com/minio/mc
 github.com/fatih/motion
 github.com/nats-io/natscli/nats
 github.com/caarlos0/org-stats
+github.com/ssut/payload-dumper-go
 github.com/ericchiang/pup
 github.com/therecipe/qt/cmd/qtdeploy
 github.com/therecipe/qt/cmd/qtminimal
