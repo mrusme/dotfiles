@@ -913,6 +913,11 @@ function jitsi-link() {
   printf "%s\n" "${url}"
 }
 
+function status-update() {
+  T=`mktemp` && curl -so $T https://plan.cat/~mrus && $EDITOR $T && \
+    curl -su mrus -F "plan=<$T" https://plan.cat/stdin
+}
+
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
 # ║ Multimedia                                                                 ║
