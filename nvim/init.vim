@@ -410,10 +410,11 @@ let g:lightline = {
   \ 'active': {
   \   'left': [ [ 'mode', 'paste' ],
   \             [ 'readonly', 'filename', 'gitsign', 'modified' ] ],
-  \   'right': [ [ 'lineinfo' ], [ 'percent' ], [ 'indent', 'fileformat', 'fileencoding', 'filetype', 'branch' ] ]
+  \   'right': [ [ 'lineinfo' ], [ 'percent' ], [ 'indent', 'textwidth', 'fileformat', 'fileencoding', 'filetype', 'branch' ] ]
   \ },
   \ 'component': {
   \   'indent': '%{&expandtab?"spaces":"tabs"}:%{&expandtab?&shiftwidth:&tabstop}',
+  \   'textwidth': '%{&textwidth}',
   \   'gitsign': '%{get(b:,"gitsigns_status","")}',
   \   'branch': '%{get(b:,"gitsigns_head","")}',
   \ },
@@ -826,7 +827,8 @@ highlight link LspSagaFinderSelection Search
 " ╔════════════════════════════════════════════════════════════════════════════╗
 " ║ Leap                                                                       ║
 " ╚════════════════════════════════════════════════════════════════════════════╝
-lua require('leap').add_default_mappings()
+" Conflicts with a lot of mappings (e.g. x), needs further investigation
+" lua require('leap').add_default_mappings()
 
 
 " ╔════════════════════════════════════════════════════════════════════════════╗
