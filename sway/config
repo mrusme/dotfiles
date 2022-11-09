@@ -203,17 +203,14 @@ bindsym $mod+Shift+e exec swaynag -t msg -e bottom -m 'EXIT SWAY SESSION' \
 
 # === Media keys ===
 
-# bindsym $mod+F8 exec playerctl play-pause
-# MPD: Toggle playback
-bindsym $mod+F8 exec mpc toggle
+# Toggle playback
+bindsym $mod+F8 exec playerctl play-pause
 
-# bindsym $mod+F9 exec playerctl next
-# MPD: Next song
-bindsym $mod+F9 exec mpc next
+# Next song
+bindsym $mod+F9 exec playerctl next
 
-# bindsym $mod+F7 exec playerctl previous
-# MPD: Previous song
-bindsym $mod+F7 exec mpc prev
+# Previous song
+bindsym $mod+F7 exec playerctl previous
 
 # Mute audio volume
 bindsym $mod+F10 exec pulsemixer --change-volume -100
