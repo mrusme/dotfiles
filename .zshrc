@@ -719,6 +719,7 @@ function terminal-colors() {
 alias git-crypt-add-myself="git-crypt add-gpg-user \
 4D3899AF73E7F5FE9B39C822272ED814BF63261F"
 alias gpa='git push all "$(git_current_branch)"'
+alias ga.='ga .'
 
 function git-add-all-remote() {
   if git remote | grep -q '^all$'
