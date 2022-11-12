@@ -90,6 +90,8 @@ timeout 600 'swaylock' \
 timeout 900 'swaymsg "output DP-1 dpms off"' resume 'swaymsg "output DP-1 dpms on"' \
 before-sleep 'swaylock'
 
+seat * xcursor_theme Vimix-White 32
+
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
 # ║ Service                                                                    ║
