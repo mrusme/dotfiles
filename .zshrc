@@ -1123,6 +1123,8 @@ function dotfiles-update-remote() {
 
     cp "${XDG_CONFIG_HOME}/wofi/"* "${DOTFILES}/wofi/"
 
+    cp "${XDG_CONFIG_HOME}/xdg-desktop-portal-wlr/config" "${DOTFILES}/xdg-desktop-portal-wlr/config"
+
     cp "${HOME}/.local/share/applications/browser.desktop" "${DOTFILES}/local/share/applications/browser.desktop"
   fi
 
@@ -1222,6 +1224,9 @@ function dotfiles-update-local() {
 
     mkdir -p "${XDG_CONFIG_HOME}/wofi" 
     cp "${DOTFILES}/wofi/"* "${XDG_CONFIG_HOME}/wofi/" 
+
+    mkdir -p "${XDG_CONFIG_HOME}/xdg-desktop-portal-wlr" 
+    cp "${DOTFILES}/xdg-desktop-portal-wlr/config" "${XDG_CONFIG_HOME}/xdg-desktop-portal-wlr/config" 
 
     mkdir -p "${HOME}/.local/share/applications/" 
     cp "${DOTFILES}/local/share/applications/browser.desktop" "${HOME}/.local/share/applications/browser.desktop"
