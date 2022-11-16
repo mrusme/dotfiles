@@ -30,9 +30,9 @@ unset GDK_BACKEND
   --bdr #84a0c6ff"
 
 read -d '\n' browsers << EOF
+chromium
 firefox
 librewolf
-chromium
 tor-browser
 EOF
 
@@ -41,7 +41,7 @@ url="$1"
 # https://github.com/thegeeklab/url-parser
 host=$(url-parser host --url "$url")
 
-selected_browser="firefox"
+selected_browser="chromium"
 
 # if test "${url#*$".onion"}" != "$url"
 if [ "$(expr "$host" : '^.*\.onion$')" -gt 0 ]
