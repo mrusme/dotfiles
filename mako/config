@@ -1,5 +1,5 @@
-anchor=top-center
-text-alignment=center
+anchor=top-right
+text-alignment=left
 width=400
 max-history=10
 sort=-time
