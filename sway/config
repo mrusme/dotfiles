@@ -155,9 +155,9 @@ bindsym $mod+Shift+Slash exec /usr/local/bin/sway-help
 bindsym $mod+Return exec $term
 
 # Open Firefox
-bindsym $mod+backspace exec /usr/local/bin/ff
+bindsym $mod+Ctrl+backspace exec /usr/local/bin/ff
 # Open Firefox (private window)
-bindsym $mod+Shift+backspace exec /usr/local/bin/ff -private-window
+bindsym $mod+Ctrl+Shift+backspace exec /usr/local/bin/ff -private-window
 
 # Open LibreWolf
 bindsym $mod+Alt+backspace exec /usr/local/bin/lw
@@ -165,10 +165,7 @@ bindsym $mod+Alt+backspace exec /usr/local/bin/lw
 bindsym $mod+Alt+Shift+backspace exec /usr/local/bin/lw -private-window
 
 # Open ungoogled Chromium
-bindsym $mod+Ctrl+backspace exec /usr/bin/chromium
-
-# Open Tor Browser
-bindsym $mod+Ctrl+Shift+backspace exec /usr/local/bin/tor-browser
+bindsym $mod+backspace exec /usr/bin/chromium
 
 # Show clipboard (for copying)
 bindsym $mod+Alt+Backslash exec cliphist list \
