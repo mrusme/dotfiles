@@ -2,7 +2,7 @@
 
 device=''
 
-case $1 in
+case "$1" in
   "headphones")
     device='00:09:A7:2A:66:A0'
     ;;
@@ -17,7 +17,7 @@ esac
 
 is_connected=$(bluetoothctl info $device | grep -i 'connected: yes')
 
-case $2 in
+case "$2" in
   "toggle")
     if [ "$is_connected" != "" ]
     then
