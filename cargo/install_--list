@@ -6,7 +6,7 @@ bingrep v0.10.1:
     bingrep
 bottom v0.6.8:
     btm
-cargo-update v11.0.0:
+cargo-update v11.1.0:
     cargo-install-update
     cargo-install-update-config
 code-minimap v0.6.4:
@@ -15,7 +15,7 @@ conclusive v1.0.0:
     conclusive
 csview v1.2.2:
     csview
-deno v1.27.2:
+deno v1.28.1:
     deno
 dijo v0.2.7:
     dijo
@@ -33,7 +33,7 @@ git-delta v0.14.0:
     delta
 git-journal v1.8.1:
     git-journal
-gitui v0.21.0:
+gitui v0.22.0:
     gitui
 gpg-tui v0.9.1:
     gpg-tui
