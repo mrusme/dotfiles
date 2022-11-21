@@ -1,0 +1,19 @@
+#!/bin/sh
+
+__show_notification_for() 
+{
+  caldr in "$1" days | rg -r '$1' '^- (.*)' | while read -r event
+  do 
+    notify-send \
+      -i "${ICONS_PATH}/calendar_$(date --date="$1 days" +%d).svg" \
+      -a calendar \
+      -u "$2" \
+      "Calendar" \
+      "$event"
+  done
+}
+
+__show_notification_for 1 critical
+__show_notification_for 2 normal
+__show_notification_for 3 low
+
