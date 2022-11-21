@@ -180,6 +180,10 @@ export GELD_DB="${HOME}/cloud/.geld.db"
 export ADDRB_DB="${HOME}/.cache/addrb.db"
 export ADDRB_TEMPLATE="${HOME}/.config/addrb.tmpl"
 
+# https://github.com/mrusme/caldr
+export CALDR_DB="${HOME}/.cache/caldr.db"
+export CALDR_TEMPLATE="${HOME}/.config/caldr.tmpl"
+
 # Import color scheme via wal
 #__is_available wal linux \ 
 #&& (wal -r &)
@@ -982,6 +986,23 @@ function addrb() {
   fi
   
   command addrb $@
+}
+
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ caldr (https://github.com/mrusme/caldr)                                    ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+
+function caldr() {
+  match=$(echo "$*" | grep -o '\-r')
+  if [ "$match" != "" ]
+  then 
+    export CARDDAV_USERNAME="$(pass show dav/username)"
+    export CARDDAV_PASSWORD="$(pass show dav/password)"
+    export CARDDAV_ENDPOINT="$(pass show dav/endpoint)"
+  fi
+  
+  command caldr $@
 }
 
 
