@@ -526,10 +526,13 @@ exec openrgb -p sea
 # Syncthing
 #exec syncthing serve --no-browser
 
-# Sync taskwarrior and show overdue tasks notification
+# Show calendar notifications 
+exec /usr/local/bin/calendar-notifications
+
+# Sync taskwarrior and show overdue tasks notifications
 exec /usr/local/bin/overdue-tasks
 
-# Show contact birthdays notification
+# Show contact birthdays notifications
 exec /usr/local/bin/birthdays
 
 # KeePassXC
