@@ -73,9 +73,12 @@ Plug 'nvim-telescope/telescope.nvim'
 Plug 'simnalamburt/vim-mundo'
 Plug 'kyazdani42/nvim-web-devicons'
 " Plug 'folke/trouble.nvim'
-
 Plug 'mhartington/formatter.nvim'
+Plug 'folke/which-key.nvim'
+" Plug 'RRethy/nvim-base16'
+" Plug 'danilamihailov/beacon.nvim'
 
+" Syntax / Language integrations
 "Plug 'plasticboy/vim-markdown'
 Plug 'leafgarland/typescript-vim'
 Plug 'elixir-lang/vim-elixir'
@@ -86,10 +89,7 @@ Plug 'moll/vim-node'
 Plug 'docker/docker'
 Plug 'evanleck/vim-svelte', {'branch': 'main'}
 Plug 'vim-scripts/dbext.vim'
-
-Plug 'folke/which-key.nvim'
-" Plug 'RRethy/nvim-base16'
-" Plug 'danilamihailov/beacon.nvim'
+Plug 'ledger/vim-ledger'
 
 call plug#end()
 
@@ -1025,6 +1025,14 @@ let g:wiki_link_target_type = 'md'
 " let g:go_asmfmt_autosave=0
 " let g:go_def_mapping_enabled = 0
 " au FileType go map <C-b> <Plug>(go-build)
+
+
+" ╔════════════════════════════════════════════════════════════════════════════╗
+" ║ Svelte                                                                     ║
+" ╚════════════════════════════════════════════════════════════════════════════╝
+
+let g:svelte_indent_script = 0
+let g:svelte_indent_style = 0
 
 
 " ╔════════════════════════════════════════════════════════════════════════════╗
