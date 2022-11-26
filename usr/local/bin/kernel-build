@@ -1,0 +1,41 @@
+#!/bin/sh
+
+printf "/usr/src/linux points to %s\nContinue? (Y/n) " \
+  "$(readlink -f /usr/src/linux)"
+read -r yn 
+
+if [ "$yn" != "y" ] && [ "$yn" != "Y" ]
+then 
+  exit 1
+fi 
+
+echo cd /usr/src/linux || exit 1
+
+make modules_prepare \
+&& make -j32 \
+&& make modules_install \
+&& make install \
+&& emerge --ask @module-rebuild \
+&& genkernel initramfs \
+  --firmware \
+  --kernel-config=/usr/src/linux/.config \
+  --keymap \
+  --makeopts=-j32 \
+  --mountboot \
+  --no-clean \
+  --zfs \
+&& mount -v /dev/nvme1n1p2 /mnt/mirror \
+&& mount -v /dev/nvme1n1p1 /mnt/mirror/efi/ \
+&& rsync -avH --delete /boot/* /mnt/mirror/. \
+&& ls -la /mnt/mirror \
+&& umount -v /mnt/mirror/efi/ \
+&& umount -v /mnt/mirror \
+&& grub-mkconfig -o /boot/grub/grub.cfg \
+&& grub-install \
+  --target=x86_64-efi \
+  --efi-directory=/boot/efi \
+  --bootloader-id=Gentoo \
+  --recheck \
+  --no-floppy \
+&& printf "\nKernel built and installed successfully.\n\n"
+
