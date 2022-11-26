@@ -90,6 +90,7 @@ Plug 'docker/docker'
 Plug 'evanleck/vim-svelte', {'branch': 'main'}
 Plug 'vim-scripts/dbext.vim'
 Plug 'ledger/vim-ledger'
+Plug 'chrisbra/Colorizer'
 
 call plug#end()
 
