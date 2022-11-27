@@ -15,7 +15,7 @@ conclusive v1.0.0:
     conclusive
 csview v1.2.2:
     csview
-deno v1.28.1:
+deno v1.28.2:
     deno
 dijo v0.2.7:
     dijo
@@ -25,7 +25,7 @@ eva v0.3.1:
     eva
 gfold v4.1.0:
     gfold
-git-cliff v0.9.2:
+git-cliff v0.10.0:
     git-cliff
     git-cliff-completions
     git-cliff-mangen
@@ -33,7 +33,7 @@ git-delta v0.14.0:
     delta
 git-journal v1.8.1:
     git-journal
-gitui v0.22.0:
+gitui v0.22.1:
     gitui
 gpg-tui v0.9.1:
     gpg-tui
