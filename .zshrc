@@ -1053,19 +1053,6 @@ function gh() {
 }
 
 
-# ╔════════════════════════════════════════════════════════════════════════════╗
-# ║ duplicacy                                                                  ║
-# ╚════════════════════════════════════════════════════════════════════════════╝
-
-function duplicacy() {
-  if ! sudo /bin/mount /dev/sda1 /mnt/backup
-  then
-    return 1 
-  fi 
-  command duplicacy 
-  sudo /bin/umount /mnt/backup
-}
-
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
 # ║ dotfiles-update-remote                                                     ║
