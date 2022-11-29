@@ -1,73 +1,58 @@
+# ╔════════════════════════════════════════════════════════════════════════════╗ 
+# ║____________________________________________________________________________║
+# ║_____________/\\\\\\\\\\\\__/\\\\\\\\\\\__/\\\\\\\\\\\\\\\__________________║
+# ║____________/\\\//////////__\/////\\\///__\///////\\\/////__________________║
+# ║____________/\\\_________________\/\\\___________\/\\\______________________║
+# ║____________\/\\\____/\\\\\\\_____\/\\\___________\/\\\_____________________║
+# ║_____________\/\\\___\/////\\\_____\/\\\___________\/\\\____________________║
+# ║______________\/\\\_______\/\\\_____\/\\\___________\/\\\___________________║
+# ║_______________\/\\\_______\/\\\_____\/\\\___________\/\\\__________________║
+# ║________________\//\\\\\\\\\\\\/___/\\\\\\\\\\\_______\/\\\_________________║
+# ║__________________\////////////____\///////////________\///_________________║
+# ║____________________________________________________________________________║
+# ║      xn--gckvb8fzb.com * github.com/mrusme * marius@xn--gckvb8fzb.com      ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ General                                                                    ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
 [user]
   name = マリウス
   email = marius@xn--gckvb8fzb.com
   signingkey = 4D3899AF73E7F5FE9B39C822272ED814BF63261F
+
 [core]
   excludesfile = ~/.gitignore_global
   pager = delta
   editor = nvim
-[interactive]
-  diffFilter = delta --color-only
-[delta]
-  features = side-by-side line-numbers decorations
-  whitespace-error-style = 22 reverse
-[delta "decorations"]
-  commit-decoration-style = bold yellow box ul
-  file-style = bold yellow ul
-  file-decoration-style = none
-[merge]
-  tool = vimdiff
-[mergetool]
-  prompt = true
-[mergetool "vimdiff"]
-  cmd = nvim -d "$LOCAL" "$REMOTE" "$MERGED" -c 'wincmd w' -c 'wincmd J'
-[difftool]
-  prompt = false
-[diff]
-  tool = vimdiff
+
+[format]
+  signoff = yes
+
+[gpg]
+  program = gpg
+
+[init]
+  defaultBranch = master
+
 [commit]
   gpgsign = true
   verbose = true
-[filter "lfs"]
-  clean = git-lfs clean -- %f
-  smudge = git-lfs smudge -- %f
-  process = git-lfs filter-process
-  required = true
-[format]
-  signoff = yes
-[gpg]
-  program = gpg2
+
+[fetch]
+  prune = true
+
 [pull]
   rebase = true
+
 [push]
   gpgsign = false
   simple = true
   autoSetupRemote = true
-[init]
-  defaultBranch = master
-[url "ssh://git@github.com/"]
-  insteadOf = https://github.com/
-[url "ssh://git@git.sr.ht/"]
-  insteadOf = https://git.sr.ht/
-[sendemail]
-  smtpserver = 127.0.0.1
-  smtpuser = marius@xn--gckvb8fzb.com
-  smtpencryption = tls
-  smtpserverport = 1025
-  smtpsslcertpath =
-[credential "smtp://marius%40xn--gckvb8fzb.com@127.0.0.1%3a1025"]
-  helper = !pass smtp/marius@xn--gckvb8fzb.com
 
-# To use this filter, add a .gitattributes file with the following line to the 
-# root of the Go project: 
-#
-# ```
-# go.mod filter=gomodreplace
-# ```
-[filter "gomodreplace"]
-  clean = rg -U -v 'replace ((?s)\\(.*\\)|.*)'
-
-# https://www.atlassian.com/git/tutorials/setting-up-a-repository/git-config
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ Colors                                                                     ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
 [color]
   ui = true
 [color "branch"]
@@ -84,10 +69,270 @@
   whitespace = magenta
 [color "status"]
   added = cyan
-  changed = magenta
+  changed = yellow
   untracked = red
 
-[fetch]
-  prune = true
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ Merging & Diffing                                                          ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+[merge]
+  tool = vimdiff
+
+[mergetool]
+  prompt = true
+
+[mergetool "vimdiff"]
+  cmd = nvim -d "$LOCAL" "$REMOTE" "$MERGED" -c 'wincmd w' -c 'wincmd J'
+
+[interactive]
+  diffFilter = delta --color-only
+
+[delta]
+  features = side-by-side line-numbers decorations
+  whitespace-error-style = 22 reverse
+
+[delta "decorations"]
+  commit-decoration-style = bold yellow box ul
+  file-style = bold yellow ul
+  file-decoration-style = none
+
+[difftool]
+  prompt = false
+
+[diff]
+  tool = vimdiff
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ GitHub                                                                     ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+[url "ssh://git@github.com/"]
+  insteadOf = https://github.com/
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ GitLab                                                                     ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+[url "ssh://git@gitlab.com/"]
+  insteadOf = https://gitlab.com/
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ Codeberg                                                                   ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+[url "ssh://git@codeberg.org/"]
+  insteadOf = https://codeberg.org/
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ sr.ht                                                                      ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+[url "ssh://git@git.sr.ht/"]
+  insteadOf = https://git.sr.ht/
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ sendemail                                                                  ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+[sendemail]
+  smtpserver = 127.0.0.1
+  smtpuser = marius@xn--gckvb8fzb.com
+  smtpencryption = tls
+  smtpserverport = 1025
+  smtpsslcertpath =
+
+[credential "smtp://marius%40xn--gckvb8fzb.com@127.0.0.1%3a1025"]
+  helper = !pass smtp/marius@xn--gckvb8fzb.com
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ rerere                                                                     ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
 [rerere]
   enabled = true
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ Git Flow                                                                   ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+[gitflow "branch"]
+  master = master
+  develop = develop
+
+[gitflow "prefix"]
+  feature = feature/
+  release = release/
+  hotfix = hotfix/
+  bugfix = bugfix/
+  support = support/
+  versiontag = v
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ go.mod replace                                                             ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+# ```
+# go.mod filter=gomodreplace
+# ```
+[filter "gomodreplace"]
+  clean = rg -U -v 'replace ((?s)\\(.*\\)|.*)'
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ LFS                                                                        ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+[filter "lfs"]
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+  required = true
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ Aliases                                                                    ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+[alias]
+  a = "add"
+  aa = "add --all"
+  ce = "git commit --allow-empty"
+  am = "am"
+  ama = "am --abort"
+  amc = "am --continue"
+  ams = "am --skip"
+  amscp = "am --show-current-patch"
+  ap = "apply"
+  apa = "add --patch"
+  apt = "apply --3way"
+  au = "add --update"
+  av = "add --verbose"
+  b = "branch"
+  bD = "branch -D"
+  ba = "branch -a"
+  bd = "branch -d"
+  bl = "blame -b -w"
+  bnm = "branch --no-merged"
+  br = "branch --remote"
+  bs = "bisect"
+  bsb = "bisect bad"
+  bsg = "bisect good"
+  bsr = "bisect reset"
+  bss = "bisect start"
+  c = "commit -v"
+  ca = "commit -v -a"
+  cam = "commit -a -m"
+  cas = "commit -a -s"
+  casm = "commit -a -s -m"
+  cb = "checkout -b"
+  cf = "config --list"
+  cl = "clone --recurse-submodules"
+  clean = "clean -id"
+  cmsg = "commit -m"
+  cn = "commit -v --no-edit"
+  co = "checkout"
+  cor = "checkout --recurse-submodules"
+  count = "shortlog -sn"
+  cp = "cherry-pick"
+  cpa = "cherry-pick --abort"
+  cpc = "cherry-pick --continue"
+  cs = "commit -S"
+  csm = "commit -s -m"
+  css = "commit -S -s"
+  cssm = "commit -S -s -m"
+  d = "diff"
+  dca = "diff --cached"
+  dcw = "diff --cached --word-diff"
+  ds = "diff --staged"
+  dt = "diff-tree --no-commit-id --name-only -r"
+  dup = "diff @{upstream}"
+  dw = "diff --word-diff"
+  f = "fetch"
+  fa = "fetch --all --prune --jobs=10"
+  fg = "ls-files | grep"
+  fl = "flow"
+  flf = "flow feature"
+  flff = "flow feature finish"
+  flfp = "flow feature publish"
+  flfpll = "flow feature pull"
+  flfs = "flow feature start"
+  flh = "flow hotfix"
+  flhf = "flow hotfix finish"
+  flhp = "flow hotfix publish"
+  flhs = "flow hotfix start"
+  fli = "flow init"
+  flr = "flow release"
+  flrf = "flow release finish"
+  flrp = "flow release publish"
+  flrs = "flow release start"
+  fo = "fetch origin"
+  g = "gui citool"
+  ga = "gui citool --amend"
+  hh = "help"
+  ignore = "update-index --assume-unchanged"
+  ignored = "ls-files -v | grep "^[[:lower:]]""
+  l = "pull"
+  lg = "log --stat"
+  lgg = "log --graph"
+  lgga = "log --graph --decorate --all"
+  lgm = "log --graph --max-count=10"
+  lgp = "log --stat -p"
+  lo = "log --oneline --decorate"
+  log = "log --oneline --decorate --graph"
+  loga = "log --oneline --decorate --graph --all"
+  m = "merge"
+  ma = "merge --abort"
+  mtl = "mergetool --no-prompt"
+  mtlvim = "mergetool --no-prompt --tool=vimdiff"
+  p = "push"
+  pd = "push --dry-run"
+  pf = "push --force-with-lease"
+  poat = "push origin --all && git push origin --tags"
+  pr = "pull --rebase"
+  pristine = "reset --hard && git clean -dffx"
+  pu = "push upstream"
+  pv = "push -v"
+  r = "remote"
+  ra = "remote add"
+  rb = "rebase"
+  rba = "rebase --abort"
+  rbc = "rebase --continue"
+  rbi = "rebase -i"
+  rbo = "rebase --onto"
+  rbs = "rebase --skip"
+  rep = "grep --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn,.idea,.tox}"
+  rev = "revert"
+  rh = "reset"
+  rhh = "reset --hard"
+  rm = "rm"
+  rmc = "rm --cached"
+  rmv = "remote rename"
+  rrm = "remote remove"
+  rs = "restore"
+  rset = "remote set-url"
+  rss = "restore --source"
+  rst = "restore --staged"
+  ru = "reset --"
+  rup = "remote update"
+  rv = "remote -v"
+  sb = "status -sb"
+  sd = "svn dcommit"
+  sh = "show"
+  si = "submodule init"
+  sps = "show --pretty=short --show-signature"
+  sr = "svn rebase"
+  ss = "status -s"
+  st = "status"
+  sta = "stash push"
+  staa = "stash apply"
+  stall = "stash --all"
+  stc = "stash clear"
+  std = "stash drop"
+  stl = "stash list"
+  stp = "stash pop"
+  sts = "stash show --text"
+  su = "submodule update"
+  sw = "switch"
+  swc = "switch -c"
+  ts = "tag -s"
+  tv = "tag | sort -V"
+  unignore = "update-index --no-assume-unchanged"
+  up = "pull --rebase"
+  upa = "pull --rebase --autostash"
+  upav = "pull --rebase --autostash -v"
+  upv = "pull --rebase -v"
+  wch = "whatchanged -p --abbrev-commit --pretty=medium"
+  wt = "worktree"
+  wta = "worktree add"
+  wtls = "worktree list"
+  wtmv = "worktree move"
+  wtrm = "worktree remove"
+  
