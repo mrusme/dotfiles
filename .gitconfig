@@ -55,18 +55,21 @@
 # ╚════════════════════════════════════════════════════════════════════════════╝
 [color]
   ui = true
+
 [color "branch"]
   current = yellow
   local = blue
   remote = yellow
   upstream = magenta
   plain = cyan
+
 [color "diff"]
   meta = blue
   frag = magenta
   old = red
   new = green
   whitespace = magenta
+
 [color "status"]
   added = cyan
   changed = yellow
