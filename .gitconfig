@@ -3,7 +3,7 @@
   email = marius@xn--gckvb8fzb.com
   signingkey = 4D3899AF73E7F5FE9B39C822272ED814BF63261F
 [core]
-  excludesfile = /Users/mrus/.gitignore_global
+  excludesfile = ~/.gitignore_global
   pager = delta
   editor = nvim
 [interactive]
@@ -42,6 +42,7 @@
 [push]
   gpgsign = false
   simple = true
+  autoSetupRemote = true
 [init]
   defaultBranch = master
 [url "ssh://git@github.com/"]
@@ -57,5 +58,36 @@
 [credential "smtp://marius%40xn--gckvb8fzb.com@127.0.0.1%3a1025"]
   helper = !pass smtp/marius@xn--gckvb8fzb.com
 
+# To use this filter, add a .gitattributes file with the following line to the 
+# root of the Go project: 
+#
+# ```
+# go.mod filter=gomodreplace
+# ```
 [filter "gomodreplace"]
-	clean = rg -U -v 'replace ((?s)\\(.*\\)|.*)'
+  clean = rg -U -v 'replace ((?s)\\(.*\\)|.*)'
+
+# https://www.atlassian.com/git/tutorials/setting-up-a-repository/git-config
+[color]
+  ui = true
+[color "branch"]
+  current = yellow
+  local = blue
+  remote = yellow
+  upstream = magenta
+  plain = cyan
+[color "diff"]
+  meta = blue
+  frag = magenta
+  old = red
+  new = green
+  whitespace = magenta
+[color "status"]
+  added = cyan
+  changed = magenta
+  untracked = red
+
+[fetch]
+  prune = true
+[rerere]
+  enabled = true
