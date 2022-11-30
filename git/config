@@ -57,7 +57,7 @@
   rebase = true
 
 [push]
-  gpgsign = false
+  gpgSign = if-asked
   default = simple
   autoSetupRemote = true
   followTags = yes
@@ -91,20 +91,8 @@
   untracked = red
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
-# ║ Merging & Diffing                                                          ║
+# ║ Delta (https://dandavison.github.io/delta/)                                ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
-[merge]
-  tool = nvimdiff
-
-[mergetool]
-  prompt = true
-
-[mergetool "nvimdiff"]
-  cmd = nvim -d "$LOCAL" "$REMOTE" "$MERGED" -c 'wincmd w' -c 'wincmd J'
-
-[interactive]
-  diffFilter = delta --color-only
-
 [delta]
   navigate = true
   features = style
@@ -136,6 +124,21 @@
   plus-style = syntax "#001a00"
   whitespace-error-style = reverse red
   syntax-theme = Nord
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ Merging & Diffing                                                          ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+[merge]
+  tool = nvimdiff
+
+[mergetool]
+  prompt = true
+
+[mergetool "nvimdiff"]
+  cmd = nvim -d "$LOCAL" "$REMOTE" "$MERGED" -c 'wincmd w' -c 'wincmd J'
+
+[interactive]
+  diffFilter = delta --color-only
 
 [difftool]
   prompt = false
