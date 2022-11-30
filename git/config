@@ -22,33 +22,47 @@
   signingkey = 4D3899AF73E7F5FE9B39C822272ED814BF63261F
 
 [core]
-  excludesfile = ~/.gitignore_global
+  fileMode = true
+  ignoreCase = false
+  symlinks = true
+  compression = 9
+  excludesFile = ~/.config/git/gitignore
+  hooksPath = ~/.config/git/hooks
   pager = delta
   editor = nvim
 
 [format]
-  signoff = yes
+  signOff = yes
 
 [gpg]
   program = gpg
+  format = openpgp
 
 [init]
   defaultBranch = master
 
 [commit]
-  gpgsign = true
+  gpgSign = true
   verbose = true
 
 [fetch]
   prune = true
+  parallel = 3
+
+[submodule] 
+  fetchJobs = 3
 
 [pull]
   rebase = true
 
 [push]
   gpgsign = false
-  simple = true
+  default = simple
   autoSetupRemote = true
+  followTags = yes
+
+[help]
+  autoCorrect = prompt
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
 # ║ Colors                                                                     ║
@@ -79,12 +93,12 @@
 # ║ Merging & Diffing                                                          ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
 [merge]
-  tool = vimdiff
+  tool = nvimdiff
 
 [mergetool]
   prompt = true
 
-[mergetool "vimdiff"]
+[mergetool "nvimdiff"]
   cmd = nvim -d "$LOCAL" "$REMOTE" "$MERGED" -c 'wincmd w' -c 'wincmd J'
 
 [interactive]
@@ -95,15 +109,15 @@
   whitespace-error-style = 22 reverse
 
 [delta "decorations"]
-  commit-decoration-style = bold yellow box ul
-  file-style = bold yellow ul
+  commit-decoration-style = yellow box ul
+  file-style = yellow ul
   file-decoration-style = none
 
 [difftool]
   prompt = false
 
 [diff]
-  tool = vimdiff
+  tool = nvimdiff
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
 # ║ GitHub                                                                     ║
@@ -133,6 +147,7 @@
 # ║ sendemail                                                                  ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
 [sendemail]
+  annotate = yes
   smtpserver = 127.0.0.1
   smtpuser = marius@xn--gckvb8fzb.com
   smtpencryption = tls
@@ -274,7 +289,7 @@
   m = "merge"
   ma = "merge --abort"
   mtl = "mergetool --no-prompt"
-  mtlvim = "mergetool --no-prompt --tool=vimdiff"
+  mtlvim = "mergetool --no-prompt --tool=nvimdiff"
   p = "push"
   pd = "push --dry-run"
   pf = "push --force-with-lease"

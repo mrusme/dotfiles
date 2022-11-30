@@ -1074,8 +1074,6 @@ function dotfiles-update-remote() {
   cp "${HOME}/.tmux.conf" "${DOTFILES}/.tmux.conf"
   cp "${HOME}/.tmux.cheatsheet" "${DOTFILES}/.tmux.cheatsheet"
   cp "${HOME}/.motd" "${DOTFILES}/.motd"
-  cp "${HOME}/.gitconfig" "${DOTFILES}/.gitconfig"
-  cp "${HOME}/.gitignore_global" "${DOTFILES}/.gitignore_global"
   cp "${HOME}/.mbsyncrc" "${DOTFILES}/.mbsyncrc"
   cp "${HOME}/.vale.ini" "${DOTFILES}/.vale.ini"
   cp "${HOME}/.wallpaper" "${DOTFILES}/.wallpaper"
@@ -1086,6 +1084,8 @@ function dotfiles-update-remote() {
 
   cp "${HOME}/.mozilla/firefox/"*".default-release/chrome/userChrome.css"\
       "${DOTFILES}/.mozilla/firefox/default/chrome/userChrome.css"
+
+  cp -R "${XDG_CONFIG_HOME}/git/"* "${DOTFILES}/git/"
 
   cp "${XDG_CONFIG_HOME}/user-dirs.dirs"\
      "${DOTFILES}/user-dirs.dirs"
@@ -1174,8 +1174,6 @@ function dotfiles-update-local() {
   cp "${DOTFILES}/.tmux.conf" "${HOME}/.tmux.conf"
   cp "${DOTFILES}/.tmux.cheatsheet" "${HOME}/.tmux.cheatsheet"
   cp "${DOTFILES}/.motd" "${HOME}/.motd"
-  cp "${DOTFILES}/.gitconfig" "${HOME}/.gitconfig"
-  cp "${DOTFILES}/.gitignore_global" "${HOME}/.gitignore_global"
   cp "${DOTFILES}/.mbsyncrc" "${HOME}/.mbsyncrc"
   cp "${DOTFILES}/.vale.ini" "${HOME}/.vale.ini"
   cp "${DOTFILES}/.wallpaper" "${HOME}/.wallpaper"
@@ -1183,6 +1181,9 @@ function dotfiles-update-local() {
   cp "${DOTFILES}/ssh/config" "${HOME}/.ssh/config"
 
   cp -R "${DOTFILES}/irssi/"* "${HOME}/.irssi/"
+
+  mkdir -p "${XDG_CONFIG_HOME}/git"
+  cp -R "${DOTFILES}/git/"* "${XDG_CONFIG_HOME}/git/"
 
   cp "${DOTFILES}/user-dirs.dirs"\
      "${XDG_CONFIG_HOME}/user-dirs.dirs"
