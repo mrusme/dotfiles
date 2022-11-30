@@ -34,7 +34,8 @@ case "$cmd" in
     
     if [[ "$wg" != "" ]]
     then
-      echo "{\"text\": \"$wg\", \"class\": \"custom-openvpn\", \"alt\": \"connected\" }"
+      TRANSFERRED=$(sudo wg show | rg -r '$1 $2' '.*transfer: ([0-9]*\.[0-9]* ...) received, ([0-9]*\.[0-9]* ...) sent')
+      echo "{\"text\": \"$wg <span color='#ffffff'>[</span>$TRANSFERRED<span color='#ffffff'>]</span>\", \"class\": \"custom-openvpn\", \"alt\": \"connected\" }"
     else
       CONNECTED_VPN=$(ps -eo args | rg "^/usr/sbin/openvpn" | sed -r 's/.*--config \/etc\/openvpn\/([-0-9a-z\.]+)\.ovpn\.conf.*/\1/g' | awk -F '.' '{ print $1"/"$4 }' | tr '[:lower:]' '[:upper:]')
     
@@ -42,7 +43,7 @@ case "$cmd" in
       then
         echo "{\"text\": \"NO VPN\", \"class\": \"custom-openvpn\", \"alt\": \"disconnected\" }"
       else
-        echo "{\"text\": \"$CONNECTED_VPN\", \"class\": \"custom-openvpn\", \"alt\": \"connected\" }"
+	echo "{\"text\": \"$CONNECTED_VPN\", \"class\": \"custom-openvpn\", \"alt\": \"connected\" }"
       fi
     fi
     exit 0
