@@ -26,7 +26,8 @@
   ignoreCase = false
   symlinks = true
   compression = 9
-  excludesFile = ~/.config/git/gitignore
+  excludesFile = ~/.config/git/ignore
+  attributesFile = ~/.config/git/attributes
   hooksPath = ~/.config/git/hooks
   pager = delta
   editor = nvim
