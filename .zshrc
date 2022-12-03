@@ -947,7 +947,7 @@ function video-to-gif() {
 }
 
 function rip() {
-  youtube-dl \
+  yt-dlp \
     -f bestaudio \
     --extract-audio \
     --audio-format mp3 \
