@@ -2,6 +2,7 @@
 ├── @aws-amplify/cli@10.5.1
 ├── bash-language-server@3.2.3
 ├── dockerfile-language-server-nodejs@0.9.0
+├── git-stats@3.1.1
 ├── graphql-language-service-cli@3.3.14
 ├── graphql@16.6.0
 ├── http-server@14.1.1
