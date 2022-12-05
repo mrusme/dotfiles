@@ -278,7 +278,8 @@ then
       chmod 0700 "${XDG_RUNTIME_DIR}"
     fi
   fi
-  GTK_THEME="$(gsettings get org.gnome.desktop.interface gtk-theme)"
+  # GTK_THEME="$(gsettings get org.gnome.desktop.interface gtk-theme)"
+  GTK_THEME="oomox-DarkOnesk3"
   export GTK2_RC_FILES="${HOME}/.themes/${GTK_THEME}/gtk-2.0/gtkrc"
 fi
 
