@@ -1,10 +1,19 @@
 #!/bin/sh
 
 linuxdir () {
-  cd /usr/src/linux 
+  cd /usr/src/linux || exit 1
 }
 
-printf "/usr/src/linux points to %s\nContinue? (Y/n) " \
+printf "Currently running %s\n\n" \
+  "$(uname -r)"
+
+eselect kernel list 
+printf "Select kernel to be build: "
+read -r kernum
+
+eselect kernel set "$kernum" || exit 1
+
+printf "/usr/src/linux now points to %s\nContinue? (y/N) " \
   "$(readlink -f /usr/src/linux)"
 read -r yn 
 
@@ -15,6 +24,33 @@ fi
 
 linuxdir
 pwd
+
+yn=""
+printf "Inject config from /proc/config.gz ? (y/N) "
+read -r yn 
+
+if [ "$yn" = "y" ] || [ "$yn" = "Y" ] 
+then 
+  zcat /proc/config.gz > /usr/src/linux/.config 
+fi 
+
+yn=""
+printf "Run make oldconfig ? (y/N) "
+read -r yn 
+
+if [ "$yn" = "y" ] || [ "$yn" = "Y" ] 
+then 
+  make oldconfig
+fi 
+
+yn=""
+printf "Build and install new kernel ? (y/N) "
+read -r yn 
+
+if [ "$yn" != "y" ] && [ "$yn" != "Y" ] 
+then 
+  exit 1
+fi 
 
 make modules_prepare \
 && make -j32 \
@@ -35,6 +71,7 @@ make modules_prepare \
 && ls -la /mnt/mirror \
 && umount -v /mnt/mirror/efi/ \
 && umount -v /mnt/mirror \
+&& cp /boot/grub/grub.cfg /boot/grub/grub.cfg.old \
 && grub-mkconfig -o /boot/grub/grub.cfg \
 && grub-install \
   --target=x86_64-efi \
@@ -42,5 +79,7 @@ make modules_prepare \
   --bootloader-id=Gentoo \
   --recheck \
   --no-floppy \
-&& printf "\nKernel built and installed successfully.\n\n"
+&& printf "\nKernel built and installed successfully.\n" \
+&& printf "Please validate /boot/grub/grub.cfg!\n" \
+&& printf "A backup has been copied to /boot/grub/grub.cfg.old.\n\n"
 
