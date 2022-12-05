@@ -680,8 +680,8 @@ bind index,pager \Cp sidebar-prev
 bind index,pager \Cn sidebar-next
 bind index,pager \Co sidebar-open
 
-startup-hook 'echo `proton-bridge --no-window &> /dev/null &`'
-shutdown-hook 'echo `killall -s SIGQUIT proton-bridge`'
+#startup-hook 'echo `proton-bridge --no-window &> /dev/null &`'
+#shutdown-hook 'echo `killall -s SIGQUIT proton-bridge`'
 
-macro index,pager \Cr "!mbsync -a^M" "Update through mbsync"
+#macro index,pager \Cr "!mbsync -a^M" "Update through mbsync"
 
