@@ -1,5 +1,9 @@
 #!/bin/sh
 
+linuxdir () {
+  cd /usr/src/linux 
+}
+
 printf "/usr/src/linux points to %s\nContinue? (Y/n) " \
   "$(readlink -f /usr/src/linux)"
 read -r yn 
@@ -9,13 +13,14 @@ then
   exit 1
 fi 
 
-echo cd /usr/src/linux || exit 1
+linuxdir
+pwd
 
 make modules_prepare \
 && make -j32 \
 && make modules_install \
 && make install \
-&& emerge --ask @module-rebuild \
+&& emerge @module-rebuild \
 && genkernel initramfs \
   --firmware \
   --kernel-config=/usr/src/linux/.config \
