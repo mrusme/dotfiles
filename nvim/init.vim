@@ -84,7 +84,7 @@ Plug 'leafgarland/typescript-vim'
 Plug 'elixir-lang/vim-elixir'
 Plug 'fatih/vim-go'
 Plug 'rust-lang/rust.vim'
-Plug 'cespare/vim-toml'
+Plug 'cespare/vim-toml', {'branch': 'main'}
 Plug 'moll/vim-node'
 Plug 'docker/docker'
 Plug 'evanleck/vim-svelte', {'branch': 'main'}
@@ -296,7 +296,10 @@ autocmd BufRead,BufNewFile
 " set textwidth=80 for types and enable spell
 autocmd BufRead,BufNewFile
   \ *.{md,txt} 
-    \ setlocal textwidth=80 |
+    \ setlocal tw=80 | 
+    \ setlocal colorcolumn=80 |
+    \ setlocal fo=awqtc | 
+    \ setlocal comments+=nb:> | 
     \ setlocal spell
 
 " set json filetyep
@@ -367,7 +370,8 @@ colorscheme iceberg
 " OVERRIDES
 highlight Normal ctermbg=none guibg=none
 highlight NonText ctermbg=none guibg=none
-highlight ColorColumn cterm=reverse ctermbg=238 ctermfg=233 gui=reverse guibg=#3e445e guifg=#0f1117
+highlight ColorColumn cterm=reverse ctermbg=238 ctermfg=233 
+  \ gui=reverse guibg=#3e445e guifg=#0f1117
 highlight EndOfBuffer ctermbg=none guibg=none
 highlight LineNr ctermbg=none guibg=none
 
@@ -411,7 +415,11 @@ let g:lightline = {
   \ 'active': {
   \   'left': [ [ 'mode', 'paste' ],
   \             [ 'readonly', 'filename', 'gitsign', 'modified' ] ],
-  \   'right': [ [ 'lineinfo' ], [ 'percent' ], [ 'indent', 'textwidth', 'fileformat', 'fileencoding', 'filetype', 'branch' ] ]
+  \   'right': [ 
+  \     [ 'lineinfo' ], [ 'percent' ], 
+  \     [ 'indent', 'textwidth', 'fileformat', 
+  \       'fileencoding', 'filetype', 'branch' ] 
+  \   ]
   \ },
   \ 'component': {
   \   'indent': '%{&expandtab?"spaces":"tabs"}:%{&expandtab?&shiftwidth:&tabstop}',
@@ -593,6 +601,20 @@ lua <<EOF
       -- documentation = cmp.config.window.bordered(),
     },
     mapping = cmp.mapping.preset.insert({
+      ['<Tab>'] = (function(fallback)
+        if cmp.visible() then
+          cmp.select_next_item()
+        else
+          fallback()
+        end
+      end),
+      ['<S-Tab>'] = (function(fallback)
+        if cmp.visible() then
+          cmp.select_prev_item()
+        else
+          fallback()
+        end
+      end),
       ['<C-b>'] = cmp.mapping.scroll_docs(-4),
       ['<C-f>'] = cmp.mapping.scroll_docs(4),
       ['<C-Space>'] = cmp.mapping.complete(),
