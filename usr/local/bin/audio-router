@@ -6,7 +6,7 @@ case $1 in
     set_output=$(pactl list short sinks | rg -i 'hdmi-stereo' | cut -f2)
     ;;
   "nommo")
-    set_output=$(pactl list short sinks | rg -i 'analog-stereo' | cut -f2)
+    set_output=$(pactl list short sinks | rg -i 'analog-stereo' | head -n1 | cut -f2)
     ;;
   "motu")
     set_output=$(pactl list short sinks | rg -i 'motu.m2' | cut -f2)
