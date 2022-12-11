@@ -163,9 +163,12 @@ export QT_QPA_PLATFORM="wayland-egl"
 export QT_QPA_PLATFORMTHEME="qt5ct"
 
 # https://github.com/oz/tz/
-export TZ_LIST="Pacific/Honolulu;America/Panama;\
-America/New_York;Etc/UTC;Europe/Berlin;Asia/Bangkok;\
-Asia/Tokyo;Australia/Melbourne;Pacific/Auckland;"
+export TZ_LIST="\
+Pacific/Honolulu;America/Los_Angeles;\
+America/Panama;America/New_York;\
+Etc/UTC;Europe/Berlin;\
+Asia/Bangkok;Asia/Tokyo;\
+Australia/Melbourne;Pacific/Auckland;"
 
 # https://notmuchmail.org/manpages/notmuch-1/
 export NOTMUCH_PROFILE="01"
