@@ -361,9 +361,11 @@ autoload -U zmv
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
 alias zmv='noglob zmv -vW'
+alias tailall='tail -f $(find /var/log -type f | grep -v '.gz$')'
 
 # https://github.com/ajeetdsouza/zoxide
 __is_available zoxide \
+&& [ "${USER}" != "root" ] \
 && eval "$(zoxide init --cmd cd zsh)"
 
 # https://github.com/sharkdp/bat
