@@ -78,7 +78,7 @@
     "on-click": "/usr/local/bin/vpn connect",
     "on-click-middle": "/usr/local/bin/vpn disconnect",
     "on-click-right": "/usr/local/bin/get-public-ip-info",
-    "interval": 10
+    "interval": 30
   },
 
   "custom/rslsync": {
