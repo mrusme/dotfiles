@@ -430,8 +430,14 @@ alias uuid=uuidgen
 
 alias my-ip="curl http://ipecho.net/plain; echo"
 
-alias jrnl="cd ${HOME}/projects/@mrusme/xn--gckvb8fzb.com/content/"
-alias bookmarks="vim ${HOME}/projects/@mrusme/xn--gckvb8fzb.com/content/bookmarks/index.md"
+# Journal (https://xn--gckvb8fzb.com)
+export JRNL="${HOME}/projects/@mrusme/xn--gckvb8fzb.com"
+alias jrnl="cd ${JRNL}/content/"
+alias bookmarks="git -C ${JRNL} checkout develop \
+  && vim ${JRNL}/content/bookmarks/index.md \
+  && git -C ${JRNL} add content/bookmarks \
+  && git -C ${JRNL} commit -S"
+
 alias notes="cd ${HOME}/cloud/notes/"
 alias cheatsheet.vim="vim ${HOME}/cloud/notes/tools/vim.md"
 
