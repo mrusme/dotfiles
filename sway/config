@@ -145,6 +145,7 @@ input "21057:1546:RAMA_WORKS_RAMA_WORKS_M60-A" {
 
 
 ##############################################################################
+## Note to myself:                                                          ##
 ## USE wev TO FIND KEYS AND STOP LOOKING UP HOW TO DO IT EVERY FSCKING TIME ##
 ##############################################################################
 
@@ -158,11 +159,6 @@ bindsym $mod+Return exec $term
 bindsym $mod+Ctrl+backspace exec /usr/local/bin/ff
 # Open Firefox (private window)
 bindsym $mod+Ctrl+Shift+backspace exec /usr/local/bin/ff -private-window
-
-# Open LibreWolf
-bindsym $mod+Alt+backspace exec /usr/local/bin/lw
-# Open LibreWolf (private window)
-bindsym $mod+Alt+Shift+backspace exec /usr/local/bin/lw -private-window
 
 # Open ungoogled Chromium
 bindsym $mod+backspace exec /usr/bin/chromium
@@ -178,7 +174,7 @@ bindsym $mod+Alt+Bar exec cliphist list \
   | cliphist delete
 
 # Recall last notifications
-bindsym $mod+asciitildE exec dunstctl history-pop
+bindsym $mod+asciitildE exec makoctl restore
 
 # Kill focused window
 bindsym $mod+Escape kill
@@ -201,6 +197,12 @@ bindsym $mod+Shift+e exec swaynag -t msg -e bottom -m 'EXIT SWAY SESSION' \
   # -s '          NO          '
 
 # === Media keys ===
+
+# Decrease display brightness
+bindsym $mod+F1 exec ddcutil setvcp 10 - 25
+
+# Increase display brightness
+bindsym $mod+F2 exec ddcutil setvcp 10 + 25
 
 # Toggle playback
 bindsym $mod+F8 exec playerctl play-pause
