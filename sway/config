@@ -259,6 +259,10 @@ bindsym $mod+Print exec --no-startup-id slurp \
   | wl-copy -n
 
 
+# https://github.com/mrusme/bookmarkdown
+bindsym Alt+Space exec /usr/local/bin/bmd
+
+
 # === Window focus ===
 
 # Move focus up
