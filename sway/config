@@ -143,6 +143,16 @@ input "21057:1546:RAMA_WORKS_RAMA_WORKS_M60-A" {
   repeat_rate 30
 }
 
+# RAMA KARA 
+input "21057:19282:RAMA_WORKS_RAMA_WORKS_KARA_Keyboard" {
+  repeat_delay 200
+  repeat_rate 30
+}
+input "21057:19282:RAMA_WORKS_RAMA_WORKS_KARA" {
+  repeat_delay 200
+  repeat_rate 30
+}
+
 
 ##############################################################################
 ## Note to myself:                                                          ##
