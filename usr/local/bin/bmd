@@ -1,0 +1,7 @@
+#!/bin/sh
+JRNL="/home/mrus/projects/@mrusme/xn--gckvb8fzb.com"
+link=$(bookmarkdown "${JRNL}/content/bookmarks/index.md" \
+  | bemenu \
+  | bookmarkdown "${JRNL}/content/bookmarks/index.md" -)
+[ "$link" != "" ] && xdg-open "$link"
+
