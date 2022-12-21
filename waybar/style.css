@@ -7,7 +7,7 @@
   margin: 0 0px;
 }
 
-window#waybar {
+window#waybar.top {
   background-color: rgba(4,6,6,0);
   border-bottom: none;
   color: #eeeeee;
@@ -33,11 +33,9 @@ label#window {
 
 .modules-left > widget > label,
 .modules-right > widget > label {
-  color: #eeeeee;
   background-color: rgba(4, 6, 6, 0.92);
   padding: 0 14px;
   margin: 0px 0px 0px 0px;
-  color: #ffffff;
 }
 
 #custom-crypto  {
