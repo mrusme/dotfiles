@@ -263,7 +263,8 @@
   "output": "DP-1",
 
   "modules-left": [
-    "custom/rssticker-soylent"
+    "custom/rssticker-soylent",
+    "custom/rssticker-hackernews"
   ],
   "modules-center": [
   ],
@@ -281,7 +282,16 @@
     "exec": "/usr/local/bin/rssticker https://soylentnews.org/index.rss Soylent",
     "on-click": "/usr/local/bin/rssticker https://soylentnews.org/index.rss Soylent open",
     "exec-on-event": false,
-    "interval": 60
+    "interval": 300
+  },
+
+  "custom/rssticker-hackernews": {
+    "format": "{}",
+    "return-type": "json",
+    "exec": "/usr/local/bin/rssticker https://news.ycombinator.com/rss 'Hacker News'",
+    "on-click": "/usr/local/bin/rssticker https://news.ycombinator.com/rss 'Hacker News' open",
+    "exec-on-event": false,
+    "interval": 300
   },
 
 
