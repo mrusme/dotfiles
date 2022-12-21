@@ -2,6 +2,7 @@ github.com/klauspost/asmfmt/cmd/asmfmt
 github.com/bettercap/bettercap
 github.com/yory8/clipman
 github.com/cointop-sh/cointop
+github.com/tomwright/dasel/cmd/dasel
 github.com/go-delve/delve/cmd/dlv
 github.com/appleboy/drone-scp
 github.com/kisielk/errcheck
