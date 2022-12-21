@@ -19,7 +19,7 @@ then
   exit 0
 fi
 
-cexec -t 3600 curl -s "$feed" | dasel -r xml -w json | jq "[.RDF.item[] | { title, link }]" > "$rssfile"
+cexec -t 3600 curl -s "$feed" | dasel -r xml -w json | jq "[if (.RDF | length) != 0 then .RDF.item[] | { title, link } else .rss.channel.item[] | { title, link } end]" > "$rssfile"
 
 rssitemnr=$((rssitemnr+1))
 maxrssitemnr=$(jq '. | length' "$rssfile")
