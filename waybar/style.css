@@ -15,6 +15,14 @@ window#waybar {
   transition-duration: .5s;
 }
 
+window#waybar.bottom {
+  background-color: rgba(4,6,6,0.92);
+  border-bottom: none;
+  color: #eeeeee;
+  transition-property: background-color;
+  transition-duration: .5s;
+}
+
 window#waybar.hidden {
   opacity: 0.2;
 }
