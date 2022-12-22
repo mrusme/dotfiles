@@ -41,9 +41,10 @@ window:
     y: 8
   dynamic_padding: true
   dynamic_title: true
-  decorations: None 
+  decorations: none 
   startup_mode: Windowed
-  opacity: 0.92
+  opacity: 0.96
+  # opacity: 1.0
 scrolling:
   history: 10000
   multiplier: 3
