@@ -38,6 +38,11 @@ label#window {
   margin: 0px 0px 0px 0px;
 }
 
+window#waybar.bottom .modules-left > widget > label,
+window#waybar.bottom .modules-right > widget > label {
+  font-size: 13px;
+}
+
 #custom-crypto  {
   border-radius: 0px 0px 5px 0px;
 }
