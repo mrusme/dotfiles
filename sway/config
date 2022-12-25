@@ -78,13 +78,22 @@ output DP-1 pos 0 0
 #output HDMI-A-1 pos 960 2160
 #output HDMI-A-1 scale 2
 
+# Streaming 
+# output HEADLESS-1 {
+#   pos 3840,0
+#   mode 1920x1080
+#   bg #000000 solid_color
+# }
+
 # Wallpaper
-output * bg ~/.wallpaper fill
+output DP-1 bg ~/.wallpaper fill
 
 # swayidle
 # TODO: Fix GPU cycling issue (https://github.com/swaywm/sway/issues/6971) 
 # before re-enabling `dpms * off`. Until then, leave HDMI-A-1 on in order for 
 # the GPU to never sleep.
+# TODO: https://github.com/swaywm/sway/pull/7083/files / sway 1.8
+# timeout 900 'swaymsg "output DP-1 power off"' resume 'swaymsg "output DP-1 power on"' \
 exec swayidle -w \
 timeout 600 'swaylock' \
 timeout 900 'swaymsg "output DP-1 dpms off"' resume 'swaymsg "output DP-1 dpms on"' \
