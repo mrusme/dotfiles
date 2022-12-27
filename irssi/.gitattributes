@@ -1,2 +1,3 @@
 config filter=git-crypt diff=git-crypt
 config.autosave filter=git-crypt diff=git-crypt
+otr/*
