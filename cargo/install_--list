@@ -40,7 +40,7 @@ gpg-tui v0.9.2:
     gpg-tui-completions
 gping v1.6.3:
     gping
-helix-term v0.6.0 (https://github.com/helix-editor/helix#801984c7):
+helix-term v0.6.0 (https://github.com/helix-editor/helix#ebaf0192):
     hx
 hexyl v0.12.0:
     hexyl
@@ -58,11 +58,13 @@ kmon v1.6.2:
     kmon
 lemmeknow v0.7.0:
     lemmeknow
-librespot v0.5.0-dev (https://github.com/librespot-org/librespot.git#5451d149):
+librespot v0.5.0-dev (https://github.com/librespot-org/librespot.git#edf646d4):
     librespot
 mdcat v0.30.3:
     mdcat
-neovide v0.10.0 (https://github.com/neovide/neovide#697480b9):
+muc v0.1.0 (https://github.com/nate-sys/muc#297353df):
+    muc
+neovide v0.10.3 (https://github.com/neovide/neovide#67a48653):
     neovide
 oxipng v8.0.0:
     oxipng
@@ -105,12 +107,10 @@ so v0.4.9:
     so
 spotify-tui v0.25.0 (https://github.com/Rigellute/spotify-tui.git#c4dcf6b9):
     spt
-taskwarrior-tui v0.23.6 (https://github.com/kdheepak/taskwarrior-tui#e650e038):
+taskwarrior-tui v0.23.7 (https://github.com/kdheepak/taskwarrior-tui#81b23d18):
     taskwarrior-tui
 tealdeer v1.6.1:
     tldr
-tickers v0.1.0:
-    tickers
 tickrs v0.14.6:
     tickrs
 tre-command v0.4.0:
@@ -123,7 +123,7 @@ websocat v1.11.0:
     websocat
 xplr v0.20.1:
     xplr
-zenith v0.0.2:
+zenith v0.14.0 (https://github.com/bvaisvil/zenith.git#f5d2452d):
     zenith
 zoxide v0.8.3:
     zoxide
