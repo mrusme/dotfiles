@@ -234,7 +234,7 @@ fi
 # Go
 go env -w GOPATH="${HOME}/.go"
 export PATH="$(go env GOPATH)/bin:${PATH}"
-export GOPROXY="direct"
+#export GOPROXY="direct"
 
 # Python virtualenv
 export VIRTUALENVWRAPPER_PYTHON="$(which python3)"
@@ -698,7 +698,7 @@ function openssl-decrypt () {
 
 function update-tools() {
   printf "Updating Rust tools ...\n"
-  cargo install-update -a
+  cargo install-update -a -g
 
   printf "\nUpdating Go tools ...\n"
   /bin/ls -1 ~/.go/bin/ \
