@@ -2,6 +2,7 @@ github.com/klauspost/asmfmt/cmd/asmfmt
 github.com/bettercap/bettercap
 github.com/yory8/clipman
 github.com/cointop-sh/cointop
+github.com/bcicen/ctop
 github.com/tomwright/dasel/cmd/dasel
 github.com/go-delve/delve/cmd/dlv
 github.com/appleboy/drone-scp
@@ -38,4 +39,5 @@ github.com/swaggo/swag/cmd/swag
 github.com/achannarasappa/ticker
 github.com/oz/tz
 github.com/errata-ai/vale/v2/cmd/vale
+github.com/charmbracelet/vhs
 github.com/sclevine/yj
