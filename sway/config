@@ -233,13 +233,13 @@ bindsym $mod+F9 exec playerctl next
 bindsym $mod+F7 exec playerctl previous
 
 # Mute audio volume
-bindsym $mod+F10 exec pulsemixer --change-volume -100
+bindsym $mod+F10 exec /usr/local/bin/audio-router volume -100
 
 # Decrease audio volume
-bindsym $mod+F11 exec pulsemixer --change-volume -10
+bindsym $mod+F11 exec /usr/local/bin/audio-router volume -10
 
 # Increase audio volume
-bindsym $mod+F12 exec pulsemixer --change-volume +10
+bindsym $mod+F12 exec /usr/local/bin/audio-router volume +10
 
 # Route audio to display
 bindsym $mod+Shift+F1 exec /usr/local/bin/audio-router lg

@@ -4,7 +4,7 @@
 set_output=""
 set_output_name=""
 
-case $1 in
+case "$1" in
   "lg")
     set_output=$(pactl list short sinks | rg -i 'hdmi-stereo' | cut -f2)
     set_output_name="LG Display"
@@ -24,6 +24,13 @@ case $1 in
   "h9i")
     set_output=$(pactl list short sinks | rg -i '00_09_A7_2A_66_A0' | cut -f2)
     set_output_name="Bang & Olufsen H9i Headphones"
+    ;;
+  "volume")
+    pactl list short \
+      | rg RUNNING \
+      | cut -f1 \
+      | xargs -I {} pulsemixer --id {} --change-volume "$2"
+    exit 0
     ;;
   *)
     echo "Unknown output: $1"
