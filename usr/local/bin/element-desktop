@@ -1,2 +1,0 @@
-#!/bin/sh
-exec electron-19 /usr/lib64/element-desktop/app.asar
