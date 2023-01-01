@@ -1,0 +1,39 @@
+set auto_expand_albums_follow=true
+set altformat_current= %F%= %y
+set altformat_playlist= %f%= %y
+set altformat_title=cmus
+set altformat_trackwin= %f%= %y 
+set format_current= %a - %l  . %t%=  %y 
+set format_playlist= %a - %l . %t%=  %y 
+set format_title=cmus
+set format_trackwin= . %t%=  %y
+set format_trackwin_va= . %a / %t%=  %y
+set confirm_run=true
+set aaa_mode=all
+set buffer_seconds=10
+set show_hidden=false
+set set_term_title=false
+set format_statusline= %{status} %t%= %1{follow}%1{repeat}%1{shuffle} %{?show_playback_position?%{position} %{?duration?/ %{duration} }?%{?duration?%{duration} }} 
+set format_title=cmus 
+set altformat_title=%f
+set altformat_trackwin= %f
+
+set lib_sort=artist album discnumber  title filename
+set play_sorted=false
+set repeat=true
+# set follow=false 
+
+colorscheme dracula
+
+bind -f common  s player-stop
+bind -f common  p player-pause
+bind -f common  > player-next
+bind -f common  < player-prev
+bind -f common  b seek -30
+bind -f common  f seek +30
+bind -f common  z toggle shuffle
+bind -f common  i invert
+bind -f common  L win-sel-cur
+bind -f library a set lib_sort=artist album discnumber  title filename
+bind -f library A set lib_sort=title artist
+

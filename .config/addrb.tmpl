@@ -1,0 +1,16 @@
+
+{{ RenderPhoto (.PreferredValue "PHOTO") }}
+
+{{ .PreferredValue "FN" }}
+----------------------------------------
+Birthday:  {{ RenderBirthdate (.PreferredValue "BDAY") }}
+{{ range $tel := .Values "TEL" }}
+Tel.:      {{ $tel }}{{ end}}
+{{ range $email := .Values "EMAIL" }}
+Email:     {{ $email }}{{end}}
+{{ range $addr := .Values "ADR" }}
+Address:
+{{ RenderAddress ($addr) }}{{ end }}
+Notes:
+{{ .PreferredValue "NOTE" }}
+

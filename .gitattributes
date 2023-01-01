@@ -1,2 +1,14 @@
-.mbsyncrc filter=git-crypt diff=git-crypt
+/.mbsyncrc filter=git-crypt diff=git-crypt
+/.irssi/config filter=git-crypt diff=git-crypt
+/.irssi/config.autosave filter=git-crypt diff=git-crypt
+/.irssi/otr/** filter=git-crypt diff=git-crypt
+/.ssh/config filter=git-crypt diff=git-crypt
+/.config/neomutt/accounts/** filter=git-crypt diff=git-crypt
+/.config/notmuch/** filter=git-crypt diff=git-crypt
+/.config/syncthing/** filter=git-crypt diff=git-crypt
+/.config/radicle-link/** filter=git-crypt diff=git-crypt
+/.config/nvim/motd filter=git-crypt diff=git-crypt
+/.config/task/taskrc filter=git-crypt diff=git-crypt
+/.config/cloudcash.toml filter=git-crypt diff=git-crypt
+/.config/gobbs.toml filter=git-crypt diff=git-crypt
 

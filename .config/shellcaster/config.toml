@@ -1,0 +1,130 @@
+# Shellcaster settings
+# --------------------
+
+#download_path = "~/.local/share/shellcaster/"
+
+#play_command = "vlc %s"
+
+
+# Configures what happens when new episodes are found as podcasts are
+# synced:
+#  - "always" will automatically download all new episodes;
+#  - "ask-selected" will open a popup window to let you select which
+#    episodes to download, with all of them selected by default;
+#  - "ask-unselected" will open a popup window to let you select which
+#    episodes to download, with NONE of them selected by default;
+#  - "never" will never automatically download new episodes.
+# Default: "ask-unselected"
+
+download_new_episodes = "never"
+
+
+# Maximum number of files to download simultaneously. Setting this too
+# high could result in network requests being denied. A good general
+# guide would be to set this to the number of processor cores on your
+# computer.
+# Default: 3
+
+#simultaneous_downloads = 3
+
+
+# Maximum number of times to retry connecting to a URL to sync a
+# podcast or download an episode.
+# Default: 3
+
+#max_retries = 3
+
+
+[keybindings]
+
+# Keybindings must be an array of one or more strings.
+# If you want to distinguish between a regular alphanumeric key
+# and Shift+key, you can use the capital letter that you would normally
+# type when pressing Shift+key (e.g., Shift+"r" will give you "R").
+
+# Other special characters and their config string:
+# Arrow keys: "Left", "Right", "Up", "Down"
+# Ctrl+key: "C-key" (e.g., "C-r" means Ctrl+"r")
+# Shift+key: "S-key" (e.g., "S-Del" means Shift+Delete)
+# Insert ("Ins"), Delete ("Del"), Home ("Home"), End ("End"),
+# Page up ("PgUp"), Page down ("PgDn"), Tab ("Tab")
+# Enter ("Enter"), Escape ("Esc") -- be aware that on some terminals the
+# Escape key waits for further input before passing it along to
+# shellcaster, so you might notice a delay with this key
+
+# Don't try to use backslash, or you're gonna have a bad time
+
+left = [ "Left", "h" ]
+right = [ "Right", "l" ]
+up = [ "Up", "k" ]
+down = [ "Down", "j" ]
+big_up = [ "K" ]
+big_down = [ "J" ]
+page_up = [ "PgUp" ]
+page_down = [ "PgDn" ]
+go_top = [ "g" ]
+go_bot = [ "G" ]
+
+add_feed = [ "a" ]
+sync = [ "s" ]
+sync_all = [ "S" ]
+
+play = [ "Enter", "p" ]
+mark_played = [ "m" ]
+mark_all_played = [ "M" ]
+
+download = [ "d" ]
+download_all = [ "D" ]
+delete = [ "x" ]
+delete_all = [ "X" ]
+remove = [ "r" ]
+remove_all = [ "R" ]
+
+filter_played = [ "1" ]
+filter_downloaded = [ "2" ]
+
+help = [ "?" ]
+quit = [ "q" ]
+
+
+[colors]
+
+# Colors can be identified in three ways:
+# 1. Using color names defined by your terminal:
+#    - black, darkgrey, red, darkred, green, darkgreen, yellow,
+#      darkyellow, blue, darkblue, magenta, darkmagenta, cyan,
+#      darkcyan, white, or grey
+#    - The special color name "terminal" can also be used to specify
+#      your terminal's default foreground or background color; this is
+#      particularly useful if your terminal background is transparent --
+#      use "terminal" for the background colors below.
+# 2. Using a hex code in the format "#ff0000" or "#FF0000" to specify
+#    RGB values.
+# 3. Using an RGB value in the format "rgb(255, 0, 0)" where each number
+#    is a value between 0 and 255.
+# Note that, as might be expected, the ability to set colors depends on
+# the capabilities of your terminal. Config options set below are ignored
+# on terminals without the ability to add/change colors.
+
+# all regular text
+normal_foreground = "grey"
+normal_background = "terminal"
+
+# colors for bolded text, including podcasts/episodes that are unplayed,
+# and some titles
+bold_foreground = "white"
+bold_background = "terminal"
+
+# colors for the currently selected podcast/episode
+highlighted_active_foreground = "rgb(85, 85, 85)"
+highlighted_active_background = "rgb(209, 164, 0)"
+
+# colors for the selected podcast, when the cursor is on the episode
+# menu; podcast is selected, but not currently "active"
+highlighted_foreground = "rgb(85, 85, 85)"
+highlighted_background = "rgb(173, 173, 173)"
+
+# text for error messages
+error_foreground = "red"
+error_background = "black"
+

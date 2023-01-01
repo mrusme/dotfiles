@@ -1,0 +1,30 @@
+ConnectionString = "/orbitdb/bafyreifdpagppa7ve45odxuvudz5snbzcybwyfer777huckl4li4zbc5k4/superhighway84"
+CachePath = ""
+DatabaseCachePath = "/home/mrus/.cache/superhighway84"
+ProgramCachePath = "/home/mrus/.cache/superhighway84.program"
+Logfile = "/home/mrus/.cache/superhighway84.log"
+ShortcutsReference = "C-q - quit\nC-r - refresh\nC-h - focus-groups\nC-l - focus-articles\nC-k - focus-articles\nC-j - focus-preview\nC-a - article-mark-all-read\nn - article-new\nr - article-reply\nh - additional-key-left\nj - additional-key-down\nk - additional-key-up\nl - additional-key-right\ng - additional-key-home\nG - additional-key-end\n? - help\n"
+ArticlesListView = 1
+
+[Profile]
+  From = "mrus@cbrspc7"
+  Organization = ""
+
+[Shortcuts]
+  1 = "article-mark-all-read"
+  10 = "focus-preview"
+  103 = "additional-key-home"
+  104 = "additional-key-left"
+  106 = "additional-key-down"
+  107 = "additional-key-up"
+  108 = "additional-key-right"
+  11 = "focus-articles"
+  110 = "article-new"
+  114 = "article-reply"
+  12 = "focus-articles"
+  17 = "quit"
+  18 = "refresh"
+  286 = "play"
+  63 = "help"
+  71 = "additional-key-end"
+  8 = "focus-groups"

@@ -1094,79 +1094,42 @@ function dotfiles-update-remote() {
   cp "${HOME}/.vale.ini" "${DOTFILES}/.vale.ini"
   cp "${HOME}/.wallpaper" "${DOTFILES}/.wallpaper"
 
-  cp "${HOME}/.ssh/config" "${DOTFILES}/ssh/config"
+  mkdir -p "${DOTFILES}/.ssh/"
+  rsync -avH "${HOME}/.ssh/config" "${DOTFILES}/.ssh/config"
 
-  cp -R "${HOME}/.irssi/"* "${DOTFILES}/irssi/"
+  rsync -avH \
+    --exclude-from="${DOTFILES}/.exclude" \
+    "${HOME}/.irssi/" "${DOTFILES}/.irssi/"
 
-  cp "${HOME}/.mozilla/firefox/"*".default-release/chrome/userChrome.css"\
-      "${DOTFILES}/.mozilla/firefox/default/chrome/userChrome.css"
-
-  cp -R "${XDG_CONFIG_HOME}/git/"* "${DOTFILES}/git/"
-
-  cp "${XDG_CONFIG_HOME}/user-dirs.dirs"\
-     "${DOTFILES}/user-dirs.dirs"
-
-  cp "${XDG_CONFIG_HOME}/starship.toml"\
-     "${DOTFILES}/starship.toml"
-
-  cp "${XDG_CONFIG_HOME}/alacritty/alacritty.yml"\
-     "${DOTFILES}/alacritty/alacritty.yml"
-
-  cp "${XDG_CONFIG_HOME}/neomutt/neomuttrc" "${DOTFILES}/neomutt/neomuttrc"
-  cp "${XDG_CONFIG_HOME}/neomutt/accounts/"* "${DOTFILES}/neomutt/accounts/"
-
-  cp "${XDG_CONFIG_HOME}/nvim/init.vim" "${DOTFILES}/nvim/init.vim"
-  cp "${XDG_CONFIG_HOME}/nvim/colors/"*.vim "${DOTFILES}/nvim/colors/"
-  cp "${XDG_CONFIG_HOME}/nvim/autoload/lightline/colorscheme/"*.vim\
-    "${DOTFILES}/nvim/autoload/lightline/colorscheme/"
-
-  cp "${XDG_CONFIG_HOME}/lf/"* "${DOTFILES}/lf/"
-
-  cp "${XDG_CONFIG_HOME}/wtf/config.yml" "${DOTFILES}/wtf/config.yml"
+  rsync -avH \
+    --exclude-from="${DOTFILES}/.exclude" \
+    "${XDG_CONFIG_HOME}/" "${DOTFILES}/.config/" --delete-before
 
   if [ "${OS}" = "darwin" ]
   then
-    brew ls --formula -1 --full-name > "${DOTFILES}/brew/ls_-1"
-    brew ls --cask -1 --full-name > "${DOTFILES}/brew/cask_ls_-1"
+    brew ls --formula -1 --full-name > "${DOTFILES}/brew_ls_-1"
+    brew ls --cask -1 --full-name > "${DOTFILES}/brew_cask_ls_-1"
   fi
   if [ "${OS}" = "linux" ]
   then
+    mkdir -p "${DOTFILES}/usr/local/bin/"
     /usr/bin/find /usr/local/bin -type f -exec sh -c '
       case $( file -bi "$1" ) in (*/x-shellscript*) exit 0; esac
       exit 1' sh {} \; -print | while read -r scriptfile
       do
-        cp "${scriptfile}" "${DOTFILES}/usr/local/bin/"
+        rsync -avH "${scriptfile}" "${DOTFILES}/usr/local/bin/"
       done
 
-    cp "${XDG_CONFIG_HOME}/dunst/dunstrc" "${DOTFILES}/dunst/dunstrc"
-
-    cp "${XDG_CONFIG_HOME}/mako/config" "${DOTFILES}/mako/config"
-
-    cp "${XDG_CONFIG_HOME}/mpd/mpd.conf" "${DOTFILES}/mpd/mpd.conf"
-
-    cp "${XDG_CONFIG_HOME}/ncmpcpp/config" "${DOTFILES}/ncmpcpp/config"
-
-    cp "${XDG_CONFIG_HOME}/sway/config" "${DOTFILES}/sway/config"
-
-    cp "${XDG_CONFIG_HOME}/swaylock/config" "${DOTFILES}/swaylock/config"
-
-    cp "${XDG_CONFIG_HOME}/swaynag/config" "${DOTFILES}/swaynag/config"
-
-    cp "${XDG_CONFIG_HOME}/task/taskrc" "${DOTFILES}/task/taskrc"
-
-    cp "${XDG_CONFIG_HOME}/waybar/"* "${DOTFILES}/waybar/"
-
-    cp "${XDG_CONFIG_HOME}/wireplumber/main.lua.d/"* "${DOTFILES}/wireplumber/main.lua.d/"
-
-    cp "${XDG_CONFIG_HOME}/wofi/"* "${DOTFILES}/wofi/"
-
-    cp "${XDG_CONFIG_HOME}/xdg-desktop-portal-wlr/config" "${DOTFILES}/xdg-desktop-portal-wlr/config"
-
-    cp "${HOME}/.local/share/applications/browser.desktop" "${DOTFILES}/local/share/applications/browser.desktop"
+    mkdir -p "${DOTFILES}/.local/share/applications/"
+    rsync -avH \
+      "${HOME}/.local/share/applications/browser.desktop" \
+      "${DOTFILES}/.local/share/applications/browser.desktop"
   fi
 
-  cargo install --list > "${DOTFILES}/cargo/install_--list"
-  npm list -g --depth=0 > "${DOTFILES}/npm/list_-g_--depth_0"
+  cargo install --list > "${DOTFILES}/cargo_install_--list"
+
+  npm list -g --depth=0 > "${DOTFILES}/npm_list_-g_--depth_0"
+
   /bin/ls -1 ~/.go/bin/ \
     | while read -r bin; \
     do go version -m "${HOME}/.go/bin/${bin}" \
@@ -1175,7 +1138,7 @@ function dotfiles-update-remote() {
     | grep '^github.com' \
     | sort \
     | uniq;\
-    done > "${DOTFILES}/go/list_github.com"
+    done > "${DOTFILES}/go_list_github.com"
 
   gh extension list > "${DOTFILES}/gh_extension_list"
 

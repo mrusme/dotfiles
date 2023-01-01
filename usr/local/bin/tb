@@ -1,2 +1,0 @@
-#!/bin/sh
-TZ=UTC /usr/local/bin/tor-browser "$@"
