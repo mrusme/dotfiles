@@ -296,7 +296,11 @@ export ZSH="${HOME}/.oh-my-zsh"
 # ([ "${USER}" != "root" ] && sh -c "$(curl -fsSL \
 #     https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)")
 
-ZSH_THEME="geometry-zsh/geometry"
+
+__is_available starship \
+&& eval "$(starship init zsh)" \
+|| ZSH_THEME="geometry-zsh/geometry"
+
 [ "${USER}" = "root" ] \
 && GEOMETRY_SEPARATOR=" root"
 
@@ -1102,6 +1106,9 @@ function dotfiles-update-remote() {
   cp "${XDG_CONFIG_HOME}/user-dirs.dirs"\
      "${DOTFILES}/user-dirs.dirs"
 
+  cp "${XDG_CONFIG_HOME}/starship.toml"\
+     "${DOTFILES}/starship.toml"
+
   cp "${XDG_CONFIG_HOME}/alacritty/alacritty.yml"\
      "${DOTFILES}/alacritty/alacritty.yml"
 
@@ -1199,6 +1206,9 @@ function dotfiles-update-local() {
 
   cp "${DOTFILES}/user-dirs.dirs"\
      "${XDG_CONFIG_HOME}/user-dirs.dirs"
+
+  cp "${DOTFILES}/starship.toml"\
+     "${XDG_CONFIG_HOME}/starship.toml"
 
   mkdir -p "${XDG_CONFIG_HOME}/alacritty"
   cp "${DOTFILES}/alacritty/alacritty.yml"\
