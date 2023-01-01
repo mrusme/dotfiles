@@ -317,6 +317,12 @@ bindsym $mod+Tab focus next
 # Focus previous
 bindsym $mod+Shift+Tab focus prev
 
+# Focus on last focused tiling container
+bindsym $mod+D focus tiling
+
+# Focus on last focused floating container
+bindsym $mod+V focus floating
+
 # === Window moving ===
 
 # Move focused window up
