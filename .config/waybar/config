@@ -62,8 +62,8 @@
   "custom/screenrecord": {
     "format": "{}",
     "return-type": "json",
-    "exec": "/usr/local/bin/screenrecord",
-    "on-click": "/usr/local/bin/screenrecord toggle",
+    "exec": "/usr/local/bin/waybar-screenrecord",
+    "on-click": "/usr/local/bin/waybar-screenrecord toggle",
     "interval": 3
   },
 
@@ -74,9 +74,9 @@
       "disconnected": ""
     },
     "return-type": "json",
-    "exec": "/usr/local/bin/vpn current",
-    "on-click": "/usr/local/bin/vpn connect",
-    "on-click-middle": "/usr/local/bin/vpn disconnect",
+    "exec": "/usr/local/bin/waybar-vpn current",
+    "on-click": "/usr/local/bin/waybar-vpn connect",
+    "on-click-middle": "/usr/local/bin/waybar-vpn disconnect",
     "on-click-right": "/usr/local/bin/get-public-ip-info",
     "interval": 30
   },
@@ -92,7 +92,7 @@
   "custom/docker": {
     "format": "{}",
     "return-type": "json",
-    "exec": "/usr/local/bin/docker-containers",
+    "exec": "/usr/local/bin/waybar-docker",
     "exec-if": "rc-service docker status",
     "interval": 30
   },
@@ -108,7 +108,7 @@
   "custom/crypto": {
     "format": "{}",
     "return-type": "json",
-    "exec": "/usr/local/bin/cryptoprices",
+    "exec": "/usr/local/bin/waybar-crypto",
     "on-click": "",
     "interval": 3600
   },
@@ -194,13 +194,13 @@
       "warning": 70,
       "critical": 90
     },
-    "on-click": "/usr/local/bin/cpu.sh set"
+    "on-click": "/usr/local/bin/waybar-cpu set"
   },
 
   "custom/stats": {
     "format": "{}",
     "return-type": "json",
-    "exec": "/usr/local/bin/stats.sh",
+    "exec": "/usr/local/bin/waybar-stats",
     "interval": 30
   },
 
@@ -211,8 +211,8 @@
       "disconnected": "<span color='#aaaaaa'> </span>"
     },
     "return-type": "json",
-    "exec": "/usr/local/bin/btdevices headphones",
-    "on-click": "/usr/local/bin/btdevices headphones toggle",
+    "exec": "/usr/local/bin/waybar-bluetooth headphones",
+    "on-click": "/usr/local/bin/waybar-bluetooth headphones toggle",
     "interval": 10
   },
 
@@ -223,8 +223,8 @@
       "disconnected": "<span color='#aaaaaa'> </span>"
     },
     "return-type": "json",
-    "exec": "/usr/local/bin/btdevices speaker",
-    "on-click": "/usr/local/bin/btdevices speaker toggle",
+    "exec": "/usr/local/bin/waybar-bluetooth speaker",
+    "on-click": "/usr/local/bin/waybar-bluetooth speaker toggle",
     "interval": 10
   },
 
