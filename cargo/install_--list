@@ -107,6 +107,8 @@ so v0.4.9:
     so
 spotify-tui v0.25.0 (https://github.com/Rigellute/spotify-tui.git#c4dcf6b9):
     spt
+starship v1.12.0:
+    starship
 taskwarrior-tui v0.23.7 (https://github.com/kdheepak/taskwarrior-tui#81b23d18):
     taskwarrior-tui
 tealdeer v1.6.1:
