@@ -1160,81 +1160,23 @@ function dotfiles-update-local() {
   cp "${DOTFILES}/.vale.ini" "${HOME}/.vale.ini"
   cp "${DOTFILES}/.wallpaper" "${HOME}/.wallpaper"
 
-  cp "${DOTFILES}/ssh/config" "${HOME}/.ssh/config"
+  rsync -avH "${DOTFILES}/ssh/config" "${HOME}/.ssh/config"
 
-  cp -R "${DOTFILES}/irssi/"* "${HOME}/.irssi/"
+  rsync -avH \
+    --exclude-from="${DOTFILES}/.exclude" \
+    "${DOTFILES}/irssi/" "${HOME}/.irssi/"
 
-  mkdir -p "${XDG_CONFIG_HOME}/git"
-  cp -R "${DOTFILES}/git/"* "${XDG_CONFIG_HOME}/git/"
-
-  cp "${DOTFILES}/user-dirs.dirs"\
-     "${XDG_CONFIG_HOME}/user-dirs.dirs"
-
-  cp "${DOTFILES}/starship.toml"\
-     "${XDG_CONFIG_HOME}/starship.toml"
-
-  mkdir -p "${XDG_CONFIG_HOME}/alacritty"
-  cp "${DOTFILES}/alacritty/alacritty.yml"\
-     "${XDG_CONFIG_HOME}/alacritty/alacritty.yml"
-
-  mkdir -p "${XDG_CONFIG_HOME}/neomutt/accounts"
-  cp "${DOTFILES}/neomutt/neomuttrc" "${XDG_CONFIG_HOME}/neomutt/neomuttrc"
-
-  mkdir -p "${XDG_CONFIG_HOME}/nvim/colors"
-  mkdir -p "${XDG_CONFIG_HOME}/nvim/autoload/lightline/colorscheme"
-  cp "${DOTFILES}/nvim/init.vim" "${XDG_CONFIG_HOME}/nvim/init.vim"
-  cp "${DOTFILES}/nvim/colors/"*.vim "${XDG_CONFIG_HOME}/nvim/colors/"
-  cp "${DOTFILES}/nvim/autoload/lightline/colorscheme/"*.vim\
-     "${XDG_CONFIG_HOME}/nvim/autoload/lightline/colorscheme/"
-
-  mkdir -p "${XDG_CONFIG_HOME}/lf"
-  cp "${DOTFILES}/lf/"* "${XDG_CONFIG_HOME}/lf/"
-
-  mkdir -p "${XDG_CONFIG_HOME}/wtf"
-  cp "${DOTFILES}/wtf/config.yml" "${XDG_CONFIG_HOME}/wtf/config.yml"
+  rsync -avH \
+    --exclude-from="${DOTFILES}/.exclude" \
+    "${DOTFILES}/.config/" "${XDG_CONFIG_HOME}/" 
 
   if [ "${OS}" = "linux" ]
   then
     cp "${DOTFILES}/usr/local/bin/"* /usr/local/bin/
 
-    mkdir -p "${XDG_CONFIG_HOME}/dunst" 
-    cp "${DOTFILES}/dunst/dunstrc" "${XDG_CONFIG_HOME}/dunst/dunstrc" 
-
-    mkdir -p "${XDG_CONFIG_HOME}/mako" 
-    cp "${DOTFILES}/mako/config" "${XDG_CONFIG_HOME}/mako/config" 
-
-    mkdir -p "${XDG_CONFIG_HOME}/mpd" 
-    cp "${DOTFILES}/mpd/mpd.conf" "${XDG_CONFIG_HOME}/mpd/mpd.conf" 
-
-    mkdir -p "${XDG_CONFIG_HOME}/ncmpcpp" 
-    cp "${DOTFILES}/ncmpcpp/config" "${XDG_CONFIG_HOME}/ncmpcpp/config" 
-
-    mkdir -p "${XDG_CONFIG_HOME}/sway" 
-    cp "${DOTFILES}/sway/config" "${XDG_CONFIG_HOME}/sway/config" 
-
-    mkdir -p "${XDG_CONFIG_HOME}/swaylock" 
-    cp "${DOTFILES}/swaylock/config" "${XDG_CONFIG_HOME}/swaylock/config" 
-
-    mkdir -p "${XDG_CONFIG_HOME}/swaynag" 
-    cp "${DOTFILES}/swaynag/config" "${XDG_CONFIG_HOME}/swaynag/config" 
-
-    mkdir -p "${XDG_CONFIG_HOME}/task" 
-    cp "${DOTFILES}/task/taskrc" "${XDG_CONFIG_HOME}/task/taskrc" 
-
-    mkdir -p "${XDG_CONFIG_HOME}/waybar" 
-    cp "${DOTFILES}/waybar/"* "${XDG_CONFIG_HOME}/waybar/" 
-
-    mkdir -p "${XDG_CONFIG_HOME}/wireplumber/main.lua.d" 
-    cp "${DOTFILES}/wireplumber/main.lua.d/"* "${XDG_CONFIG_HOME}/wireplumber/main.lua.d/" 
-
-    mkdir -p "${XDG_CONFIG_HOME}/wofi" 
-    cp "${DOTFILES}/wofi/"* "${XDG_CONFIG_HOME}/wofi/" 
-
-    mkdir -p "${XDG_CONFIG_HOME}/xdg-desktop-portal-wlr" 
-    cp "${DOTFILES}/xdg-desktop-portal-wlr/config" "${XDG_CONFIG_HOME}/xdg-desktop-portal-wlr/config" 
-
     mkdir -p "${HOME}/.local/share/applications/" 
-    cp "${DOTFILES}/local/share/applications/browser.desktop" "${HOME}/.local/share/applications/browser.desktop"
+    cp "${DOTFILES}/local/share/applications/browser.desktop" \
+      "${HOME}/.local/share/applications/browser.desktop"
   fi
   return 0
 }
