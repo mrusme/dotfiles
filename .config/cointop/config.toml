@@ -1,0 +1,122 @@
+currency = "USD"
+default_view = "default"
+default_chart_range = "1M"
+api = "coingecko"
+colorscheme = "cointop"
+refresh_rate = 60
+cache_dir = "/home/mrus/.cache/cointop"
+compact_notation = false
+enable_mouse = true
+
+[shortcuts]
+  "!" = "sort_column_cost"
+  "#" = "sort_column_pnl_percent"
+  "$" = "last_page"
+  "%" = "sort_column_percent_holdings"
+  "+" = "show_price_alert_add_menu"
+  "/" = "open_search"
+  0 = "move_to_first_page_first_row"
+  1 = "sort_column_1h_change"
+  2 = "sort_column_24h_change"
+  3 = "sort_column_30d_change"
+  7 = "sort_column_7d_change"
+  "<" = "scroll_left"
+  ">" = "scroll_right"
+  "?" = "help"
+  "@" = "sort_column_pnl"
+  A = "toggle_price_alerts"
+  C = "show_currency_convert_menu"
+  E = "show_portfolio_edit_menu"
+  F = "toggle_show_favorites"
+  F1 = "help"
+  F5 = "refresh"
+  G = "move_to_page_last_row"
+  H = "move_to_page_visible_first_row"
+  L = "move_to_page_visible_last_row"
+  M = "move_to_page_visible_middle_row"
+  O = "open_link"
+  P = "toggle_portfolio"
+  Q = "quit_view"
+  "[" = "previous_chart_range"
+  "\\\\" = "toggle_table_fullscreen"
+  "]" = "next_chart_range"
+  a = "sort_column_available_supply"
+  "alt+down" = "sort_column_desc"
+  "alt+left" = "sort_left_column"
+  "alt+right" = "sort_right_column"
+  "alt+up" = "sort_column_asc"
+  b = "sort_column_balance"
+  c = "show_currency_convert_menu"
+  "ctrl+C" = "quit"
+  "ctrl+R" = "refresh"
+  "ctrl+S" = "save"
+  "ctrl+c" = "quit"
+  "ctrl+d" = "page_down"
+  "ctrl+f" = "open_search"
+  "ctrl+j" = "enlarge_chart"
+  "ctrl+k" = "shorten_chart"
+  "ctrl+n" = "next_page"
+  "ctrl+p" = "previous_page"
+  "ctrl+r" = "refresh"
+  "ctrl+s" = "save"
+  "ctrl+space" = "toggle_portfolio_balances"
+  "ctrl+u" = "page_up"
+  down = "move_down"
+  e = "show_portfolio_edit_menu"
+  end = "move_to_page_last_row"
+  enter = "toggle_row_chart"
+  esc = "quit_view"
+  f = "toggle_favorite"
+  g = "move_to_page_first_row"
+  h = "previous_page"
+  home = "move_to_page_first_row"
+  j = "move_down"
+  k = "move_up"
+  l = "next_page"
+  left = "previous_page"
+  m = "sort_column_market_cap"
+  n = "sort_column_name"
+  o = "open_link"
+  p = "sort_column_price"
+  pagedown = "page_down"
+  pageup = "page_up"
+  q = "quit_view"
+  r = "sort_column_rank"
+  right = "next_page"
+  s = "sort_column_symbol"
+  space = "toggle_favorite"
+  t = "sort_column_total_supply"
+  tab = "move_down_or_next_page"
+  u = "sort_column_last_updated"
+  up = "move_up"
+  v = "sort_column_24h_volume"
+  y = "sort_column_1y_change"
+  "{" = "first_chart_range"
+  "|" = "toggle_chart_fullscreen"
+  "}" = "last_chart_range"
+
+[favorites]
+  character = "*"
+  columns = ["rank", "name", "symbol", "price", "1h_change", "24h_change", "7d_change", "24h_volume", "market_cap", "available_supply", "total_supply", "last_updated"]
+  compact_notation = false
+  names = ["Bitcoin", "Ethereum", "Monero", "Stellar", "XRP", "Zcash"]
+
+[portfolio]
+  columns = ["rank", "name", "symbol", "price", "holdings", "balance", "1h_change", "24h_change", "7d_change", "percent_holdings", "cost_price", "cost", "pnl", "pnl_percent", "last_updated"]
+  compact_notation = false
+  holdings = []
+
+[price_alerts]
+  alerts = []
+
+[coinmarketcap]
+  pro_api_key = ""
+
+[table]
+  columns = ["rank", "name", "symbol", "price", "1h_change", "24h_change", "7d_change", "24h_volume", "market_cap", "available_supply", "total_supply", "last_updated"]
+  compact_notation = false
+  keep_row_focus_on_sort = false
+
+[chart]
+  height = 10
+  max_width = 175
