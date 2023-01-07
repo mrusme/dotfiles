@@ -1,16 +1,16 @@
 daemonize
 show-failed-attempts
-color=00000085
-font='Fira Code'
+color=000000DF
+font='ProggyVector'
 font-size=14
-indicator-radius=100
-indicator-thickness=6
+indicator-radius=80
+indicator-thickness=2
 
 inside-color=00000000
 
 line-color=00000000
-ring-color=75d5ff
-text-color=75d5ff
+ring-color=84a0c6
+text-color=84a0c6
 
 key-hl-color=FFFFFF
 bs-hl-color=FC9EDF
@@ -26,7 +26,7 @@ ring-ver-color=ffd478
 text-ver-color=ffd478
 
 inside-wrong-color=00000000
-line-wrong-color=ff89d800
-ring-wrong-color=ff89d8
-text-wrong-color=ff89d8
+line-wrong-color=e2787800
+ring-wrong-color=e27878
+text-wrong-color=e27878
 
