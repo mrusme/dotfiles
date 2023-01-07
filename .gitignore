@@ -7,7 +7,6 @@
 /.config/syncthing
 /.config/radicle-link
 /.config/cloudcash.toml
-/.config/gobbs.toml
 /.config/cmus/autosave
 /.config/cmus/cache
 /.config/cmus/command-history
@@ -15,3 +14,4 @@
 /.config/cmus/playlists/**
 /.config/cmus/search-history
 /.config/git/hooks/**
+/.config/neonmodem.toml

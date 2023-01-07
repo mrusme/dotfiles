@@ -10,5 +10,5 @@
 /.config/nvim/motd filter=git-crypt diff=git-crypt
 /.config/task/taskrc filter=git-crypt diff=git-crypt
 /.config/cloudcash.toml filter=git-crypt diff=git-crypt
-/.config/gobbs.toml filter=git-crypt diff=git-crypt
+/.config/neonmodem.toml filter=git-crypt diff=git-crypt
 
