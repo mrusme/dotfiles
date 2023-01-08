@@ -8,6 +8,7 @@ right_format = '$terraform$git_state$git_status$git_branch$git_commit'
 [character]
 success_symbol = '[▲](white)'
 error_symbol = '[▲](red)'
+vicmd_symbol = '[△](blue)'
 
 [directory]
 style = 'blue'
