@@ -298,7 +298,6 @@ export ZSH="${HOME}/.oh-my-zsh"
 
 
 __is_available starship \
-&& eval "$(starship init zsh)" \
 || ZSH_THEME="geometry-zsh/geometry"
 
 [ "${USER}" = "root" ] \
@@ -329,7 +328,7 @@ if [ "${USER}" != "root" ]
 then 
   plugins+=( \
     gpg-agent ssh-agent \
-    git git-flow git-extras golang rust mix gh \
+    git git-flow git-extras golang rust mix gh vi-mode \
     ripgrep rsync ipfs docker mosh terraform taskwarrior pass \
     encode64 extract urltools web-search isodate \
   )
@@ -351,6 +350,9 @@ fpath=(
 )
 
 ZSH_THEME_TERM_TITLE_IDLE='zsh %n@%m:%~'
+
+# VI Mode 
+bindkey '^f' forward-char
 
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
@@ -1198,6 +1200,9 @@ DOT_MOTD="${HOME}/.motd"
 fortune stoic
 printf "\n"
 
+
+__is_available starship \
+&& eval "$(starship init zsh)"
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
 # ║ Stuff other programs dare to append goes here                              ║
