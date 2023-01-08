@@ -353,6 +353,7 @@ ZSH_THEME_TERM_TITLE_IDLE='zsh %n@%m:%~'
 
 # VI Mode 
 bindkey '^f' forward-char
+bindkey '^[f' forward-word 
 
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
