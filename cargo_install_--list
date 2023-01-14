@@ -4,7 +4,7 @@ battop v0.2.4:
     battop
 bingrep v0.10.1:
     bingrep
-bottom v0.7.0:
+bottom v0.7.1:
     btm
 cargo-update v11.1.1:
     cargo-install-update
@@ -25,7 +25,7 @@ eva v0.3.1:
     eva
 gfold v4.2.0:
     gfold
-git-cliff v1.0.0:
+git-cliff v1.1.1:
     git-cliff
     git-cliff-completions
     git-cliff-mangen
@@ -35,10 +35,10 @@ git-journal v1.8.1:
     git-journal
 gitui v0.22.1:
     gitui
-gpg-tui v0.9.2:
+gpg-tui v0.9.3:
     gpg-tui
     gpg-tui-completions
-gping v1.6.3:
+gping v1.7.0:
     gping
 helix-term v0.6.0 (https://github.com/helix-editor/helix#ebaf0192):
     hx
@@ -60,7 +60,7 @@ lemmeknow v0.7.0:
     lemmeknow
 librespot v0.5.0-dev (https://github.com/librespot-org/librespot.git#edf646d4):
     librespot
-mdcat v0.30.3:
+mdcat v1.0.0:
     mdcat
 muc v0.1.0 (https://github.com/nate-sys/muc#297353df):
     muc
@@ -123,9 +123,9 @@ vocage v1.1.0:
     vocage
 websocat v1.11.0:
     websocat
-xplr v0.20.1:
+xplr v0.20.2:
     xplr
 zenith v0.14.0 (https://github.com/bvaisvil/zenith.git#f5d2452d):
     zenith
-zoxide v0.8.3:
+zoxide v0.9.0:
     zoxide
