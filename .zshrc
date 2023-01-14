@@ -360,7 +360,17 @@ bindkey '^[f' forward-word
 # ║ ZSH                                                                        ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
-autoload -U zmv
+autoload -U zmv add-zsh-hook
+
+__rad_checker() {
+  emulate -L zsh
+  if [ -f .gitsigners ]
+  then 
+    rad auth 
+  fi
+}
+
+add-zsh-hook chpwd __rad_checker
 
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
@@ -742,6 +752,14 @@ function terminal-colors() {
     sed -i=.previous 's/\*dark$/\*light/g' "${XDG_CONFIG_HOME}/alacritty/alacritty.yml"
   fi
 }
+
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ Custom rad helpers                                                         ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+
+alias rp='rad push'
+alias rpa='rad push --all'
 
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
@@ -1141,7 +1159,7 @@ function dotfiles-update-remote() {
     | grep '^github.com' \
     | sort \
     | uniq;\
-    done > "${DOTFILES}/go_list_github.com"
+    done > "${DOTFILES}/go_list_github-com"
 
   gh extension list > "${DOTFILES}/gh_extension_list"
 
