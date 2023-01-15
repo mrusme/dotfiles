@@ -234,7 +234,7 @@ fi
 # Go
 go env -w GOPATH="${HOME}/.go"
 export PATH="$(go env GOPATH)/bin:${PATH}"
-#export GOPROXY="direct"
+export GOPROXY="direct"
 
 # Python virtualenv
 export VIRTUALENVWRAPPER_PYTHON="$(which python3)"
