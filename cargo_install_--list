@@ -15,8 +15,6 @@ conclusive v1.0.0:
     conclusive
 csview v1.2.2:
     csview
-deno v1.29.1:
-    deno
 dijo v0.2.7:
     dijo
 du-dust v0.8.3:
@@ -40,7 +38,7 @@ gpg-tui v0.9.3:
     gpg-tui-completions
 gping v1.7.0:
     gping
-helix-term v0.6.0 (https://github.com/helix-editor/helix#ebaf0192):
+helix-term v0.6.0 (https://github.com/helix-editor/helix#b6331394):
     hx
 hexyl v0.12.0:
     hexyl
@@ -58,13 +56,13 @@ kmon v1.6.2:
     kmon
 lemmeknow v0.7.0:
     lemmeknow
-librespot v0.5.0-dev (https://github.com/librespot-org/librespot.git#edf646d4):
+librespot v0.5.0-dev (https://github.com/librespot-org/librespot.git#8941495b):
     librespot
 mdcat v1.0.0:
     mdcat
-muc v0.1.0 (https://github.com/nate-sys/muc#297353df):
+muc v0.1.0 (https://github.com/nate-sys/muc#1c7b988c):
     muc
-neovide v0.10.3 (https://github.com/neovide/neovide#67a48653):
+neovide v0.10.3 (https://github.com/neovide/neovide#973d816d):
     neovide
 oxipng v8.0.0:
     oxipng
@@ -74,27 +72,9 @@ pipe-rename v1.6.1:
     renamer
 procs v0.13.3:
     procs
-radicle-cli v0.5.1 (https://seed.alt-clients.radicle.xyz/radicle-cli.git#53d4c844):
+radicle-cli v0.7.0-dev (https://github.com/radicle-dev/radicle-cli#c2a0a2f2):
     git-remote-rad
     rad
-    rad-account
-    rad-auth
-    rad-checkout
-    rad-clone
-    rad-ens
-    rad-gov
-    rad-help
-    rad-init
-    rad-inspect
-    rad-ls
-    rad-pull
-    rad-push
-    rad-remote
-    rad-rm
-    rad-self
-    rad-sync
-    rad-track
-    rad-untrack
 rates v0.7.0:
     rates
 rustscan v2.1.1:
