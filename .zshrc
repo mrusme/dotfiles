@@ -322,7 +322,7 @@ ZSH_AUTOSUGGESTIONS="${ZSH_CUSTOM:-${HOME}/.oh-my-zsh/custom}\
 ZSH_COMPDUMP="${XDG_CACHE_HOME}/.zcompdump-${HOST}"
 
 # === PLUGINS ===
-plugins=(history zsh-autosuggestions fzf fasd)
+plugins=(history zsh-autosuggestions fzf)
 
 if [ "${USER}" != "root" ]
 then 
