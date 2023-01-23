@@ -4,7 +4,7 @@ battop v0.2.4:
     battop
 bingrep v0.10.1:
     bingrep
-bottom v0.7.1:
+bottom v0.8.0:
     btm
 cargo-update v11.1.1:
     cargo-install-update
@@ -23,7 +23,7 @@ eva v0.3.1:
     eva
 gfold v4.2.0:
     gfold
-git-cliff v1.1.1:
+git-cliff v1.1.2:
     git-cliff
     git-cliff-completions
     git-cliff-mangen
@@ -38,7 +38,7 @@ gpg-tui v0.9.3:
     gpg-tui-completions
 gping v1.7.0:
     gping
-helix-term v0.6.0 (https://github.com/helix-editor/helix#b6331394):
+helix-term v0.6.0 (https://github.com/helix-editor/helix#7e191f59):
     hx
 hexyl v0.12.0:
     hexyl
@@ -56,11 +56,11 @@ kmon v1.6.2:
     kmon
 lemmeknow v0.7.0:
     lemmeknow
-librespot v0.5.0-dev (https://github.com/librespot-org/librespot.git#8941495b):
+librespot v0.5.0-dev (https://github.com/librespot-org/librespot.git#e9dbdfed):
     librespot
 mdcat v1.0.0:
     mdcat
-muc v0.1.0 (https://github.com/nate-sys/muc#1c7b988c):
+muc v0.1.0 (https://github.com/nate-sys/muc#d651dcf9):
     muc
 neovide v0.10.3 (https://github.com/neovide/neovide#973d816d):
     neovide
@@ -72,7 +72,7 @@ pipe-rename v1.6.1:
     renamer
 procs v0.13.3:
     procs
-radicle-cli v0.7.0-dev (https://github.com/radicle-dev/radicle-cli#c2a0a2f2):
+radicle-cli v0.7.0-dev (https://github.com/radicle-dev/radicle-cli#fadad89b):
     git-remote-rad
     rad
 rates v0.7.0:
@@ -89,7 +89,7 @@ spotify-tui v0.25.0 (https://github.com/Rigellute/spotify-tui.git#c4dcf6b9):
     spt
 starship v1.12.0:
     starship
-taskwarrior-tui v0.23.7 (https://github.com/kdheepak/taskwarrior-tui#81b23d18):
+taskwarrior-tui v0.23.7 (https://github.com/kdheepak/taskwarrior-tui#5aaa9ba2):
     taskwarrior-tui
 tealdeer v1.6.1:
     tldr
