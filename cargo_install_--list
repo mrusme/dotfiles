@@ -38,7 +38,7 @@ gpg-tui v0.9.3:
     gpg-tui-completions
 gping v1.7.0:
     gping
-helix-term v0.6.0 (https://github.com/helix-editor/helix#7e191f59):
+helix-term v0.6.0 (https://github.com/helix-editor/helix#4d548a0e):
     hx
 hexyl v0.12.0:
     hexyl
