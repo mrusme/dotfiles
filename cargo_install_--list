@@ -2,7 +2,7 @@ bandwhich v0.20.0:
     bandwhich
 battop v0.2.4:
     battop
-bingrep v0.10.1:
+bingrep v0.11.0:
     bingrep
 bottom v0.8.0:
     btm
@@ -17,11 +17,11 @@ csview v1.2.2:
     csview
 dijo v0.2.7:
     dijo
-du-dust v0.8.3:
+du-dust v0.8.4:
     dust
 eva v0.3.1:
     eva
-gfold v4.2.0:
+gfold v4.3.1:
     gfold
 git-cliff v1.1.2:
     git-cliff
@@ -36,9 +36,9 @@ gitui v0.22.1:
 gpg-tui v0.9.3:
     gpg-tui
     gpg-tui-completions
-gping v1.7.0:
+gping v1.8.0:
     gping
-helix-term v0.6.0 (https://github.com/helix-editor/helix#4d548a0e):
+helix-term v0.6.0 (https://github.com/helix-editor/helix#fb149133):
     hx
 hexyl v0.12.0:
     hexyl
@@ -56,13 +56,13 @@ kmon v1.6.2:
     kmon
 lemmeknow v0.7.0:
     lemmeknow
-librespot v0.5.0-dev (https://github.com/librespot-org/librespot.git#e9dbdfed):
+librespot v0.5.0-dev (https://github.com/librespot-org/librespot.git#a211ff94):
     librespot
 mdcat v1.0.0:
     mdcat
 muc v0.1.0 (https://github.com/nate-sys/muc#d651dcf9):
     muc
-neovide v0.10.3 (https://github.com/neovide/neovide#973d816d):
+neovide v0.10.3 (https://github.com/neovide/neovide#39a6827a):
     neovide
 oxipng v8.0.0:
     oxipng
@@ -70,7 +70,7 @@ pastel v0.9.0:
     pastel
 pipe-rename v1.6.1:
     renamer
-procs v0.13.3:
+procs v0.13.4:
     procs
 radicle-cli v0.7.0-dev (https://github.com/radicle-dev/radicle-cli#fadad89b):
     git-remote-rad
