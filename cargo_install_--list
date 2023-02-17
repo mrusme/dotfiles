@@ -33,7 +33,7 @@ git-journal v1.8.1:
     git-journal
 gitui v0.22.1:
     gitui
-gpg-tui v0.9.3:
+gpg-tui v0.9.4:
     gpg-tui
     gpg-tui-completions
 gping v1.8.0:
@@ -62,7 +62,7 @@ mdcat v1.0.0:
     mdcat
 muc v0.1.0 (https://github.com/nate-sys/muc#d651dcf9):
     muc
-neovide v0.10.3 (https://github.com/neovide/neovide#39a6827a):
+neovide v0.10.3 (https://github.com/neovide/neovide#836afae7):
     neovide
 oxipng v8.0.0:
     oxipng
