@@ -59,7 +59,6 @@ Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'itchyny/lightline.vim'
 Plug 'wfxr/minimap.vim'
 Plug 'jamessan/vim-gnupg'
-Plug 'glepnir/dashboard-nvim'
 Plug 'robertbasic/vim-hugo-helper'
 Plug 'windwp/nvim-autopairs'
 Plug 'tpope/vim-abolish'
@@ -383,7 +382,6 @@ let g:indentLine_first_char = '⋮'
 let g:indentLine_showFirstIndentLevel = 1
 let g:indentLine_setColors = 1
 let g:indentLine_setConceal = 0
-let g:indentLine_fileTypeExclude = ['dashboard']
 
 
 " ╔════════════════════════════════════════════════════════════════════════════╗
@@ -886,52 +884,6 @@ nnoremap <F5> :MundoToggle<CR>
 autocmd User GnuPG setl textwidth=72
 let g:GPGFilePattern = '*.\(gpg\|asc\|pgp\)\(.wiki\|.md\)\='
 
-
-" ╔════════════════════════════════════════════════════════════════════════════╗
-" ║ Dashboard                                                                  ║
-" ╚════════════════════════════════════════════════════════════════════════════╝
-
-lua << EOF
-local home = os.getenv('HOME')
-  local db = require('dashboard')
-  db.preview_command = '/bin/cat'
-  db.preview_file_path = home .. '/.config/nvim/motd'
-  db.preview_file_width = 76
-  db.preview_file_height = 32
-  db.custom_center = {
-    {
-      icon = ' ',
-      desc = 'New file',
-      shortcut = 'SPC n f',
-      action = 'enew'
-    },
-    {
-      icon = '  ',
-      desc = 'Recently opened files                   ',
-      action =  'DashboardFindHistory',
-      shortcut = 'SPC f h'
-    },
-    {
-      icon = '  ',
-      desc = 'Find  File                              ',
-      action = 'Telescope find_files find_command=rg,--hidden,--files',
-      shortcut = 'SPC f f'
-    },
-    {
-      icon = '  ',
-      desc ='File Browser                            ',
-      action =  'Telescope file_browser',
-      shortcut = 'SPC f b'
-    },
-    {
-      icon = '  ',
-      desc = 'Find  word                              ',
-      aciton = 'DashboardFindWord',
-      shortcut = 'SPC f w'
-    },
-  }
-  db.custom_footer = nil
-EOF
 
 
 " ╔════════════════════════════════════════════════════════════════════════════╗
