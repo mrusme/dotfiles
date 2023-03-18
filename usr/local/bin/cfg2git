@@ -53,6 +53,5 @@ sudo /bin/cat /root/.zsh_history > "$target/zsh_history-root"
 
 ### COMMIT CHANGES ###
 git -C "$target" add "$target" \
-&& git -C "$target" commit --no-gpg-sign -m "Updated files" \
-&& git -C "$target" push
+&& git -C "$target" commit --no-gpg-sign -m "Updated files"
 
