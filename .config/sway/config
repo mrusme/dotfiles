@@ -75,8 +75,8 @@ focus_on_window_activation smart
 output DP-1 pos 0 0
 
 # UPERFECT 15.6 UHD
-#output HDMI-A-1 pos 960 2160
-#output HDMI-A-1 scale 2
+output HDMI-A-1 pos -2560 0
+output HDMI-A-1 scale 1
 
 # Streaming 
 # output HEADLESS-1 {
@@ -87,6 +87,7 @@ output DP-1 pos 0 0
 
 # Wallpaper
 output DP-1 bg ~/.wallpaper fill
+output HDMI-A-1 bg ~/.wallpaper fill
 
 # swayidle
 # TODO: Fix GPU cycling issue (https://github.com/swaywm/sway/issues/6971) 
@@ -349,7 +350,7 @@ workspace 6   6:VI   output DP-1
 workspace 7   7:VII  output DP-1
 workspace 8   8:VIII output DP-1
 workspace 9   9:IX   output DP-1
-#workspace 10 10:X    output HDMI-A-1
+workspace 10 10:X    output HDMI-A-1
 
 # Switch to workspace 1
 bindsym $mod+1 workspace 1   1:I
