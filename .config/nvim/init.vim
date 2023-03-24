@@ -40,13 +40,14 @@ Plug 'jose-elias-alvarez/null-ls.nvim'
 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
-Plug 'lambdalisue/fern.vim'
-Plug 'lambdalisue/nerdfont.vim'
-Plug 'lambdalisue/fern-renderer-nerdfont.vim'
-Plug 'lambdalisue/fern-git-status.vim'
-Plug 'lambdalisue/fern-hijack.vim'
-Plug 'lambdalisue/fern-bookmark.vim'
-Plug 'lambdalisue/fern-mapping-git.vim'
+"Plug 'lambdalisue/fern.vim'
+"Plug 'lambdalisue/nerdfont.vim'
+"Plug 'lambdalisue/fern-renderer-nerdfont.vim'
+"Plug 'lambdalisue/fern-git-status.vim'
+"Plug 'lambdalisue/fern-hijack.vim'
+"Plug 'lambdalisue/fern-bookmark.vim'
+"Plug 'lambdalisue/fern-mapping-git.vim'
+Plug 'nvim-tree/nvim-tree.lua'
 Plug 'ggandor/leap.nvim'
 Plug 'ggandor/lightspeed.nvim'
 Plug 'lambdalisue/glyph-palette.vim'
@@ -427,68 +428,25 @@ set noshowmode
 
 
 " ╔════════════════════════════════════════════════════════════════════════════╗
-" ║ Fern                                                                       ║
+" ║ nvim-tree                                                                  ║
 " ╚════════════════════════════════════════════════════════════════════════════╝
 
-" fern-renderer-nerdfont
-let g:fern#renderer = "nerdfont"
+lua <<EOF
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+vim.opt.termguicolors = true
+require("nvim-tree").setup({
+  sort_by = "case_sensitive",
+  renderer = {
+    group_empty = true,
+  },
+  filters = {
+    dotfiles = true,
+  },
+})
+EOF
 
-" fern-git-status
-" Disable listing ignored files/directories
-let g:fern_git_status#disable_ignored = 0
-" Disable listing untracked files
-let g:fern_git_status#disable_untracked = 0
-" Disable listing status of submodules
-let g:fern_git_status#disable_submodules = 0
-" Disable listing status of directories
-let g:fern_git_status#disable_directories = 0
-
-" glyph-palette
-augroup my-glyph-palette
-  autocmd! *
-  autocmd FileType fern call glyph_palette#apply()
-  autocmd FileType nerdtree,startify call glyph_palette#apply()
-augroup END
-
-let g:fern#disable_default_mappings   = 0
-let g:fern#disable_drawer_smart_quit   = 0
-
-noremap <silent> <C-k><C-b> :Fern . -drawer -width=35 -toggle<CR>
-noremap <silent> <Leader>d :Fern . -drawer -width=35 -toggle<CR>
-"noremap <silent> <Leader>f :Fern . -drawer -reveal=% -width=35<CR>
-noremap <silent> <Leader>. :Fern %:h -drawer -width=35<CR>
-
-noremap <silent> <C-k><C-B> :Fern bookmark:/// -drawer -width=35 -toggle<CR>
-noremap <silent> <Leader>b :Fern bookmark:/// -drawer -width=35 -toggle<CR>
-
-function! FernInit() abort
-  nmap <buffer><expr>
-        \ <Plug>(fern-my-open-expand-collapse)
-        \ fern#smart#leaf(
-        \   "\<Plug>(fern-action-open:select)",
-        \   "\<Plug>(fern-action-expand)",
-        \   "\<Plug>(fern-action-collapse)",
-        \ )
-  nmap <buffer> <CR> <Plug>(fern-my-open-expand-collapse)
-  "nmap <buffer> <2-LeftMouse> <Plug>(fern-my-open-expand-collapse)
-  nmap <buffer> m <Plug>(fern-action-mark:toggle)j
-  nmap <buffer> N <Plug>(fern-action-new-file)
-  nmap <buffer> K <Plug>(fern-action-new-dir)
-  nmap <buffer> D <Plug>(fern-action-remove)
-  nmap <buffer> V <Plug>(fern-action-move)
-  nmap <buffer> R <Plug>(fern-action-rename)
-  nmap <buffer> s <Plug>(fern-action-open:split)
-  nmap <buffer> v <Plug>(fern-action-open:vsplit)
-  nmap <buffer> r <Plug>(fern-action-reload)
-  nmap <buffer> <nowait> d <Plug>(fern-action-hidden:toggle)
-  nmap <buffer> <nowait> < <Plug>(fern-action-leave)
-  nmap <buffer> <nowait> > <Plug>(fern-action-enter)
-endfunction
-
-augroup FernEvents
-  autocmd!
-  autocmd FileType fern call FernInit()
-augroup END
+noremap <silent> <Leader>d :NvimTreeToggle<CR>
 
 
 " ╔════════════════════════════════════════════════════════════════════════════╗
