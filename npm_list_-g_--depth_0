@@ -1,18 +1,18 @@
 /home/mrus/.local/lib64/node_modules/lib64
-├── @aws-amplify/cli@11.0.2
-├── bash-language-server@4.8.3
+├── @aws-amplify/cli@11.0.3
+├── bash-language-server@4.9.0
 ├── dockerfile-language-server-nodejs@0.9.0
 ├── git-stats@3.1.1
-├── graphql-language-service-cli@3.3.16
+├── graphql-language-service-cli@3.3.17
 ├── graphql@16.6.0
 ├── http-server@14.1.1
-├── npm@9.6.2
+├── npm@9.6.3
 ├── speed-test@3.0.0
 ├── stylelint-lsp@1.2.4
-├── svelte-language-server@0.15.8
+├── svelte-language-server@0.15.9
 ├── terminalizer@0.9.0
-├── typescript-language-server@3.3.0
-├── typescript@5.0.2
+├── typescript-language-server@3.3.1
+├── typescript@5.0.3
 ├── vim-language-server@2.3.0
 ├── vscode-langservers-extracted@4.6.0
 ├── wikit@4.4.1
