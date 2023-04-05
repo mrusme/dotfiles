@@ -75,6 +75,7 @@ focus_on_window_activation smart
 output DP-1 pos 0 0
 
 # UPERFECT 15.6 UHD
+output HDMI-A-1 mode 2560x1440@119.998Hz
 output HDMI-A-1 pos -2560 720
 output HDMI-A-1 scale 1
 
