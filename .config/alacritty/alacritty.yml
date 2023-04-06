@@ -45,6 +45,7 @@ window:
   startup_mode: Windowed
   # opacity: 0.96
   opacity: 1.0
+  option_as_alt: true
 scrolling:
   history: 10000
   multiplier: 3
@@ -136,7 +137,6 @@ cursor:
 live_config_reload: true
 working_directory: None
 enable_experimental_conpty_backend: false
-alt_send_esc: true
 debug:
   render_timer: false
   persistent_logging: false
