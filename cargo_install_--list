@@ -6,7 +6,7 @@ bingrep v0.11.0:
     bingrep
 bottom v0.8.0:
     btm
-cargo-update v12.0.0:
+cargo-update v13.0.0:
     cargo-install-update
     cargo-install-update-config
 code-minimap v0.6.4:
@@ -33,12 +33,12 @@ git-journal v1.8.1:
     git-journal
 gitui v0.22.1:
     gitui
-gpg-tui v0.9.4:
+gpg-tui v0.9.5:
     gpg-tui
     gpg-tui-completions
 gping v1.8.0:
     gping
-helix-term v0.6.0 (https://github.com/helix-editor/helix#52ced7e8):
+helix-term v0.6.0 (https://github.com/helix-editor/helix#2f4b9a47):
     hx
 hexyl v0.12.0:
     hexyl
@@ -56,11 +56,11 @@ kmon v1.6.2:
     kmon
 lemmeknow v0.7.0:
     lemmeknow
-librespot v0.5.0-dev (https://github.com/librespot-org/librespot.git#a211ff94):
+librespot v0.5.0-dev (https://github.com/librespot-org/librespot.git#7de8bdc0):
     librespot
 mdcat v1.1.1:
     mdcat
-muc v0.1.0 (https://github.com/nate-sys/muc#b81e62ca):
+muc v0.1.0 (https://github.com/nate-sys/muc#d8336bc2):
     muc
 neovide v0.10.3 (https://github.com/neovide/neovide#2766fe7f):
     neovide
@@ -103,9 +103,9 @@ vocage v1.1.0:
     vocage
 websocat v1.11.0:
     websocat
-xplr v0.21.0:
+xplr v0.21.1:
     xplr
-zenith v0.14.0 (https://github.com/bvaisvil/zenith.git#dbd270c8):
+zenith v0.14.0 (https://github.com/bvaisvil/zenith.git#63fea4b0):
     zenith
 zoxide v0.9.0:
     zoxide
