@@ -6,7 +6,7 @@ bingrep v0.11.0:
     bingrep
 bottom v0.8.0:
     btm
-cargo-update v13.0.0:
+cargo-update v13.0.1:
     cargo-install-update
     cargo-install-update-config
 code-minimap v0.6.4:
@@ -21,7 +21,7 @@ du-dust v0.8.5:
     dust
 eva v0.3.1:
     eva
-gfold v4.3.2:
+gfold v4.3.3:
     gfold
 git-cliff v1.1.2:
     git-cliff
@@ -38,7 +38,7 @@ gpg-tui v0.9.5:
     gpg-tui-completions
 gping v1.8.0:
     gping
-helix-term v0.6.0 (https://github.com/helix-editor/helix#2f4b9a47):
+helix-term v0.6.0 (https://github.com/helix-editor/helix#8839eb0a):
     hx
 hexyl v0.12.0:
     hexyl
@@ -52,23 +52,23 @@ jless v0.8.0:
     jless
 jwt-cli v5.0.3:
     jwt
-kmon v1.6.2:
+kmon v1.6.3:
     kmon
 lemmeknow v0.7.0:
     lemmeknow
-librespot v0.5.0-dev (https://github.com/librespot-org/librespot.git#7de8bdc0):
+librespot v0.5.0-dev (https://github.com/librespot-org/librespot.git#03b547d3):
     librespot
 mdcat v1.1.1:
     mdcat
 muc v0.1.0 (https://github.com/nate-sys/muc#d8336bc2):
     muc
-neovide v0.10.3 (https://github.com/neovide/neovide#2766fe7f):
+neovide v0.10.4 (https://github.com/neovide/neovide#daf53079):
     neovide
 oxipng v8.0.0:
     oxipng
 pastel v0.9.0:
     pastel
-pipe-rename v1.6.1:
+pipe-rename v1.6.2:
     renamer
 procs v0.13.4:
     procs
@@ -87,7 +87,7 @@ so v0.4.9:
     so
 spotify-tui v0.25.0 (https://github.com/Rigellute/spotify-tui.git#c4dcf6b9):
     spt
-starship v1.13.1:
+starship v1.14.2:
     starship
 taskwarrior-tui v0.23.7 (https://github.com/kdheepak/taskwarrior-tui#054b46aa):
     taskwarrior-tui
