@@ -4,9 +4,9 @@ battop v0.2.4:
     battop
 bingrep v0.11.0:
     bingrep
-bottom v0.8.0:
+bottom v0.9.0:
     btm
-cargo-update v13.0.1:
+cargo-update v13.0.2:
     cargo-install-update
     cargo-install-update-config
 code-minimap v0.6.4:
@@ -17,7 +17,7 @@ csview v1.2.2:
     csview
 dijo v0.2.7:
     dijo
-du-dust v0.8.5:
+du-dust v0.8.6:
     dust
 eva v0.3.1:
     eva
@@ -40,7 +40,7 @@ gping v1.8.0:
     gping
 helix-term v0.6.0 (https://github.com/helix-editor/helix#8839eb0a):
     hx
-hexyl v0.12.0:
+hexyl v0.13.0:
     hexyl
 htmlq v0.4.0:
     htmlq
@@ -107,5 +107,5 @@ xplr v0.21.1:
     xplr
 zenith v0.14.0 (https://github.com/bvaisvil/zenith.git#63fea4b0):
     zenith
-zoxide v0.9.0:
+zoxide v0.9.1:
     zoxide
