@@ -20,9 +20,10 @@ map i $LESSOPEN='| ~/.config/lf/scope.wrapper.sh %s' less -R $f
 cmd open ${{
     test -L $f && f=$(readlink -f $f)
     case $(file --mime-type $f -b) in
-        text/*) $EDITOR $fx;;
-        image/*) imv $fx;;
-        video/*) vlc $fx;;
+        text/*) $EDITOR $f;;
+        image/gif) swayimg $f;;
+        image/*) imv $f;;
+        video/*) vlc $f;;
         *) for f in $fx; do setsid $OPENER $f > /dev/null 2> /dev/null & done;;
     esac
 }}
