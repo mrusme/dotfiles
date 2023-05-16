@@ -26,6 +26,15 @@ linuxdir
 pwd
 
 yn=""
+printf "Make clean? (y/N) "
+read -r yn 
+
+if [ "$yn" = "y" ] || [ "$yn" = "Y" ] 
+then 
+  make clean 
+fi 
+
+yn=""
 printf "Inject config from /proc/config.gz ? (y/N) "
 read -r yn 
 
