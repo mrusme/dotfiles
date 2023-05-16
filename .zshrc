@@ -362,15 +362,17 @@ bindkey '^[f' forward-word
 
 autoload -U zmv add-zsh-hook
 
-__rad_checker() {
-  emulate -L zsh
-  if [ -f .gitsigners ]
-  then 
-    rad auth 
-  fi
-}
-
-add-zsh-hook chpwd __rad_checker
+# Screw it, Radicle changed everything once again and nothing is working
+# anymore. It's sad.
+# __rad_checker() {
+#   emulate -L zsh
+#   if [ -f .gitsigners ]
+#   then 
+#     rad auth 
+#   fi
+# }
+#
+# add-zsh-hook chpwd __rad_checker
 
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
