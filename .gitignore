@@ -16,3 +16,4 @@
 /.config/git/hooks/**
 /.config/neonmodem.toml
 /.config/Kid3/**
+/.config/freerdp/**
