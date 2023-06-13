@@ -646,7 +646,7 @@ lua <<EOF
     capabilities = capabilities;
     cmd = { "bundle", "exec", "srb", "tc", "--lsp" };
   }
-  require('lspconfig')['sqls'].setup {
+  require('lspconfig')['sqlls'].setup {
     capabilities = capabilities
   }
   require('lspconfig')['terraformls'].setup {
