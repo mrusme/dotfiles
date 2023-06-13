@@ -34,31 +34,29 @@ shell:
     - --login
 window:
   dimensions:
-    columns: 280
-    lines: 86
+    columns: 80
+    lines: 28
   padding:
     x: 8
     y: 8
   dynamic_padding: true
   dynamic_title: true
-  decorations: none 
+  decorations: full
   startup_mode: Windowed
-  # opacity: 0.96
-  opacity: 1.0
-  option_as_alt: true
+  opacity: 0.92
 scrolling:
   history: 10000
   multiplier: 3
 font:
   normal:
     family: 'FiraCode Nerd Font'
-    style: Retina,Regular
+    style: Regular
   bold:
     family: 'FiraCode Nerd Font'
-    style: Retina,Regular
+    style: Regular
   italic:
     family: 'FiraCode Nerd Font'
-    style: Retina,Regular
+    style: Regular
   size: 11.0
   offset:
     x: 0
