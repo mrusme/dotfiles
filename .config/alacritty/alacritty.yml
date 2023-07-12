@@ -49,14 +49,14 @@ scrolling:
   multiplier: 3
 font:
   normal:
-    family: 'FiraCode Nerd Font'
-    style: Retina,Regular
+    family: 'CommitMono'
+    style: Regular
   bold:
-    family: 'FiraCode Nerd Font'
-    style: Retina,Regular
+    family: 'CommitMono'
+    style: Regular
   italic:
-    family: 'FiraCode Nerd Font'
-    style: Retina,Regular
+    family: 'CommitMono'
+    style: Italic
   size: 11.0
   offset:
     x: 0
