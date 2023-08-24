@@ -10,6 +10,7 @@ github.com/kisielk/errcheck
 github.com/davidrjenni/reftools/cmd/fillstruct
 github.com/knipferrc/fm
 github.com/ipfs/fs-repo-migrations
+github.com/zricethezav/gitleaks
 github.com/profclems/glab/cmd/glab
 github.com/charmbracelet/glow
 github.com/rogpeppe/godef
@@ -18,6 +19,7 @@ github.com/golangci/golangci-lint/cmd/golangci-lint
 github.com/fatih/gomodifytags
 github.com/fedeztk/got/cmd/got
 github.com/jstemmer/gotags
+github.com/ahmetb/govvv
 github.com/tomnomnom/gron
 github.com/koron/iferr
 github.com/josharian/impl
