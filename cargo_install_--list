@@ -4,7 +4,7 @@ battop v0.2.4:
     battop
 bingrep v0.11.0:
     bingrep
-bottom v0.9.3:
+bottom v0.9.4:
     btm
 cargo-update v13.0.4:
     cargo-install-update
@@ -36,11 +36,11 @@ gitui v0.23.0:
 gpg-tui v0.9.6:
     gpg-tui
     gpg-tui-completions
-gping v1.13.1:
+gping v1.14.0:
     gping
 helix-term v0.6.0 (https://github.com/helix-editor/helix#8839eb0a):
     hx
-hexyl v0.13.0:
+hexyl v0.13.1:
     hexyl
 htmlq v0.4.0:
     htmlq
@@ -87,13 +87,13 @@ so v0.4.9:
     so
 spotify-tui v0.25.0 (https://github.com/Rigellute/spotify-tui.git#c4dcf6b9):
     spt
-starship v1.15.0:
+starship v1.16.0:
     starship
 taskwarrior-tui v0.23.7 (https://github.com/kdheepak/taskwarrior-tui#054b46aa):
     taskwarrior-tui
 tealdeer v1.6.1:
     tldr
-tickrs v0.14.8:
+tickrs v0.14.9:
     tickrs
 tre-command v0.4.0:
     tre
@@ -103,9 +103,9 @@ vocage v1.1.0:
     vocage
 websocat v1.11.0:
     websocat
-xplr v0.21.1:
+xplr v0.21.3:
     xplr
 zenith v0.14.0 (https://github.com/bvaisvil/zenith.git#63fea4b0):
     zenith
-zoxide v0.9.1:
+zoxide v0.9.2:
     zoxide
