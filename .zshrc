@@ -391,13 +391,13 @@ __is_available zoxide \
 __is_available bat \
 && alias cat=bat
 
-# https://github.com/ogham/exa
-__is_available exa \
+# https://github.com/eza-community/eza
+__is_available eza \
 && unalias ls la ll l lsa > /dev/null 2>&1 \
-&& alias ls='exa --time-style=long-iso --git --binary -lg' \
-&& alias la='exa --time-style=long-iso --git --icons --binary -la' \
-&& alias ll='exa --time-style=long-iso --git --icons --octal-permissions --binary --changed -lahHgnuU' \
-&& alias l='exa --time-style=long-iso --git --icons --binary -l --no-time' \
+&& alias ls='eza --time-style=long-iso --git --binary -lg' \
+&& alias la='eza --time-style=long-iso --git --icons --binary -la' \
+&& alias ll='eza --time-style=long-iso --git --icons --octal-permissions --binary --changed -lahHgnuU' \
+&& alias l='eza --time-style=long-iso --git --icons --binary -l --no-time' \
 && alias lls='ls -s modified'
 
 # https://github.com/ClementTsang/bottom

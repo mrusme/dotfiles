@@ -21,6 +21,8 @@ du-dust v0.8.6:
     dust
 eva v0.3.1:
     eva
+eza v0.11.0:
+    eza
 gfold v4.4.0:
     gfold
 git-cliff v1.2.0:
