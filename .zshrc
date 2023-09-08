@@ -738,6 +738,9 @@ function update-tools() {
   printf "\nUpdating vale ...\n"
   vale sync
 
+  printf "\nUpdating tealdeer ...\n"
+  tldr --update
+
   printf "\nTools updated"
 }
 
