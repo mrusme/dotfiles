@@ -89,6 +89,8 @@ Plug 'vim-scripts/dbext.vim'
 Plug 'ledger/vim-ledger'
 Plug 'chrisbra/Colorizer'
 
+Plug 'Shatur/neovim-ayu'
+
 call plug#end()
 
 
@@ -342,27 +344,14 @@ if (has('nvim'))
 endif
 set t_Co=256
 
-colorscheme iceberg
-" lua << EOF
-" require('base16-colorscheme').setup({
-"   base00 = '#161616',
-"   base01 = '#262626',
-"   base02 = '#393939',
-"   base03 = '#525252',
-"   base04 = '#6F6F6F',
-"   base05 = '#FAFAFA',
-"   base06 = '#FAFAFA',
-"   base07 = '#FFFFFF',
-"   base08 = '#be95ff',
-"   base09 = '#3ddbd9',
-"   base0A = '#0043ce',
-"   base0B = '#33b1ff',
-"   base0C = '#ff7eb6',
-"   base0D = '#42be65',
-"   base0E = '#be95ff',
-"   base0F = '#3ddbd9',
-" })
-" EOF
+lua << EOF
+require('ayu').setup({
+    mirage = true,
+    overrides = {},
+})
+EOF
+colorscheme ayu
+
 
 " OVERRIDES
 highlight Normal ctermbg=none guibg=none

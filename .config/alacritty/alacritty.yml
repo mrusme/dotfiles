@@ -73,27 +73,28 @@ schemes:
     primary:
       background: '0x040606'
       foreground: '0xbde7e5'
+      bright_foreground: '#f28779'
     cursor:
       text: '0xFEFFFF'
       cursor: '0xc7c7c7'
     normal:
-      black:   '#161821'
-      red:     '#e27878'
-      green:   '#b4be82'
-      yellow:  '#e2a478'
-      blue:    '#84a0c6'
-      magenta: '#a093c7'
-      cyan:    '#89b8c2'
-      white:   '#c6c8d1'
+      black:   '#212733' #
+      red:     '#f08778' #
+      green:   '#53bf97' #
+      yellow:  '#fdcc60' #
+      blue:    '#60b8d6' # 
+      magenta: '#ec7171' #
+      cyan:    '#98e6ca' #
+      white:   '#fafafa' #
     bright:
-      black:   '#6b7089'
-      red:     '#e98989'
-      green:   '#c0ca8e'
-      yellow:  '#e9b189'
-      blue:    '#91acd1'
-      magenta: '#ada0d3'
-      cyan:    '#95c4ce'
-      white:   '#d2d4de'
+      black: '#686868'
+      red: '#f58c7d'
+      green: '#58c49c'
+      yellow: '#ffd165'
+      blue: '#65bddb'
+      magenta: '#f17676'
+      cyan: '#9debcf'
+      white: '#ffffff'
     # dim:
       # black:   '0x333366'
       # red:     '0x6666cc'

@@ -29,21 +29,21 @@ set $dmenu bemenu
 
 set {
   $dark        #040606
-  $black       #161821
-  $red         #e27878
-  $green       #b4be82
-  $yellow      #e2a478
-  $blue        #84a0c6
-  $magenta     #a093c7
-  $cyan        #89b8c2
-  $white       #c6c8d1
+  $black       #212733
+  $red         #f08778
+  $green       #53bf97
+  $yellow      #fdcc60
+  $blue        #60b8d6 
+  $magenta     #ec7171
+  $cyan        #98e6ca
+  $white       #fafafa
   $bright      #ffffff
   $transparent #FF000000
 }
 
 #                         border   backgrnd text    indic    chld
-client.focused            $black   $black   $bright $blue    $black
-client.unfocused          $dark    $dark    $blue   $dark    $dark
+client.focused            $blue    $dark    $bright $blue    $blue
+client.unfocused          $black   $dark    #495671   $dark    $dark
 client.focused_inactive   $dark    $dark    $blue   $dark    $dark
 client.urgent             $red     $red     $white  $red     $red
 client.placeholder        $dark    $dark    $white  $white   $dark
