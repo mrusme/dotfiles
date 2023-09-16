@@ -1098,9 +1098,12 @@ nmap gx <Plug>vertopen_url
 " ╚════════════════════════════════════════════════════════════════════════════╝
 
 " Color picker
-vnoremap <M-c> c<C-R>=system('yad --color --init-color' . shellescape(@"))<CR><ESC>
-nnoremap <M-c> :put =system('yad --color')<CR>
-inoremap <M-c> <ESC>:put =system('yad --color')<CR>
+" yad requires X11 libraries, disabling for now
+" vnoremap <M-c> c<C-R>=system('yad --color --init-color' . shellescape(@"))<CR><ESC>
+"
+" https://github.com/hyprwm/hyprpicker
+nnoremap <M-c> :put =system('hyprpicker')<CR>
+inoremap <M-c> <ESC>:put =system('hyprpicker')<CR>
 
 
 " ╔════════════════════════════════════════════════════════════════════════════╗
