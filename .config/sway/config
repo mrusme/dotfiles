@@ -48,7 +48,7 @@ client.focused_inactive   $dark    $dark    $blue   $dark    $dark
 client.urgent             $red     $red     $white  $red     $red
 client.placeholder        $dark    $dark    $white  $white   $dark
 
-font pango: ProggyVector 9
+font pango: B612 Mono 8
 
 default_border pixel 2
 default_floating_border pixel 2
