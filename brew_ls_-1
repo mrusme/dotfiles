@@ -27,6 +27,7 @@ libassuan
 libevent
 libffi
 libgcrypt
+libgit2@1.6
 libgpg-error
 libidn2
 libksba
@@ -41,6 +42,7 @@ libusb
 libuv
 libvterm
 libyaml
+llvm@16
 luajit
 luajit-openresty
 luv
@@ -64,6 +66,7 @@ pinentry
 pkg-config
 popt
 python@3.10
+python@3.11
 qrencode
 readline
 ripgrep
@@ -71,6 +74,7 @@ rsync
 ruby
 rust
 shellcheck
+six
 sqlite
 thefuck
 tmux
@@ -84,4 +88,5 @@ utf8proc
 vale
 xxhash
 xz
+z3
 zstd
