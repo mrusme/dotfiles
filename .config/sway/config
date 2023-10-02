@@ -50,9 +50,9 @@ client.placeholder        $dark    $dark    $white  $white   $dark
 
 font pango: B612 Mono 8
 
-default_border pixel 2
-default_floating_border pixel 2
-titlebar_border_thickness 2
+default_border pixel 1
+default_floating_border pixel 1
+titlebar_border_thickness 1
 titlebar_padding 10 6
 
 smart_gaps off
@@ -62,6 +62,7 @@ gaps inner 12
 gaps outer 2
 
 hide_edge_borders none
+show_marks yes
 
 focus_follows_mouse no
 focus_on_window_activation smart
