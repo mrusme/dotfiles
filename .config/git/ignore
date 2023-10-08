@@ -47,6 +47,5 @@ log/
 *.msi
 
 # Databases
-*.sql
 *.sqlite
 
