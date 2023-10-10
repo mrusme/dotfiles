@@ -572,6 +572,10 @@ exec /usr/local/bin/birthdays
 # KeePassXC
 exec /usr/local/bin/passwordmanager
 
+# wlsunset 
+# https://sr.ht/~kennylevinsen/wlsunset/
+exec wlsunset -l 25.77 -L -79.38668
+
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
 # ║ Other configs                                                              ║
