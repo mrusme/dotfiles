@@ -40,13 +40,6 @@ Plug 'jose-elias-alvarez/null-ls.nvim'
 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
-"Plug 'lambdalisue/fern.vim'
-"Plug 'lambdalisue/nerdfont.vim'
-"Plug 'lambdalisue/fern-renderer-nerdfont.vim'
-"Plug 'lambdalisue/fern-git-status.vim'
-"Plug 'lambdalisue/fern-hijack.vim'
-"Plug 'lambdalisue/fern-bookmark.vim'
-"Plug 'lambdalisue/fern-mapping-git.vim'
 Plug 'nvim-tree/nvim-tree.lua'
 Plug 'ggandor/leap.nvim'
 Plug 'ggandor/lightspeed.nvim'
@@ -69,14 +62,10 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'simnalamburt/vim-mundo'
 Plug 'kyazdani42/nvim-web-devicons'
-" Plug 'folke/trouble.nvim'
 Plug 'mhartington/formatter.nvim'
 Plug 'folke/which-key.nvim'
-" Plug 'RRethy/nvim-base16'
-" Plug 'danilamihailov/beacon.nvim'
 
 " Syntax / Language integrations
-"Plug 'plasticboy/vim-markdown'
 Plug 'leafgarland/typescript-vim'
 Plug 'elixir-lang/vim-elixir'
 Plug 'fatih/vim-go'
