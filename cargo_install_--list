@@ -6,6 +6,8 @@ bingrep v0.11.0:
     bingrep
 bottom v0.9.6:
     btm
+cargo-cache v0.8.3:
+    cargo-cache
 cargo-update v13.2.1:
     cargo-install-update
     cargo-install-update-config
