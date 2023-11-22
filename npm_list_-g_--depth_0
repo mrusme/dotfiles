@@ -1,15 +1,15 @@
 /usr/local/lib
 ├── bash-language-server@5.0.0
 ├── dockerfile-language-server-nodejs@0.11.0
-├── graphql-language-service-cli@3.3.27
+├── graphql-language-service-cli@3.3.28
 ├── graphql@16.8.1
 ├── http-server@14.1.1
 ├── npm@10.2.4
 ├── speed-test@3.0.0
 ├── stylelint-lsp@1.2.4
-├── svelte-language-server@0.15.22
+├── svelte-language-server@0.16.0
 ├── typescript-language-server@4.1.2
-├── typescript@5.2.2
+├── typescript@5.3.2
 ├── vim-language-server@2.3.1
 ├── vscode-langservers-extracted@4.8.0
 ├── yaml-language-server@1.14.0
