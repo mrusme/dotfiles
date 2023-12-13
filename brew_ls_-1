@@ -2,6 +2,7 @@ bdw-gc
 brotli
 c-ares
 ca-certificates
+cmake
 coreutils
 deno
 fasd
@@ -18,6 +19,7 @@ gnu-getopt
 gnupg
 gnutls
 go
+gpgme
 guile
 hugo
 icu4c
@@ -27,6 +29,7 @@ libassuan
 libevent
 libffi
 libgcrypt
+libgit2
 libgit2@1.6
 libgpg-error
 libidn2
@@ -42,6 +45,7 @@ libusb
 libuv
 libvterm
 libyaml
+llvm
 llvm@16
 luajit
 luajit-openresty
@@ -65,8 +69,10 @@ pcre2
 pinentry
 pkg-config
 popt
+python-setuptools
 python@3.10
 python@3.11
+python@3.12
 qrencode
 readline
 ripgrep
@@ -76,6 +82,7 @@ rust
 shellcheck
 six
 sqlite
+syncthing
 thefuck
 tmux
 transmission-cli
