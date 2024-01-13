@@ -4,10 +4,8 @@ battop v0.2.4:
     battop
 bingrep v0.11.0:
     bingrep
-btm v0.14.1:
+bottom v0.9.6:
     btm
-cargo-cache v0.8.3:
-    cargo-cache
 cargo-update v13.3.0:
     cargo-install-update
     cargo-install-update-config
@@ -17,17 +15,15 @@ conclusive v1.0.0:
     conclusive
 csview v1.2.2:
     csview
-deno v1.35.2:
-    deno
 dijo v0.2.7:
     dijo
-du-dust v0.8.6:
+du-dust v0.9.0:
     dust
 eva v0.3.1:
     eva
-eza v0.16.0:
+eza v0.17.1:
     eza
-gfold v4.4.0:
+gfold v4.4.1:
     gfold
 git-cliff v1.4.0:
     git-cliff
@@ -39,14 +35,21 @@ git-journal v1.8.1:
     git-journal
 gitui v0.24.3:
     gitui
-gping v1.15.1:
+gpg-tui v0.10.0:
+    gpg-tui
+    gpg-tui-completions
+gping v1.16.0:
     gping
-hexyl v0.13.1:
+helix-term v0.6.0 (https://github.com/helix-editor/helix#8839eb0a):
+    hx
+hexyl v0.14.0:
     hexyl
 htmlq v0.4.0:
     htmlq
 hyperfine v1.18.0:
     hyperfine
+imager v0.3.2:
+    imager
 jless v0.9.0:
     jless
 jwt-cli v6.0.0:
@@ -55,41 +58,46 @@ kmon v1.6.4:
     kmon
 lemmeknow v0.8.0:
     lemmeknow
-librespot v0.4.2:
+librespot v0.5.0-dev (https://github.com/librespot-org/librespot.git#a8fcd99e):
     librespot
 mdcat v2.1.0:
     mdcat
-muc v0.2.1:
+muc v0.1.0 (https://github.com/nate-sys/muc#d8336bc2):
     muc
+neovide v0.11.2 (https://github.com/neovide/neovide#cf7f9967):
+    neovide
 oxipng v9.0.0:
     oxipng
 pastel v0.9.0:
     pastel
-procs v0.14.3:
+pipe-rename v1.6.5:
+    renamer
+procs v0.14.4:
     procs
+radicle-cli v0.7.0-dev (https://github.com/radicle-dev/radicle-cli#fadad89b):
+    git-remote-rad
+    rad
 rates v0.7.0:
     rates
-renamer v0.2.0:
-    renamer
 rustscan v2.1.1:
     rustscan
 shellcaster v2.0.1:
     shellcaster
-silicon v0.4.3:
+silicon v0.5.2:
     silicon
 so v0.4.9:
     so
-spotify-tui v0.25.0:
+spotify-tui v0.25.0 (https://github.com/Rigellute/spotify-tui.git#c4dcf6b9):
     spt
-taskwarrior-tui v0.25.4:
+starship v1.17.1:
+    starship
+taskwarrior-tui v0.25.4 (https://github.com/kdheepak/taskwarrior-tui#fe171ea3):
     taskwarrior-tui
 tealdeer v1.6.1:
     tldr
-tickers v0.1.0:
-    tickers
 tickrs v0.14.9:
     tickrs
-tre v0.1.1:
+tre-command v0.4.0:
     tre
 viu v1.5.0:
     viu
@@ -97,9 +105,9 @@ vocage v1.1.0:
     vocage
 websocat v1.12.0:
     websocat
-xplr v0.19.0:
+xplr v0.21.3:
     xplr
-zenith v0.0.2:
+zenith v0.14.0 (https://github.com/bvaisvil/zenith.git#3f267e4c):
     zenith
 zoxide v0.9.2:
     zoxide
