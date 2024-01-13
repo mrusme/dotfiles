@@ -26,10 +26,10 @@
     "custom/rslsync",
     "custom/docker",
     "custom/cloudcash",
-    "custom/crypto",
+    // "custom/crypto",
     "tray",
-    "sway/mode",
-    "custom/zeit"
+    "sway/mode"
+    // "custom/zeit"
     // "mpd"
   ],
   "modules-center": [
