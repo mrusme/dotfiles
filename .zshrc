@@ -174,10 +174,10 @@ Australia/Melbourne;Pacific/Auckland;"
 export NOTMUCH_PROFILE="01"
 
 # https://github.com/mrusme/zeit
-export ZEIT_DB="${HOME}/cloud/.zeit.db"
+export ZEIT_DB="${HOME}/cloud/library/.zeit.db"
 
 # https://github.com/mrusme/geld
-export GELD_DB="${HOME}/cloud/.geld.db"
+export GELD_DB="${HOME}/cloud/library/.geld.db"
 
 # https://github.com/mrusme/addrb
 export ADDRB_DB="${HOME}/.cache/addrb.db"
@@ -193,15 +193,15 @@ export CALDR_TEMPLATE="${HOME}/.config/caldr.tmpl"
 
 # https://github.com/Cloudef/bemenu
 export BEMENU_OPTS="-n -c -s -i \
-  -W 0.2 -H 26 -B 2 -l 10 \
+  -W 0.2 -H 26 -B 1 -l 10 \
   -p '▲' -P '' \
   --fn ProggyVector 9 \
-  --nb #040606aa --nf #bde7e5ff \
-  --ab #040606aa --af #bde7e5ff \
-  --hb #1e2132aa --hf #bde7e5ff \
-  --fb #040606aa --ff #bde7e5ff \
-  --tb #040606aa --tf #84a0c6ff \
-  --bdr #84a0c6ff"
+  --nb #040606aa --nf #ABB2BF \
+  --ab #040606aa --af #ABB2BF \
+  --hb #1e2132aa --hf #ABB2BF \
+  --fb #040606aa --ff #ABB2BF \
+  --tb #040606aa --tf #ABB2BF \
+  --bdr #ABB2BF"
 
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
