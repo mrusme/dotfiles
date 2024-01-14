@@ -66,14 +66,12 @@ make modules_prepare \
 && make modules_install \
 && make install \
 && emerge @module-rebuild \
-&& genkernel initramfs \
-  --firmware \
-  --kernel-config=/usr/src/linux/.config \
-  --keymap \
-  --makeopts=-j32 \
-  --mountboot \
-  --no-clean \
-  --zfs \
+&& dracut \
+  --hostonly \
+  --show-modules \
+  --include /lib/firmware /lib/firmware \
+  --kver "$(basename "$(eselect kernel show)")" \
+  --force \
 && mount -v /dev/nvme1n1p2 /mnt/mirror \
 && mount -v /dev/nvme1n1p1 /mnt/mirror/efi/ \
 && rsync -avH --delete /boot/* /mnt/mirror/. \
@@ -82,12 +80,6 @@ make modules_prepare \
 && umount -v /mnt/mirror \
 && cp /boot/grub/grub.cfg /boot/grub/grub.cfg.old \
 && grub-mkconfig -o /boot/grub/grub.cfg \
-&& grub-install \
-  --target=x86_64-efi \
-  --efi-directory=/boot/efi \
-  --bootloader-id=Gentoo \
-  --recheck \
-  --no-floppy \
 && printf "\nKernel built and installed successfully.\n" \
 && printf "Please validate /boot/grub/grub.cfg!\n" \
 && printf "A backup has been copied to /boot/grub/grub.cfg.old.\n\n"
