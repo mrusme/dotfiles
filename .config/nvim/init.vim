@@ -56,7 +56,7 @@ Plug 'jamessan/vim-gnupg'
 Plug 'robertbasic/vim-hugo-helper'
 Plug 'windwp/nvim-autopairs'
 Plug 'tpope/vim-abolish'
-Plug 'lervag/wiki.vim'
+" Plug 'lervag/wiki.vim'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
@@ -78,7 +78,8 @@ Plug 'vim-scripts/dbext.vim'
 Plug 'ledger/vim-ledger'
 Plug 'chrisbra/Colorizer'
 
-Plug 'Shatur/neovim-ayu'
+Plug 'Yazeed1s/minimal.nvim'
+Plug 'psliwka/termcolors.nvim'
 
 call plug#end()
 
@@ -333,14 +334,18 @@ if (has('nvim'))
 endif
 set t_Co=256
 
+" lua << EOF
+" require('ayu').setup({
+"     mirage = true,
+"     overrides = {},
+" })
+" EOF
+colorscheme minimal
 lua << EOF
-require('ayu').setup({
-    mirage = true,
-    overrides = {},
+require('termcolors').setup({
+  default_plugin = "alacritty",
 })
 EOF
-colorscheme ayu
-
 
 " OVERRIDES
 highlight Normal ctermbg=none guibg=none
@@ -888,10 +893,10 @@ let g:hugohelper_update_lastmod_on_write = 1
 " ║ Wiki.vim                                                                   ║
 " ╚════════════════════════════════════════════════════════════════════════════╝
 
-let g:wiki_root = '~/cloud/notes'
-let g:wiki_filetypes = ['md']
-let g:wiki_link_extension = '.md'
-let g:wiki_link_target_type = 'md'
+" let g:wiki_root = '~/cloud/notes'
+" let g:wiki_filetypes = ['md']
+" let g:wiki_link_extension = '.md'
+" let g:wiki_link_target_type = 'md'
 
 
 " ╔════════════════════════════════════════════════════════════════════════════╗
@@ -1054,8 +1059,8 @@ require('Comment').setup({
   post_hook = nil,
 })
 EOF
-nmap <C-_><C-_> gcc
-vmap <C-_><C-_> gc<Esc>
+nmap <C-/><C-/> gcc
+vmap <C-/><C-/> gc<Esc>
 
 
 " ╔════════════════════════════════════════════════════════════════════════════╗
