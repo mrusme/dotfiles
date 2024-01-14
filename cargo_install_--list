@@ -92,7 +92,7 @@ spotify-tui v0.25.0 (https://github.com/Rigellute/spotify-tui.git#c4dcf6b9):
 starship v1.17.1:
     starship
 taskwarrior-tui v0.25.4 (https://github.com/kdheepak/taskwarrior-tui#fe171ea3):
-    taskwarrior-tui
+   taskwarrior-tui
 tealdeer v1.6.1:
     tldr
 tickrs v0.14.9:
