@@ -11,33 +11,33 @@ duration = 0
 draw_bold_text_with_bright_colors = true
 
 [colors.bright]
-black = "#686868"
-blue = "#65bddb"
-cyan = "#9debcf"
-green = "#58c49c"
-magenta = "#f17676"
-red = "#f58c7d"
-white = "#ffffff"
-yellow = "#ffd165"
-
-[colors.cursor]
-cursor = "0xc7c7c7"
-text = "0xFEFFFF"
+black   = "#666666"
+red     = "#E96379"
+green   = "#67E480"
+yellow  = "#E89E64"
+blue    = "#78D1E1"
+magenta = "#988BC7"
+cyan    = "#FF79C6"
+white   = "#FFFFFF"
 
 [colors.normal]
-black = "#212733"
-blue = "#60b8d6"
-cyan = "#98e6ca"
-green = "#53bf97"
-magenta = "#ec7171"
-red = "#f08778"
-white = "#fafafa"
-yellow = "#fdcc60"
+black   = "#191622"
+red     = "#E96379"
+green   = "#67E480"
+yellow  = "#E89E64"
+blue    = "#78D1E1"
+magenta = "#988BC7"
+cyan    = "#FF79C6"
+white   = "#ABB2BF"
 
 [colors.primary]
-background = "0x040606"
 bright_foreground = "#f28779"
-foreground = "0xbde7e5"
+background        = "#191622"
+foreground        = "#ABB2BF"
+
+[colors.cursor]
+cursor = "#78D1E1"
+text = "#ABB2BF"
 
 [cursor]
 style = "Block"
@@ -788,7 +788,7 @@ program = "/bin/zsh"
 decorations = "full"
 dynamic_padding = true
 dynamic_title = true
-opacity = 0.96
+opacity = 0.90
 startup_mode = "Windowed"
 
 [window.dimensions]
