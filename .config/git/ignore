@@ -28,7 +28,6 @@ log/
 *.log
 
 # Compiled
-*.com
 *.class
 *.dll
 *.exe
