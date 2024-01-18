@@ -1,0 +1,352 @@
+// ╔═══════════════════════════════════════════════════════════════════════════╗
+// ║              ___       __________  ________________________               ║
+// ║              __ |     / /__    | \/ /__  __ )__    |__  __ \              ║
+// ║              __ | /| / /__  /| |_  /__  __  |_  /| |_  /_/ /              ║
+// ║              __ |/ |/ / _  ___ |  / _  /_/ /_  ___ |  _, _/               ║
+// ║              ____/|__/  /_/  |_/_/  /_____/ /_/  |_/_/ |_|                ║
+// ║                                                                           ║
+// ║     xn--gckvb8fzb.com * github.com/mrusme * marius@xn--gckvb8fzb.com      ║
+// ║                                                                           ║
+// ╚═══════════════════════════════════════════════════════════════════════════╝
+
+[{
+  // -------------------------------------------------------------------------
+  // Global configuration
+  // -------------------------------------------------------------------------
+
+  "layer": "top",
+  "position": "top",
+  //"output": "DP-1",
+
+  "modules-left": [
+    "sway/workspaces",
+    "sway/language",
+    "custom/screenrecord",
+    "custom/vpn",
+    "custom/rslsync",
+    "custom/docker",
+    "custom/cloudcash",
+    // "custom/crypto",
+    "tray",
+    "sway/mode"
+    // "custom/zeit"
+    // "mpd"
+  ],
+  "modules-center": [
+    "sway/window"
+  ],
+  "modules-right": [
+    "cpu",
+    "temperature#cpu",
+    "temperature#gpu",
+    "temperature#nvme",
+    "temperature#wifi",
+    //"custom/stats",
+    "custom/headphones",
+    "custom/speaker",
+    "pulseaudio",
+    "battery",
+    "clock"
+  ],
+
+
+  // -------------------------------------------------------------------------
+  // modules-left
+  // -------------------------------------------------------------------------
+
+  "sway/workspaces": {
+    "all-outputs": true,
+    "disable-scroll": true,
+    "format": "{name}"
+  },
+
+  "sway/language": {
+    "format": "<span text_transform='uppercase'>{short}</span> {variant}",
+  },
+
+  "custom/screenrecord": {
+    "format": "{}",
+    "return-type": "json",
+    "exec": "/usr/local/bin/waybar-screenrecord",
+    "on-click": "/usr/local/bin/waybar-screenrecord toggle",
+    "interval": 3
+  },
+
+  "custom/vpn": {
+    "format": "{icon}  VPN <span color='#aaaaaa'>{}</span>",
+    "format-icons": {
+      "connected": "",
+      "disconnected": ""
+    },
+    "return-type": "json",
+    "exec": "/usr/local/bin/waybar-vpn current",
+    "on-click": "/usr/local/bin/waybar-vpn connect",
+    "on-click-middle": "/usr/local/bin/waybar-vpn disconnect",
+    "on-click-right": "/usr/local/bin/get-public-ip-info",
+    "interval": 30
+  },
+
+  "custom/rslsync": {
+    "format": "  {}",
+    "exec-if": "ps -eo args | rg '^/usr/bin/rslsync'",
+    "on-click": "xdg-open http://127.0.0.1:2510/gui/",
+    "on-click-middle": "killall -s SIGQUIT rslsync",
+    "interval": 30
+  },
+
+  "custom/docker": {
+    "format": "{}",
+    "return-type": "json",
+    "exec": "/usr/local/bin/waybar-docker",
+    "exec-if": "rc-service docker status",
+    "interval": 30
+  },
+
+  "custom/cloudcash": {
+    "format": "{}",
+    "return-type": "json",
+    "exec": "/usr/local/bin/cloudcash -waybar-pango",
+    "on-click": "",
+    "interval": 3600
+  },
+
+  "custom/crypto": {
+    "format": "{}",
+    "return-type": "json",
+    "exec": "/usr/local/bin/waybar-crypto",
+    "on-click": "",
+    "interval": 3600
+  },
+
+  "tray": {
+    "icon-size": 19,
+    "spacing": 0
+  },
+
+  "sway/mode": {
+    "format": " {}",
+    "tooltip": false
+  },
+
+  "custom/zeit": {
+    "format": "{}",
+    "exec": "/home/mrus/projects/@mrusme/zeit/extras/zeit-waybar-bemenu.sh",
+    "on-click": "/home/mrus/projects/@mrusme/zeit/extras/zeit-waybar-bemenu.sh click",
+    "interval": 10
+  },
+
+  //  "mpd": {
+  //    "format": "{stateIcon}  <span color='#aaaaaa'>{randomIcon}{repeatIcon}{singleIcon}</span> {artist} - {title}",
+  //    "format-disconnected": "",
+  //    "format-stopped": "",
+  //    "interval": 10,
+  //    "consume-icons": {
+  //      "on": " "
+  //    },
+  //    "random-icons": {
+  //      "off": " ",
+  //      "on": " "
+  //    },
+  //    "repeat-icons": {
+  //      "on": " "
+  //    },
+  //    "single-icons": {
+  //      "on": "1 "
+  //    },
+  //    "state-icons": {
+  //      "paused": "",
+  //      "playing": ""
+  //    },
+  //    "on-scroll-up": "mpc prev",
+  //    "on-scroll-down": "mpc next",
+  //    "tooltip-format": "MPD (connected)",
+  //    "tooltip-format-disconnected": "MPD (disconnected)"
+  //  },
+
+
+  // -------------------------------------------------------------------------
+  // modules-center
+  // -------------------------------------------------------------------------
+
+  "sway/window": {
+    "all-outputs": true,
+    "format": "{}",
+    "icon": false,
+    "max-length": 240,
+    "rewrite": {
+       "(.*) — Mozilla Firefox": " $1",
+       "(.*) — LibreWolf"      : " $1",
+       "(.*) - Chromium"       : " $1",
+       "(.*) — Tor Browser"    : "﨩 $1",
+       "nvim (.*)"             : " $1",
+       "zsh (.*)"              : " $1",
+       "irssi"                 : " irc",
+       "Element | (.*)"        : "ﬧ $1",
+       "Session"               : "廬 session",
+       "Signal"                : " signal"
+    }
+  },
+
+
+  // -------------------------------------------------------------------------
+  // modules-right
+  // -------------------------------------------------------------------------
+
+  "cpu": {
+    "interval": 30,
+    "format": "  {avg_frequency}GHz <span color='#aaaaaa'>{usage}%</span>",
+    "states": {
+      "warning": 70,
+      "critical": 90
+    },
+    "on-click": "/usr/local/bin/waybar-cpu set"
+  },
+
+  "temperature#cpu": {
+    "hwmon-path": "/sys/class/hwmon/hwmon3/temp1_input",
+    "critical-threshold": 80,
+    "format": "  CPU <span color='#aaaaaa'>{temperatureC}°C</span>"
+  },
+
+  "temperature#gpu": {
+    "hwmon-path": "/sys/class/hwmon/hwmon5/temp1_input",
+    "critical-threshold": 80,
+    "format": "· GPU <span color='#aaaaaa'>{temperatureC}°C</span>"
+  },
+
+  "temperature#nvme": {
+    "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+    "critical-threshold": 80,
+    "format": "· NVMe <span color='#aaaaaa'>{temperatureC}°C</span>"
+  },
+
+  "temperature#wifi": {
+    "hwmon-path": "/sys/class/hwmon/hwmon4/temp1_input",
+    "critical-threshold": 80,
+    "format": "· WiFi <span color='#aaaaaa'>{temperatureC}°C</span>"
+  },
+
+  "custom/stats": {
+    "format": "{}",
+    "return-type": "json",
+    "exec": "/usr/local/bin/waybar-stats",
+    "interval": 30
+  },
+
+  "custom/headphones": {
+    "format": "{icon}",
+    "format-icons": {
+      "connected": "<span color='#ff9900'> </span>",
+      "disconnected": "<span color='#aaaaaa'> </span>"
+    },
+    "return-type": "json",
+    "exec": "/usr/local/bin/waybar-bluetooth headphones",
+    "on-click": "/usr/local/bin/waybar-bluetooth headphones toggle",
+    "interval": 10
+  },
+
+  "custom/speaker": {
+    "format": "{icon}",
+    "format-icons": {
+      "connected": "<span color='#ff9900'> </span>",
+      "disconnected": "<span color='#aaaaaa'> </span>"
+    },
+    "return-type": "json",
+    "exec": "/usr/local/bin/waybar-bluetooth speaker",
+    "on-click": "/usr/local/bin/waybar-bluetooth speaker toggle",
+    "interval": 10
+  },
+
+  "pulseaudio": {
+    "format": "{icon}  {desc} <span color='#aaaaaa'>{volume}%</span>",
+    "format-bluetooth": "{icon}  {desc} <span color='#aaaaaa'>{volume}%</span>",
+    "format-muted": "",
+    "format-icons": {
+      "headphones": "",
+      "handsfree": "",
+      "headset": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": ["", ""]
+    },
+    "on-click": "pavucontrol-qt"
+  },
+
+  "battery": {
+    "bat": "BAT0",
+    "interval": 30,
+    "states": {
+      "warning": 20,
+      "critical": 10
+    },
+    "format-time": "{H}:{m}",
+    "format": "{icon}  {time} <span color='#aaaaaa'>{capacity}%</span>",
+    "format-icons": ["", "", "", "", ""],
+  },
+
+  "clock": {
+    "interval": 60,
+    "format": "  <span color='#aaaaaa'>{:<span color='#ffffff'>%a</span> %e %b %Y <span color='#ffffff'>%I:%M</span> %p}</span>",
+    "tooltip": true,
+    "tooltip-format": "<big>{:%B %Y}</big>\n<tt>{calendar}</tt>"
+  }
+
+}
+/*,
+{
+  // -------------------------------------------------------------------------
+  // Global configuration
+  // -------------------------------------------------------------------------
+
+  "name": "bottom",
+  "layer": "top",
+  "position": "bottom",
+  // "output": "DP-1",
+
+  "modules-left": [
+    "custom/rssticker-soylent",
+    "custom/rssticker-hackernews"
+  ],
+  "modules-center": [
+  ],
+  "modules-right": [
+  ],
+
+
+  // -------------------------------------------------------------------------
+  // modules-left
+  // -------------------------------------------------------------------------
+
+  "custom/rssticker-soylent": {
+    "format": "{}",
+    "return-type": "json",
+    "exec": "/usr/local/bin/rssticker https://soylentnews.org/index.rss Soylent",
+    "on-click": "/usr/local/bin/rssticker https://soylentnews.org/index.rss Soylent open",
+    "exec-on-event": false,
+    "interval": 300
+  },
+
+  "custom/rssticker-hackernews": {
+    "format": "{}",
+    "return-type": "json",
+    "exec": "/usr/local/bin/rssticker https://news.ycombinator.com/rss 'Hacker News'",
+    "on-click": "/usr/local/bin/rssticker https://news.ycombinator.com/rss 'Hacker News' open",
+    "exec-on-event": false,
+    "interval": 300
+  },
+
+
+  // -------------------------------------------------------------------------
+  // modules-center
+  // -------------------------------------------------------------------------
+
+
+  // -------------------------------------------------------------------------
+  // modules-right
+  // -------------------------------------------------------------------------
+
+
+}*/
+]
+
