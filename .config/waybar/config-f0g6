@@ -21,11 +21,13 @@
     "sway/workspaces",
     "sway/language",
     "custom/screenrecord",
+    "network",
     "custom/vpn",
     "custom/rslsync",
     "custom/docker",
     "custom/cloudcash",
     // "custom/crypto",
+    "privacy",
     "tray",
     "sway/mode"
     // "custom/zeit"
@@ -34,14 +36,19 @@
     "sway/window"
   ],
   "modules-right": [
-    "cpu",
-    "temperature#cpu",
-    "temperature#gpu",
-    "temperature#nvme",
-    "temperature#wifi",
+    "group/hardware",
+    //"cpu",
+    //"temperature#cpu",
+    //"temperature#gpu",
+    //"temperature#nvme",
+    //"temperature#wifi",
+    "group/resources",
+    // "memory",
+    // "disk",
     "custom/headphones",
     "custom/speaker",
-    "pulseaudio",
+    // "pulseaudio",
+    "wireplumber",
     "battery",
     "clock"
   ],
@@ -67,6 +74,17 @@
     "exec": "/usr/local/bin/waybar-screenrecord",
     "on-click": "/usr/local/bin/waybar-screenrecord toggle",
     "interval": 3
+  },
+
+  "network": {
+    "format": "󰈀 {ifname}",
+    "format-wifi": " {essid} <span color='#aaaaaa'>{signalStrength}%</span>",
+    "format-ethernet": "󰈀 {ipaddr}/<span color='#aaaaaa'>{cidr}</span>",
+    "format-disconnected": "󰈂",
+    "tooltip-format": "{ifname} via {gwaddr}",
+    "tooltip-format-wifi": "{essid} ({signalStrength}%)",
+    "tooltip-format-ethernet": "{ifname}",
+    "tooltip-format-disconnected": "Disconnected"
   },
 
   "custom/vpn": {
@@ -115,6 +133,29 @@
     "interval": 3600
   },
 
+  "privacy": {
+    "icon-spacing": 4,
+    "icon-size": 18,
+    "transition-duration": 250,
+    "modules": [
+      {
+        "type": "screenshare",
+        "tooltip": true,
+        "tooltip-icon-size": 24
+      },
+      {
+        "type": "audio-out",
+        "tooltip": true,
+        "tooltip-icon-size": 24
+      },
+      {
+        "type": "audio-in",
+        "tooltip": true,
+        "tooltip-icon-size": 24
+      }
+    ]
+  },
+
   "tray": {
     "icon-size": 19,
     "spacing": 0
@@ -161,6 +202,21 @@
   // modules-right
   // -------------------------------------------------------------------------
 
+  "group/hardware": {
+    "orientation": "horizontal",
+    "modules": [ 
+      "cpu", 
+      "temperature#cpu",
+      "temperature#gpu",
+      "temperature#nvme",
+      "temperature#wifi"
+    ],
+    "drawer": {
+      "transition-left-to-right": false,
+      "transition-duration": 500
+    }
+  },
+
   "cpu": {
     "interval": 30,
     "format": "  {avg_frequency}GHz <span color='#aaaaaa'>{usage}%</span>",
@@ -193,6 +249,25 @@
     "hwmon-path": "/sys/class/hwmon/hwmon4/temp1_input",
     "critical-threshold": 80,
     "format": "· WiFi <span color='#aaaaaa'>{temperatureC}°C</span>"
+  },
+
+  "group/resources": {
+    "orientation": "horizontal",
+    "modules": [ "memory", "disk" ],
+    "drawer": {
+      "transition-duration": 500
+    }
+  },
+
+  "memory": {
+    "interval": 60,
+    "format": "  {used}/<span color='#aaaaaa'>{total}</span>"
+  },
+
+  "disk": {
+    "interval": 360,
+    "format": "  {used}/<span color='#aaaaaa'>{total}</span>",
+    "path": "/"
   },
 
   "custom/headphones": {
@@ -233,6 +308,14 @@
       "default": ["", ""]
     },
     "on-click": "pavucontrol-qt"
+  },
+
+  "wireplumber": {
+    "format": "{icon} {node_name} <span color='#aaaaaa'>{volume}%</span>",
+    "format-muted": "",
+    "on-click": "pavucontrol-qt",
+    "on-click-right": "helvum",
+    "format-icons": ["", "", ""]
   },
 
   "battery": {

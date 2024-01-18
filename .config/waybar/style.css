@@ -32,7 +32,9 @@ label#window {
 }
 
 .modules-left > widget > label,
-.modules-right > widget > label {
+.modules-left > box > widget > label,
+.modules-right > widget > label,
+.modules-right > box > widget > label {
   background-color: rgba(4, 6, 6, 0.92);
   padding: 0 14px;
   margin: 0px 0px 0px 0px;
@@ -43,11 +45,21 @@ window#waybar.bottom .modules-right > widget > label {
   font-size: 13px;
 }
 
+#resources {
+  background-color: rgba(4, 6, 6, 0.92);
+  padding: 0 14px;
+  margin: 0px 0px 0px 0px;
+}
+
 #custom-crypto  {
   border-radius: 0px 0px 5px 0px;
 }
 
-.modules-right > widget:nth-child(1) > label  {
+.modules-left > widget:nth-child(5) > label  {
+  border-radius: 0px 0px 5px 0px;
+}
+
+.modules-right > box:nth-child(1) > widget > label  {
   border-radius: 0px 0px 0px 5px;
 }
 
