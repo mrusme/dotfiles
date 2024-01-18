@@ -15,8 +15,6 @@ conclusive v1.0.0:
     conclusive
 csview v1.2.2:
     csview
-dijo v0.2.7:
-    dijo
 du-dust v0.9.0:
     dust
 eva v0.3.1:
@@ -40,16 +38,12 @@ gpg-tui v0.10.0:
     gpg-tui-completions
 gping v1.16.0:
     gping
-helix-term v0.6.0 (https://github.com/helix-editor/helix#8839eb0a):
-    hx
 hexyl v0.14.0:
     hexyl
 htmlq v0.4.0:
     htmlq
 hyperfine v1.18.0:
     hyperfine
-imager v0.3.2:
-    imager
 jless v0.9.0:
     jless
 jwt-cli v6.0.0:
@@ -58,13 +52,11 @@ kmon v1.6.4:
     kmon
 lemmeknow v0.8.0:
     lemmeknow
-librespot v0.5.0-dev (https://github.com/librespot-org/librespot.git#ccd1a727):
+librespot v0.4.2:
     librespot
-mdcat v2.1.0:
+mdcat v2.1.1:
     mdcat
-muc v0.1.0 (https://github.com/nate-sys/muc#d8336bc2):
-    muc
-neovide v0.12.1 (https://github.com/neovide/neovide#bbb26e84):
+neovide v0.12.1 (https://github.com/neovide/neovide#7d0c42b8):
     neovide
 oxipng v9.0.0:
     oxipng
@@ -74,9 +66,6 @@ pipe-rename v1.6.5:
     renamer
 procs v0.14.4:
     procs
-radicle-cli v0.7.0-dev (https://github.com/radicle-dev/radicle-cli#fadad89b):
-    git-remote-rad
-    rad
 rates v0.7.0:
     rates
 rustscan v2.1.1:
@@ -87,11 +76,11 @@ silicon v0.5.2:
     silicon
 so v0.4.9:
     so
-spotify-tui v0.25.0 (https://github.com/Rigellute/spotify-tui.git#c4dcf6b9):
+spotify-tui v0.25.0:
     spt
 starship v1.17.1:
     starship
-taskwarrior-tui v0.25.4 (https://github.com/kdheepak/taskwarrior-tui#13246297):
+taskwarrior-tui v0.25.4:
     taskwarrior-tui
 tealdeer v1.6.1:
     tldr
@@ -107,7 +96,5 @@ websocat v1.12.0:
     websocat
 xplr v0.21.5:
     xplr
-zenith v0.14.0 (https://github.com/bvaisvil/zenith.git#0ed09e6a):
-    zenith
 zoxide v0.9.2:
     zoxide
