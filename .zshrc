@@ -144,7 +144,7 @@ fi
 export SSH_KEY_PATH="${HOME}/.ssh/id_ed25519"
 
 # Pass 
-export PASSWORD_STORE_DIR="${HOME}/cloud/.password-store"
+export PASSWORD_STORE_DIR="${HOME}/cloud/library/pass"
 
 # Enable Erlang/IEx shell history
 export ERL_AFLAGS="-kernel shell_history enabled"
@@ -174,10 +174,10 @@ Australia/Melbourne;Pacific/Auckland;"
 export NOTMUCH_PROFILE="01"
 
 # https://github.com/mrusme/zeit
-export ZEIT_DB="${HOME}/cloud/library/.zeit.db"
+export ZEIT_DB="${HOME}/cloud/library/tools/zeit.db"
 
 # https://github.com/mrusme/geld
-export GELD_DB="${HOME}/cloud/library/.geld.db"
+export GELD_DB="${HOME}/cloud/library/tools/geld.db"
 
 # https://github.com/mrusme/addrb
 export ADDRB_DB="${HOME}/.cache/addrb.db"
