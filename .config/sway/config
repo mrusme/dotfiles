@@ -539,7 +539,7 @@ for_window [shell="xwayland"] title_format "<span>[X11] %title゜</span>"
 bar {
   id mainbar
   output DP-1
-  swaybar_command waybar
+  swaybar_command /usr/local/bin/waybar-command
 }
 
 # bar {
