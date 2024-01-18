@@ -160,7 +160,8 @@ export MOZ_USE_XINPUT2="1"
 # Qt
 #export QT_STYLE_OVERRIDE="kvantum"
 export QT_QPA_PLATFORM="wayland-egl"
-export QT_QPA_PLATFORMTHEME="qt5ct"
+#export QT_QPA_PLATFORMTHEME="qt5ct"
+export QT_QPA_PLATFORMTHEME="qt6ct"
 
 # https://github.com/oz/tz/
 export TZ_LIST="\
