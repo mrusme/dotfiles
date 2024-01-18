@@ -50,7 +50,9 @@
     // "pulseaudio",
     "wireplumber",
     "battery",
-    "clock"
+    "group/clock"
+    //"clock#date",
+    //"clock#time",
   ],
 
 
@@ -330,11 +332,45 @@
     "format-icons": ["", "", "", "", ""],
   },
 
-  "clock": {
+  "group/clock": {
+    "orientation": "horizontal",
+    "modules": [ "clock#time", "clock#date" ],
+    "drawer": {
+      "transition-left-to-right": true,
+      "transition-duration": 500
+    }
+  },
+
+  "clock#date": {
     "interval": 60,
-    "format": "  <span color='#aaaaaa'>{:<span color='#ffffff'>%a</span> %e %b %Y <span color='#ffffff'>%I:%M</span> %p}</span>",
+    "format": "<span color='#aaaaaa'>{:<span color='#ffffff'>%a</span> %e %b %Y}</span>",
+    "tooltip": false
+  },
+
+  "clock#time": {
+    "interval": 60,
+    "format": "  <span color='#aaaaaa'>{:<span color='#ffffff'>%I:%M</span> %p}</span>",
     "tooltip": true,
-    "tooltip-format": "<big>{:%B %Y}</big>\n<tt>{calendar}</tt>"
+    "tooltip-format": "<big>{:%B %Y}</big>\n<tt>{calendar}</tt>",
+    "calendar": {
+      "mode"          : "month",
+      "mode-mon-col"  : 3,
+      "weeks-pos"     : "right",
+      "on-scroll"     : 1,
+      "on-click-right": "mode",
+      "format": {
+        "months":     "<span color='#ffead3'><b>{}</b></span>",
+        "days":       "<span color='#ecc6d9'><b>{}</b></span>",
+        "weeks":      "<span color='#99ffdd'><b>W{}</b></span>",
+        "weekdays":   "<span color='#ffcc66'><b>{}</b></span>",
+        "today":      "<span color='#ff6699'><b><u>{}</u></b></span>"
+      }
+    },
+    "actions":  {
+      "on-click-right": "mode",
+      "on-scroll-up": "shift_up",
+      "on-scroll-down": "shift_down"
+    }
   }
 
 }
