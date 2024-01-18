@@ -4,6 +4,18 @@ cmd="$1"
 
 case "$cmd" in
   disconnect)
+    type "nmcli" > /dev/null
+    if [ $? -eq 0 ]
+    then
+      nmcli connection show --active \
+        | rg -i 'wireguard' \
+	| while read -r ovpn
+      do
+        nmcli connection down "$ovpn"
+      done
+
+      exit 0
+    fi
     /bin/ls -1 /etc/init.d/openvpn.* /etc/init.d/wg-quick.* \
       | xargs -n 1 basename | while read -r vpn
     do 
@@ -11,6 +23,31 @@ case "$cmd" in
     done
     ;;
   connect)
+    type "nmcli" > /dev/null
+    if [ $? -eq 0 ]
+    then
+      OPENVPN_CONFIG=$(nmcli connection show \
+        | rg -i 'wireguard' \
+	| awk '{ print $1 }' \
+	| bemenu)
+      if [ "$OPENVPN_CONFIG" = "" ]
+      then
+        exit
+      fi
+      nmcli connection show --active \
+        | rg -i 'wireguard' \
+	| while read -r ovpn
+      do
+        nmcli connection down "$ovpn"
+      done
+
+      sleep 2
+      nmcli connection up "$OPENVPN_CONFIG"
+
+      sleep 6
+      /usr/local/bin/get-public-ip-info
+      exit 0
+    fi
     OPENVPN_CONFIG=$(/bin/ls -1 /etc/init.d/openvpn.* /etc/init.d/wg-quick.* \
       | xargs -n 1 basename \
       | sed 's/wg-quick\./Wireguard: /g' \
@@ -38,6 +75,16 @@ case "$cmd" in
     exit 0
     ;;
   current)
+    type "nmcli" > /dev/null
+    if [ $? -eq 0 ]
+    then
+      nmcli connection show --active \
+        | rg wireguard \
+        | awk '{ print $1 }' \
+        | tr '[:lower:]' '[:upper:]' \
+        | xargs -I {} printf "{\"text\": \"{}\", \"class\": \"custom-openvpn\", \"alt\": \"connected\" }"
+      exit 0
+    fi
     wg=$(ip -o addr show scope global \
       | rg "x0net-|onyx-|dlc-|njla-|nord-|proton-|mv-" \
       | head -n 1 \
