@@ -57,7 +57,7 @@ titlebar_padding 10 6
 
 smart_gaps off
 smart_borders off
-
+ 
 gaps inner 12
 gaps outer 2
 
@@ -76,6 +76,7 @@ focus_on_window_activation smart
 output "Chimei Innolux Corporation 0x14F2 Unknown" {
   mode 1920x1080@60Hz
   pos 0 0
+  bg ~/.wallpaper fill
 }
 
 # LG 32UN500-W
@@ -86,6 +87,7 @@ output "ASUSTek COMPUTER INC VG27AQL1A N6LMQS161067" {
   mode 2560x1440@144Hz
   pos 0 0
   adaptive_sync on
+  bg ~/.wallpaper fill
 }
 
 # Streaming 
@@ -94,9 +96,6 @@ output "ASUSTek COMPUTER INC VG27AQL1A N6LMQS161067" {
 #   mode 1920x1080
 #   bg #000000 solid_color
 # }
-
-# Wallpaper
-output * bg ~/.wallpaper fill
 
 # swayidle
 # TODO: Fix GPU cycling issue (https://github.com/swaywm/sway/issues/6971) 
@@ -143,6 +142,7 @@ input "2362:597:STAR0001:00_093A:0255_Touchpad" {
   natural_scroll enabled
   pointer_accel 0
   #accel_profile adaptive
+  tap enabled 
 } 
 
 # Mad Catz R.A.T. 8+
@@ -236,27 +236,35 @@ bindsym $mod+Shift+e exec swaynag -t msg -e bottom -m 'EXIT SWAY SESSION' \
 
 # Decrease display brightness
 bindsym $mod+F1 exec ddcutil setvcp 10 - 25
+bindsym XF86MonBrightnessDown exec doas /usr/bin/brightnessctl -d amdgpu_bl0 set 10- 
 
 # Increase display brightness
 bindsym $mod+F2 exec ddcutil setvcp 10 + 25
+bindsym XF86MonBrightnessUp exec doas /usr/bin/brightnessctl -d amdgpu_bl0 set +10
 
 # Toggle playback
 bindsym $mod+F8 exec playerctl play-pause
+bindsym XF86AudioPlay exec playerctl play-pause
 
 # Next song
-bindsym $mod+F9 exec playerctl next
+bindsym $mod+F9 exec playerctl next 
+bindsym XF86AudioNext exec playerctl next
 
 # Previous song
 bindsym $mod+F7 exec playerctl previous
+bindsym XF86AudioPrev exec playerctl previous
 
 # Mute audio volume
 bindsym $mod+F10 exec /usr/local/bin/audio-router volume -100
+bindsym XF86AudioMute exec /usr/local/bin/audio-router volume -100
 
 # Decrease audio volume
 bindsym $mod+F11 exec /usr/local/bin/audio-router volume -10
+bindsym XF86AudioLowerVolume exec /usr/local/bin/audio-router volume -10
 
 # Increase audio volume
 bindsym $mod+F12 exec /usr/local/bin/audio-router volume +10
+bindsym XF86AudioRaiseVolume exec /usr/local/bin/audio-router volume +10
 
 # Route audio to display
 bindsym $mod+Shift+F1 exec /usr/local/bin/audio-router lg
@@ -548,16 +556,9 @@ for_window [shell="xwayland"] title_format "<span>[X11] %title゜</span>"
 
 bar {
   id mainbar
-  output DP-1
+  output *
   swaybar_command /usr/local/bin/waybar-command
 }
-
-# bar {
-#   id sidebar
-#   output HDMI-A-1
-#   swaybar_command true
-#   mode invisible
-# }
 
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
@@ -565,14 +566,10 @@ bar {
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
 # OpenRGB
-# exec openrgb -d 0 -m direct -z 0 -c \
-# 'ff4500,ff4500,ff4500,ff4500,ff4500,ff4500,ff4500,000000,000000,000000,000000,000000,000000,000000,000000,ff4500'
-# exec openrgb -d 0 -m direct -z 0 -c \
-# 'd40000,d40000,d40000,d40000,d40000,d40000,d40000,000000,000000,000000,000000,000000,000000,000000,000000,d40000'
 exec openrgb -p btc
 
 # Syncthing
-#exec syncthing serve --no-browser
+exec syncthing serve --no-browser
 
 # Show calendar notifications 
 exec /usr/local/bin/calendar-notifications
