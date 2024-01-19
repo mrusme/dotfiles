@@ -21,13 +21,14 @@
     "sway/workspaces",
     "sway/language",
     "custom/screenrecord",
-    "network",
-    "custom/vpn",
-    "custom/syncthing",
+    "privacy",
+    "group/network",
+    //"network",
+    //"custom/vpn",
+    //"custom/syncthing",
     "custom/docker",
     "custom/cloudcash",
     // "custom/crypto",
-    // "privacy",
     "tray",
     "sway/mode"
     // "custom/zeit"
@@ -78,6 +79,19 @@
     "interval": 3
   },
 
+  "group/network": {
+    "orientation": "horizontal",
+    "modules": [ 
+      "network",
+      "custom/vpn",
+      "custom/syncthing"
+    ],
+    "drawer": {
+      "transition-left-to-right": false,
+      "transition-duration": 500
+    }
+  },
+  
   "network": {
     "format": "󰈀 {ifname}",
     "format-wifi": "  {essid} <span color='#aaaaaa'>{signalStrength}%</span>",
@@ -234,7 +248,7 @@
   "temperature#cpu": {
     "hwmon-path": "/sys/class/hwmon/hwmon3/temp1_input",
     "critical-threshold": 80,
-    "format": "  CPU <span color='#aaaaaa'>{temperatureC}°C</span>"
+    "format": " CPU <span color='#aaaaaa'>{temperatureC}°C</span>"
   },
 
   "temperature#gpu": {
@@ -265,7 +279,7 @@
 
   "memory": {
     "interval": 60,
-    "format": "󰘚 {used}/<span color='#aaaaaa'>{total}</span>"
+    "format": "󰘚 {used}GiB/<span color='#aaaaaa'>{total}GiB</span>"
   },
 
   "disk": {
@@ -331,6 +345,10 @@
     },
     "format-time": "{H}:{m}",
     "format": "{icon}  {time} <span color='#aaaaaa'>{capacity}%</span>",
+    "format-discharging": "{icon}  Battery <span color='#aaaaaa'>{capacity}%</span>",
+    "format-charging": "{icon}  Charging <span color='#aaaaaa'>{capacity}%</span>",
+    "format-full": "󱐥  AC <span color='#aaaaaa'>{capacity}%</span>",
+    "format-not-charging": "󱐤  Not Charging <span color='#aaaaaa'>{capacity}%</span>",
     "format-icons": ["", "", "", "", ""],
   },
 
