@@ -55,7 +55,7 @@ window#waybar.bottom .modules-right > widget > label {
   border-radius: 0px 0px 5px 0px;
 }
 
-.modules-left > widget:nth-child(5) > label  {
+.modules-left > widget:nth-last-child(2) > label  {
   border-radius: 0px 0px 5px 0px;
 }
 
