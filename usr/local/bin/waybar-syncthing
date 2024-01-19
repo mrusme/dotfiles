@@ -7,5 +7,12 @@ connected=$(echo "$results" \
   | rg 'true' \
   | wc -l) 
 
-echo -n "{\"text\": \"  $connected/<span color='#aaaaaa'>$total</span> [<span color='#aaaaaa'>$cpu_temp1°C $cpu_temp2°C $cpu_temp3°C</span>]\", \"tooltip\": \"\", \"alt\": \"\", \"class\": \"\" }"
+in_total=$(syncthing cli show connections \
+  | jq '.total.inBytesTotal' \
+  | xargs -I {} eva -f 2 "{} / 1024 / 1024")
+out_total=$(syncthing cli show connections \
+  | jq '.total.outBytesTotal' \
+  | xargs -I {} eva -f 2 "{} / 1024 / 1024")
+
+echo -n "{\"text\": \"  $connected/<span color='#aaaaaa'>$total</span> [<span color='#aaaaaa'>$in_total MB $out_total MB</span>]\", \"tooltip\": \"\", \"alt\": \"\", \"class\": \"\" }"
 
