@@ -138,6 +138,13 @@ exec mako
 # ║ Inputs                                                                     ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
+# StarBook 
+input "2362:597:STAR0001:00_093A:0255_Touchpad" {
+  natural_scroll enabled
+  pointer_accel 0
+  #accel_profile adaptive
+} 
+
 # Mad Catz R.A.T. 8+
 input "4815:3077:Mad_Catz_Global_MADCATZ_R.A.T._8+_gaming_mouse" {
   natural_scroll enabled
