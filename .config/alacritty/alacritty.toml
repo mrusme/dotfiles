@@ -32,7 +32,7 @@ white   = "#ABB2BF"
 
 [colors.primary]
 bright_foreground = "#f28779"
-background        = "#191622"
+background        = "#121212"
 foreground        = "#ABB2BF"
 
 [colors.cursor]
