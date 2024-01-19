@@ -36,7 +36,7 @@ label#window {
 .modules-right > widget > label,
 .modules-right > box > widget > label {
   background-color: rgba(4, 6, 6, 0.92);
-  padding: 0 14px;
+  padding: 0 10px;
   margin: 0px 0px 0px 0px;
 }
 
@@ -47,7 +47,7 @@ window#waybar.bottom .modules-right > widget > label {
 
 #resources, #clock {
   background-color: rgba(4, 6, 6, 0.92);
-  padding: 0 14px;
+  padding: 0 6px;
   margin: 0px 0px 0px 0px;
 }
 

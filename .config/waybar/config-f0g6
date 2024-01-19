@@ -23,11 +23,11 @@
     "custom/screenrecord",
     "network",
     "custom/vpn",
-    "custom/rslsync",
+    "custom/syncthing",
     "custom/docker",
     "custom/cloudcash",
     // "custom/crypto",
-    "privacy",
+    // "privacy",
     "tray",
     "sway/mode"
     // "custom/zeit"
@@ -80,7 +80,7 @@
 
   "network": {
     "format": "󰈀 {ifname}",
-    "format-wifi": " {essid} <span color='#aaaaaa'>{signalStrength}%</span>",
+    "format-wifi": "  {essid} <span color='#aaaaaa'>{signalStrength}%</span>",
     "format-ethernet": "󰈀 {ipaddr}/<span color='#aaaaaa'>{cidr}</span>",
     "format-disconnected": "󰈂",
     "tooltip-format": "{ifname} via {gwaddr}",
@@ -90,7 +90,7 @@
   },
 
   "custom/vpn": {
-    "format": "{icon}  VPN <span color='#aaaaaa'>{}</span>",
+    "format": "{icon} VPN <span color='#aaaaaa'>{}</span>",
     "format-icons": {
       "connected": "",
       "disconnected": ""
@@ -103,11 +103,13 @@
     "interval": 30
   },
 
-  "custom/rslsync": {
-    "format": "  {}",
-    "exec-if": "ps -eo args | rg '^/usr/bin/rslsync'",
-    "on-click": "xdg-open http://127.0.0.1:2510/gui/",
-    "on-click-middle": "killall -s SIGQUIT rslsync",
+  "custom/syncthing": {
+    "format": "{}",
+    "return-type": "json",
+    "exec": "/usr/local/bin/waybar-syncthing",
+    "exec-if": "ps -eo args | rg '^/usr/bin/syncthing'",
+    "on-click": "xdg-open http://127.0.0.1:8384",
+    "on-click-middle": "killall -s SIGQUIT syncthing",
     "interval": 30
   },
 
@@ -221,7 +223,7 @@
 
   "cpu": {
     "interval": 30,
-    "format": "  {avg_frequency}GHz <span color='#aaaaaa'>{usage}%</span>",
+    "format": " {avg_frequency}GHz <span color='#aaaaaa'>{usage}%</span>",
     "states": {
       "warning": 70,
       "critical": 90
@@ -263,7 +265,7 @@
 
   "memory": {
     "interval": 60,
-    "format": "  {used}/<span color='#aaaaaa'>{total}</span>"
+    "format": "󰘚 {used}/<span color='#aaaaaa'>{total}</span>"
   },
 
   "disk": {
@@ -313,7 +315,7 @@
   },
 
   "wireplumber": {
-    "format": "{icon} {node_name} <span color='#aaaaaa'>{volume}%</span>",
+    "format": "{icon}  {node_name} <span color='#aaaaaa'>{volume}%</span>",
     "format-muted": "",
     "on-click": "pavucontrol-qt",
     "on-click-right": "helvum",
@@ -349,7 +351,7 @@
 
   "clock#time": {
     "interval": 60,
-    "format": "  <span color='#aaaaaa'>{:<span color='#ffffff'>%I:%M</span> %p}</span>",
+    "format": "  <span color='#aaaaaa'>{:<span color='#ffffff'>%I:%M</span> %p}</span>",
     "tooltip": true,
     "tooltip-format": "<big>{:%B %Y}</big>\n<tt>{calendar}</tt>",
     "calendar": {
