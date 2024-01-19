@@ -73,20 +73,20 @@ focus_on_window_activation smart
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
 # StarBook
-output eDP-1 mode 1920x1080@60Hz 
-output eDP-1 pos 0 0
+output "Chimei Innolux Corporation 0x14F2 Unknown" {
+  mode 1920x1080@60Hz
+  pos 0 0
+}
 
 # LG 32UN500-W
 # -
 
 # ASUS TUF Gaming VG27AQ
-output DP-1 mode 2560x1440@144Hz
-output DP-1 pos 0 0
-
-# UPERFECT 15.6 UHD
-#output HDMI-A-1 mode 2560x1440@119.998Hz
-#output HDMI-A-1 pos -2560 720
-#output HDMI-A-1 scale 1
+output "ASUSTek COMPUTER INC VG27AQL1A N6LMQS161067" {
+  mode 2560x1440@144Hz
+  pos 0 0
+  adaptive_sync on
+}
 
 # Streaming 
 # output HEADLESS-1 {
