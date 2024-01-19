@@ -1,0 +1,11 @@
+#!/bin/sh
+results=$(syncthing cli show connections \
+  | jq '.connections[].connected')
+total=$(echo "$results" \
+  | wc -l)
+connected=$(echo "$results" \
+  | rg 'true' \
+  | wc -l) 
+
+echo -n "{\"text\": \"  $connected/<span color='#aaaaaa'>$total</span> [<span color='#aaaaaa'>$cpu_temp1°C $cpu_temp2°C $cpu_temp3°C</span>]\", \"tooltip\": \"\", \"alt\": \"\", \"class\": \"\" }"
+
