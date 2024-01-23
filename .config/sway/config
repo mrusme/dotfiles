@@ -72,11 +72,12 @@ focus_on_window_activation smart
 # ║ Outputs                                                                    ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
+output * bg ~/.wallpaper fill
+
 # StarBook
 output "Chimei Innolux Corporation 0x14F2 Unknown" {
   mode 1920x1080@60Hz
   pos 0 0
-  bg ~/.wallpaper fill
 }
 
 # LG 32UN500-W
@@ -87,7 +88,6 @@ output "ASUSTek COMPUTER INC VG27AQL1A N6LMQS161067" {
   mode 2560x1440@144Hz
   pos 0 0
   adaptive_sync on
-  bg ~/.wallpaper fill
 }
 
 # Streaming 
