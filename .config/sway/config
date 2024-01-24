@@ -531,6 +531,7 @@ for_window [app_id = "org.gnupg.pinentry-qt"] floating enable
 for_window [app_id = "keepassxc"] floating enable
 for_window [app_id = "zenity"] floating enable
 for_window [app_id = "yad"] floating enable
+for_window [app_id = "opensnitch_ui"] floating enable
 
 # for_window [instance="file_progress"]  sticky enable
 
@@ -565,11 +566,18 @@ bar {
 # ║ Tools                                                                      ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
-# OpenRGB
-exec openrgb -p btc
+# wlsunset 
+# https://sr.ht/~kennylevinsen/wlsunset/
+exec wlsunset -l 25.77 -L -79.38668
+
+# OpenSnitch 
+exec opensnitch-ui
 
 # Syncthing
 exec syncthing serve --no-browser
+
+# OpenRGB
+exec openrgb -p btc
 
 # Show calendar notifications 
 exec /usr/local/bin/calendar-notifications
@@ -582,10 +590,6 @@ exec /usr/local/bin/birthdays
 
 # KeePassXC
 exec /usr/local/bin/passwordmanager
-
-# wlsunset 
-# https://sr.ht/~kennylevinsen/wlsunset/
-exec wlsunset -l 25.77 -L -79.38668
 
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
