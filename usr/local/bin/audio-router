@@ -29,7 +29,7 @@ case "$1" in
     pactl list short \
       | rg RUNNING \
       | cut -f1 \
-      | xargs -I {} pulsemixer --id {} --change-volume "$2"
+      | xargs -I {} pactl set-sink-volume {} "$2"
     exit 0
     ;;
   *)
