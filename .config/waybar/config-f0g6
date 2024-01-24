@@ -23,11 +23,6 @@
     "custom/screenrecord",
     "privacy",
     "group/network",
-    //"network",
-    //"custom/vpn",
-    //"custom/syncthing",
-    "custom/docker",
-    "custom/cloudcash",
     // "custom/crypto",
     "tray",
     "sway/mode"
@@ -38,22 +33,11 @@
   ],
   "modules-right": [
     "group/hardware",
-    //"cpu",
-    //"temperature#cpu",
-    //"temperature#gpu",
-    //"temperature#nvme",
-    //"temperature#wifi",
     "group/resources",
-    // "memory",
-    // "disk",
-    "custom/headphones",
-    "custom/speaker",
-    // "pulseaudio",
+    "bluetooth",
     "wireplumber",
     "battery",
     "group/clock"
-    //"clock#date",
-    //"clock#time",
   ],
 
 
@@ -84,7 +68,9 @@
     "modules": [ 
       "network",
       "custom/vpn",
-      "custom/syncthing"
+      "custom/syncthing",
+      "custom/docker",
+      "custom/cloudcash"
     ],
     "drawer": {
       "transition-left-to-right": false,
@@ -288,44 +274,18 @@
     "path": "/"
   },
 
-  "custom/headphones": {
-    "format": "{icon}",
-    "format-icons": {
-      "connected": "<span color='#ff9900'> </span>",
-      "disconnected": "<span color='#aaaaaa'> </span>"
-    },
-    "return-type": "json",
-    "exec": "/usr/local/bin/waybar-bluetooth headphones",
-    "on-click": "/usr/local/bin/waybar-bluetooth headphones toggle",
-    "interval": 10
-  },
-
-  "custom/speaker": {
-    "format": "{icon}",
-    "format-icons": {
-      "connected": "<span color='#ff9900'> </span>",
-      "disconnected": "<span color='#aaaaaa'> </span>"
-    },
-    "return-type": "json",
-    "exec": "/usr/local/bin/waybar-bluetooth speaker",
-    "on-click": "/usr/local/bin/waybar-bluetooth speaker toggle",
-    "interval": 10
-  },
-
-  "pulseaudio": {
-    "format": "{icon}  {desc} <span color='#aaaaaa'>{volume}%</span>",
-    "format-bluetooth": "{icon}  {desc} <span color='#aaaaaa'>{volume}%</span>",
-    "format-muted": "",
-    "format-icons": {
-      "headphones": "",
-      "handsfree": "",
-      "headset": "",
-      "phone": "",
-      "portable": "",
-      "car": "",
-      "default": ["", ""]
-    },
-    "on-click": "pavucontrol-qt"
+  "bluetooth": {
+    // "controller": "controller1",
+    "on-click": "/usr/local/bin/waybar-bluetooth toggle",
+    "format": "<span color='#aaaaaa'></span>",
+    "format-disabled": "",
+    "format-connected": "",
+    "format-connected-battery": " {device_battery_percentage}",
+    "tooltip-format": "{controller_alias}\t\t[{controller_address}]",
+    "tooltip-format-connected": "{controller_alias}\t\t[{controller_address}]\n\n{device_enumerate}",
+    "tooltip-format-connected-battery": "{controller_alias}\t\t[{controller_address}]\n\n{device_enumerate}",
+    "tooltip-format-enumerate-connected": "{device_alias}\t\t[{device_address}]",
+    "tooltip-format-enumerate-connected-battery": "{device_alias} ({device_battery_percentage})\t\t[{device_address}]"
   },
 
   "wireplumber": {
