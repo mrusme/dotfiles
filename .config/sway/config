@@ -255,16 +255,16 @@ bindsym $mod+F7 exec playerctl previous
 bindsym XF86AudioPrev exec playerctl previous
 
 # Mute audio volume
-bindsym $mod+F10 exec /usr/local/bin/audio-router volume -100
-bindsym XF86AudioMute exec /usr/local/bin/audio-router volume -100
+bindsym $mod+F10 exec /usr/local/bin/audio-router volume "0%"
+bindsym XF86AudioMute exec /usr/local/bin/audio-router volume "0%"
 
 # Decrease audio volume
-bindsym $mod+F11 exec /usr/local/bin/audio-router volume -10
-bindsym XF86AudioLowerVolume exec /usr/local/bin/audio-router volume -10
+bindsym $mod+F11 exec /usr/local/bin/audio-router volume -0.10
+bindsym XF86AudioLowerVolume exec /usr/local/bin/audio-router volume -0.10
 
 # Increase audio volume
-bindsym $mod+F12 exec /usr/local/bin/audio-router volume +10
-bindsym XF86AudioRaiseVolume exec /usr/local/bin/audio-router volume +10
+bindsym $mod+F12 exec /usr/local/bin/audio-router volume +0.10
+bindsym XF86AudioRaiseVolume exec /usr/local/bin/audio-router volume +0.10
 
 # Route audio to display
 bindsym $mod+Shift+F1 exec /usr/local/bin/audio-router lg
