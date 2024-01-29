@@ -104,7 +104,7 @@
   },
 
   "custom/syncthing": {
-    "format": "{}",
+    "format": " {} ",
     "return-type": "json",
     "exec": "/usr/local/bin/waybar-syncthing",
     "exec-if": "ps -eo args | rg '^/usr/bin/syncthing'",
@@ -122,7 +122,7 @@
   },
 
   "custom/cloudcash": {
-    "format": "{}",
+    "format": " {} ",
     "return-type": "json",
     "exec": "/usr/local/bin/cloudcash -waybar-pango",
     "on-click": "",
@@ -130,7 +130,7 @@
   },
 
   "custom/crypto": {
-    "format": "{}",
+    "format": " {} ",
     "return-type": "json",
     "exec": "/usr/local/bin/waybar-crypto",
     "on-click": "",
