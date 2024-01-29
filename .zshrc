@@ -161,7 +161,7 @@ export MOZ_USE_XINPUT2="1"
 #export QT_STYLE_OVERRIDE="kvantum"
 export QT_QPA_PLATFORM="wayland-egl"
 #export QT_QPA_PLATFORMTHEME="qt5ct"
-export QT_QPA_PLATFORMTHEME="qt6ct"
+export QT_QPA_PLATFORMTHEME="qt5ct"
 
 # https://github.com/oz/tz/
 export TZ_LIST="\
@@ -266,7 +266,7 @@ __is_available gem \
 
 # NPM
 export NPM_PACKAGES="${HOME}/.local/lib64/node_modules"
-export PATH="${PATH}:${NPM_PACKAGES}/bin"
+export PATH="${PATH}:${NPM_PACKAGES}/bin:${HOME}/.local/bin"
 export MANPATH="${MANPATH-$(manpath)}:${NPM_PACKAGES}/share/man"
 
 # Wayland
