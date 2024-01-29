@@ -162,6 +162,8 @@ set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,**/node_modules/**
 
 set spelllang=en,ro,es,fr,de,cjk
 set spellsuggest=best,9
+let g:spellfile_URL = 'https://ftp.nluug.nl/vim/runtime/spell'
+let g:loaded_netrwPlugin = 0
 
 if exists("+colorcolumn")
   set colorcolumn=80
