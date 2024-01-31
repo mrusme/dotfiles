@@ -22,15 +22,11 @@
     "sway/workspaces",
     "sway/language",
     "custom/screenrecord",
-    "custom/vpn",
-    "custom/rslsync",
-    "custom/docker",
-    "custom/cloudcash",
-    // "custom/crypto",
+    "group/network",
+    "custom/crypto",
     "tray",
-    "sway/mode"
-    // "custom/zeit"
-    // "mpd"
+    "sway/mode",
+    "custom/zeit"
   ],
   "modules-center": [
     "sway/window"
@@ -38,10 +34,9 @@
   "modules-right": [
     "cpu",
     "custom/stats",
-    "custom/headphones",
-    "custom/speaker",
-    "pulseaudio",
-    "clock"
+    "bluetooth",
+    "wireplumber",
+    "group/clock"
   ],
 
 
@@ -67,6 +62,32 @@
     "interval": 3
   },
 
+  "group/network": {
+    "orientation": "horizontal",
+    "modules": [ 
+      "network",
+      "custom/vpn",
+      "custom/syncthing",
+      "custom/docker",
+      "custom/cloudcash"
+    ],
+    "drawer": {
+      "transition-left-to-right": false,
+      "transition-duration": 500
+    }
+  },
+  
+  "network": {
+    "format": "󰈀 {ifname}",
+    "format-wifi": "  {essid} <span color='#aaaaaa'>{signalStrength}%</span>",
+    "format-ethernet": "󰈀 {ipaddr}/<span color='#aaaaaa'>{cidr}</span>",
+    "format-disconnected": "󰈂",
+    "tooltip-format": "{ifname} via {gwaddr}",
+    "tooltip-format-wifi": "{essid} ({signalStrength}%)",
+    "tooltip-format-ethernet": "{ifname}",
+    "tooltip-format-disconnected": "Disconnected"
+  },
+
   "custom/vpn": {
     "format": "{icon}  VPN <span color='#aaaaaa'>{}</span>",
     "format-icons": {
@@ -81,11 +102,13 @@
     "interval": 30
   },
 
-  "custom/rslsync": {
-    "format": "  {}",
-    "exec-if": "ps -eo args | rg '^/usr/bin/rslsync'",
-    "on-click": "xdg-open http://127.0.0.1:2510/gui/",
-    "on-click-middle": "killall -s SIGQUIT rslsync",
+  "custom/syncthing": {
+    "format": " {} ",
+    "return-type": "json",
+    "exec": "/usr/local/bin/waybar-syncthing",
+    "exec-if": "ps -eo args | rg '^/usr/bin/syncthing'",
+    "on-click": "xdg-open http://127.0.0.1:8384",
+    "on-click-middle": "killall -s SIGQUIT syncthing",
     "interval": 30
   },
 
@@ -129,34 +152,6 @@
     "on-click": "/home/mrus/projects/@mrusme/zeit/extras/zeit-waybar-bemenu.sh click",
     "interval": 10
   },
-
-  //  "mpd": {
-  //    "format": "{stateIcon}  <span color='#aaaaaa'>{randomIcon}{repeatIcon}{singleIcon}</span> {artist} - {title}",
-  //    "format-disconnected": "",
-  //    "format-stopped": "",
-  //    "interval": 10,
-  //    "consume-icons": {
-  //      "on": " "
-  //    },
-  //    "random-icons": {
-  //      "off": " ",
-  //      "on": " "
-  //    },
-  //    "repeat-icons": {
-  //      "on": " "
-  //    },
-  //    "single-icons": {
-  //      "on": "1 "
-  //    },
-  //    "state-icons": {
-  //      "paused": "",
-  //      "playing": ""
-  //    },
-  //    "on-scroll-up": "mpc prev",
-  //    "on-scroll-down": "mpc next",
-  //    "tooltip-format": "MPD (connected)",
-  //    "tooltip-format-disconnected": "MPD (disconnected)"
-  //  },
 
 
   // -------------------------------------------------------------------------
@@ -204,51 +199,67 @@
     "interval": 30
   },
 
-  "custom/headphones": {
-    "format": "{icon}",
-    "format-icons": {
-      "connected": "<span color='#ff9900'> </span>",
-      "disconnected": "<span color='#aaaaaa'> </span>"
-    },
-    "return-type": "json",
-    "exec": "/usr/local/bin/waybar-bluetooth headphones",
-    "on-click": "/usr/local/bin/waybar-bluetooth headphones toggle",
-    "interval": 10
+  "bluetooth": {
+    // "controller": "controller1",
+    "on-click": "/usr/local/bin/waybar-bluetooth toggle",
+    "format": "<span color='#aaaaaa'></span>",
+    "format-disabled": "",
+    "format-connected": "",
+    "format-connected-battery": " {device_battery_percentage}",
+    "tooltip-format": "{controller_alias}\t\t[{controller_address}]",
+    "tooltip-format-connected": "{controller_alias}\t\t[{controller_address}]\n\n{device_enumerate}",
+    "tooltip-format-connected-battery": "{controller_alias}\t\t[{controller_address}]\n\n{device_enumerate}",
+    "tooltip-format-enumerate-connected": "{device_alias}\t\t[{device_address}]",
+    "tooltip-format-enumerate-connected-battery": "{device_alias} ({device_battery_percentage})\t\t[{device_address}]"
   },
 
-  "custom/speaker": {
-    "format": "{icon}",
-    "format-icons": {
-      "connected": "<span color='#ff9900'> </span>",
-      "disconnected": "<span color='#aaaaaa'> </span>"
-    },
-    "return-type": "json",
-    "exec": "/usr/local/bin/waybar-bluetooth speaker",
-    "on-click": "/usr/local/bin/waybar-bluetooth speaker toggle",
-    "interval": 10
-  },
-
-  "pulseaudio": {
-    "format": "{icon}  {desc} <span color='#aaaaaa'>{volume}%</span>",
-    "format-bluetooth": "{icon}  {desc} <span color='#aaaaaa'>{volume}%</span>",
+  "wireplumber": {
+    "format": "{icon}  {node_name} <span color='#aaaaaa'>{volume}%</span>",
     "format-muted": "",
-    "format-icons": {
-      "headphones": "",
-      "handsfree": "",
-      "headset": "",
-      "phone": "",
-      "portable": "",
-      "car": "",
-      "default": ["", ""]
-    },
-    "on-click": "pavucontrol-qt"
+    "on-click": "pavucontrol-qt",
+    "on-click-right": "helvum",
+    "format-icons": ["", "", ""]
   },
 
-  "clock": {
+  "group/clock": {
+    "orientation": "horizontal",
+    "modules": [ "clock#time", "clock#date" ],
+    "drawer": {
+      "transition-left-to-right": true,
+      "transition-duration": 500
+    }
+  },
+
+  "clock#date": {
     "interval": 60,
-    "format": "  <span color='#aaaaaa'>{:<span color='#ffffff'>%a</span> %e %b %Y <span color='#ffffff'>%I:%M</span> %p}</span>",
+    "format": "<span color='#aaaaaa'>{:<span color='#ffffff'>%a</span> %e %b %Y}</span>",
+    "tooltip": false
+  },
+
+  "clock#time": {
+    "interval": 60,
+    "format": "  <span color='#aaaaaa'>{:<span color='#ffffff'>%I:%M</span> %p}</span>",
     "tooltip": true,
-    "tooltip-format": "<big>{:%B %Y}</big>\n<tt>{calendar}</tt>"
+    "tooltip-format": "<big>{:%B %Y}</big>\n<tt>{calendar}</tt>",
+    "calendar": {
+      "mode"          : "month",
+      "mode-mon-col"  : 3,
+      "weeks-pos"     : "right",
+      "on-scroll"     : 1,
+      "on-click-right": "mode",
+      "format": {
+        "months":     "<span color='#ffead3'><b>{}</b></span>",
+        "days":       "<span color='#ecc6d9'><b>{}</b></span>",
+        "weeks":      "<span color='#99ffdd'><b>W{}</b></span>",
+        "weekdays":   "<span color='#ffcc66'><b>{}</b></span>",
+        "today":      "<span color='#ff6699'><b><u>{}</u></b></span>"
+      }
+    },
+    "actions":  {
+      "on-click-right": "mode",
+      "on-scroll-up": "shift_up",
+      "on-scroll-down": "shift_down"
+    }
   }
 
 },
