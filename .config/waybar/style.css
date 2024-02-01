@@ -42,7 +42,7 @@ label#window {
 
 window#waybar.bottom .modules-left > widget > label,
 window#waybar.bottom .modules-right > widget > label {
-  font-size: 13px;
+  font-size: 10px;
 }
 
 #network, #resources, #clock {
