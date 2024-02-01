@@ -340,58 +340,23 @@ set t_Co=256
 "     overrides = {},
 " })
 " EOF
-colorscheme nightfox
 lua << EOF
 require('nightfox').setup({
   options = {
-    -- compile_path = vim.fn.stdpath("cache") .. "/nightfox",
-    -- compile_file_suffix = "_compiled", -- Compiled file suffix
     transparent = true,
-    terminal_colors = true,
     dim_inactive = false,
-    module_default = true,
-    colorblind = {
-      enable = false,
-      simulate_only = false,
-      severity = {
-        protan = 0,
-        deutan = 0,
-        tritan = 0,
-      },
-    },
-    styles = {
-      comments = "NONE",
-      conditionals = "NONE",
-      constants = "NONE",
-      functions = "NONE",
-      keywords = "NONE",
-      numbers = "NONE",
-      operators = "NONE",
-      strings = "NONE",
-      types = "NONE",
-      variables = "NONE",
-    },
-    inverse = {
-      match_paren = false,
-      visual = false,
-      search = false,
-    },
-    modules = { 
-    },
   },
-  palettes = {},
-  specs = {},
-  groups = {},
 })
 EOF
+colorscheme nightfox
 
 " OVERRIDES
-highlight Normal ctermbg=none guibg=none
-highlight NonText ctermbg=none guibg=none
-highlight ColorColumn cterm=reverse ctermbg=200 ctermfg=233 
-  \ gui=reverse guibg=#3e445e guifg=#0f1117
-highlight EndOfBuffer ctermbg=none guibg=none
-highlight LineNr ctermbg=none guibg=none
+" highlight Normal ctermbg=none guibg=none
+" highlight NonText ctermbg=none guibg=none
+" highlight ColorColumn cterm=reverse ctermbg=200 ctermfg=233 
+"   \ gui=reverse guibg=#3e445e guifg=#0f1117
+" highlight EndOfBuffer ctermbg=none guibg=none
+" highlight LineNr ctermbg=none guibg=none
 
 
 " ╔════════════════════════════════════════════════════════════════════════════╗
