@@ -70,7 +70,7 @@
       "custom/vpn",
       "custom/syncthing",
       "custom/docker",
-      "custom/cloudcash"
+      //"custom/cloudcash"
     ],
     "drawer": {
       "transition-left-to-right": false,
@@ -121,13 +121,13 @@
     "interval": 30
   },
 
-  "custom/cloudcash": {
-    "format": " {} ",
-    "return-type": "json",
-    "exec": "/usr/local/bin/cloudcash -waybar-pango",
-    "on-click": "",
-    "interval": 3600
-  },
+  //"custom/cloudcash": {
+  //  "format": " {} ",
+  //  "return-type": "json",
+  //  "exec": "/usr/local/bin/cloudcash -waybar-pango",
+  //  "on-click": "",
+  //  "interval": 3600
+  //},
 
   "custom/crypto": {
     "format": " {} ",
