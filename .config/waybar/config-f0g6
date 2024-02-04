@@ -69,7 +69,7 @@
       "network",
       "custom/vpn",
       "custom/syncthing",
-      "custom/docker",
+      "custom/docker"
       //"custom/cloudcash"
     ],
     "drawer": {
