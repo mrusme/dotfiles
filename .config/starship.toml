@@ -3,7 +3,7 @@
 add_newline=false
 #scan_timeout = 10
 format = '$character$directory'
-right_format = '$terraform$git_state$git_status$git_branch$git_commit'
+right_format = '$terraform$git_state$git_status$git_branch$git_commit$battery'
 
 [character]
 success_symbol = '[▲](white)'
@@ -11,7 +11,7 @@ error_symbol = '[▲](red)'
 vicmd_symbol = '[△](blue)'
 
 [directory]
-style = 'blue'
+style = 'blue dimmed'
 
 [git_state]
 format = '[\($state( $progress_current of $progress_total)\)]($style) '
@@ -57,4 +57,14 @@ tag_symbol = ''
 format = '[$symbol$workspace]($style) '
 style = '105'
 symbol = ' '
+
+[battery]
+full_symbol = '[F]'
+charging_symbol = '[+]'
+discharging_symbol = '[-]'
+empty_symbol = '[ ]'
+unknown_symbol = '[?]'
+[[battery.display]]
+threshold = 10
+style = 'yellow'
 
