@@ -1,0 +1,62 @@
+[api]
+pre_language = 'https://'
+post_language = '.wikipedia.org/w/api.php'
+language = 'English'
+language_changed_popup = true
+article_language_changed_popup = true
+
+[theme]
+text = 'white'
+title = 'red'
+highlight = 'red'
+background = 'black'
+search_match = 'red'
+highlight_text = 'white'
+highlight_inactive = 'black'
+
+[logging]
+enabled = true
+log_level = 'INFO'
+
+[features]
+links = true
+toc = true
+[keybindings.down]
+key = 'j'
+mode = 'normal'
+
+[keybindings.up]
+key = 'k'
+mode = 'normal'
+
+[keybindings.left]
+key = 'h'
+mode = 'normal'
+
+[keybindings.right]
+key = 'l'
+mode = 'normal'
+
+[keybindings.focus_next]
+key = 'tab'
+mode = 'normal'
+
+[keybindings.focus_prev]
+key = 'tab'
+mode = 'shift'
+
+[keybindings.toggle_language_selection]
+key = 'f2'
+mode = 'normal'
+
+[keybindings.toggle_article_language_selection]
+key = 'f3'
+mode = 'normal'
+[settings.toc]
+position = 'Right'
+title = 'Default'
+min_width = 20
+max_width = 60
+scroll_x = true
+scroll_y = true
+item_format = '{NUMBER} {TEXT}'
