@@ -116,6 +116,8 @@ set ttimeout
 set ttimeoutlen=50
 set timeoutlen=500
 
+set splitbelow
+
 set incsearch
 
 set laststatus=2
@@ -450,7 +452,49 @@ au FileType gitcommit let b:EditorConfig_disable = 1
 " ╚════════════════════════════════════════════════════════════════════════════╝
 
 lua <<EOF
-require('gitsigns').setup()
+require('gitsigns').setup {
+  signs = {
+    add          = { text = '│' },
+    change       = { text = '│' },
+    delete       = { text = '_' },
+    topdelete    = { text = '‾' },
+    changedelete = { text = '~' },
+    untracked    = { text = '┆' },
+  },
+  signcolumn = false,
+  numhl      = true,
+  linehl     = false,
+  word_diff  = false,
+  watch_gitdir = {
+    follow_files = true
+  },
+  auto_attach = true,
+  attach_to_untracked = false,
+  current_line_blame = true,
+  current_line_blame_opts = {
+    virt_text = true,
+    virt_text_pos = 'eol', -- 'eol' | 'overlay' | 'right_align'
+    delay = 000,
+    ignore_whitespace = false,
+    virt_text_priority = 100,
+  },
+  current_line_blame_formatter = '[<author> <author_time:%Y-%m-%d>] <summary>',
+  sign_priority = 6,
+  update_debounce = 100,
+  status_formatter = nil,
+  max_file_length = 40000,
+  preview_config = {
+    -- Options passed to nvim_open_win
+    border = 'single',
+    style = 'minimal',
+    relative = 'cursor',
+    row = 0,
+    col = 1
+  },
+  yadm = {
+    enable = false
+  },
+}
 EOF
 
 
@@ -793,7 +837,7 @@ inoremap <M-o> <cmd>lua require('telescope.builtin').fd()<cr>
 " ╚════════════════════════════════════════════════════════════════════════════╝
 
 let g:minimap_width = 10
-let g:minimap_auto_start = 0
+let g:minimap_auto_start = 1
 let g:minimap_auto_start_win_enter = 0
 let g:minimap_block_filetypes = ['fern', 'fugitive', 'nerdtree', 'tagbar' ]
 let g:minimap_block_buftypes = [
@@ -1071,13 +1115,13 @@ vmap <C-/><C-/> gc<Esc>
 " ║ Reader                                                                     ║
 " ╚════════════════════════════════════════════════════════════════════════════╝
 
-function s:vertopen_url()
+function s:reader_url()
   normal! "uyiW
-  let mycommand = "reader " . @u
-  execute "vertical terminal " . mycommand
+  let mycommand = "reader -o " . @u
+  execute "new | r!" . mycommand
 endfunction
-noremap <Plug>vertopen_url : call <SID>vertopen_url()<CR>
-nmap gx <Plug>vertopen_url
+noremap <Plug>reader_url : call <SID>reader_url()<CR>
+nmap gx <Plug>reader_url
 
 
 " ╔════════════════════════════════════════════════════════════════════════════╗
