@@ -58,7 +58,7 @@ titlebar_padding 10 6
 smart_gaps off
 smart_borders off
  
-gaps inner 12
+gaps inner 4
 gaps outer 2
 
 hide_edge_borders none
