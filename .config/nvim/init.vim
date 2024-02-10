@@ -53,10 +53,9 @@ Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'itchyny/lightline.vim'
 Plug 'wfxr/minimap.vim'
 Plug 'jamessan/vim-gnupg'
-Plug 'robertbasic/vim-hugo-helper'
+" Plug 'robertbasic/vim-hugo-helper'
 Plug 'windwp/nvim-autopairs'
 Plug 'tpope/vim-abolish'
-" Plug 'lervag/wiki.vim'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
@@ -934,7 +933,7 @@ let g:GPGFilePattern = '*.\(gpg\|asc\|pgp\)\(.wiki\|.md\)\='
 " ║ HugoHelper                                                                 ║
 " ╚════════════════════════════════════════════════════════════════════════════╝
 
-let g:hugohelper_update_lastmod_on_write = 1
+" let g:hugohelper_update_lastmod_on_write = 1
 
 
 " ╔════════════════════════════════════════════════════════════════════════════╗
