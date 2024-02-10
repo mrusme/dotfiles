@@ -42,21 +42,16 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 Plug 'nvim-tree/nvim-tree.lua'
 Plug 'ggandor/leap.nvim'
-Plug 'ggandor/lightspeed.nvim'
 Plug 'lambdalisue/glyph-palette.vim'
 Plug 'numToStr/Comment.nvim'
 Plug 'lewis6991/gitsigns.nvim'
-Plug 'godlygeek/tabular'
-Plug 'junegunn/goyo.vim'
-Plug 'Yggdroot/indentLine'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'itchyny/lightline.vim'
 Plug 'wfxr/minimap.vim'
 Plug 'jamessan/vim-gnupg'
-" Plug 'robertbasic/vim-hugo-helper'
+Plug 'robertbasic/vim-hugo-helper'
 Plug 'windwp/nvim-autopairs'
 Plug 'tpope/vim-abolish'
-Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'simnalamburt/vim-mundo'
@@ -64,18 +59,23 @@ Plug 'kyazdani42/nvim-web-devicons'
 Plug 'mhartington/formatter.nvim'
 Plug 'folke/which-key.nvim'
 
+
 " Syntax / Language integrations
-Plug 'leafgarland/typescript-vim'
+
+" Plug 'leafgarland/typescript-vim'
 Plug 'elixir-lang/vim-elixir'
 Plug 'fatih/vim-go'
 Plug 'rust-lang/rust.vim'
 Plug 'cespare/vim-toml', {'branch': 'main'}
-Plug 'moll/vim-node'
+" Plug 'moll/vim-node'
 Plug 'docker/docker'
 Plug 'evanleck/vim-svelte', {'branch': 'main'}
-Plug 'vim-scripts/dbext.vim'
-Plug 'ledger/vim-ledger'
+" Plug 'vim-scripts/dbext.vim'
+" Plug 'ledger/vim-ledger'
 Plug 'chrisbra/Colorizer'
+
+
+" Colorscheme
 
 Plug 'EdenEast/nightfox.nvim'
 
@@ -160,6 +160,9 @@ set fileformats=unix,dos,mac
 set completeopt=menu,menuone,noselect
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,**/node_modules/**
 
+set undofile 
+set undodir=~/.cache/nvim/undo
+
 set spelllang=en,ro,es,fr,de,cjk
 set spellsuggest=best,9
 let g:spellfile_URL = 'https://ftp.nluug.nl/vim/runtime/spell'
@@ -198,8 +201,6 @@ vmap <C-c> y
 
 "nnoremap d "_d
 "vnoremap d "_d
-
-nnoremap <silent> <C-\> :Files<CR>
 
 nnoremap <C-z>  :undo<CR>
 inoremap <C-z>  <Esc>:undo<CR>
@@ -358,18 +359,6 @@ colorscheme nightfox
 "   \ gui=reverse guibg=#3e445e guifg=#0f1117
 " highlight EndOfBuffer ctermbg=none guibg=none
 " highlight LineNr ctermbg=none guibg=none
-
-
-" ╔════════════════════════════════════════════════════════════════════════════╗
-" ║ indentLine                                                                 ║
-" ╚════════════════════════════════════════════════════════════════════════════╝
-
-let g:indentLine_enabled = 1
-let g:indentLine_char = '⋮'
-let g:indentLine_first_char = '⋮'
-let g:indentLine_showFirstIndentLevel = 1
-let g:indentLine_setColors = 1
-let g:indentLine_setConceal = 0
 
 
 " ╔════════════════════════════════════════════════════════════════════════════╗
@@ -862,7 +851,7 @@ let g:lexima_enable_endwise_rules = 1
 " ║ Mundo                                                                      ║
 " ╚════════════════════════════════════════════════════════════════════════════╝
 
-nnoremap <F5> :MundoToggle<CR>
+nnoremap <leader>m :MundoToggle<CR>
 
 
 " ╔════════════════════════════════════════════════════════════════════════════╗
@@ -933,17 +922,7 @@ let g:GPGFilePattern = '*.\(gpg\|asc\|pgp\)\(.wiki\|.md\)\='
 " ║ HugoHelper                                                                 ║
 " ╚════════════════════════════════════════════════════════════════════════════╝
 
-" let g:hugohelper_update_lastmod_on_write = 1
-
-
-" ╔════════════════════════════════════════════════════════════════════════════╗
-" ║ Wiki.vim                                                                   ║
-" ╚════════════════════════════════════════════════════════════════════════════╝
-
-" let g:wiki_root = '~/cloud/notes'
-" let g:wiki_filetypes = ['md']
-" let g:wiki_link_extension = '.md'
-" let g:wiki_link_target_type = 'md'
+let g:hugohelper_update_lastmod_on_write = 1
 
 
 " ╔════════════════════════════════════════════════════════════════════════════╗
