@@ -137,13 +137,28 @@ exec mako
 # ║ Inputs                                                                     ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
-# StarBook 
+# StarBook Touchpad
 input "2362:597:STAR0001:00_093A:0255_Touchpad" {
   natural_scroll enabled
   pointer_accel 0
   #accel_profile adaptive
   tap enabled 
+  click_method clickfinger
+  dwt enabled
+  middle_emulation disabled
+  scroll_method two_finger
+  tap_button_map lrm
 } 
+
+# StarBook Keyboard
+input "1:1:AT_Translated_Set_2_keyboard" {
+  repeat_delay 200 
+  repeat_rate 30
+}
+input "4012:2782:keyd_virtual_keyboard" {
+  repeat_delay 200 
+  repeat_rate 30
+}
 
 # Mad Catz R.A.T. 8+
 input "4815:3077:Mad_Catz_Global_MADCATZ_R.A.T._8+_gaming_mouse" {
