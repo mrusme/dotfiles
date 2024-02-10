@@ -64,7 +64,7 @@ charging_symbol = '\[+\]'
 discharging_symbol = '\[-\]'
 empty_symbol = '\[ \]'
 unknown_symbol = '\[?\]'
-format = '[$percentage](black) [$symbol]($style)'
+format = ' [$percentage](black) [$symbol]($style)'
 [[battery.display]]
 threshold = 25
 style = 'yellow'
