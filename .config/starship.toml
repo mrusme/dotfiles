@@ -59,12 +59,13 @@ style = '105'
 symbol = ' '
 
 [battery]
-full_symbol = '[F]'
-charging_symbol = '[+]'
-discharging_symbol = '[-]'
-empty_symbol = '[ ]'
-unknown_symbol = '[?]'
+full_symbol = '\[F\]'
+charging_symbol = '\[+\]'
+discharging_symbol = '\[-\]'
+empty_symbol = '\[ \]'
+unknown_symbol = '\[?\]'
+format = '[$percentage](black) [$symbol]($style)'
 [[battery.display]]
-threshold = 10
+threshold = 25
 style = 'yellow'
 
