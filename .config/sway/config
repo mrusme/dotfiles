@@ -599,6 +599,10 @@ exec syncthing serve --no-browser
 # https://github.com/maximbaz/yubikey-touch-detector
 exec yubikey-touch-detector -libnotify
 
+# usbec
+# https://github.com/mrusme/usbec
+exec usbec
+
 # OpenRGB
 exec openrgb -p btc
 
