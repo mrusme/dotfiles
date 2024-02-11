@@ -9,9 +9,10 @@ on-button-middle=exec makoctl menu -n $id bemenu -p 'Select action: '
 on-button-right=dismiss
 
 max-visible=10
-font=ProggyVector 9
+font=Topaz Unicode KS13 7
 max-icon-size=38
 padding=12
+format=<b>%s</b>\n\n%b
 
 background-color=#000000aa
 text-color=#ffffff
