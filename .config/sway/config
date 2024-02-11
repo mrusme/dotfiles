@@ -148,6 +148,8 @@ input "2362:597:STAR0001:00_093A:0255_Touchpad" {
   middle_emulation disabled
   scroll_method two_finger
   tap_button_map lrm
+  # drag_lock enabled
+  drag disabled
 } 
 
 # StarBook Keyboard
