@@ -97,22 +97,11 @@ output "ASUSTek COMPUTER INC VG27AQL1A N6LMQS161067" {
 #   bg #000000 solid_color
 # }
 
-# swayidle
-# TODO: Fix GPU cycling issue (https://github.com/swaywm/sway/issues/6971) 
-# before re-enabling `dpms * off`. Until then, leave HDMI-A-1 on in order for 
-# the GPU to never sleep.
-# TODO: https://github.com/swaywm/sway/pull/7083/files / sway 1.8
-# timeout 900 'swaymsg "output DP-1 power off"' resume 'swaymsg "output DP-1 power on"' \
-exec swayidle -w \
-timeout 600 'swaylock' \
-timeout 900 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
-before-sleep 'swaylock'
-
 seat * xcursor_theme Vimix-White 32
 
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
-# ║ Service                                                                    ║
+# ║ Services                                                                   ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
 # DBUS
@@ -126,11 +115,13 @@ exec wl-paste --watch cliphist store
 exec gentoo-pipewire-launcher
 
 # Desktop notifications
-#exec dunst
 exec mako
 
-# Music Player daemon
-#exec mpd
+# swayidle
+exec swayidle -w \
+timeout 600 'swaylock' \
+timeout 900 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
+before-sleep 'swaylock'
 
  
 # ╔════════════════════════════════════════════════════════════════════════════╗
@@ -197,158 +188,163 @@ input "21057:19282:RAMA_WORKS_RAMA_WORKS_KARA" {
 }
 
 
-##############################################################################
-## Note to myself:                                                          ##
-## USE wev TO FIND KEYS AND STOP LOOKING UP HOW TO DO IT EVERY FSCKING TIME ##
-##############################################################################
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ Keybindings                                                                ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+
+################################################################################
+##  Note to myself:                                                           ##
+##  USE wev TO FIND KEYS AND STOP LOOKING UP HOW TO DO IT EVERY FSCKING TIME  ##
+################################################################################
 
 # Show this help
-bindsym $mod+Shift+Slash exec /usr/local/bin/sway-help
+bindsym $mod+Shift+Slash      exec /usr/local/bin/sway-help
 
 # Open terminal
-bindsym $mod+Return exec $term
+bindsym $mod+Return           exec $term
 
 # Open Firefox
-bindsym $mod+Ctrl+backspace exec /usr/local/bin/ff
+bindsym $mod+Ctrl+backspace   exec /usr/local/bin/ff
 # Open Firefox (private window)
 bindsym $mod+Ctrl+Shift+backspace exec /usr/local/bin/ff -private-window
 
 # Open ungoogled Chromium
-bindsym $mod+backspace exec /usr/bin/chromium
+bindsym $mod+backspace        exec /usr/bin/chromium
 
 # Show clipboard (for copying)
-bindsym $mod+Alt+Backslash exec cliphist list \
-  | $dmenu \
-  | cliphist decode \
-  | wl-copy
+bindsym $mod+Alt+Backslash    exec cliphist list \
+                              | $dmenu \
+                              | cliphist decode \
+                              | wl-copy
+
 # Show clipboard (for deleting)
-bindsym $mod+Alt+Bar exec cliphist list \
-  | $dmenu \
-  | cliphist delete
+bindsym $mod+Alt+Bar          exec cliphist list \
+                              | $dmenu \
+                              | cliphist delete
 
 # Recall last notifications
-bindsym $mod+asciitildE exec makoctl restore
+bindsym $mod+asciitildE       exec makoctl restore
 
 # Kill focused window
-bindsym $mod+Escape kill
+bindsym $mod+Escape           kill
 
 # Open launcher
-bindsym $mod+Space exec $menu
+bindsym $mod+Space            exec $menu
 
 # Reload Sway
-bindsym $mod+Shift+c reload
+bindsym $mod+Shift+c          reload
 
 # Lock Sway
-bindsym $mod+Ctrl+q exec swaylock
+bindsym $mod+Ctrl+q           exec swaylock
 
 # Exit sway
-bindsym $mod+Shift+e exec swaynag -t msg -e bottom -m 'EXIT SWAY SESSION' \
-  -b '          YES          ' 'swaymsg exit' \
-  -s '          NO          '
-# bindsym $mod+Shift+x exec swaynag -t msg -e bottom -m 'SHUTDOWN COMPUTER' \
-  # -b '          YES          ' 'swaymsg exit && sudo halt' \
-  # -s '          NO          '
+bindsym $mod+Shift+e          exec swaynag -t msg -e bottom \
+                              -m 'EXIT SWAY SESSION' \
+                              -b '          YES          ' 'swaymsg exit' \
+                              -s '          NO          '
 
 # === Media keys ===
 
 # Decrease display brightness
-bindsym $mod+F1 exec ddcutil setvcp 10 - 25
+bindsym $mod+F1               exec ddcutil setvcp 10 - 25
 bindsym XF86MonBrightnessDown exec doas /usr/bin/brightnessctl -d amdgpu_bl0 set 10- 
 
 # Increase display brightness
-bindsym $mod+F2 exec ddcutil setvcp 10 + 25
-bindsym XF86MonBrightnessUp exec doas /usr/bin/brightnessctl -d amdgpu_bl0 set +10
+bindsym $mod+F2               exec ddcutil setvcp 10 + 25
+bindsym XF86MonBrightnessUp   exec doas /usr/bin/brightnessctl -d amdgpu_bl0 set +10
 
 # Toggle playback
-bindsym $mod+F8 exec playerctl play-pause
-bindsym XF86AudioPlay exec playerctl play-pause
+bindsym $mod+F8               exec playerctl play-pause
+bindsym XF86AudioPlay         exec playerctl play-pause
 
 # Next song
-bindsym $mod+F9 exec playerctl next 
-bindsym XF86AudioNext exec playerctl next
+bindsym $mod+F9               exec playerctl next 
+bindsym XF86AudioNext         exec playerctl next
 
 # Previous song
-bindsym $mod+F7 exec playerctl previous
-bindsym XF86AudioPrev exec playerctl previous
+bindsym $mod+F7               exec playerctl previous
+bindsym XF86AudioPrev         exec playerctl previous
 
 # Mute audio volume
-bindsym $mod+F10 exec /usr/local/bin/audio-router volume "0%"
-bindsym XF86AudioMute exec /usr/local/bin/audio-router volume "0%"
+bindsym $mod+F10              exec /usr/local/bin/audio-router volume "0%"
+bindsym XF86AudioMute         exec /usr/local/bin/audio-router volume "0%"
 
 # Decrease audio volume
-bindsym $mod+F11 exec /usr/local/bin/audio-router volume -0.10
-bindsym XF86AudioLowerVolume exec /usr/local/bin/audio-router volume -0.10
+bindsym $mod+F11              exec /usr/local/bin/audio-router volume -0.10
+bindsym XF86AudioLowerVolume  exec /usr/local/bin/audio-router volume -0.10
 
 # Increase audio volume
-bindsym $mod+F12 exec /usr/local/bin/audio-router volume +0.10
-bindsym XF86AudioRaiseVolume exec /usr/local/bin/audio-router volume +0.10
+bindsym $mod+F12              exec /usr/local/bin/audio-router volume +0.10
+bindsym XF86AudioRaiseVolume  exec /usr/local/bin/audio-router volume +0.10
 
 # Route audio to display
-bindsym $mod+Shift+F1 exec /usr/local/bin/audio-router lg
+bindsym $mod+Shift+F1         exec /usr/local/bin/audio-router lg
 
 # Route audio to Nommo speakers
-bindsym $mod+Shift+F2 exec /usr/local/bin/audio-router nommo
+bindsym $mod+Shift+F2         exec /usr/local/bin/audio-router nommo
 
 # Route audio to MOTU
-bindsym $mod+Shift+F3 exec /usr/local/bin/audio-router motu
+bindsym $mod+Shift+F3         exec /usr/local/bin/audio-router motu
 
 # Route audio to SRS-XB23
-bindsym $mod+Shift+F4 exec /usr/local/bin/audio-router srsxb
+bindsym $mod+Shift+F4         exec /usr/local/bin/audio-router srsxb
 
 # Route audio to B&O H9i
-bindsym $mod+Shift+F5 exec /usr/local/bin/audio-router h9i
+bindsym $mod+Shift+F5         exec /usr/local/bin/audio-router h9i
 
 
 # Screenshot whole screen
-bindsym Print exec grim -t png \
-  $HOME/downloads/$(date +'screenshot_%Y-%m-%d-%H%M%S.png')
+bindsym Print                 exec grim -t png \
+                       $HOME/downloads/$(date +'screenshot_%Y-%m-%d-%H%M%S.png')
 
 # Screenshot region of screen
-bindsym Shift+Print exec --no-startup-id slurp \
-  | grim -t png -g - \
-  $HOME/downloads/$(date +'screenshot_%Y-%m-%d-%H%M%S.png')
+bindsym Shift+Print           exec --no-startup-id slurp \
+                              | grim -t png -g - \
+                       $HOME/downloads/$(date +'screenshot_%Y-%m-%d-%H%M%S.png')
 
 # Screenshot current window
-bindsym Ctrl+Print exec --no-startup-id swaymsg -t get_tree \
-  | jq -r '.. | select(.pid? and .visible?) | .rect | "\(.x),\(.y) \(.width)x\(.height)"' \
-  | slurp \
-  | grim -t png -g - \
-  $HOME/downloads/$(date +'screenshot_%Y-%m-%d-%H%M%S.png')
+bindsym Ctrl+Print            exec --no-startup-id swaymsg -t get_tree \
+                              | jq -r '.. | select(.pid? and .visible?) | .rect | "\(.x),\(.y) \(.width)x\(.height)"' \
+                              | slurp \
+                              | grim -t png -g - \
+                       $HOME/downloads/$(date +'screenshot_%Y-%m-%d-%H%M%S.png')
 
 # Parse text on screen and copy to clipboard
-bindsym $mod+Print exec --no-startup-id slurp \
-  | xargs -I {} grim -s 2 -t png -g {} - \
-  | tesseract - - \
-  | wl-copy -n
+bindsym $mod+Print            exec --no-startup-id slurp \
+                              | xargs -I {} grim -s 2 -t png -g {} - \
+                              | tesseract - - \
+                              | wl-copy -n
 
 
 # https://github.com/mrusme/bookmarkdown
-bindsym Alt+Space exec /usr/local/bin/bmd
+bindsym Alt+Space             exec /usr/local/bin/bmd
 
 
-# === Window focus ===
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ Focus & workspaces                                                         ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
 
 # Move focus up
-bindsym $mod+$up focus up
-bindsym $mod+Up focus up
+bindsym $mod+$up    focus up
+bindsym $mod+Up     focus up
 # Move focus right
 bindsym $mod+$right focus right
-bindsym $mod+Right focus right
+bindsym $mod+Right  focus right
 # Move focus down
-bindsym $mod+$down focus down
-bindsym $mod+Down focus down
+bindsym $mod+$down  focus down
+bindsym $mod+Down   focus down
 # Move focus left
-bindsym $mod+$left focus left
-bindsym $mod+Left focus left
+bindsym $mod+$left  focus left
+bindsym $mod+Left   focus left
 
 # Move focus of parent up
-bindsym $mod+Control+$up focus parent, focus up, focus child
+bindsym $mod+Control+$up    focus parent, focus up,    focus child
 # Move focus of parent right
 bindsym $mod+Control+$right focus parent, focus right, focus child
 # Move focus of parent down
-bindsym $mod+Control+$down focus parent, focus down, focus child
+bindsym $mod+Control+$down  focus parent, focus down,  focus child
 # Move focus of parent left
-bindsym $mod+Control+$left focus parent, focus left, focus child
+bindsym $mod+Control+$left  focus parent, focus left,  focus child
 
 # Focus parent
 bindsym $mod+Control+p focus parent
@@ -365,20 +361,6 @@ bindsym $mod+D focus tiling
 # Focus on last focused floating container
 bindsym $mod+V focus floating
 
-# === Window moving ===
-
-# Move focused window up
-bindsym $mod+Shift+$up move up
-bindsym $mod+Shift+Up move up
-# Move focused window right
-bindsym $mod+Shift+$right move right
-bindsym $mod+Shift+Right move right
-# Move focused window down
-bindsym $mod+Shift+$down move down
-bindsym $mod+Shift+Down move down
-# Move focused window left
-bindsym $mod+Shift+$left move left
-bindsym $mod+Shift+Left move left
 
 # === Workspaces ===
 
@@ -435,6 +417,13 @@ bindsym $mod+Shift+9 move container to workspace 9   9:IX
 # Move focused container to workspace 10
 bindsym $mod+Shift+0 move container to workspace 10 10:X
 
+# Move the currently focused window to the scratchpad
+#bindsym $mod+Shift+grave move scratchpad
+
+# Show the next scratchpad window or hide the focused scratchpad window.
+# If there are multiple scratchpad windows, this command cycles through them.
+#bindsym $mod+grave scratchpad show
+
 # Switch to previous workspace
 bindsym $mod+bracketleft workspace prev
 bindcode --whole-window 275 workspace prev
@@ -449,7 +438,10 @@ bindsym $mod+equal splith
 # Split view vertically
 bindsym $mod+minus splitv
 
-# === Layouts === 
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ Layouts                                                                    ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
 
 # Activate stacking layout
 bindsym $mod+Shift+s layout stacking
@@ -469,76 +461,85 @@ bindsym $mod+Shift+t focus mode_toggle
 # Fullscreen currently focused window
 bindsym $mod+z fullscreen
 
-# Move the currently focused window to the scratchpad
-#bindsym $mod+Shift+grave move scratchpad
 
-# Show the next scratchpad window or hide the focused scratchpad window.
-# If there are multiple scratchpad windows, this command cycles through them.
-#bindsym $mod+grave scratchpad show
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ Window moving & resizing                                                   ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+
+# === Window moving ===
+
+# Move focused window up
+bindsym $mod+Shift+$up    move up
+bindsym $mod+Shift+Up     move up
+# Move focused window right
+bindsym $mod+Shift+$right move right
+bindsym $mod+Shift+Right  move right
+# Move focused window down
+bindsym $mod+Shift+$down  move down
+bindsym $mod+Shift+Down   move down
+# Move focused window left
+bindsym $mod+Shift+$left  move left
+bindsym $mod+Shift+Left   move left
+
+
+# === Resize mode ===
 
 mode "resize" {
+  # Resize mode: Exit
+  bindsym Escape mode "default"
+  bindsym Return mode "default"
+
+
+# === Window resizing ===
+
   # Resize mode: Grow the container height
-  bindsym $up resize grow height 12px
-  bindsym Up resize grow height 10x
+  bindsym $up          resize grow height 12px
+  bindsym Up           resize grow height 10x
   # Resize mode: Shrink the container height
-  bindsym $down resize shrink height 10px
-  bindsym Down resize shrink height 10px
+  bindsym $down        resize shrink height 10px
+  bindsym Down         resize shrink height 10px
   # Resize mode: Shrink the container width
-  bindsym $left resize shrink width 10px
-  bindsym Left resize shrink width 10px
+  bindsym $left        resize shrink width 10px
+  bindsym Left         resize shrink width 10px
   # Resize mode: Grow the container width
-  bindsym $right resize grow width 11px
-  bindsym Right resize grow width 10px
+  bindsym $right       resize grow width 11px
+  bindsym Right        resize grow width 10px
 
   # Resize mode: Set container width to 320x340px
-  bindsym 3 resize set width 320px height 340px
+  bindsym 3 resize set width 320px  height 340px
   # Resize mode: Set container width to 640x480px
-  bindsym 6 resize set width 640px height 480px
+  bindsym 6 resize set width 640px  height 480px
   # Resize mode: Set container width to 740px
   bindsym 8 resize set width 740px
   # Resize mode: Set container width to 1024x768px
   bindsym 0 resize set width 1024px height 768px
 
-  # Resize mode: Exist
-  bindsym Escape mode "default"
-  bindsym Return mode "default"
-}
-# Enter resize mode
-bindsym $mod+r mode "resize"
 
-floating_modifier $mod normal
+# === Window moving ===
+
+  # Resize mode: Move container up
+  bindsym Shift+$up    move up 10px
+  bindsym Shift+Up     move up 10px
+  # Resize mode: Move container down
+  bindsym Shift+$down  move down 10px
+  bindsym Shift+Down   move down 10px
+  # Resize mode: Move container left
+  bindsym Shift+$left  move left 10px
+  bindsym Shift+Left   move left 10px
+  # Resize mode: Move container right
+  bindsym Shift+$right move right 10px
+  bindsym Shift+Right  move right 10px
+}
+
+# Resize mode: Enter
+bindsym $mod+r mode "resize"
 
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
 # ║ Windows                                                                    ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
-# -X
-# for_window [window_role = "pop-up"] floating enable
-# for_window [window_role = "bubble"] floating enable
-# for_window [window_role = "dialog"] floating enable
-# for_window [window_role = "page-info"] floating enable
-# for_window [window_role = "task_dialog"] floating enable
-# for_window [window_role="Preferences"] floating enable
-# for_window [window_role="Open Files"] floating enable sticky
-# for_window [window_role="File Operation Progress"] floating enable sticky
-# for_window [window_role="Save As"] floating enable
-
-# for_window [window_type = "menu"] floating enable
-# for_window [window_type = "dialog"] floating enable
-
-# for_window [class = "(?i)pinentry"] floating enable
-# for_window [class="info|Mate-color-select|gcolor2|timesup|QtPass|GtkFileChooserDialog"] sticky enable
-# for_window [class="^Steam$" title="^Friends$"] floating enable
-# for_window [class="^Steam$" title="Steam - News"] floating enable
-# for_window [class="^Steam$" title=".* - Chat"] floating enable
-# for_window [class="^Steam$" title="^Settings$"] floating enable
-# for_window [class="^Steam$" title=".* - event started"] floating enable
-# for_window [class="^Steam$" title=".* CD key"] floating enable
-# for_window [class="^Steam$" title="^Steam - Self Updater$"] floating enable
-# for_window [class="^Steam$" title="^Screenshot Uploader$"] floating enable
-# for_window [class="^Steam$" title="^Steam Guard - Computer Authorization Required$"] floating enable
-# #for_window [class="(?i)"] focus
+floating_modifier $mod normal
 
 for_window [app_id = "floating"] floating enable
 for_window [app_id = "floating_update"] floating enable
@@ -554,10 +555,8 @@ for_window [app_id = "opensnitch_ui"] floating enable
 
 for_window [title = "Firefox - Sharing Indicator"] floating enable
 for_window [title = "^Open File$"] floating enable
-for_window [title="^Steam Keyboard$"] floating enable
+# for_window [title="^Steam Keyboard$"] floating enable
 
-# -X
-# no_focus [window_role="pop-up"]
 no_focus [app_id="waybar"]
 for_window [app_id="waybar" floating] {
     move position cursor
