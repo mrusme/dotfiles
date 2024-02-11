@@ -61,6 +61,7 @@ rule_starbook = {
   matches = {
     {
       { "node.name", "matches", "alsa_output.pci-0000_03_00.6.pro-output-0" },
+      { "node.name", "matches", "alsa_output.pci-0000_03_00.6.analog-stereo" },
     },
   },
   apply_properties = {
@@ -73,3 +74,25 @@ rule_starbook = {
 }
 
 table.insert(alsa_monitor.rules, rule_starbook)
+
+rule_starbook_hdmi = {
+  matches = {
+    {
+      { "node.name", "matches", "alsa_output.pci-0000_03_00.1.pro-output-3" },
+      { "node.name", "matches", "alsa_output.pci-0000_03_00.1.pro-output-7" },
+      { "node.name", "matches", "alsa_output.pci-0000_03_00.1.hdmi-surround" },
+      { "node.name", "matches", "alsa_output.pci-0000_03_00.1.hdmi-surround71" },
+      { "node.name", "matches", "alsa_output.pci-0000_03_00.1.hdmi-stereo-extra1" },
+      { "node.name", "matches", "alsa_output.pci-0000_03_00.1.hdmi-stereo" },
+    },
+  },
+  apply_properties = {
+    ["node.description"] = "HDMI",
+    ["node.nick"] = "HDMI",
+    ["device.description"] = "HDMI",
+    ["device.nick"] = "HDMI",
+    ["device.product.name"] = "HDMI",
+  },
+}
+
+table.insert(alsa_monitor.rules, rule_starbook_hdmi)
