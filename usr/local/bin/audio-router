@@ -47,7 +47,7 @@ do
   && pactl move-sink-input "$input_id" "$set_output" \
   && notify-send \
     -u low \
-    -i "${ICONS_PATH}/motoaudio.svg" \
+    -i "${ICONS_PATH}/audio-device.svg" \
     -a audio-router \
     "Audio output changed" \
     "$set_output_name"
@@ -57,7 +57,7 @@ if [ "$inputs_num" -lt "1" ]
 then 
   notify-send \
     -u low \
-    -i "${ICONS_PATH}/motoaudio.svg" \
+    -i "${ICONS_PATH}/audio-device.svg" \
     -a audio-router \
     "Audio unchanged" \
     "Nothing playing right now."
