@@ -447,6 +447,7 @@ __is_available xdg-open linux \
 
 alias fucking=sudo
 alias uuid=uuidgen
+alias wget='wget --no-hsts'
 
 alias my-ip="curl http://ipecho.net/plain; echo"
 
@@ -457,9 +458,6 @@ alias bookmarks="git -C ${JRNL} checkout develop \
   && vim ${JRNL}/content/bookmarks/index.md \
   && git -C ${JRNL} add content/bookmarks \
   && git -C ${JRNL} commit -S"
-
-alias notes="cd ${HOME}/cloud/notes/"
-alias cheatsheet.vim="vim ${HOME}/cloud/notes/tools/vim.md"
 
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
