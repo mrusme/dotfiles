@@ -1,0 +1,10 @@
+#!/bin/sh
+
+status=$(swaymsg -t get_inputs | jq --raw-output '.[] | select(.identifier=="2362:597:STAR0001:00_093A:0255_Touchpad") | .libinput.tap_drag')
+
+if [[ "$status" == "disabled" ]]
+then
+  swaymsg input "2362:597:STAR0001:00_093A:0255_Touchpad" drag enabled
+else
+  swaymsg input "2362:597:STAR0001:00_093A:0255_Touchpad" drag disabled
+fi

@@ -293,6 +293,9 @@ bindsym $mod+Shift+F4         exec /usr/local/bin/audio-router srsxb
 bindsym $mod+Shift+F5         exec /usr/local/bin/audio-router h9i
 
 
+# Toggle Touchpad drag 
+bindsym $mod+Shift+F10        exec /usr/local/bin/touchpad-toggle-drag
+
 # Screenshot whole screen
 bindsym Print                 exec grim -t png \
                        $HOME/downloads/$(date +'screenshot_%Y-%m-%d-%H%M%S.png')
