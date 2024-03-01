@@ -4,8 +4,6 @@ battop v0.2.4:
     battop
 bingrep v0.11.0:
     bingrep
-bluetui v0.2.0:
-    bluetui
 bottom v0.9.6:
     btm
 cargo-update v13.3.0:
@@ -17,8 +15,6 @@ conclusive v1.0.0:
     conclusive
 csview v1.2.3:
     csview
-dijo v0.2.7:
-    dijo
 du-dust v0.9.0:
     dust
 eva v0.3.1:
@@ -42,16 +38,12 @@ gpg-tui v0.10.0:
     gpg-tui-completions
 gping v1.16.1:
     gping
-helix-term v0.6.0 (https://github.com/helix-editor/helix#8839eb0a):
-    hx
 hexyl v0.14.0:
     hexyl
 htmlq v0.4.0:
     htmlq
 hyperfine v1.18.0:
     hyperfine
-imager v0.3.2:
-    imager
 jless v0.9.0:
     jless
 jwt-cli v6.0.0:
@@ -66,8 +58,6 @@ mdcat v2.1.1:
     mdcat
 neovide v0.12.2 (https://github.com/neovide/neovide#de59b9e0):
     neovide
-nostr-tool v0.5.0:
-    nostr-tool
 oxipng v9.0.0:
     oxipng
 pastel v0.9.0:
@@ -76,9 +66,6 @@ pipe-rename v1.6.5:
     renamer
 procs v0.14.4:
     procs
-radicle-cli v0.7.0-dev (https://github.com/radicle-dev/radicle-cli#fadad89b):
-    git-remote-rad
-    rad
 rates v0.7.0:
     rates
 rustscan v2.1.1:
@@ -113,7 +100,5 @@ wiki-tui v0.8.2:
     wiki-tui
 xplr v0.21.5:
     xplr
-zenith v0.14.0 (https://github.com/bvaisvil/zenith.git#2541eddf):
-    zenith
 zoxide v0.9.4:
     zoxide
