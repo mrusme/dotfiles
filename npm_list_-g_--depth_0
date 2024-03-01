@@ -3,9 +3,9 @@
 ├── dockerfile-language-server-nodejs@0.11.0
 ├── graphql-language-service-cli@3.3.33
 ├── npm-check-updates@16.14.15
-├── npm@10.4.0
+├── npm@10.5.0
 ├── stylelint-lsp@2.0.0
-├── svelte-language-server@0.16.3
+├── svelte-language-server@0.16.5
 ├── typescript-language-server@4.3.3
 ├── vim-language-server@2.3.1
 ├── vscode-langservers-extracted@4.8.0
