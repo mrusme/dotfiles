@@ -22,7 +22,7 @@ __pushover_opt_field() {
   shift
   value="${*}"
   if [ -n "${value}" ]; then
-    printf "-F \"${field}=${value}\"\n"
+    printf "\-F \"%s=%s\"\n" "$field" "$value"
   fi
 }
 
@@ -58,7 +58,7 @@ __pushover_send_message() {
 }
 
 CURL="$(which curl)"
-PUSHOVER_URL="https://api.pushover.net/1/messages.json"
+PUSHOVER_URL="http://127.0.0.1:8080/1/messages.json"
 TOKEN=$(pass show pushover/token)
 USER=$(pass show pushover/user)
 CURL_OPTS=""
@@ -108,7 +108,7 @@ do
 
     [h\?])
       __pushover_usage
-      return 1
+      exit 1
       ;;
   esac
 done
@@ -116,14 +116,14 @@ shift $((OPTIND-1))
 
 if [ "$#" -lt 1 ]; then
   __pushover_usage
-  return 1
+  exit 1
 fi
 message="$*"
 
 if [ ! -x "${CURL}" ]; then
   printf "CURL is unset, empty, or does not point to curl executable.\n \
     This script requires curl!\n" >&2
-  return 1
+  exit 1
 fi
 
 devices="$(printf "${devices}" | xargs -n1 | sort -u | uniq)\n"
@@ -140,5 +140,5 @@ else
     fi
   done
 fi
-return "${r}"
+exit "${r}"
 
