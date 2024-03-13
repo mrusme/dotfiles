@@ -979,10 +979,17 @@ function status-update() {
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
 function video-to-gif() {
+  fps="$3"
+  if [[ "$3" == "" ]];
+  then 
+    fps="10"
+  fi
+
   ffmpeg \
     -i "$1" \
-    -vf \
-    "fps=10,scale=800:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse" \
+    -filter_complex \
+    "[0:v]setpts=0.25*PTS,fps=$fps,scale=800:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse" \
+    -filter:a 'atempo=2,atempo=2' \
     -loop 0 \
     "$2"
 }
