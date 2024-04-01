@@ -825,7 +825,7 @@ inoremap <M-o> <cmd>lua require('telescope.builtin').fd()<cr>
 " ╚════════════════════════════════════════════════════════════════════════════╝
 
 let g:minimap_width = 10
-let g:minimap_auto_start = 1
+let g:minimap_auto_start = 0
 let g:minimap_auto_start_win_enter = 0
 let g:minimap_block_filetypes = ['fern', 'fugitive', 'nerdtree', 'tagbar' ]
 let g:minimap_block_buftypes = [
