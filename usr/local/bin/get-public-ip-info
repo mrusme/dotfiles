@@ -5,5 +5,5 @@ APIRESPONSE=$(curl -s "http://api.ipstack.com/$(curl -s http://ipecho.net/plain)
 IPINFO=$(printf "%s" "$APIRESPONSE" \
 	| python3 -c 'import sys, json; resp=json.load(sys.stdin); print("IP: {}\n{}, {}".format(resp["ip"],resp["city"],resp["country_name"]));')
 
-notify-send -i "${ICONS_PATH}/modem.svg" -a "IPv4" "IPv4" "$IPINFO"
+notify-send -i "${ICONS_PATH}/ip_tools.svg" -a "IPv4" "IPv4" "$IPINFO"
 
