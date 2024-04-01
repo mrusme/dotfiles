@@ -70,7 +70,7 @@ make modules_prepare \
   --hostonly \
   --show-modules \
   --include /lib/firmware /lib/firmware \
-  --kver "$(basename "$(eselect kernel show)")" \
+  --kver "$(basename "$(eselect kernel show)" | sed 's/linux-//gI')" \
   --force \
 && mount -v /dev/nvme1n1p2 /mnt/mirror \
 && mount -v /dev/nvme1n1p1 /mnt/mirror/efi/ \
