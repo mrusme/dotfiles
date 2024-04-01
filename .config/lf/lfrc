@@ -55,6 +55,9 @@ map <delete> trash
 cmd temp %set -f; mv "$fx" ~/cloud/temp/
 map T temp
 
+cmd memes %set -f; mv "$fx" ~/cloud/photos/memes/
+map \# memes
+
 # Toggle hidden files
 map . set hidden!
 

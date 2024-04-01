@@ -361,6 +361,7 @@ handle_mime() {
 
         ## Video and audio
         video/* | audio/*)
+            chafa -s "${PV_WIDTH}" --animate off "${FILE_PATH}"
             mediainfo "${FILE_PATH}" && exit 5
             exiftool "${FILE_PATH}" && exit 5
             exit 1;;
