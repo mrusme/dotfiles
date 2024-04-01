@@ -4,46 +4,57 @@ battop v0.2.4:
     battop
 bingrep v0.11.0:
     bingrep
+bluetui v0.4.0:
+    bluetui
 bottom v0.9.6:
     btm
-cargo-update v13.3.0:
+cargo-update v13.4.0:
     cargo-install-update
     cargo-install-update-config
-code-minimap v0.6.6:
+code-minimap v0.6.7:
     code-minimap
 conclusive v1.0.0:
     conclusive
-csview v1.2.3:
+csview v1.2.4:
     csview
-du-dust v0.9.0:
+deno v1.42.0:
+    deno
+    denort
+dijo v0.2.7:
+    dijo
+du-dust v1.0.0:
     dust
 eva v0.3.1:
     eva
-eza v0.18.5:
+eza v0.18.9:
     eza
 gfold v4.4.1:
     gfold
-git-cliff v2.0.4:
+git-cliff v2.2.0:
     git-cliff
     git-cliff-completions
     git-cliff-mangen
-git-delta v0.16.5:
+git-delta v0.17.0:
     delta
 git-journal v1.8.1:
     git-journal
 gitui v0.24.3:
     gitui
-gpg-tui v0.10.0:
+gpg-tui v0.11.0:
     gpg-tui
     gpg-tui-completions
 gping v1.16.1:
     gping
+helix-term v0.6.0 (https://github.com/helix-editor/helix#8839eb0a):
+    hx
 hexyl v0.14.0:
     hexyl
 htmlq v0.4.0:
     htmlq
 hyperfine v1.18.0:
     hyperfine
+imager v0.3.2:
+    imager
 jless v0.9.0:
     jless
 jwt-cli v6.0.0:
@@ -54,18 +65,28 @@ lemmeknow v0.8.0:
     lemmeknow
 librespot v0.4.2:
     librespot
-mdcat v2.1.1:
+mdcat v2.1.2:
     mdcat
-neovide v0.12.2 (https://github.com/neovide/neovide#de59b9e0):
+neovide v0.12.2 (https://github.com/neovide/neovide#e3ab8bb0):
     neovide
+nostr-tool v0.5.0:
+    nostr-tool
 oxipng v9.0.0:
     oxipng
 pastel v0.9.0:
     pastel
 pipe-rename v1.6.5:
     renamer
-procs v0.14.4:
+presenterm v0.7.0:
+    presenterm
+procs v0.14.5:
     procs
+radicle-cli v0.8.0 (https://seed.radicle.xyz/z3gqcJUoA1n9HaHKufZs5FCSGazv5.git#f15afa84):
+    rad
+radicle-node v0.2.0 (https://seed.radicle.xyz/z3gqcJUoA1n9HaHKufZs5FCSGazv5.git#f15afa84):
+    radicle-node
+radicle-remote-helper v0.2.0 (https://seed.radicle.xyz/z3gqcJUoA1n9HaHKufZs5FCSGazv5.git#f15afa84):
+    git-remote-rad
 rates v0.7.0:
     rates
 rustscan v2.1.1:
@@ -80,7 +101,7 @@ speedtest-rs v0.1.5:
     speedtest-rs
 spotify-tui v0.25.0:
     spt
-starship v1.17.1:
+starship v1.18.2:
     starship
 taskwarrior-tui v0.25.4:
     taskwarrior-tui
@@ -98,7 +119,9 @@ websocat v1.12.0:
     websocat
 wiki-tui v0.8.2:
     wiki-tui
-xplr v0.21.5:
+xplr v0.21.7:
     xplr
+zenith v0.14.1 (https://github.com/bvaisvil/zenith.git#3c8d41a9):
+    zenith
 zoxide v0.9.4:
     zoxide
