@@ -232,13 +232,13 @@
 
   "clock#date": {
     "interval": 60,
-    "format": "<span color='#aaaaaa'>{:<span color='#ffffff'>%a</span> %e %b %Y}</span>",
+    "format": "<span color='#aaaaaa'><span color='#ffffff'></span> {:%a %e %b %Y}</span>",
     "tooltip": false
   },
 
   "clock#time": {
     "interval": 60,
-    "format": "  <span color='#aaaaaa'>{:<span color='#ffffff'>%I:%M</span> %p}</span>",
+    "format": "  <span color='#ffffff'>{:%I:%M %p}</span>",
     "tooltip": true,
     "tooltip-format": "<big>{:%B %Y}</big>\n<tt>{calendar}</tt>",
     "calendar": {
