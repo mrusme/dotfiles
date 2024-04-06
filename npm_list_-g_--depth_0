@@ -6,6 +6,7 @@
 ├── graphql-language-service-cli@3.3.33
 ├── graphql@16.8.1
 ├── http-server@14.1.1
+├── neovim@5.1.0
 ├── npm-check-updates@16.14.18
 ├── npm@10.5.0
 ├── protoc-gen-grpc-web@1.4.2
