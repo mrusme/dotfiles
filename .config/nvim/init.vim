@@ -47,12 +47,13 @@ Plug 'numToStr/Comment.nvim'
 Plug 'lewis6991/gitsigns.nvim'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'itchyny/lightline.vim'
-Plug 'wfxr/minimap.vim'
+" Plug 'wfxr/minimap.vim'
 Plug 'jamessan/vim-gnupg'
 Plug 'robertbasic/vim-hugo-helper'
 Plug 'windwp/nvim-autopairs'
 Plug 'tpope/vim-abolish'
 Plug 'nvim-lua/plenary.nvim'
+Plug 'folke/trouble.nvim', {'branch': 'dev'}
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'simnalamburt/vim-mundo'
 Plug 'kyazdani42/nvim-web-devicons'
@@ -71,7 +72,7 @@ Plug 'cespare/vim-toml', {'branch': 'main'}
 Plug 'docker/docker'
 Plug 'evanleck/vim-svelte', {'branch': 'main'}
 " Plug 'vim-scripts/dbext.vim'
-" Plug 'ledger/vim-ledger'
+Plug 'ledger/vim-ledger'
 Plug 'chrisbra/Colorizer'
 
 
@@ -824,18 +825,18 @@ inoremap <M-o> <cmd>lua require('telescope.builtin').fd()<cr>
 " ║ Minimap                                                                    ║
 " ╚════════════════════════════════════════════════════════════════════════════╝
 
-let g:minimap_width = 10
-let g:minimap_auto_start = 0
-let g:minimap_auto_start_win_enter = 0
-let g:minimap_block_filetypes = ['fern', 'fugitive', 'nerdtree', 'tagbar' ]
-let g:minimap_block_buftypes = [
-\'fern', 'nofile', 'nowrite', 'quickfix', 'terminal', 'prompt'
-\]
-let g:minimap_highlight_search = 1
-let g:minimap_highlight_range = 1
-let g:minimap_git_colors = 1
-
-noremap <silent> <C-k><C-m> :MinimapToggle<CR>:MinimapRescan<CR>:MinimapRefresh<CR>
+" let g:minimap_width = 10
+" let g:minimap_auto_start = 0
+" let g:minimap_auto_start_win_enter = 0
+" let g:minimap_block_filetypes = ['fern', 'fugitive', 'nerdtree', 'tagbar' ]
+" let g:minimap_block_buftypes = [
+" \'fern', 'nofile', 'nowrite', 'quickfix', 'terminal', 'prompt'
+" \]
+" let g:minimap_highlight_search = 1
+" let g:minimap_highlight_range = 1
+" let g:minimap_git_colors = 1
+"
+" noremap <silent> <C-k><C-m> :MinimapToggle<CR>:MinimapRescan<CR>:MinimapRefresh<CR>
 
 
 " ╔════════════════════════════════════════════════════════════════════════════╗
@@ -867,55 +868,14 @@ let g:GPGFilePattern = '*.\(gpg\|asc\|pgp\)\(.wiki\|.md\)\='
 " ║ trouble.vim                                                                ║
 " ╚════════════════════════════════════════════════════════════════════════════╝
 
-"lua << EOF
-"  require("trouble").setup {
-"    position = "bottom", -- position of the list can be: bottom, top, left, right
-"    height = 10, -- height of the trouble list when position is top or bottom
-"    width = 50, -- width of the list when position is left or right
-"    icons = true, -- use devicons for filenames
-"    mode = "workspace_diagnostics", -- "workspace_diagnostics", "document_diagnostics", "quickfix", "lsp_references", "loclist"
-"    fold_open = "", -- icon used for open folds
-"    fold_closed = "", -- icon used for closed folds
-"    group = true, -- group results by file
-"    padding = true, -- add an extra new line on top of the list
-"    action_keys = { -- key mappings for actions in the trouble list
-"        -- map to {} to remove a mapping, for example:
-"        -- close = {},
-"        close = "q", -- close the list
-"        cancel = "<esc>", -- cancel the preview and get back to your last window / buffer / cursor
-"        refresh = "r", -- manually refresh
-"        jump = {"<cr>", "<tab>"}, -- jump to the diagnostic or open / close folds
-"        open_split = { "<c-x>" }, -- open buffer in new split
-"        open_vsplit = { "<c-v>" }, -- open buffer in new vsplit
-"        open_tab = { "<c-t>" }, -- open buffer in new tab
-"        jump_close = {"o"}, -- jump to the diagnostic and close the list
-"        toggle_mode = "m", -- toggle between "workspace" and "document" diagnostics mode
-"        toggle_preview = "P", -- toggle auto_preview
-"        hover = "K", -- opens a small popup with the full multiline message
-"        preview = "p", -- preview the diagnostic location
-"        close_folds = {"zM", "zm"}, -- close all folds
-"        open_folds = {"zR", "zr"}, -- open all folds
-"        toggle_fold = {"zA", "za"}, -- toggle fold of current file
-"        previous = "k", -- preview item
-"        next = "j" -- next item
-"    },
-"    indent_lines = true, -- add an indent guide below the fold icons
-"    auto_open = true, -- automatically open the list when you have diagnostics
-"    auto_close = false, -- automatically close the list when you have no diagnostics
-"    auto_preview = true, -- automatically preview the location of the diagnostic. <esc> to close preview and go back to last window
-"    auto_fold = false, -- automatically fold a file trouble list at creation
-"    auto_jump = {"lsp_definitions"}, -- for the given modes, automatically jump if there is only a single result
-"    signs = {
-"        -- icons / text used for a diagnostic
-"        error = "",
-"        warning = "",
-"        hint = "",
-"        information = "",
-"        other = "﫠"
-"    },
-"    use_diagnostic_signs = true -- enabling this will use the signs defined in your lsp client
-"  }
-"EOF
+lua << EOF
+  require("trouble").setup {
+    auto_close = true,
+    auto_open = true,
+    auto_preview = true,
+    auto_refresh = true, 
+  }
+EOF
 
 
 " ╔════════════════════════════════════════════════════════════════════════════╗
@@ -1087,6 +1047,15 @@ require('Comment').setup({
 EOF
 nmap <C-/><C-/> gcc
 vmap <C-/><C-/> gc<Esc>
+
+
+" ╔════════════════════════════════════════════════════════════════════════════╗
+" ║ vim-ledger                                                                 ║
+" ╚════════════════════════════════════════════════════════════════════════════╝
+let g:ledger_maxwidth = 80
+let g:ledger_fillstring = '    -'
+let g:ledger_detailed_first = 0
+let g:ledger_fold_blanks = 0
 
 
 " ╔════════════════════════════════════════════════════════════════════════════╗
