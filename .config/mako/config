@@ -9,7 +9,7 @@ on-button-middle=exec makoctl menu -n $id bemenu -p 'Select action: '
 on-button-right=dismiss
 
 max-visible=10
-font=Topaz Unicode KS13 7
+font=Iosevka Nerd Font Propo 9
 max-icon-size=38
 padding=12
 format=<b>%s</b>\n\n%b
@@ -17,7 +17,7 @@ format=<b>%s</b>\n\n%b
 background-color=#000000aa
 text-color=#ffffff
 border-color=#ccccccdd
-border-size=2
+border-size=1
 border-radius=5
 default-timeout=10000
 
@@ -25,7 +25,7 @@ default-timeout=10000
 background-color=#000000aa
 text-color=#aaaaaa
 border-color=#666666dd
-border-size=2
+border-size=1
 border-radius=5
 default-timeout=10000
 
@@ -34,7 +34,7 @@ default-timeout=10000
 background-color=#000000aa
 text-color=#ffffff
 border-color=#ccccccdd
-border-size=2
+border-size=1
 border-radius=5
 default-timeout=10000
 
@@ -43,7 +43,7 @@ default-timeout=10000
 background-color=#000000aa
 text-color=#ffffff
 border-color=#B4140Fdd
-border-size=2
+border-size=1
 border-radius=5
 default-timeout=0
 

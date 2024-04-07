@@ -1,8 +1,9 @@
 * {
   border: none;
   border-radius: 0;
-  font-family: 'Topaz Unicode KS13', 'B612 Mono', 'ProggyVector', 'Fira Code Nerd Font';
-  font-size: 10px;
+  font-family: 'Iosevka Nerd Font Propo', 'Topaz Unicode KS13', 'B612 Mono', 'ProggyVector', 'Fira Code Nerd Font';
+  font-weight: 600;
+  font-size: 11px;
   min-height: 30px;
   margin: 0 0px;
 }
@@ -42,7 +43,7 @@ label#window {
 
 window#waybar.bottom .modules-left > widget > label,
 window#waybar.bottom .modules-right > widget > label {
-  font-size: 10px;
+  /* font-size: 11px; */
 }
 
 #network, #resources, #clock {

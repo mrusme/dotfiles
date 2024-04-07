@@ -48,7 +48,7 @@ client.focused_inactive   $dark    $dark    $white $dark    $dark
 client.urgent             $red     $red     $white  $red     $red
 client.placeholder        $dark    $dark    $white  $white   $dark
 
-font pango: Topaz Unicode KS13 Regular 7
+font pango: Iosevka Nerd Font Propo Medium 9
 
 default_border pixel 1
 default_floating_border pixel 1
