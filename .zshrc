@@ -448,6 +448,12 @@ __is_available xdg-open linux \
 alias fucking=sudo
 alias uuid=uuidgen
 alias wget='wget --no-hsts'
+alias rmrf='rm -rf'
+
+alias tgz='tar -czf'
+alias ugz='tar -xzf'
+alias tbz='tar -cjf'
+alias ubz='tar -xjf'
 
 alias my-ip="curl http://ipecho.net/plain; echo"
 
