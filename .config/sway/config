@@ -150,15 +150,9 @@ input "2362:597:STAR0001:00_093A:0255_Touchpad" {
   drag disabled
 } 
 
-# StarBook Keyboard
+# Any keyboard
 input "type:keyboard" {
   repeat_delay 200 
-  repeat_rate 30
-}
-
-# Core
-input "18003:1:foostan_Corne" {
-  repeat_delay 200
   repeat_rate 30
 }
 
