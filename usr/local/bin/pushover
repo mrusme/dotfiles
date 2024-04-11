@@ -58,9 +58,9 @@ __pushover_send_message() {
 }
 
 CURL="$(which curl)"
-PUSHOVER_URL="http://127.0.0.1:8080/1/messages.json"
-TOKEN=$(pass show pushover/token)
-USER=$(pass show pushover/user)
+PUSHOVER_URL="$(pass show pushover/url)"
+TOKEN="$(pass show pushover/token)"
+USER="$(pass show pushover/user)"
 CURL_OPTS=""
 devices="${devices} ${device}"
 optstring="c:d:D:e:f:p:r:t:T:s:u:U:a:h"
