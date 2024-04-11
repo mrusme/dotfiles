@@ -12,4 +12,5 @@
 /.config/cloudcash.toml filter=git-crypt diff=git-crypt
 /.config/neonmodem.toml filter=git-crypt diff=git-crypt
 /.config/iamb/** filter=git-crypt diff=git-crypt
+/.config/xmrig/** filter=git-crypt diff=git-crypt
 
