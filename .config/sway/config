@@ -86,7 +86,7 @@ output "Chimei Innolux Corporation 0x14F2 Unknown" {
 # ASUS TUF Gaming VG27AQ
 output "ASUSTek COMPUTER INC VG27AQL1A N6LMQS161067" {
   mode 2560x1440@144Hz
-  pos 0 0
+  pos -2560 -540
   adaptive_sync on
 }
 
@@ -128,6 +128,13 @@ before-sleep 'swaylock'
 # ║ Inputs                                                                     ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
+# Any mouse
+input "type:pointer" {
+  natural_scroll enabled
+  pointer_accel 0
+  #accel_profile adaptive
+}
+
 # StarBook Touchpad
 input "2362:597:STAR0001:00_093A:0255_Touchpad" {
   natural_scroll enabled
@@ -144,46 +151,8 @@ input "2362:597:STAR0001:00_093A:0255_Touchpad" {
 } 
 
 # StarBook Keyboard
-input "1:1:AT_Translated_Set_2_keyboard" {
+input "type:keyboard" {
   repeat_delay 200 
-  repeat_rate 30
-}
-input "4012:2782:keyd_virtual_keyboard" {
-  repeat_delay 200 
-  repeat_rate 30
-}
-
-# Mad Catz R.A.T. 8+
-input "4815:3077:Mad_Catz_Global_MADCATZ_R.A.T._8+_gaming_mouse" {
-  natural_scroll enabled
-  pointer_accel 0
-  #accel_profile adaptive
-} 
- 
-# Logitech MX Master 3
-input "1133:50475:Logitech_USB_Receiver_Mouse" {
-  natural_scroll enabled
-  pointer_accel 0
-  #accel_profile adaptive
-}
-
-# RAMA M60-A
-input "21057:1546:RAMA_WORKS_RAMA_WORKS_M60-A_Keyboard" {
-  repeat_delay 200
-  repeat_rate 30
-}
-input "21057:1546:RAMA_WORKS_RAMA_WORKS_M60-A" {
-  repeat_delay 200
-  repeat_rate 30
-}
-
-# RAMA KARA 
-input "21057:19282:RAMA_WORKS_RAMA_WORKS_KARA_Keyboard" {
-  repeat_delay 200
-  repeat_rate 30
-}
-input "21057:19282:RAMA_WORKS_RAMA_WORKS_KARA" {
-  repeat_delay 200
   repeat_rate 30
 }
 
