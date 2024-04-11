@@ -183,7 +183,7 @@
   // -------------------------------------------------------------------------
 
   "sway/window": {
-    "all-outputs": true,
+    "all-outputs": false,
     "format": "{}",
     "icon": false,
     "max-length": 240,
@@ -323,13 +323,13 @@
 
   "clock#date": {
     "interval": 60,
-    "format": "<span color='#aaaaaa'>{:<span color='#ffffff'>%a</span> %e %b %Y}</span>",
+    "format": "<span color='#ffffff'> {:%a %e %b %Y}</span>",
     "tooltip": false
   },
 
   "clock#time": {
     "interval": 60,
-    "format": "  <span color='#aaaaaa'>{:<span color='#ffffff'>%I:%M</span> %p}</span>",
+    "format": "  <span color='#aaaaaa'>{:%I:%M %p}</span>",
     "tooltip": true,
     "tooltip-format": "<big>{:%B %Y}</big>\n<tt>{calendar}</tt>",
     "calendar": {

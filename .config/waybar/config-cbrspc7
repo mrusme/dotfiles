@@ -232,7 +232,7 @@
 
   "clock#date": {
     "interval": 60,
-    "format": "<span color='#aaaaaa'><span color='#ffffff'></span> {:%a %e %b %Y}</span>",
+    "format": "<span color='#ffffff'> {:%a %e %b %Y}</span>",
     "tooltip": false
   },
 
