@@ -40,7 +40,7 @@ gh-dash
 GIMP
 glab-cli
 glade.conf
-gnome-boxes
+gnome-bxes
 go
 gomp
 got
@@ -121,7 +121,6 @@ wayvnc
 wireshark
 wofi
 wtf
-xmrig
 yarn
 zathura
 zls.json
