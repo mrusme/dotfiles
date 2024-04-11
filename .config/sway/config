@@ -145,6 +145,7 @@ input "2362:597:STAR0001:00_093A:0255_Touchpad" {
   dwt enabled
   middle_emulation disabled
   scroll_method two_finger
+  scroll_factor 0.2
   tap_button_map lrm
   # drag_lock enabled
   drag disabled
