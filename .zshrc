@@ -330,7 +330,7 @@ then
   plugins+=( \
     gpg-agent ssh-agent \
     git git-flow git-extras golang rust mix gh vi-mode \
-    ripgrep rsync ipfs docker mosh terraform taskwarrior pass \
+    ripgrep rsync ipfs mosh terraform taskwarrior pass \
     encode64 extract urltools web-search isodate \
   )
 fi
