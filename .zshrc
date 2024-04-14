@@ -306,11 +306,12 @@ __is_available starship \
 
 CASE_SENSITIVE="true"
 
-DISABLE_AUTO_UPDATE="false"
+zstyle ':omz:update' mode auto
 [ "${USER}" = "root" ] \
-&& DISABLE_AUTO_UPDATE="true"
+&& zstyle ':omz:update' mode disabled
+zstyle ':omz:update' frequency 10
+zstyle ':omz:update' verbose minimal
 
-UPDATE_ZSH_DAYS="10"
 DISABLE_LS_COLORS="false"
 DISABLE_AUTO_TITLE="false"
 ENABLE_CORRECTION="false"
@@ -322,16 +323,21 @@ ZSH_AUTOSUGGESTIONS="${ZSH_CUSTOM:-${HOME}/.oh-my-zsh/custom}\
 /plugins/zsh-autosuggestions"
 ZSH_COMPDUMP="${XDG_CACHE_HOME}/.zcompdump-${HOST}"
 
+zstyle ':omz:*' aliases no
+zstyle ':omz:lib:*' aliases no
+zstyle ':omz:lib:directories' aliases no
+zstyle ':omz:plugins:*' aliases no
+
 # === PLUGINS ===
-plugins=(history zsh-autosuggestions fzf)
+plugins=(history zsh-autosuggestions fzf aliases)
 
 if [ "${USER}" != "root" ]
 then 
   plugins+=( \
     gpg-agent ssh-agent \
-    git git-flow git-extras golang rust mix gh vi-mode \
-    ripgrep rsync ipfs mosh terraform taskwarrior pass \
-    encode64 extract urltools web-search isodate \
+    genpass git git-extras golang rust gh vi-mode \
+    ripgrep rsync mosh terraform pass \
+    encode64 extract urltools isodate \
   )
 fi
 
@@ -361,27 +367,12 @@ bindkey '^[f' forward-word
 # ║ ZSH                                                                        ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
-autoload -U zmv add-zsh-hook
-
-# Screw it, Radicle changed everything once again and nothing is working
-# anymore. It's sad.
-# __rad_checker() {
-#   emulate -L zsh
-#   if [ -f .gitsigners ]
-#   then 
-#     rad auth 
-#   fi
-# }
-#
-# add-zsh-hook chpwd __rad_checker
-
-
 # ╔════════════════════════════════════════════════════════════════════════════╗
 # ║ Aliases                                                                    ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
+# https://github.com/zsh-users/zsh/blob/master/Functions/Misc/zmv
 alias zmv='noglob zmv -vW'
-alias tailall='tail -f $(find /var/log -type f | grep -v '.gz$')'
 
 # https://github.com/ajeetdsouza/zoxide
 __is_available zoxide \
@@ -445,7 +436,10 @@ __is_available taskwarrior-tui \
 __is_available xdg-open linux \
 && alias open='xdg-open'
 
-alias fucking=sudo
+__is_available doas linux \
+&& alias fucking='doas' \
+|| alias fucking='sudo'
+
 alias uuid=uuidgen
 alias wget='wget --no-hsts'
 alias rmrf='rm -rf'
@@ -455,14 +449,16 @@ alias ugz='tar -xzf'
 alias tbz='tar -cjf'
 alias ubz='tar -xjf'
 
+alias tailall='tail -f $(find /var/log -type f | grep -v '.gz$')'
+
 alias my-ip="curl http://ipecho.net/plain; echo"
 
 # Journal (https://xn--gckvb8fzb.com)
-export JRNL="${HOME}/projects/@mrusme/xn--gckvb8fzb.com"
-alias jrnl="cd ${JRNL}/content/"
+export JRNL="${HOME}/projects/@mrusme/xn--gckvb8fzb.com/content"
+alias jrnl="cd ${JRNL}"
 alias bookmarks="git -C ${JRNL} checkout develop \
-  && vim ${JRNL}/content/bookmarks/index.md \
-  && git -C ${JRNL} add content/bookmarks \
+  && vim ${JRNL}/bookmarks/index.md \
+  && git -C ${JRNL} add bookmarks \
   && git -C ${JRNL} commit -S"
 
 
@@ -746,55 +742,97 @@ function update-tools() {
   printf "\nUpdating tealdeer ...\n"
   tldr --update
 
+  printf "\nUpdating Zsh plugins ...\n"
+  git -C ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions pull
+  git -C ~/.oh-my-zsh/themes/geometry-zsh pull
+
   printf "\nTools updated"
 }
 
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
-# ║ terminal-colors                                                            ║
+# ║ Radicle                                                                    ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
-function terminal-colors() {
-  if [ "$1" = "dark" ]
-  then
-    sed -i=.previous 's/\*light$/\*dark/g' "${XDG_CONFIG_HOME}/alacritty/alacritty.yml"
-  else
-    sed -i=.previous 's/\*dark$/\*light/g' "${XDG_CONFIG_HOME}/alacritty/alacritty.yml"
+autoload -U zmv add-zsh-hook
+
+__rad_checker() {
+  emulate -L zsh
+  if [ -d .git/refs/remotes/rad/ ]
+  then 
+    rad auth 
   fi
 }
-
-
-# ╔════════════════════════════════════════════════════════════════════════════╗
-# ║ Custom rad helpers                                                         ║
-# ╚════════════════════════════════════════════════════════════════════════════╝
+add-zsh-hook chpwd __rad_checker
 
 alias rp='rad push'
 alias rpa='rad push --all'
 
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
-# ║ Custom git helpers                                                         ║
+# ║ Git                                                                        ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
+
+alias ga='git add'
+alias ga.='ga .'
+alias gb='git branch'
+
+alias gc='git commit --verbose'
+alias 'gc!'='git commit --verbose --amend'
+alias gcs='git commit --gpg-sign'
+alias 'gcs!'='git commit --verbose --gpg-sign --amend'
+alias gcss='git commit --gpg-sign --signoff'
+alias 'gcss!'='git commit --verbose --gpg-sign --signoff --amend'
+
+alias gcb='git checkout -b'
+alias gco='git checkout'
+alias gcor='git checkout --recurse-submodules'
+
+alias gcl='git clone --recurse-submodules'
+
+alias gd='git diff'
+alias gds='git diff --staged'
+
+alias gf='git fetch'
+alias gfa='git fetch --all --prune --jobs=10'
+
+alias gl='git pull'
+
+alias gp='git remote \
+  | xargs -I R git push R "$(git_current_branch)"'
+alias gpa='git remote \
+  | xargs -I R git push R --all'
+alias gpat='git remote \
+  | xargs -I R git push R --all && git remote \
+  | xargs -I R git push R --tags'
+alias 'gpfat!'='git remote \
+  | xargs -I R git push R --all --force && git remote \
+  | xargs -I R git push R --tags --force'
+alias 'gpf!'='git remote \
+  | xargs -I R git push R --all --force'
+alias gpoat='echo "Deprecated, use gpat"'
+alias 'gpoat!'='echo "Deprecated, use gpfat!"'
+
+alias grb='git rebase'
+alias grba='git rebase --abort'
+alias grbc='git rebase --continue'
+
+alias gm='git merge'
+alias gma='git merge --abort'
+alias gmc='git merge --continue'
+
+alias gsb='git status --short --branch'
+
+alias gts='git tag --sign'
+
+# git tag delete
+gtd() {
+  git tag -d "$1"
+  git remote | while read -r remote; do git push --delete "${remote}" "$1"; done
+}
 
 alias git-crypt-add-myself="git-crypt add-gpg-user \
 4D3899AF73E7F5FE9B39C822272ED814BF63261F"
-alias gpa='git push all "$(git_current_branch)"'
-alias ga.='ga .'
-
-function git-add-all-remote() {
-  if git remote | grep -q '^all$'
-  then
-    printf "Remote 'all' already exists!\n"
-    return 1
-  else
-    git remote | while read -r remote
-    do
-      git config --add remote.all.url "$(git remote get-url --all "${remote}")"
-      printf "Remote %s added to 'all'\n" "${remote}"
-    done
-    return 0
-  fi
-}
 
 function git-find-modified-repos() {
   find ./ -type d -name '.git' | while read -r dir
@@ -806,12 +844,6 @@ function git-find-modified-repos() {
       printf "%s\n" "${repo}"
     fi 
   done
-}
-
-# git tag delete
-gtd() {
-  git tag -d "$1"
-  git remote | while read -r remote; do git push --delete "${remote}" "$1"; done
 }
 
 # github checkout issue
