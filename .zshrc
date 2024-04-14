@@ -160,7 +160,6 @@ export MOZ_USE_XINPUT2="1"
 # Qt
 #export QT_STYLE_OVERRIDE="kvantum"
 export QT_QPA_PLATFORM="wayland-egl"
-#export QT_QPA_PLATFORMTHEME="qt5ct"
 export QT_QPA_PLATFORMTHEME="qt5ct"
 
 # https://github.com/oz/tz/
@@ -176,9 +175,6 @@ export NOTMUCH_PROFILE="01"
 
 # https://github.com/mrusme/zeit
 export ZEIT_DB="${HOME}/cloud/library/tools/zeit.db"
-
-# https://github.com/mrusme/geld
-export GELD_DB="${HOME}/cloud/library/tools/geld.db"
 
 # https://github.com/mrusme/addrb
 export ADDRB_DB="${HOME}/.cache/addrb.db"
@@ -362,10 +358,10 @@ ZSH_THEME_TERM_TITLE_IDLE='zsh %n@%m:%~'
 bindkey '^f' forward-char
 bindkey '^[f' forward-word 
 
+[ "${OS}" = "darwin" ] \
+&& bindkey "\e[1;3C" forward-word \
+&& bindkey "\e[1;3D" backward-word
 
-# ╔════════════════════════════════════════════════════════════════════════════╗
-# ║ ZSH                                                                        ║
-# ╚════════════════════════════════════════════════════════════════════════════╝
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
 # ║ Aliases                                                                    ║
@@ -385,12 +381,11 @@ __is_available bat \
 
 # https://github.com/eza-community/eza
 __is_available eza \
-&& unalias ls la ll l lsa > /dev/null 2>&1 \
 && alias ls='eza --time-style=long-iso --git --binary -lg' \
 && alias la='eza --time-style=long-iso --git --icons --binary -la' \
 && alias ll='eza --time-style=long-iso --git --icons --octal-permissions --binary --changed -lahHgnuU' \
 && alias l='eza --time-style=long-iso --git --icons --binary -l --no-time' \
-&& alias lls='ls -s modified'
+&& alias lls='eza -s modified'
 
 # https://github.com/ClementTsang/bottom
 __is_available btm \
@@ -460,17 +455,6 @@ alias bookmarks="git -C ${JRNL} checkout develop \
   && vim ${JRNL}/bookmarks/index.md \
   && git -C ${JRNL} add bookmarks \
   && git -C ${JRNL} commit -S"
-
-
-# ╔════════════════════════════════════════════════════════════════════════════╗
-# ║ Bound keys                                                                 ║
-# ╚════════════════════════════════════════════════════════════════════════════╝
-
-[ "${OS}" = "darwin" ] \
-&& bindkey "\e[1;3C" forward-word \
-&& bindkey "\e[1;3D" backward-word
-
-
 
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
@@ -650,69 +634,6 @@ fi
 
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
-# ║ OpenSSL                                                                    ║
-# ╚════════════════════════════════════════════════════════════════════════════╝
-
-function openssl-view-certificate () {
-    openssl x509 -text -noout -in "${1}"
-}
-
-function openssl-view-csr () {
-    openssl req -text -noout -verify -in "${1}"
-}
-
-function openssl-view-key () {
-    openssl rsa -check -in "${1}"
-}
-
-function openssl-view-pkcs12 () {
-    openssl pkcs12 -info -in "${1}"
-}
-
-function openssl-client () {
-    openssl s_client -status -connect "${1}":443
-}
-
-# Convert PEM private key, PEM certificate and PEM CA certificate
-# (used by nginx, Apache, and other openssl apps) to a PKCS12 file
-# (typically for use with Windows or Tomcat)
-function openssl-convert-pem-to-p12 () {
-    openssl pkcs12 -export -inkey "${1}" -in "${2}" -certfile "${3}" -out "${4}"
-}
-
-# Convert a PKCS12 file to PEM
-function openssl-convert-p12-to-pem () {
-    openssl pkcs12 -nodes -in "${1}" -out "${2}"
-}
-
-# Check the modulus of a certificate (to see if it matches a key)
-function openssl-check-certificate-modulus {
-    openssl x509 -noout -modulus -in "${1}" | shasum -a 256
-}
-
-# Check the modulus of a key (to see if it matches a certificate)
-function openssl-check-key-modulus {
-    openssl rsa -noout -modulus -in "${1}" | shasum -a 256
-}
-
-# Check the modulus of a certificate request
-function openssl-check-key-modulus {
-  openssl req -noout -modulus -in "${1}" | shasum -a 256
-}
-
-# Encrypt a file (because zip crypto isn't secure)
-function openssl-encrypt () {
-    openssl aes-256-cbc -in "${1}" -out "${2}"
-}
-
-# Decrypt a file
-function openssl-decrypt () {
-    openssl aes-256-cbc -d -in "${1}" -out "${2}"
-}
-
-
-
-# ╔════════════════════════════════════════════════════════════════════════════╗
 # ║ update-tools                                                               ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
@@ -764,9 +685,6 @@ __rad_checker() {
   fi
 }
 add-zsh-hook chpwd __rad_checker
-
-alias rp='rad push'
-alias rpa='rad push --all'
 
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
@@ -1006,11 +924,6 @@ function jitsi-link() {
   printf "%s\n" "${url}"
 }
 
-function status-update() {
-  T=`mktemp` && curl -so $T https://plan.cat/~mrus && $EDITOR $T && \
-    curl -su mrus -F "plan=<$T" https://plan.cat/stdin
-}
-
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
 # ║ Multimedia                                                                 ║
@@ -1043,8 +956,6 @@ function rip() {
     "$1"
 }
 
-# Works with YouTube songs and live streams as well as Twitch streams, e.g.:
-# $ listen to https://www.twitch.tv/whistleface
 function listen() {
   url="$1"
   if [ "$1" = "to" ]
@@ -1148,9 +1059,8 @@ function gh() {
 }
 
 
-
 # ╔════════════════════════════════════════════════════════════════════════════╗
-# ║ dotfiles-update-remote                                                     ║
+# ║ Dotfiles management                                                        ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
 export DOTFILES="${HOME}/projects/@mrusme/dotfiles"
