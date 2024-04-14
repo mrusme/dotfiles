@@ -3,7 +3,7 @@
 add_newline=false
 #scan_timeout = 10
 format = '$character$directory'
-right_format = '$terraform$git_state$git_status$git_branch$git_commit$battery'
+right_format = '$terraform$git_state$git_status$git_branch$git_commit${custom.rad}$battery'
 
 [character]
 success_symbol = '[▲](white)'
@@ -69,3 +69,9 @@ format = ' [$percentage](black) [$symbol]($style)'
 threshold = 25
 style = 'yellow'
 
+[custom.rad]
+command = 'rad inspect --rid'
+require_repo = true
+when = true
+format = ' [$symbol($output )]($style)'
+style = '#8585FF'
