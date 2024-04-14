@@ -1,8 +1,8 @@
 * {
   border: none;
   border-radius: 0;
-  font-family: 'Iosevka Nerd Font Propo', 'Topaz Unicode KS13', 'B612 Mono', 'ProggyVector', 'Fira Code Nerd Font';
-  font-weight: 600;
+  font-family: 'CommitMono';
+  font-weight: 400;
   font-size: 11px;
   min-height: 30px;
   margin: 0 0px;
@@ -46,11 +46,22 @@ window#waybar.bottom .modules-right > widget > label {
   /* font-size: 11px; */
 }
 
-#network, #resources, #clock {
+#network, #resources, #audio, #clock {
   background-color: rgba(4, 6, 6, 0.92);
   padding: 0 6px;
   margin: 0px 0px 0px 0px;
 }
+
+#custom-audio-internal,
+#custom-audio-motu,
+#custom-audio-headphones,
+#custom-audio-hdmi
+{
+  padding: 4px 6px;
+  border-radius:  0px;
+  min-width: 32px;
+}
+
 
 #custom-crypto  {
   border-radius: 0px 0px 5px 0px;

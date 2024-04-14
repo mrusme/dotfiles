@@ -9,7 +9,7 @@ on-button-middle=exec makoctl menu -n $id bemenu -p 'Select action: '
 on-button-right=dismiss
 
 max-visible=10
-font=Iosevka Nerd Font Propo 9
+font=CommitMono 9
 max-icon-size=38
 padding=12
 format=<b>%s</b>\n\n%b
