@@ -1,28 +1,28 @@
 #!/bin/sh
-# pactl list short sinks
 
 set_output=""
+set_output_matcher=""
 set_output_name=""
 
 case "$1" in
   "lg")
-    set_output=$(pactl list short sinks | rg -i 'hdmi-stereo' | cut -f2)
+    set_output_matcher="hdmi-stereo"
     set_output_name="LG Display"
     ;;
   "nommo")
-    set_output=$(pactl list short sinks | rg -i 'analog-stereo' | head -n1 | cut -f2)
+    set_output_matcher="analog-stereo"
     set_output_name="Razer Nommo Speakers"
     ;;
   "motu")
-    set_output=$(pactl list short sinks | rg -i 'motu.m2' | cut -f2)
+    set_output_matcher="motu.m2"
     set_output_name="MOTU M2 Monitor"
     ;;
   "srsxb")
-    set_output=$(pactl list short sinks | rg -i '6C_47_60_1F_51_DD' | cut -f2)
+    set_output_matcher="6C_47_60_1F_51_DD"
     set_output_name="Sony SRS-XB Speaker"
     ;;
   "h9i")
-    set_output=$(pactl list short sinks | rg -i '00_09_A7_2A_66_A0' | cut -f2)
+    set_output_matcher="00_09_A7_2A_66_A0"
     set_output_name="Bang & Olufsen H9i Headphones"
     ;;
   "volume")
@@ -38,6 +38,9 @@ case "$1" in
     ;;
 esac
 
+output_id_name=$(pactl list short sinks | rg -i "$set_output_matcher" | cut -f1,2)
+set_output_id=$(echo "$output_id_name" | cut -f1)
+set_output=$(echo "$output_id_name" | cut -f2)
 inputs=$(pactl list short sink-inputs | cut -f1)
 inputs_num=$(printf "%s\n" "$inputs" | wc -l)
 
@@ -45,6 +48,7 @@ printf "%s\n" "$inputs" | while read -r input_id
 do
   pactl set-sink-volume "$set_output" "16%" \
   && pactl move-sink-input "$input_id" "$set_output" \
+  && pactl set-default-sink "$set_output" \
   && notify-send \
     -u low \
     -i "${ICONS_PATH}/audio-device.svg" \
