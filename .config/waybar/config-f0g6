@@ -35,7 +35,8 @@
     "group/hardware",
     "group/resources",
     "bluetooth",
-    "wireplumber",
+    // "wireplumber",
+    "group/audio",
     "battery",
     "group/clock"
   ],
@@ -116,8 +117,8 @@
   "custom/docker": {
     "format": "{}",
     "return-type": "json",
-    "exec": "/usr/local/bin/waybar-docker",
-    "exec-if": "rc-service docker status",
+    "exec": "waybar-docker",
+    "exec-if": "waybar-docker status",
     "interval": 30
   },
 
@@ -288,12 +289,55 @@
     "tooltip-format-enumerate-connected-battery": "{device_alias} ({device_battery_percentage})\t\t[{device_address}]"
   },
 
+  "group/audio": {
+    "orientation": "horizontal",
+    "modules": [ 
+      "wireplumber", 
+      "custom/audio-internal",
+      "custom/audio-motu",
+      "custom/audio-headphones",
+      "custom/audio-hdmi"
+    ],
+    "drawer": {
+      "transition-left-to-right": false,
+      "transition-duration": 500
+    }
+  },
+
   "wireplumber": {
     "format": "{icon}  {node_name} <span color='#aaaaaa'>{volume}%</span>",
     "format-muted": "",
     "on-click": "pavucontrol-qt",
     "on-click-right": "helvum",
     "format-icons": ["", "", ""]
+  },
+
+  "custom/audio-internal": {
+    "format": "󰘚",
+    "tooltip-format": "Internal",
+    "on-click": "audio-router nommo",
+    "interval": "once"
+  },
+
+  "custom/audio-motu": {
+    "format": "󰤽",
+    "tooltip-format": "MOTU",
+    "on-click": "audio-router motu",
+    "interval": "once"
+  },
+
+  "custom/audio-headphones": {
+    "format": "",
+    "tooltip-format": "Bang & Olufsen H9i",
+    "on-click": "audio-router h9i",
+    "interval": "once"
+  },
+
+  "custom/audio-hdmi": {
+    "format": "󰡁",
+    "tooltip-format": "HDMI",
+    "on-click": "audio-router lg",
+    "interval": "once"
   },
 
   "battery": {
