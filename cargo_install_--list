@@ -38,7 +38,7 @@ git-delta v0.17.0:
     delta
 git-journal v1.8.1:
     git-journal
-gitui v0.24.3:
+gitui v0.25.2:
     gitui
 gpg-tui v0.11.0:
     gpg-tui
