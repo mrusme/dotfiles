@@ -15,6 +15,9 @@ code-minimap v0.6.7:
     code-minimap
 conclusive v1.0.0:
     conclusive
+cross v0.2.5:
+    cross
+    cross-util
 csview v1.2.4:
     csview
 deno v1.42.1:
