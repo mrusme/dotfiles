@@ -205,6 +205,13 @@ export BEMENU_OPTS="-n -c -s -i \
 # ║ ${PATH}                                                                    ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
+# LD_LIBRARY_PATH
+if [ "${OS}" = "linux" ]
+then
+  export LD_LIBRARY_PATH="/usr/local/lib64:$LD_LIBRARY_PATH"
+fi
+
+# MacOS
 if [ "${OS}" = "darwin" ]
 then
   eval "$(/usr/libexec/path_helper -s)"
