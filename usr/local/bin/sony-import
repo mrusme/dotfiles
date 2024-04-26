@@ -1,0 +1,11 @@
+#!/bin/sh
+
+doas mount /mnt/sony-photos/ \
+&& rsync -avH /mnt/sony-photos/DCIM/100MSDCF/* ~/cloud/temp/imports/photos/ \
+&& doas umount /mnt/sony-photos 
+
+doas mount /mnt/sony-videos/ \
+&& rsync -avH /mnt/sony-videos/PRIVATE/M4ROOT/CLIP/* ~/cloud/temp/imports/videos/ \
+&& doas umount /mnt/sony-videos 
+
+echo ""
