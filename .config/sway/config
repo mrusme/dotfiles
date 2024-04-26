@@ -589,7 +589,8 @@ exec /usr/local/bin/birthdays
 exec /usr/local/bin/passwordmanager
 
 # Radicle node
-exec rad node start
+# TODO: Passphrase via pass
+# exec rad node start
 
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
