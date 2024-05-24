@@ -49,7 +49,7 @@ Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'itchyny/lightline.vim'
 " Plug 'wfxr/minimap.vim'
 Plug 'jamessan/vim-gnupg'
-Plug 'robertbasic/vim-hugo-helper'
+Plug 'mrusme/vim-hugo-helper'
 Plug 'windwp/nvim-autopairs'
 Plug 'tpope/vim-abolish'
 Plug 'nvim-lua/plenary.nvim'
