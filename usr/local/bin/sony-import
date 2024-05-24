@@ -1,7 +1,7 @@
 #!/bin/sh
 
 doas mount /mnt/sony-photos/ \
-&& rsync -avH /mnt/sony-photos/DCIM/100MSDCF/* ~/cloud/temp/imports/photos/ \
+&& rsync -avH /mnt/sony-photos/DCIM/*/* ~/cloud/temp/imports/photos/ \
 && doas umount /mnt/sony-photos 
 
 doas mount /mnt/sony-videos/ \
