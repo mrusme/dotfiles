@@ -6,6 +6,7 @@ github.com/zricethezav/gitleaks
 github.com/golangci/golangci-lint/cmd/golangci-lint
 github.com/fatih/gomodifytags
 github.com/fedeztk/got/cmd/got
+github.com/charmbracelet/mods
 github.com/ericchiang/pup
 github.com/mgechev/revive
 github.com/maaslalani/slides
