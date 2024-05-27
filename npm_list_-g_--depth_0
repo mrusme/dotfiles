@@ -1,6 +1,6 @@
 /home/mrus/.local/lib64
 ├── bash-language-server@5.3.3
-├── dockerfile-language-server-nodejs@0.11.0
+├── dockerfile-language-server-nodejs@0.12.0
 ├── git-stats@3.2.0
 ├── graphql-language-service-cli@3.3.33
 ├── neovim@5.1.0
