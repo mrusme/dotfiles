@@ -260,12 +260,7 @@ export PYTHON_MAJOR_MINOR="$(python3 \
 
 # Rubygems
 __is_available gem \
-&& export PATH="$(gem env \
-              | grep "EXECUTABLE DIRECTORY" \
-              | awk -F ': ' '{ print $2 }'):${PATH}" \
-&& export PATH="$(gem env \
-              | grep "USER INSTALLATION DIRECTORY" \
-              | awk -F ': ' '{ print $2 }')/bin:${PATH}"
+&& export PATH="${HOME}/.gem/bin:${PATH}"
 
 # NPM
 export NPM_PACKAGES="${HOME}/.local/lib64/node_modules"
