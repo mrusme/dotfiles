@@ -74,7 +74,7 @@
       //"custom/cloudcash"
     ],
     "drawer": {
-      "transition-left-to-right": false,
+      "transition-left-to-right": true,
       "transition-duration": 500
     }
   },
@@ -260,6 +260,7 @@
     "orientation": "horizontal",
     "modules": [ "memory", "disk" ],
     "drawer": {
+      "transition-left-to-right": false,
       "transition-duration": 500
     }
   },
@@ -360,7 +361,7 @@
     "orientation": "horizontal",
     "modules": [ "clock#time", "clock#date" ],
     "drawer": {
-      "transition-left-to-right": true,
+      "transition-left-to-right": false,
       "transition-duration": 500
     }
   },
