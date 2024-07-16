@@ -1,23 +1,15 @@
 * {
   border: none;
   border-radius: 0;
-  font-family: 'CommitMono';
+  font-family: 'CommitMono Nerd Font';
   font-weight: 400;
   font-size: 11px;
-  min-height: 30px;
-  margin: 0 0px;
+  min-height: 26px;
+  /* margin: 0 0px; */
 }
 
 window#waybar.top {
-  background-color: rgba(4,6,6,0);
-  border-bottom: none;
-  color: #eeeeee;
-  transition-property: background-color;
-  transition-duration: .5s;
-}
-
-window#waybar.bottom {
-  background-color: rgba(4,6,6,0.92);
+  background-color: rgba(115, 116, 116, 0.22);
   border-bottom: none;
   color: #eeeeee;
   transition-property: background-color;
@@ -36,20 +28,19 @@ label#window {
 .modules-left > box > widget > label,
 .modules-right > widget > label,
 .modules-right > box > widget > label {
-  background-color: rgba(4, 6, 6, 0.92);
   padding: 0 10px;
-  margin: 0px 0px 0px 0px;
-}
-
-window#waybar.bottom .modules-left > widget > label,
-window#waybar.bottom .modules-right > widget > label {
-  /* font-size: 11px; */
+  margin: 0px 0px 0px 10px;
 }
 
 #network, #resources, #audio, #clock {
-  background-color: rgba(4, 6, 6, 0.92);
-  padding: 0 6px;
-  margin: 0px 0px 0px 0px;
+  padding: 0 10px;
+}
+
+.drawer-child {
+}
+
+.drawer-child > label {
+  margin: 0px 10px;
 }
 
 #custom-audio-internal,
@@ -57,40 +48,28 @@ window#waybar.bottom .modules-right > widget > label {
 #custom-audio-headphones,
 #custom-audio-hdmi
 {
-  padding: 4px 6px;
+  padding: 4px 2px;
   border-radius:  0px;
-  min-width: 32px;
 }
 
-
-#custom-crypto  {
-  border-radius: 0px 0px 5px 0px;
-}
-
-.modules-left > widget:nth-last-child(2) > label  {
-  border-radius: 0px 0px 5px 0px;
-}
-
-.modules-right > box:nth-child(1) > widget > label  {
-  border-radius: 0px 0px 0px 5px;
-}
 
 #workspaces {
-  background-color: rgba(4, 6, 6, 0.92);
   margin: 0px 0px 0px 0px;
 }
 
 #workspaces button {
   padding: 4px 6px;
-  color: #282828;
+  color: #555555;
   border-radius:  0px;
   min-width: 32px;
 }
 
 /* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
 #workspaces button:hover {
-  background-color: rgba(255, 255, 255, 0.92);
   box-shadow: inherit;
+  text-shadow: inherit;
+  background: transparent;
+  color: #ffffff;
 }
 
 #workspaces button.focused {
@@ -98,7 +77,7 @@ window#waybar.bottom .modules-right > widget > label {
 }
 
 #workspaces button.focused:hover {
-  color: #282828;
+  color: #ffffff;
 }
 
 #workspaces button.urgent {
@@ -107,13 +86,13 @@ window#waybar.bottom .modules-right > widget > label {
 }
 
 #language {
-  margin: 0px 0px 0px 0px;
-  color: #282828;
+  /* margin: 0px 0px 0px 0px; */
+  color: #cccccc;
 }
 
 #tray {
   background-color: rgba(0, 0, 0, 0);
-  margin-left: 10px;
+  /* margin-left: 10px; */
 }
 
 #tray image {
@@ -125,20 +104,5 @@ window#waybar.bottom .modules-right > widget > label {
   border: 2px solid #e2a478;
   margin: 0px 10px 0px 0px;
   border-radius: 5px;
-}
-
-#custom-zeit {
-  background-color: rgba(0, 0, 0, 0);
-  text-shadow: 0px 0px 3px #18181e;
-}
-
-#mpd {
-  background-color: rgba(0, 0, 0, 0);
-  text-shadow: 0px 0px 3px #18181e;
-}
-
-#temperature {
-  margin: 0px;
-  padding: 0px 8px 0px 0px;
 }
 
