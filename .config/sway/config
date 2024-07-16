@@ -42,24 +42,24 @@ set {
 }
 
 #                         border   backgrnd text    indic    chld
-client.focused            $white  $dark    $bright $white  $white
-client.unfocused          $black   $dark    #495671 $dark    $dark
+client.focused            $white  $white    $dark $white  $white
+client.unfocused          $dark   $dark    #495671 $dark    $dark
 client.focused_inactive   $dark    $dark    $white $dark    $dark
 client.urgent             $red     $red     $white  $red     $red
 client.placeholder        $dark    $dark    $white  $white   $dark
 
-font pango: CommitMono Regular 9
+font pango: CommitMono Regular 10
 
-default_border pixel 1
-default_floating_border pixel 1
-titlebar_border_thickness 1
-titlebar_padding 10 6
+default_border pixel 2
+default_floating_border pixel 2
+titlebar_border_thickness 2
+titlebar_padding 6 4
 
 smart_gaps off
 smart_borders off
  
-gaps inner 4
-gaps outer 2
+gaps inner 0
+gaps outer 0
 
 hide_edge_borders none
 show_marks yes
