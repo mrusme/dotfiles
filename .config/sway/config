@@ -48,7 +48,7 @@ client.focused_inactive   $dark    $dark    $white $dark    $dark
 client.urgent             $red     $red     $white  $red     $red
 client.placeholder        $dark    $dark    $white  $white   $dark
 
-font pango: CommitMono Regular 10
+font pango:CommitMono Nerd Font 9
 
 default_border pixel 2
 default_floating_border pixel 2
@@ -284,6 +284,8 @@ bindsym $mod+Print            exec --no-startup-id slurp \
                               | tesseract - - \
                               | wl-copy -n
 
+# Pick color and copy to clipboard 
+bindsym $mod+Shift+P           exec --no-startup-id hyprpicker -n -a
 
 # https://github.com/mrusme/bookmarkdown
 bindsym Alt+Space             exec /usr/local/bin/bmd
@@ -591,6 +593,9 @@ exec /usr/local/bin/passwordmanager
 # Radicle node
 # TODO: Passphrase via pass
 # exec rad node start
+
+# Icons in title bars
+exec swaycons
 
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
