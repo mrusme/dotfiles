@@ -69,7 +69,6 @@
     "modules": [ 
       "network",
       "custom/vpn",
-      "custom/syncthing",
       "custom/docker"
       //"custom/cloudcash"
     ],
@@ -101,16 +100,6 @@
     "on-click": "/usr/local/bin/waybar-vpn connect",
     "on-click-middle": "/usr/local/bin/waybar-vpn disconnect",
     "on-click-right": "/usr/local/bin/get-public-ip-info",
-    "interval": 30
-  },
-
-  "custom/syncthing": {
-    "format": " {} ",
-    "return-type": "json",
-    "exec": "/usr/local/bin/waybar-syncthing",
-    "exec-if": "ps -eo args | rg '^/usr/bin/syncthing'",
-    "on-click": "xdg-open http://127.0.0.1:8384",
-    "on-click-middle": "killall -s SIGQUIT syncthing",
     "interval": 30
   },
 
@@ -368,21 +357,13 @@
 
   "clock#date": {
     "interval": 60,
-    "format": "<span color='#ffffff'> {:%a %e %b %Y}</span>",
-    "tooltip": false
-  },
-
-  "clock#time": {
-    "interval": 60,
-    "format": "  <span color='#aaaaaa'>{:%I:%M %p}</span>",
-    "tooltip": true,
+    "format": " <span color='#ffffff'> {:%a %e %b %Y}</span>",
     "tooltip-format": "<big>{:%B %Y}</big>\n<tt>{calendar}</tt>",
     "calendar": {
-      "mode"          : "month",
-      "mode-mon-col"  : 3,
+      "mode"          : "year",
+      "mode-mon-col"  : 2,
       "weeks-pos"     : "right",
       "on-scroll"     : 1,
-      "on-click-right": "mode",
       "format": {
         "months":     "<span color='#ffead3'><b>{}</b></span>",
         "days":       "<span color='#ecc6d9'><b>{}</b></span>",
@@ -395,6 +376,29 @@
       "on-click-right": "mode",
       "on-scroll-up": "shift_up",
       "on-scroll-down": "shift_down"
+    }
+  },
+
+  "clock#time": {
+    "interval": 60,
+    "format": "  <span color='#aaaaaa'>{:%I:%M %p (%Z)}</span>",
+    "tooltip": true,
+    "tooltip-format": "{tz_list}",
+    "timezones": [
+        "Pacific/Honolulu",
+        "America/Los_Angeles",
+        "EST",
+        "America/New_York",
+        "Etc/UTC",
+        "Europe/Zurich",
+        "Asia/Bangkok",
+        "Asia/Tokyo",
+        "Australia/Melbourne",
+        "Pacific/Auckland"
+    ],
+    "actions":  {
+      "on-scroll-up": "tz_up",
+      "on-scroll-down": "tz_down"
     }
   }
 
