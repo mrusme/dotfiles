@@ -5,11 +5,11 @@ set_output_matcher=""
 set_output_name=""
 
 case "$1" in
-  "lg")
+  "hdmi")
     set_output_matcher="hdmi-stereo"
     set_output_name="LG Display"
     ;;
-  "nommo")
+  "analog")
     set_output_matcher="analog-stereo"
     set_output_name="Razer Nommo Speakers"
     ;;

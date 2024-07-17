@@ -305,7 +305,7 @@
   "custom/audio-internal": {
     "format": "󰘚",
     "tooltip-format": "Internal",
-    "on-click": "audio-router nommo",
+    "on-click": "audio-router analog",
     "interval": "once"
   },
 
@@ -326,7 +326,7 @@
   "custom/audio-hdmi": {
     "format": "󰡁",
     "tooltip-format": "HDMI",
-    "on-click": "audio-router lg",
+    "on-click": "audio-router hdmi",
     "interval": "once"
   },
 
