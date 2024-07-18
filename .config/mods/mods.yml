@@ -41,9 +41,8 @@ max-input-chars: 12250
 apis:
   ollama:
     base-url: http://localhost:11434/api
-    api-key-env: NA
     models:
-      "llama3:8b":
+      "llama3:latest":
         aliases: ["llama3"]
         max-input-chars: 650000
   openai:
