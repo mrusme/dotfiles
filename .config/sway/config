@@ -515,6 +515,7 @@ for_window [app_id = "keepassxc"] floating enable
 for_window [app_id = "zenity"] floating enable
 for_window [app_id = "yad"] floating enable
 for_window [app_id = "opensnitch_ui"] floating enable
+for_window [app_id = "org.pipewire.Helvum"] floating enable
 
 # for_window [instance="file_progress"]  sticky enable
 
@@ -568,9 +569,6 @@ exec yubikey-touch-detector -libnotify
 # usbec
 # https://github.com/mrusme/usbec
 exec usbec
-
-# OpenRGB
-exec openrgb -p btc
 
 # Show calendar notifications 
 exec /usr/local/bin/calendar-notifications
