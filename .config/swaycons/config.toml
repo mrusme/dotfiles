@@ -47,6 +47,7 @@ pavucontrol-qt = { icon = "" }
 "^(rsync|scp) .*" = { icon = "", color = "#1E5D8A" }
 "^(docker|podman) .*" = { icon = "", color = "#0196DC" }
 "^dd .*" = { icon = "", color = "#FFFFFF" }
+"^listen .*" = { icon = "󰎇", color = "#CF51B7" }
 
 tmux = { app_id = ["foot", "Alacritty"], icon = "", color = "#25BE23" }
 vim = { app_id = ["foot", "Alacritty"], icon = "", color = "#8fff6d" }
