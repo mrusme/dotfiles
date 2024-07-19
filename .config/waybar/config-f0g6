@@ -213,7 +213,7 @@
 
   "cpu": {
     "interval": 30,
-    "format": " {avg_frequency}GHz <span color='#aaaaaa'>{usage}%</span>",
+    "format": " {avg_frequency:3.2f}GHz <span color='#aaaaaa'>{usage}%</span>",
     "states": {
       "warning": 70,
       "critical": 90
@@ -247,7 +247,7 @@
 
   "group/resources": {
     "orientation": "horizontal",
-    "modules": [ "memory", "disk" ],
+    "modules": [ "memory", "disk#root", "disk#microsd" ],
     "drawer": {
       "transition-left-to-right": false,
       "transition-duration": 500
@@ -256,20 +256,26 @@
 
   "memory": {
     "interval": 60,
-    "format": "󰘚 {used}GiB/<span color='#aaaaaa'>{total}GiB</span>"
+    "format": "󰘚 {used:3.1f}GiB/<span color='#aaaaaa'>{total:3.1f}GiB</span>"
   },
 
-  "disk": {
+  "disk#root": {
     "interval": 360,
     "format": "  {used}/<span color='#aaaaaa'>{total}</span>",
     "path": "/"
+  },
+
+  "disk#microsd": {
+    "interval": 360,
+    "format": "󰟜  {used}/<span color='#aaaaaa'>{total}</span>",
+    "path": "/mnt/microsd"
   },
 
   "bluetooth": {
     // "controller": "controller1",
     "on-click": "/usr/local/bin/waybar-bluetooth toggle",
     "format": "<span color='#aaaaaa'></span>",
-    "format-disabled": "",
+    "format-disabled": "<span color='#333333'></span>",
     "format-connected": "",
     "format-connected-battery": " {device_battery_percentage}",
     "tooltip-format": "{controller_alias}\t\t[{controller_address}]",
@@ -295,7 +301,7 @@
   },
 
   "wireplumber": {
-    "format": "{icon}  {node_name} <span color='#aaaaaa'>{volume}%</span>",
+    "format": "{icon}  {node_name}/<span color='#aaaaaa'>{volume}</span>",
     "format-muted": "",
     "on-click": "pavucontrol-qt",
     "on-click-right": "helvum",
@@ -303,28 +309,21 @@
   },
 
   "custom/audio-internal": {
-    "format": "󰘚",
+    "format": "󱡬 ",
     "tooltip-format": "Internal",
     "on-click": "audio-router analog",
     "interval": "once"
   },
 
   "custom/audio-motu": {
-    "format": "󰤽",
+    "format": "󰤽 ",
     "tooltip-format": "MOTU",
     "on-click": "audio-router motu",
     "interval": "once"
   },
 
-  "custom/audio-headphones": {
-    "format": "",
-    "tooltip-format": "Bang & Olufsen H9i",
-    "on-click": "audio-router h9i",
-    "interval": "once"
-  },
-
   "custom/audio-hdmi": {
-    "format": "󰡁",
+    "format": "󰡁 ",
     "tooltip-format": "HDMI",
     "on-click": "audio-router hdmi",
     "interval": "once"
@@ -334,15 +333,17 @@
     "bat": "BAT0",
     "interval": 30,
     "states": {
-      "warning": 20,
-      "critical": 10
+      "warning": 15,
+      "critical": 5
     },
     "format-time": "{H}:{m}",
     "format": "{icon}  {time} <span color='#aaaaaa'>{capacity}%</span>",
-    "format-discharging": "{icon}  [-] <span color='#aaaaaa'>{capacity}%</span>",
-    "format-charging": "{icon}  [+] <span color='#aaaaaa'>{capacity}%</span>",
-    "format-full": "󱐥  [=] <span color='#aaaaaa'>{capacity}%</span>",
-    "format-not-charging": "󱐤  [x] <span color='#aaaaaa'>{capacity}%</span>",
+    "format-discharging": "{icon}  <span color='#FF9000'>{capacity}%</span>",
+    "format-discharging-warning": "{icon}  <span color='#F35F3E'>{capacity}%</span>",
+    "format-discharging-critical": "{icon}  <span color='#DE3C3C'>{capacity}%</span>",
+    "format-charging": "{icon}  <span color='#FDBF00'>{capacity}%</span><span color='#aaaaaa'> @ {power:2.0f}W</span>",
+    "format-full": "󱐥  <span color='#aaaaaa'>{capacity}%</span>",
+    "format-not-charging": "󱐤  <span color='#aaaaaa'>{capacity}%</span>",
     "format-icons": ["", "", "", "", ""],
   },
 
