@@ -25,3 +25,4 @@
 /.config/xmrig/.cache/**
 /.config/fabric/**
 /.config/quickwit-*
+/.config/xmrig/**
