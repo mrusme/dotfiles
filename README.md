@@ -1,3 +1,3 @@
 ![dotfile](dotfiles.png)
 
-[(More ...)](https://マリウス.com/computer/)
+[(More info about my setup here)](https://マリウス.com/computer/).
