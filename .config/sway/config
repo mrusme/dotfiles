@@ -97,7 +97,10 @@ output "ASUSTek COMPUTER INC VG27AQL1A N6LMQS161067" {
 #   bg #000000 solid_color
 # }
 
-seat * xcursor_theme Vimix-White 32
+# https://github.com/ful1e5/banana-cursor
+seat * xcursor_theme Banana 32
+exec gsettings set org.gnome.desktop.interface cursor-theme Banana 
+exec gsettings set org.gnome.desktop.interface cursor-size 32
 
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
