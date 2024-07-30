@@ -334,7 +334,7 @@ then
   plugins+=( \
     gpg-agent ssh-agent \
     genpass git git-extras golang rust gh vi-mode \
-    ripgrep rsync mosh pass \
+    rsync mosh pass \
     encode64 extract urltools isodate \
   )
 fi
