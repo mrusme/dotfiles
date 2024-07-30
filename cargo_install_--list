@@ -25,13 +25,13 @@ deno v1.44.1:
     denort
 dijo v0.2.7:
     dijo
-du-dust v1.0.0:
+du-dust v1.1.1:
     dust
 eva v0.3.1:
     eva
-eza v0.18.21:
+eza v0.18.22:
     eza
-fd-find v9.0.0:
+fd-find v10.1.0:
     fd
 gfold v4.5.0:
     gfold
@@ -68,13 +68,13 @@ lemmeknow v0.8.0:
     lemmeknow
 librespot v0.4.2:
     librespot
-mdcat v2.1.2:
+mdcat v2.2.0:
     mdcat
-neovide v0.13.1 (https://github.com/neovide/neovide#d3f9db06):
+neovide v0.13.3 (https://github.com/neovide/neovide#3960baad):
     neovide
 nostr-tool v0.5.0:
     nostr-tool
-oxipng v9.1.1:
+oxipng v9.1.2:
     oxipng
 pastel v0.9.0:
     pastel
@@ -86,7 +86,7 @@ procs v0.14.5:
     procs
 radicle-cli v0.9.0 (https://seed.radicle.xyz/z3gqcJUoA1n9HaHKufZs5FCSGazv5.git#db98daec):
     rad
-radicle-node v0.9.0 (https://seed.radicle.xyz/z3gqcJUoA1n9HaHKufZs5FCSGazv5.git#54551b11):
+radicle-node v0.9.0 (https://seed.radicle.xyz/z3gqcJUoA1n9HaHKufZs5FCSGazv5.git#123f7eb6):
     radicle-node
 radicle-remote-helper v0.9.0 (https://seed.radicle.xyz/z3gqcJUoA1n9HaHKufZs5FCSGazv5.git#db98daec):
     git-remote-rad
