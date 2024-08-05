@@ -7,9 +7,9 @@
 ├── npm-check-updates@16.14.20
 ├── npm@10.8.2
 ├── stylelint-lsp@2.0.0
-├── svelte-language-server@0.16.13
+├── svelte-language-server@0.16.14
 ├── typescript-language-server@4.3.3
-├── typescript@5.5.3
+├── typescript@5.5.4
 ├── vim-language-server@2.3.1
 ├── vscode-langservers-extracted@4.10.0
 └── yaml-language-server@1.15.0
