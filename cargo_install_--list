@@ -4,9 +4,9 @@ battop v0.2.4:
     battop
 bingrep v0.11.0:
     bingrep
-bluetui v0.5.0:
+bluetui v0.5.1:
     bluetui
-bottom v0.9.6:
+bottom v0.9.7:
     btm
 cargo-update v13.4.0:
     cargo-install-update
@@ -29,7 +29,7 @@ du-dust v1.1.1:
     dust
 eva v0.3.1:
     eva
-eza v0.18.22:
+eza v0.18.23:
     eza
 fd-find v10.1.0:
     fd
@@ -48,8 +48,10 @@ gitui v0.26.3:
 gpg-tui v0.11.0:
     gpg-tui
     gpg-tui-completions
-gping v1.16.1:
+gping v1.17.3:
     gping
+halloy v0.1.0 (https://github.com/squidowl/halloy#a94de29e):
+    halloy
 hexyl v0.14.0:
     hexyl
 htmlq v0.4.0:
@@ -68,7 +70,7 @@ lemmeknow v0.8.0:
     lemmeknow
 librespot v0.4.2:
     librespot
-mdcat v2.2.0:
+mdcat v2.3.0:
     mdcat
 neovide v0.13.3 (https://github.com/neovide/neovide#3960baad):
     neovide
@@ -80,13 +82,13 @@ pastel v0.9.0:
     pastel
 pipe-rename v1.6.5:
     renamer
-presenterm v0.7.0:
+presenterm v0.8.0:
     presenterm
-procs v0.14.5:
+procs v0.14.6:
     procs
 radicle-cli v0.9.0 (https://seed.radicle.xyz/z3gqcJUoA1n9HaHKufZs5FCSGazv5.git#db98daec):
     rad
-radicle-node v0.9.0 (https://seed.radicle.xyz/z3gqcJUoA1n9HaHKufZs5FCSGazv5.git#123f7eb6):
+radicle-node v0.9.0 (https://seed.radicle.xyz/z3gqcJUoA1n9HaHKufZs5FCSGazv5.git#ee1c8678):
     radicle-node
 radicle-remote-helper v0.9.0 (https://seed.radicle.xyz/z3gqcJUoA1n9HaHKufZs5FCSGazv5.git#db98daec):
     git-remote-rad
@@ -102,11 +104,11 @@ silicon v0.5.2:
     silicon
 so v0.4.9:
     so
-speedtest-rs v0.1.5:
+speedtest-rs v0.2.0:
     speedtest-rs
 spotify-tui v0.25.0:
     spt
-starship v1.19.0:
+starship v1.20.1:
     starship
 swaycons v0.3.1:
     swaycons
