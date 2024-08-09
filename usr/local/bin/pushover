@@ -46,6 +46,7 @@ __pushover_send_message() {
     $(__pushover_opt_field url_title "${url_title}") \
     \"${PUSHOVER_URL}\""
 
+  #echo $curl_cmd
   response="$(eval "${curl_cmd}")"
   printf "$response\n"
   # TODO: Parse response
