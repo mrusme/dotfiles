@@ -30,6 +30,7 @@ unset GDK_BACKEND
   --bdr #84a0c6ff"
 
 read -d '\n' browsers << EOF
+copy
 chromium
 firefox
 librewolf
@@ -54,6 +55,9 @@ else
 fi
 
 case $selected_browser in
+  "copy")
+    exec wl-copy "$url"
+    ;;
   "firefox")
     exec /usr/local/bin/ff "$url"
     ;;
