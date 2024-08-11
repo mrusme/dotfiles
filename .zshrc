@@ -190,14 +190,17 @@ export CALDR_TEMPLATE="${HOME}/.config/caldr.tmpl"
 
 # https://github.com/Cloudef/bemenu
 export BEMENU_OPTS="-n -c -s -i \
-  -W 0.2 -H 26 -B 1 -l 10 \
-  -p '▲' -P '' \
-  --fn ProggyVector 9 \
-  --nb #040606aa --nf #ABB2BF \
-  --ab #040606aa --af #ABB2BF \
-  --hb #1e2132aa --hf #ABB2BF \
-  --fb #040606aa --ff #ABB2BF \
-  --tb #040606aa --tf #ABB2BF \
+  -W 0.3 -H 26 -B 2 -l 10 \
+  -p '▲' -P '' --ch 16 --scrollbar always \
+  --fn 'CommitMono Nerd Font 11' \
+  --nb #040606cc --nf #ABB2BF \
+  --ab #040606cc --af #ABB2BF \
+  --hb #ABB2BFff --hf #040606 \
+  --sb #ABB2BFff --sf #040606 \
+  --fb #040606cc --ff #ABB2BF \
+  --fbb #040606cc --fbf #ABB2BF \
+  --tb #040606cc --tf #ABB2BF \
+  --scb #040606cc --scf #ABB2BF66 \
   --bdr #ABB2BF"
 
 
