@@ -19,15 +19,19 @@
 
 unset GDK_BACKEND
 [ "${BEMENU_OPTS}" = "" ] \
-&& export BEMENU_OPTS="-n -c -s \
-  -W 0.2 -H 26 -B 2 -l 10 \
-  --fn ProggyVector 9 \
-  --nb #040606aa --nf #bde7e5ff \
-  --ab #040606aa --af #bde7e5ff \
-  --hb #1e2132aa --hf #bde7e5ff \
-  --fb #040606aa --ff #bde7e5ff \
-  --tb #040606aa --tf #84a0c6ff \
-  --bdr #84a0c6ff"
+&& export BEMENU_OPTS="-n -c -s -i \
+  -W 0.3 -H 26 -B 2 -l 10 \
+  -p '▲' -P '' --ch 16 --scrollbar always \
+  --fn 'CommitMono Nerd Font 11' \
+  --nb #040606cc --nf #ABB2BF \
+  --ab #040606cc --af #ABB2BF \
+  --hb #ABB2BFff --hf #040606 \
+  --sb #ABB2BFff --sf #040606 \
+  --fb #040606cc --ff #ABB2BF \
+  --fbb #040606cc --fbf #ABB2BF \
+  --tb #040606cc --tf #ABB2BF \
+  --scb #040606cc --scf #ABB2BF66 \
+  --bdr #ABB2BF"
 
 read -d '\n' browsers << EOF
 copy
