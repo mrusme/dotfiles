@@ -2,9 +2,9 @@
 ├── bash-language-server@5.4.0
 ├── dockerfile-language-server-nodejs@0.13.0
 ├── git-stats@3.2.0
-├── graphql-language-service-cli@3.4.1
-├── neovim@5.1.0
-├── npm-check-updates@16.14.20
+├── graphql-language-service-cli@3.5.0
+├── neovim@5.2.0
+├── npm-check-updates@17.0.6
 ├── npm@10.8.2
 ├── stylelint-lsp@2.0.0
 ├── svelte-language-server@0.16.14
