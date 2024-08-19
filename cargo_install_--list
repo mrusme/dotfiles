@@ -39,7 +39,7 @@ git-cliff v2.4.0:
     git-cliff
     git-cliff-completions
     git-cliff-mangen
-git-delta v0.17.0:
+git-delta v0.18.0:
     delta
 git-journal v1.8.1:
     git-journal
