@@ -26,3 +26,4 @@
 /.config/fabric/**
 /.config/quickwit-*
 /.config/xmrig/**
+/.config/qtfm6/*.cache
