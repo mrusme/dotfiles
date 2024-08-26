@@ -282,10 +282,13 @@ bindsym $mod+Print            exec --no-startup-id slurp \
                               | wl-copy -n
 
 # Pick color and copy to clipboard 
-bindsym $mod+Shift+P           exec --no-startup-id hyprpicker -n -a
+bindsym $mod+Shift+P          exec --no-startup-id hyprpicker -n -a
 
 # https://github.com/mrusme/bookmarkdown
 bindsym Alt+Space             exec /usr/local/bin/bmd
+
+# Open QtFM
+bindsym $mod+Ctrl+f           exec qtfm
 
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
@@ -519,6 +522,7 @@ for_window [app_id = "zenity"] floating enable
 for_window [app_id = "yad"] floating enable
 for_window [app_id = "opensnitch_ui"] floating enable
 for_window [app_id = "org.pipewire.Helvum"] floating enable
+for_window [app_id = "eu.qtfm"] floating enable
 
 # for_window [instance="file_progress"]  sticky enable
 
