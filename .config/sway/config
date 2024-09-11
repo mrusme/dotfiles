@@ -185,7 +185,9 @@ bindsym $mod+Ctrl+backspace   exec /usr/local/bin/ff
 bindsym $mod+Ctrl+Shift+backspace exec /usr/local/bin/ff -private-window
 
 # Open ungoogled Chromium
-bindsym $mod+backspace        exec /usr/bin/chromium
+bindsym $mod+backspace        exec /usr/bin/chromium \
+                                --force-dark-mode \
+                                --enable-features=WebUIDarkMode
 
 # Show clipboard (for copying)
 bindsym $mod+Alt+Backslash    exec cliphist list \
