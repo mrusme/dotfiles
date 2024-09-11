@@ -78,7 +78,7 @@ nostr-tool v0.5.0:
     nostr-tool
 oxipng v9.1.2:
     oxipng
-pastel v0.9.0:
+pastel v0.10.0:
     pastel
 pipe-rename v1.6.5:
     renamer
