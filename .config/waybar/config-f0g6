@@ -333,7 +333,7 @@
     "bat": "BAT0",
     "interval": 30,
     "states": {
-      "warning": 15,
+      "warning": 10,
       "critical": 5
     },
     "format-time": "{H}:{m}",
