@@ -292,7 +292,8 @@ autocmd BufRead,BufNewFile
     \ setlocal colorcolumn=80 |
     \ setlocal fo=awqtc | 
     \ setlocal comments+=nb:> | 
-    \ setlocal spell
+    \ setlocal spell |
+    \ setlocal tabstop=2 shiftwidth=2 expandtab
 
 " set json filetyep
 autocmd BufRead,BufNewFile
