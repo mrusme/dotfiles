@@ -98,25 +98,30 @@ print_events = false
 render_timer = false
 
 [font]
-size = 11.0
-
-[font.bold]
-family = "CommitMono"
-style = "Regular"
-
-[font.glyph_offset]
-x = 0
-y = 0
-
-[font.italic]
-family = "CommitMono"
-style = "Italic"
+size = 11
+builtin_box_drawing = false
 
 [font.normal]
 family = "CommitMono"
 style = "Regular"
 
+[font.bold]
+family = "CommitMono"
+style = "Regular"
+
+[font.italic]
+family = "CommitMono"
+style = "Italic"
+
+[font.bold_italic]
+family = "CommitMono"
+style = "Italic"
+
 [font.offset]
+x = 0
+y = 0
+
+[font.glyph_offset]
 x = 0
 y = 0
 
