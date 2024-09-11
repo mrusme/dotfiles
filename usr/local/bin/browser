@@ -69,7 +69,7 @@ case $selected_browser in
     exec /usr/local/bin/lw "$url"
     ;; 
   "chromium")
-    exec chromium "$url"
+    exec chromium --force-dark-mode --enable-features=WebUIDarkMode "$url"
     ;;
   "tor-browser")
     exec /usr/local/bin/tb "$url"
