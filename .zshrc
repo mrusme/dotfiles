@@ -82,7 +82,7 @@ export XDG_PICTURES_DIR="${HOME}/cloud/photos"
 export XDG_VIDEOS_DIR="${HOME}/cloud/videos"
 # On change adjust `${XDG_CONFIG_HOME}/user-dirs.dirs` as well!
 
-export ICONS_PATH="${HOME}/cloud/library/tools/icons"
+export ICONS_PATH="${HOME}/cloud/library/tools/icons/pixelarticons"
 
 # if [ "$(lspci | grep -i geforce)" ]
 # then
@@ -264,7 +264,8 @@ export PYTHON_MAJOR_MINOR="$(python3 \
 
 # Rubygems
 __is_available gem \
-&& export PATH="${HOME}/.gem/bin:${PATH}"
+&& export PATH="${HOME}/.gem/bin:${PATH}" \
+&& export PATH="$(ruby -r rubygems -e 'puts Gem.user_dir')/bin:${PATH}"
 
 # NPM
 export NPM_PACKAGES="${HOME}/.local/lib64/node_modules"
@@ -360,9 +361,14 @@ fpath=(
 
 ZSH_THEME_TERM_TITLE_IDLE='zsh %n@%m:%~'
 
-# VI Mode 
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ Bindkeys                                                                   ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+
 bindkey '^f' forward-char
 bindkey '^[f' forward-word 
+bindkey '^H' backward-kill-word
 
 [ "${OS}" = "darwin" ] \
 && bindkey "\e[1;3C" forward-word \
@@ -391,7 +397,7 @@ __is_available eza \
 && alias la='eza --time-style=long-iso --git --icons --binary -la' \
 && alias ll='eza --time-style=long-iso --git --icons --octal-permissions --binary --changed -lahHgnuU' \
 && alias l='eza --time-style=long-iso --git --icons --binary -l --no-time' \
-&& alias lls='eza -s modified'
+&& alias lls='eza -las modified'
 
 # https://github.com/ClementTsang/bottom
 __is_available btm \
