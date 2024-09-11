@@ -4,12 +4,12 @@
 ├── git-stats@3.2.0
 ├── graphql-language-service-cli@3.5.0
 ├── neovim@5.2.0
-├── npm-check-updates@17.1.0
+├── npm-check-updates@17.1.1
 ├── npm@10.8.3
 ├── stylelint-lsp@2.0.0
-├── svelte-language-server@0.16.14
+├── svelte-language-server@0.17.0
 ├── typescript-language-server@4.3.3
-├── typescript@5.5.4
+├── typescript@5.6.2
 ├── vim-language-server@2.3.1
 ├── vscode-langservers-extracted@4.10.0
 └── yaml-language-server@1.15.0
