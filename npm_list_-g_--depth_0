@@ -3,7 +3,7 @@
 ├── dockerfile-language-server-nodejs@0.13.0
 ├── git-stats@3.2.0
 ├── graphql-language-service-cli@3.5.0
-├── neovim@5.2.0
+├── neovim@5.2.1
 ├── npm-check-updates@17.1.1
 ├── npm@10.8.3
 ├── stylelint-lsp@2.0.0
