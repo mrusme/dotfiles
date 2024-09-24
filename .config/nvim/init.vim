@@ -53,13 +53,12 @@ Plug 'mrusme/vim-hugo-helper'
 Plug 'windwp/nvim-autopairs'
 Plug 'tpope/vim-abolish'
 Plug 'nvim-lua/plenary.nvim'
-Plug 'folke/trouble.nvim', {'branch': 'dev'}
+Plug 'folke/trouble.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'simnalamburt/vim-mundo'
-Plug 'kyazdani42/nvim-web-devicons'
+Plug 'nvim-tree/nvim-web-devicons'
 Plug 'mhartington/formatter.nvim'
 Plug 'folke/which-key.nvim'
-
 
 " Syntax / Language integrations
 
@@ -74,7 +73,23 @@ Plug 'evanleck/vim-svelte', {'branch': 'main'}
 " Plug 'vim-scripts/dbext.vim'
 Plug 'ledger/vim-ledger'
 Plug 'chrisbra/Colorizer'
+Plug 'Glench/Vim-Jinja2-Syntax'
 
+
+" ---------------- TODO --------------------
+
+Plug 'ibhagwan/fzf-lua'
+" Plug 'frankroeder/parrot.nvim'
+
+Plug 'stevearc/dressing.nvim'
+Plug 'MunifTanjim/nui.nvim'
+Plug 'HakonHarnes/img-clip.nvim'
+Plug 'echasnovski/mini.nvim'
+" Plug 'MeanderingProgrammer/render-markdown.nvim'
+Plug 'zbirenbaum/copilot.lua'
+" Plug 'yetone/avante.nvim', { 'branch': 'main', 'do': 'make', 'on': 'AvanteAsk' }
+
+" ------------------------------------------
 
 " Colorscheme
 
@@ -481,9 +496,6 @@ require('gitsigns').setup {
     row = 0,
     col = 1
   },
-  yadm = {
-    enable = false
-  },
 }
 EOF
 
@@ -650,10 +662,10 @@ lua <<EOF
   require('lspconfig')['denols'].setup {
     capabilities = capabilities
   }
-  require('lspconfig')['elixirls'].setup {
-    capabilities = capabilities;
-    cmd = { "/home/mrus/projects/github/elixir-ls/release/language_server.sh" };
-  }
+  -- require('lspconfig')['elixirls'].setup {
+  --   capabilities = capabilities;
+  --   cmd = { "/home/mrus/projects/github/elixir-ls/release/language_server.sh" };
+  -- }
   require('lspconfig')['pylsp'].setup {
     capabilities = capabilities
   }
@@ -682,9 +694,9 @@ lua <<EOF
   require('lspconfig')['cssls'].setup {
     capabilities = capabilities
   }
-  require('lspconfig')['dockerls'].setup {
-    capabilities = capabilities
-  }
+  -- require('lspconfig')['dockerls'].setup {
+  --   capabilities = capabilities
+  -- }
   require('lspconfig')['graphql'].setup {
     capabilities = capabilities
   }
@@ -700,7 +712,7 @@ lua <<EOF
   require('lspconfig')['svelte'].setup {
     capabilities = capabilities
   }
-  require('lspconfig')['tsserver'].setup {
+  require('lspconfig')['ts_ls'].setup {
     capabilities = capabilities
   }
   require('lspconfig')['vimls'].setup {
@@ -709,10 +721,10 @@ lua <<EOF
   require('lspconfig')['yamlls'].setup {
     capabilities = capabilities
   }
-  require('lspconfig')['zls'].setup {
-    capabilities = capabilities;
-    cmd = { "/home/mrus/projects/github/zls/zig-out/bin/zls" };
-  }
+  -- require('lspconfig')['zls'].setup {
+  --   capabilities = capabilities;
+  --   cmd = { "/home/mrus/projects/github/zls/zig-out/bin/zls" };
+  -- }
 EOF
 
 highlight link CompeDocumentation NormalFloat
@@ -746,10 +758,10 @@ require'nvim-treesitter.configs'.setup {
     "comment",
     "cpp",
     "css",
-    "dockerfile",
+    -- "dockerfile",
     "eex",
-    "elixir",
-    "erlang",
+    -- "elixir",
+    -- "erlang",
     "go", 
     "gomod",
     "graphql",
@@ -870,12 +882,7 @@ let g:GPGFilePattern = '*.\(gpg\|asc\|pgp\)\(.wiki\|.md\)\='
 " ╚════════════════════════════════════════════════════════════════════════════╝
 
 lua << EOF
-  require("trouble").setup {
-    auto_close = true,
-    auto_open = true,
-    auto_preview = true,
-    auto_refresh = true, 
-  }
+  require("trouble").setup {}
 EOF
 
 
@@ -944,50 +951,6 @@ lua << EOF
         z = true, -- bindings for folds, spelling and others prefixed with z
         g = true, -- bindings for prefixed with g
       },
-    },
-    -- add operators that will trigger motion and text object completion
-    -- to enable all native operators, set the preset / operators plugin above
-    operators = { gc = "Comments" },
-    key_labels = {
-      -- override the label used to display some keys. It doesn't effect WK in any other way.
-      -- For example:
-      -- ["<space>"] = "SPC",
-      -- ["<cr>"] = "RET",
-      -- ["<tab>"] = "TAB",
-    },
-    icons = {
-      breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
-      separator = "➜", -- symbol used between a key and it's label
-      group = "+", -- symbol prepended to a group
-    },
-    popup_mappings = {
-      scroll_down = '<c-d>', -- binding to scroll down inside the popup
-      scroll_up = '<c-u>', -- binding to scroll up inside the popup
-    },
-    window = {
-      border = "none", -- none, single, double, shadow
-      position = "bottom", -- bottom, top
-      margin = { 1, 0, 1, 0 }, -- extra window margin [top, right, bottom, left]
-      padding = { 2, 2, 2, 2 }, -- extra window padding [top, right, bottom, left]
-      winblend = 0
-    },
-    layout = {
-      height = { min = 4, max = 25 }, -- min and max height of the columns
-      width = { min = 20, max = 50 }, -- min and max width of the columns
-      spacing = 3, -- spacing between columns
-      align = "left", -- align columns left, center or right
-    },
-    ignore_missing = false, -- enable this to hide mappings for which you didn't specify a label
-    hidden = { "<silent>", "<cmd>", "<Cmd>", "<CR>", "call", "lua", "^:", "^ "}, -- hide mapping boilerplate
-    show_help = true, -- show help message on the command line when the popup is visible
-    triggers = "auto", -- automatically setup triggers
-    -- triggers = {"<leader>"} -- or specify a list manually
-    triggers_blacklist = {
-      -- list of mode / prefixes that should never be hooked by WhichKey
-      -- this is mostly relevant for key maps that start with a native binding
-      -- most people should not need to change this
-      i = { "j", "k" },
-      v = { "j", "k" },
     },
   }
 EOF
@@ -1070,6 +1033,40 @@ function s:reader_url()
 endfunction
 noremap <Plug>reader_url : call <SID>reader_url()<CR>
 nmap gx <Plug>reader_url
+
+
+" ╔════════════════════════════════════════════════════════════════════════════╗
+" ║ parrot.vim                                                                 ║
+" ╚════════════════════════════════════════════════════════════════════════════╝
+" lua << EOF
+" require("parrot").setup({
+" providers = {
+"   anthropic = {
+"     api_key = os.getenv "ANTHROPIC_API_KEY",
+"   },
+"   -- ollama = {},
+"   -- github = {
+"   --   api_key = os.getenv "GITHUB_TOKEN",
+"   -- },
+" },
+" })
+" EOF
+
+" ╔════════════════════════════════════════════════════════════════════════════╗
+" ║ avante.vim                                                                 ║
+" ╚════════════════════════════════════════════════════════════════════════════╝
+
+" lua << EOF
+" require('img-clip').setup ({
+" })
+" require('copilot').setup ({
+" })
+" -- require('render-markdown').setup ({
+" -- })
+" require('avante_lib').load()
+" require('avante').setup ({
+" })
+" EOF
 
 
 " ╔════════════════════════════════════════════════════════════════════════════╗
