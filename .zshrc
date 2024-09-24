@@ -89,6 +89,8 @@ export ICONS_PATH="${HOME}/cloud/library/tools/icons/pixelarticons"
 #   export WLR_NO_HARDWARE_CURSORS=1
 # fi
 
+# export ANTHROPIC_API_KEY="$(pass show anthropic/api-key)"
+
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
 # ║ Tmux Magic (via SSH)                                                       ║
