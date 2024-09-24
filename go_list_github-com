@@ -1,3 +1,4 @@
+github.com/arduino/arduino-cli
 github.com/spf13/cobra-cli
 github.com/cointop-sh/cointop
 github.com/tomwright/dasel/v2/cmd/dasel
@@ -7,6 +8,7 @@ github.com/zricethezav/gitleaks
 github.com/golangci/golangci-lint/cmd/golangci-lint
 github.com/fatih/gomodifytags
 github.com/fedeztk/got/cmd/got
+github.com/fullstorydev/grpcurl/cmd/grpcurl
 github.com/charmbracelet/mods
 github.com/ollama/ollama
 github.com/ericchiang/pup
