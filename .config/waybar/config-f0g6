@@ -24,6 +24,7 @@
     "privacy",
     "group/network",
     // "custom/crypto",
+    "custom/starshield",
     "tray",
     "sway/mode"
     // "custom/zeit"
@@ -125,6 +126,14 @@
     "exec": "/usr/local/bin/waybar-crypto",
     "on-click": "",
     "interval": 3600
+  },
+
+  "custom/starshield": {
+    "format": " {} ",
+    "return-type": "json",
+    "exec": "/usr/local/bin/waybar-starshield",
+    "on-click": "",
+    "interval": 20
   },
 
   "privacy": {
@@ -338,10 +347,10 @@
     },
     "format-time": "{H}:{m}",
     "format": "{icon}  {time} <span color='#aaaaaa'>{capacity}%</span>",
-    "format-discharging": "{icon}  <span color='#FF9000'>{capacity}%</span>",
-    "format-discharging-warning": "{icon}  <span color='#F35F3E'>{capacity}%</span>",
-    "format-discharging-critical": "{icon}  <span color='#DE3C3C'>{capacity}%</span>",
-    "format-charging": "{icon}  <span color='#FDBF00'>{capacity}%</span><span color='#aaaaaa'> @ {power:2.0f}W</span>",
+    "format-discharging": "{icon}  <span color='#E4D00A'>{capacity}%</span>",
+    "format-discharging-warning": "{icon}  <span color='#FF5F1F'>{capacity}%</span>",
+    "format-discharging-critical": "{icon}  <span color='#FF3131'>{capacity}%</span>",
+    "format-charging": "{icon}  <span color='#DAF7A6'>{capacity}%</span><span color='#aaaaaa'> @ {power:2.0f}W</span>",
     "format-full": "󱐥  <span color='#aaaaaa'>{capacity}%</span>",
     "format-not-charging": "󱐤  <span color='#aaaaaa'>{capacity}%</span>",
     "format-icons": ["", "", "", "", ""],
