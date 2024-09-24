@@ -50,8 +50,6 @@ gpg-tui v0.11.0:
     gpg-tui-completions
 gping v1.17.3:
     gping
-halloy v0.1.0 (https://github.com/squidowl/halloy#a94de29e):
-    halloy
 hexyl v0.14.0:
     hexyl
 htmlq v0.4.0:
@@ -74,7 +72,7 @@ mdcat v2.3.1:
     mdcat
 neovide v0.13.3 (https://github.com/neovide/neovide#3960baad):
     neovide
-nostr-tool v0.5.0:
+nostr-tool v0.5.1:
     nostr-tool
 oxipng v9.1.2:
     oxipng
