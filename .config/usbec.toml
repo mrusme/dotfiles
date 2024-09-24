@@ -1,0 +1,92 @@
+Debug = true
+Notifications = true
+
+[[Devices]]
+ID = "rama-m60a"
+VendorID = 0x5241
+ProductID = 0x060a
+PrettyName = "RAMA M60-A"
+NotificationIcon = "$ICONS_PATH/keyboard.svg"
+
+  [[Devices.On.Attach]]
+  # swaymsg -t get_inputs | jq '.[].identifier'
+  Command = "swaymsg"
+  Args = ["input", "1:1:AT_Translated_Set_2_keyboard", "events", "disabled"]
+
+  [[Devices.On.Attach]]
+  Command = "swaymsg"
+  Args = ["input", "4012:2782:keyd_virtual_keyboard", "events", "disabled"]
+
+  [[Devices.On.Detach]]
+  Command = "swaymsg"
+  Args = ["input", "1:1:AT_Translated_Set_2_keyboard", "events", "enabled"]
+
+  [[Devices.On.Detach]]
+  Command = "swaymsg"
+  Args = ["input", "4012:2782:keyd_virtual_keyboard", "events", "enabled"]
+
+
+[[Devices]]
+ID = "rama-kara"
+VendorID = 0x5241
+ProductID = 0x4b52
+PrettyName = "RAMA KARA"
+NotificationIcon = "$ICONS_PATH/keyboard.svg"
+
+  [[Devices.On.Attach]]
+  # swaymsg -t get_inputs | jq '.[].identifier'
+  Command = "swaymsg"
+  Args = ["input", "1:1:AT_Translated_Set_2_keyboard", "events", "disabled"]
+
+  [[Devices.On.Attach]]
+  Command = "swaymsg"
+  Args = ["input", "4012:2782:keyd_virtual_keyboard", "events", "disabled"]
+
+  [[Devices.On.Detach]]
+  Command = "swaymsg"
+  Args = ["input", "1:1:AT_Translated_Set_2_keyboard", "events", "enabled"]
+
+  [[Devices.On.Detach]]
+  Command = "swaymsg"
+  Args = ["input", "4012:2782:keyd_virtual_keyboard", "events", "enabled"]
+
+
+[[Devices]]
+ID = "corne-v3"
+VendorID = 0x4653
+ProductID = 0x0001
+PrettyName = "Corne V3"
+NotificationIcon = "$ICONS_PATH/keyboard.svg"
+
+  [[Devices.On.Attach]]
+  # swaymsg -t get_inputs | jq '.[].identifier'
+  Command = "swaymsg"
+  Args = ["input", "1:1:AT_Translated_Set_2_keyboard", "events", "disabled"]
+
+  [[Devices.On.Attach]]
+  Command = "swaymsg"
+  Args = ["input", "4012:2782:keyd_virtual_keyboard", "events", "disabled"]
+
+  [[Devices.On.Detach]]
+  Command = "swaymsg"
+  Args = ["input", "1:1:AT_Translated_Set_2_keyboard", "events", "enabled"]
+
+  [[Devices.On.Detach]]
+  Command = "swaymsg"
+  Args = ["input", "4012:2782:keyd_virtual_keyboard", "events", "enabled"]
+
+[[Devices]]
+ID = "wd-black-p10-01"
+VendorID = 0x1058
+ProductID = 0x262f
+PrettyName = "WD_BLACK P10"
+NotificationIcon = "$ICONS_PATH/server.svg"
+
+  [[Devices.On.Attach]]
+  Command = "echo"
+  Args = ["wd"]
+
+  [[Devices.On.Detach]]
+  Command = "echo"
+  Args = ["wd"]
+
