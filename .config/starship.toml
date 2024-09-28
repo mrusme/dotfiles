@@ -6,12 +6,12 @@ format = '$character$directory'
 right_format = '$terraform$git_state$git_status$git_branch$git_commit${custom.rad}$battery'
 
 [character]
-success_symbol = '[▲](white)'
+success_symbol = '[▲](green)'
 error_symbol = '[▲](red)'
-vicmd_symbol = '[△](blue)'
+vicmd_symbol = '[△](cyan)'
 
 [directory]
-style = 'blue dimmed'
+style = 'cyan'
 
 [git_state]
 format = '[\($state( $progress_current of $progress_total)\)]($style) '
