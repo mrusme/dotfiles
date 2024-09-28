@@ -15,6 +15,8 @@
 # ╚════════════════════════════════════════════════════════════════════════════╝
 # zmodload zsh/zprof
 
+unset LS_COLORS
+unset LSCOLORS
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
 # ║ Basics                                                                     ║
@@ -317,7 +319,7 @@ zstyle ':omz:update' mode auto
 zstyle ':omz:update' frequency 10
 zstyle ':omz:update' verbose minimal
 
-DISABLE_LS_COLORS="false"
+DISABLE_LS_COLORS="true"
 DISABLE_AUTO_TITLE="false"
 ENABLE_CORRECTION="false"
 COMPLETION_WAITING_DOTS="false"
@@ -395,11 +397,11 @@ __is_available bat \
 
 # https://github.com/eza-community/eza
 __is_available eza \
-&& alias ls='eza --time-style=long-iso --git --binary -lg' \
-&& alias la='eza --time-style=long-iso --git --icons --binary -la' \
-&& alias ll='eza --time-style=long-iso --git --icons --octal-permissions --binary --changed -lahHgnuU' \
-&& alias l='eza --time-style=long-iso --git --icons --binary -l --no-time' \
-&& alias lls='eza -las modified'
+&& alias ls='eza  --time-style=relative --git --octal-permissions --icons --binary -lg' \
+&& alias ll='eza  --time-style=long-iso --git --octal-permissions --icons --binary -la' \
+&& alias la='eza  --time-style=long-iso --git --octal-permissions         --binary --changed -lahHgnuU' \
+&& alias l='eza   --time-style=long-iso --git                     --icons --binary -l --no-time' \
+&& alias lls='eza --time-style=long-iso --git --octal-permissions --icons --binary -las modified'
 
 # https://github.com/ClementTsang/bottom
 __is_available btm \
@@ -452,6 +454,7 @@ __is_available doas linux \
 alias uuid=uuidgen
 alias wget='wget --no-hsts'
 alias rmrf='rm -rf'
+alias ehco=echo
 
 alias tgz='tar -czf'
 alias ugz='tar -xzf'
