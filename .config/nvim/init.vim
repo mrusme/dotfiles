@@ -93,7 +93,8 @@ Plug 'zbirenbaum/copilot.lua'
 
 " Colorscheme
 
-Plug 'EdenEast/nightfox.nvim'
+" Plug 'EdenEast/nightfox.nvim'
+Plug 'maxmx03/fluoromachine.nvim'
 
 call plug#end()
 
@@ -359,15 +360,32 @@ set t_Co=256
 "     overrides = {},
 " })
 " EOF
+" lua << EOF
+" require('nightfox').setup({
+"   options = {
+"     transparent = true,
+"     dim_inactive = false,
+"   },
+" })
+" EOF
 lua << EOF
-require('nightfox').setup({
-  options = {
-    transparent = true,
-    dim_inactive = false,
-  },
+require('fluoromachine').setup({
+  glow = true,
+  theme = 'retrowave',
+  transparent = true,
+  overrides = {
+    ['@type'] = { italic = false, bold = false },
+    ['@function'] = { italic = false, bold = false },
+    ['@comment'] = { italic = false, bold = false },
+    ['@keyword'] = { italic = false, bold = false },
+    ['@constant'] = { italic = false, bold = false },
+    ['@variable'] = { italic = false, bold = false },
+    ['@field'] = { italic = false, bold = false },
+    ['@parameter'] = { italic = false, bold = false },
+  }
 })
 EOF
-colorscheme nightfox
+colorscheme fluoromachine
 
 " OVERRIDES
 " highlight Normal ctermbg=none guibg=none
@@ -383,10 +401,11 @@ colorscheme nightfox
 " ╚════════════════════════════════════════════════════════════════════════════╝
 
 if exists("g:neovide")
-  set guifont=FiraCode\ Nerd\ Font:h10
+  set guifont=CommitMono:h10:#e-subpixelantialias
   let g:neovide_cursor_antialiasing=v:true
   ""let g:neovide_fullscreen=v:true
-  let g:neovide_refresh_rate=60
+  let g:neovide_scale_factor = 1.0
+  let g:neovide_refresh_rate=144
   let g:neovide_refresh_rate_idle=5
   let g:neovide_keyboard_layout="qwerty"
   let g:neovide_cursor_animation_length=0.01
