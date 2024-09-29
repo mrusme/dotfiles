@@ -54,7 +54,7 @@ Plug 'tpope/vim-abolish'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'folke/trouble.nvim'
 Plug 'nvim-telescope/telescope.nvim'
-Plug 'simnalamburt/vim-mundo'
+Plug 'debugloop/telescope-undo.nvim'
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'nvim-tree/nvim-web-devicons'
 Plug 'mhartington/formatter.nvim'
@@ -355,6 +355,7 @@ set t_Co=256
 lua << EOF
 require('fluoromachine').setup({
   glow = true,
+  brightness = 0.05,
   theme = 'retrowave',
   transparent = true,
   overrides = {
@@ -366,6 +367,7 @@ require('fluoromachine').setup({
     ['@variable'] = { italic = false, bold = false },
     ['@field'] = { italic = false, bold = false },
     ['@parameter'] = { italic = false, bold = false },
+    ['@number'] = { italic = false, bold = false },
   }
 })
 EOF
@@ -842,23 +844,27 @@ EOF
 " ║ Telescope                                                                  ║
 " ╚════════════════════════════════════════════════════════════════════════════╝
 
-nnoremap <M-f> <cmd>lua require('telescope.builtin').find_files()<cr>
-nnoremap <M-/> <cmd>lua require('telescope.builtin').live_grep()<cr>
-nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
-nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
-nnoremap <leader>lr <cmd>lua require('telescope.builtin').lsp_references()<cr>
+lua << EOF
+  require("telescope").setup({
+    extensions = {
+      undo = {
+      },
+    },
+  })
+  local builtin = require('telescope.builtin')
 
-nnoremap <M-o> <cmd>lua require('telescope.builtin').fd()<cr>
-inoremap <M-o> <cmd>lua require('telescope.builtin').fd()<cr>
+  vim.keymap.set("n", "<M-f>", builtin.find_files, {noremap = true})
+  vim.keymap.set("n", "<M-/>", builtin.live_grep, {noremap = true})
+  vim.keymap.set("n", "<leader>fb", builtin.buffers, {noremap = true})
+  vim.keymap.set("n", "<leader>fh", builtin.help_tags, {noremap = true})
+  vim.keymap.set("n", "<leader>lr", builtin.lsp_references, {noremap = true})
+  vim.keymap.set("n", "<M-o>", builtin.fd, {noremap = true})
+  vim.keymap.set("i", "<M-o>", builtin.fd, {noremap = true})
 
-" nnoremap <M-f> <cmd>Telescope find_files<cr>
-" nnoremap <M-/> <cmd>Telescope live_grep<cr>
-" nnoremap <leader>fb <cmd>Telescope buffers<cr>
-" nnoremap <leader>fh <cmd>Telescope help_tags<cr>
-" nnoremap <leader>lr <cmd>Telescope lsp_references<cr>
-" 
-" nnoremap <M-o> <cmd>Telescope fd<CR>
-" inoremap <M-o> <cmd>Telescope fd<CR>
+  require("telescope").load_extension("undo")
+  vim.keymap.set("n", "<leader>u", "<cmd>Telescope undo<cr>")
+EOF
+
 
 
 " ╔════════════════════════════════════════════════════════════════════════════╗
@@ -887,12 +893,6 @@ let g:lexima_enable_basic_rules = 1
 let g:lexima_enable_newline_rules = 1
 let g:lexima_enable_endwise_rules = 1
 
-
-" ╔════════════════════════════════════════════════════════════════════════════╗
-" ║ Mundo                                                                      ║
-" ╚════════════════════════════════════════════════════════════════════════════╝
-
-nnoremap <leader>m :MundoToggle<CR>
 
 
 " ╔════════════════════════════════════════════════════════════════════════════╗
