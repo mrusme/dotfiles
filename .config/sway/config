@@ -605,6 +605,9 @@ exec /usr/local/bin/passwordmanager
 # Icons in title bars
 exec swaycons
 
+# Starshield
+exec starshield /dev/ttyACM1
+
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
 # ║ Other configs                                                              ║
