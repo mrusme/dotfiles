@@ -29,26 +29,27 @@ set $dmenu bemenu
 
 set {
   $dark        #040606
-  $black       #191622
-  $red         #E96379
-  $green       #67E480
-  $yellow      #E89E64
-  $blue        #78D1E1
-  $magenta     #988BC7
-  $cyan        #FF79C6
-  $white       #ABB2BF
+  $black       #241B2F
+  $dim         #495671
+  $red         #f53fa1
+  $green       #72F1B8
+  $yellow      #FFCC00
+  $blue        #633aff
+  $magenta     #FF7EDB
+  $cyan        #61E2FF
+  $white       #F8F8F8
   $bright      #ffffff
   $transparent #FF000000
 }
 
 #                         border   backgrnd text    indic    chld
-client.focused            $white  $white    $dark $white  $white
-client.unfocused          $dark   $dark    #495671 $dark    $dark
-client.focused_inactive   $dark    $dark    $white $dark    $dark
+client.focused            $cyan    $cyan    $dark   $cyan    $cyan
+client.unfocused          $dark    $dark    $dim    $dark    $dark
+client.focused_inactive   $dark    $dark    $white  $dark    $dark
 client.urgent             $red     $red     $white  $red     $red
 client.placeholder        $dark    $dark    $white  $white   $dark
 
-font pango:CommitMono Nerd Font 9
+font pango:Berkeley Mono 9
 
 default_border pixel 2
 default_floating_border pixel 2

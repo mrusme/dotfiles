@@ -102,19 +102,19 @@ size = 11
 builtin_box_drawing = false
 
 [font.normal]
-family = "CommitMono"
+family = "Berkeley Mono"
 style = "Regular"
 
 [font.bold]
-family = "CommitMono"
+family = "Berkeley Mono"
 style = "Regular"
 
 [font.italic]
-family = "CommitMono"
+family = "Berkeley Mono"
 style = "Italic"
 
 [font.bold_italic]
-family = "CommitMono"
+family = "Berkeley Mono"
 style = "Italic"
 
 [font.offset]

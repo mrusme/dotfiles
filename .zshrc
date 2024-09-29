@@ -196,7 +196,7 @@ export CALDR_TEMPLATE="${HOME}/.config/caldr.tmpl"
 export BEMENU_OPTS="-n -c -s -i \
   -W 0.3 -H 26 -B 2 -l 10 \
   -p '▲' -P '' --ch 16 --scrollbar always \
-  --fn 'CommitMono Nerd Font 11' \
+  --fn 'Berkeley Mono 11' \
   --nb #040606cc --nf #ABB2BF \
   --ab #040606cc --af #ABB2BF \
   --hb #ABB2BFff --hf #040606 \

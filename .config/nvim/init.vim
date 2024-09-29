@@ -387,7 +387,7 @@ colorscheme fluoromachine
 " ╚════════════════════════════════════════════════════════════════════════════╝
 
 if exists("g:neovide")
-  set guifont=CommitMono:h11:#e-subpixelantialias
+  set guifont=Berkeley\ Mono:h11:#e-subpixelantialias
   let g:neovide_cursor_antialiasing=v:true
   ""let g:neovide_fullscreen=v:true
   let g:neovide_scale_factor = 1.0
@@ -883,15 +883,6 @@ EOF
 " let g:minimap_git_colors = 1
 "
 " noremap <silent> <C-k><C-m> :MinimapToggle<CR>:MinimapRescan<CR>:MinimapRefresh<CR>
-
-
-" ╔════════════════════════════════════════════════════════════════════════════╗
-" ║ lexima                                                                     ║
-" ╚════════════════════════════════════════════════════════════════════════════╝
-
-let g:lexima_enable_basic_rules = 1
-let g:lexima_enable_newline_rules = 1
-let g:lexima_enable_endwise_rules = 1
 
 
 

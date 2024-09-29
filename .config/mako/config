@@ -9,7 +9,7 @@ on-button-middle=exec makoctl menu -n $id bemenu -p 'Select action: '
 on-button-right=dismiss
 
 max-visible=10
-font=CommitMono 9
+font=Berkeley Mono 9
 max-icon-size=38
 icon-location=left
 margin=6
@@ -29,12 +29,12 @@ default-timeout=10000
 
 [urgency=normal]
 text-color=#FFFFFF
-border-color=#ABB2BFff
+border-color=#61E2FFff
 default-timeout=10000
 
 
 [urgency=critical]
 text-color=#ffffff
-border-color=#B4140Fdd
+border-color=#f53fa1dd
 default-timeout=0
 
