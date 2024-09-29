@@ -1,0 +1,12 @@
+fork = false
+frame = "full"
+idle = true
+maximized = false
+no-multigrid = false
+srgb = true
+tabs = true
+theme = "auto"
+title-hidden = true
+vsync = true
+wsl = false
+
