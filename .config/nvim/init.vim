@@ -46,7 +46,6 @@ Plug 'lambdalisue/glyph-palette.vim'
 Plug 'numToStr/Comment.nvim'
 Plug 'lewis6991/gitsigns.nvim'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
-Plug 'itchyny/lightline.vim'
 " Plug 'wfxr/minimap.vim'
 Plug 'jamessan/vim-gnupg'
 Plug 'mrusme/vim-hugo-helper'
@@ -56,6 +55,7 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'folke/trouble.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'simnalamburt/vim-mundo'
+Plug 'nvim-lualine/lualine.nvim'
 Plug 'nvim-tree/nvim-web-devicons'
 Plug 'mhartington/formatter.nvim'
 Plug 'folke/which-key.nvim'
@@ -78,22 +78,20 @@ Plug 'Glench/Vim-Jinja2-Syntax'
 
 " ---------------- TODO --------------------
 
-Plug 'ibhagwan/fzf-lua'
+" Plug 'ibhagwan/fzf-lua'
 " Plug 'frankroeder/parrot.nvim'
 
-Plug 'stevearc/dressing.nvim'
-Plug 'MunifTanjim/nui.nvim'
-Plug 'HakonHarnes/img-clip.nvim'
-Plug 'echasnovski/mini.nvim'
+" Plug 'stevearc/dressing.nvim'
+" Plug 'MunifTanjim/nui.nvim'
+" Plug 'HakonHarnes/img-clip.nvim'
+" Plug 'echasnovski/mini.nvim'
 " Plug 'MeanderingProgrammer/render-markdown.nvim'
-Plug 'zbirenbaum/copilot.lua'
+" Plug 'zbirenbaum/copilot.lua'
 " Plug 'yetone/avante.nvim', { 'branch': 'main', 'do': 'make', 'on': 'AvanteAsk' }
 
 " ------------------------------------------
 
 " Colorscheme
-
-" Plug 'EdenEast/nightfox.nvim'
 Plug 'maxmx03/fluoromachine.nvim'
 
 call plug#end()
@@ -354,20 +352,6 @@ if (has('nvim'))
 endif
 set t_Co=256
 
-" lua << EOF
-" require('ayu').setup({
-"     mirage = true,
-"     overrides = {},
-" })
-" EOF
-" lua << EOF
-" require('nightfox').setup({
-"   options = {
-"     transparent = true,
-"     dim_inactive = false,
-"   },
-" })
-" EOF
 lua << EOF
 require('fluoromachine').setup({
   glow = true,
@@ -401,13 +385,14 @@ colorscheme fluoromachine
 " ╚════════════════════════════════════════════════════════════════════════════╝
 
 if exists("g:neovide")
-  set guifont=CommitMono:h10:#e-subpixelantialias
+  set guifont=CommitMono:h11:#e-subpixelantialias
   let g:neovide_cursor_antialiasing=v:true
   ""let g:neovide_fullscreen=v:true
   let g:neovide_scale_factor = 1.0
   let g:neovide_refresh_rate=144
   let g:neovide_refresh_rate_idle=5
   let g:neovide_keyboard_layout="qwerty"
+  let g:neovide_cursor_smooth_blink = v:true
   let g:neovide_cursor_animation_length=0.01
   let g:neovide_cursor_trail_length=0.2
   let g:neovide_transparency=0.9
@@ -415,28 +400,51 @@ endif
 
 
 " ╔════════════════════════════════════════════════════════════════════════════╗
-" ║ Lightline                                                                  ║
+" ║ Lualine                                                                    ║
 " ╚════════════════════════════════════════════════════════════════════════════╝
 
-let g:lightline = { 
-  \ 'colorscheme': 'iceberg', 
-  \ 'active': {
-  \   'left': [ [ 'mode', 'paste' ],
-  \             [ 'readonly', 'filename', 'gitsign', 'modified' ] ],
-  \   'right': [ 
-  \     [ 'lineinfo' ], [ 'percent' ], 
-  \     [ 'indent', 'textwidth', 'fileformat', 
-  \       'fileencoding', 'filetype', 'branch' ] 
-  \   ]
-  \ },
-  \ 'component': {
-  \   'indent': '%{&expandtab?"spaces":"tabs"}:%{&expandtab?&shiftwidth:&tabstop}',
-  \   'textwidth': '%{&textwidth}',
-  \   'gitsign': '%{get(b:,"gitsigns_status","")}',
-  \   'branch': '%{get(b:,"gitsigns_head","")}',
-  \ },
-  \ }
-set noshowmode
+lua <<EOF
+require('lualine').setup {
+  options = {
+    icons_enabled = true,
+    theme = 'auto',
+    component_separators = { left = '', right = ''},
+    section_separators = { left = '', right = ''},
+    disabled_filetypes = {
+      statusline = {},
+      winbar = {},
+    },
+    ignore_focus = {},
+    always_divide_middle = true,
+    globalstatus = false,
+    refresh = {
+      statusline = 1000,
+      tabline = 1000,
+      winbar = 1000,
+    }
+  },
+  sections = {
+    lualine_a = {'mode'},
+    lualine_b = {'branch', 'diff', 'diagnostics'},
+    lualine_c = {'filename'},
+    lualine_x = {'%{&expandtab?"spaces":"tabs"}:%{&expandtab?&shiftwidth:&tabstop}', '%{&textwidth}', 'fileformat', 'encoding', 'filetype'},
+    lualine_y = {'progress'},
+    lualine_z = {'location'}
+  },
+  inactive_sections = {
+    lualine_a = {},
+    lualine_b = {},
+    lualine_c = {'filename'},
+    lualine_x = {'location'},
+    lualine_y = {},
+    lualine_z = {}
+  },
+  tabline = {},
+  winbar = {},
+  inactive_winbar = {},
+  extensions = {}
+}
+EOF
 
 
 " ╔════════════════════════════════════════════════════════════════════════════╗
