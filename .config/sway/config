@@ -523,6 +523,7 @@ for_window [app_id = "yad"] floating enable
 for_window [app_id = "opensnitch_ui"] floating enable
 for_window [app_id = "org.pipewire.Helvum"] floating enable
 for_window [app_id = "eu.qtfm"] floating enable
+for_window [app_id = "ch.proton.bridge-gui"] floating enable
 # TODO: Needed for pairing the Chromium extension on Sway
 #for_window [app_id = "anytype"] floating enable
 #no_focus [app_id = "anytype"]
