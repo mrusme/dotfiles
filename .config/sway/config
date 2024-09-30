@@ -34,7 +34,7 @@ set {
   $red         #f53fa1
   $green       #72F1B8
   $yellow      #FFCC00
-  $blue        #633aff
+  $blue        #2b196e
   $magenta     #FF7EDB
   $cyan        #61E2FF
   $white       #F8F8F8
@@ -43,9 +43,10 @@ set {
 }
 
 #                         border   backgrnd text    indic    chld
-client.focused            $cyan    $cyan    $dark   $cyan    $cyan
-client.unfocused          $dark    $dark    $dim    $dark    $dark
-client.focused_inactive   $dark    $dark    $white  $dark    $dark
+client.focused            $cyan    $cyan    $dark   $yellow  $cyan
+client.unfocused          $dark    $dark    $dim    $dark    $blue
+client.focused_inactive   $dark    $dark    $white  $dark    $blue
+client.focused_tab_title  $dim     $dim     $dark   $dim     $blue
 client.urgent             $red     $red     $white  $red     $red
 client.placeholder        $dark    $dark    $white  $white   $dark
 
@@ -266,20 +267,13 @@ bindsym $mod+Shift+F2         exec /usr/local/bin/audio-router analog
 bindsym $mod+Shift+F3         exec /usr/local/bin/audio-router motu
 
 # Screenshot whole screen
-bindsym Print                 exec grim -t png \
-                       $HOME/downloads/$(date +'screenshot_%Y-%m-%d-%H%M%S.png')
+bindsym Print                 exec --no-startup-id /usr/local/bin/screenshot
 
 # Screenshot region of screen
-bindsym Shift+Print           exec --no-startup-id slurp \
-                              | grim -t png -g - \
-                       $HOME/downloads/$(date +'screenshot_%Y-%m-%d-%H%M%S.png')
+bindsym Shift+Print           exec --no-startup-id /usr/local/bin/screenshot region
 
 # Screenshot current window
-bindsym Ctrl+Print            exec --no-startup-id swaymsg -t get_tree \
-                              | jq -r '.. | select(.pid? and .visible?) | .rect | "\(.x),\(.y) \(.width)x\(.height)"' \
-                              | slurp \
-                              | grim -t png -g - \
-                       $HOME/downloads/$(date +'screenshot_%Y-%m-%d-%H%M%S.png')
+bindsym Ctrl+Print            exec --no-startup-id /usr/local/bin/screenshot window
 
 # Parse text on screen and copy to clipboard
 bindsym $mod+Print            exec --no-startup-id slurp \
