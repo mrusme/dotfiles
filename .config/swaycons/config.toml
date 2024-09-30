@@ -1,6 +1,6 @@
 [global]
-color = "#FFFFFF"
-focused_color = "#FFFFFF"
+color = "#495671"
+focused_color = "#040606"
 icon = "󰖯"
 size = "9pt"
 separator = "  "
