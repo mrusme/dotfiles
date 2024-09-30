@@ -5,7 +5,6 @@
   font-weight: 400;
   font-size: 11px;
   min-height: 26px;
-  /* margin: 0 0px; */
 }
 
 window#waybar.top {
@@ -33,32 +32,18 @@ tooltip label {
   color: white;
 }
 
-.modules-left > widget > label,
-.modules-left > box > widget > label,
-.modules-right > widget > label,
-.modules-right > box > widget > label {
-  padding: 0 10px;
-  margin: 0px 0px 0px 10px;
+.module {
+  margin: 0px 0px 0px 20px;
 }
 
-#network, #resources, #audio, #clock {
-  padding: 0 10px;
-}
-
-.drawer-child {
-}
-
-.drawer-child > label {
-  margin: 0px 10px;
+#bluetooth {
+  min-width: 32px;
 }
 
 #custom-audio-internal,
 #custom-audio-motu,
-#custom-audio-headphones,
-#custom-audio-hdmi
-{
-  padding: 4px 2px;
-  border-radius:  0px;
+#custom-audio-hdmi {
+  min-width: 32px;
 }
 
 
@@ -95,13 +80,11 @@ tooltip label {
 }
 
 #language {
-  /* margin: 0px 0px 0px 0px; */
   color: #cccccc;
 }
 
 #tray {
   background-color: rgba(0, 0, 0, 0);
-  /* margin-left: 10px; */
 }
 
 #tray image {

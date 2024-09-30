@@ -20,6 +20,7 @@
   "modules-left": [
     "sway/workspaces",
     "sway/language",
+    "backlight",
     "custom/screenrecord",
     "privacy",
     "group/network",
@@ -35,8 +36,6 @@
   "modules-right": [
     "group/hardware",
     "group/resources",
-    "bluetooth",
-    // "wireplumber",
     "group/audio",
     "battery",
     "group/clock"
@@ -55,6 +54,12 @@
 
   "sway/language": {
     "format": "<span text_transform='uppercase'>{short}</span> {variant}",
+  },
+
+  "backlight": {
+    "device": "amdgpu_bl0",
+    "format": "{icon}  {percent}%",
+    "format-icons": ["", ""]
   },
 
   "custom/screenrecord": {
@@ -91,7 +96,7 @@
   },
 
   "custom/vpn": {
-    "format": "{icon} VPN <span color='#aaaaaa'>{}</span> ",
+    "format": "{icon} VPN <span color='#aaaaaa'>{}</span>",
     "format-icons": {
       "connected": "",
       "disconnected": ""
@@ -113,7 +118,7 @@
   },
 
   //"custom/cloudcash": {
-  //  "format": " {} ",
+  //  "format": "{}",
   //  "return-type": "json",
   //  "exec": "/usr/local/bin/cloudcash -waybar-pango",
   //  "on-click": "",
@@ -121,7 +126,7 @@
   //},
 
   "custom/crypto": {
-    "format": " {} ",
+    "format": "{}",
     "return-type": "json",
     "exec": "/usr/local/bin/waybar-crypto",
     "on-click": "",
@@ -129,9 +134,9 @@
   },
 
   "custom/starshield": {
-    "format": " {} ",
+    "format": "{}",
     "return-type": "json",
-    "exec": "/usr/local/bin/waybar-starshield",
+    "exec": "/usr/local/bin/waybar-starshield --no-gps --no-uv",
     "on-click": "",
     "interval": 20
   },
@@ -143,11 +148,6 @@
     "modules": [
       {
         "type": "screenshare",
-        "tooltip": true,
-        "tooltip-icon-size": 24
-      },
-      {
-        "type": "audio-out",
         "tooltip": true,
         "tooltip-icon-size": 24
       },
@@ -300,8 +300,8 @@
       "wireplumber", 
       "custom/audio-internal",
       "custom/audio-motu",
-      "custom/audio-headphones",
-      "custom/audio-hdmi"
+      "custom/audio-hdmi",
+      "bluetooth"
     ],
     "drawer": {
       "transition-left-to-right": false,
@@ -314,11 +314,11 @@
     "format-muted": "",
     "on-click": "pavucontrol-qt",
     "on-click-right": "helvum",
-    "format-icons": ["", "", ""]
+    "format-icons": ["󰕿", "󰖀", "󰕾"]
   },
 
   "custom/audio-internal": {
-    "format": "󱡬 ",
+    "format": "󱡬",
     "tooltip-format": "Internal",
     "on-click": "audio-router analog",
     "interval": "once"
@@ -332,7 +332,7 @@
   },
 
   "custom/audio-hdmi": {
-    "format": "󰡁 ",
+    "format": "󰡁",
     "tooltip-format": "HDMI",
     "on-click": "audio-router hdmi",
     "interval": "once"

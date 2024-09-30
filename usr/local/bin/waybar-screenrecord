@@ -1,7 +1,7 @@
 #!/bin/sh
 
-output_off="{\"text\": \"<span color='#aaaaaa'></span>\", \"tooltip\": \"Not recording\", \"alt\": \"\", \"class\": \"\" }"
-output_rec="{\"text\": \"<span color='#e98989'></span>\", \"tooltip\": \"Recording\", \"alt\": \"\", \"class\": \"\" }"
+output_off="{\"text\": \"<span color='#aaaaaa'> </span>\", \"tooltip\": \"Not recording\", \"alt\": \"\", \"class\": \"\" }"
+output_rec="{\"text\": \"<span color='#e98989'> </span>\", \"tooltip\": \"Recording\", \"alt\": \"\", \"class\": \"\" }"
 
 pidof wf-recorder > /dev/null 2>&1
 if [ $? -eq 0 ]
