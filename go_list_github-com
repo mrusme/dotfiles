@@ -2,6 +2,7 @@ github.com/arduino/arduino-cli
 github.com/spf13/cobra-cli
 github.com/cointop-sh/cointop
 github.com/tomwright/dasel/v2/cmd/dasel
+github.com/dlvhdr/diffnav
 github.com/go-delve/delve/cmd/dlv
 github.com/kisielk/errcheck
 github.com/zricethezav/gitleaks
