@@ -197,15 +197,15 @@ export BEMENU_OPTS="-n -c -s -i \
   -W 0.3 -H 26 -B 2 -l 10 \
   -p '▲' -P '' --ch 16 --scrollbar always \
   --fn 'Berkeley Mono 11' \
-  --nb #040606cc --nf #ABB2BF \
-  --ab #040606cc --af #ABB2BF \
-  --hb #ABB2BFff --hf #040606 \
-  --sb #ABB2BFff --sf #040606 \
-  --fb #040606cc --ff #ABB2BF \
-  --fbb #040606cc --fbf #ABB2BF \
-  --tb #040606cc --tf #ABB2BF \
-  --scb #040606cc --scf #ABB2BF66 \
-  --bdr #ABB2BF"
+  --nb #040606cc --nf #FFFFFF \
+  --ab #040606cc --af #FFFFFF \
+  --hb #72F1B8ff --hf #040606 \
+  --sb #72F1B8ff --sf #040606 \
+  --fb #040606cc --ff #FFFFFF \
+  --fbb #040606cc --fbf #FFFFFF \
+  --tb #040606cc --tf #FFFFFF \
+  --scb #040606ff --scf #633affff \
+  --bdr #72F1B8"
 
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
@@ -373,6 +373,11 @@ ZSH_THEME_TERM_TITLE_IDLE='zsh %n@%m:%~'
 bindkey '^f' forward-char
 bindkey '^[f' forward-word 
 bindkey '^H' backward-kill-word
+
+# Launch bemenu
+__bemenu() { BEMENU_BACKEND=curses bemenu-run; zle redisplay }
+zle -N __bemenu
+bindkey '^ ' __bemenu
 
 [ "${OS}" = "darwin" ] \
 && bindkey "\e[1;3C" forward-word \
