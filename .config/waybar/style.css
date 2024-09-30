@@ -8,7 +8,7 @@
 }
 
 window#waybar.top {
-  background-color: rgba(115, 116, 116, 0.22);
+  background-color: rgba(0, 0, 0, 0.42);
   border-bottom: none;
   color: #eeeeee;
   transition-property: background-color;
@@ -89,6 +89,10 @@ tooltip label {
 
 #tray image {
   margin: 0px 10px 0px 0px;
+}
+
+#clock {
+  margin-right: 4px;
 }
 
 #mode {

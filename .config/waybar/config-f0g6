@@ -19,7 +19,7 @@
 
   "modules-left": [
     "sway/workspaces",
-    "sway/language",
+    //"sway/language",
     "backlight",
     "custom/screenrecord",
     "privacy",
@@ -391,7 +391,7 @@
 
   "clock#time": {
     "interval": 60,
-    "format": "  <span color='#aaaaaa'>{:%I:%M %p (%Z)}</span>",
+    "format": "󰥔  <span color='#aaaaaa'>{:%I:%M %p (%Z)}</span>",
     "tooltip": true,
     "tooltip-format": "{tz_list}",
     "timezones": [
