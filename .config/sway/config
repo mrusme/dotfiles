@@ -607,7 +607,7 @@ exec /usr/local/bin/passwordmanager
 exec swaycons
 
 # Starshield
-exec starshield /dev/ttyACM1
+exec starshield /dev/serial/by-id/usb-Espressif_USB_JTAG_serial_debug_unit_40:4C:CA:48:3A:38-if00
 
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
