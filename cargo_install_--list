@@ -53,6 +53,8 @@ gpg-tui v0.11.0:
     gpg-tui-completions
 gping v1.17.3:
     gping
+harper-ls v0.11.0:
+    harper-ls
 hexyl v0.14.0:
     hexyl
 htmlq v0.4.0:
