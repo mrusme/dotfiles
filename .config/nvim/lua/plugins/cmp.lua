@@ -13,19 +13,29 @@ return {
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",
       "hrsh7th/cmp-cmdline",
-      "hrsh7th/cmp-vsnip",
-      "hrsh7th/vim-vsnip",
-      "hrsh7th/cmp-emoji" 
+      "hrsh7th/cmp-emoji",
+      { 
+        "L3MON4D3/LuaSnip", 
+        version = 'v2.*', 
+        build = 'make install_jsregexp',
+        dependencies = {
+          "rafamadriz/friendly-snippets",
+          "saadparwaiz1/cmp_luasnip",
+        }
+      },
     },
     config = function()
       local cmp_autopairs = require('nvim-autopairs.completion.cmp')
       local cmp = require('cmp')
       local lspkind = require('lspkind')
+      local luasnip = require("luasnip")
+
+      require("luasnip.loaders.from_vscode").lazy_load() 
 
       cmp.setup({
         snippet = {
           expand = function(args)
-            vim.fn["vsnip#anonymous"](args.body)
+            luasnip.lsp_expand(args.body)
           end,
         },
         window = {
@@ -55,7 +65,7 @@ return {
         }),
         sources = cmp.config.sources({
           { name = 'nvim_lsp' },
-          { name = 'vsnip' },
+          { name = 'luasnip' },
         }, {
           { name = 'buffer' },
         }),

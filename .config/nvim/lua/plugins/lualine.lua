@@ -28,11 +28,19 @@ return {
         lualine_b = {'branch', 'diff', 'diagnostics'},
         lualine_c = {'filename'},
         lualine_x = {
+          {
+            function() 
+              return "  " .. require("dap").status() 
+            end,
+            cond = function() 
+              return package.loaded["dap"] and require("dap").status() ~= "" 
+            end,
+          },
           '%{&expandtab?"spaces":"tabs"}:%{&expandtab?&shiftwidth:&tabstop}', 
           '%{&textwidth}', 
           'fileformat', 
           'encoding', 
-          'filetype'
+          'filetype',
         },
         lualine_y = {'progress'},
         lualine_z = {'location'}

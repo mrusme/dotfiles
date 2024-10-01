@@ -57,6 +57,8 @@ vim.opt.softtabstop = 2
 vim.opt.shiftwidth = 2 
 vim.opt.expandtab = true
 
+vim.opt.shortmess:append("s", "W", "I", "c", "C", "F", "S")
+
 -- vim.opt.listchars=tab:▒░,trail:▓
 vim.opt.listchars:append{tab = "⇥ ", trail = "˽", extends = "→"}
 
