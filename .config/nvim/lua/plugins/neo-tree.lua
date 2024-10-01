@@ -22,7 +22,8 @@ return {
             dotfiles = true,
           },
         })
-        vim.keymap.set('n', '<Leader>d', ':Neotree toggle<CR>', {silent = true})
+        vim.keymap.set('n', '<Leader>,', ':Neotree toggle<CR>', 
+          {silent = true, desc = 'NeoTree toggle'})
       end
   }
 }

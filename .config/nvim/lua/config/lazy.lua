@@ -25,6 +25,6 @@ require("lazy").setup({
     { import = "plugins" },
   },
   install = { colorscheme = { "fluoromachine" } },
-  checker = { enabled = true },
+  checker = { enabled = false },
 })
 

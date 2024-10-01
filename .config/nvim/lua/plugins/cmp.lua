@@ -79,14 +79,16 @@ return {
         enabled = false
       })
 
-      -- Use buffer source for `/` (if enabled `native_menu`, this won't work anymore).
+      -- Use buffer source for `/` 
+      -- (if enabled `native_menu`, this won't work anymore).
       cmp.setup.cmdline('/', {
         sources = {
           { name = 'buffer' }
         }
       })
 
-      -- Use cmdline & path source for ':' (if enabled `native_menu`, this won't work anymore).
+      -- Use cmdline & path source for ':' 
+      -- (if enabled `native_menu`, this won't work anymore).
       cmp.setup.cmdline(':', {
         sources = cmp.config.sources({
           { name = 'path' }
@@ -95,9 +97,12 @@ return {
         })
       })
 
-      cmp.event:on( 'confirm_done', cmp_autopairs.on_confirm_done({  map_char = { tex = '' } }))
+      cmp.event:on( 'confirm_done', 
+        cmp_autopairs.on_confirm_done({  map_char = { tex = '' } }))
 
-      local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
+      local capabilities = require('cmp_nvim_lsp').default_capabilities(
+        vim.lsp.protocol.make_client_capabilities()
+      )
 
     end,
   }

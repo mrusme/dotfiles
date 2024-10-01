@@ -11,7 +11,6 @@ return {
     config = function()
       local lspconfig = require("lspconfig")
       require("mason-lspconfig").setup({
-        -- https://github.com/williamboman/mason-lspconfig.nvim?tab=readme-ov-file#available-lsp-servers
         ensure_installed = { 
           "arduino_language_server",
           "ast_grep",

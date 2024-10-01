@@ -93,7 +93,7 @@ vim.opt.wildignore:append{
 }
 
 vim.opt.undofile = true
-vim.opt.undodir = "~/.cache/nvim/undo"
+vim.opt.undodir = vim.fs.normalize("~/.cache/nvim/undo")
 
 vim.opt.colorcolumn = "80"
 
@@ -121,6 +121,13 @@ if vim.g.neovide then
   vim.g.neovide_transparency = 0.9
 end
 
+
+--[[
+ ╔════════════════════════════════════════════════════════════════════════════╗
+ ║ Keymapping                                                                 ║
+ ╚════════════════════════════════════════════════════════════════════════════╝
+]]
+
 vim.keymap.set('n', '<C-L>', ':nohlsearch<CR><C-L>',
   { silent = true, desc = 'Clear search' })
 
@@ -133,12 +140,12 @@ vim.keymap.set('i', '<C-s>', '<Esc>:update<CR>',
 
 vim.keymap.set('n', '<Tab>', '>>',
   { silent = true, desc = 'Indent' })
-vim.keymap.set('v', '<Tab>', '>',
-  { silent = true, desc = 'Indent' })
+vim.keymap.set('v', '<Tab>', '>gv',
+  { silent = true, remap = true, desc = 'Indent' })
 vim.keymap.set('n', '<S-Tab>', '<<',
   { silent = true, desc = 'Unindent' })
-vim.keymap.set('v', '<S-Tab>', '<',
-  { silent = true, desc = 'Unindent' })
+vim.keymap.set('v', '<S-Tab>', '<gv',
+  { silent = true, remap=true, desc = 'Unindent' })
 
 vim.keymap.set('n', '<C-a>', 'ggVG',
   { silent = true, desc = 'Select all' })
@@ -220,13 +227,6 @@ vim.keymap.set('n', '<Leader>`', 'gq}<CR>',
 vim.keymap.set('n', '<Leader>~', 'gqG<CR>',
   { silent = true, desc = 'Reformat to EOF' })
 
-
---[[
- ╔════════════════════════════════════════════════════════════════════════════╗
- ║ Custom commands                                                            ║
- ╚════════════════════════════════════════════════════════════════════════════╝
-]]
-
 -- https://github.com/hyprwm/hyprpicker
 vim.keymap.set('n', '<M-c>', ":put =system('hyprpicker')<CR>", 
   { silent = true, desc = 'Color picker' })
@@ -236,7 +236,7 @@ vim.keymap.set('i', '<M-c>', "<ESC>:put =system('hyprpicker')<CR>",
 
 --[[
  ╔════════════════════════════════════════════════════════════════════════════╗
- ║ Custom replacements                                                        ║
+ ║ Replacements                                                               ║
  ╚════════════════════════════════════════════════════════════════════════════╝
 ]]
 
@@ -302,11 +302,22 @@ autocmd({'BufRead', 'BufNewFile'}, {
   " | match ErrorMsg '\\s\\+$'"
 })
 
---
+
 --[[
  ╔════════════════════════════════════════════════════════════════════════════╗
  ║ Theme                                                                      ║
  ╚════════════════════════════════════════════════════════════════════════════╝
+]]
+
+--[[
+ OVERRIDES
+
+ highlight Normal ctermbg=none guibg=none
+ highlight NonText ctermbg=none guibg=none
+ highlight ColorColumn cterm=reverse ctermbg=200 ctermfg=233 
+   \ gui=reverse guibg=#3e445e guifg=#0f1117
+ highlight EndOfBuffer ctermbg=none guibg=none
+ highlight LineNr ctermbg=none guibg=none
 ]]
 
 vim.api.nvim_set_hl(0, 'CmpDocumentation', 
@@ -314,20 +325,15 @@ vim.api.nvim_set_hl(0, 'CmpDocumentation',
 vim.api.nvim_set_hl(0, 'CompeDocumentation', 
   { link = 'NormalFloat', default = true })
 
+
+--[[
+╔════════════════════════════════════════════════════════════════════════════╗
+║ Reader: https://github.com/mrusme/reader                                   ║
+╚════════════════════════════════════════════════════════════════════════════╝
+TODO: Make plugin, load via lazy
+]]
+
 vim.cmd([[
-" OVERRIDES
-" highlight Normal ctermbg=none guibg=none
-" highlight NonText ctermbg=none guibg=none
-" highlight ColorColumn cterm=reverse ctermbg=200 ctermfg=233 
-"   \ gui=reverse guibg=#3e445e guifg=#0f1117
-" highlight EndOfBuffer ctermbg=none guibg=none
-" highlight LineNr ctermbg=none guibg=none
-
-
-"╔════════════════════════════════════════════════════════════════════════════╗
-"║ Reader                                                                     ║
-"╚════════════════════════════════════════════════════════════════════════════╝
-
 function s:reader_url()
   normal! "uyiW
   let mycommand = "reader -o " . @u
@@ -335,5 +341,4 @@ function s:reader_url()
 endfunction
 noremap <Plug>reader_url : call <SID>reader_url()<CR>
 nmap gx <Plug>reader_url
-
 ]])
