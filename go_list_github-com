@@ -1,4 +1,5 @@
 github.com/arduino/arduino-cli
+github.com/arduino/arduino-language-server
 github.com/spf13/cobra-cli
 github.com/cointop-sh/cointop
 github.com/tomwright/dasel/v2/cmd/dasel
