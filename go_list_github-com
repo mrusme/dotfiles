@@ -11,6 +11,7 @@ github.com/golangci/golangci-lint/cmd/golangci-lint
 github.com/fatih/gomodifytags
 github.com/fedeztk/got/cmd/got
 github.com/fullstorydev/grpcurl/cmd/grpcurl
+github.com/josharian/impl
 github.com/charmbracelet/mods
 github.com/ollama/ollama
 github.com/ericchiang/pup
