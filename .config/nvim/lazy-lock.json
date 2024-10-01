@@ -15,6 +15,7 @@
   "fluoromachine.nvim": { "branch": "main", "commit": "d638ea221b4c6636978f49c1987d10ff2733c23d" },
   "friendly-snippets": { "branch": "main", "commit": "00ba9dd3df89509f95437b8d595553707c46d5ea" },
   "gitsigns.nvim": { "branch": "main", "commit": "863903631e676b33e8be2acb17512fdc1b80b4fb" },
+  "grug-far.nvim": { "branch": "main", "commit": "b7c2b28e49d55ff71cd9bb3ad19a2021316510d8" },
   "image.nvim": { "branch": "master", "commit": "c4e826027e0428e3a5d7a95700be7a3ce49c2587" },
   "img-clip.nvim": { "branch": "main", "commit": "28a32d811d69042f4fa5c3d5fa35571df2bc1623" },
   "lazy.nvim": { "branch": "main", "commit": "460e1cd8f24e364d54543a4b0e83f6f4ec1f65fb" },
