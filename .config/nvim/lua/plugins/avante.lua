@@ -32,6 +32,12 @@ return {
         'MeanderingProgrammer/render-markdown.nvim',
         opts = {
           file_types = { "markdown", "Avante" },
+          heading = {
+            enabled = false
+          },
+          pipe_table = {
+            enabled = false
+          },
         },
         ft = { "markdown", "Avante" },
       },

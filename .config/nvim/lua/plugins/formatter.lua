@@ -55,6 +55,7 @@ return {
           }
         }
       }
+      vim.keymap.set('n', '<Leader>f', ':Format<CR>', {silent = true})
     end
   }
 }

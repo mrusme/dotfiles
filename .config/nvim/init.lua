@@ -18,6 +18,9 @@ require("config.lazy")
 vim.cmd('filetype plugin indent on')
 vim.cmd('filetype plugin on')
 
+vim.env.NVIM_TUI_ENABLE_TRUE_COLOR = 1
+vim.o.termguicolors = true
+
 -- Jeez, who even wants that ...
 vim.opt.mouse = ""
 
@@ -82,7 +85,12 @@ vim.opt.writebackup = false
 vim.opt.swapfile = false
 vim.opt.fileformats = {"unix", "dos", "mac"}
 vim.opt.completeopt = {"menu", "menuone", "noselect"}
-vim.opt.wildignore:append{"*/.git/*", "*/.hg/*", "*/.svn/*", "**/node_modules/**"}
+vim.opt.wildignore:append{
+  "*/.git/*", 
+  "*/.hg/*", 
+  "*/.svn/*", 
+  "**/node_modules/**"
+}
 
 vim.opt.undofile = true
 vim.opt.undodir = "~/.cache/nvim/undo"
@@ -113,171 +121,200 @@ if vim.g.neovide then
   vim.g.neovide_transparency = 0.9
 end
 
+vim.keymap.set('n', '<C-L>', ':nohlsearch<CR><C-L>',
+  { silent = true, desc = 'Clear search' })
+
+vim.keymap.set('n', '<C-s>', ':update<CR>', 
+  { silent = true, desc = 'Save' })
+vim.keymap.set('v', '<C-s>', '<C-C>:update<CR>', 
+  { silent = true, desc = 'Save' })
+vim.keymap.set('i', '<C-s>', '<Esc>:update<CR>', 
+  { silent = true, desc = 'Save' })
+
+vim.keymap.set('n', '<Tab>', '>>',
+  { silent = true, desc = 'Indent' })
+vim.keymap.set('v', '<Tab>', '>',
+  { silent = true, desc = 'Indent' })
+vim.keymap.set('n', '<S-Tab>', '<<',
+  { silent = true, desc = 'Unindent' })
+vim.keymap.set('v', '<S-Tab>', '<',
+  { silent = true, desc = 'Unindent' })
+
+vim.keymap.set('n', '<C-a>', 'ggVG',
+  { silent = true, desc = 'Select all' })
+vim.keymap.set('i', '<C-a>', '<Esc>ggVG',
+  { silent = true, desc = 'Select all' })
+
+vim.keymap.set('n', '<M-[>', ':tabprevious<CR>',
+  { silent = true, desc = 'Previous tab' })
+vim.keymap.set('i', '<M-[>', '<Esc>:tabprevious<CR>i',
+  { silent = true, desc = 'Previous tab' })
+vim.keymap.set('n', '<M-]>', ':tabnext<CR>',
+  { silent = true, desc = 'Next tab' })
+vim.keymap.set('i', '<M-]>', '<Esc>:tabnext<CR>i',
+  { silent = true, desc = 'Next tab' })
+
+vim.keymap.set('n', '<M-t>', ':tabnew<CR>',
+  { silent = true, desc = 'New tab' })
+vim.keymap.set('i', '<M-t>', '<Esc>:tabnew<CR>i',
+  { silent = true, desc = 'New tab' })
+
+vim.keymap.set('n', '<M-w>', ':tabclose<CR>',
+  { silent = true, desc = 'Close tab' })
+vim.keymap.set('i', '<M-w>', '<Esc>:tabclose<CR>i',
+  { silent = true, desc = 'Close tab' })
+
+vim.keymap.set('n', '<M-1>', ':tabn 1<CR>',
+  { silent = true, desc = 'Tab 1' })
+vim.keymap.set('i', '<M-1>', '<Esc>:tabn 1<CR>i',
+  { silent = true, desc = 'Tab 1' })
+vim.keymap.set('n', '<M-2>', ':tabn 2<CR>',
+  { silent = true, desc = 'Tab 2' })
+vim.keymap.set('i', '<M-2>', '<Esc>:tabn 2<CR>i',
+  { silent = true, desc = 'Tab 2' })
+vim.keymap.set('n', '<M-3>', ':tabn 3<CR>',
+  { silent = true, desc = 'Tab 3' })
+vim.keymap.set('i', '<M-3>', '<Esc>:tabn 3<CR>i',
+  { silent = true, desc = 'Tab 3' })
+vim.keymap.set('n', '<M-4>', ':tabn 4<CR>',
+  { silent = true, desc = 'Tab 4' })
+vim.keymap.set('i', '<M-4>', '<Esc>:tabn 4<CR>i',
+  { silent = true, desc = 'Tab 4' })
+vim.keymap.set('n', '<M-5>', ':tabn 5<CR>',
+  { silent = true, desc = 'Tab 5' })
+vim.keymap.set('i', '<M-5>', '<Esc>:tabn 5<CR>i',
+  { silent = true, desc = 'Tab 5' })
+vim.keymap.set('n', '<M-6>', ':tabn 6<CR>',
+  { silent = true, desc = 'Tab 6' })
+vim.keymap.set('i', '<M-6>', '<Esc>:tabn 6<CR>i',
+  { silent = true, desc = 'Tab 6' })
+vim.keymap.set('n', '<M-7>', ':tabn 7<CR>',
+  { silent = true, desc = 'Tab 7' })
+vim.keymap.set('i', '<M-7>', '<Esc>:tabn 7<CR>i',
+  { silent = true, desc = 'Tab 7' })
+vim.keymap.set('n', '<M-8>', ':tabn 8<CR>',
+  { silent = true, desc = 'Tab 8' })
+vim.keymap.set('i', '<M-8>', '<Esc>:tabn 8<CR>i',
+  { silent = true, desc = 'Tab 8' })
+vim.keymap.set('n', '<M-9>', ':tabn 9<CR>',
+  { silent = true, desc = 'Tab 9' })
+vim.keymap.set('i', '<M-9>', '<Esc>:tabn 9<CR>i',
+  { silent = true, desc = 'Tab 9' })
+vim.keymap.set('n', '<M-0>', ':tabn 10<CR>',
+  { silent = true, desc = 'Tab 10' })
+vim.keymap.set('i', '<M-0>', '<Esc>:tabn 10<CR>i',
+  { silent = true, desc = 'Tab 10' })
+
+vim.keymap.set('n', '<C-q><C-q>', ':qa!<CR>',
+  { silent = true, desc = 'Force quit' })
+vim.keymap.set('i', '<C-q><C-q>', '<Esc>:qa!<CR>',
+  { silent = true, desc = 'Force quit' })
+
+vim.keymap.set('n', '<C-q>', ':qa<CR>',
+  { silent = true, desc = 'Quit' })
+vim.keymap.set('i', '<C-q>', '<Esc>:qa<CR>',
+  { silent = true, desc = 'Quit' })
+
+vim.keymap.set('n', '<Leader>`', 'gq}<CR>',
+  { silent = true, desc = 'Reformat current paragraph' })
+vim.keymap.set('n', '<Leader>~', 'gqG<CR>',
+  { silent = true, desc = 'Reformat to EOF' })
+
+
+--[[
+ ╔════════════════════════════════════════════════════════════════════════════╗
+ ║ Custom commands                                                            ║
+ ╚════════════════════════════════════════════════════════════════════════════╝
+]]
+
+-- https://github.com/hyprwm/hyprpicker
+vim.keymap.set('n', '<M-c>', ":put =system('hyprpicker')<CR>", 
+  { silent = true, desc = 'Color picker' })
+vim.keymap.set('i', '<M-c>', "<ESC>:put =system('hyprpicker')<CR>", 
+  { silent = true, desc = 'Color picker' })
+
+
+--[[
+ ╔════════════════════════════════════════════════════════════════════════════╗
+ ║ Custom replacements                                                        ║
+ ╚════════════════════════════════════════════════════════════════════════════╝
+]]
+
+vim.cmd.inoreabbrev({"<buffer>", "mariusu", "マリウス"})
+vim.cmd.inoreabbrev({"<buffer>", "mariusucom", "xn--gckvb8fzb.com"})
+
+
+--[[
+ ╔════════════════════════════════════════════════════════════════════════════╗
+ ║ Autocmds                                                                   ║
+ ╚════════════════════════════════════════════════════════════════════════════╝
+]]
+
+local augroup = vim.api.nvim_create_augroup
+local autocmd = vim.api.nvim_create_autocmd
+
+-- Save window position on exit
+autocmd('BufWinLeave', {
+  pattern = '*.*',
+  command = 'mkview'
+})
+-- Restore window position
+autocmd('BufWinEnter', {
+  pattern = '*.*',
+  command = 'silent! loadview'
+})
+
+-- Set textwidth=80 for types and enable spell
+autocmd({'BufRead', 'BufNewFile'}, {
+  pattern = '*.{md,txt}',
+  command = 'setlocal tw=80 colorcolumn=80 fo=awqtc comments+=nb:> spell'..
+  ' tabstop=2 shiftwidth=2 expandtab'
+})
+
+autocmd({'BufRead', 'BufNewFile'}, {
+  pattern = '*.{jscs,jshint,eslint}rc',
+  command = 'set filetype=json'
+})
+
+autocmd({'BufRead', 'BufNewFile'}, {
+  pattern = 'aliases.local,zshrc.local,.zshrc,*/zsh/configs/*',
+  command = 'set filetype=sh'
+})
+
+autocmd({'BufRead', 'BufNewFile'}, {
+  pattern = 'gitconfig.local,.gitconfig',
+  command = 'set filetype=gitconfig'
+})
+
+autocmd({'BufRead', 'BufNewFile'}, {
+  pattern = 'tmux.conf.local,tmux.conf,.tmux.conf',
+  command = 'set filetype=tmux'
+})
+
+autocmd({'BufRead', 'BufNewFile'}, {
+  pattern = 'vimrc.local,.vimrc,init.vim',
+  command = 'set filetype=vim'
+})
+
+autocmd({'BufRead', 'BufNewFile'}, {
+  pattern = '{neomutt-*,*.eml}',
+  command = "setlocal tw=72 colorcolumn=72 fo=awq comments+=nb:> spell"..
+  " | match ErrorMsg '\\s\\+$'"
+})
+
+--
+--[[
+ ╔════════════════════════════════════════════════════════════════════════════╗
+ ║ Theme                                                                      ║
+ ╚════════════════════════════════════════════════════════════════════════════╝
+]]
+
+vim.api.nvim_set_hl(0, 'CmpDocumentation', 
+  { link = 'NormalFloat', default = true })
+vim.api.nvim_set_hl(0, 'CompeDocumentation', 
+  { link = 'NormalFloat', default = true })
+
 vim.cmd([[
-" ╔════════════════════════════════════════════════════════════════════════════╗
-" ║ Key mappings                                                               ║
-" ╚════════════════════════════════════════════════════════════════════════════╝
-
-if maparg('<C-L>', 'n') ==# ''
-  nnoremap <silent> <C-L> :nohlsearch<CR><C-L>
-endif
-
-inoremap <C-U> <C-G>u<C-U>
-
-noremap  <C-s> :update<CR>
-vnoremap <C-s> <C-C>:update<CR>
-inoremap <C-s> <Esc>:update<CR>
-
-"inoremap <C-c> <Esc>
-
-"map <C-f> /
-
-vnoremap <Tab> >
-vnoremap <S-Tab> <
-
-"nnoremap <Tab> >0
-"nnoremap <S-Tab> <0
-
-vmap <C-m> gc
-
-vmap <C-w> S
-
-vmap <C-x> d
-vmap <C-v> p
-vmap <C-c> y
-
-"nnoremap d "_d
-"vnoremap d "_d
-
-nnoremap <C-z>  :undo<CR>
-inoremap <C-z>  <Esc>:undo<CR>
-nnoremap <C-y>  :redo<CR>
-inoremap <C-y>  <Esc>:redo<CR>
-
-inoremap <C-v>  <Esc>V
-
-inoremap <C-a>  <Esc>ggVG
-inoremap <M-C-m> <C-O>o
-
-nnoremap <M-[>  :tabprevious<CR>
-inoremap <M-[>  <Esc>:tabprevious<CR>i
-nnoremap <M-]>  :tabnext<CR>
-inoremap <M-]>  <Esc>:tabnext<CR>i
-nnoremap <M-t>  :tabnew<CR>
-inoremap <M-t>  <Esc>:tabnew<CR>i
-nnoremap <M-w>  :tabclose<CR>
-inoremap <M-w>  <Esc>:tabclose<CR>i
-
-nnoremap <M-1>  :tabn 1<CR>
-inoremap <M-1>  <Esc>:tabn 1<CR>i
-nnoremap <M-2>  :tabn 2<CR>
-inoremap <M-2>  <Esc>:tabn 2<CR>i
-nnoremap <M-3>  :tabn 3<CR>
-inoremap <M-3>  <Esc>:tabn 3<CR>i
-nnoremap <M-4>  :tabn 4<CR>
-inoremap <M-4>  <Esc>:tabn 4<CR>i
-nnoremap <M-5>  :tabn 5<CR>
-inoremap <M-5>  <Esc>:tabn 5<CR>i
-nnoremap <M-6>  :tabn 6<CR>
-inoremap <M-6>  <Esc>:tabn 6<CR>i
-nnoremap <M-7>  :tabn 7<CR>
-inoremap <M-7>  <Esc>:tabn 7<CR>i
-nnoremap <M-8>  :tabn 8<CR>
-inoremap <M-8>  <Esc>:tabn 8<CR>i
-nnoremap <M-9>  :tabn 9<CR>
-inoremap <M-9>  <Esc>:tabn 9<CR>i
-nnoremap <M-0>  :tabn 10<CR>
-inoremap <M-0>  <Esc>:tabn 10<CR>i
-
-map \ :
-"let mapleader = ','
-
-nnoremap <Leader>p :set paste<CR>
-nnoremap <Leader>o :set nopaste<CR>
-
-" Double press Ctrl+q to force quit, discarding changes
-noremap <C-q><C-q> :qa!<CR>
-inoremap <C-q><C-q> <Esc>:qa!<CR>
-
-" Single press Ctrl+q to quit, get notified of changes
-noremap <C-q> :qa<CR>
-inoremap <C-q> <Esc>:qa<CR>
-
-" Reformat current paragraph
-noremap <Leader>` gq}<CR>
-" Reformat everything to EOF
-noremap <Leader>~ gqG<CR>
-
-
-" ╔════════════════════════════════════════════════════════════════════════════╗
-" ║ Autocmd                                                                    ║
-" ╚════════════════════════════════════════════════════════════════════════════╝
-
-" save window position on exit
-autocmd BufWinLeave
-  \ *.* mkview
-
-" restore window position
-autocmd BufWinEnter
-  \ *.* silent! loadview
-
-" set markdown filetype
-autocmd BufRead,BufNewFile
-  \ *.md set filetype=markdown
-
-" set textwidth=80 for types and enable spell
-autocmd BufRead,BufNewFile
-  \ *.{md,txt} 
-    \ setlocal tw=80 | 
-    \ setlocal colorcolumn=80 |
-    \ setlocal fo=awqtc | 
-    \ setlocal comments+=nb:> | 
-    \ setlocal spell |
-    \ setlocal tabstop=2 shiftwidth=2 expandtab
-
-" set json filetyep
-autocmd BufRead,BufNewFile
-  \ .{jscs,jshint,eslint}rc set filetype=json
-
-" set sh filetype
-autocmd BufRead,BufNewFile
-  \ aliases.local,zshrc.local,.zshrc,*/zsh/configs/* set filetype=sh
-
-" set gitconfig filetyep
-autocmd BufRead,BufNewFile
-  \ gitconfig.local,.gitconfig set filetype=gitconfig
-
-" set tmux filetype
-autocmd BufRead,BufNewFile
-  \ tmux.conf.local,tmux.conf,.tmux.conf set filetype=tmux
-
-" set vim filetype
-autocmd BufRead,BufNewFile
-  \ vimrc.local,.vimrc,init.vim set filetype=vim
-
-" set neomutt settings
-autocmd BufRead,BufNewFile
-  \ {neomutt-*,*.eml} 
-    \ setlocal tw=72 | 
-    \ setlocal colorcolumn=72 |
-    \ setlocal fo=awq | 
-    \ setlocal comments+=nb:> | 
-    \ setlocal spell |
-    \ match ErrorMsg '\s\+$'
-
-
-" ╔════════════════════════════════════════════════════════════════════════════╗
-" ║ Theme                                                                      ║
-" ╚════════════════════════════════════════════════════════════════════════════╝
-
-" if has('termguicolors')
-"   set termguicolors
-" endif
-" if (has('nvim'))
-"   let $NVIM_TUI_ENABLE_TRUE_COLOR = 1
-" endif
-" set t_Co=256
-
 " OVERRIDES
 " highlight Normal ctermbg=none guibg=none
 " highlight NonText ctermbg=none guibg=none
@@ -287,47 +324,9 @@ autocmd BufRead,BufNewFile
 " highlight LineNr ctermbg=none guibg=none
 
 
-" ╔════════════════════════════════════════════════════════════════════════════╗
-" ║ cmp                                                                        ║
-" ╚════════════════════════════════════════════════════════════════════════════╝
-
-highlight link CompeDocumentation NormalFloat
-highlight link CmpDocumentation NormalFloat
-
-
-" ╔════════════════════════════════════════════════════════════════════════════╗
-" ║ neo-tree                                                                   ║
-" ╚════════════════════════════════════════════════════════════════════════════╝
-
-noremap <silent> <Leader>d :Neotree toggle<CR>
-
-
-" ╔════════════════════════════════════════════════════════════════════════════╗
-" ║ formatter                                                                  ║
-" ╚════════════════════════════════════════════════════════════════════════════╝
-
-nnoremap <silent> <leader>f :Format<CR>
-
-
-" ╔════════════════════════════════════════════════════════════════════════════╗
-" ║ GPG                                                                        ║
-" ╚════════════════════════════════════════════════════════════════════════════╝
-
-autocmd User GnuPG setl textwidth=72
-let g:GPGFilePattern = '*.\(gpg\|asc\|pgp\)\(.wiki\|.md\)\='
-
-
-" ╔════════════════════════════════════════════════════════════════════════════╗
-" ║ Comment                                                                    ║
-" ╚════════════════════════════════════════════════════════════════════════════╝
-
-nmap <C-/><C-/> gcc
-vmap <C-/><C-/> gc<Esc>
-
-
-" ╔════════════════════════════════════════════════════════════════════════════╗
-" ║ Reader                                                                     ║
-" ╚════════════════════════════════════════════════════════════════════════════╝
+"╔════════════════════════════════════════════════════════════════════════════╗
+"║ Reader                                                                     ║
+"╚════════════════════════════════════════════════════════════════════════════╝
 
 function s:reader_url()
   normal! "uyiW
@@ -337,20 +336,4 @@ endfunction
 noremap <Plug>reader_url : call <SID>reader_url()<CR>
 nmap gx <Plug>reader_url
 
-
-" ╔════════════════════════════════════════════════════════════════════════════╗
-" ║ Custom commands                                                            ║
-" ╚════════════════════════════════════════════════════════════════════════════╝
-
-" https://github.com/hyprwm/hyprpicker
-nnoremap <M-c> :put =system('hyprpicker')<CR>
-inoremap <M-c> <ESC>:put =system('hyprpicker')<CR>
-
-
-" ╔════════════════════════════════════════════════════════════════════════════╗
-" ║ Custom replacements                                                        ║
-" ╚════════════════════════════════════════════════════════════════════════════╝
-
-inoreabbrev mariusu マリウス
-inoreabbrev mariusucom xn--gckvb8fzb.com
 ]])

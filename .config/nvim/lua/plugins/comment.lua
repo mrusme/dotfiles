@@ -47,6 +47,10 @@ return {
       pre_hook = nil,
       ---Function to call after (un)comment
       post_hook = nil,
+    },
+    keys = {
+      {'<C-/><C-/>', 'gcc', mode = { 'n' }, remap = true, desc = 'Comment'},
+      {'<C-/><C-/>', 'gc<Esc>', mode = { 'v' }, remap = true, desc = 'Comment'},
     }
   }
 }
