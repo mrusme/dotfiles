@@ -104,6 +104,10 @@ vim.opt.spellsuggest = {"best", 9}
 
 vim.g.spellfile_URL = 'https://ftp.nluug.nl/vim/runtime/spell'
 
+vim.opt.fillchars = { 
+  vert = '🮘',
+}
+
 
 --[[
  ╔════════════════════════════════════════════════════════════════════════════╗

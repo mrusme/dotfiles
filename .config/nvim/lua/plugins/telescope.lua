@@ -22,6 +22,12 @@ return {
         { desc = 'Telescope buffers' })
       vim.keymap.set('n', '<M-h>', builtin.help_tags, 
         { desc = 'Telescope help tags' })
+      vim.keymap.set('n', '<M-g>', builtin.lsp_definitions, 
+        { desc = 'Go to definition' })
+      vim.keymap.set('n', '<M-i>', builtin.lsp_implementations, 
+        { desc = 'Go to definition' })
+      vim.keymap.set('n', '<M-r>', builtin.lsp_references, 
+        { desc = 'Go to definition' })
       require("telescope").load_extension("undo")
       vim.keymap.set("n", "<leader>u", "<cmd>Telescope undo<cr>")
     end,
