@@ -87,6 +87,17 @@ return {
                   },
                 },
               }
+            elseif server_name == "harper_ls" then 
+              _opts = {
+                settings = {
+                  ["harper-ls"] = {
+                    userDictPath = "/home/mrus/.config/nvim/spell/en.utf-8.add",
+                    linters = {
+                      spell_check = false,
+                    }
+                  }
+                }
+              }
             end
             require('lspconfig')[server_name].setup(_opts)
           end,
