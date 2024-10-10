@@ -394,7 +394,8 @@ alias zmv='noglob zmv -vW'
 # https://github.com/ajeetdsouza/zoxide
 __is_available zoxide \
 && [ "${USER}" != "root" ] \
-&& eval "$(zoxide init --cmd cd zsh)"
+&& eval "$(zoxide init --cmd cd zsh)" \
+&& alias cdd=cdi
 
 # https://github.com/sharkdp/bat
 __is_available bat \
