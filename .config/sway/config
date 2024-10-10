@@ -192,13 +192,13 @@ bindsym $mod+backspace        exec /usr/bin/chromium \
                                 --enable-features=WebUIDarkMode
 
 # Show clipboard (for copying)
-bindsym $mod+Alt+Backslash    exec cliphist list \
+bindsym $mod+Alt+Bar          exec cliphist list \
                               | $dmenu \
                               | cliphist decode \
                               | wl-copy
 
 # Show clipboard (for deleting)
-bindsym $mod+Alt+Bar          exec cliphist list \
+bindsym $mod+Alt+Backslash    exec cliphist list \
                               | $dmenu \
                               | cliphist delete
 
@@ -321,10 +321,10 @@ bindsym $mod+Control+$left  focus parent, focus left,  focus child
 bindsym $mod+Control+p focus parent
 
 # Focus next
-bindsym $mod+Tab focus next
+#bindsym $mod+Tab focus next
 
 # Focus previous
-bindsym $mod+Shift+Tab focus prev
+#bindsym $mod+Shift+Tab focus prev
 
 # Focus on last focused tiling container
 bindsym $mod+D focus tiling
@@ -427,7 +427,7 @@ bindsym $mod+s layout toggle split
 bindsym $mod+Shift+z floating toggle
 
 # Switch focus between tiling area and floating area
-bindsym $mod+Shift+t focus mode_toggle
+bindsym $mod+Tab focus mode_toggle
 
 # Fullscreen currently focused window
 bindsym $mod+z fullscreen
@@ -602,7 +602,7 @@ exec /usr/local/bin/passwordmanager
 exec swaycons
 
 # Starshield
-exec starshield /dev/serial/by-id/usb-Espressif_USB_JTAG_serial_debug_unit_40:4C:CA:48:3A:38-if00
+exec starshieldd /dev/serial/by-id/usb-Espressif_USB_JTAG_serial_debug_unit_40:4C:CA:48:3A:38-if00
 
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
