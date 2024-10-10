@@ -1,4 +1,4 @@
-ast-grep v0.27.3:
+ast-grep v0.28.0:
     ast-grep
     sg
 bandwhich v0.23.0:
@@ -11,7 +11,7 @@ bluetui v0.5.1:
     bluetui
 bottom v0.10.2:
     btm
-cargo-update v14.1.1:
+cargo-update v15.0.0:
     cargo-install-update
     cargo-install-update-config
 code-minimap v0.6.7:
@@ -32,13 +32,13 @@ du-dust v1.1.1:
     dust
 eva v0.3.1:
     eva
-eza v0.19.4:
+eza v0.20.1:
     eza
 fd-find v10.2.0:
     fd
 gfold v4.5.0:
     gfold
-git-cliff v2.6.0:
+git-cliff v2.6.1:
     git-cliff
     git-cliff-completions
     git-cliff-mangen
@@ -85,7 +85,7 @@ pastel v0.10.0:
     pastel
 pipe-rename v1.6.5:
     renamer
-presenterm v0.8.0:
+presenterm v0.9.0:
     presenterm
 procs v0.14.6:
     procs
@@ -117,7 +117,7 @@ swaycons v0.3.1:
     swaycons
 taskwarrior-tui v0.26.3:
     taskwarrior-tui
-tealdeer v1.6.1:
+tealdeer v1.7.0:
     tldr
 tickrs v0.14.10:
     tickrs
