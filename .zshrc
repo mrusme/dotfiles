@@ -963,8 +963,8 @@ function video-to-gif() {
   ffmpeg \
     -i "$1" \
     -filter_complex \
-    "[0:v]setpts=0.25*PTS,fps=$fps,scale=800:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse" \
-    -filter:a 'atempo=2,atempo=2' \
+    "[0:v]setpts=0.5*PTS,fps=$fps,scale=800:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse" \
+    -filter:a 'atempo=1,atempo=1' \
     -loop 0 \
     "$2"
 }
