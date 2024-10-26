@@ -523,6 +523,10 @@ for_window [app_id = "yad"] floating enable
 for_window [app_id = "opensnitch_ui"] floating enable
 for_window [app_id = "org.pipewire.Helvum"] floating enable
 for_window [app_id = "eu.qtfm"] floating enable
+for_window [app_id = "Bitwarden"] {
+  floating enable
+  resize set 1024 px 600 px
+}
 for_window [app_id = "ch.proton.bridge-gui"] floating enable
 # TODO: Needed for pairing the Chromium extension on Sway
 #for_window [app_id = "anytype"] floating enable
@@ -591,7 +595,7 @@ exec /usr/local/bin/overdue-tasks
 # Show contact birthdays notifications
 exec /usr/local/bin/birthdays
 
-# KeePassXC
+# Password Manager
 exec /usr/local/bin/passwordmanager
 
 # Radicle node
