@@ -1,11 +1,26 @@
 #!/bin/sh
 
-doas mount /mnt/sony-photos/ \
-&& rsync -avH /mnt/sony-photos/DCIM/*/* ~/cloud/temp/imports/photos/ \
-&& doas umount /mnt/sony-photos 
+if [ -z "$1" ] || [ -z "$2" ] || [ -z "$3" ]
+then 
+  printf "usage: %s <sdcard-device> <sdcard-folder> <destination>\n" "$0"
+  exit 1 
+fi
 
-doas mount /mnt/sony-videos/ \
-&& rsync -avH /mnt/sony-videos/PRIVATE/M4ROOT/CLIP/* ~/cloud/temp/imports/videos/ \
-&& doas umount /mnt/sony-videos 
+SRCDEV="$1"
+SRCPATH="$2"
+PRFPATH="$3"
 
-echo ""
+doas mount -v "$SRCDEV" "$SRCPATH" \
+&& find "$SRCPATH" \
+  -type f \
+  -iname '*.arw' \
+  -exec sh -c "exiftool -CreateDate -json \"{}\" \
+    | jq -r '.[0].CreateDate' \
+    | sed 's/\([0-9]\{4\}\):\([0-9]\{2\}\):\([0-9]\{2\}\) .*/\1\/\2\/\3\//' \
+    | xargs -I SORTPATH sh -c 'mkdir -p "$PRFPATH/SORTPATH" \
+      && cp -vi {} "$PRFPATH/SORTPATH"'" \;
+
+printf "\n"
+doas umount -v "$SRCPATH"
+printf "\nImport completed\n"
+exit 0
