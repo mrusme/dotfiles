@@ -13,4 +13,6 @@
 /.config/neonmodem.toml filter=git-crypt diff=git-crypt
 /.config/iamb/** filter=git-crypt diff=git-crypt
 /.config/xmrig/** filter=git-crypt diff=git-crypt
+/.config/todoman/** filter=git-crypt diff=git-crypt
+/.config/vdirsyncer/** filter=git-crypt diff=git-crypt
 

@@ -27,3 +27,5 @@
 /.config/quickwit-*
 /.config/xmrig/**
 /.config/qtfm6/*.cache
+/.config/harper-ls/dict.txt
+/.config/todoman/__pycache__/**
