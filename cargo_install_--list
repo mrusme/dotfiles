@@ -1,4 +1,4 @@
-ast-grep v0.28.0:
+ast-grep v0.28.1:
     ast-grep
     sg
 bandwhich v0.23.1:
@@ -32,7 +32,7 @@ du-dust v1.1.1:
     dust
 eva v0.3.1:
     eva
-eza v0.20.2:
+eza v0.20.4:
     eza
 fd-find v10.2.0:
     fd
@@ -53,7 +53,7 @@ gpg-tui v0.11.0:
     gpg-tui-completions
 gping v1.17.3:
     gping
-harper-ls v0.11.0:
+harper-ls v0.12.0:
     harper-ls
 hexyl v0.14.0:
     hexyl
@@ -71,7 +71,7 @@ kmon v1.6.5:
     kmon
 lemmeknow v0.8.0:
     lemmeknow
-librespot v0.4.2:
+librespot v0.5.0:
     librespot
 mdcat v2.5.0:
     mdcat
@@ -105,13 +105,13 @@ sigrs v0.1.3:
     sig
 silicon v0.5.2:
     silicon
-so v0.4.9:
+so v0.4.10:
     so
 speedtest-rs v0.2.0:
     speedtest-rs
 spotify-tui v0.25.0:
     spt
-starship v1.20.1:
+starship v1.21.1:
     starship
 swaycons v0.3.1:
     swaycons
