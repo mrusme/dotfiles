@@ -1,0 +1,2 @@
+#!/bin/sh
+/home/mrus/apps/Bitwarden-*.AppImage --enable-features=UseOzonePlatform --ozone-platform=wayland
