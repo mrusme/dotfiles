@@ -18,6 +18,7 @@
 unset LS_COLORS
 unset LSCOLORS
 
+
 # ╔════════════════════════════════════════════════════════════════════════════╗
 # ║ Basics                                                                     ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
@@ -27,26 +28,10 @@ export OS="$(uname | tr '[:upper:]' '[:lower:]')"
 function __is_available {
   prog="${1}"
   os="${2}"
-  forcecheck="${3}"
 
   if [ "${os}" != "" ] && [ "${os}" != "${OS}" ]
   then 
     return 1
-  fi
-
-  if [ "${os}" = "" ] || [ "${os}" = "${OS}" ]
-  then 
-    if [ "${forcecheck}" != "true" ]
-    then 
-      case "${HOST}" in 
-        "cbrspc7")
-          return 0 
-          ;;
-        "d3lt4")
-          return 0 
-          ;;
-      esac
-    fi
   fi
 
   type "${prog}" > /dev/null 
@@ -57,9 +42,6 @@ function __is_available {
 # ╔════════════════════════════════════════════════════════════════════════════╗
 # ║ Exports                                                                    ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
-
-__is_available /usr/local/bin/zsh darwin \
-&& export SHELL=/usr/local/bin/zsh
 
 export ZSH_TMUX_AUTOSTART=true
 [ "${USER}" = "root" ] \
@@ -116,28 +98,19 @@ export SAVEHIST="${HISTSIZE}"
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_IGNORE_SPACE
 
-# export TERM="xterm-16color"
 export TERM="xterm-256color"
 export COLUMNS="80"
 
+# INFO: `nvim` check further down below
 export EDITOR="vim"
-__is_available nvim \
-&& export EDITOR="nvim"
 
 if [ -n "${SSH_CONNECTION}" ]
 then
   export BROWSER="w3m"
   export OPENER="w3m"
 else
-  if [ "${OS}" = "linux" ]
-  then
-    export BROWSER="/usr/local/bin/browser"
-    export OPENER="xdg-open"
-  elif [ "${OS}" = "darwin" ]
-  then
-    export BROWSER="open"
-    export OPENER="open"
-  fi
+  export BROWSER="/usr/local/bin/browser"
+  export OPENER="xdg-open"
 fi
 
 
@@ -188,10 +161,6 @@ export ADDRB_TEMPLATE="${HOME}/.config/addrb.tmpl"
 export CALDR_DB="${HOME}/.cache/caldr.db"
 export CALDR_TEMPLATE="${HOME}/.config/caldr.tmpl"
 
-# Import color scheme via wal
-#__is_available wal linux \ 
-#&& (wal -r &)
-
 # https://github.com/Cloudef/bemenu
 export BEMENU_OPTS="-n -c -s -i \
   -W 0.3 -H 26 -B 2 -l 10 \
@@ -213,27 +182,7 @@ export BEMENU_OPTS="-n -c -s -i \
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
 # LD_LIBRARY_PATH
-if [ "${OS}" = "linux" ]
-then
-  export LD_LIBRARY_PATH="/usr/local/lib64:$LD_LIBRARY_PATH"
-fi
-
-# MacOS
-if [ "${OS}" = "darwin" ]
-then
-  eval "$(/usr/libexec/path_helper -s)"
-  # /usr/local/* (Homebrew, etc)
-  export PATH="/usr/local/bin:/usr/local/sbin:/usr/local/opt/binutils/bin:${PATH}"
-  export MANPATH="/usr/local/man:${MANPATH}"
-
-  # Go
-  export GOROOT="/usr/local/opt/go/libexec"
-
-  # Ruby
-  export PATH="/usr/local/Cellar/ruby/$(ls -1 /usr/local/Cellar/ruby/ \
-                                      | sort \
-                                      | tail -n 1)/bin:${PATH}"
-fi
+export LD_LIBRARY_PATH="/usr/local/lib64:$LD_LIBRARY_PATH"
 
 # Cargo (Rust)
 [ -d "${HOME}/.cargo/bin" ] \
@@ -247,24 +196,6 @@ go env -w GOPATH="${HOME}/.go"
 export PATH="$(go env GOPATH)/bin:${PATH}"
 export GOPROXY="direct"
 export GOTOOLCHAIN=local+auto
-
-# Python virtualenv
-export VIRTUALENVWRAPPER_PYTHON="$(which python3)"
-export WORKON_HOME="${HOME}/.virtualenvs"
-function activate.virtualenv {
-  __is_available virtualenvwrapper_lazy.sh \
-  && source "$(which virtualenvwrapper_lazy.sh)" \
-  && workon | grep local > /dev/null \
-  && workon local \
-  && printf "Activated local.\n" \
-  || printf "Could not load virtualenvwrapper.\n"
-}
-
-export PYTHON_MAJOR_MINOR="$(python3 \
-  --version | sed -nr 's/.*([0-9]+\.[0-9]+)\..*/\1/p')"
-
-[ -d "${HOME}/Library/Python/${PYTHON_MAJOR_MINOR}/bin" ] \
-&& export PATH="${HOME}/Library/Python/${PYTHON_MAJOR_MINOR}/bin:${PATH}"
 
 # Rubygems
 __is_available gem \
@@ -347,21 +278,10 @@ then
     encode64 extract urltools isodate \
   )
 fi
-
-if [ "${OS}" = "darwin" ]
-then 
-  plugins+=(brew tmux macos)
-fi
 # ===         ===
 
 [ -e "${ZSH}/oh-my-zsh.sh" ] \
 && source "${ZSH}/oh-my-zsh.sh"
-
-fpath=(
-  /usr/local/share/zsh-completions
-  /usr/local/share/zsh/site-functions
-  ${fpath}
-)
 
 ZSH_THEME_TERM_TITLE_IDLE='zsh %n@%m:%~'
 
@@ -378,10 +298,6 @@ bindkey '^H' backward-kill-word
 __bemenu() { BEMENU_BACKEND=curses bemenu-run; zle redisplay }
 zle -N __bemenu
 bindkey '^ ' __bemenu
-
-[ "${OS}" = "darwin" ] \
-&& bindkey "\e[1;3C" forward-word \
-&& bindkey "\e[1;3D" backward-word
 
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
@@ -403,11 +319,16 @@ __is_available bat \
 
 # https://github.com/eza-community/eza
 __is_available eza \
-&& alias ls='eza  --time-style=relative --git --octal-permissions --icons --binary -lg' \
-&& alias ll='eza  --time-style=long-iso --git --octal-permissions --icons --binary -la' \
-&& alias la='eza  --time-style=long-iso --git --octal-permissions         --binary --changed -lahHgnuU' \
-&& alias l='eza   --time-style=long-iso --git                     --icons --binary -l --no-time' \
-&& alias lls='eza --time-style=long-iso --git --octal-permissions --icons --binary -las modified'
+&& alias ls='eza  --time-style=relative --git --octal-permissions --icons \
+  --binary -lg' \
+&& alias ll='eza  --time-style=long-iso --git --octal-permissions --icons \
+  --binary -la' \
+&& alias la='eza  --time-style=long-iso --git --octal-permissions         \
+  --binary --changed -lahHgnuU' \
+&& alias l='eza   --time-style=long-iso --git                     --icons \
+  --binary -l --no-time' \
+&& alias lls='eza --time-style=long-iso --git --octal-permissions --icons \
+  --binary -las modified'
 
 # https://github.com/ClementTsang/bottom
 __is_available btm \
@@ -420,7 +341,8 @@ __is_available neomutt \
 # https://github.com/neovim/neovim
 __is_available nvim \
 && alias vi=nvim \
-&& alias vim=nvim
+&& alias vim=nvim \
+&& export EDITOR="nvim"
 
 # https://github.com/junegunn/fzf
 __is_available fzf \
@@ -517,7 +439,7 @@ function ssh {
 # ║ Poor-man's aptitude                                                        ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
-if ! __is_available aptitude linux true
+if ! __is_available aptitude linux
 then
   _aptitude()
   {
@@ -533,29 +455,7 @@ then
   alias apt='aptitude'
 fi
 
-if [ "${OS}" = "darwin" ]
-then
-  function aptitude {
-    if [ -z "$1" ]; then
-      printf "Usage: aptitude <action> [options] ...\n"
-    else
-      case $1 in
-        install)     brew install "${@:2}";;
-        remove)      brew uninstall "${@:2}";;
-        purge)       brew uninstall "${@:2}"; brew cleanup;;
-        update)      brew update "${@:2}";;
-        upgrade)     brew upgrade "${@:2}";;
-        safe-upgrade)brew upgrade "${@:2}";;
-        full-upgrade)brew upgrade "${@:2}";;
-        search)      brew search "${@:2}";;
-        show)        brew info "${@:2}";;
-        clean)       brew cleanup "${@:2}";;
-        reinstall)   brew uninstall "${@:2}"; brew cleanup; brew install "${@:2}";;
-        *)           printf "aptitude: '%s' - unknown action\n" "$1" ;;
-      esac
-    fi
-  }
-elif __is_available emerge linux true
+if __is_available emerge linux
 then
   function aptitude {
     if [ -z "$1" ]; then
@@ -577,7 +477,7 @@ then
       esac
     fi
   }
-elif __is_available pacman linux true
+elif __is_available pacman linux
 then
   function aptitude {
     if [ -z "$1" ]; then
@@ -1062,17 +962,6 @@ function conclusive() {
 
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
-# ║ wtfutil                                                                    ║
-# ╚════════════════════════════════════════════════════════════════════════════╝
-
-function wtfutil() {
-  export WTF_GITHUB_TOKEN="$(pass show wtfutil/token)"
-  
-  command wtfutil $@
-}
-
-
-# ╔════════════════════════════════════════════════════════════════════════════╗
 # ║ gh                                                                         ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
@@ -1092,13 +981,6 @@ function mods() {
   
   command mods $@
 }
-
-# ╔════════════════════════════════════════════════════════════════════════════╗
-# ║ Fabric                                                                     ║
-# ╚════════════════════════════════════════════════════════════════════════════╝
-
-[ -f "$HOME/.config/fabric/fabric-bootstrap.inc" ] \
-&& . "$HOME/.config/fabric/fabric-bootstrap.inc"
 
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
@@ -1127,26 +1009,18 @@ function dotfiles-update-remote() {
     --exclude-from="${DOTFILES}/.exclude" \
     "${XDG_CONFIG_HOME}/" "${DOTFILES}/.config/" --delete-before
 
-  if [ "${OS}" = "darwin" ]
-  then
-    brew ls --formula -1 --full-name > "${DOTFILES}/brew_ls_-1"
-    brew ls --cask -1 --full-name > "${DOTFILES}/brew_cask_ls_-1"
-  fi
-  if [ "${OS}" = "linux" ]
-  then
-    mkdir -p "${DOTFILES}/usr/local/bin/"
-    /usr/bin/find /usr/local/bin -type f -exec sh -c '
-      case $( file -bi "$1" ) in (*/x-shellscript*) exit 0; esac
-      exit 1' sh {} \; -print | while read -r scriptfile
-      do
-        rsync -avH "${scriptfile}" "${DOTFILES}/usr/local/bin/"
-      done
+  mkdir -p "${DOTFILES}/usr/local/bin/"
+  /usr/bin/find /usr/local/bin -type f -exec sh -c '
+    case $( file -bi "$1" ) in (*/x-shellscript*) exit 0; esac
+    exit 1' sh {} \; -print | while read -r scriptfile
+    do
+      rsync -avH "${scriptfile}" "${DOTFILES}/usr/local/bin/"
+    done
 
-    mkdir -p "${DOTFILES}/.local/share/applications/"
-    rsync -avH \
-      "${HOME}/.local/share/applications/browser.desktop" \
-      "${DOTFILES}/.local/share/applications/browser.desktop"
-  fi
+  mkdir -p "${DOTFILES}/.local/share/applications/"
+  rsync -avH \
+    "${HOME}/.local/share/applications/browser.desktop" \
+    "${DOTFILES}/.local/share/applications/browser.desktop"
 
   cargo install --list > "${DOTFILES}/cargo_install_--list"
 
@@ -1192,14 +1066,11 @@ function dotfiles-update-local() {
     --exclude-from="${DOTFILES}/.exclude" \
     "${DOTFILES}/.config/" "${XDG_CONFIG_HOME}/" 
 
-  if [ "${OS}" = "linux" ]
-  then
-    cp "${DOTFILES}/usr/local/bin/"* /usr/local/bin/
+  cp "${DOTFILES}/usr/local/bin/"* /usr/local/bin/
 
-    mkdir -p "${HOME}/.local/share/applications/" 
-    cp "${DOTFILES}/local/share/applications/browser.desktop" \
-      "${HOME}/.local/share/applications/browser.desktop"
-  fi
+  mkdir -p "${HOME}/.local/share/applications/" 
+  cp "${DOTFILES}/local/share/applications/browser.desktop" \
+    "${HOME}/.local/share/applications/browser.desktop"
   return 0
 }
 
