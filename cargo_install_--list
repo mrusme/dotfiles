@@ -23,7 +23,7 @@ cross v0.2.5:
     cross-util
 csview v1.3.3:
     csview
-deno v2.0.0:
+deno v2.0.3:
     deno
     denort
 dijo v0.2.7:
@@ -32,7 +32,7 @@ du-dust v1.1.1:
     dust
 eva v0.3.1:
     eva
-eza v0.20.4:
+eza v0.20.5:
     eza
 fd-find v10.2.0:
     fd
