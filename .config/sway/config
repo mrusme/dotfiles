@@ -595,6 +595,9 @@ exec /usr/local/bin/overdue-tasks
 # Show contact birthdays notifications
 exec /usr/local/bin/birthdays
 
+# Gnome Keyring
+exec --no-startup-id gnome-keyring-daemon --start --components=pkcs11,secrets,ssh
+
 # Password Manager
 exec /usr/local/bin/passwordmanager
 
