@@ -1,4 +1,4 @@
-#enable_experimental_conpty_backend = false
+[general]
 live_config_reload = true
 working_directory = "None"
 
@@ -832,7 +832,7 @@ multiplier = 3
 save_to_clipboard = false
 semantic_escape_chars = ",│`|:\"' ()[]{}<>"
 
-[shell]
+[terminal.shell]
 args = ["--login"]
 program = "/bin/zsh"
 
@@ -859,3 +859,5 @@ persist         = false
 mouse.enabled   = true
 binding         = { key = "U", mods = "Control|Shift" }
 regex = "(ipfs:|ipns:|magnet:|mailto:|gemini:|gopher:|https:|http:|news:|file:|git:|ssh:|ftp:)[^\u0000-\u001F\u007F-\u009F<>\"\\s{-}\\^⟨⟩`]+"
+
+[terminal]
