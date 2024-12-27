@@ -566,7 +566,7 @@ bar {
 
 # wlsunset 
 # https://sr.ht/~kennylevinsen/wlsunset/
-exec wlsunset -l 25.77 -L -79.38668
+exec wlsunset -S '06:30' -s '19:30'
 
 # poweralertd 
 # https://git.sr.ht/~kennylevinsen/poweralertd
