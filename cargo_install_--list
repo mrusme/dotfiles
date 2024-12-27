@@ -1,4 +1,4 @@
-ast-grep v0.28.1:
+ast-grep v0.32.2:
     ast-grep
     sg
 bandwhich v0.23.1:
@@ -7,11 +7,11 @@ battop v0.2.4:
     battop
 bingrep v0.11.0:
     bingrep
-bluetui v0.5.1:
+bluetui v0.6.0:
     bluetui
 bottom v0.10.2:
     btm
-cargo-update v15.0.0:
+cargo-update v16.0.0:
     cargo-install-update
     cargo-install-update-config
 code-minimap v0.6.7:
@@ -32,13 +32,13 @@ du-dust v1.1.1:
     dust
 eva v0.3.1:
     eva
-eza v0.20.5:
+eza v0.20.14:
     eza
 fd-find v10.2.0:
     fd
-gfold v4.5.0:
+gfold v4.6.0:
     gfold
-git-cliff v2.6.1:
+git-cliff v2.7.0:
     git-cliff
     git-cliff-completions
     git-cliff-mangen
@@ -51,35 +51,35 @@ gitui v0.26.3:
 gpg-tui v0.11.0:
     gpg-tui
     gpg-tui-completions
-gping v1.17.3:
+gping v1.19.0:
     gping
 harper-ls v0.12.0:
     harper-ls
-hexyl v0.14.0:
+hexyl v0.15.0:
     hexyl
 htmlq v0.4.0:
     htmlq
-hyperfine v1.18.0:
+hyperfine v1.19.0:
     hyperfine
 iamb v0.0.10:
     iamb
 jless v0.9.0:
     jless
-jwt-cli v6.1.1:
+jwt-cli v6.2.0:
     jwt
-kmon v1.6.5:
+kmon v1.7.1:
     kmon
 lemmeknow v0.8.0:
     lemmeknow
-librespot v0.5.0:
+librespot v0.6.0:
     librespot
-mdcat v2.5.0:
+mdcat v2.7.1:
     mdcat
 neovide v0.13.3 (https://github.com/neovide/neovide#3960baad):
     neovide
 nostr-tool v0.5.1:
     nostr-tool
-oxipng v9.1.2:
+oxipng v9.1.3:
     oxipng
 pastel v0.10.0:
     pastel
@@ -101,7 +101,7 @@ rustscan v2.3.0:
     rustscan
 shellcaster v2.0.1:
     shellcaster
-sigrs v0.1.3:
+sigrs v0.1.4:
     sig
 silicon v0.5.2:
     silicon
@@ -117,7 +117,7 @@ swaycons v0.3.1:
     swaycons
 taskwarrior-tui v0.26.3:
     taskwarrior-tui
-tealdeer v1.7.0:
+tealdeer v1.7.1:
     tldr
 tickrs v0.14.10:
     tickrs
@@ -127,7 +127,7 @@ viu v1.5.1:
     viu
 vocage v1.1.0:
     vocage
-websocat v1.13.0:
+websocat v1.14.0:
     websocat
 wiki-tui v0.8.2:
     wiki-tui
