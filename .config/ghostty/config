@@ -1,0 +1,15 @@
+background-opacity = 0.90
+background        = 121212
+foreground        = F8F8F8
+
+font-family       = "Berkeley Mono"
+font-style-bold   = false 
+font-style-italic = false 
+font-style-bold-italic = false
+font-size         = 11
+
+cursor-style      = block
+cursor-style-blink = false
+shell-integration-features = no-cursor
+
+
