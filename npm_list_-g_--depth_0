@@ -1,16 +1,16 @@
 /home/mrus/.local/lib
-├── bash-language-server@5.4.2
+├── bash-language-server@5.4.3
 ├── dockerfile-language-server-nodejs@0.13.0
 ├── git-stats@3.2.0
 ├── graphql-language-service-cli@3.5.0
 ├── neovim@5.3.0
-├── npm-check-updates@17.1.12
+├── npm-check-updates@17.1.14
 ├── npm@11.0.0
 ├── prettier@3.4.2
 ├── stylelint-lsp@2.0.1
-├── svelte-language-server@0.17.8
+├── svelte-language-server@0.17.10
 ├── typescript-language-server@4.3.3
-├── typescript@5.7.2
+├── typescript@5.7.3
 ├── vim-language-server@2.3.1
 ├── vscode-langservers-extracted@4.10.0
 └── yaml-language-server@1.15.0
