@@ -203,7 +203,7 @@ __is_available gem \
 && export PATH="$(ruby -r rubygems -e 'puts Gem.user_dir')/bin:${PATH}"
 
 # NPM
-export NPM_PACKAGES="${HOME}/.local/lib64/node_modules"
+export NPM_PACKAGES="${HOME}/.local/lib/node_modules"
 export PATH="${PATH}:${NPM_PACKAGES}/bin:${HOME}/.local/bin"
 export MANPATH="${MANPATH-$(manpath)}:${NPM_PACKAGES}/share/man"
 
