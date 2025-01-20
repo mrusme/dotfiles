@@ -1,4 +1,4 @@
-ast-grep v0.32.2:
+ast-grep v0.33.1:
     ast-grep
     sg
 bandwhich v0.23.1:
@@ -11,19 +11,19 @@ bluetui v0.6.0:
     bluetui
 bottom v0.10.2:
     btm
-cargo-update v16.0.0:
+cargo-update v16.1.0:
     cargo-install-update
     cargo-install-update-config
-code-minimap v0.6.7:
+code-minimap v0.6.8:
     code-minimap
 conclusive v1.0.0:
     conclusive
 cross v0.2.5:
     cross
     cross-util
-csview v1.3.3:
+csview v1.3.4:
     csview
-deno v2.0.3:
+deno v2.1.6:
     deno
     denort
 dijo v0.2.7:
@@ -32,10 +32,12 @@ du-dust v1.1.1:
     dust
 eva v0.3.1:
     eva
-eza v0.20.14:
+eza v0.20.17:
     eza
 fd-find v10.2.0:
     fd
+fum-player v0.4.3:
+    fum
 gfold v4.6.0:
     gfold
 git-cliff v2.7.0:
@@ -46,16 +48,16 @@ git-delta v0.18.2:
     delta
 git-journal v1.8.1:
     git-journal
-gitui v0.26.3:
+gitui v0.27.0:
     gitui
 gpg-tui v0.11.0:
     gpg-tui
     gpg-tui-completions
 gping v1.19.0:
     gping
-harper-ls v0.12.0:
+harper-ls v0.16.0:
     harper-ls
-hexyl v0.15.0:
+hexyl v0.16.0:
     hexyl
 htmlq v0.4.0:
     htmlq
@@ -87,7 +89,7 @@ pipe-rename v1.6.5:
     renamer
 presenterm v0.9.0:
     presenterm
-procs v0.14.8:
+procs v0.14.9:
     procs
 radicle-cli v0.9.0 (https://seed.radicle.xyz/z3gqcJUoA1n9HaHKufZs5FCSGazv5.git#db98daec):
     rad
@@ -111,7 +113,7 @@ speedtest-rs v0.2.0:
     speedtest-rs
 spotify-tui v0.25.0:
     spt
-starship v1.21.1:
+starship v1.22.1:
     starship
 swaycons v0.3.1:
     swaycons
@@ -129,7 +131,7 @@ vocage v1.1.0:
     vocage
 websocat v1.14.0:
     websocat
-wiki-tui v0.8.2:
+wiki-tui v0.9.1:
     wiki-tui
 xplr v0.21.9:
     xplr
