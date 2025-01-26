@@ -1,0 +1,17 @@
+{
+  "use_active_player": true,
+  "keybinds": {
+    "esc;q": "quit()",
+    "h": "prev()",
+    "l": "next()",
+    " ": "play_pause()"
+  },
+  "align": "center",
+  "direction": "vertical",
+  "flex": "space-around",
+  "width": 30,
+  "height": 28,
+  "bg": "reset",
+  "fg": "reset",
+  "debug": false
+}
