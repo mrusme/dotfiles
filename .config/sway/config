@@ -90,9 +90,7 @@ output "ASUSTek COMPUTER INC VG27AQL1A N6LMQS161067" {
   mode 2560x1440@144Hz
   pos -2560 -540
   adaptive_sync on
-  # https://github.com/swaywm/sway/blob/77b9ddabe2a97c5d04c30929b0f8cbde3470fdd7/sway/sway-output.5.scd?plain=1#L181
-  # Not released yet
-  #color_profile icc ~/.config/sway/rtings-icc-profile.icm
+  color_profile icc ~/.config/sway/rtings-icc-profile.icm
 }
 
 # Streaming 
@@ -566,7 +564,7 @@ bar {
 
 # wlsunset 
 # https://sr.ht/~kennylevinsen/wlsunset/
-exec wlsunset -S '06:30' -s '19:30'
+exec wlsunset -S '06:30' -s '19:30' -d 1800
 
 # poweralertd 
 # https://git.sr.ht/~kennylevinsen/poweralertd
