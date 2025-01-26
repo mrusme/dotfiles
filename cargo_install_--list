@@ -23,24 +23,23 @@ cross v0.2.5:
     cross-util
 csview v1.3.4:
     csview
-deno v2.1.6:
+deno v2.1.7:
     deno
-    denort
 dijo v0.2.7:
     dijo
 du-dust v1.1.1:
     dust
 eva v0.3.1:
     eva
-eza v0.20.17:
+eza v0.20.18:
     eza
 fd-find v10.2.0:
     fd
-fum-player v0.4.3:
+fum-player v0.6.4:
     fum
 gfold v4.6.0:
     gfold
-git-cliff v2.7.0:
+git-cliff v2.8.0:
     git-cliff
     git-cliff-completions
     git-cliff-mangen
@@ -55,7 +54,7 @@ gpg-tui v0.11.0:
     gpg-tui-completions
 gping v1.19.0:
     gping
-harper-ls v0.16.0:
+harper-ls v0.17.0:
     harper-ls
 hexyl v0.16.0:
     hexyl
