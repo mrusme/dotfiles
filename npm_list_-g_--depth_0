@@ -5,7 +5,7 @@
 ├── graphql-language-service-cli@3.5.0
 ├── neovim@5.3.0
 ├── npm-check-updates@17.1.14
-├── npm@11.0.0
+├── npm@11.1.0
 ├── prettier@3.4.2
 ├── stylelint-lsp@2.0.1
 ├── svelte-language-server@0.17.10
