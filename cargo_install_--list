@@ -1,4 +1,6 @@
-ast-grep v0.33.1:
+age-plugin-yubikey v0.5.0:
+    age-plugin-yubikey
+ast-grep v0.34.4:
     ast-grep
     sg
 bandwhich v0.23.1:
@@ -31,11 +33,11 @@ du-dust v1.1.1:
     dust
 eva v0.3.1:
     eva
-eza v0.20.18:
+eza v0.20.19:
     eza
 fd-find v10.2.0:
     fd
-fum-player v0.6.4:
+fum-player v0.9.0:
     fum
 gfold v4.6.0:
     gfold
@@ -54,7 +56,7 @@ gpg-tui v0.11.0:
     gpg-tui-completions
 gping v1.19.0:
     gping
-harper-ls v0.17.0:
+harper-ls v0.19.0:
     harper-ls
 hexyl v0.16.0:
     hexyl
@@ -86,7 +88,7 @@ pastel v0.10.0:
     pastel
 pipe-rename v1.6.5:
     renamer
-presenterm v0.9.0:
+presenterm v0.10.0:
     presenterm
 procs v0.14.9:
     procs
@@ -132,7 +134,7 @@ websocat v1.14.0:
     websocat
 wiki-tui v0.9.1:
     wiki-tui
-xplr v0.21.9:
+xplr v0.21.10:
     xplr
 zoxide v0.9.6:
     zoxide
