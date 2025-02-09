@@ -584,15 +584,6 @@ exec yubikey-touch-detector -libnotify
 # https://github.com/mrusme/usbec
 exec usbec
 
-# Show calendar notifications 
-exec /usr/local/bin/calendar-notifications
-
-# Sync taskwarrior and show overdue tasks notifications
-exec /usr/local/bin/overdue-tasks
-
-# Show contact birthdays notifications
-exec /usr/local/bin/birthdays
-
 # Gnome Keyring
 exec --no-startup-id gnome-keyring-daemon --start --components=pkcs11,secrets,ssh
 
@@ -607,7 +598,7 @@ exec /usr/local/bin/passwordmanager
 exec swaycons
 
 # Starshield
-exec starshieldd /dev/serial/by-id/usb-Espressif_USB_JTAG_serial_debug_unit_40:4C:CA:48:3A:38-if00
+# exec starshieldd /dev/serial/by-id/usb-Espressif_USB_JTAG_serial_debug_unit_40:4C:CA:48:3A:38-if00
 
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
