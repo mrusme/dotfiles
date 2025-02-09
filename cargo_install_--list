@@ -25,7 +25,7 @@ cross v0.2.5:
     cross-util
 csview v1.3.4:
     csview
-deno v2.1.7:
+deno v2.1.9:
     deno
 dijo v0.2.7:
     dijo
@@ -33,11 +33,11 @@ du-dust v1.1.1:
     dust
 eva v0.3.1:
     eva
-eza v0.20.19:
+eza v0.20.20:
     eza
 fd-find v10.2.0:
     fd
-fum-player v0.9.0:
+fum-player v0.9.15:
     fum
 gfold v4.6.0:
     gfold
@@ -78,7 +78,7 @@ librespot v0.6.0:
     librespot
 mdcat v2.7.1:
     mdcat
-neovide v0.13.3 (https://github.com/neovide/neovide#3960baad):
+neovide v0.14.0 (https://github.com/neovide/neovide#9ff21b85):
     neovide
 nostr-tool v0.5.1:
     nostr-tool
@@ -92,11 +92,11 @@ presenterm v0.10.0:
     presenterm
 procs v0.14.9:
     procs
-radicle-cli v0.9.0 (https://seed.radicle.xyz/z3gqcJUoA1n9HaHKufZs5FCSGazv5.git#db98daec):
+radicle-cli v0.12.1 (https://seed.radicle.xyz/z3gqcJUoA1n9HaHKufZs5FCSGazv5.git#3b5fac17):
     rad
-radicle-node v0.9.0 (https://seed.radicle.xyz/z3gqcJUoA1n9HaHKufZs5FCSGazv5.git#ee1c8678):
+radicle-node v0.10.0 (https://seed.radicle.xyz/z3gqcJUoA1n9HaHKufZs5FCSGazv5.git#3b5fac17):
     radicle-node
-radicle-remote-helper v0.9.0 (https://seed.radicle.xyz/z3gqcJUoA1n9HaHKufZs5FCSGazv5.git#db98daec):
+radicle-remote-helper v0.10.0 (https://seed.radicle.xyz/z3gqcJUoA1n9HaHKufZs5FCSGazv5.git#3b5fac17):
     git-remote-rad
 rates v0.7.0:
     rates
