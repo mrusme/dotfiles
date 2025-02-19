@@ -24,7 +24,7 @@ desktop.ini
 *.swo
 
 # General
-log/
+/log/
 *.log
 
 # Compiled
