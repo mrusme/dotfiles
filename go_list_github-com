@@ -7,6 +7,7 @@ github.com/dlvhdr/diffnav
 github.com/go-delve/delve/cmd/dlv
 github.com/kisielk/errcheck
 github.com/danielmiessler/fabric
+github.com/charmbracelet/freeze
 github.com/zricethezav/gitleaks
 github.com/golangci/golangci-lint/cmd/golangci-lint
 github.com/fatih/gomodifytags
