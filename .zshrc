@@ -630,7 +630,11 @@ alias 'gcss!'='git commit --verbose --gpg-sign --signoff --amend'
 
 alias gcb='git checkout -b'
 alias gco='git checkout'
+alias gcom='git checkout master'
+alias gcod='git checkout develop'
 alias gcor='git checkout --recurse-submodules'
+alias gcorm='git checkout --recurse-submodules master'
+alias gcord='git checkout --recurse-submodules develop'
 
 alias gcl='git clone --recurse-submodules'
 
