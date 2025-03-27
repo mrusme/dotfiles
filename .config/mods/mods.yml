@@ -34,16 +34,16 @@ fanciness: 10
 # Text to show while generating.
 status-text: Generating
 # Default character limit on input to model.
-max-input-chars: 12250
+max-input-chars: 650000
 # Maximum number of tokens in response.
 # max-tokens: 100
 # Aliases and endpoints for OpenAI compatible REST API.
 apis:
   ollama:
-    base-url: http://localhost:11434/api
+    base-url: http://10.0.0.10:11434/api
     models:
-      "llama3:latest":
-        aliases: ["llama3"]
+      "deepseek-r1":
+        aliases: ["deepseek-r1"]
         max-input-chars: 650000
   openai:
     base-url: https://api.openai.com/v1
