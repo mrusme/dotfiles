@@ -195,7 +195,7 @@ export LD_LIBRARY_PATH="/usr/local/lib64:$LD_LIBRARY_PATH"
 go env -w GOPATH="${HOME}/.go"
 export PATH="$(go env GOPATH)/bin:${PATH}"
 export GOPROXY="direct"
-export GOTOOLCHAIN=local+auto
+export GOTOOLCHAIN=local
 
 # Rubygems
 __is_available gem \
