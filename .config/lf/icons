@@ -1,39 +1,20 @@
 # vim:ft=conf
 
-# These examples require Nerd Fonts or a compatible font to be used.
-# See https://www.nerdfonts.com for more information.
-
-# default values from lf (with matching order)
-# ln      l       # LINK
-# or      l       # ORPHAN
-# tw      t       # STICKY_OTHER_WRITABLE
-# ow      d       # OTHER_WRITABLE
-# st      t       # STICKY
-# di      d       # DIR
-# pi      p       # FIFO
-# so      s       # SOCK
-# bd      b       # BLK
-# cd      c       # CHR
-# su      u       # SETUID
-# sg      g       # SETGID
-# ex      x       # EXEC
-# fi      -       # FILE
-
 # file types (with matching order)
 ln             # LINK
 or             # ORPHAN
-tw      t       # STICKY_OTHER_WRITABLE
-ow             # OTHER_WRITABLE
-st      t       # STICKY
-di             # DIR
-pi      p       # FIFO
-so      s       # SOCK
-bd      b       # BLK
-cd      c       # CHR
+tw             # STICKY_OTHER_WRITABLE
+ow      󰏪       # OTHER_WRITABLE
+st             # STICKY
+di             # DIR
+pi      󰟥       # FIFO
+so      󱄇       # SOCK
+bd      󰆦       # BLK
+cd      󱄽       # CHR
 su      u       # SETUID
 sg      g       # SETGID
 ex             # EXEC
-fi             # FILE
+fi             # FILE
 
 # file extensions (vim-devicons)
 *.styl          
@@ -237,121 +218,121 @@ fi             # FILE
 Vagrantfile             
 
 # archives or compressed (extensions from dircolors defaults)
-*.tar   
-*.tgz   
-*.arc   
-*.arj   
-*.taz   
-*.lha   
-*.lz4   
-*.lzh   
-*.lzma  
-*.tlz   
-*.txz   
-*.tzo   
-*.t7z   
-*.zip   
-*.z     
-*.dz    
-*.gz    
-*.lrz   
-*.lz    
-*.lzo   
-*.xz    
-*.zst   
-*.tzst  
-*.bz2   
-*.bz    
-*.tbz   
-*.tbz2  
-*.tz    
-*.deb   
-*.rpm   
-*.jar   
-*.war   
-*.ear   
-*.sar   
-*.rar   
-*.alz   
-*.ace   
-*.zoo   
-*.cpio  
-*.7z    
-*.rz    
-*.cab   
-*.wim   
-*.swm   
-*.dwm   
-*.esd   
+*.tar   
+*.tgz   
+*.arc   
+*.arj   
+*.taz   
+*.lha   
+*.lz4   
+*.lzh   
+*.lzma  
+*.tlz   
+*.txz   
+*.tzo   
+*.t7z   
+*.zip   
+*.z     
+*.dz    
+*.gz    
+*.lrz   
+*.lz    
+*.lzo   
+*.xz    
+*.zst   
+*.tzst  
+*.bz2   
+*.bz    
+*.tbz   
+*.tbz2  
+*.tz    
+*.deb   
+*.rpm   
+*.jar   
+*.war   
+*.ear   
+*.sar   
+*.rar   
+*.alz   
+*.ace   
+*.zoo   
+*.cpio  
+*.7z    
+*.rz    
+*.cab   
+*.wim   
+*.swm   
+*.dwm   
+*.esd   
 
 # image formats (extensions from dircolors defaults)
-*.jpg   
-*.jpeg  
-*.mjpg  
-*.mjpeg 
-*.gif   
-*.bmp   
-*.pbm   
-*.pgm   
-*.ppm   
-*.tga   
-*.xbm   
-*.xpm   
-*.tif   
-*.tiff  
-*.png   
-*.svg   
-*.svgz  
-*.mng   
-*.pcx   
-*.mov   
-*.mpg   
-*.mpeg  
-*.m2v   
-*.mkv   
-*.webm  
-*.ogm   
-*.mp4   
-*.m4v   
-*.mp4v  
-*.vob   
-*.qt    
-*.nuv   
-*.wmv   
-*.asf   
-*.rm    
-*.rmvb  
-*.flc   
-*.avi   
-*.fli   
-*.flv   
-*.gl    
-*.dl    
-*.xcf   
-*.xwd   
-*.yuv   
-*.cgm   
-*.emf   
-*.ogv   
-*.ogx   
+*.jpg   󰋩
+*.jpeg  󰋩
+*.mjpg  󰋩
+*.mjpeg 󰋩
+*.gif   󰋩
+*.bmp   󰋩
+*.pbm   󰋩
+*.pgm   󰋩
+*.ppm   󰋩
+*.tga   󰋩
+*.xbm   󰋩
+*.xpm   󰋩
+*.tif   󰋩
+*.tiff  󰋩
+*.png   󰋩
+*.svg   󰋩
+*.svgz  󰋩
+*.mng   󰋩
+*.pcx   󰋩
+*.mov   󰋩
+*.mpg   󰋩
+*.mpeg  󰋩
+*.m2v   󰋩
+*.mkv   󰋩
+*.webm  󰋩
+*.ogm   󰋩
+*.mp4   󰋩
+*.m4v   󰋩
+*.mp4v  󰋩
+*.vob   󰋩
+*.qt    󰋩
+*.nuv   󰋩
+*.wmv   󰋩
+*.asf   󰋩
+*.rm    󰋩
+*.rmvb  󰋩
+*.flc   󰋩
+*.avi   󰋩
+*.fli   󰋩
+*.flv   󰋩
+*.gl    󰋩
+*.dl    󰋩
+*.xcf   󰋩
+*.xwd   󰋩
+*.yuv   󰋩
+*.cgm   󰋩
+*.emf   󰋩
+*.ogv   󰋩
+*.ogx   󰋩
 
 # audio formats (extensions from dircolors defaults)
-*.aac   
-*.au    
-*.flac  
-*.m4a   
-*.mid   
-*.midi  
-*.mka   
-*.mp3   
-*.mpc   
-*.ogg   
-*.ra    
-*.wav   
-*.oga   
-*.opus  
-*.spx   
-*.xspf  
+*.aac   󱑽
+*.au    󱑽
+*.flac  󱑽
+*.m4a   󱑽
+*.mid   󱑽
+*.midi  󱑽
+*.mka   󱑽
+*.mp3   󱑽
+*.mpc   󱑽
+*.ogg   󱑽
+*.ra    󱑽
+*.wav   󱑽
+*.oga   󱑽
+*.opus  󱑽
+*.spx   󱑽
+*.xspf  󱑽
 
 # other formats
-*.pdf   
+*.pdf   
