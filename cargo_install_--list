@@ -1,6 +1,6 @@
 age-plugin-yubikey v0.5.0:
     age-plugin-yubikey
-ast-grep v0.35.0:
+ast-grep v0.36.2:
     ast-grep
     sg
 bandwhich v0.23.1:
@@ -13,7 +13,7 @@ bluetui v0.6.0:
     bluetui
 bottom v0.10.2:
     btm
-cargo-update v16.1.0:
+cargo-update v16.3.0:
     cargo-install-update
     cargo-install-update-config
 code-minimap v0.6.8:
@@ -25,21 +25,21 @@ cross v0.2.5:
     cross-util
 csview v1.3.4:
     csview
-deno v2.2.1:
+deno v2.2.5:
     deno
 dijo v0.2.7:
     dijo
-du-dust v1.1.1:
+du-dust v1.1.2:
     dust
 eva v0.3.1:
     eva
-eza v0.20.22:
+eza v0.20.24:
     eza
 fd-find v10.2.0:
     fd
-fum-player v1.2.0:
+fum-player v1.3.1:
     fum
-gfold v4.6.0:
+gfold v2025.2.1:
     gfold
 git-cliff v2.8.0:
     git-cliff
@@ -56,7 +56,7 @@ gpg-tui v0.11.0:
     gpg-tui-completions
 gping v1.19.0:
     gping
-harper-ls v0.22.0:
+harper-ls v0.23.0:
     harper-ls
 hexyl v0.16.0:
     hexyl
@@ -78,7 +78,7 @@ librespot v0.6.0:
     librespot
 mdcat v2.7.1:
     mdcat
-neovide v0.14.0 (https://github.com/neovide/neovide#509ddb3c):
+neovide v0.14.1 (https://github.com/neovide/neovide#2028526f):
     neovide
 nostr-tool v0.5.1:
     nostr-tool
@@ -88,7 +88,7 @@ pastel v0.10.0:
     pastel
 pipe-rename v1.6.5:
     renamer
-presenterm v0.10.1:
+presenterm v0.12.0:
     presenterm
 procs v0.14.9:
     procs
@@ -100,7 +100,7 @@ radicle-remote-helper v0.10.0 (https://seed.radicle.xyz/z3gqcJUoA1n9HaHKufZs5FCS
     git-remote-rad
 rates v0.7.0:
     rates
-rustscan v2.3.0:
+rustscan v2.4.1:
     rustscan
 shellcaster v2.0.1:
     shellcaster
@@ -120,7 +120,7 @@ swaycons v0.3.1:
     swaycons
 taskwarrior-tui v0.26.3:
     taskwarrior-tui
-tealdeer v1.7.1:
+tealdeer v1.7.2:
     tldr
 tickrs v0.14.11:
     tickrs
@@ -134,7 +134,7 @@ websocat v1.14.0:
     websocat
 wiki-tui v0.9.1:
     wiki-tui
-xplr v0.21.10:
+xplr v1.0.0:
     xplr
 zoxide v0.9.7:
     zoxide
