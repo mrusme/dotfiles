@@ -1,0 +1,21 @@
+{
+  "background": "#0f1214",
+  "margin": [0, 0, 0, 0],
+  "padding": [10, 20, 10, 10],
+  "window": false,
+  "width": 0,
+  "height": 0,
+  "config": "default",
+  "theme": "doom-one",
+  "border": { "radius": 0, "width": 1, "color": "#515151" },
+  "shadow": { "blur": 0, "x": 0, "y": 0 },
+  "font": {
+    "family": "Berkeley Mono",
+    "file": "/home/mrus/.local/share/fonts/BerkeleyMono-Regular.ttf",
+    "size": 14,
+    "ligatures": true
+  },
+  "line_height": 1.2,
+  "line_numbers": false
+}
+
