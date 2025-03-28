@@ -25,7 +25,7 @@ cross v0.2.5:
     cross-util
 csview v1.3.4:
     csview
-deno v2.2.5:
+deno v2.2.6:
     deno
 dijo v0.2.7:
     dijo
@@ -56,7 +56,7 @@ gpg-tui v0.11.0:
     gpg-tui-completions
 gping v1.19.0:
     gping
-harper-ls v0.23.0:
+harper-ls v0.26.0:
     harper-ls
 hexyl v0.16.0:
     hexyl
@@ -90,7 +90,7 @@ pipe-rename v1.6.5:
     renamer
 presenterm v0.12.0:
     presenterm
-procs v0.14.9:
+procs v0.14.10:
     procs
 radicle-cli v0.12.1 (https://seed.radicle.xyz/z3gqcJUoA1n9HaHKufZs5FCSGazv5.git#3b5fac17):
     rad
