@@ -120,9 +120,6 @@ exec wl-paste --watch cliphist store
 # Pipewire
 exec gentoo-pipewire-launcher
 
-# Desktop notifications
-exec mako
-
 # swayidle
 exec swayidle -w \
 timeout 600 'swaylock' \
@@ -587,12 +584,8 @@ exec usbec
 # Gnome Keyring
 exec --no-startup-id gnome-keyring-daemon --start --components=pkcs11,secrets,ssh
 
-# Password Manager
-exec /usr/local/bin/passwordmanager
-
-# Radicle node
-# TODO: Passphrase via pass
-# exec rad node start
+# Desktop notifications
+exec mako
 
 # Icons in title bars
 exec swaycons
