@@ -376,9 +376,9 @@
       "on-scroll"     : 1,
       "format": {
         "months":     "<span color='#633aff'><b>{}</b></span>",
-        "days":       "<span color='#ffffff'><b>{}</b></span>",
+        "days":       "<span color='#111111'><b>{}</b></span>",
         "weeks":      "<span color='#61E2FF'><b>W{}</b></span>",
-        "weekdays":   "<span color='#FFCC00'><b>{}</b></span>",
+        "weekdays":   "<span color='#222222'><b>{}</b></span>",
         "today":      "<span color='#f53fa1'><b><u>{}</u></b></span>"
       }
     },
