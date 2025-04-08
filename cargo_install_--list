@@ -25,21 +25,21 @@ cross v0.2.5:
     cross-util
 csview v1.3.4:
     csview
-deno v2.2.6:
+deno v2.2.8:
     deno
 dijo v0.2.7:
     dijo
-du-dust v1.1.2:
+du-dust v1.2.0:
     dust
 eva v0.3.1:
     eva
-eza v0.20.24:
+eza v0.21.0:
     eza
 fd-find v10.2.0:
     fd
 fum-player v1.3.1:
     fum
-gfold v2025.2.1:
+gfold v2025.4.0:
     gfold
 git-cliff v2.8.0:
     git-cliff
@@ -56,7 +56,7 @@ gpg-tui v0.11.0:
     gpg-tui-completions
 gping v1.19.0:
     gping
-harper-ls v0.26.0:
+harper-ls v0.27.0:
     harper-ls
 hexyl v0.16.0:
     hexyl
@@ -78,7 +78,7 @@ librespot v0.6.0:
     librespot
 mdcat v2.7.1:
     mdcat
-neovide v0.14.1 (https://github.com/neovide/neovide#7c29e7a8):
+neovide v0.15.0 (https://github.com/neovide/neovide#ce5dcd4a):
     neovide
 nostr-tool v0.5.1:
     nostr-tool
@@ -130,7 +130,7 @@ viu v1.5.1:
     viu
 vocage v1.1.0:
     vocage
-websocat v1.14.0:
+websocat v4.0.0-alpha2:
     websocat
 wiki-tui v0.9.1:
     wiki-tui
