@@ -1,6 +1,8 @@
 age-plugin-yubikey v0.5.0:
     age-plugin-yubikey
-ast-grep v0.36.2:
+angry_oxide v0.8.32 (https://github.com/Ragnt/AngryOxide#b3552a2d):
+    angryoxide
+ast-grep v0.36.3:
     ast-grep
     sg
 bandwhich v0.23.1:
@@ -9,10 +11,14 @@ battop v0.2.4:
     battop
 bingrep v0.11.0:
     bingrep
+binsider v0.2.1:
+    binsider
 bluetui v0.6.0:
     bluetui
 bottom v0.10.2:
     btm
+bpf-linker v0.9.14:
+    bpf-linker
 cargo-update v16.3.0:
     cargo-install-update
     cargo-install-update-config
@@ -25,7 +31,7 @@ cross v0.2.5:
     cross-util
 csview v1.3.4:
     csview
-deno v2.2.8:
+deno v2.2.9:
     deno
 dijo v0.2.7:
     dijo
@@ -78,7 +84,7 @@ librespot v0.6.0:
     librespot
 mdcat v2.7.1:
     mdcat
-neovide v0.15.0 (https://github.com/neovide/neovide#ce5dcd4a):
+neovide v0.15.0 (https://github.com/neovide/neovide#3075a94f):
     neovide
 nostr-tool v0.5.1:
     nostr-tool
@@ -92,12 +98,6 @@ presenterm v0.12.0:
     presenterm
 procs v0.14.10:
     procs
-radicle-cli v0.12.1 (https://seed.radicle.xyz/z3gqcJUoA1n9HaHKufZs5FCSGazv5.git#3b5fac17):
-    rad
-radicle-node v0.10.0 (https://seed.radicle.xyz/z3gqcJUoA1n9HaHKufZs5FCSGazv5.git#3b5fac17):
-    radicle-node
-radicle-remote-helper v0.10.0 (https://seed.radicle.xyz/z3gqcJUoA1n9HaHKufZs5FCSGazv5.git#3b5fac17):
-    git-remote-rad
 rates v0.7.0:
     rates
 rustscan v2.4.1:
