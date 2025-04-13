@@ -1,0 +1,4 @@
+#!/bin/sh
+con_id=$(swaymsg -t get_tree | jq 'recurse(.nodes[]?; .) | select(.nodes? | any(.focused == true)) | .id')
+title=$(find ~/projects/ -maxdepth 2 -type d -printf "%f\n" | bemenu)
+swaymsg "[con_id=$con_id]" title_format "$title"

@@ -261,6 +261,9 @@ bindsym $mod+Shift+F2         exec /usr/local/bin/audio-router analog
 # Route audio to MOTU
 bindsym $mod+Shift+F3         exec /usr/local/bin/audio-router motu
 
+
+# === Screenshot ===
+
 # Screenshot whole screen
 bindsym Print                 exec --no-startup-id /usr/local/bin/screenshot
 
@@ -279,11 +282,17 @@ bindsym $mod+Print            exec --no-startup-id slurp \
 # Pick color and copy to clipboard 
 bindsym $mod+Shift+P          exec --no-startup-id hyprpicker -n -a
 
+
+# === Various ===
+
 # https://github.com/mrusme/bookmarkdown
 bindsym Alt+Space             exec /usr/local/bin/bmd
 
 # Open QtFM
 bindsym $mod+Ctrl+f           exec qtfm
+
+# Rename Sway "tab"
+bindsym $mod+Ctrl+t           exec /usr/local/bin/sway-nametab
 
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
