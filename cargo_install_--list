@@ -22,10 +22,14 @@ bpf-linker v0.9.14:
 cargo-update v16.3.0:
     cargo-install-update
     cargo-install-update-config
+carl v0.3.1:
+    carl
 code-minimap v0.6.8:
     code-minimap
 conclusive v1.0.0:
     conclusive
+crates-tui v0.1.25:
+    crates-tui
 cross v0.2.5:
     cross
     cross-util
@@ -64,6 +68,10 @@ gping v1.19.0:
     gping
 harper-ls v0.27.0:
     harper-ls
+havn v0.2.1:
+    havn
+heretek v0.5.0:
+    heretek
 hexyl v0.16.0:
     hexyl
 htmlq v0.4.0:
@@ -76,6 +84,8 @@ iamb v0.0.10:
     iamb
 jless v0.9.0:
     jless
+jnv v0.6.0:
+    jnv
 jwt-cli v6.2.0:
     jwt
 kmon v1.7.1:
@@ -84,10 +94,16 @@ lemmeknow v0.8.0:
     lemmeknow
 librespot v0.6.0:
     librespot
+lychee v0.18.1:
+    lychee
 mdcat v2.7.1:
     mdcat
+navi v2.23.0:
+    navi
 neovide v0.15.0 (https://github.com/neovide/neovide#3075a94f):
     neovide
+netscanner v0.6.3:
+    netscanner
 nostr-tool v0.5.1:
     nostr-tool
 oxipng v9.1.4:
@@ -100,10 +116,16 @@ presenterm v0.12.0:
     presenterm
 procs v0.14.10:
     procs
+qrtool v0.11.8:
+    qrtool
+rainfrog v0.3.0:
+    rainfrog
 rates v0.7.0:
     rates
 rustscan v2.4.1:
     rustscan
+serie v0.4.5:
+    serie
 sigrs v0.1.4:
     sig
 silicon v0.5.2:
@@ -126,6 +148,10 @@ tickrs v0.14.11:
     tickrs
 tre-command v0.4.0:
     tre
+trippy v0.12.2:
+    trip
+tuisky v0.2.1:
+    tuisky
 viu v1.5.1:
     viu
 vocage v1.1.0:
@@ -134,6 +160,10 @@ websocat v4.0.0-alpha2:
     websocat
 wiki-tui v0.9.1:
     wiki-tui
+wireman v0.2.7:
+    wireman
+xan v0.48.0:
+    xan
 xplr v1.0.0:
     xplr
 zoxide v0.9.7:
