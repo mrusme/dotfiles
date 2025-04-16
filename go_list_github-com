@@ -11,11 +11,13 @@ github.com/charmbracelet/freeze
 github.com/zricethezav/gitleaks
 github.com/golangci/golangci-lint/cmd/golangci-lint
 github.com/fatih/gomodifytags
+github.com/goreleaser/goreleaser/v2
 github.com/fedeztk/got/cmd/got
 github.com/fullstorydev/grpcurl/cmd/grpcurl
 github.com/josharian/impl
 github.com/charmbracelet/mods
 github.com/ollama/ollama
+github.com/siddhantac/puffin
 github.com/ericchiang/pup
 github.com/mgechev/revive
 github.com/maaslalani/slides
