@@ -294,6 +294,9 @@ bindsym $mod+Ctrl+f           exec qtfm
 # Rename Sway "tab"
 bindsym $mod+Ctrl+t           exec /usr/local/bin/sway-nametab
 
+# Show this help
+bindsym $mod+Ctrl+Slash      exec /usr/local/bin/sway-whats
+
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
 # ║ Focus & workspaces                                                         ║

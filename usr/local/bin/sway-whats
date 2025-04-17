@@ -1,0 +1,8 @@
+#!/bin/sh
+result=$(whats `echo "" | bemenu`)
+action=$(notify-send -i "$ICONS_PATH/glyph-info-box.svg" "It's ..." "$result" -w -A default="Copy")
+if [ "$action" = "default" ]
+then
+	echo "$result" | wl-copy
+fi
+exit 0
