@@ -1,0 +1,34 @@
+#!/bin/sh
+
+output_off="{\"text\": \"<span color='#aaaaaa'> </span>\", \"tooltip\": \"Not recording\", \"alt\": \"\", \"class\": \"\" }"
+output_rec="{\"text\": \"<span color='#e98989'> </span>\", \"tooltip\": \"Recording\", \"alt\": \"\", \"class\": \"\" }"
+
+pidof wf-recorder > /dev/null 2>&1
+if [ $? -eq 0 ]
+then
+  if [[ "$1" == "toggle" ]]
+  then
+    killall -s SIGINT wf-recorder > /dev/null 2>&1
+    notify-send -a screenrecorder -t 3000 'Screen recording' "Screen recording was stopped!"
+    echo -n $output_off
+    exit 0
+  fi
+  echo -n $output_rec
+  exit 0
+else
+  if [[ "$1" == "toggle" ]]
+  then
+    geometry=$(slurp)
+    if [ $? -eq 0 ]
+    then
+      notify-send -a screenrecorder -t 3000 'Screen recording' "Screen recording was started!"
+      sleep 3
+      wf-recorder -f "$HOME/downloads/$(date +'screenrecording_%Y-%m-%d-%H%M%S.mp4')" -g "$geometry" > /dev/null 2>&1 &
+      echo -n $output_rec
+      exit 0
+    fi
+  fi
+  echo -n $output_off
+  exit 0
+fi
+

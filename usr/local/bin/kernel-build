@@ -1,0 +1,86 @@
+#!/bin/sh
+
+linuxdir () {
+  cd /usr/src/linux || exit 1
+}
+
+printf "Currently running %s\n\n" \
+  "$(uname -r)"
+
+eselect kernel list 
+printf "Select kernel to be build: "
+read -r kernum
+
+eselect kernel set "$kernum" || exit 1
+
+printf "/usr/src/linux now points to %s\nContinue? (y/N) " \
+  "$(readlink -f /usr/src/linux)"
+read -r yn 
+
+if [ "$yn" != "y" ] && [ "$yn" != "Y" ]
+then 
+  exit 1
+fi 
+
+linuxdir
+pwd
+
+yn=""
+printf "Make clean? (y/N) "
+read -r yn 
+
+if [ "$yn" = "y" ] || [ "$yn" = "Y" ] 
+then 
+  make clean 
+fi 
+
+yn=""
+printf "Inject config from /proc/config.gz ? (y/N) "
+read -r yn 
+
+if [ "$yn" = "y" ] || [ "$yn" = "Y" ] 
+then 
+  zcat /proc/config.gz > /usr/src/linux/.config 
+fi 
+
+yn=""
+printf "Run make oldconfig ? (y/N) "
+read -r yn 
+
+if [ "$yn" = "y" ] || [ "$yn" = "Y" ] 
+then 
+  make oldconfig
+fi 
+
+yn=""
+printf "Build and install new kernel ? (y/N) "
+read -r yn 
+
+if [ "$yn" != "y" ] && [ "$yn" != "Y" ] 
+then 
+  exit 1
+fi 
+
+make modules_prepare \
+&& make -j32 \
+&& make modules_install \
+&& make install \
+&& emerge @module-rebuild \
+&& dracut \
+  --hostonly \
+  --show-modules \
+  --include /lib/firmware /lib/firmware \
+  --kver "$(basename "$(eselect kernel show)" | sed 's/linux-//gI')" \
+  --force \
+&& mount -v /dev/nvme1n1p2 /mnt/mirror \
+&& mount -v /dev/nvme1n1p1 /mnt/mirror/efi/ \
+&& rsync -avH --delete /boot/* /mnt/mirror/. \
+&& ls -la /mnt/mirror \
+&& umount -v /mnt/mirror/efi/ \
+&& umount -v /mnt/mirror \
+&& cp /boot/grub/grub.cfg /boot/grub/grub.cfg.old \
+&& grub-mkconfig -o /boot/grub/grub.cfg \
+&& printf "\nKernel built and installed successfully.\n" \
+&& printf "Please validate /boot/grub/grub.cfg!\n" \
+&& printf "A backup has been copied to /boot/grub/grub.cfg.old.\n\n"
+

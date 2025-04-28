@@ -1,0 +1,145 @@
+#!/bin/sh 
+
+__overpush_usage() {
+  printf "overpush <options> <message>\n"
+  printf " -c <callback>\n"
+  printf " -d <device>\n"
+  printf " -D <timestamp>\n"
+  printf " -e <expire>\n"
+  printf " -p <priority>\n"
+  printf " -r <retry>\n"
+  printf " -t <title>\n"
+  printf " -T <TOKEN> (required if not in 'pass show overpush/token')\n"
+  printf " -s <sound>\n"
+  printf " -u <url>\n"
+  printf " -U <USER> (required if not in 'pass show overpush/user')\n"
+  printf " -a <url_title>\n"
+  return 1
+}
+
+__overpush_opt_field() {
+  field=$1
+  shift
+  value="${*}"
+  if [ -n "${value}" ]; then
+    printf "\-F \"%s=%s\"\n" "$field" "$value"
+  fi
+}
+
+__overpush_send_message() {
+  device="${1:-}"
+
+  curl_cmd="\"${CURL}\" -s -S \
+    ${CURL_OPTS} \
+    -F \"token=${TOKEN}\" \
+    -F \"user=${USER}\" \
+    -F \"message=${message}\" \
+    $(__overpush_opt_field device "${device}") \
+    $(__overpush_opt_field callback "${callback}") \
+    $(__overpush_opt_field timestamp "${timestamp}") \
+    $(__overpush_opt_field priority "${priority}") \
+    $(__overpush_opt_field retry "${retry}") \
+    $(__overpush_opt_field expire "${expire}") \
+    $(__overpush_opt_field title "${title}") \
+    $(__overpush_opt_field sound "${sound}") \
+    $(__overpush_opt_field url "${url}") \
+    $(__overpush_opt_field url_title "${url_title}") \
+    \"${PUSHOVER_URL}\""
+
+  #echo $curl_cmd
+  response="$(eval "${curl_cmd}")"
+  printf "$response\n"
+  # TODO: Parse response
+  r="${?}"
+  if [ "${r}" -ne 0 ]; then
+    printf "%s: Failed to send message\n" "${0}" >&2
+  fi
+
+  return "${r}"
+}
+
+CURL="$(which curl)"
+PUSHOVER_URL="$(pass show overpush/url)"
+TOKEN="$(pass show overpush/token)"
+USER="$(pass show overpush/user)"
+CURL_OPTS=""
+devices="${devices} ${device}"
+optstring="c:d:D:e:f:p:r:t:T:s:u:U:a:h"
+
+OPTIND=1
+while getopts ${optstring} c
+do
+  case ${c} in
+    c)
+      callback="${OPTARG}"
+      ;;
+    d)
+      devices="${devices} ${OPTARG}"
+      ;;
+    D)
+      timestamp="${OPTARG}"
+      ;;
+    e)
+      expire="${OPTARG}"
+      ;;
+    p)
+      priority="${OPTARG}"
+      ;;
+    r)
+      retry="${OPTARG}"
+      ;;
+    t)
+      title="${OPTARG}"
+      ;;
+    k)
+      TOKEN="${OPTARG}"
+      ;;
+    s)
+      sound="${OPTARG}"
+      ;;
+    u)
+      url="${OPTARG}"
+      ;;
+    U)
+      USER="${OPTARG}"
+      ;;
+    a)
+      url_title="${OPTARG}"
+      ;;
+
+    [h\?])
+      __overpush_usage
+      exit 1
+      ;;
+  esac
+done
+shift $((OPTIND-1))
+
+if [ "$#" -lt 1 ]; then
+  __overpush_usage
+  exit 1
+fi
+message="$*"
+
+if [ ! -x "${CURL}" ]; then
+  printf "CURL is unset, empty, or does not point to curl executable.\n \
+    This script requires curl!\n" >&2
+  exit 1
+fi
+
+devices="$(printf "${devices}" | xargs -n1 | sort -u | uniq)\n"
+
+if [ -z "${devices}" ]; then
+  __overpush_send_message
+  r=${?}
+else
+  for device in ${devices}; do
+    __overpush_send_message "${device}"
+    r=${?}
+    if [ "${r}" -ne 0 ]; then
+      break;
+    fi
+  done
+fi
+exit "${r}"
+

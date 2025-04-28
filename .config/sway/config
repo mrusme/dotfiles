@@ -1,0 +1,614 @@
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║                                                                            ║
+# ║              ______   _____                  ____    _____      _____      ║
+# ║          ___|\     \ |\    \   _____    ____|\   \  |\    \    /    /|     ║
+# ║         |    |\     \| |    | /    /|  /    /\    \ | \    \  /    / |     ║
+# ║         |    |/____/|\/     / |    || |    |  |    ||  \____\/    /  /     ║
+# ║      ___|    \|   | |/     /_  \   \/ |    |__|    | \ |    /    /  /      ║
+# ║     |    \    \___|/|     // \  \   \ |    .--.    |  \|___/    /  /       ║
+# ║     |    |\     \   |    |/   \ |    ||    |  |    |      /    /  /        ║
+# ║     |\ ___\|_____|  |\ ___/\   \|   /||____|  |____|     /____/  /         ║
+# ║     | |    |     |  | |   | \______/ ||    |  |    |    |`    | /          ║
+# ║      \|____|_____|   \|___|/\ |    | ||____|  |____|    |_____|/           ║
+# ║         \(    )/        \(   \|____|/   \(      )/         )/              ║
+# ║          '    '          '      )/       '      '          '               ║
+# ║                                 '                                          ║
+# ║                                                                            ║
+# ║      xn--gckvb8fzb.com * github.com/mrusme * marius@xn--gckvb8fzb.com      ║
+# ║                                                                            ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+
+set $mod Mod4
+set $left h
+set $down j
+set $up k
+set $right l
+set $term alacritty
+set $menu bemenu-run
+set $dmenu bemenu
+
+set {
+  $dark        #040606
+  $black       #241B2F
+  $dim         #495671
+  $red         #f53fa1
+  $green       #72F1B8
+  $yellow      #FFCC00
+  $blue        #2b196e
+  $magenta     #FF7EDB
+  $cyan        #61E2FF
+  $white       #F8F8F8
+  $bright      #ffffff
+  $transparent #FF000000
+}
+
+#                         border   backgrnd text    indic    chld
+client.focused            $cyan    $cyan    $dark   $yellow  $cyan
+client.unfocused          $dark    $dark    $dim    $dark    $blue
+client.focused_inactive   $dark    $dark    $white  $dark    $blue
+client.focused_tab_title  $dim     $dim     $dark   $dim     $blue
+client.urgent             $red     $red     $white  $red     $red
+client.placeholder        $dark    $dark    $white  $white   $dark
+
+font pango:Berkeley Mono 9
+
+default_border pixel 2
+default_floating_border pixel 2
+titlebar_border_thickness 2
+titlebar_padding 6 4
+
+smart_gaps off
+smart_borders off
+ 
+gaps inner 0
+gaps outer 0
+
+hide_edge_borders none
+show_marks yes
+
+focus_follows_mouse no
+focus_on_window_activation smart
+
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ Outputs                                                                    ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+
+output * bg ~/.wallpaper fill
+
+# StarBook
+output "Chimei Innolux Corporation 0x14F2 Unknown" {
+  mode 1920x1080@60Hz
+  pos 0 0
+}
+
+# LG 32UN500-W
+# -
+
+# ASUS TUF Gaming VG27AQ
+output "ASUSTek COMPUTER INC VG27AQL1A N6LMQS161067" {
+  mode 2560x1440@144Hz
+  pos -2560 -540
+  adaptive_sync on
+  color_profile icc ~/.config/sway/rtings-icc-profile.icm
+}
+
+# Streaming 
+# output HEADLESS-1 {
+#   pos 3840,0
+#   mode 1920x1080
+#   bg #000000 solid_color
+# }
+
+# https://github.com/ful1e5/banana-cursor
+seat * xcursor_theme Banana 32
+exec gsettings set org.gnome.desktop.interface cursor-theme Banana 
+exec gsettings set org.gnome.desktop.interface cursor-size 32
+
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ Services                                                                   ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+
+# DBUS
+exec dbus-update-activation-environment \
+  --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+
+# Clipboard (https://github.com/sentriz/cliphist)
+exec wl-paste --watch cliphist store
+
+# Pipewire
+exec gentoo-pipewire-launcher
+
+# swayidle
+exec swayidle -w \
+timeout 600 'swaylock' \
+timeout 900 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
+before-sleep 'swaylock'
+
+ 
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ Inputs                                                                     ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+
+# Any mouse
+input "type:pointer" {
+  natural_scroll enabled
+  pointer_accel 0
+  #accel_profile adaptive
+}
+
+# StarBook Touchpad
+input "2362:597:STAR0001:00_093A:0255_Touchpad" {
+  natural_scroll enabled
+  pointer_accel 0
+  #accel_profile adaptive
+  tap enabled 
+  click_method clickfinger
+  dwt enabled
+  middle_emulation disabled
+  scroll_method two_finger
+  scroll_factor 0.2
+  tap_button_map lrm
+  # drag_lock enabled
+  drag disabled
+} 
+
+# Any keyboard
+input "type:keyboard" {
+  repeat_delay 200 
+  repeat_rate 30
+}
+
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ Keybindings                                                                ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+
+################################################################################
+##  Note to myself:                                                           ##
+##  USE wev TO FIND KEYS AND STOP LOOKING UP HOW TO DO IT EVERY FSCKING TIME  ##
+################################################################################
+
+# Show this help
+bindsym $mod+Shift+Slash      exec /usr/local/bin/sway-help
+
+# Open terminal
+bindsym $mod+Return           exec $term
+
+# Open Firefox
+bindsym $mod+Ctrl+backspace   exec /usr/local/bin/ff
+# Open Firefox (private window)
+bindsym $mod+Ctrl+Shift+backspace exec /usr/local/bin/ff -private-window
+
+# Open ungoogled Chromium
+bindsym $mod+backspace        exec /usr/bin/chromium \
+                                --force-dark-mode \
+                                --enable-features=WebUIDarkMode
+
+# Show clipboard (for copying)
+bindsym $mod+Alt+Bar          exec cliphist list \
+                              | $dmenu \
+                              | cliphist decode \
+                              | wl-copy
+
+# Show clipboard (for deleting)
+bindsym $mod+Alt+Backslash    exec cliphist list \
+                              | $dmenu \
+                              | cliphist delete
+
+# Recall last notifications
+bindsym $mod+asciitildE       exec makoctl restore
+
+# Kill focused window
+bindsym $mod+Escape           kill
+
+# Open launcher
+bindsym $mod+Space            exec $menu
+
+# Reload Sway
+bindsym $mod+Shift+c          reload
+
+# Lock Sway
+bindsym $mod+Ctrl+q           exec swaylock
+
+# Exit sway
+bindsym $mod+Shift+e          exec swaynag -t msg -e bottom \
+                              -m 'EXIT SWAY SESSION' \
+                              -b '          YES          ' 'swaymsg exit' \
+                              -s '          NO          '
+
+# === Media keys ===
+
+# Decrease display brightness
+bindsym $mod+F1               exec ddcutil setvcp 10 - 25
+bindsym XF86MonBrightnessDown exec doas /usr/bin/brightnessctl -d amdgpu_bl0 set 10- 
+
+# Increase display brightness
+bindsym $mod+F2               exec ddcutil setvcp 10 + 25
+bindsym XF86MonBrightnessUp   exec doas /usr/bin/brightnessctl -d amdgpu_bl0 set +10
+
+# Toggle playback
+bindsym $mod+F8               exec playerctl play-pause
+bindsym XF86AudioPlay         exec playerctl play-pause
+
+# Next song
+bindsym $mod+F9               exec playerctl next 
+bindsym XF86AudioNext         exec playerctl next
+
+# Previous song
+bindsym $mod+F7               exec playerctl previous
+bindsym XF86AudioPrev         exec playerctl previous
+
+# Mute audio volume
+bindsym $mod+F10              exec /usr/local/bin/audio-router volume "0%"
+bindsym XF86AudioMute         exec /usr/local/bin/audio-router volume "0%"
+
+# Decrease audio volume
+bindsym $mod+F11              exec /usr/local/bin/audio-router volume -0.10
+bindsym XF86AudioLowerVolume  exec /usr/local/bin/audio-router volume -0.10
+
+# Increase audio volume
+bindsym $mod+F12              exec /usr/local/bin/audio-router volume +0.10
+bindsym XF86AudioRaiseVolume  exec /usr/local/bin/audio-router volume +0.10
+
+# Route audio to display
+bindsym $mod+Shift+F1         exec /usr/local/bin/audio-router hdmi
+
+# Route audio to analog output
+bindsym $mod+Shift+F2         exec /usr/local/bin/audio-router analog
+
+# Route audio to MOTU
+bindsym $mod+Shift+F3         exec /usr/local/bin/audio-router motu
+
+
+# === Screenshot ===
+
+# Screenshot whole screen
+bindsym Print                 exec --no-startup-id /usr/local/bin/screenshot
+
+# Screenshot region of screen
+bindsym Shift+Print           exec --no-startup-id /usr/local/bin/screenshot region
+
+# Screenshot current window
+bindsym Ctrl+Print            exec --no-startup-id /usr/local/bin/screenshot window
+
+# Parse text on screen and copy to clipboard
+bindsym $mod+Print            exec --no-startup-id slurp \
+                              | xargs -I {} grim -s 2 -t png -g {} - \
+                              | tesseract - - \
+                              | wl-copy -n
+
+# Pick color and copy to clipboard 
+bindsym $mod+Shift+P          exec --no-startup-id hyprpicker -n -a
+
+
+# === Various ===
+
+# https://github.com/mrusme/bookmarkdown
+bindsym Alt+Space             exec /usr/local/bin/bmd
+
+# Open QtFM
+bindsym $mod+Ctrl+f           exec qtfm
+
+# Rename Sway "tab"
+bindsym $mod+Ctrl+t           exec /usr/local/bin/sway-nametab
+
+# Show this help
+bindsym $mod+Ctrl+Slash      exec /usr/local/bin/sway-whats
+
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ Focus & workspaces                                                         ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+
+# Move focus up
+bindsym $mod+$up    focus up
+bindsym $mod+Up     focus up
+# Move focus right
+bindsym $mod+$right focus right
+bindsym $mod+Right  focus right
+# Move focus down
+bindsym $mod+$down  focus down
+bindsym $mod+Down   focus down
+# Move focus left
+bindsym $mod+$left  focus left
+bindsym $mod+Left   focus left
+
+# Move focus of parent up
+bindsym $mod+Control+$up    focus parent, focus up,    focus child
+# Move focus of parent right
+bindsym $mod+Control+$right focus parent, focus right, focus child
+# Move focus of parent down
+bindsym $mod+Control+$down  focus parent, focus down,  focus child
+# Move focus of parent left
+bindsym $mod+Control+$left  focus parent, focus left,  focus child
+
+# Focus parent
+bindsym $mod+Control+p focus parent
+
+# Focus next
+#bindsym $mod+Tab focus next
+
+# Focus previous
+#bindsym $mod+Shift+Tab focus prev
+
+# Focus on last focused tiling container
+bindsym $mod+D focus tiling
+
+# Focus on last focused floating container
+bindsym $mod+V focus floating
+
+
+# === Workspaces ===
+
+workspace 1   1:I    output DP-1 eDP-1
+workspace 2   2:II   output DP-1 eDP-1
+workspace 3   3:III  output DP-1 eDP-1
+workspace 4   4:IV   output DP-1 eDP-1
+workspace 5   5:V    output DP-1 eDP-1
+workspace 6   6:VI   output HDMI-A-1
+workspace 7   7:VII  output HDMI-A-1
+workspace 8   8:VIII output HDMI-A-1
+workspace 9   9:IX   output HDMI-A-1
+workspace 10 10:X    output HDMI-A-1
+
+# Switch to workspace 1
+bindsym $mod+1 workspace 1   1:I
+# Switch to workspace 2
+bindsym $mod+2 workspace 2   2:II
+# Switch to workspace 3
+bindsym $mod+3 workspace 3   3:III 
+# Switch to workspace 4
+bindsym $mod+4 workspace 4   4:IV
+# Switch to workspace 5
+bindsym $mod+5 workspace 5   5:V
+# Switch to workspace 6
+bindsym $mod+6 workspace 6   6:VI
+# Switch to workspace 7
+bindsym $mod+7 workspace 7   7:VII
+# Switch to workspace 8
+bindsym $mod+8 workspace 8   8:VIII
+# Switch to workspace 9
+bindsym $mod+9 workspace 9   9:IX
+# Switch to workspace 10
+bindsym $mod+0 workspace 10 10:X
+
+# Move focused container to workspace 1
+bindsym $mod+Shift+1 move container to workspace 1   1:I
+# Move focused container to workspace 2
+bindsym $mod+Shift+2 move container to workspace 2   2:II
+# Move focused container to workspace 3
+bindsym $mod+Shift+3 move container to workspace 3   3:III
+# Move focused container to workspace 4
+bindsym $mod+Shift+4 move container to workspace 4   4:IV
+# Move focused container to workspace 5
+bindsym $mod+Shift+5 move container to workspace 5   5:V
+# Move focused container to workspace 6
+bindsym $mod+Shift+6 move container to workspace 6   6:VI
+# Move focused container to workspace 7
+bindsym $mod+Shift+7 move container to workspace 7   7:VII
+# Move focused container to workspace 8
+bindsym $mod+Shift+8 move container to workspace 8   8:VIII
+# Move focused container to workspace 9
+bindsym $mod+Shift+9 move container to workspace 9   9:IX
+# Move focused container to workspace 10
+bindsym $mod+Shift+0 move container to workspace 10 10:X
+
+# Move the currently focused window to the scratchpad
+#bindsym $mod+Shift+grave move scratchpad
+
+# Show the next scratchpad window or hide the focused scratchpad window.
+# If there are multiple scratchpad windows, this command cycles through them.
+#bindsym $mod+grave scratchpad show
+
+# Switch to previous workspace
+bindsym $mod+bracketleft workspace prev
+bindcode --whole-window 275 workspace prev
+
+# Switch to next workspace
+bindsym $mod+bracketright workspace next
+bindcode --whole-window 276 workspace next
+
+# Split view horizontally
+bindsym $mod+equal splith
+
+# Split view vertically
+bindsym $mod+minus splitv
+
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ Layouts                                                                    ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+
+# Activate stacking layout
+bindsym $mod+Shift+s layout stacking
+
+# Activate tabbed layout
+bindsym $mod+t layout tabbed
+
+# Toggle split layout
+bindsym $mod+s layout toggle split
+
+# Toggle floating mode
+bindsym $mod+Shift+z floating toggle
+
+# Switch focus between tiling area and floating area
+bindsym $mod+Tab focus mode_toggle
+
+# Fullscreen currently focused window
+bindsym $mod+z fullscreen
+
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ Window moving & resizing                                                   ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+
+# === Window moving ===
+
+# Move focused window up
+bindsym $mod+Shift+$up    move up
+bindsym $mod+Shift+Up     move up
+# Move focused window right
+bindsym $mod+Shift+$right move right
+bindsym $mod+Shift+Right  move right
+# Move focused window down
+bindsym $mod+Shift+$down  move down
+bindsym $mod+Shift+Down   move down
+# Move focused window left
+bindsym $mod+Shift+$left  move left
+bindsym $mod+Shift+Left   move left
+
+
+# === Resize mode ===
+
+mode "resize" {
+  # Resize mode: Exit
+  bindsym Escape mode "default"
+  bindsym Return mode "default"
+
+
+# === Window resizing ===
+
+  # Resize mode: Grow the container height
+  bindsym $up          resize grow height 12px
+  bindsym Up           resize grow height 10x
+  # Resize mode: Shrink the container height
+  bindsym $down        resize shrink height 10px
+  bindsym Down         resize shrink height 10px
+  # Resize mode: Shrink the container width
+  bindsym $left        resize shrink width 10px
+  bindsym Left         resize shrink width 10px
+  # Resize mode: Grow the container width
+  bindsym $right       resize grow width 11px
+  bindsym Right        resize grow width 10px
+
+  # Resize mode: Set container width to 320x340px
+  bindsym 3 resize set width 320px  height 340px
+  # Resize mode: Set container width to 640x480px
+  bindsym 6 resize set width 640px  height 480px
+  # Resize mode: Set container width to 740px
+  bindsym 8 resize set width 740px
+  # Resize mode: Set container width to 1024x768px
+  bindsym 0 resize set width 1024px height 768px
+
+
+# === Window moving ===
+
+  # Resize mode: Move container up
+  bindsym Shift+$up    move up 10px
+  bindsym Shift+Up     move up 10px
+  # Resize mode: Move container down
+  bindsym Shift+$down  move down 10px
+  bindsym Shift+Down   move down 10px
+  # Resize mode: Move container left
+  bindsym Shift+$left  move left 10px
+  bindsym Shift+Left   move left 10px
+  # Resize mode: Move container right
+  bindsym Shift+$right move right 10px
+  bindsym Shift+Right  move right 10px
+}
+
+# Resize mode: Enter
+bindsym $mod+r mode "resize"
+
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ Windows                                                                    ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+
+floating_modifier $mod normal
+
+for_window [app_id = "floating"] floating enable
+for_window [app_id = "floating_update"] floating enable
+for_window [app_id = "virt-manager"] floating enable
+for_window [app_id = "pavucontrol"] floating enable
+for_window [app_id = "org.gnupg.pinentry-qt"] floating enable
+for_window [app_id = "keepassxc"] floating enable
+for_window [app_id = "zenity"] floating enable
+for_window [app_id = "yad"] floating enable
+for_window [app_id = "opensnitch_ui"] floating enable
+for_window [app_id = "org.pipewire.Helvum"] floating enable
+for_window [app_id = "eu.qtfm"] floating enable
+for_window [app_id = "Bitwarden"] {
+  floating enable
+  resize set 1024 px 600 px
+}
+for_window [app_id = "ch.proton.bridge-gui"] floating enable
+# TODO: Needed for pairing the Chromium extension on Sway
+#for_window [app_id = "anytype"] floating enable
+#no_focus [app_id = "anytype"]
+
+# for_window [instance="file_progress"]  sticky enable
+
+for_window [title = "Firefox - Sharing Indicator"] floating enable
+for_window [title = "^Extension: .*" app_id = "firefox"] floating enable
+for_window [title = "^Open File$"] floating enable
+# for_window [title="^Steam Keyboard$"] floating enable
+
+no_focus [app_id="waybar"]
+for_window [app_id="waybar" floating] {
+    move position cursor
+    move down 60px # adjust if some menus still don't fit
+}
+focus_on_window_activation focus
+
+for_window [shell="xwayland"] title_format "<span>[X11] %title゜</span>"
+
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ Bars                                                                       ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+
+bar {
+  id mainbar
+  output *
+  swaybar_command /usr/local/bin/waybar-command
+}
+
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ Tools                                                                      ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+
+# wlsunset 
+# https://sr.ht/~kennylevinsen/wlsunset/
+exec wlsunset -S '06:30' -s '19:30' -d 1800
+
+# poweralertd 
+# https://git.sr.ht/~kennylevinsen/poweralertd
+exec poweralertd
+
+# OpenSnitch 
+exec opensnitch-ui
+
+# Syncthing
+exec syncthing serve --no-browser
+
+# yubikey-touch-detector
+# https://github.com/maximbaz/yubikey-touch-detector
+exec yubikey-touch-detector -libnotify
+
+# usbec
+# https://github.com/mrusme/usbec
+exec usbec
+
+# Gnome Keyring
+exec --no-startup-id gnome-keyring-daemon --start --components=pkcs11,secrets,ssh
+
+# Desktop notifications
+exec mako
+
+# Icons in title bars
+exec swaycons
+
+# Starshield
+# exec starshieldd /dev/serial/by-id/usb-Espressif_USB_JTAG_serial_debug_unit_40:4C:CA:48:3A:38-if00
+
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ Other configs                                                              ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+
+include /etc/sway/config.d/*
+

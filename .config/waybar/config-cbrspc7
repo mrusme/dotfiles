@@ -1,0 +1,320 @@
+// ╔═══════════════════════════════════════════════════════════════════════════╗
+// ║              ___       __________  ________________________               ║
+// ║              __ |     / /__    | \/ /__  __ )__    |__  __ \              ║
+// ║              __ | /| / /__  /| |_  /__  __  |_  /| |_  /_/ /              ║
+// ║              __ |/ |/ / _  ___ |  / _  /_/ /_  ___ |  _, _/               ║
+// ║              ____/|__/  /_/  |_/_/  /_____/ /_/  |_/_/ |_|                ║
+// ║                                                                           ║
+// ║     xn--gckvb8fzb.com * github.com/mrusme * marius@xn--gckvb8fzb.com      ║
+// ║                                                                           ║
+// ╚═══════════════════════════════════════════════════════════════════════════╝
+
+[{
+  // -------------------------------------------------------------------------
+  // Global configuration
+  // -------------------------------------------------------------------------
+
+  "layer": "top",
+  "position": "top",
+  "output": "DP-1",
+
+  "modules-left": [
+    "sway/workspaces",
+    "sway/language",
+    "custom/screenrecord",
+    "group/network",
+    "custom/crypto",
+    "tray",
+    "sway/mode",
+    "custom/zeit"
+  ],
+  "modules-center": [
+    "sway/window"
+  ],
+  "modules-right": [
+    "cpu",
+    "custom/stats",
+    "bluetooth",
+    "wireplumber",
+    "group/clock"
+  ],
+
+
+  // -------------------------------------------------------------------------
+  // modules-left
+  // -------------------------------------------------------------------------
+
+  "sway/workspaces": {
+    "all-outputs": true,
+    "disable-scroll": true,
+    "format": "{name}"
+  },
+
+  "sway/language": {
+    "format": "<span text_transform='uppercase'>{short}</span> {variant}",
+  },
+
+  "custom/screenrecord": {
+    "format": "{}",
+    "return-type": "json",
+    "exec": "/usr/local/bin/waybar-screenrecord",
+    "on-click": "/usr/local/bin/waybar-screenrecord toggle",
+    "interval": 3
+  },
+
+  "group/network": {
+    "orientation": "horizontal",
+    "modules": [ 
+      "network",
+      "custom/vpn",
+      "custom/syncthing",
+      "custom/docker"
+      //"custom/cloudcash"
+    ],
+    "drawer": {
+      "transition-left-to-right": false,
+      "transition-duration": 500
+    }
+  },
+  
+  "network": {
+    "format": "󰈀 {ifname}",
+    "format-wifi": "  {essid} <span color='#aaaaaa'>{signalStrength}%</span>",
+    "format-ethernet": "󰈀 {ipaddr}/<span color='#aaaaaa'>{cidr}</span>",
+    "format-disconnected": "󰈂",
+    "tooltip-format": "{ifname} via {gwaddr}",
+    "tooltip-format-wifi": "{essid} ({signalStrength}%)",
+    "tooltip-format-ethernet": "{ifname}",
+    "tooltip-format-disconnected": "Disconnected"
+  },
+
+  "custom/vpn": {
+    "format": "{icon}  VPN <span color='#aaaaaa'>{}</span>",
+    "format-icons": {
+      "connected": "",
+      "disconnected": ""
+    },
+    "return-type": "json",
+    "exec": "/usr/local/bin/waybar-vpn current",
+    "on-click": "/usr/local/bin/waybar-vpn connect",
+    "on-click-middle": "/usr/local/bin/waybar-vpn disconnect",
+    "on-click-right": "/usr/local/bin/get-public-ip-info",
+    "interval": 30
+  },
+
+  "custom/syncthing": {
+    "format": " {} ",
+    "return-type": "json",
+    "exec": "/usr/local/bin/waybar-syncthing",
+    "exec-if": "ps -eo args | rg '^/usr/bin/syncthing'",
+    "on-click": "xdg-open http://127.0.0.1:8384",
+    "on-click-middle": "killall -s SIGQUIT syncthing",
+    "interval": 30
+  },
+
+  "custom/docker": {
+    "format": "{}",
+    "return-type": "json",
+    "exec": "/usr/local/bin/waybar-docker",
+    "exec-if": "rc-service docker status",
+    "interval": 30
+  },
+
+  //"custom/cloudcash": {
+  //  "format": "{}",
+  //  "return-type": "json",
+  //  "exec": "/usr/local/bin/cloudcash -waybar-pango",
+  //  "on-click": "",
+  //  "interval": 3600
+  //},
+
+  "custom/crypto": {
+    "format": "{}",
+    "return-type": "json",
+    "exec": "/usr/local/bin/waybar-crypto",
+    "on-click": "",
+    "interval": 3600
+  },
+
+  "tray": {
+    "icon-size": 12,
+    "spacing": 0
+  },
+
+  "sway/mode": {
+    "format": " {}",
+    "tooltip": false
+  },
+
+  "custom/zeit": {
+    "format": "{}",
+    "exec": "/home/mrus/projects/@mrusme/zeit/extras/zeit-waybar-bemenu.sh",
+    "on-click": "/home/mrus/projects/@mrusme/zeit/extras/zeit-waybar-bemenu.sh click",
+    "interval": 10
+  },
+
+
+  // -------------------------------------------------------------------------
+  // modules-center
+  // -------------------------------------------------------------------------
+
+  "sway/window": {
+    "all-outputs": true,
+    "format": "{}",
+    "icon": false,
+    "max-length": 240,
+    "rewrite": {
+       "(.*) — Mozilla Firefox": " $1",
+       "(.*) — LibreWolf"      : " $1",
+       "(.*) - Chromium"       : " $1",
+       "(.*) — Tor Browser"    : "﨩 $1",
+       "nvim (.*)"             : " $1",
+       "zsh (.*)"              : " $1",
+       "irssi"                 : " irc",
+       "Element | (.*)"        : "ﬧ $1",
+       "Session"               : "廬 session",
+       "Signal"                : " signal"
+    }
+  },
+
+
+  // -------------------------------------------------------------------------
+  // modules-right
+  // -------------------------------------------------------------------------
+
+  "cpu": {
+    "interval": 30,
+    "format": "  {avg_frequency}GHz <span color='#aaaaaa'>{usage}%</span>",
+    "states": {
+      "warning": 70,
+      "critical": 90
+    },
+    "on-click": "/usr/local/bin/waybar-cpu set"
+  },
+
+  "custom/stats": {
+    "format": "{}",
+    "return-type": "json",
+    "exec": "/usr/local/bin/waybar-stats",
+    "interval": 30
+  },
+
+  "bluetooth": {
+    // "controller": "controller1",
+    "on-click": "/usr/local/bin/waybar-bluetooth toggle",
+    "format": "<span color='#aaaaaa'></span>",
+    "format-disabled": "",
+    "format-connected": "",
+    "format-connected-battery": " {device_battery_percentage}",
+    "tooltip-format": "{controller_alias}\t\t[{controller_address}]",
+    "tooltip-format-connected": "{controller_alias}\t\t[{controller_address}]\n\n{device_enumerate}",
+    "tooltip-format-connected-battery": "{controller_alias}\t\t[{controller_address}]\n\n{device_enumerate}",
+    "tooltip-format-enumerate-connected": "{device_alias}\t\t[{device_address}]",
+    "tooltip-format-enumerate-connected-battery": "{device_alias} ({device_battery_percentage})\t\t[{device_address}]"
+  },
+
+  "wireplumber": {
+    "format": "{icon}  {node_name} <span color='#aaaaaa'>{volume}%</span>",
+    "format-muted": "",
+    "on-click": "pavucontrol-qt",
+    "on-click-right": "helvum",
+    "format-icons": ["", "", ""]
+  },
+
+  "group/clock": {
+    "orientation": "horizontal",
+    "modules": [ "clock#time", "clock#date" ],
+    "drawer": {
+      "transition-left-to-right": true,
+      "transition-duration": 500
+    }
+  },
+
+  "clock#date": {
+    "interval": 60,
+    "format": "<span color='#ffffff'> {:%a %e %b %Y}</span>",
+    "tooltip": false
+  },
+
+  "clock#time": {
+    "interval": 60,
+    "format": "  <span color='#ffffff'>{:%I:%M %p}</span>",
+    "tooltip": true,
+    "tooltip-format": "<big>{:%B %Y}</big>\n<tt>{calendar}</tt>",
+    "calendar": {
+      "mode"          : "month",
+      "mode-mon-col"  : 3,
+      "weeks-pos"     : "right",
+      "on-scroll"     : 1,
+      "on-click-right": "mode",
+      "format": {
+        "months":     "<span color='#ffead3'><b>{}</b></span>",
+        "days":       "<span color='#ecc6d9'><b>{}</b></span>",
+        "weeks":      "<span color='#99ffdd'><b>W{}</b></span>",
+        "weekdays":   "<span color='#ffcc66'><b>{}</b></span>",
+        "today":      "<span color='#ff6699'><b><u>{}</u></b></span>"
+      }
+    },
+    "actions":  {
+      "on-click-right": "mode",
+      "on-scroll-up": "shift_up",
+      "on-scroll-down": "shift_down"
+    }
+  }
+
+},
+{
+  // -------------------------------------------------------------------------
+  // Global configuration
+  // -------------------------------------------------------------------------
+
+  "name": "bottom",
+  "layer": "top",
+  "position": "bottom",
+  "output": "DP-1",
+
+  "modules-left": [
+    "custom/rssticker-soylent",
+    "custom/rssticker-hackernews"
+  ],
+  "modules-center": [
+  ],
+  "modules-right": [
+  ],
+
+
+  // -------------------------------------------------------------------------
+  // modules-left
+  // -------------------------------------------------------------------------
+
+  "custom/rssticker-soylent": {
+    "format": "{}",
+    "return-type": "json",
+    "exec": "/usr/local/bin/rssticker https://soylentnews.org/index.rss Soylent",
+    "on-click": "/usr/local/bin/rssticker https://soylentnews.org/index.rss Soylent open",
+    "exec-on-event": false,
+    "interval": 300
+  },
+
+  "custom/rssticker-hackernews": {
+    "format": "{}",
+    "return-type": "json",
+    "exec": "/usr/local/bin/rssticker https://news.ycombinator.com/rss 'Hacker News'",
+    "on-click": "/usr/local/bin/rssticker https://news.ycombinator.com/rss 'Hacker News' open",
+    "exec-on-event": false,
+    "interval": 300
+  },
+
+
+  // -------------------------------------------------------------------------
+  // modules-center
+  // -------------------------------------------------------------------------
+
+
+  // -------------------------------------------------------------------------
+  // modules-right
+  // -------------------------------------------------------------------------
+
+
+}]
+

@@ -1,0 +1,104 @@
+* {
+  border: none;
+  border-radius: 0;
+  font-family: 'Berkeley Mono';
+  font-weight: 400;
+  font-size: 11px;
+  min-height: 26px;
+}
+
+window#waybar.top {
+  background-color: rgba(0, 0, 0, 0.42);
+  border-bottom: none;
+  color: #eeeeee;
+  transition-property: background-color;
+  transition-duration: .5s;
+}
+
+window#waybar.hidden {
+  opacity: 0.2;
+}
+
+label#window {
+  text-shadow: 0px 0px 3px #18181e;
+}
+
+/* tooltip { */
+/*   background: rgba(43, 48, 59, 0.5); */
+/*   border: 1px solid rgba(100, 114, 125, 0.5); */
+/* } */
+/**/
+/* tooltip label { */
+/*   color: white; */
+/* } */
+
+.module {
+  margin: 0px 0px 0px 20px;
+}
+
+#bluetooth {
+  min-width: 32px;
+}
+
+#custom-audio-internal,
+#custom-audio-motu,
+#custom-audio-hdmi {
+  min-width: 32px;
+}
+
+
+#workspaces {
+  margin: 0px 0px 0px 0px;
+}
+
+#workspaces button {
+  padding: 4px 6px;
+  color: #555555;
+  border-radius:  0px;
+  min-width: 32px;
+}
+
+/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
+#workspaces button:hover {
+  box-shadow: inherit;
+  text-shadow: inherit;
+  background: transparent;
+  color: #ffffff;
+}
+
+#workspaces button.focused {
+  color: #eeeeee;
+}
+
+#workspaces button.focused:hover {
+  color: #ffffff;
+}
+
+#workspaces button.urgent {
+  color: #ffffff;
+  background-color: #e27878;
+}
+
+#language {
+  color: #cccccc;
+}
+
+#tray {
+  background-color: rgba(0, 0, 0, 0);
+}
+
+#tray image {
+  margin: 0px 10px 0px 0px;
+}
+
+#clock {
+  margin-right: 4px;
+}
+
+#mode {
+  background-color: rgba(0, 0, 0, 0);
+  border: 2px solid #e2a478;
+  margin: 0px 10px 0px 0px;
+  border-radius: 5px;
+}
+

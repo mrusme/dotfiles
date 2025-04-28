@@ -1,0 +1,242 @@
+(
+    tab_status: Some((
+        code: Char('1'),
+        modifiers: "",
+    )),
+    tab_log: Some((
+        code: Char('2'),
+        modifiers: "",
+    )),
+    tab_files: Some((
+        code: Char('3'),
+        modifiers: "",
+    )),
+    tab_stashing: Some((
+        code: Char('4'),
+        modifiers: "",
+    )),
+    tab_stashes: Some((
+        code: Char('5'),
+        modifiers: "",
+    )),
+    tab_toggle: Some((
+        code: Tab,
+        modifiers: "",
+    )),
+    tab_toggle_reverse: Some((
+        code: BackTab,
+        modifiers: "SHIFT",
+    )),
+    toggle_workarea: Some((
+        code: Char('w'),
+        modifiers: "",
+    )),
+    focus_right: Some((
+        code: Char('l'),
+        modifiers: "",
+    )),
+    focus_left: Some((
+        code: Char('h'),
+        modifiers: "",
+    )),
+    focus_above: Some((
+        code: Char('k'),
+        modifiers: "",
+    )),
+    focus_below: Some((
+        code: Char('j'),
+        modifiers: "",
+    )),
+    exit: Some((
+        code: Char('c'),
+        modifiers: "CONTROL",
+    )),
+    exit_popup: Some((
+        code: Esc,
+        modifiers: "",
+    )),
+    open_commit: Some((
+        code: Char('c'),
+        modifiers: "",
+    )),
+    open_commit_editor: Some((
+        code: Char('e'),
+        modifiers: "CONTROL",
+    )),
+    open_help: Some((
+        code: Char('?'),
+        modifiers: "",
+    )),
+    move_left: Some((
+        code: Char('h'),
+        modifiers: "",
+    )),
+    move_right: Some((
+        code: Char('l'),
+        modifiers: "",
+    )),
+    tree_collapse_recursive: Some((
+        code: Left,
+        modifiers: "SHIFT",
+    )),
+    tree_expand_recursive: Some((
+        code: Right,
+        modifiers: "SHIFT",
+    )),
+    home: Some((
+        code: Home,
+        modifiers: "",
+    )),
+    end: Some((
+        code: End,
+        modifiers: "",
+    )),
+    move_up: Some((
+        code: Char('k'),
+        modifiers: "",
+    )),
+    move_down: Some((
+        code: Char('j'),
+        modifiers: "",
+    )),
+    page_down: Some((
+        code: Char('f'),
+        modifiers: "CONTROL",
+    )),
+    page_up: Some((
+        code: Char('b'),
+        modifiers: "CONTROL",
+    )),
+    shift_up: Some((
+        code: Char('k'),
+        modifiers: "SHIFT",
+    )),
+    shift_down: Some((
+        code: Char('j'),
+        modifiers: "SHIFT",
+    )),
+    enter: Some((
+        code: Enter,
+        modifiers: "",
+    )),
+    blame: Some((
+        code: Char('B'),
+        modifiers: "SHIFT",
+    )),
+    edit_file: Some((
+        code: Char('e'),
+        modifiers: "",
+    )),
+    status_stage_all: Some((
+        code: Char('a'),
+        modifiers: "",
+    )),
+    status_reset_item: Some((
+        code: Char('D'),
+        modifiers: "SHIFT",
+    )),
+    status_ignore_file: Some((
+        code: Char('i'),
+        modifiers: "",
+    )),
+    diff_stage_lines: Some((
+        code: Char('s'),
+        modifiers: "",
+    )),
+    diff_reset_lines: Some((
+        code: Char('d'),
+        modifiers: "",
+    )),
+    stashing_save: Some((
+        code: Char('s'),
+        modifiers: "",
+    )),
+    stashing_toggle_untracked: Some((
+        code: Char('u'),
+        modifiers: "",
+    )),
+    stashing_toggle_index: Some((
+        code: Char('i'),
+        modifiers: "",
+    )),
+    stash_apply: Some((
+        code: Char('a'),
+        modifiers: "",
+    )),
+    stash_open: Some((
+        code: Right,
+        modifiers: "",
+    )),
+    stash_drop: Some((
+        code: Char('D'),
+        modifiers: "SHIFT",
+    )),
+    cmd_bar_toggle: Some((
+        code: Char('.'),
+        modifiers: "",
+    )),
+    log_tag_commit: Some((
+        code: Char('t'),
+        modifiers: "",
+    )),
+    commit_amend: Some((
+        code: Char('a'),
+        modifiers: "CONTROL",
+    )),
+    copy: Some((
+        code: Char('y'),
+        modifiers: "",
+    )),
+    create_branch: Some((
+        code: Char('c'),
+        modifiers: "",
+    )),
+    rename_branch: Some((
+        code: Char('r'),
+        modifiers: "",
+    )),
+    select_branch: Some((
+        code: Char('b'),
+        modifiers: "",
+    )),
+    delete_branch: Some((
+        code: Char('D'),
+        modifiers: "SHIFT",
+    )),
+    merge_branch: Some((
+        code: Char('m'),
+        modifiers: "",
+    )),
+    tags: Some((
+        code: Char('T'),
+        modifiers: "SHIFT",
+    )),
+    delete_tag: Some((
+        code: Char('D'),
+        modifiers: "SHIFT",
+    )),
+    select_tag: Some((
+        code: Enter,
+        modifiers: "",
+    )),
+    push: Some((
+        code: Char('p'),
+        modifiers: "",
+    )),
+    open_file_tree: Some((
+        code: Char('F'),
+        modifiers: "SHIFT",
+    )),
+    force_push: Some((
+        code: Char('P'),
+        modifiers: "SHIFT",
+    )),
+    pull: Some((
+        code: Char('f'),
+        modifiers: "",
+    )),
+    abort_merge: Some((
+        code: Char('M'),
+        modifiers: "SHIFT",
+    )),
+)

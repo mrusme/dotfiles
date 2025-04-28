@@ -1,0 +1,81 @@
+#!/bin/sh
+# 
+# For xdg-open to use this script run:
+# xdg-settings set default-web-browser browser.desktop
+#
+# browser.desktop is located in:
+# ~/.local/share/applications/browser.desktop
+#
+# It contains the following:
+#
+# [Desktop Entry]
+# Type=Application
+# Name=browser
+# Comment=Browser Picker
+# Terminal=false
+# Exec=/usr/local/bin/browser
+# Categories=Network;WebBrowser
+# MimeType=x-scheme-handler/unknown;x-scheme-handler/about;x-scheme-handler/https;x-scheme-handler/http;text/html;
+
+unset GDK_BACKEND
+[ "${BEMENU_OPTS}" = "" ] \
+&& export BEMENU_OPTS="-n -c -s -i \
+  -W 0.3 -H 26 -B 2 -l 10 \
+  -p '▲' -P '' --ch 16 --scrollbar always \
+  --fn 'CommitMono Nerd Font 11' \
+  --nb #040606cc --nf #ABB2BF \
+  --ab #040606cc --af #ABB2BF \
+  --hb #ABB2BFff --hf #040606 \
+  --sb #ABB2BFff --sf #040606 \
+  --fb #040606cc --ff #ABB2BF \
+  --fbb #040606cc --fbf #ABB2BF \
+  --tb #040606cc --tf #ABB2BF \
+  --scb #040606cc --scf #ABB2BF66 \
+  --bdr #ABB2BF"
+
+read -d '\n' browsers << EOF
+copy
+chromium
+firefox
+librewolf
+tor-browser
+EOF
+
+url="$1"
+
+# https://github.com/thegeeklab/url-parser
+host=$(url-parser host --url "$url")
+
+selected_browser="chromium"
+
+# if test "${url#*$".onion"}" != "$url"
+if [ "$(expr "$host" : '^.*\.onion$')" -gt 0 ]
+then
+  selected_browser="tor-browser"
+else
+  # https://github.com/mrusme/cexec
+  selected_browser=$(printf "%s" "$browsers" \
+  | cexec -t 10 bemenu -p "browser")
+fi
+
+case $selected_browser in
+  "copy")
+    exec wl-copy "$url"
+    ;;
+  "firefox")
+    exec /usr/local/bin/ff "$url"
+    ;;
+  "librewolf")
+    exec /usr/local/bin/lw "$url"
+    ;; 
+  "chromium")
+    exec chromium --force-dark-mode --enable-features=WebUIDarkMode "$url"
+    ;;
+  "tor-browser")
+    exec /usr/local/bin/tb "$url"
+    ;;
+  *)
+    exit 0
+    ;;
+esac
+

@@ -1,0 +1,18 @@
+#!/bin/sh
+results=$(syncthing cli show connections \
+  | jq '.connections[].connected')
+total=$(echo "$results" \
+  | wc -l)
+connected=$(echo "$results" \
+  | rg 'true' \
+  | wc -l) 
+
+in_total=$(syncthing cli show connections \
+  | jq '.total.inBytesTotal' \
+  | xargs -I {} eva -f 2 "{} / 1024 / 1024")
+out_total=$(syncthing cli show connections \
+  | jq '.total.outBytesTotal' \
+  | xargs -I {} eva -f 2 "{} / 1024 / 1024")
+
+echo -n "{\"text\": \"  $connected/<span color='#aaaaaa'>$total</span> [<span color='#aaaaaa'>$in_total MB $out_total MB</span>]\", \"tooltip\": \"\", \"alt\": \"\", \"class\": \"\" }"
+

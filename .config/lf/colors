@@ -1,0 +1,156 @@
+# vim:ft=dircolors
+# (This is not a dircolors file but it helps to highlight colors and comments)
+
+#no     00              # NORMAL
+fi      00              # FILE
+#rs     0               # RESET
+di      01;34           # DIR
+ln      01;36           # LINK
+#mh     00              # MULTIHARDLINK
+pi      40;33           # FIFO
+so      01;35           # SOCK
+#do     01;35           # DOOR
+bd      40;33;01        # BLK
+cd      40;33;01        # CHR
+or      40;31;01        # ORPHAN
+#mi     00              # MISSING
+su      37;41           # SETUID
+sg      30;43           # SETGID
+#ca     30;41           # CAPABILITY
+tw      30;42           # STICKY_OTHER_WRITABLE
+ow      34;42           # OTHER_WRITABLE
+st      37;44           # STICKY
+ex      01;32           # EXEC
+
+# file types (with matching order)
+ln      01;36   # LINK
+or      31;01   # ORPHAN
+tw      34      # STICKY_OTHER_WRITABLE
+ow      34      # OTHER_WRITABLE
+st      01;34   # STICKY
+di      01;34   # DIR
+pi      33      # FIFO
+so      01;35   # SOCK
+bd      33;01   # BLK
+cd      33;01   # CHR
+su      01;31   # SETUID
+sg      01;31   # SETGID
+ex      01;33   # EXEC
+fi      00      # FILE
+
+# archives or compressed (dircolors defaults)
+*.tar   02;37
+*.tgz   02;37
+*.arc   02;37
+*.arj   02;37
+*.taz   02;37
+*.lha   02;37
+*.lz4   02;37
+*.lzh   02;37
+*.lzma  02;37
+*.tlz   02;37
+*.txz   02;37
+*.tzo   02;37
+*.t7z   02;37
+*.zip   02;37
+*.z     02;37
+*.dz    02;37
+*.gz    02;37
+*.lrz   02;37
+*.lz    02;37
+*.lzo   02;37
+*.xz    02;37
+*.zst   02;37
+*.tzst  02;37
+*.bz2   02;37
+*.bz    02;37
+*.tbz   02;37
+*.tbz2  02;37
+*.tz    02;37
+*.deb   02;37
+*.rpm   02;37
+*.jar   02;37
+*.war   02;37
+*.ear   02;37
+*.sar   02;37
+*.rar   02;37
+*.alz   02;37
+*.ace   02;37
+*.zoo   02;37
+*.cpio  02;37
+*.7z    02;37
+*.rz    02;37
+*.cab   02;37
+*.wim   02;37
+*.swm   02;37
+*.dwm   02;37
+*.esd   02;37
+
+# image formats (dircolors defaults)
+*.jpg   01;36
+*.jpeg  01;36
+*.mjpg  01;36
+*.mjpeg 01;36
+*.gif   01;36
+*.bmp   01;36
+*.pbm   01;36
+*.pgm   01;36
+*.ppm   01;36
+*.tga   01;36
+*.xbm   01;36
+*.xpm   01;36
+*.tif   01;36
+*.tiff  01;36
+*.png   01;36
+*.svg   01;36
+*.svgz  01;36
+*.mng   01;36
+*.pcx   01;36
+*.mov   01;36
+*.mpg   01;36
+*.mpeg  01;36
+*.m2v   01;36
+*.mkv   01;36
+*.webm  01;36
+*.ogm   01;36
+*.mp4   01;36
+*.m4v   01;36
+*.mp4v  01;36
+*.vob   01;36
+*.qt    01;36
+*.nuv   01;36
+*.wmv   01;36
+*.asf   01;36
+*.rm    01;36
+*.rmvb  01;36
+*.flc   01;36
+*.avi   01;36
+*.fli   01;36
+*.flv   01;36
+*.gl    01;36
+*.dl    01;36
+*.xcf   01;36
+*.xwd   01;36
+*.yuv   01;36
+*.cgm   01;36
+*.emf   01;36
+*.ogv   01;36
+*.ogx   01;36
+
+# audio formats (dircolors defaults)
+*.aac   00;34
+*.au    00;34
+*.flac  00;34
+*.m4a   00;34
+*.mid   00;34
+*.midi  00;34
+*.mka   00;34
+*.mp3   00;34
+*.mpc   00;34
+*.ogg   00;34
+*.ra    00;34
+*.wav   00;34
+*.oga   00;34
+*.opus  00;34
+*.spx   00;34
+*.xspf  00;34

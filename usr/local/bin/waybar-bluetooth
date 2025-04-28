@@ -1,0 +1,53 @@
+#!/bin/zsh
+
+typeset -A known=(
+  'headphones' '00:09:A7:2A:66:A0'
+  'speaker' '6C:47:60:1F:51:DD'
+)
+
+function get_addr_or_fail () {
+  if [ "$known[$1]" = "" ]
+  then
+    printf 'No device specified\n'
+    exit 1 
+  fi
+  printf "$known[$1]"
+}
+
+
+case "$1" in
+  "list")
+    for k v ("${(@kv)known}") printf "$k\n"
+    ;;
+  "toggle")
+    device=''
+    tmp="$2"
+    if [ "$tmp" = "" ] 
+    then
+      tmp=$($0 list | bemenu)
+    fi
+    device=$(get_addr_or_fail "$tmp")
+    is_connected=$(bluetoothctl info $device | grep -i 'connected: yes')
+    if [ "$is_connected" != "" ]
+    then
+      bluetoothctl disconnect $device
+    else
+      bluetoothctl connect $device
+    fi
+    ;;
+  "status")
+    device=$(get_addr_or_fail "$2")
+    is_connected=$(bluetoothctl info $device | grep -i 'connected: yes')
+    if [ "$is_connected" != "" ]
+    then
+      echo "{\"text\": \"Connected\", \"class\": \"custom-btdevice\", \"alt\": \"connected\" }"
+    else 
+      echo "{\"text\": \"Disconnected\", \"class\": \"custom-btdevice\", \"alt\": \"disconnected\" }"
+    fi
+    ;;
+  *)
+    printf "$0 list|toggle <device>|status <device>\n"
+    exit 1
+    ;;
+esac
+

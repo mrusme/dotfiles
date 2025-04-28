@@ -1,0 +1,69 @@
+#!/bin/sh
+
+set_output=""
+set_output_matcher=""
+set_output_name=""
+
+case "$1" in
+  "hdmi")
+    set_output_matcher="hdmi-stereo"
+    set_output_name="LG Display"
+    ;;
+  "analog")
+    set_output_matcher="analog-stereo"
+    set_output_name="Razer Nommo Speakers"
+    ;;
+  "motu")
+    set_output_matcher="motu.m2"
+    set_output_name="MOTU M2 Monitor"
+    ;;
+  "srsxb")
+    set_output_matcher="6C_47_60_1F_51_DD"
+    set_output_name="Sony SRS-XB Speaker"
+    ;;
+  "h9i")
+    set_output_matcher="00_09_A7_2A_66_A0"
+    set_output_name="Bang & Olufsen H9i Headphones"
+    ;;
+  "volume")
+    pactl list short \
+      | rg RUNNING \
+      | cut -f1 \
+      | xargs -I {} pactl set-sink-volume {} "$2"
+    exit 0
+    ;;
+  *)
+    echo "Unknown output: $1"
+    exit 1
+    ;;
+esac
+
+output_id_name=$(pactl list short sinks | rg -i "$set_output_matcher" | cut -f1,2)
+set_output_id=$(echo "$output_id_name" | cut -f1)
+set_output=$(echo "$output_id_name" | cut -f2)
+inputs=$(pactl list short sink-inputs | cut -f1)
+inputs_num=$(printf "%s\n" "$inputs" | wc -l)
+
+printf "%s\n" "$inputs" | while read -r input_id
+do
+  pactl set-sink-volume "$set_output" "16%" \
+  && pactl move-sink-input "$input_id" "$set_output" \
+  && pactl set-default-sink "$set_output" \
+  && notify-send \
+    -u low \
+    -i "${ICONS_PATH}/audio-device.svg" \
+    -a audio-router \
+    "Audio output changed" \
+    "$set_output_name"
+done
+
+if [ "$inputs_num" -lt "1" ]
+then 
+  notify-send \
+    -u low \
+    -i "${ICONS_PATH}/audio-device.svg" \
+    -a audio-router \
+    "Audio unchanged" \
+    "Nothing playing right now."
+fi
+

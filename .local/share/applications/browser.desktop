@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=browser
+Comment=Browser Picker
+Terminal=false
+Exec=/usr/local/bin/browser
+Categories=Network;WebBrowser
+MimeType=x-scheme-handler/unknown;x-scheme-handler/about;x-scheme-handler/https;x-scheme-handler/http;text/html;

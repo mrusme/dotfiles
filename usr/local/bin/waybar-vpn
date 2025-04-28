@@ -1,0 +1,125 @@
+#!/bin/sh
+
+cmd="$1"
+
+case "$cmd" in
+  disconnect)
+    type "nmcli" > /dev/null
+    if [ $? -eq 0 ]
+    then
+      nmcli connection show --active \
+        | rg -i 'wireguard' \
+	| while read -r ovpn
+      do
+        nmcli connection down "$ovpn"
+      done
+
+      exit 0
+    fi
+    /bin/ls -1 /etc/init.d/openvpn.* /etc/init.d/wg-quick.* \
+      | xargs -n 1 basename | while read -r vpn
+    do 
+      sudo rc-service "$vpn" stop
+    done
+    ;;
+  connect)
+    type "nmcli" > /dev/null
+    if [ $? -eq 0 ]
+    then
+      OPENVPN_CONFIG=$(nmcli connection show \
+        | rg -i 'wireguard' \
+	| awk '{ print $1 }' \
+	| bemenu)
+      if [ "$OPENVPN_CONFIG" = "" ]
+      then
+        exit
+      fi
+      nmcli connection show --active \
+        | rg -i 'wireguard' \
+	| while read -r ovpn
+      do
+        nmcli connection down "$ovpn"
+      done
+
+      sleep 2
+      nmcli connection up "$OPENVPN_CONFIG"
+
+      sleep 6
+      /usr/local/bin/get-public-ip-info
+      exit 0
+    fi
+    OPENVPN_CONFIG=$(/bin/ls -1 /etc/init.d/openvpn.* /etc/init.d/wg-quick.* \
+      | xargs -n 1 basename \
+      | sed 's/wg-quick\./Wireguard: /g' \
+      | sed -E -e 's/openvpn\.([a-z0-9]+).*/OpenVPN: \1/g' \
+      | bemenu \
+      | sed -E -e 's/OpenVPN: ([a-z0-9]+)/\1\.nordvpn\.com\.udp\.ovpn/g' \
+      | sed -E -e 's/Wireguard: ([a-z0-9]+)/wg-quick\.\1/g')
+    if [ "$OPENVPN_CONFIG" = "" ]
+    then
+      exit
+    fi
+    
+    /bin/ls -1 /etc/init.d/openvpn.* /etc/init.d/wg-quick.* \
+      | xargs -n 1 basename \
+      | while read -r ovpn
+    do 
+    	sudo rc-service "$ovpn" stop
+    done
+    
+    sleep 2
+    sudo rc-service "$OPENVPN_CONFIG" start
+    
+    sleep 6
+    /usr/local/bin/get-public-ip-info
+    exit 0
+    ;;
+  current)
+    type "nmcli" > /dev/null
+    if [ $? -eq 0 ]
+    then
+      wg=$(nmcli connection show --active \
+        | rg wireguard)
+      if [ -z "$wg" ]
+      then 
+        printf "{\"text\": \"INACTIVE\", \"class\": \"custom-openvpn\", \"alt\": \"disconnected\" }"
+      else
+        printf "%s" "$wg" | awk '{ print $1 }' \
+        | tr '[:lower:]' '[:upper:]' \
+        | xargs -I {} printf "{\"text\": \"{}\", \"class\": \"custom-openvpn\", \"alt\": \"connected\" }"
+      fi
+      exit 0
+    fi
+    wg=$(ip -o addr show scope global \
+      | rg "x0net-|onyx-|dlc-|njla-|nord-|proton-|mv-" \
+      | head -n 1 \
+      | awk '{ print $2 }' | tr '[:lower:]' '[:upper:]')
+    if [ "$wg" != "" ]
+    then
+      TRANSFERRED=$(sudo wg show \
+        | rg -r '$1 $2' \
+        '.*transfer: ([0-9]*\.[0-9]* ...) received, ([0-9]*\.[0-9]* ...) sent')
+      printf "{\"text\": \"%s <span color='#ffffff'>[</span>%s<span color='#ffffff'>]</span>\", \"class\": \"custom-openvpn\", \"alt\": \"connected\" }" \
+        "$wg" \
+        "$TRANSFERRED"
+    else
+      CONNECTED_VPN=$(ps -eo args \
+        | rg "^/usr/sbin/openvpn" \
+        | sed -r 's/.*--config \/etc\/openvpn\/([-0-9a-z\.]+)\.ovpn\.conf.*/\1/g' \
+        | awk -F '.' '{ print $1"/"$4 }' | tr '[:lower:]' '[:upper:]')
+      if [ "$CONNECTED_VPN" = "" ]
+      then
+        printf "{\"text\": \"NO VPN\", \"class\": \"custom-openvpn\", \"alt\": \"disconnected\" }"
+      else
+	      printf "{\"text\": \"%s\", \"class\": \"custom-openvpn\", \"alt\": \"connected\" }" \
+          "$CONNECTED_VPN"
+      fi
+    fi
+    exit 0
+    ;;
+  *)
+    printf "usage: %s {current|connect|disconnect}\n" "$0"
+    exit 1
+    ;;
+esac
+

@@ -1,0 +1,33 @@
+#!/bin/sh
+feed="$1"
+title="$2"
+cmd="$3"
+
+rsssum="$(printf "%s" "$feed" | md5sum | cut -d ' ' -f1)"
+rssfile="/tmp/rssticker.$rsssum"
+rssnrfile="/tmp/rsstickernr.$rsssum"
+
+rssitemnr=-1
+if [ -f "$rssnrfile" ]
+then
+  rssitemnr=$(cat "$rssnrfile")
+fi
+
+if [ "$cmd" = "open" ]
+then 
+  xdg-open "$(jq --raw-output ".[$rssitemnr].link" "$rssfile")"
+  exit 0
+fi
+
+cexec -t 3600 curl -s "$feed" | dasel -r xml -w json | jq "[if (.RDF | length) != 0 then .RDF.item[] | { title, link } else .rss.channel.item[] | { title, link } end]" > "$rssfile"
+
+rssitemnr=$((rssitemnr+1))
+maxrssitemnr=$(jq '. | length' "$rssfile")
+if [ "$rssitemnr" -ge "$maxrssitemnr" ]
+then 
+  rssitemnr=0 
+fi
+jq -c ".[$rssitemnr] | { text: (\"<span color='#ffffff'>$title</span> <span color='#aaaaaa'>\" + .title + \"</span>\"), tooltip: .link, class: \"rss-item\" }" "$rssfile" 
+
+printf "%s" "$rssitemnr" > "$rssnrfile"
+

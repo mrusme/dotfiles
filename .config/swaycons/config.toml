@@ -1,0 +1,59 @@
+[global]
+color = "#495671"
+focused_color = "#040606"
+icon = "󰖯"
+size = "9pt"
+separator = "  "
+
+[app_id]
+chromium-browser-chromium = { icon = "", color = "#a1c2fa" }
+firefox = { icon = "", color = "#ff8817", size = "8pt" }
+alacritty = { icon = "" }
+neovide = { icon = "", color = "#8fff6d" }
+gimp = { icon = "" }
+opensnitch_ui = { icon = "󱫋" }
+"org.keepassxc.KeePassXC" = { icon = "󱣧" }
+"com.obsproject.Studio" = { icon = "", color = "#256EFF" }
+thunderbird = { icon = "", color = "#1075D7" }
+pavucontrol-qt = { icon = "" }
+"org.pwmt.zathura" = { icon = "", color = "#E11E2D" }
+"eu.qtfm" = { icon = "", color = "#E11E2D" }
+
+[title]
+"^root\\@" = { icon = "", color = "#DE3C3C" }
+"^git.*" = { icon = "", color = "#F44D27" }
+"^gh .*" = { icon = "", color = "#E6EDF3" }
+"^OBS .*" = { icon = "", color = "#256EFF" }
+"^ssh .*" = { icon = "󰣀", color = "#FFA74E" }
+"^telnet .*" = { icon = "", color = "#FFFFFF" }
+"^picocom .*" = { icon = "", color = "#1DA8AF" }
+"^arduino-cli .*" = { icon = "", color = "#00959B" }
+"^gcc .*" = { icon = "", color = "#FFFFFF" }
+"^g++ .*" = { icon = "", color = "#FFFFFF" }
+"^go .*" = { icon = "", color = "#01ABD9" }
+"^zig .*" = { icon = "", color = "#F7A31C" }
+"^(elixir|mix) .*" = { icon = "", color = "#785D85" }
+"^(ghc|cabal|stack) .*" = { icon = "", color = "#5E5086" }
+"^rust .*" = { icon = "", color = "#F54B00" }
+"^cargo .*" = { icon = "", color = "#F54B00" }
+"^(python|pip). .*" = { icon = "", color = "#FFE261" }
+"^npm .*" = { icon = "", color = "#D53B3A" }
+"^(rails|bin/rails) .*" = { icon = "", color = "#C52F24" }
+"^(make|cmake) .*" = { icon = "", color = "#E5DF6C" }
+"^terraform .*" = { icon = "󱁢", color = "#7B42BC" }
+"^tofu .*" = { icon = "󱁢", color = "#FFDA18" }
+"^aws .*" = { icon = "", color = "#FD971E" }
+"^psql .*" = { icon = "", color = "#326790" }
+"^mpv .*" = { icon = "", color = "#FF0000" }
+"^(rsync|scp) .*" = { icon = "", color = "#1E5D8A" }
+"^(docker|podman) .*" = { icon = "", color = "#0196DC" }
+"^dd .*" = { icon = "", color = "#FFFFFF" }
+"^listen .*" = { icon = "󰎇", color = "#CF51B7" }
+
+tmux = { app_id = ["foot", "Alacritty"], icon = "", color = "#25BE23" }
+vim = { app_id = ["foot", "Alacritty"], icon = "", color = "#8fff6d" }
+iamb = { app_id = ["foot", "Alacritty"], icon = "󰍡", color = "#10BD8B" }
+emerge = { app_id = ["foot", "Alacritty"], icon = "", color = "#61538D" }
+btm = { app_id = ["foot", "Alacritty"], icon = "󰄩", color = "#FFA74E" }
+neomutt = { app_id = ["foot", "Alacritty"], icon = "󰶍", color = "#FF19FF" }
+tail = { app_id = ["foot", "Alacritty"], icon = "󰇙", color = "#FFA74E" }

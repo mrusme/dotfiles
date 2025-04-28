@@ -1,0 +1,9 @@
+#!/bin/sh
+IPSTACK_KEY=$(pass show ipstack/token)
+
+APIRESPONSE=$(curl -s "http://api.ipstack.com/$(curl -s http://ipecho.net/plain)?access_key=$IPSTACK_KEY") 
+IPINFO=$(printf "%s" "$APIRESPONSE" \
+	| python3 -c 'import sys, json; resp=json.load(sys.stdin); print("IP: {}\n{}, {}".format(resp["ip"],resp["city"],resp["country_name"]));')
+
+notify-send -i "${ICONS_PATH}/modem.svg" -a "IPv4" "IPv4" "$IPINFO"
+

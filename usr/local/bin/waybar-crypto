@@ -1,0 +1,27 @@
+#!/bin/sh
+
+# PRICES=$(cointop price -c btc,eth,ltc,xmr)
+# BTC=$(echo "$PRICES" | head -n 1 | tail -n 1)
+# ETH=$(echo "$PRICES" | head -n 2 | tail -n 1)
+# LTC=$(echo "$PRICES" | head -n 3 | tail -n 1)
+# XMR=$(echo "$PRICES" | head -n 4 | tail -n 1)
+
+PRICES=$(curl -s "rate.sx/?T&n=40" | sed 's/\xe2\x94\x82/,/g' | tr -d ' ')
+BTC=$(printf "%s" "$PRICES" | rg ',BTC,')
+ETH=$(printf "%s" "$PRICES" | rg ',ETH,')
+LTC=$(printf "%s" "$PRICES" | rg ',LTC,')
+XMR=$(printf "%s" "$PRICES" | rg ',XMR,')
+    
+BTC_PRICE=$(printf "%s" "$BTC" | cut -d ',' -f 4)
+ETH_PRICE=$(printf "%s" "$ETH" | cut -d ',' -f 4)
+LTC_PRICE=$(printf "%s" "$LTC" | cut -d ',' -f 4)
+XMR_PRICE=$(printf "%s" "$XMR" | cut -d ',' -f 4)
+    
+BTC_H_CHANGE=$(printf "%s" "$BTC" | cut -d ',' -f 6)
+ETH_H_CHANGE=$(printf "%s" "$ETH" | cut -d ',' -f 6)
+LTC_H_CHANGE=$(printf "%s" "$LTC" | cut -d ',' -f 6)
+XMR_H_CHANGE=$(printf "%s" "$XMR" | cut -d ',' -f 6)
+
+printf "{\"text\": \"BTC <span color='#aaaaaa'>$%'.2f</span> [<span color='#aaaaaa'>%s</span>] · ETH <span color='#aaaaaa'>$%'.2f</span> [<span color='#aaaaaa'>%s</span>] · LTC <span color='#aaaaaa'>$%'.2f</span> [<span color='#aaaaaa'>%s</span>] · XMR <span color='#aaaaaa'>$%'.2f</span> [<span color='#aaaaaa'>%s</span>]\", \"tooltip\": \"\", \"alt\": \"\", \"class\": \"\" }" \
+  "$BTC_PRICE" "$BTC_H_CHANGE" "$ETH_PRICE" "$ETH_H_CHANGE" "$LTC_PRICE" "$LTC_H_CHANGE" "$XMR_PRICE" "$XMR_H_CHANGE"
+
