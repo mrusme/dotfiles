@@ -1,6 +1,6 @@
 age-plugin-yubikey v0.5.0:
     age-plugin-yubikey
-angry_oxide v0.8.32 (https://github.com/Ragnt/AngryOxide#cd7d7ba4):
+angry_oxide v0.8.32 (https://github.com/Ragnt/AngryOxide#d8847ed2):
     angryoxide
 ast-grep v0.37.0:
     ast-grep
@@ -35,7 +35,7 @@ cross v0.2.5:
     cross-util
 csview v1.3.4:
     csview
-deno v2.2.12:
+deno v2.3.1:
     deno
 dijo v0.2.7:
     dijo
@@ -92,8 +92,6 @@ kmon v1.7.1:
     kmon
 lemmeknow v0.8.0:
     lemmeknow
-librespot v0.6.0:
-    librespot
 lychee v0.18.1:
     lychee
 mdcat v2.7.1:
@@ -122,7 +120,7 @@ rainfrog v0.3.1:
     rainfrog
 rates v0.7.0:
     rates
-rubyfmt-main v0.11.0 (https://github.com/fables-tales/rubyfmt#df58a75c):
+rubyfmt-main v0.11.0 (https://github.com/fables-tales/rubyfmt#32f0c6f4):
     rubyfmt-main
 rustscan v2.4.1:
     rustscan
@@ -164,7 +162,7 @@ wiki-tui v0.9.1:
     wiki-tui
 wireman v0.2.7:
     wireman
-xan v0.49.3:
+xan v0.50.0:
     xan
 xplr v1.0.0:
     xplr
