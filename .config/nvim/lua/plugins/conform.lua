@@ -17,7 +17,7 @@ return {
       formatters_by_ft = {
         css = { "prettier" },
         go = { "gofumpt", "goimports" },
-        html = { "prettier" },
+        html = { "djlint" },
         javascript = { "prettier" },
         json = { "prettier" },
         lua = { "stylua" },
@@ -26,7 +26,7 @@ return {
         rust = { "rustfmt", lsp_format = "fallback" },
         sh = { "shfmt" },
         svelte = { "prettier" },
-        templ = { "gofumpt", "templ" },
+        templ = { "templ" },
         terraform = { "tofu_fmt" },
         typescript = { "deno_fmt" },
         zig = { "zigfmt" },
@@ -36,7 +36,11 @@ return {
         lsp_format = "fallback",
       },
       format_on_save = {
-        timeout_ms = 500,
+        lsp_format = "fallback",
+        timeout_ms = 750,
+      },
+      format_after_save = {
+        lsp_format = "fallback",
       },
       formatters = {
         shfmt = {
