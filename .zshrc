@@ -197,6 +197,10 @@ export PATH="$(go env GOPATH)/bin:${PATH}"
 export GOPROXY="direct"
 export GOTOOLCHAIN=local
 
+# Python
+[ -e "${HOME}/.local/share/pyenv/bin/activate" ] \
+&& source "${HOME}/.local/share/pyenv/bin/activate"
+
 # Rubygems
 __is_available gem \
 && export PATH="${HOME}/.gem/bin:${PATH}" \
@@ -221,7 +225,8 @@ then
     fi
   fi
 
-  GTK_THEME="Chicago95"
+  # https://github.com/B00merang-Project/Windows-95
+  GTK_THEME="Windows-95"
   export GTK2_RC_FILES="${HOME}/.themes/${GTK_THEME}/gtk-2.0/gtkrc"
   #gsettings set org.gnome.desktop.interface gtk-theme "$GTK_THEME"
 fi
