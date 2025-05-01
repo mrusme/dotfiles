@@ -1,3 +1,0 @@
-#!/bin/sh
-waybar -c ~/.config/waybar/config-$(hostname)
-

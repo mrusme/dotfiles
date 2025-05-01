@@ -82,11 +82,11 @@ case "$cmd" in
         | rg wireguard)
       if [ -z "$wg" ]
       then 
-        printf "{\"text\": \"INACTIVE\", \"class\": \"custom-openvpn\", \"alt\": \"disconnected\" }"
+        printf "{\"text\": \"INACTIVE\", \"class\": \"custom-openvpn\", \"alt\": \"disconnected\" }\n"
       else
         printf "%s" "$wg" | awk '{ print $1 }' \
         | tr '[:lower:]' '[:upper:]' \
-        | xargs -I {} printf "{\"text\": \"{}\", \"class\": \"custom-openvpn\", \"alt\": \"connected\" }"
+        | xargs -I {} printf "{\"text\": \"{}\", \"class\": \"custom-openvpn\", \"alt\": \"connected\" }\n"
       fi
       exit 0
     fi
@@ -99,7 +99,7 @@ case "$cmd" in
       TRANSFERRED=$(sudo wg show \
         | rg -r '$1 $2' \
         '.*transfer: ([0-9]*\.[0-9]* ...) received, ([0-9]*\.[0-9]* ...) sent')
-      printf "{\"text\": \"%s <span color='#ffffff'>[</span>%s<span color='#ffffff'>]</span>\", \"class\": \"custom-openvpn\", \"alt\": \"connected\" }" \
+      printf "{\"text\": \"%s <span color='#ffffff'>[</span>%s<span color='#ffffff'>]</span>\", \"class\": \"custom-openvpn\", \"alt\": \"connected\" }\n" \
         "$wg" \
         "$TRANSFERRED"
     else
@@ -109,9 +109,9 @@ case "$cmd" in
         | awk -F '.' '{ print $1"/"$4 }' | tr '[:lower:]' '[:upper:]')
       if [ "$CONNECTED_VPN" = "" ]
       then
-        printf "{\"text\": \"NO VPN\", \"class\": \"custom-openvpn\", \"alt\": \"disconnected\" }"
+        printf "{\"text\": \"NO VPN\", \"class\": \"custom-openvpn\", \"alt\": \"disconnected\" }\n"
       else
-	      printf "{\"text\": \"%s\", \"class\": \"custom-openvpn\", \"alt\": \"connected\" }" \
+	      printf "{\"text\": \"%s\", \"class\": \"custom-openvpn\", \"alt\": \"connected\" }\n" \
           "$CONNECTED_VPN"
       fi
     fi

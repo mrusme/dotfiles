@@ -563,7 +563,7 @@ for_window [shell="xwayland"] title_format "<span>[X11] %title゜</span>"
 bar {
   id mainbar
   output *
-  swaybar_command /usr/local/bin/waybar-command
+  swaybar_command waybar
 }
 
 
@@ -575,9 +575,9 @@ bar {
 # https://sr.ht/~kennylevinsen/wlsunset/
 exec wlsunset -S '06:30' -s '19:30' -d 1800
 
-# poweralertd 
-# https://git.sr.ht/~kennylevinsen/poweralertd
-exec poweralertd
+# zpoweralertd 
+# https://github.com/mrusme/zpoweralertd
+exec zpoweralertd
 
 # OpenSnitch 
 exec opensnitch-ui

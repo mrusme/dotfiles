@@ -21,11 +21,11 @@
     "sway/workspaces",
     //"sway/language",
     "backlight",
-    "custom/screenrecord",
+    //"custom/screenrecord",
     "privacy",
     "group/network",
     // "custom/crypto",
-    "custom/starshield",
+    //"custom/starshield",
     "tray",
     "sway/mode"
     // "custom/zeit"
@@ -62,13 +62,13 @@
     "format-icons": ["", ""]
   },
 
-  "custom/screenrecord": {
-    "format": "{}",
-    "return-type": "json",
-    "exec": "/usr/local/bin/waybar-screenrecord",
-    "on-click": "/usr/local/bin/waybar-screenrecord toggle",
-    "interval": 3
-  },
+  //"custom/screenrecord": {
+  //  "format": "{}",
+  //  "return-type": "json",
+  //  "exec": "/usr/local/bin/waybar-screenrecord",
+  //  "on-click": "/usr/local/bin/waybar-screenrecord toggle",
+  //  "interval": 3
+  //},
 
   "group/network": {
     "orientation": "horizontal",
@@ -96,7 +96,7 @@
   },
 
   "custom/vpn": {
-    "format": "{icon} VPN <span color='#aaaaaa'>{}</span>",
+    "format": "VPN <span color='#aaaaaa'>{}</span>",
     "format-icons": {
       "connected": "",
       "disconnected": ""
@@ -110,7 +110,7 @@
   },
 
   "custom/docker": {
-    "format": "{}",
+    "format": "  {}",
     "return-type": "json",
     "exec": "waybar-docker",
     "exec-if": "waybar-docker status",
@@ -125,21 +125,21 @@
   //  "interval": 3600
   //},
 
-  "custom/crypto": {
-    "format": "{}",
-    "return-type": "json",
-    "exec": "/usr/local/bin/waybar-crypto",
-    "on-click": "",
-    "interval": 3600
-  },
+  //"custom/crypto": {
+  //  "format": "{}",
+  //  "return-type": "json",
+  //  "exec": "/usr/local/bin/waybar-crypto",
+  //  "on-click": "",
+  //  "interval": 3600
+  //},
 
-  "custom/starshield": {
-    "format": "{}",
-    "return-type": "json",
-    "exec": "/usr/local/bin/waybar-starshield --no-gps --no-uv",
-    "on-click": "",
-    "interval": 20
-  },
+  //"custom/starshield": {
+  //  "format": "{}",
+  //  "return-type": "json",
+  //  "exec": "/usr/local/bin/waybar-starshield --no-gps --no-uv",
+  //  "on-click": "",
+  //  "interval": 20
+  //},
 
   "privacy": {
     "icon-spacing": 4,
