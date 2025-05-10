@@ -756,12 +756,20 @@ function listen() {
     "$url"
 }
 
-function scale-and-crop() {
+function scale-and-crop-16-9() {
   find ./ \
     -type f \
     -iname '*.jpg' \
     -exec identify -format '%w %h %i\n' '{}' \; \
       | awk '{ if($1 < $2) { system("convert " $3 " -resize 2160x " $3); system("convert " $3 " -crop 2160x3840+0+0 " $3) } else { system("convert " $3 " -resize 3840x " $3); system("convert " $3 " -crop 3840x2160+0+0 " $3) }}'
+}
+
+function crop-16-9() {
+  find ./ \
+    -type f \
+    -iname '*.jpg' \
+    -exec identify -format '%w %h %i\n' '{}' \; \
+      | awk '{ if($1 < $2) { system("convert " $3 " -crop 2160x3840+0+0 " $3) } else { system("convert " $3 " -crop 3840x2160+0+0 " $3) }}'
 }
 
 function compress-all-jpgs() {
