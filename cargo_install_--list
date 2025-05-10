@@ -1,6 +1,6 @@
 age-plugin-yubikey v0.5.0:
     age-plugin-yubikey
-angry_oxide v0.8.32 (https://github.com/Ragnt/AngryOxide#d8847ed2):
+angry_oxide v0.8.32 (https://github.com/Ragnt/AngryOxide#1892b30a):
     angryoxide
 ast-grep v0.37.0:
     ast-grep
@@ -43,7 +43,7 @@ du-dust v1.2.0:
     dust
 eva v0.3.1:
     eva
-eza v0.21.2:
+eza v0.21.3:
     eza
 fd-find v10.2.0:
     fd
@@ -66,7 +66,7 @@ gpg-tui v0.11.0:
     gpg-tui-completions
 gping v1.19.0:
     gping
-harper-ls v0.31.0:
+harper-ls v0.34.1:
     harper-ls
 havn v0.2.1:
     havn
