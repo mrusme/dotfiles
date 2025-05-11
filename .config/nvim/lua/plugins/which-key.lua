@@ -1,6 +1,9 @@
 return {
   {
     "folke/which-key.nvim",
+    dependencies = {
+      { "echasnovski/mini.nvim", version = "*" },
+    },
     event = "VeryLazy",
     opts = {
       plugins = {
@@ -32,5 +35,5 @@ return {
         desc = "Buffer Local Keymaps (which-key)",
       },
     },
-  }
+  },
 }

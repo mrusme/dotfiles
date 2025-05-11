@@ -35,5 +35,5 @@ return {
         desc = "Quickfix List (Trouble)",
       },
     },
-  }
+  },
 }

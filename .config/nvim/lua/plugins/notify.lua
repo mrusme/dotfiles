@@ -6,7 +6,8 @@ return {
     },
     keys = {
       {
-        "<leader>un", function()
+        "<leader>un",
+        function()
           require("notify").dismiss({ silent = true, pending = true })
         end,
         desc = "Dismiss All Notifications",
@@ -32,5 +33,5 @@ return {
       --   end)
       -- end
     end,
-  }
+  },
 }

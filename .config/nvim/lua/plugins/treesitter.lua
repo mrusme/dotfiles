@@ -1,14 +1,14 @@
 return {
   {
-    "nvim-treesitter/nvim-treesitter", 
+    "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
     config = function()
       local configs = require("nvim-treesitter.configs")
       configs.setup({
-        ensure_installed = { 
+        ensure_installed = {
           "arduino",
           "bash",
-          "c", 
+          "c",
           "cmake",
           "comment",
           "cpp",
@@ -25,7 +25,7 @@ return {
           "gitattributes",
           "gitcommit",
           "gitignore",
-          "go", 
+          "go",
           "gomod",
           "gosum",
           "gotmpl",
@@ -47,7 +47,7 @@ return {
           "latex",
           "ledger",
           "llvm",
-          "lua", 
+          "lua",
           "luadoc",
           "make",
           "markdown",
@@ -78,13 +78,13 @@ return {
           "todotxt",
           "toml",
           "tsv",
-          "typescript", 
+          "typescript",
           "udev",
           "vim",
           "xml",
           "yaml",
           "zathurarc",
-          "zig"
+          "zig",
         },
 
         sync_install = false,
@@ -96,6 +96,6 @@ return {
           additional_vim_regex_highlighting = false,
         },
       })
-    end
-  }
+    end,
+  },
 }

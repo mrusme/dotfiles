@@ -3,19 +3,19 @@ return {
     "lewis6991/gitsigns.nvim",
     opts = {
       signs = {
-        add          = { text = '│' },
-        change       = { text = '│' },
-        delete       = { text = '_' },
-        topdelete    = { text = '‾' },
-        changedelete = { text = '~' },
-        untracked    = { text = '┆' },
+        add = { text = "│" },
+        change = { text = "│" },
+        delete = { text = "_" },
+        topdelete = { text = "‾" },
+        changedelete = { text = "~" },
+        untracked = { text = "┆" },
       },
       signcolumn = false,
-      numhl      = true,
-      linehl     = false,
-      word_diff  = false,
+      numhl = true,
+      linehl = false,
+      word_diff = false,
       watch_gitdir = {
-        follow_files = true
+        follow_files = true,
       },
       auto_attach = true,
       attach_to_untracked = false,
@@ -27,7 +27,7 @@ return {
       --   ignore_whitespace = false,
       --   virt_text_priority = 100,
       -- },
-      -- current_line_blame_formatter = 
+      -- current_line_blame_formatter =
       --   '[<author> <author_time:%Y-%m-%d>] <summary>',
       sign_priority = 6,
       update_debounce = 100,
@@ -35,13 +35,12 @@ return {
       max_file_length = 40000,
       preview_config = {
         -- Options passed to nvim_open_win
-        border = 'single',
-        style = 'minimal',
-        relative = 'cursor',
+        border = "single",
+        style = "minimal",
+        relative = "cursor",
         row = 0,
-        col = 1
+        col = 1,
       },
-    }
-  }
+    },
+  },
 }
-
