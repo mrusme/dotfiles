@@ -24,6 +24,7 @@ github.com/maaslalani/slides
 github.com/sqls-server/sqls
 github.com/swaggo/swag/cmd/swag
 github.com/a-h/templ/cmd/templ
+github.com/hashicorp/terraform-ls
 github.com/achannarasappa/ticker
 github.com/oz/tz
 github.com/errata-ai/vale/v3/cmd/vale
