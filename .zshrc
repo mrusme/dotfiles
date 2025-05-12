@@ -77,6 +77,15 @@ export ICONS_PATH="${HOME}/cloud/library/tools/icons/pixelarticons"
 
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ Ghostty                                                                    ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+
+if [ -n "${GHOSTTY_RESOURCES_DIR}" ]; then
+  builtin source "${GHOSTTY_RESOURCES_DIR}/shell-integration/zsh/ghostty-integration"
+fi
+
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
 # ║ Tmux Magic (via SSH)                                                       ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
 

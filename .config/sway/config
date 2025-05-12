@@ -23,7 +23,7 @@ set $left h
 set $down j
 set $up k
 set $right l
-set $term alacritty
+set $term ghostty
 set $menu bemenu-run
 set $dmenu bemenu
 
@@ -688,3 +688,4 @@ exec swaycons
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
 include /etc/sway/config.d/*
+

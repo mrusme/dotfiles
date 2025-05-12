@@ -9,6 +9,7 @@ separator = "  "
 chromium-browser-chromium = { icon = "", color = "#a1c2fa" }
 firefox = { icon = "", color = "#ff8817", size = "8pt" }
 alacritty = { icon = "" }
+"com.mitchellh.ghostty" = { icon = "" }
 neovide = { icon = "", color = "#8fff6d" }
 gimp = { icon = "" }
 opensnitch_ui = { icon = "󱫋" }
