@@ -1,8 +1,8 @@
 age-plugin-yubikey v0.5.0:
     age-plugin-yubikey
-angry_oxide v0.8.32 (https://github.com/Ragnt/AngryOxide#1892b30a):
+angry_oxide v0.8.32 (https://github.com/Ragnt/AngryOxide#5356125d):
     angryoxide
-ast-grep v0.37.0:
+ast-grep v0.38.1:
     ast-grep
     sg
 bandwhich v0.23.1:
@@ -148,7 +148,7 @@ tickrs v0.14.11:
     tickrs
 tre-command v0.4.0:
     tre
-trippy v0.12.2:
+trippy v0.13.0:
     trip
 tuisky v0.2.1:
     tuisky
