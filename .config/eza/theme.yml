@@ -1,113 +1,177 @@
 colourful: true
-# yellow #FFCC00
-# red    #7EECC9
-# purple #FF79C6
-# pink   #FF7EDB
-# orange #8785ec
-# green  #72F1B8
-# cyan   #61E2FF
-# others:
-# dark-blue    #463465
-# foreground   #F8F8F2
-# current_line #463465
+
+## Default foreground
+#  $fujiWhite      #DCD7BA
+## Dark foreground (statuslines)
+#  $oldWhite 	    #C8C093
+## Dark background (statuslines and floating windows)
+#  $sumiInk0 	    #16161D
+## Default background
+#  $sumiInk1 	    #1F1F28
+## Lighter background (colorcolumn, folds)
+#  $sumiInk2 	    #2A2A37
+## Lighter background (cursorline)
+#  $sumiInk3 	    #363646
+## Darker foreground (line numbers, fold column, non-text characters), float borders
+#  $sumiInk4 	    #54546D
+## Popup background, visual selection background
+#  $waveBlue1 	    #223249
+## Popup selection background, search background
+#  $waveBlue2 	    #2D4F67
+## Diff Add (background)
+#  $winterGreen    #2B3328
+## Diff Change (background)
+#  $winterYellow   #49443C
+## Diff Deleted (background)
+#  $winterRed 	    #43242B
+## Diff Line (background)
+#  $winterBlue     #252535
+## Git Add
+#  $autumnGreen    #76946A
+## Git Delete
+#  $autumnRed 	    #C34043
+## Git Change
+#  $autumnYellow   #DCA561
+## Diagnostic Error
+#  $samuraiRed     #E82424
+## Diagnostic Warning
+#  $roninYellow    #FF9E3B
+## Diagnostic Info
+#  $waveAqua1 	    #6A9589
+## Diagnostic Hint
+#  $dragonBlue     #7FB4CA
+## Comments
+#  $fujiGray 	    #727169
+## Light foreground
+#  $springViolet1  #938AA9
+## Statements and Keywords
+#  $oniViolet 	    #957FB8
+## Functions and Titles
+#  $crystalBlue    #7E9CD8
+## Brackets and punctuation
+#  $springViolet2  #9CABCA
+## Specials and builtin functions
+#  $springBlue     #7FB4CA
+## Not used
+#  $lightBlue 	    #A3D4D5
+## Types
+#  $waveAqua2 	    #E6C384
+## Strings
+#  $springGreen    #98BB6C
+## Not used
+#  $boatYellow1    #938056
+## Operators, RegEx
+#  $boatYellow2    #C0A36E
+## Identifiers
+#  $carpYellow     #E6C384
+## Numbers
+#  $sakuraPink     #D27E99
+## Standout specials 1 (builtin variables)
+#  $waveRed 	    #E46876
+## Standout specials 2 (exception handling, return)
+#  $peachRed 	    #FF5D62
+## Constants, imports, booleans
+#  $surimiOrange   #FFA066
+## Deprecated
+#  $katanaGray     #717C7C
 
 filekinds:
   normal: {foreground: "#F8F8F2"}
-  directory: {foreground: "#61E2FF", background: "#2A2D3C"}
-  symlink: {foreground: "#FF79C6", background: "#463465"}
-  pipe: {foreground: "#463465"}
-  block_device: {foreground: "#7EECC9"}
-  char_device: {foreground: "#7EECC9"}
-  socket: {foreground: "#463465"}
-  special: {foreground: "#FF7EDB"}
-  executable: {foreground: "#72F1B8"}
+  directory: {foreground: "#7FB4CA", background: "#2A2D3C"}
+  symlink: {foreground: "#E46876", background: "#463465"}
+  pipe: {foreground: "#717C7C"}
+  block_device: {foreground: "#D27E99"}
+  char_device: {foreground: "#D27E99"}
+  socket: {foreground: "#717C7C"}
+  special: {foreground: "#E46876"}
+  executable: {foreground: "#E6C384"}
   mount_point: {foreground: "#8785ec"}
 
 perms:
   user_read: {foreground: "#F8F8F2"}
   user_write: {foreground: "#8785ec"}
-  user_execute_file: {foreground: "#72F1B8"}
-  user_execute_other: {foreground: "#72F1B8"}
+  user_execute_file: {foreground: "#E6C384"}
+  user_execute_other: {foreground: "#E6C384"}
   group_read: {foreground: "#F8F8F2"}
   group_write: {foreground: "#8785ec"}
-  group_execute: {foreground: "#72F1B8"}
+  group_execute: {foreground: "#E6C384"}
   other_read: {foreground: "#F8F8F2"}
   other_write: {foreground: "#8785ec"}
-  other_execute: {foreground: "#72F1B8"}
-  special_user_file: {foreground: "#FF7EDB"}
-  special_other: {foreground: "#463465"}
+  other_execute: {foreground: "#E6C384"}
+  special_user_file: {foreground: "#E46876"}
+  special_other: {foreground: "#717C7C"}
   attribute: {foreground: "#F8F8F2"}
 
 size:
   major: {foreground: "FFCC00"}
-  minor: {foreground: "#FF79C6"}
+  minor: {foreground: "#957FB8"}
   number_byte: {foreground: "#F8F8F2"}
   number_kilo: {foreground: "#F8F8F2"}
-  number_mega: {foreground: "#61E2FF"}
-  number_giga: {foreground: "#FF7EDB"}
-  number_huge: {foreground: "#FF7EDB"}
+  number_mega: {foreground: "#7FB4CA"}
+  number_giga: {foreground: "#E46876"}
+  number_huge: {foreground: "#E46876"}
   unit_byte: {foreground: "#F8F8F2"}
-  unit_kilo: {foreground: "#61E2FF"}
-  unit_mega: {foreground: "#FF7EDB"}
-  unit_giga: {foreground: "#FF7EDB"}
+  unit_kilo: {foreground: "#7FB4CA"}
+  unit_mega: {foreground: "#E46876"}
+  unit_giga: {foreground: "#E46876"}
   unit_huge: {foreground: "#8785ec"}
 
 users:
-  user_you: {foreground: "#72F1B8"}
-  user_root: {foreground: "#7EECC9"}
-  user_other: {foreground: "#FF7EDB"}
-  group_yours: {foreground: "#72F1B8"}
+  user_you: {foreground: "#E6C384"}
+  user_root: {foreground: "#D27E99"}
+  user_other: {foreground: "#E46876"}
+  group_yours: {foreground: "#E6C384"}
   group_other: {foreground: "#463465"}
-  group_root: {foreground: "#7EECC9"}
+  group_root: {foreground: "#D27E99"}
 
 links:
-  normal: {foreground: "#FF79C6"}
+  normal: {foreground: "#957FB8"}
   multi_link_file: {foreground: "#8785ec"}
 
 git:
-  new: {foreground: "#72F1B8"}
+  new: {foreground: "#E6C384"}
   modified: {foreground: "#8785ec"}
-  deleted: {foreground: "#7EECC9"}
-  renamed: {foreground: "#61E2FF"}
-  typechange: {foreground: "#FF7EDB"}
+  deleted: {foreground: "#D27E99"}
+  renamed: {foreground: "#7FB4CA"}
+  typechange: {foreground: "#E46876"}
   ignored: {foreground: "#463465"}
-  conflicted: {foreground: "#7EECC9"}
+  conflicted: {foreground: "#D27E99"}
 
 git_repo:
   branch_main: {foreground: "#F8F8F2"}
-  branch_other: {foreground: "#FF7EDB"}
-  git_clean: {foreground: "#72F1B8"}
-  git_dirty: {foreground: "#7EECC9"}
+  branch_other: {foreground: "#E46876"}
+  git_clean: {foreground: "#E6C384"}
+  git_dirty: {foreground: "#D27E99"}
 
 security_context:
   colon: {foreground: "#463465"}
   user: {foreground: "#F8F8F2"}
-  role: {foreground: "#FF7EDB"}
+  role: {foreground: "#E46876"}
   typ: {foreground: "#463465"}
-  range: {foreground: "#FF7EDB"}
+  range: {foreground: "#E46876"}
 
 file_type:
-  image: {foreground: "#8785ec"}
-  video: {foreground: "#7EECC9"}
-  music: {foreground: "#72F1B8"}
-  lossless: {foreground: "#72F1B8"}
-  crypto: {foreground: "#463465"}
+  image: {foreground: "#6A9589" }
+  video: {foreground: "#D27E99"}
+  music: {foreground: "#E6C384"}
+  lossless: {foreground: "#E6C384"}
+  crypto: {foreground: "#717C7C"}
   document: {foreground: "#F8F8F2"}
-  compressed: {foreground: "#FF7EDB"}
-  temp: {foreground: "#7EECC9"}
-  compiled: {foreground: "#61E2FF"}
-  build: {foreground: "#463465"}
-  source: {foreground: "#61E2FF"}
+  compressed: {foreground: "#E46876"}
+  temp: {foreground: "#D27E99"}
+  compiled: {foreground: "#7FB4CA"}
+  build: {foreground: "#717C7C", is_underline: false }
+  source: {foreground: "#7FB4CA"}
 
 punctuation: {foreground: "#463465"}
-date: {foreground: "#633aff"}
+date: {foreground: "#A3D4D5"}
 inode: {foreground: "#F8F8F2"}
 blocks: {foreground: "#F8F8F2"}
 header: {foreground: "#F8F8F2"}
-octal: {foreground: "#FFCC00", background: "#332900"}
-flags: {foreground: "#FF7EDB"}
+octal: {foreground: "#FFA066", background: "#332900"}
+flags: {foreground: "#E46876"}
 
-symlink_path: {foreground: "#FF79C6"}
-control_char: {foreground: "#61E2FF"}
-broken_symlink: {foreground: "#ffffff", background: "#f53fa1"}
+symlink_path: {foreground: "#957FB8"}
+control_char: {foreground: "#7FB4CA"}
+broken_symlink: {foreground: "#ffffff", background: "#E46876"}
 broken_path_overlay: {foreground: "#463465"}
