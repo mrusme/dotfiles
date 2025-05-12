@@ -4,91 +4,101 @@ working_directory = "None"
 
 [bell]
 animation = "Linear"
-color = "#463465"
+color = "#223249"
 duration = 0
 
 [colors]
 draw_bold_text_with_bright_colors = true
 
-[colors.primary]
-dim_foreground    = "#aeafb0"
-bright_foreground = "#f28779"
-background        = "#121212"
-foreground        = "#F8F8F8"
-
 [colors.cursor]
-text = "#C0FF98"
+text = "#FFA066"
 cursor = "#ffffff"
 
 [colors.vi_mode_cursor]
-text = "#cdcecf"
+text = "#DCD7BA"
 cursor = "#63cdcf"
 
 [colors.search.matches]
-foreground = "#cdcecf"
+foreground = "#DCD7BA"
 background = "#3c5372"
 
 [colors.search.focused_match]
-foreground = "#cdcecf"
+foreground = "#DCD7BA"
 background = "#81b29a"
 
 [colors.footer_bar]
-foreground = "#cdcecf"
+foreground = "#DCD7BA"
 background = "#29394f"
 
 [colors.hints.start]
-foreground = "#cdcecf"
+foreground = "#DCD7BA"
 background = "#f4a261"
 
 [colors.hints.end]
-foreground = "#cdcecf"
+foreground = "#DCD7BA"
 background = "#29394f"
 
-[colors.selection]
-text = "#F8F8F8"
-background = "#463465"
+[colors.primary]
+background        = "#121212"
+foreground        = "#F8F8F8"
+bright_foreground = "#dcd7ba"
+dim_foreground    = "#C8C093"
 
 [colors.normal]
-black = "#241B2F"
-red = "#f53fa1"
-green = "#72F1B8"
-yellow = "#FFCC00"
-blue = "#633aff"
-magenta = "#FF7EDB"
-cyan = "#61E2FF"
-white = "#F8F8F8"
+black = '#090618'
+red = '#E46876'
+green = '#6A9589'
+yellow = '#c0a36e'
+blue = '#7e9cd8'
+magenta = '#957fb8'
+cyan = '#7AA89F'
+white = '#c8c093'
 
 [colors.bright]
-black = "#495495"
-red = "#bf8afa"
-green = "#39795c"
-yellow = "#ffd633"
-blue = "#9275ff"
-magenta = "#ff98e2"
-cyan = "#81e8ff"
-white = "#ffffff"
+black = '#727169'
+red = '#e82424'
+green = '#76946A'
+yellow = '#e6c384'
+blue = '#7fb4ca'
+magenta = '#938aa9'
+cyan = '#A3D4D5'
+white = '#dcd7ba'
 
 [colors.dim]
-black = "#18121f"
-red = "#cd0b73"
-green = "#16e287"
-yellow = "#b38f00"
-blue = "#633aff"
-magenta = "#ff0cbb"
-cyan = "#00c9f6"
-white = "#aeaeae"
+black = '#1F1F28'
+red = '#43242B'
+green = '#2B3328'
+yellow = '#49443C'
+blue = '#223249'
+magenta = '#D27E99'
+cyan = '#2D4F67'
+white = '#54546D'
+
+[colors.selection]
+background = '#2d4f67'
+foreground = '#dcd7ba'
 
 [[colors.indexed_colors]]
 index = 16
-color = "#f4a261"
+color = '#ffa066'
 
 [[colors.indexed_colors]]
 index = 17
-color = "#d67ad2"
+color = '#ff5d62'
 
 [cursor]
-style = "Block"
 unfocused_hollow = true
+thickness = 0.15
+blink_interval = 500
+blink_timeout = 0
+
+[cursor.style]
+shape = "Block"
+blinking = "Off"
+
+[cursor.vi_mode_style]
+shape = "Underline"
+blinking = "On"
 
 [debug]
 log_level = "Warn"
@@ -124,6 +134,11 @@ y = 0
 [font.glyph_offset]
 x = 0
 y = 0
+
+[[keyboard.bindings]]
+action = "ToggleViMode"
+key = "Escape"
+mods = "Shift"
 
 [[keyboard.bindings]]
 action = "Paste"
@@ -837,10 +852,11 @@ args = ["--login"]
 program = "/bin/zsh"
 
 [window]
-decorations = "full"
+decorations = "None"
 dynamic_padding = true
 dynamic_title = true
 opacity = 0.90
+blur = true
 startup_mode = "Windowed"
 
 [window.dimensions]
