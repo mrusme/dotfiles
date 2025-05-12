@@ -1,0 +1,120 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+add_newline=false
+#scan_timeout = 10
+format = '$character$directory'
+right_format = '$terraform$c$zig$odin$golang$rust$ruby$python${custom.hugo}([\[](#49443C)$git_state$git_status$git_metrics$git_branch$git_commit[\]](#49443C))$battery'
+
+[character]
+success_symbol = '[](#54487A)'
+error_symbol = '[](#FF5D62)'
+vicmd_symbol = '[△](#6A9589)'
+
+[directory]
+style = '#FFA066'
+
+[git_state]
+format = '[\($state( $progress_current of $progress_total)\)]($style) '
+rebase = '[rebasing](bold magenta)'
+merge = '[merging](bold yellow)'
+revert = '[reverting](bold blue)'
+cherry_pick = '[picking](bold red)'
+bisect = '[bisecting](bold red)'
+am = '[applying](bold green)'
+am_or_rebase = '[applying/rebasing](bold yellow)'
+
+[git_status]
+format = '($all_status$ahead_behind )'
+style = '8'
+up_to_date = '[](#7AA89F)'
+untracked = '[.](#727169)'
+conflicted = '[#](#C34043)'
+ahead = '[⇡](#98BB6C)'
+behind = '[⇣](#FFA066)'
+diverged = '[⇕](#E82424)'
+stashed = '[^](#FF9E3B)'
+modified = '[*](#A3D4D5)'
+staged = '[+](#7E9CD8)'
+renamed = '[»](#C8C093)'
+deleted = '[x](#D27E99)'
+
+[git_branch]
+format = '[$symbol$branch(:$remote_branch)]($style)'
+symbol = ''
+style = '8'
+truncation_length = 16
+truncation_symbol = ''
+ignore_branches = []
+
+[git_commit]
+format = ' [$hash$tag]($style)'
+style = '8'
+only_detached = false
+commit_hash_length = 6
+tag_symbol = ''
+
+[git_metrics]
+disabled = true
+added_style = '#2D4F67'
+deleted_style = '#D27E99'
+format = '([+$added]($added_style))([-$deleted]($deleted_style)) '
+
+[c] 
+format = '[$symbol($version )]($style)'
+style = '#717C7C'
+symbol = ' '
+
+[golang] 
+format = '[$symbol($version )]($style)'
+style = '#67CFDC'
+symbol = ' '
+
+[odin] 
+format = '[$symbol($version )]($style)'
+style = '#3882D2'
+symbol = 'Ø '
+
+[python] 
+format = '[$symbol($version )]($style)'
+style = '#3B78A8'
+symbol = ' '
+
+[ruby] 
+format = '[$symbol($version )]($style)'
+style = '#CC342D'
+symbol = ' '
+
+[rust] 
+format = '[$symbol($version )]($style)'
+style = '#F85009'
+symbol = ' '
+
+[terraform] 
+format = '[$symbol$workspace]($style)'
+style = '#7F48BE'
+symbol = ' '
+
+[zig] 
+format = '[$symbol($version )]($style)'
+style = '#F7A724'
+symbol = ' '
+
+[custom.hugo]
+format = '[$symbol($output )]($style)'
+style = '#FF42B7'
+symbol = ' '
+command = "hugo version | cut -d ' ' -f2 | cut -d '+' -f1"
+when = "test -f $(git rev-parse --show-toplevel)/config/_default/config.*"
+require_repo = true
+
+[battery]
+full_symbol = '\[F\]'
+charging_symbol = '\[+\]'
+discharging_symbol = '\[-\]'
+empty_symbol = '\[ \]'
+unknown_symbol = '\[?\]'
+format = ' [$percentage](black) [$symbol]($style)'
+[[battery.display]]
+threshold = 25
+style = 'yellow'
+

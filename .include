@@ -15,6 +15,7 @@
 + nvim/lua/**
 + sc-im/
 + sc-im/*
++ starship.toml
 + sway/
 + sway/*
 + swaycons/
