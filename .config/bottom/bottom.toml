@@ -39,11 +39,11 @@ expanded_on_startup = false
 # Remove space in tables
 #hide_table_gap = false
 # Show the battery widgets
-battery = false
+battery = true
 # Disable mouse clicks
 disable_click = true
 # Built-in themes.  Valid values are "default", "default-light", "gruvbox", "gruvbox-light", "nord", "nord-light"
-color = "nord"
+color = "default"
 # Show memory values in the processes widget as values by default
 #mem_as_value = false
 # Show tree mode by default in the processes widget.
@@ -115,7 +115,7 @@ retention = "10m"
 # All layout components have a ratio value - if this is not set, then it defaults to 1.
 # The default widget layout:
 [[row]]
-  ratio=60
+  ratio=52
   [[row.child]]
     ratio=3
     type="proc"
@@ -124,7 +124,7 @@ retention = "10m"
     ratio=4
     type="cpu"
 [[row]]
-  ratio=10
+  ratio=14
   [[row.child]]
     ratio=3
     [[row.child.child]]
@@ -133,9 +133,12 @@ retention = "10m"
     ratio=4
     type="mem"
 [[row]]
-  ratio=24
+  ratio=14
   [[row.child]]
-    ratio=3
+    ratio=1
+    type="battery"
+  [[row.child]]
+    ratio=2
     type="temp"
   [[row.child]]
     ratio=4
