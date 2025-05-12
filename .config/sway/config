@@ -28,6 +28,83 @@ set $menu bemenu-run
 set $dmenu bemenu
 
 set {
+# Default foreground
+  $fujiWhite      #DCD7BA
+# Dark foreground (statuslines)
+  $oldWhite 	    #C8C093
+# Dark background (statuslines and floating windows)
+  $sumiInk0 	    #16161D
+# Default background
+  $sumiInk1 	    #1F1F28
+# Lighter background (colorcolumn, folds)
+  $sumiInk2 	    #2A2A37
+# Lighter background (cursorline)
+  $sumiInk3 	    #363646
+# Darker foreground (line numbers, fold column, non-text characters), float borders
+  $sumiInk4 	    #54546D
+# Popup background, visual selection background
+  $waveBlue1 	    #223249
+# Popup selection background, search background
+  $waveBlue2 	    #2D4F67
+# Diff Add (background)
+  $winterGreen    #2B3328
+# Diff Change (background)
+  $winterYellow   #49443C
+# Diff Deleted (background)
+  $winterRed 	    #43242B
+# Diff Line (background)
+  $winterBlue     #252535
+# Git Add
+  $autumnGreen    #76946A
+# Git Delete
+  $autumnRed 	    #C34043
+# Git Change
+  $autumnYellow   #DCA561
+# Diagnostic Error
+  $samuraiRed     #E82424
+# Diagnostic Warning
+  $roninYellow    #FF9E3B
+# Diagnostic Info
+  $waveAqua1 	    #6A9589
+# Diagnostic Hint
+  $dragonBlue     #658594
+# Comments
+  $fujiGray 	    #727169
+# Light foreground
+  $springViolet1  #938AA9
+# Statements and Keywords
+  $oniViolet 	    #957FB8
+# Functions and Titles
+  $crystalBlue    #7E9CD8
+# Brackets and punctuation
+  $springViolet2  #9CABCA
+# Specials and builtin functions
+  $springBlue     #7FB4CA
+# Not used
+  $lightBlue 	    #A3D4D5
+# Types
+  $waveAqua2 	    #7AA89F
+# Strings
+  $springGreen    #98BB6C
+# Not used
+  $boatYellow1    #938056
+# Operators, RegEx
+  $boatYellow2    #C0A36E
+# Identifiers
+  $carpYellow     #E6C384
+# Numbers
+  $sakuraPink     #D27E99
+# Standout specials 1 (builtin variables)
+  $waveRed 	    #E46876
+# Standout specials 2 (exception handling, return)
+  $peachRed 	    #FF5D62
+# Constants, imports, booleans
+  $surimiOrange   #FFA066
+# Deprecated
+  $katanaGray     #717C7C
+}
+
+set {
   $dark        #040606
   $black       #241B2F
   $dim         #495671
@@ -43,10 +120,10 @@ set {
 }
 
 #                         border   backgrnd text    indic    chld
-client.focused            $cyan    $cyan    $dark   $yellow  $cyan
-client.unfocused          $dark    $dark    $dim    $dark    $blue
-client.focused_inactive   $dark    $dark    $white  $dark    $blue
-client.focused_tab_title  $dim     $dim     $dark   $dim     $blue
+client.focused            $lightBlue    $lightBlue    $dark   $yellow  $lightBlue
+client.unfocused          $dark    $dark    $dim    $dark    $winterBlue
+client.focused_inactive   $dark    $dark    $white  $dark    $winterBlue
+client.focused_tab_title  $dim     $dim     $dark   $dim     $winterBlue
 client.urgent             $red     $red     $white  $red     $red
 client.placeholder        $dark    $dark    $white  $white   $dark
 
@@ -611,4 +688,3 @@ exec swaycons
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
 include /etc/sway/config.d/*
-
