@@ -17,7 +17,7 @@ return {
       formatters_by_ft = {
         css = { "prettier" },
         go = { "gofumpt", "goimports" },
-        -- html = { "djlint" },
+        html = { "djlint" },
         javascript = { "prettier" },
         json = { "prettier" },
         lua = { "stylua" },
