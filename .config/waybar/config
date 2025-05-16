@@ -58,8 +58,7 @@
 
   "backlight": {
     "device": "amdgpu_bl0",
-    "format": "{icon}  {percent}%",
-    "format-icons": ["", ""]
+    "format": "BRT {percent}%",
   },
 
   //"custom/screenrecord": {
@@ -85,10 +84,10 @@
   },
   
   "network": {
-    "format": "󰈀 {ifname}",
-    "format-wifi": "  {essid} <span color='#aaaaaa'>{signalStrength}%</span>",
-    "format-ethernet": "󰈀 {ipaddr}/<span color='#aaaaaa'>{cidr}</span>",
-    "format-disconnected": "󰈂",
+    "format": "{ifname}",
+    "format-wifi": "WiFi {essid} <span color='#aaaaaa'>{signalStrength}%</span>",
+    "format-ethernet": "ETH {ipaddr}/<span color='#aaaaaa'>{cidr}</span>",
+    "format-disconnected": "DC'D",
     "tooltip-format": "{ifname} via {gwaddr}",
     "tooltip-format-wifi": "{essid} ({signalStrength}%)",
     "tooltip-format-ethernet": "{ifname}",
@@ -97,10 +96,6 @@
 
   "custom/vpn": {
     "format": "VPN <span color='#aaaaaa'>{}</span>",
-    "format-icons": {
-      "connected": "",
-      "disconnected": ""
-    },
     "return-type": "json",
     "exec": "/usr/local/bin/waybar-vpn current",
     "on-click": "/usr/local/bin/waybar-vpn connect",
@@ -110,7 +105,7 @@
   },
 
   "custom/docker": {
-    "format": "  {}",
+    "format": "POD {}",
     "return-type": "json",
     "exec": "waybar-docker",
     "exec-if": "waybar-docker status",
@@ -165,7 +160,7 @@
   },
 
   "sway/mode": {
-    "format": " {}",
+    "format": "{}",
     "tooltip": false
   },
 
@@ -187,16 +182,16 @@
     "icon": false,
     "max-length": 240,
     "rewrite": {
-       "(.*) — Mozilla Firefox": " $1",
-       "(.*) — LibreWolf"      : " $1",
-       "(.*) - Chromium"       : " $1",
-       "(.*) — Tor Browser"    : "﨩 $1",
-       "nvim (.*)"             : " $1",
-       "zsh (.*)"              : " $1",
-       "irssi"                 : " irc",
-       "Element | (.*)"        : "ﬧ $1",
-       "Session"               : "廬 session",
-       "Signal"                : " signal"
+       "(.*) — Mozilla Firefox": "WEB $1",
+       "(.*) — LibreWolf"      : "WEB $1",
+       "(.*) - Chromium"       : "WEB $1",
+       "(.*) — Tor Browser"    : "TOR $1",
+       "nvim (.*)"             : "VIM $1",
+       "zsh (.*)"              : "ZSH $1",
+       "irssi"                 : "IRC",
+       "Element | (.*)"        : "MTX $1",
+       "iamb ((.*))"           : "MTX $1",
+       "(.*) - (.*) - Mozilla Thunderbird": "MAIL $2::$1"
     }
   },
 
@@ -222,7 +217,7 @@
 
   "cpu": {
     "interval": 30,
-    "format": " {avg_frequency:3.2f}GHz <span color='#aaaaaa'>{usage}%</span>",
+    "format": "FRQ {avg_frequency:3.2f}GHz <span color='#aaaaaa'>{usage}%</span>",
     "states": {
       "warning": 70,
       "critical": 90
@@ -233,7 +228,7 @@
   "temperature#cpu": {
     "hwmon-path": "/sys/class/hwmon/hwmon3/temp1_input",
     "critical-threshold": 80,
-    "format": " CPU <span color='#aaaaaa'>{temperatureC}°C</span>"
+    "format": "CPU <span color='#aaaaaa'>{temperatureC}°C</span>"
   },
 
   "temperature#gpu": {
@@ -265,28 +260,28 @@
 
   "memory": {
     "interval": 60,
-    "format": "󰘚 {used:3.1f}GiB/<span color='#aaaaaa'>{total:3.1f}GiB</span>"
+    "format": "MEM {used:3.1f}GiB/<span color='#aaaaaa'>{total:3.1f}GiB</span>"
   },
 
   "disk#root": {
     "interval": 360,
-    "format": "  {used}/<span color='#aaaaaa'>{total}</span>",
+    "format": "SSD {used}/<span color='#aaaaaa'>{total}</span>",
     "path": "/"
   },
 
   "disk#microsd": {
     "interval": 360,
-    "format": "󰟜  {used}/<span color='#aaaaaa'>{total}</span>",
+    "format": "uSD {used}/<span color='#aaaaaa'>{total}</span>",
     "path": "/mnt/microsd"
   },
 
   "bluetooth": {
     // "controller": "controller1",
     "on-click": "/usr/local/bin/waybar-bluetooth toggle",
-    "format": "<span color='#aaaaaa'></span>",
-    "format-disabled": "<span color='#333333'></span>",
-    "format-connected": "",
-    "format-connected-battery": " {device_battery_percentage}",
+    "format": "<span color='#aaaaaa'>BT</span>",
+    "format-disabled": "<span color='#333333'>BT</span>",
+    "format-connected": "BT",
+    "format-connected-battery": "BT {device_battery_percentage}",
     "tooltip-format": "{controller_alias}\t\t[{controller_address}]",
     "tooltip-format-connected": "{controller_alias}\t\t[{controller_address}]\n\n{device_enumerate}",
     "tooltip-format-connected-battery": "{controller_alias}\t\t[{controller_address}]\n\n{device_enumerate}",
@@ -310,29 +305,29 @@
   },
 
   "wireplumber": {
-    "format": "{icon}  {node_name}/<span color='#aaaaaa'>{volume}</span>",
-    "format-muted": "",
+    "format": "{icon} {node_name}/<span color='#aaaaaa'>{volume}</span>",
+    "format-muted": " X ",
     "on-click": "pavucontrol",
     "on-click-right": "helvum",
-    "format-icons": ["󰕿", "󰖀", "󰕾"]
+    "format-icons": ["+--", "++-", "+++"]
   },
 
   "custom/audio-internal": {
-    "format": "󱡬",
+    "format": "3.5",
     "tooltip-format": "Internal",
     "on-click": "audio-router analog",
     "interval": "once"
   },
 
   "custom/audio-motu": {
-    "format": "󰤽 ",
+    "format": "MOTU",
     "tooltip-format": "MOTU",
     "on-click": "audio-router motu",
     "interval": "once"
   },
 
   "custom/audio-hdmi": {
-    "format": "󰡁",
+    "format": "HDMI",
     "tooltip-format": "HDMI",
     "on-click": "audio-router hdmi",
     "interval": "once"
@@ -346,14 +341,14 @@
       "critical": 5
     },
     "format-time": "{H}:{m}",
-    "format": "{icon}  {time} <span color='#aaaaaa'>{capacity}%</span>",
-    "format-discharging": "{icon}  <span color='#E4D00A'>{capacity}%</span>",
-    "format-discharging-warning": "{icon}  <span color='#FF5F1F'>{capacity}%</span>",
-    "format-discharging-critical": "{icon}  <span color='#FF3131'>{capacity}%</span>",
-    "format-charging": "{icon}  <span color='#DAF7A6'>{capacity}%</span><span color='#aaaaaa'> @ {power:2.0f}W</span>",
-    "format-full": "󱐥  <span color='#aaaaaa'>{capacity}%</span>",
-    "format-not-charging": "󱐤  <span color='#aaaaaa'>{capacity}%</span>",
-    "format-icons": ["", "", "", "", ""],
+    "format": "{icon} {time} <span color='#aaaaaa'>{capacity}%</span>",
+    "format-discharging": "{icon} <span color='#E4D00A'>{capacity}%</span>",
+    "format-discharging-warning": "{icon} <span color='#FF5F1F'>{capacity}%</span>",
+    "format-discharging-critical": "{icon} <span color='#FF3131'>{capacity}%</span>",
+    "format-charging": "CHG <span color='#DAF7A6'>{capacity}%</span><span color='#aaaaaa'> @ {power:2.0f}W</span>",
+    "format-full": "PWR <span color='#aaaaaa'>{capacity}%</span>",
+    "format-not-charging": "NOP <span color='#aaaaaa'>{capacity}%</span>",
+    "format-icons": ["[0]", "[1]", "[2]", "[3]", "[F]"],
   },
 
   "group/clock": {
@@ -367,7 +362,7 @@
 
   "clock#date": {
     "interval": 60,
-    "format": " <span color='#ffffff'> {:%a %e %b %Y}</span>",
+    "format": "<span color='#ffffff'> {:%a %e %b %Y}</span>",
     "tooltip-format": "<big>{:%B %Y}</big>\n<tt>{calendar}</tt>",
     "calendar": {
       "mode"          : "year",
@@ -391,7 +386,7 @@
 
   "clock#time": {
     "interval": 60,
-    "format": "󰥔  <span color='#aaaaaa'>{:%I:%M %p (%Z)}</span>",
+    "format": "<span color='#aaaaaa'>{:%I:%M %p (%Z)}</span>",
     "tooltip": true,
     "tooltip-format": "{tz_list}",
     "timezones": [

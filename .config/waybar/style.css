@@ -7,7 +7,7 @@
   min-height: 26px;
 }
 
-window#waybar.top {
+window#waybar {
   background-color: rgba(0, 0, 0, 0.42);
   border-bottom: none;
   color: #eeeeee;
