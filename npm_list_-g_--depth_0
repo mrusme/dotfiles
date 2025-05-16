@@ -8,9 +8,10 @@
 ├── npm-check-updates@18.0.1
 ├── npm@11.3.0
 ├── prettier@3.5.3
+├── purgecss@7.0.2
 ├── sql-language-server@1.7.1
 ├── stylelint-lsp@2.0.1
-├── svelte-language-server@0.17.13
+├── svelte-language-server@0.17.14
 ├── typescript-language-server@4.3.4
 ├── typescript@5.8.3
 ├── vim-language-server@2.3.1
