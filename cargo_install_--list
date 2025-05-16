@@ -1,6 +1,6 @@
 age-plugin-yubikey v0.5.0:
     age-plugin-yubikey
-angry_oxide v0.8.32 (https://github.com/Ragnt/AngryOxide#5356125d):
+angry_oxide v0.8.32 (https://github.com/Ragnt/AngryOxide#93e96b6c):
     angryoxide
 ast-grep v0.38.1:
     ast-grep
@@ -66,7 +66,7 @@ gpg-tui v0.11.0:
     gpg-tui-completions
 gping v1.19.0:
     gping
-harper-ls v0.34.1:
+harper-ls v0.35.0:
     harper-ls
 havn v0.2.1:
     havn
@@ -138,8 +138,6 @@ spotify-tui v0.25.0:
     spt
 starship v1.23.0:
     starship
-swaycons v0.3.1:
-    swaycons
 taskwarrior-tui v0.26.3:
     taskwarrior-tui
 tealdeer v1.7.2:
