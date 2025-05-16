@@ -239,17 +239,17 @@ vim.lsp.config("gopls", {
 vim.lsp.enable("gopls")
 
 -- [ Harper ]---------------------------------------------------------------- --
-vim.lsp.config("harper_ls", {
-  cmd = { "harper-ls", "--stdio" },
-  filetypes = {
-    "gitcommit",
-    "html",
-    "markdown",
-    "toml",
-  },
-  root_markers = { ".git" },
-})
-vim.lsp.enable("harper_ls")
+-- vim.lsp.config("harper_ls", {
+--   cmd = { "harper-ls", "--stdio" },
+--   filetypes = {
+--     "gitcommit",
+--     "html",
+--     "markdown",
+--     "toml",
+--   },
+--   root_markers = { ".git" },
+-- })
+-- vim.lsp.enable("harper_ls")
 
 -- [ HTML ]------------------------------------------------------------------ --
 vim.lsp.config("html", {
