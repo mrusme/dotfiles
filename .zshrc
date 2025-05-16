@@ -671,6 +671,7 @@ alias gmc='git merge --continue'
 alias gsb='git status --short --branch'
 
 alias gts='git tag --sign'
+alias gtl='git tag -l'
 
 # git tag delete
 gtd() {
