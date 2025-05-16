@@ -4,7 +4,7 @@ set promptfmt "\033[37;1m%u@%h\033[0m:\033[34;1m%d\033[0m\033[1m%f\033[0m"
 set ifs "\n"
 set scrolloff 10
 set drawbox
-set borderfmt "\033[31;1m"
+set borderfmt "\033[02;1m"
 set ratios '1:2:3'
 set icons
 set mouse false

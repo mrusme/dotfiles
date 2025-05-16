@@ -355,13 +355,13 @@ handle_mime() {
         image/*)
             ## Preview as text conversion
             # img2txt --gamma=0.6 --width="${PV_WIDTH}" -- "${FILE_PATH}" && exit 4
-            chafa -s "${PV_WIDTH}" "${FILE_PATH}"
+            chafa -f symbols -s "${PV_WIDTH}" "${FILE_PATH}"
             exiftool "${FILE_PATH}" && exit 5
             exit 1;;
 
         ## Video and audio
         video/* | audio/*)
-            chafa -s "${PV_WIDTH}" --animate off "${FILE_PATH}"
+            chafa -f symbols -s "${PV_WIDTH}" --animate off "${FILE_PATH}"
             mediainfo "${FILE_PATH}" && exit 5
             exiftool "${FILE_PATH}" && exit 5
             exit 1;;
