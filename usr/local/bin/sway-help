@@ -3,4 +3,4 @@ rg -NoU '^# (.*)\nbindsym ([^ ]*) .*' \
   -r '$2|$1' \
   "$HOME/.config/sway/config" \
 | awk -F '|' '{ printf "%26s: %s\n", $1, $2 }' > /tmp/swayhelp
-alacritty --class 'floating' --command bat -p /tmp/swayhelp
+cat /tmp/swayhelp | bemenu
