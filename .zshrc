@@ -81,7 +81,8 @@ export ICONS_PATH="${HOME}/cloud/library/tools/icons/pixelarticons"
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
 if [ -n "${GHOSTTY_RESOURCES_DIR}" ]; then
-  builtin source "${GHOSTTY_RESOURCES_DIR}/shell-integration/zsh/ghostty-integration"
+  builtin source \
+    "${GHOSTTY_RESOURCES_DIR}/shell-integration/zsh/ghostty-integration"
 fi
 
 
@@ -100,12 +101,18 @@ __is_available tmux \
 # ║ General config                                                             ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
+export HISTFILE="${HOME}/.zsh_history"
 export HISTCONTROL="ignoredups:ignorespace"
 export HISTSIZE="100000"
 export HISTFILESIZE="200000"
 export SAVEHIST="${HISTSIZE}"
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_IGNORE_SPACE
+setopt EXTENDED_HISTORY
+setopt HIST_EXPIRE_DUPS_FIRST
+setopt HIST_IGNORE_DUPS 
+setopt HIST_VERIFY
+setopt SHARE_HISTORY
 
 export TERM="xterm-256color"
 export COLUMNS="80"
@@ -242,72 +249,328 @@ fi
 
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
-# ║ OMZ                                                                        ║
+# ║ Completions                                                                ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
-export ZSH="${HOME}/.oh-my-zsh"
-# [ -e ${ZSH} ] || \
-# ([ "${USER}" != "root" ] && sh -c "$(curl -fsSL \
-#     https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)")
+autoload -U compaudit compinit zrecompile
+
+if [[ -z "$ZSH_COMPDUMP" ]]; then
+  ZSH_COMPDUMP="${ZDOTDIR:-$HOME}/.zcompdump-${SHORT_HOST}-${ZSH_VERSION}"
+fi 
+
+compinit -i -d "$ZSH_COMPDUMP"
+
+if command mkdir "${ZSH_COMPDUMP}.lock" 2>/dev/null; then
+  zrecompile -q -p "$ZSH_COMPDUMP"
+  command rm -rf "$ZSH_COMPDUMP.zwc.old" "${ZSH_COMPDUMP}.lock"
+fi
+
+zmodload -i zsh/complist
+WORDCHARS=''
+
+unsetopt menu_complete   # do not autoselect the first completion entry
+unsetopt flowcontrol
+setopt auto_menu         # show completion menu on successive tab press
+setopt complete_in_word
+setopt always_to_end
+
+# should this be in keybindings?
+bindkey -M menuselect '^o' accept-and-infer-next-history
+zstyle ':completion:*:*:*:*:*' menu select
+zstyle ':completion:*' matcher-list \
+  'r:|=*' 'l:|=* r:|=*'
+zstyle ':completion:*' special-dirs true
+zstyle ':completion:*' list-colors ''
+zstyle ':completion:*:*:kill:*:processes' list-colors \
+  '=(#b) #([0-9]#) ([0-9a-z-]#)*=01;34=0=01' 
+zstyle ':completion:*:*:*:*:processes' command \
+  "ps -u $USERNAME -o pid,user,comm -w -w" 
+zstyle ':completion:*:cd:*' tag-order \
+  local-directories directory-stack path-directories
+zstyle ':completion:*' use-cache yes
+zstyle ':completion:*' cache-path $ZSH_CACHE_DIR
+zstyle ':completion:*:*:*:users' ignored-patterns \
+  adm amanda apache at avahi avahi-autoipd beaglidx bin cacti canna \
+  clamav daemon dbus distcache dnsmasq dovecot fax ftp games gdm \
+  gkrellmd gopher hacluster haldaemon halt hsqldb ident junkbust kdm \
+  ldap lp mail mailman mailnull man messagebus mldonkey mysql nagios \
+  named netdump news nfsnobody nobody nscd ntp nut nx obsrun openvpn \
+  operator pcap polkitd postfix postgres privoxy pulse pvm quagga radvd \
+  rpc rpcuser rpm rtkit scard shutdown squid sshd statd svn sync tftp \
+  usbmux uucp vcsa wwwrun xfs '_*'
+zstyle '*' single-ignored show 
+
+# automatically load bash completion functions
+autoload -U +X bashcompinit && bashcompinit
 
 
-__is_available starship \
-|| ZSH_THEME="geometry-zsh/geometry"
-
-[ "${USER}" = "root" ] \
-&& GEOMETRY_SEPARATOR=" root"
-
-CASE_SENSITIVE="true"
-
-zstyle ':omz:update' mode auto
-[ "${USER}" = "root" ] \
-&& zstyle ':omz:update' mode disabled
-zstyle ':omz:update' frequency 10
-zstyle ':omz:update' verbose minimal
-
-DISABLE_LS_COLORS="true"
-DISABLE_AUTO_TITLE="false"
-ENABLE_CORRECTION="false"
-COMPLETION_WAITING_DOTS="false"
-DISABLE_UNTRACKED_FILES_DIRTY="false"
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ Autosuggestions                                                            ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
 
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
-ZSH_AUTOSUGGESTIONS="${ZSH_CUSTOM:-${HOME}/.oh-my-zsh/custom}\
-/plugins/zsh-autosuggestions"
+ZSH_AUTOSUGGESTIONS="${HOME}/.zsh/zsh-autosuggestions"
 ZSH_COMPDUMP="${XDG_CACHE_HOME}/.zcompdump-${HOST}"
 
-zstyle ':omz:*' aliases no
-zstyle ':omz:lib:*' aliases no
-zstyle ':omz:lib:directories' aliases no
-zstyle ':omz:plugins:*' aliases no
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh 
 
-# === PLUGINS ===
-plugins=(history zsh-autosuggestions fzf aliases)
 
-if [ "${USER}" != "root" ]
-then 
-  plugins+=( \
-    gpg-agent ssh-agent \
-    genpass git git-extras golang rust gh \
-    rsync mosh pass \
-    encode64 extract urltools isodate \
-  )
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ Misc                                                                       ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+
+autoload -Uz is-at-least
+setopt multios              # enable redir to multi streams: echo >file1 >file2
+setopt long_list_jobs       # show long list format job notifications
+setopt interactivecomments  # recognize comments
+
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ GPG                                                                        ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+
+export GPG_TTY=$TTY
+
+# Fix for passphrase prompt on the correct tty
+# https://www.gnupg.org/documentation/manuals/gnupg/Agent-Options.html#option-_002d_002denable_002dssh_002dsupport
+function _gpg-agent_update-tty_preexec {
+  gpg-connect-agent updatestartuptty /bye &>/dev/null
+}
+autoload -U add-zsh-hook
+add-zsh-hook preexec _gpg-agent_update-tty_preexec
+
+# If enable-ssh-support is set, fix ssh agent integration
+if [[ $(gpgconf --list-options gpg-agent 2>/dev/null \
+        | awk -F: '$1=="enable-ssh-support" {print $10}') = 1 ]]; then
+  unset SSH_AGENT_PID
+  if [[ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]]; then
+    export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
+  fi
 fi
-# ===         ===
 
-[ -e "${ZSH}/oh-my-zsh.sh" ] \
-&& source "${ZSH}/oh-my-zsh.sh"
 
-ZSH_THEME_TERM_TITLE_IDLE='zsh %n@%m:%~'
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ SSH                                                                        ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+
+ssh_env_cache="$HOME/.ssh/environment-$SHORT_HOST"
+
+function _start_agent() {
+  # Check if ssh-agent is already running
+  if [[ -f "$ssh_env_cache" ]]; then
+    . "$ssh_env_cache" > /dev/null
+
+    # Test if $SSH_AUTH_SOCK is visible
+    zmodload zsh/net/socket
+    if [[ -S "$SSH_AUTH_SOCK" ]] \
+    && zsocket "$SSH_AUTH_SOCK" 2>/dev/null; then
+      return 0
+    fi
+  fi
+
+  if [[ ! -d "$HOME/.ssh" ]]; then
+    echo "ssh-agent plugin requires ~/.ssh directory"
+    return 1
+  fi
+
+  # Set a maximum lifetime for identities added to ssh-agent
+  local lifetime
+
+  # start ssh-agent and setup environment
+  echo >&2 "Starting ssh-agent ..."
+  ssh-agent -s ${lifetime:+-t} ${lifetime} \
+    | sed '/^echo/d' >! "$ssh_env_cache"
+  chmod 600 "$ssh_env_cache"
+  . "$ssh_env_cache" > /dev/null
+}
+
+function _add_identities() {
+  local id file line sig lines
+  local -a identities loaded_sigs loaded_ids not_loaded
+
+  # check for .ssh folder presence
+  if [[ ! -d "$HOME/.ssh" ]]; then
+    return
+  fi
+
+  # add default keys if no identities were set up via zstyle
+  # this is to mimic the call to ssh-add with no identities
+  if [[ ${#identities} -eq 0 ]]; then
+    # key list found on `ssh-add` man page's DESCRIPTION section
+    for id in id_rsa id_dsa id_ecdsa id_ed25519 id_ed25519_sk identity; do
+      # check if file exists
+      [[ -f "$HOME/.ssh/$id" ]] && identities+=($id)
+    done
+  fi
+
+  # get list of loaded identities' signatures and filenames
+  if lines=$(ssh-add -l); then
+    for line in ${(f)lines}; do
+      loaded_sigs+=${${(z)line}[2]}
+      loaded_ids+=${${(z)line}[3]}
+    done
+  fi
+
+  # add identities if not already loaded
+  for id in $identities; do
+    # if id is an absolute path, make file equal to id
+    [[ "$id" = /* ]] && file="$id" || file="$HOME/.ssh/$id"
+    # check for filename match, otherwise try for signature match
+    if [[ -f $file && ${loaded_ids[(I)$file]} -le 0 ]]; then
+      sig="$(ssh-keygen -lf "$file" | awk '{print $2}')"
+      [[ ${loaded_sigs[(I)$sig]} -le 0 ]] && not_loaded+=("$file")
+    fi
+  done
+
+  # abort if no identities need to be loaded
+  if [[ ${#not_loaded} -eq 0 ]]; then
+    return
+  fi
+
+  local args
+  local helper
+
+  if [[ -n "$helper" ]]; then
+    if [[ -z "${commands[$helper]}" ]]; then
+      echo >&2 "ssh-agent: the helper '$helper' has not been found."
+    else
+      SSH_ASKPASS="$helper" ssh-add "${args[@]}" ${^not_loaded} < /dev/null
+      return $?
+    fi
+  fi
+
+  ssh-add "${args[@]}" ${^not_loaded}
+}
+
+# Add a nifty symlink for screen/tmux if agent forwarding is enabled
+if [[ -n "$SSH_AUTH_SOCK" ]]; then
+  if [[ ! -L "$SSH_AUTH_SOCK" ]]; then
+    if [[ -n "$TERMUX_VERSION" ]]; then
+      ln -sf "$SSH_AUTH_SOCK" "$PREFIX"/tmp/ssh-agent-$USERNAME-screen
+    else
+      ln -sf "$SSH_AUTH_SOCK" /tmp/ssh-agent-$USERNAME-screen
+    fi
+  fi
+else
+  _start_agent
+fi
+
+_add_identities
+
+unset agent_forwarding ssh_env_cache
+unfunction _start_agent _add_identities
+
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ FZF                                                                        ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+
+function fzf_setup_using_fzf() {
+  (( ${+commands[fzf]} )) || return 1
+
+  local fzf_ver=${"$(fzf --version)"#fzf }
+
+  autoload -Uz is-at-least
+  is-at-least 0.48.0 ${${(s: :)fzf_ver}[1]} || return 1
+
+  eval "$(fzf --zsh)"
+}
+
+function fzf_setup_error() {
+  cat >&2 <<'EOF'
+fzf plugin: Cannot find fzf installation directory.
+Please add `export FZF_BASE=/path/to/fzf/install/dir` to your .zshrc
+EOF
+}
+
+fzf_setup_using_fzf \
+  || fzf_setup_error
+
+unset -f -m 'fzf_setup_*'
+
+export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git/*"'
 
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
 # ║ Bindkeys                                                                   ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
+if (( ${+terminfo[smkx]} )) && (( ${+terminfo[rmkx]} )); then
+  function zle-line-init() {
+    echoti smkx
+  }
+  function zle-line-finish() {
+    echoti rmkx
+  }
+  zle -N zle-line-init
+  zle -N zle-line-finish
+fi
+
+# Use emacs key bindings
+bindkey -e
+
+# [Home] - Go to beginning of line
+if [[ -n "${terminfo[khome]}" ]]; then
+  bindkey -M emacs "${terminfo[khome]}" beginning-of-line
+  bindkey -M viins "${terminfo[khome]}" beginning-of-line
+  bindkey -M vicmd "${terminfo[khome]}" beginning-of-line
+fi
+# [End] - Go to end of line
+if [[ -n "${terminfo[kend]}" ]]; then
+  bindkey -M emacs "${terminfo[kend]}"  end-of-line
+  bindkey -M viins "${terminfo[kend]}"  end-of-line
+  bindkey -M vicmd "${terminfo[kend]}"  end-of-line
+fi
+
+# [Shift-Tab] - move through the completion menu backwards
+if [[ -n "${terminfo[kcbt]}" ]]; then
+  bindkey -M emacs "${terminfo[kcbt]}" reverse-menu-complete
+  bindkey -M viins "${terminfo[kcbt]}" reverse-menu-complete
+  bindkey -M vicmd "${terminfo[kcbt]}" reverse-menu-complete
+fi
+
+# [Backspace] - delete backward
+bindkey -M emacs '^?' backward-delete-char
+bindkey -M viins '^?' backward-delete-char
+bindkey -M vicmd '^?' backward-delete-char
+# [Delete] - delete forward
+if [[ -n "${terminfo[kdch1]}" ]]; then
+  bindkey -M emacs "${terminfo[kdch1]}" delete-char
+  bindkey -M viins "${terminfo[kdch1]}" delete-char
+  bindkey -M vicmd "${terminfo[kdch1]}" delete-char
+else
+  bindkey -M emacs "^[[3~" delete-char
+  bindkey -M viins "^[[3~" delete-char
+  bindkey -M vicmd "^[[3~" delete-char
+
+  bindkey -M emacs "^[3;5~" delete-char
+  bindkey -M viins "^[3;5~" delete-char
+  bindkey -M vicmd "^[3;5~" delete-char
+fi
+
+# [Ctrl-Delete] - delete whole forward-word
+bindkey -M emacs '^[[3;5~' kill-word
+bindkey -M viins '^[[3;5~' kill-word
+bindkey -M vicmd '^[[3;5~' kill-word
+
+# [Ctrl-RightArrow] - move forward one word
+bindkey -M emacs '^[[1;5C' forward-word
+bindkey -M viins '^[[1;5C' forward-word
+bindkey -M vicmd '^[[1;5C' forward-word
+# [Ctrl-LeftArrow] - move backward one word
+bindkey -M emacs '^[[1;5D' backward-word
+bindkey -M viins '^[[1;5D' backward-word
+bindkey -M vicmd '^[[1;5D' backward-word
+
+
 bindkey '^f' forward-char
 bindkey '^[f' forward-word 
 bindkey '^H' backward-kill-word
+
+# Edit the current command line in $EDITOR
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey '\C-x\C-e' edit-command-line
 
 # Launch bemenu
 __bemenu() { BEMENU_BACKEND=curses bemenu-run; zle redisplay }
@@ -429,6 +692,39 @@ alias bookmarks="git -C ${JRNL} checkout develop \
 
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ encode64/decode64                                                          ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+
+encode64() {
+    if [[ $# -eq 0 ]]; then
+        cat | base64
+    else
+        printf '%s' $1 | base64
+    fi
+}
+
+encodefile64() {
+    if [[ $# -eq 0 ]]; then
+        echo "You must provide a filename"
+    else
+        base64 $1 > $1.txt
+        echo "${1}'s content encoded in base64 and saved as ${1}.txt"
+    fi
+}
+
+decode64() {
+    if [[ $# -eq 0 ]]; then
+        cat | base64 --decode
+    else
+        printf '%s' $1 | base64 --decode
+    fi
+}
+alias e64=encode64
+alias ef64=encodefile64
+alias d64=decode64
+
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
 # ║ Mosh/SSH wrapper                                                           ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
@@ -437,7 +733,8 @@ function ssh {
   then
     conn="$1"
     sshhost=$(printf "%s" "${conn}" | cut -d '@' -f2)
-    if rg -U -i "^#.*Features:.*mosh.*\nHost ${sshhost}" "${HOME}/.ssh/config" > /dev/null
+    if rg -U -i "^#.*Features:.*mosh.*\nHost ${sshhost}" \
+      "${HOME}/.ssh/config" > /dev/null
     then
       printf "connecting with mosh ...\n"
       command mosh ${conn}
@@ -451,94 +748,6 @@ function ssh {
   fi
 }
 
-
-# ╔════════════════════════════════════════════════════════════════════════════╗
-# ║ Poor-man's aptitude                                                        ║
-# ╚════════════════════════════════════════════════════════════════════════════╝
-
-if ! __is_available aptitude linux
-then
-  _aptitude()
-  {
-    local cur 
-    COMPREPLY=()
-    cur="${COMP_WORDS[COMP_CWORD]}"
-    COMPREPLY=( $(compgen -W \
-      'install remove purge update upgrade safe-upgrade full-upgrade \
-       search show clean reinstall' -- "${cur}") )
-    return 0
-  }
-  complete -F "_aptitude" "aptitude"
-  alias apt='aptitude'
-fi
-
-if __is_available emerge linux
-then
-  function aptitude {
-    if [ -z "$1" ]; then
-      printf "Usage: aptitude <action> [options] ...\n"
-    else
-      case $1 in
-        install)     emerge -av --keep-going=y "${@:2}";;
-        remove)      emerge -cav "${@:2}";;
-        purge)       emerge -Cav "${@:2}";;
-        update)      emerge --sync "${@:2}";;
-        upgrade)     emerge --ask --update --deep --changed-use --verbose-conflicts --keep-going=y "${@[2]:-@world}";;
-        safe-upgrade)emerge -avu --keep-going=y "${@[2]:-@world}";;
-        full-upgrade)emerge -avuND --keep-going=y --with-bdeps=y "${@[2]:-@world}";;
-        search)      emerge -s "${@:2}";;
-        show)        equery meta "${@:2}";;
-        clean)       emerge -avc "${@:2}";;
-        reinstall)   emerge -ave "${@:2}";;
-        *)           printf "aptitude: '%s' - unknown action\n" "$1" ;;
-      esac
-    fi
-  }
-elif __is_available pacman linux
-then
-  function aptitude {
-    if [ -z "$1" ]; then
-      printf "Usage: aptitude <action> [options] ...\n"
-    else
-      case $1 in
-        install)     pacman -S "${@:2}";;
-        remove)      pacman -R "${@:2}";;
-        purge)       pacman -Rs "${@:2}";;
-        update)      pacman -Syy "${@:2}";;
-        upgrade)     pacman -Syu "${@:2}";;
-        safe-upgrade)pacman -Syu "${@:2}";;
-        full-upgrade)pacman -Syu "${@:2}";;
-        search)      pacman -Ss "${@:2}";;
-        show)        pacman -Si "${@:2}";;
-        clean)       pacman -Scc "${@:2}";;
-        reinstall)   pacman -S "${@:2}";;
-        *)           printf "aptitude: '%s' - unknown action\n" "$1" ;;
-      esac
-    fi
-  }
-elif __is_available pkg_add openbsd
-then
-  function aptitude {
-    if [ -z "$1" ]; then
-      printf "Usage: aptitude <action> [options] ...\n"
-    else
-      case $1 in
-        install)     pkg_add "${@:2}";;
-        remove)      pkg_delete "${@:2}";;
-        purge)       pkg_delete -a "${@:2}";;
-        update)      pkg_add -Uuin "${@:2}";;
-        upgrade)     pkg_add -Uui "${@:2}";;
-        safe-upgrade)sysupgrade;;
-        full-upgrade)sysupgrade;;
-        search)      pkg_info -Q "${@:2}";;
-        show)        pkg_info "${@:2}";;
-        clean)       pkg_check "${@:2}";;
-        reinstall)   pkg_add -Uui "${@:2}";;
-        *)           printf "aptitude: '%s' - unknown action\n" "$1" ;;
-      esac
-    fi
-  }
-fi
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
 # ║ Gentoo packages helper                                                     ║
@@ -605,8 +814,7 @@ function update-tools() {
   tldr --update
 
   printf "\nUpdating Zsh plugins ...\n"
-  git -C ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions pull
-  git -C ~/.oh-my-zsh/themes/geometry-zsh pull
+  git -C ~/.zsh/zsh-autosuggestions pull
 
   printf "\nTools updated"
 }
@@ -736,7 +944,11 @@ function video-to-gif() {
   ffmpeg \
     -i "$1" \
     -filter_complex \
-    "[0:v]setpts=0.5*PTS,fps=$fps,scale=800:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse" \
+    $(printf "%s%s%s%s" \
+      "[0:v]setpts=0.5*PTS,fps=" \
+      $fps \
+      ",scale=800:-1:flags=lanczos,split[s0][s1];" \
+      "[s0]palettegen[p];[s1][p]paletteuse") \
     -filter:a 'atempo=1,atempo=1' \
     -loop 0 \
     "$2"
@@ -767,19 +979,35 @@ function listen() {
 }
 
 function scale-and-crop-16-9() {
+  awkcommand='{ 
+    if($1 < $2) { 
+      system("convert " $3 " -resize 2160x " $3); 
+      system("convert " $3 " -crop 2160x3840+0+0 " $3) 
+    } else { 
+      system("convert " $3 " -resize 3840x " $3); 
+      system("convert " $3 " -crop 3840x2160+0+0 " $3) 
+    }
+  }'
   find ./ \
     -type f \
     -iname '*.jpg' \
     -exec identify -format '%w %h %i\n' '{}' \; \
-      | awk '{ if($1 < $2) { system("convert " $3 " -resize 2160x " $3); system("convert " $3 " -crop 2160x3840+0+0 " $3) } else { system("convert " $3 " -resize 3840x " $3); system("convert " $3 " -crop 3840x2160+0+0 " $3) }}'
+      | awk "$awkcommand"
 }
 
 function crop-16-9() {
+  awkcommand='{ 
+    if($1 < $2) { 
+      system("convert " $3 " -crop 2160x3840+0+0 " $3) 
+    } else { 
+      system("convert " $3 " -crop 3840x2160+0+0 " $3) 
+    }
+  }'
   find ./ \
     -type f \
     -iname '*.jpg' \
     -exec identify -format '%w %h %i\n' '{}' \; \
-      | awk '{ if($1 < $2) { system("convert " $3 " -crop 2160x3840+0+0 " $3) } else { system("convert " $3 " -crop 3840x2160+0+0 " $3) }}'
+      | awk "$awkcommand"
 }
 
 function compress-all-jpgs() {
