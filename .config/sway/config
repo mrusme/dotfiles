@@ -675,6 +675,8 @@ exec --no-startup-id gnome-keyring-daemon --start --components=pkcs11,secrets,ss
 
 # Desktop notifications
 exec mako
+# Fix for https://github.com/emersion/mako/issues/512
+exec /home/mrus/apps/makofix
 
 # Starshield
 # exec starshieldd /dev/serial/by-id/usb-Espressif_USB_JTAG_serial_debug_unit_40:4C:CA:48:3A:38-if00
