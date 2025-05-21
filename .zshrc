@@ -428,16 +428,6 @@ function _add_identities() {
   fi
 
   local args
-  local helper
-
-  if [[ -n "$helper" ]]; then
-    if [[ -z "${commands[$helper]}" ]]; then
-      echo >&2 "ssh-agent: the helper '$helper' has not been found."
-    else
-      SSH_ASKPASS="$helper" ssh-add "${args[@]}" ${^not_loaded} < /dev/null
-      return $?
-    fi
-  fi
 
   ssh-add "${args[@]}" ${^not_loaded}
 }
