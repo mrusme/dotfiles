@@ -20,12 +20,13 @@
   "modules-left": [
     "sway/workspaces",
     //"sway/language",
-    "backlight",
+    "group/display",
     //"custom/screenrecord",
     "privacy",
     "group/network",
     // "custom/crypto",
     //"custom/starshield",
+    "custom/xmrig",
     "tray",
     "sway/mode"
     // "custom/zeit"
@@ -56,9 +57,44 @@
     "format": "<span text_transform='uppercase'>{short}</span> {variant}",
   },
 
+  "group/display": {
+    "orientation": "horizontal",
+    "modules": [ 
+      "backlight",
+      "custom/display-dp-1",
+      "custom/display-hdmi-1",
+      "custom/display-hdmi-2"
+    ],
+    "drawer": {
+      "transition-left-to-right": true,
+      "transition-duration": 500
+    }
+  },
+  
   "backlight": {
     "device": "amdgpu_bl0",
     "format": "BRT {percent}%",
+  },
+
+  "custom/display-dp-1": {
+    "format": "DP-1",
+    "tooltip-format": "DP-1",
+    "on-click": "ddcutil setvcp 60 0x0f",
+    "interval": "once"
+  },
+
+  "custom/display-hdmi-1": {
+    "format": "HDMI-1",
+    "tooltip-format": "HDMI-1",
+    "on-click": "ddcutil setvcp 60 0x11",
+    "interval": "once"
+  },
+
+  "custom/display-hdmi-2": {
+    "format": "HDMI-2",
+    "tooltip-format": "HDMI-2",
+    "on-click": "ddcutil setvcp 60 0x12",
+    "interval": "once"
   },
 
   //"custom/screenrecord": {
@@ -135,6 +171,14 @@
   //  "on-click": "",
   //  "interval": 20
   //},
+
+  "custom/xmrig": {
+    "format": "{}",
+    "return-type": "json",
+    "exec": "/usr/local/bin/waybar-xmrig",
+    "on-click": "",
+    "interval": 60
+  },
 
   "privacy": {
     "icon-spacing": 4,
