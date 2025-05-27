@@ -368,6 +368,9 @@ bindsym Alt+Space             exec /usr/local/bin/bmd
 # Open QtFM
 bindsym $mod+Ctrl+f           exec qtfm
 
+# Open mepo
+bindsym $mod+Ctrl+m           exec mepo
+
 # Rename Sway "tab"
 bindsym $mod+Ctrl+t           exec /usr/local/bin/sway-nametab
 
@@ -607,6 +610,10 @@ for_window [app_id = "yad"] floating enable
 for_window [app_id = "opensnitch_ui"] floating enable
 for_window [app_id = "org.pipewire.Helvum"] floating enable
 for_window [app_id = "eu.qtfm"] floating enable
+for_window [app_id = "mepo"] {
+  floating enable
+  resize set 1024 px 600 px
+}
 for_window [app_id = "Bitwarden"] {
   floating enable
   resize set 1024 px 600 px
