@@ -4,22 +4,22 @@ filename='screenshot_%Y-%m-%d-%H%M%S.png'
 
 case "$1" in 
   "region")
-    slurp | grim -t png -g - $HOME/downloads/$(date +$filename)
+    slurp | grim -t png -g - $HOME/cloud/photos/screenshots/$(date +$filename)
     ;;
   "window")
     swaymsg -t get_tree \
     | jq -r '.. | select(.pid? and .visible?) | .rect | "\(.x),\(.y) \(.width)x\(.height)"' \
     | slurp \
-    | grim -t png -g -  $HOME/downloads/$(date +$filename)
+    | grim -t png -g -  $HOME/cloud/photos/screenshots/$(date +$filename)
     ;;
   "screen-internal")
-    grim -o eDP-1 -t png $HOME/downloads/$(date +$filename)
+    grim -o eDP-1 -t png $HOME/cloud/photos/screenshots/$(date +$filename)
     ;;
   "screen-external")
-    grim -o HDMI-A-1 -t png $HOME/downloads/$(date +$filename)
+    grim -o HDMI-A-1 -t png $HOME/cloud/photos/screenshots/$(date +$filename)
     ;;
   *)
-    grim -t png $HOME/downloads/$(date +$filename)
+    grim -t png $HOME/cloud/photos/screenshots/$(date +$filename)
     ;;
 esac
 
