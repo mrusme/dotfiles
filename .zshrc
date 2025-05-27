@@ -682,32 +682,67 @@ alias bookmarks="git -C ${JRNL} checkout develop \
 
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ age encrypt/decrypt                                                        ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+
+encrypt() {
+  if [[ $# -eq 0 ]]; then
+    printf "%s: <filename>\n" "$0"
+    return 1
+  fi
+  if [[ "$1" =~ \.age$ ]]; then
+    printf "%s: File is already an age file\n" "$0"
+    return 1
+  fi
+  /bin/cat "$1" \
+  | age -r $(pass show age/id1) -r $(pass show age/id2) -o "$1.age"
+}
+
+decrypt() {
+  if [[ $# -eq 0 ]]; then
+    printf "%s: <filename>\n" "$0"
+    return 1
+  fi
+  if [[ ! "$1" =~ \.age$ ]]; then
+    printf "%s: File is not an age file\n" "$0"
+    return 1
+  fi
+  id1file=$(mktemp)
+  id2file=$(mktemp)
+  pass show age/id1-identity > "$id1file"
+  pass show age/id2-identity > "$id2file"
+  /bin/cat "$1" | age -d -i "$id1file" -i "$id2file" > "${1%.age}"
+  rm "$id1file" "$id2file"
+}
+
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
 # ║ encode64/decode64                                                          ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
 encode64() {
-    if [[ $# -eq 0 ]]; then
-        cat | base64
-    else
-        printf '%s' $1 | base64
-    fi
+  if [[ $# -eq 0 ]]; then
+    cat | base64
+  else
+    printf '%s' $1 | base64
+  fi
 }
 
 encodefile64() {
-    if [[ $# -eq 0 ]]; then
-        echo "You must provide a filename"
-    else
-        base64 $1 > $1.txt
-        echo "${1}'s content encoded in base64 and saved as ${1}.txt"
-    fi
+  if [[ $# -eq 0 ]]; then
+    echo "You must provide a filename"
+  else
+    base64 $1 > $1.txt
+    echo "${1}'s content encoded in base64 and saved as ${1}.txt"
+  fi
 }
 
 decode64() {
-    if [[ $# -eq 0 ]]; then
-        cat | base64 --decode
-    else
-        printf '%s' $1 | base64 --decode
-    fi
+  if [[ $# -eq 0 ]]; then
+    cat | base64 --decode
+  else
+    printf '%s' $1 | base64 --decode
+  fi
 }
 alias e64=encode64
 alias ef64=encodefile64
