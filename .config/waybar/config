@@ -120,6 +120,7 @@
   },
   
   "network": {
+    "family": "ipv4",
     "format": "{ifname}",
     "format-wifi": "WiFi {essid} <span color='#aaaaaa'>{signalStrength}%</span>",
     "format-ethernet": "ETH {ipaddr}/<span color='#aaaaaa'>{cidr}</span>",
