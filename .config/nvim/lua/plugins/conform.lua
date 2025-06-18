@@ -16,6 +16,7 @@ return {
     opts = {
       formatters_by_ft = {
         css = { "prettier" },
+        eruby = { "erb_format" },
         go = { "gofumpt", "goimports" },
         html = { "djlint" },
         javascript = { "prettier" },
