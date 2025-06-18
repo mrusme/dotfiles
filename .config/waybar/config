@@ -24,9 +24,8 @@
     //"custom/screenrecord",
     "privacy",
     "group/network",
-    // "custom/crypto",
+    "group/market",
     //"custom/starshield",
-    "custom/xmrig",
     "tray",
     "sway/mode"
     // "custom/zeit"
@@ -110,8 +109,8 @@
     "modules": [ 
       "network",
       "custom/vpn",
-      "custom/docker"
-      //"custom/cloudcash"
+      "custom/docker",
+      "custom/cloudcash"
     ],
     "drawer": {
       "transition-left-to-right": true,
@@ -149,21 +148,13 @@
     "interval": 30
   },
 
-  //"custom/cloudcash": {
-  //  "format": "{}",
-  //  "return-type": "json",
-  //  "exec": "/usr/local/bin/cloudcash -waybar-pango",
-  //  "on-click": "",
-  //  "interval": 3600
-  //},
-
-  //"custom/crypto": {
-  //  "format": "{}",
-  //  "return-type": "json",
-  //  "exec": "/usr/local/bin/waybar-crypto",
-  //  "on-click": "",
-  //  "interval": 3600
-  //},
+  "custom/cloudcash": {
+    "format": "{}",
+    "return-type": "json",
+    "exec": "/usr/local/bin/cloudcash -waybar-pango",
+    "on-click": "",
+    "interval": 3600
+  },
 
   //"custom/starshield": {
   //  "format": "{}",
@@ -173,12 +164,32 @@
   //  "interval": 20
   //},
 
+  "group/market": {
+    "orientation": "horizontal",
+    "modules": [ 
+      "custom/xmrig",
+      "custom/crypto"
+    ],
+    "drawer": {
+      "transition-left-to-right": true,
+      "transition-duration": 500
+    }
+  },
+  
   "custom/xmrig": {
     "format": "{}",
     "return-type": "json",
     "exec": "/usr/local/bin/waybar-xmrig",
     "on-click": "",
     "interval": 60
+  },
+
+  "custom/crypto": {
+    "format": "{}",
+    "return-type": "json",
+    "exec": "/usr/local/bin/waybar-crypto2",
+    "on-click": "",
+    "interval": 3600
   },
 
   "privacy": {
@@ -391,9 +402,9 @@
     "format-discharging-warning": "{icon} <span color='#FF5F1F'>{capacity}%</span>",
     "format-discharging-critical": "{icon} <span color='#FF3131'>{capacity}%</span>",
     "format-charging": "CHG <span color='#DAF7A6'>{capacity}%</span><span color='#aaaaaa'> @ {power:2.0f}W</span>",
-    "format-full": "PWR <span color='#aaaaaa'>{capacity}%</span>",
+    "format-full": "{icon} <span color='#aaaaaa'>{capacity}%</span>",
     "format-not-charging": "NOP <span color='#aaaaaa'>{capacity}%</span>",
-    "format-icons": ["[0]", "[1]", "[2]", "[3]", "[F]"],
+    "format-icons": ["---", "#--", "##-", "###", "PWR"],
   },
 
   "group/clock": {
