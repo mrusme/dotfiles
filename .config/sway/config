@@ -683,6 +683,8 @@ exec --no-startup-id gnome-keyring-daemon --start --components=pkcs11,secrets,ss
 # Desktop notifications
 exec mako
 # Fix for https://github.com/emersion/mako/issues/512
+# Merged: https://github.com/swaywm/sway/pull/8668
+# TODO: Remove when sway > 1.11
 exec /home/mrus/apps/makofix
 
 # Starshield
