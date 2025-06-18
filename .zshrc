@@ -73,8 +73,6 @@ export ICONS_PATH="${HOME}/cloud/library/tools/icons/pixelarticons"
 #   export WLR_NO_HARDWARE_CURSORS=1
 # fi
 
-# export ANTHROPIC_API_KEY="$(pass show anthropic/api-key)"
-
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
 # ║ Ghostty                                                                    ║
@@ -245,6 +243,7 @@ then
   export GTK_THEME="Windows-95"
   export GTK2_RC_FILES="${HOME}/.themes/${GTK_THEME}/gtk-2.0/gtkrc"
   #gsettings set org.gnome.desktop.interface gtk-theme "$GTK_THEME"
+  #export GTK_ICON_THEME_NAME="Chicago95"
 fi
 
 
@@ -569,6 +568,17 @@ bindkey '^ ' __bemenu
 
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ Global API keys                                                            ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+
+if [[ -o login ]]; then
+  export ANTHROPIC_API_KEY="$(pass show anthropic/api-key)"
+  export COINGECKO_API_KEY="$(pass show coingecko/api-key)"
+  export OPENAI_API_KEY="$(pass show openai/api-key)"
+fi
+
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
 # ║ Aliases                                                                    ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
@@ -588,15 +598,16 @@ __is_available bat \
 # https://github.com/eza-community/eza
 __is_available eza \
 && alias ls='eza  --time-style=relative --git --octal-permissions --icons \
-  --binary -lg' \
+  --color=auto --binary -lg' \
 && alias ll='eza  --time-style=long-iso --git --octal-permissions --icons \
-  --binary -la' \
+  --color=auto --binary -la' \
 && alias la='eza  --time-style=long-iso --git --octal-permissions         \
-  --binary --changed -lahHgnuU' \
+  --color=auto --binary --changed -lahHgnuU' \
 && alias l='eza   --time-style=long-iso --git                     --icons \
-  --binary -l --no-time' \
+  --color=auto --binary -l --no-time' \
 && alias lls='eza --time-style=long-iso --git --octal-permissions --icons \
-  --binary -las modified'
+  --color=auto --binary -las modified' \
+&& alias l1='eza  -1 --icons=never --color=auto'
 
 # https://github.com/ClementTsang/bottom
 __is_available btm \
@@ -1098,23 +1109,9 @@ function caldr() {
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
 function planor() {
-  export VULTR_API_KEY="$(pass show vultr/token)"
-  export RENDER_API_TOKEN="$(pass show render/token)"
-  export FLEEK_API_TOKEN="$(pass show fleek/token)"
-  export FLEEK_TEAM_ID="$(pass show fleek/team)"
+  export VULTR_API_KEY="$(pass show vultr/api-key)"
   
   command planor $@
-}
-
-
-# ╔════════════════════════════════════════════════════════════════════════════╗
-# ║ conclusive (https://github.com/mrusme/conclusive)                          ║
-# ╚════════════════════════════════════════════════════════════════════════════╝
-
-function conclusive() {
-  export PLAUSIBLE_TOKEN="$(pass show plausible/token)"
-  
-  command conclusive $@
 }
 
 
@@ -1126,17 +1123,6 @@ function gh() {
   export GITHUB_TOKEN="$(pass show github/token)"
   
   command gh $@
-}
-
-
-# ╔════════════════════════════════════════════════════════════════════════════╗
-# ║ mods                                                                       ║
-# ╚════════════════════════════════════════════════════════════════════════════╝
-
-function mods() {
-  export OPENAI_API_KEY="$(pass show openai/apikey)"
-  
-  command mods $@
 }
 
 
