@@ -1,8 +1,8 @@
 age-plugin-yubikey v0.5.0:
     age-plugin-yubikey
-angry_oxide v0.8.32 (https://github.com/Ragnt/AngryOxide#93e96b6c):
+angry_oxide v0.8.33 (https://github.com/Ragnt/AngryOxide#8c53a40b):
     angryoxide
-ast-grep v0.38.1:
+ast-grep v0.38.5:
     ast-grep
     sg
 bandwhich v0.23.1:
@@ -19,7 +19,7 @@ bottom v0.10.2:
     btm
 bpf-linker v0.9.14:
     bpf-linker
-cargo-update v16.3.0:
+cargo-update v16.3.1:
     cargo-install-update
     cargo-install-update-config
 carl v0.3.1:
@@ -35,11 +35,11 @@ cross v0.2.5:
     cross-util
 csview v1.3.4:
     csview
-deno v2.3.1:
+deno v2.3.5:
     deno
 dijo v0.2.7:
     dijo
-du-dust v1.2.0:
+du-dust v1.2.1:
     dust
 eva v0.3.1:
     eva
@@ -51,7 +51,7 @@ fum-player v1.3.1:
     fum
 gfold v2025.4.0:
     gfold
-git-cliff v2.8.0:
+git-cliff v2.9.1:
     git-cliff
     git-cliff-completions
     git-cliff-mangen
@@ -61,12 +61,12 @@ git-journal v1.8.1:
     git-journal
 gitui v0.27.0:
     gitui
-gpg-tui v0.11.0:
+gpg-tui v0.11.1:
     gpg-tui
     gpg-tui-completions
 gping v1.19.0:
     gping
-harper-ls v0.35.0:
+harper-ls v0.42.0:
     harper-ls
 havn v0.2.1:
     havn
@@ -106,21 +106,23 @@ nostr-tool v0.5.1:
     nostr-tool
 oxipng v9.1.5:
     oxipng
+paperback v0.0.0 (https://github.com/cyphar/paperback#2c007f2d):
+    paperback
 pastel v0.10.0:
     pastel
 pipe-rename v1.6.5:
     renamer
-presenterm v0.13.0:
+presenterm v0.14.0:
     presenterm
 procs v0.14.10:
     procs
 qrtool v0.11.8:
     qrtool
-rainfrog v0.3.1:
+rainfrog v0.3.2:
     rainfrog
 rates v0.7.0:
     rates
-rubyfmt-main v0.11.0 (https://github.com/fables-tales/rubyfmt#32f0c6f4):
+rubyfmt-main v0.11.0 (https://github.com/fables-tales/rubyfmt#5fa04720):
     rubyfmt-main
 rustscan v2.4.1:
     rustscan
@@ -164,5 +166,5 @@ xan v0.50.0:
     xan
 xplr v1.0.0:
     xplr
-zoxide v0.9.7:
+zoxide v0.9.8:
     zoxide
