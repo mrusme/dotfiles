@@ -618,6 +618,11 @@ for_window [app_id = "Bitwarden"] {
   floating enable
   resize set 1024 px 600 px
 }
+for_window [title = "^Bitwarden$"] {
+  floating enable
+  resize set 1024 px 600 px
+}
+
 for_window [app_id = "ch.proton.bridge-gui"] floating enable
 # TODO: Needed for pairing the Chromium extension on Sway
 #for_window [app_id = "anytype"] floating enable
