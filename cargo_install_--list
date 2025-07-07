@@ -2,7 +2,7 @@ age-plugin-yubikey v0.5.0:
     age-plugin-yubikey
 angry_oxide v0.8.33 (https://github.com/Ragnt/AngryOxide#8c53a40b):
     angryoxide
-ast-grep v0.38.5:
+ast-grep v0.38.6:
     ast-grep
     sg
 bandwhich v0.23.1:
@@ -19,7 +19,7 @@ bottom v0.10.2:
     btm
 bpf-linker v0.9.14:
     bpf-linker
-cargo-update v16.3.1:
+cargo-update v16.3.2:
     cargo-install-update
     cargo-install-update-config
 carl v0.3.1:
@@ -35,15 +35,15 @@ cross v0.2.5:
     cross-util
 csview v1.3.4:
     csview
-deno v2.3.5:
+deno v2.4.0:
     deno
 dijo v0.2.7:
     dijo
-du-dust v1.2.1:
+du-dust v1.2.2:
     dust
 eva v0.3.1:
     eva
-eza v0.21.3:
+eza v0.22.0:
     eza
 fd-find v10.2.0:
     fd
@@ -66,7 +66,7 @@ gpg-tui v0.11.1:
     gpg-tui-completions
 gping v1.19.0:
     gping
-harper-ls v0.42.0:
+harper-ls v0.48.0:
     harper-ls
 havn v0.2.1:
     havn
@@ -92,7 +92,7 @@ kmon v1.7.1:
     kmon
 lemmeknow v0.8.0:
     lemmeknow
-lychee v0.18.1:
+lychee v0.19.1:
     lychee
 mdcat v2.7.1:
     mdcat
@@ -116,7 +116,7 @@ presenterm v0.14.0:
     presenterm
 procs v0.14.10:
     procs
-qrtool v0.11.8:
+qrtool v0.12.0:
     qrtool
 rainfrog v0.3.2:
     rainfrog
@@ -162,9 +162,9 @@ wiki-tui v0.9.1:
     wiki-tui
 wireman v0.2.7:
     wireman
-xan v0.50.0:
+xan v0.51.0:
     xan
-xplr v1.0.0:
+xplr v1.0.1:
     xplr
 zoxide v0.9.8:
     zoxide
