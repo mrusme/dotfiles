@@ -5,58 +5,27 @@ angry_oxide v0.8.33 (https://github.com/Ragnt/AngryOxide#8c53a40b):
 ast-grep v0.38.6:
     ast-grep
     sg
-bandwhich v0.23.1:
-    bandwhich
-battop v0.2.4:
-    battop
-bingrep v0.11.0:
-    bingrep
 binsider v0.2.1:
     binsider
-bluetui v0.6.0:
-    bluetui
 bpf-linker v0.9.14:
     bpf-linker
 cargo-update v16.3.2:
     cargo-install-update
     cargo-install-update-config
-carl v0.3.1:
-    carl
-code-minimap v0.6.8:
-    code-minimap
-conclusive v1.0.0:
-    conclusive
-crates-tui v0.1.25:
-    crates-tui
-cross v0.2.5:
-    cross
-    cross-util
 csview v1.3.4:
     csview
 deno v2.4.0:
     deno
-dijo v0.2.7:
-    dijo
-du-dust v1.2.2:
-    dust
 eva v0.3.1:
     eva
 eza v0.22.0:
     eza
 fd-find v10.2.0:
     fd
-fum-player v1.3.1:
-    fum
 gfold v2025.4.0:
     gfold
-git-cliff v2.9.1:
-    git-cliff
-    git-cliff-completions
-    git-cliff-mangen
 git-delta v0.18.2:
     delta
-git-journal v1.8.1:
-    git-journal
 gitui v0.27.0:
     gitui
 gpg-tui v0.11.1:
@@ -72,36 +41,20 @@ heretek v0.5.1:
     heretek
 hexyl v0.16.0:
     hexyl
-htmlq v0.4.0:
-    htmlq
-hullcaster v0.1.2 (https://github.com/gilcu3/hullcaster#e83591de):
-    hullcaster
-hyperfine v1.19.0:
-    hyperfine
 iamb v0.0.10:
     iamb
-jless v0.9.0:
-    jless
 jnv v0.6.0:
     jnv
-jwt-cli v6.2.0:
-    jwt
 kmon v1.7.1:
     kmon
 lemmeknow v0.8.0:
     lemmeknow
 lychee v0.19.1:
     lychee
-mdcat v2.7.1:
-    mdcat
-navi v2.23.0:
-    navi
 neovide v0.15.0 (https://github.com/neovide/neovide#62795699):
     neovide
 netscanner v0.6.3:
     netscanner
-nostr-tool v0.5.1:
-    nostr-tool
 oxipng v9.1.5:
     oxipng
 paperback v0.0.0 (https://github.com/cyphar/paperback#2c007f2d):
@@ -110,59 +63,31 @@ pastel v0.10.0:
     pastel
 pipe-rename v1.6.5:
     renamer
-presenterm v0.14.0:
-    presenterm
 procs v0.14.10:
     procs
 qrtool v0.12.0:
     qrtool
 rainfrog v0.3.2:
     rainfrog
-rates v0.7.0:
-    rates
 rubyfmt-main v0.11.0 (https://github.com/fables-tales/rubyfmt#5fa04720):
     rubyfmt-main
 rustscan v2.4.1:
     rustscan
 serie v0.4.6:
     serie
-sigrs v0.1.4:
-    sig
-silicon v0.5.2:
-    silicon
 so v0.4.10:
     so
-speedtest-rs v0.2.0:
-    speedtest-rs
-spotify-tui v0.25.0:
-    spt
 starship v1.23.0:
     starship
-taskwarrior-tui v0.26.3:
-    taskwarrior-tui
 tealdeer v1.7.2:
     tldr
-tickrs v0.14.11:
-    tickrs
-tre-command v0.4.0:
-    tre
 trippy v0.13.0:
     trip
-tuisky v0.2.1:
-    tuisky
-viu v1.5.1:
-    viu
-vocage v1.1.0:
-    vocage
 websocat v4.0.0-alpha2:
     websocat
 wiki-tui v0.9.1:
     wiki-tui
-wireman v0.2.7:
-    wireman
 xan v0.51.0:
     xan
-xplr v1.0.1:
-    xplr
 zoxide v0.9.8:
     zoxide
