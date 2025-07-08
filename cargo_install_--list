@@ -15,8 +15,6 @@ binsider v0.2.1:
     binsider
 bluetui v0.6.0:
     bluetui
-bottom v0.10.2:
-    btm
 bpf-linker v0.9.14:
     bpf-linker
 cargo-update v16.3.2:

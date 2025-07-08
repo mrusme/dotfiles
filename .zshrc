@@ -605,9 +605,9 @@ __is_available eza \
   --color=auto --binary -las modified' \
 && alias l1='eza  -1 --icons=never --color=auto'
 
-# https://github.com/ClementTsang/bottom
-__is_available btm \
-&& alias top='btm'
+# https://github.com/aristocratos/btop
+__is_available btop \
+&& alias top='btop'
 
 # https://github.com/neomutt/neomutt
 __is_available neomutt \
