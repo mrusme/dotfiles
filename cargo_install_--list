@@ -1,8 +1,8 @@
 age-plugin-yubikey v0.5.0:
     age-plugin-yubikey
-angry_oxide v0.8.33 (https://github.com/Ragnt/AngryOxide#8c53a40b):
+angry_oxide v0.8.33 (https://github.com/Ragnt/AngryOxide#d96d57dc):
     angryoxide
-ast-grep v0.38.6:
+ast-grep v0.38.7:
     ast-grep
     sg
 binsider v0.2.1:
@@ -14,11 +14,11 @@ cargo-update v16.3.2:
     cargo-install-update-config
 csview v1.3.4:
     csview
-deno v2.4.0:
+deno v2.4.1:
     deno
 eva v0.3.1:
     eva
-eza v0.22.0:
+eza v0.22.1:
     eza
 fd-find v10.2.0:
     fd
@@ -33,7 +33,7 @@ gpg-tui v0.11.1:
     gpg-tui-completions
 gping v1.19.0:
     gping
-harper-ls v0.48.0:
+harper-ls v0.50.0:
     harper-ls
 havn v0.2.1:
     havn
@@ -41,8 +41,6 @@ heretek v0.5.1:
     heretek
 hexyl v0.16.0:
     hexyl
-iamb v0.0.10:
-    iamb
 jnv v0.6.0:
     jnv
 kmon v1.7.1:
@@ -57,7 +55,7 @@ netscanner v0.6.3:
     netscanner
 oxipng v9.1.5:
     oxipng
-paperback v0.0.0 (https://github.com/cyphar/paperback#2c007f2d):
+paperback v0.0.0 (https://github.com/cyphar/paperback#66ca8bd4):
     paperback
 pastel v0.10.0:
     pastel
@@ -67,7 +65,7 @@ procs v0.14.10:
     procs
 qrtool v0.12.0:
     qrtool
-rainfrog v0.3.2:
+rainfrog v0.3.3:
     rainfrog
 rubyfmt-main v0.11.0 (https://github.com/fables-tales/rubyfmt#5fa04720):
     rubyfmt-main
