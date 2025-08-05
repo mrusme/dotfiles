@@ -62,7 +62,7 @@ export XDG_PICTURES_DIR="${HOME}/cloud/photos"
 export XDG_VIDEOS_DIR="${HOME}/cloud/videos"
 # On change adjust `${XDG_CONFIG_HOME}/user-dirs.dirs` as well!
 
-export ICONS_PATH="${HOME}/cloud/library/tools/icons/pixelarticons"
+export ICONS_PATH="${HOME}/cloud/library/icons/winicons"
 
 # if [ "$(lspci | grep -i geforce)" ]
 # then
