@@ -2,27 +2,27 @@ age-plugin-yubikey v0.5.0:
     age-plugin-yubikey
 angry_oxide v0.8.33 (https://github.com/Ragnt/AngryOxide#d96d57dc):
     angryoxide
-ast-grep v0.38.7:
+ast-grep v0.39.2:
     ast-grep
     sg
 binsider v0.2.1:
     binsider
 bpf-linker v0.9.14:
     bpf-linker
-cargo-update v16.3.2:
+cargo-update v17.0.0:
     cargo-install-update
     cargo-install-update-config
 csview v1.3.4:
     csview
-deno v2.4.1:
+deno v2.4.3:
     deno
 eva v0.3.1:
     eva
-eza v0.22.1:
+eza v0.23.0:
     eza
 fd-find v10.2.0:
     fd
-gfold v2025.4.0:
+gfold v2025.7.0:
     gfold
 git-delta v0.18.2:
     delta
@@ -33,7 +33,7 @@ gpg-tui v0.11.1:
     gpg-tui-completions
 gping v1.19.0:
     gping
-harper-ls v0.50.0:
+harper-ls v0.55.0:
     harper-ls
 havn v0.2.1:
     havn
@@ -41,7 +41,7 @@ heretek v0.5.1:
     heretek
 hexyl v0.16.0:
     hexyl
-jnv v0.6.0:
+jnv v0.6.1:
     jnv
 kmon v1.7.1:
     kmon
@@ -63,9 +63,9 @@ pipe-rename v1.6.5:
     renamer
 procs v0.14.10:
     procs
-qrtool v0.12.0:
+qrtool v0.12.1:
     qrtool
-rainfrog v0.3.3:
+rainfrog v0.3.4:
     rainfrog
 rubyfmt-main v0.11.0 (https://github.com/fables-tales/rubyfmt#5fa04720):
     rubyfmt-main
@@ -85,7 +85,7 @@ websocat v4.0.0-alpha2:
     websocat
 wiki-tui v0.9.1:
     wiki-tui
-xan v0.51.0:
+xan v0.52.0:
     xan
 zoxide v0.9.8:
     zoxide
