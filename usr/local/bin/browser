@@ -36,9 +36,7 @@ unset GDK_BACKEND
 read -d '\n' browsers << EOF
 copy
 chromium
-firefox
 librewolf
-tor-browser
 EOF
 
 url="$1"
