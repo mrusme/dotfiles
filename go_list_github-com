@@ -1,5 +1,6 @@
 github.com/arduino/arduino-cli
 github.com/arduino/arduino-language-server
+github.com/bufbuild/buf/cmd/buf
 github.com/spf13/cobra-cli
 github.com/tomwright/dasel/v2/cmd/dasel
 github.com/dlvhdr/diffnav
@@ -8,6 +9,7 @@ github.com/kisielk/errcheck
 github.com/charmbracelet/freeze
 github.com/golangci/golangci-lint/cmd/golangci-lint
 github.com/fatih/gomodifytags
+github.com/goreleaser/goreleaser/v2
 github.com/fedeztk/got/cmd/got
 github.com/fullstorydev/grpcurl/cmd/grpcurl
 github.com/josharian/impl
