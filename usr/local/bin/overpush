@@ -98,7 +98,7 @@ do
       sound="${OPTARG}"
       ;;
     u)
-      url="${OPTARG}"
+      PUSHOVER_URL="${OPTARG}"
       ;;
     U)
       USER="${OPTARG}"
