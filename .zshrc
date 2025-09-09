@@ -225,6 +225,7 @@ export MANPATH="${MANPATH-$(manpath)}:${NPM_PACKAGES}/share/man"
 if __is_available sway linux
 then
   alias sway-launch="dbus-launch --exit-with-session sway"
+  alias desk="sway-launch"
   if test -z "${XDG_RUNTIME_DIR}"
   then
     export XDG_RUNTIME_DIR="/tmp/${UID}-runtime-dir"
