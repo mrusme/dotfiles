@@ -1,1 +1,3 @@
+set database sqlite
 set selection-clipboard clipboard
+
