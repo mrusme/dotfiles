@@ -136,7 +136,7 @@ titlebar_padding 6 4
 
 smart_gaps off
 smart_borders off
- 
+
 gaps inner 0
 gaps outer 0
 
@@ -170,7 +170,7 @@ output "ASUSTek COMPUTER INC VG27AQL1A N6LMQS161067" {
   color_profile icc ~/.config/sway/rtings-icc-profile.icm
 }
 
-# Streaming 
+# Streaming
 # output HEADLESS-1 {
 #   pos 3840,0
 #   mode 1920x1080
@@ -179,7 +179,7 @@ output "ASUSTek COMPUTER INC VG27AQL1A N6LMQS161067" {
 
 # https://github.com/ful1e5/banana-cursor
 seat * xcursor_theme Banana 32
-exec gsettings set org.gnome.desktop.interface cursor-theme Banana 
+exec gsettings set org.gnome.desktop.interface cursor-theme Banana
 exec gsettings set org.gnome.desktop.interface cursor-size 32
 
 
@@ -203,7 +203,7 @@ timeout 600 'swaylock' \
 timeout 900 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
 before-sleep 'swaylock'
 
- 
+
 # ╔════════════════════════════════════════════════════════════════════════════╗
 # ║ Inputs                                                                     ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
@@ -220,7 +220,7 @@ input "2362:597:STAR0001:00_093A:0255_Touchpad" {
   natural_scroll enabled
   pointer_accel 0
   #accel_profile adaptive
-  tap enabled 
+  tap enabled
   click_method clickfinger
   dwt enabled
   middle_emulation disabled
@@ -229,11 +229,11 @@ input "2362:597:STAR0001:00_093A:0255_Touchpad" {
   tap_button_map lrm
   # drag_lock enabled
   drag disabled
-} 
+}
 
 # Any keyboard
 input "type:keyboard" {
-  repeat_delay 200 
+  repeat_delay 200
   repeat_rate 30
 }
 
@@ -299,7 +299,7 @@ bindsym $mod+Shift+e          exec swaynag -t msg -e bottom \
 
 # Decrease display brightness
 bindsym $mod+F1               exec ddcutil setvcp 10 - 25
-bindsym XF86MonBrightnessDown exec doas /usr/bin/brightnessctl -d amdgpu_bl0 set 10- 
+bindsym XF86MonBrightnessDown exec doas /usr/bin/brightnessctl -d amdgpu_bl0 set 10-
 
 # Increase display brightness
 bindsym $mod+F2               exec ddcutil setvcp 10 + 25
@@ -310,7 +310,7 @@ bindsym $mod+F8               exec playerctl play-pause
 bindsym XF86AudioPlay         exec playerctl play-pause
 
 # Next song
-bindsym $mod+F9               exec playerctl next 
+bindsym $mod+F9               exec playerctl next
 bindsym XF86AudioNext         exec playerctl next
 
 # Previous song
@@ -356,7 +356,7 @@ bindsym $mod+Print            exec --no-startup-id slurp \
                               | tesseract - - \
                               | wl-copy -n
 
-# Pick color and copy to clipboard 
+# Pick color and copy to clipboard
 bindsym $mod+Shift+P          exec --no-startup-id hyprpicker -n -a
 
 
@@ -438,7 +438,7 @@ bindsym $mod+1 workspace 1   1:I
 # Switch to workspace 2
 bindsym $mod+2 workspace 2   2:II
 # Switch to workspace 3
-bindsym $mod+3 workspace 3   3:III 
+bindsym $mod+3 workspace 3   3:III
 # Switch to workspace 4
 bindsym $mod+4 workspace 4   4:IV
 # Switch to workspace 5
@@ -622,6 +622,10 @@ for_window [title = "^Bitwarden$"] {
   floating enable
   resize set 1024 px 600 px
 }
+for_window [app_id = "chrome-*"] {
+  floating enable
+  resize set 1024 px 600 px
+}
 
 for_window [app_id = "ch.proton.bridge-gui"] floating enable
 # TODO: Needed for pairing the Chromium extension on Sway
@@ -660,15 +664,15 @@ bar {
 # ║ Tools                                                                      ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
-# wlsunset 
+# wlsunset
 # https://sr.ht/~kennylevinsen/wlsunset/
 exec wlsunset -S '06:30' -s '19:30' -d 1800
 
-# zpoweralertd 
+# zpoweralertd
 # https://github.com/mrusme/zpoweralertd
 exec zpoweralertd
 
-# OpenSnitch 
+# OpenSnitch
 exec opensnitch-ui
 
 # Syncthing
