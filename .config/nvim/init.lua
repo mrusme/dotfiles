@@ -322,6 +322,14 @@ vim.lsp.config("lua_ls", {
 })
 vim.lsp.enable("lua_ls")
 
+-- [ Protobuf ]-------------------------------------------------------------- --
+vim.lsp.config("protols", {
+  cmd = { "protols" },
+  filetypes = { "proto" },
+  root_markers = { ".git" },
+})
+vim.lsp.enable("protols")
+
 -- [ Python ]---------------------------------------------------------------- --
 vim.lsp.config("pylsp", {
   cmd = { "pylsp" },

@@ -23,6 +23,7 @@ return {
         json = { "prettier" },
         lua = { "stylua" },
         markdown = { "deno_fmt" },
+        proto = { "buf", "clang_format" },
         ruby = { "rubyfmt", "rubocop" },
         rust = { "rustfmt", lsp_format = "fallback" },
         sh = { "shfmt" },
