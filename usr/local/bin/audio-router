@@ -17,9 +17,9 @@ case "$1" in
     set_output_matcher="motu.m2"
     set_output_name="MOTU M2 Monitor"
     ;;
-  "srsxb")
-    set_output_matcher="6C_47_60_1F_51_DD"
-    set_output_name="Sony SRS-XB Speaker"
+  "ifi")
+    set_output_matcher="iec958-stereo"
+    set_output_name="iFi hip-dac3"
     ;;
   "h9i")
     set_output_matcher="00_09_A7_2A_66_A0"
