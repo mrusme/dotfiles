@@ -351,6 +351,7 @@
       "wireplumber", 
       "custom/audio-internal",
       "custom/audio-motu",
+      "custom/audio-ifi",
       "custom/audio-hdmi",
       "bluetooth"
     ],
@@ -379,6 +380,13 @@
     "format": "MOTU",
     "tooltip-format": "MOTU",
     "on-click": "audio-router motu",
+    "interval": "once"
+  },
+
+  "custom/audio-ifi": {
+    "format": "iFi",
+    "tooltip-format": "iFi hip-dac3",
+    "on-click": "audio-router ifi",
     "interval": "once"
   },
 
