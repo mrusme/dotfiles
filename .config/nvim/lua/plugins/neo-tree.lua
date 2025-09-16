@@ -22,6 +22,10 @@ return {
         filters = {
           dotfiles = true,
         },
+        window = {
+          position = "left",
+          width = 30,
+        },
       })
       vim.keymap.set(
         "n",
