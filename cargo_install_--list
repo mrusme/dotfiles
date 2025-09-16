@@ -33,6 +33,8 @@ gpg-tui v0.11.1:
     gpg-tui-completions
 gping v1.20.1:
     gping
+halloy v0.1.0 (https://github.com/squidowl/halloy#73202264):
+    halloy
 harper-ls v0.59.0:
     harper-ls
 havn v0.3.0:
