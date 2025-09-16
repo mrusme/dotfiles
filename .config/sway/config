@@ -120,7 +120,7 @@ set {
 }
 
 #                         border   backgrnd text    indic    chld
-client.focused            $lightBlue    $lightBlue    $dark   $yellow  $lightBlue
+client.focused            #536161    #536161    $dark   $yellow  #536161
 client.unfocused          $dark    $dark    $dim    $dark    $winterBlue
 client.focused_inactive   $dark    $dark    $white  $dark    $winterBlue
 client.focused_tab_title  $dim     $dim     $dark   $dim     $winterBlue
