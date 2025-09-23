@@ -33,9 +33,21 @@ return {
       )
       vim.keymap.set(
         "n",
+        "<M-m>",
+        builtin.marks,
+        { desc = "Telescope marks" }
+      )
+      vim.keymap.set(
+        "n",
         "<M-h>",
         builtin.help_tags,
         { desc = "Telescope help tags" }
+      )
+      vim.keymap.set(
+        "n",
+        "<M-q>",
+        builtin.quickfix,
+        { desc = "Telescope quickfix" }
       )
       vim.keymap.set(
         "n",
