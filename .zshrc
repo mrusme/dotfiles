@@ -237,10 +237,13 @@ then
   fi
 
   # https://github.com/B00merang-Project/Windows-95
-  export GTK_THEME="Windows-95"
+  # export GTK_THEME="Windows-95"
+
+  # https://github.com/B00merang-Project/Mac-OS-9
+  export GTK_THEME="Mac-OS-9"
+
   export GTK2_RC_FILES="${HOME}/.themes/${GTK_THEME}/gtk-2.0/gtkrc"
   #gsettings set org.gnome.desktop.interface gtk-theme "$GTK_THEME"
-  #export GTK_ICON_THEME_NAME="Chicago95"
 fi
 
 
