@@ -1,28 +1,28 @@
 age-plugin-yubikey v0.5.0:
     age-plugin-yubikey
-angry_oxide v0.8.33 (https://github.com/Ragnt/AngryOxide#6a86c55a):
+angry_oxide v0.9.0 (https://github.com/Ragnt/AngryOxide#db86119d):
     angryoxide
-ast-grep v0.39.4:
+ast-grep v0.39.5:
     ast-grep
     sg
 binsider v0.2.1:
     binsider
 bpf-linker v0.9.15:
     bpf-linker
-cargo-update v17.0.0:
+cargo-update v18.0.0:
     cargo-install-update
     cargo-install-update-config
 csview v1.3.4:
     csview
-deno v2.4.5:
+deno v2.5.1:
     deno
 eva v0.3.1:
     eva
-eza v0.23.0:
+eza v0.23.3:
     eza
-fd-find v10.2.0:
+fd-find v10.3.0:
     fd
-gfold v2025.8.0:
+gfold v2025.9.0:
     gfold
 git-delta v0.18.2:
     delta
@@ -33,13 +33,13 @@ gpg-tui v0.11.1:
     gpg-tui-completions
 gping v1.20.1:
     gping
-halloy v0.1.0 (https://github.com/squidowl/halloy#73202264):
+halloy v0.1.0 (https://github.com/squidowl/halloy#05bbd103):
     halloy
-harper-ls v0.59.0:
+harper-ls v0.65.0:
     harper-ls
 havn v0.3.0:
     havn
-heretek v0.5.1:
+heretek v0.6.0:
     heretek
 hexyl v0.16.0:
     hexyl
@@ -51,13 +51,13 @@ lemmeknow v0.8.0:
     lemmeknow
 lychee v0.20.1:
     lychee
-neovide v0.15.1 (https://github.com/neovide/neovide#db41b205):
+neovide v0.15.2 (https://github.com/neovide/neovide#0df980b6):
     neovide
 netscanner v0.6.3:
     netscanner
 oxipng v9.1.5:
     oxipng
-paperback v0.0.0 (https://github.com/cyphar/paperback#b4f06b9f):
+paperback v0.0.0 (https://github.com/cyphar/paperback#2105fc16):
     paperback
 pastel v0.10.0:
     pastel
@@ -65,17 +65,17 @@ pipe-rename v1.6.5:
     renamer
 procs v0.14.10:
     procs
-protols v0.12.7:
+protols v0.12.9:
     protols
 qrtool v0.12.1:
     qrtool
-rainfrog v0.3.5:
+rainfrog v0.3.7:
     rainfrog
 rubyfmt-main v0.11.0 (https://github.com/fables-tales/rubyfmt#5fa04720):
     rubyfmt-main
 rustscan v2.4.1:
     rustscan
-serie v0.4.7:
+serie v0.5.1:
     serie
 so v0.4.10:
     so
@@ -89,7 +89,7 @@ websocat v4.0.0-alpha2:
     websocat
 wiki-tui v0.9.1:
     wiki-tui
-xan v0.52.0:
+xan v0.53.0:
     xan
 zoxide v0.9.8:
     zoxide
