@@ -194,18 +194,21 @@ export BEMENU_OPTS="-n -c -s -i \
 # LD_LIBRARY_PATH
 export LD_LIBRARY_PATH="/usr/local/lib64:$LD_LIBRARY_PATH"
 
-# Cargo (Rust)
-[ -d "${HOME}/.cargo/bin" ] \
-&& export PATH="${HOME}/.cargo/bin:${PATH}"
-
-[ -e "${HOME}/.cargo/env" ] \
-&& source "${HOME}/.cargo/env"
+# Ripgrep
+export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/config"
 
 # Go
 go env -w GOPATH="${HOME}/.go"
 export PATH="$(go env GOPATH)/bin:${PATH}"
 export GOPROXY="direct"
 export GOTOOLCHAIN=local
+
+# Cargo (Rust)
+[ -d "${HOME}/.cargo/bin" ] \
+&& export PATH="${HOME}/.cargo/bin:${PATH}"
+
+[ -e "${HOME}/.cargo/env" ] \
+&& source "${HOME}/.cargo/env"
 
 # Python
 #[ -e "${HOME}/.local/share/pyenv/bin/activate" ] \
