@@ -16,7 +16,7 @@ return {
       vim.keymap.set(
         "n",
         "<M-f>",
-        builtin.find_files,
+        function() builtin.find_files({ hidden = true}) end,
         { desc = "Telescope find files" }
       )
       vim.keymap.set(
@@ -32,9 +32,9 @@ return {
         { desc = "Telescope buffers" }
       )
       vim.keymap.set(
-        "n",
-        "<M-m>",
-        builtin.marks,
+        "n", 
+        "<M-m>", 
+        builtin.marks, 
         { desc = "Telescope marks" }
       )
       vim.keymap.set(
@@ -66,6 +66,12 @@ return {
         "<M-r>",
         builtin.lsp_references,
         { desc = "Go to definition" }
+      )
+      vim.keymap.set(
+        "n",
+        "<M-e>",
+        builtin.lsp_document_symbols,
+        { desc = "Go to document symbol" }
       )
       require("telescope").load_extension("undo")
       vim.keymap.set("n", "<leader>u", "<cmd>Telescope undo<cr>")
