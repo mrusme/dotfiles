@@ -7,11 +7,11 @@ set_output_name=""
 case "$1" in
   "hdmi")
     set_output_matcher="hdmi-stereo"
-    set_output_name="LG Display"
+    set_output_name="Display"
     ;;
   "analog")
     set_output_matcher="analog-stereo"
-    set_output_name="Razer Nommo Speakers"
+    set_output_name="AUX"
     ;;
   "motu")
     set_output_matcher="motu.m2"
@@ -20,10 +20,6 @@ case "$1" in
   "ifi")
     set_output_matcher="iec958-stereo"
     set_output_name="iFi hip-dac3"
-    ;;
-  "h9i")
-    set_output_matcher="00_09_A7_2A_66_A0"
-    set_output_name="Bang & Olufsen H9i Headphones"
     ;;
   "volume")
     pactl list short \
