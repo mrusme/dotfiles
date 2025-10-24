@@ -370,7 +370,7 @@
   },
 
   "custom/audio-internal": {
-    "format": "3.5",
+    "format": "AUX",
     "tooltip-format": "Internal",
     "on-click": "audio-router analog",
     "interval": "once"
