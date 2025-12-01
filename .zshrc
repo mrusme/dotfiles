@@ -172,19 +172,24 @@ export CALDR_DB="${HOME}/.cache/caldr.db"
 export CALDR_TEMPLATE="${HOME}/.config/caldr.tmpl"
 
 # https://github.com/Cloudef/bemenu
+export DMENU_PROGRAM="bemenu"
+export BEMENU_COLOR_BORDER="$(rg -Nr '$1' '^ *\$fcdBg (#.*)' \
+  $HOME/.config/sway/config)"
+export BEMENU_COLOR_SCROLL="$(rg -Nr '$1' '^ *\$fcdInd (#.*)' \
+  $HOME/.config/sway/config)"
 export BEMENU_OPTS="-n -c -s -i \
   -W 0.3 -H 26 -B 2 -l 10 \
   -p '▲' -P '' --ch 16 --scrollbar always \
   --fn 'Berkeley Mono 11' \
   --nb #040606cc --nf #FFFFFF \
   --ab #040606cc --af #FFFFFF \
-  --hb #72F1B8ff --hf #040606 \
-  --sb #72F1B8ff --sf #040606 \
+  --hb $BEMENU_COLOR_BORDER --hf #FFFFFF \
+  --sb $BEMENU_COLOR_BORDER --sf #FFFFFF \
   --fb #040606cc --ff #FFFFFF \
   --fbb #040606cc --fbf #FFFFFF \
   --tb #040606cc --tf #FFFFFF \
-  --scb #040606ff --scf #633affff \
-  --bdr #72F1B8"
+  --scb #040606ff --scf $BEMENU_COLOR_SCROLL \
+  --bdr $BEMENU_COLOR_BORDER"
 
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
@@ -200,8 +205,9 @@ export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/config"
 # Go
 go env -w GOPATH="${HOME}/.go"
 export PATH="$(go env GOPATH)/bin:${PATH}"
+export GOTELEMETRY="off"
 export GOPROXY="direct"
-export GOTOOLCHAIN=local
+export GOTOOLCHAIN="local"
 
 # Cargo (Rust)
 [ -d "${HOME}/.cargo/bin" ] \
@@ -840,8 +846,9 @@ function update-tools() {
     | uniq \
     | xargs -I{} go install {}@latest; done
 
-  printf "\nUpdating NPM tools ...\n"
-  npm update -g
+  printf "\nNot updating NPM tools, because NPM is a mess!\n"
+  printf "Update at your own risk!\n"
+  #npm update -g
 
   printf "\nUpdating gh extensions ...\n"
   gh extension upgrade --all
