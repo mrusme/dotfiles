@@ -27,6 +27,7 @@ return {
         ruby = { "rubyfmt", "rubocop" },
         rust = { "rustfmt", lsp_format = "fallback" },
         sh = { "shfmt" },
+        sql = { "sqruff" },
         svelte = { "prettier" },
         -- templ = { "templ" },
         terraform = { "tofu_fmt" },

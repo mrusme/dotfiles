@@ -829,3 +829,13 @@ endfunction
 noremap <Plug>reader_url : call <SID>reader_url()<CR>
 nmap gx <Plug>reader_url
 ]])
+
+
+--[[
+╔════════════════════════════════════════════════════════════════════════════╗
+║ Various other things                                                       ║
+╚════════════════════════════════════════════════════════════════════════════╝
+]]
+
+vim.g.omni_sql_no_default_maps = 1
+
