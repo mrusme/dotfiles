@@ -1,8 +1,8 @@
 age-plugin-yubikey v0.5.0:
     age-plugin-yubikey
-angry_oxide v0.9.0 (https://github.com/Ragnt/AngryOxide#db86119d):
+angry_oxide v0.9.0 (https://github.com/Ragnt/AngryOxide#f3c7353d):
     angryoxide
-ast-grep v0.39.5:
+ast-grep v0.39.9:
     ast-grep
     sg
 binsider v0.2.1:
@@ -14,11 +14,13 @@ cargo-update v18.0.0:
     cargo-install-update-config
 csview v1.3.4:
     csview
-deno v2.5.1:
+deno v2.5.6:
     deno
+difftastic v0.65.0:
+    difft
 eva v0.3.1:
     eva
-eza v0.23.3:
+eza v0.23.4:
     eza
 fd-find v10.3.0:
     fd
@@ -33,11 +35,11 @@ gpg-tui v0.11.1:
     gpg-tui-completions
 gping v1.20.1:
     gping
-halloy v0.1.0 (https://github.com/squidowl/halloy#05bbd103):
+halloy v0.1.0 (https://github.com/squidowl/halloy#413697ac):
     halloy
-harper-ls v0.65.0:
+harper-ls v0.71.0:
     harper-ls
-havn v0.3.0:
+havn v0.3.2:
     havn
 heretek v0.6.0:
     heretek
@@ -49,17 +51,17 @@ kmon v1.7.1:
     kmon
 lemmeknow v0.8.0:
     lemmeknow
-lychee v0.20.1:
+lychee v0.21.0:
     lychee
-neovide v0.15.2 (https://github.com/neovide/neovide#0df980b6):
+neovide v0.15.2 (https://github.com/neovide/neovide#0ea39b77):
     neovide
 netscanner v0.6.3:
     netscanner
 oxipng v9.1.5:
     oxipng
-paperback v0.0.0 (https://github.com/cyphar/paperback#2105fc16):
+paperback v0.0.0 (https://github.com/cyphar/paperback#5439709a):
     paperback
-pastel v0.10.0:
+pastel v0.11.0:
     pastel
 pipe-rename v1.6.5:
     renamer
@@ -67,21 +69,23 @@ procs v0.14.10:
     procs
 protols v0.12.9:
     protols
-qrtool v0.12.1:
+qrtool v0.13.1:
     qrtool
-rainfrog v0.3.7:
+rainfrog v0.3.10:
     rainfrog
-rubyfmt-main v0.11.0 (https://github.com/fables-tales/rubyfmt#5fa04720):
+rubyfmt-main v0.11.0 (https://github.com/fables-tales/rubyfmt#052996ea):
     rubyfmt-main
 rustscan v2.4.1:
     rustscan
-serie v0.5.1:
+serie v0.5.3:
     serie
 so v0.4.10:
     so
-starship v1.23.0:
+sqruff v0.29.3:
+    sqruff
+starship v1.24.0:
     starship
-tealdeer v1.7.2:
+tealdeer v1.8.0:
     tldr
 trippy v0.13.0:
     trip
