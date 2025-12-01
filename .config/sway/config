@@ -119,13 +119,21 @@ set {
   $transparent #FF000000
 }
 
-#                         border   backgrnd text    indic    chld
-client.focused            #536161    #536161    $white   $yellow  #536161
-client.unfocused          $dark    $dark    $dim    $dark    $winterBlue
-client.focused_inactive   $dark    $dark    $white  $dark    $winterBlue
-client.focused_tab_title  $dim     $dim     $dark   $dim     $winterBlue
-client.urgent             $red     $red     $white  $red     $red
-client.placeholder        $dark    $dark    $white  $white   $dark
+set {
+  $fcdBd #536161
+  $fcdBg #536161
+  $fcdTxt #F8F8F8
+  $fcdInd #FFCC00
+  $fcdChd #536161
+}
+
+#                         border bgrnd  text    indic   chld
+client.focused            $fcdBd $fcdBg $fcdTxt $fcdInd $fcdChd
+client.unfocused          $dark  $dark  $dim    $dark   $winterBlue
+client.focused_inactive   $dark  $dark  $white  $dark   $winterBlue
+client.focused_tab_title  $dim   $dim   $dark   $dim    $winterBlue
+client.urgent             $red   $red   $white  $red    $red
+client.placeholder        $dark  $dark  $white  $white  $dark
 
 font pango:Berkeley Mono 9
 
