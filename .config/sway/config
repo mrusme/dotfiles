@@ -107,7 +107,8 @@ set {
 set {
   $dark        #040606
   $black       #241B2F
-  $dim         #495671
+  $dim         #293030
+  $dim2        #6b7c7c
   $red         #f53fa1
   $green       #72F1B8
   $yellow      #FFCC00
@@ -129,7 +130,7 @@ set {
 
 #                         border bgrnd  text    indic   chld
 client.focused            $fcdBd $fcdBg $fcdTxt $fcdInd $fcdChd
-client.unfocused          $dark  $dark  $dim    $dark   $winterBlue
+client.unfocused          $dark  $dark  $dim2   $dark   $winterBlue
 client.focused_inactive   $dark  $dark  $white  $dark   $winterBlue
 client.focused_tab_title  $dim   $dim   $dark   $dim    $winterBlue
 client.urgent             $red   $red   $white  $red    $red
@@ -415,6 +416,12 @@ bindsym $mod+Control+$left  focus parent, focus left,  focus child
 # Focus parent
 bindsym $mod+Control+p focus parent
 
+# Focus browser 
+bindsym $mod+Control+w [app_id = "chromium-browser-chromium"] focus
+
+# Focus terminal 
+bindsym $mod+Control+g [app_id = "com.mitchellh.ghostty"] focus
+
 # Focus next
 #bindsym $mod+Tab focus next
 
@@ -422,10 +429,10 @@ bindsym $mod+Control+p focus parent
 #bindsym $mod+Shift+Tab focus prev
 
 # Focus on last focused tiling container
-bindsym $mod+D focus tiling
+#bindsym $mod+D focus tiling
 
 # Focus on last focused floating container
-bindsym $mod+V focus floating
+#bindsym $mod+V focus floating
 
 
 # === Workspaces ===
