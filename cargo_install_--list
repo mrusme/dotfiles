@@ -1,11 +1,11 @@
 age-plugin-yubikey v0.5.0:
     age-plugin-yubikey
-angry_oxide v0.9.0 (https://github.com/Ragnt/AngryOxide#f3c7353d):
+angry_oxide v0.9.0 (https://github.com/Ragnt/AngryOxide#331ac4c3):
     angryoxide
-ast-grep v0.39.9:
+ast-grep v0.40.1:
     ast-grep
     sg
-binsider v0.2.1:
+binsider v0.3.0:
     binsider
 bpf-linker v0.9.15:
     bpf-linker
@@ -14,9 +14,9 @@ cargo-update v18.0.0:
     cargo-install-update-config
 csview v1.3.4:
     csview
-deno v2.5.6:
+deno v2.6.0:
     deno
-difftastic v0.65.0:
+difftastic v0.67.0:
     difft
 eva v0.3.1:
     eva
@@ -35,11 +35,11 @@ gpg-tui v0.11.1:
     gpg-tui-completions
 gping v1.20.1:
     gping
-halloy v0.1.0 (https://github.com/squidowl/halloy#413697ac):
+halloy v0.1.0 (https://github.com/squidowl/halloy#36dbbdaa):
     halloy
-harper-ls v0.71.0:
+harper-ls v1.2.0:
     harper-ls
-havn v0.3.2:
+havn v0.3.3:
     havn
 heretek v0.6.0:
     heretek
@@ -51,49 +51,49 @@ kmon v1.7.1:
     kmon
 lemmeknow v0.8.0:
     lemmeknow
-lychee v0.21.0:
+lychee v0.22.0:
     lychee
-neovide v0.15.2 (https://github.com/neovide/neovide#0ea39b77):
+neovide v0.15.2 (https://github.com/neovide/neovide#c6261c4f):
     neovide
 netscanner v0.6.3:
     netscanner
-oxipng v9.1.5:
+oxipng v10.0.0:
     oxipng
-paperback v0.0.0 (https://github.com/cyphar/paperback#5439709a):
+paperback v0.0.0 (https://github.com/cyphar/paperback#aed348b9):
     paperback
 pastel v0.11.0:
     pastel
-pipe-rename v1.6.5:
+pipe-rename v1.6.6:
     renamer
 procs v0.14.10:
     procs
-protols v0.12.9:
+protols v0.13.1:
     protols
 qrtool v0.13.1:
     qrtool
-rainfrog v0.3.10:
+rainfrog v0.3.11:
     rainfrog
-rubyfmt-main v0.11.0 (https://github.com/fables-tales/rubyfmt#052996ea):
+rubyfmt-main v0.11.0 (https://github.com/fables-tales/rubyfmt#77e9cea1):
     rubyfmt-main
 rustscan v2.4.1:
     rustscan
-serie v0.5.3:
+serie v0.5.6:
     serie
 so v0.4.10:
     so
 sqruff v0.29.3:
     sqruff
-starship v1.24.0:
+starship v1.24.1:
     starship
-tealdeer v1.8.0:
+tealdeer v1.8.1:
     tldr
 trippy v0.13.0:
     trip
 websocat v4.0.0-alpha2:
     websocat
-wiki-tui v0.9.1:
+wiki-tui v0.9.2:
     wiki-tui
-xan v0.53.0:
+xan v0.54.1:
     xan
 zoxide v0.9.8:
     zoxide
