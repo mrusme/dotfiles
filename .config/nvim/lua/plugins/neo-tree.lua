@@ -14,7 +14,9 @@ return {
       vim.g.loaded_netrwPlugin = 1
       vim.opt.termguicolors = true
       require("neo-tree").setup({
+        use_libuv_file_watcher = true,
         enable_git_status = false,
+        enable_diagnostics = false,
         sort_by = "case_sensitive",
         renderer = {
           group_empty = true,
