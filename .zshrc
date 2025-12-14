@@ -862,7 +862,7 @@ function update-tools() {
   printf "\nUpdating Zsh plugins ...\n"
   git -C ~/.zsh/zsh-autosuggestions pull
 
-  printf "\nTools updated"
+  printf "\nTools updated\n"
 }
 
 
