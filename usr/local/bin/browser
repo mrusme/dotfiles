@@ -42,7 +42,7 @@ EOF
 url="$1"
 
 # https://github.com/thegeeklab/url-parser
-host=$(url-parser host --url "$url")
+host=$(url-parser --url host "$url")
 
 selected_browser="chromium"
 
