@@ -8,7 +8,7 @@
  ║                            ╚████╔╝ ██║██║ ╚═╝ ██║                          ║
  ║                             ╚═══╝  ╚═╝╚═╝     ╚═╝                          ║
  ║                                                                            ║
- ║      xn--gckvb8fzb.com * github.com/mrusme * marius@xn--gckvb8fzb.com      ║
+ ║      xn--gckvb8fzb.com * codeberg.org/mrus * marius@xn--gckvb8fzb.com      ║
  ║                                                                            ║
  ╚════════════════════════════════════════════════════════════════════════════╝
 ]]
@@ -815,7 +815,7 @@ vim.api.nvim_set_hl(
 
 --[[
 ╔════════════════════════════════════════════════════════════════════════════╗
-║ Reader: https://github.com/mrusme/reader                                   ║
+║ Reader: https://codeberg.org/mrus/reader                                   ║
 ╚════════════════════════════════════════════════════════════════════════════╝
 TODO: Make plugin, load via lazy
 ]]

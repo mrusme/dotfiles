@@ -14,7 +14,7 @@
 # ║          '    '          '      )/       '      '          '               ║
 # ║                                 '                                          ║
 # ║                                                                            ║
-# ║      xn--gckvb8fzb.com * github.com/mrusme * marius@xn--gckvb8fzb.com      ║
+# ║      xn--gckvb8fzb.com * codeberg.org/mrus * marius@xn--gckvb8fzb.com      ║
 # ║                                                                            ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
@@ -371,7 +371,7 @@ bindsym $mod+Shift+P          exec --no-startup-id hyprpicker -n -a
 
 # === Various ===
 
-# https://github.com/mrusme/bookmarkdown
+# https://codeberg.org/mrus/bookmarkdown
 bindsym Alt+Space             exec /usr/local/bin/bmd
 
 # Open QtFM
@@ -684,7 +684,7 @@ bar {
 exec wlsunset -S '06:30' -s '19:30' -d 1800
 
 # zpoweralertd
-# https://github.com/mrusme/zpoweralertd
+# https://codeberg.org/mrus/zpoweralertd
 exec zpoweralertd
 
 # OpenSnitch
@@ -698,7 +698,7 @@ exec syncthing serve --no-browser
 exec yubikey-touch-detector -libnotify
 
 # usbec
-# https://github.com/mrusme/usbec
+# https://codeberg.org/mrus/usbec
 exec usbec
 
 # Gnome Keyring
