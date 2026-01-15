@@ -13,8 +13,8 @@ github.com/goreleaser/goreleaser/v2
 github.com/fedeztk/got/cmd/got
 github.com/fullstorydev/grpcurl/cmd/grpcurl
 github.com/josharian/impl
+github.com/minio/mc
 github.com/charmbracelet/mods
-github.com/ollama/ollama
 github.com/siddhantac/puffin
 github.com/ericchiang/pup
 github.com/mgechev/revive
@@ -23,6 +23,7 @@ github.com/swaggo/swag/cmd/swag
 github.com/a-h/templ/cmd/templ
 github.com/hashicorp/terraform-ls
 github.com/oz/tz
+github.com/thegeeklab/url-parser/cmd/url-parser
 github.com/errata-ai/vale/v3/cmd/vale
 github.com/charmbracelet/vhs
 github.com/sclevine/yj
