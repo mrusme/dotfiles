@@ -103,6 +103,9 @@ do
     U)
       USER="${OPTARG}"
       ;;
+    T)
+      TOKEN="${OPTARG}"
+      ;;
     a)
       url_title="${OPTARG}"
       ;;
