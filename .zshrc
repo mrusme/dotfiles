@@ -10,7 +10,7 @@
 # ║          \|_______|\_________\|__|\|__|\|_______|\|_______|\|_______|      ║
 # ║                   \|_________|                                             ║
 # ║                                                                            ║
-# ║      xn--gckvb8fzb.com * github.com/mrusme * marius@xn--gckvb8fzb.com      ║
+# ║      xn--gckvb8fzb.com * codeberg.org/mrus * marius@xn--gckvb8fzb.com      ║
 # ║                                                                            ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
 # zmodload zsh/zprof
@@ -160,14 +160,14 @@ Australia/Melbourne;Pacific/Auckland;"
 # https://notmuchmail.org/manpages/notmuch-1/
 export NOTMUCH_PROFILE="01"
 
-# https://github.com/mrusme/zeit
+# https://codeberg.org/mrus/zeit
 export ZEIT_DB="${HOME}/cloud/library/tools/zeit.db"
 
-# https://github.com/mrusme/addrb
+# https://codeberg.org/mrus/addrb
 export ADDRB_DB="${HOME}/.cache/addrb.db"
 export ADDRB_TEMPLATE="${HOME}/.config/addrb.tmpl"
 
-# https://github.com/mrusme/caldr
+# https://codeberg.org/mrus/caldr
 export CALDR_DB="${HOME}/.cache/caldr.db"
 export CALDR_TEMPLATE="${HOME}/.config/caldr.tmpl"
 
@@ -684,7 +684,7 @@ alias my-ip="curl http://ipecho.net/plain; echo"
 alias element=iamb
 
 # Journal (https://xn--gckvb8fzb.com)
-export JRNL="${HOME}/projects/@mrusme/xn--gckvb8fzb.com/content"
+export JRNL="${HOME}/projects/@mrus/xn--gckvb8fzb.com/content"
 alias jrnl="cd ${JRNL}"
 alias bookmarks="git -C ${JRNL} checkout develop \
   && vim ${JRNL}/bookmarks/index.md \
@@ -1081,7 +1081,7 @@ function compress-all-jpgs() {
 
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
-# ║ addrb (https://github.com/mrusme/addrb)                                    ║
+# ║ addrb (https://codeberg.org/mrus/addrb)                                    ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
 function addrb() {
@@ -1098,7 +1098,7 @@ function addrb() {
 
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
-# ║ caldr (https://github.com/mrusme/caldr)                                    ║
+# ║ caldr (https://codeberg.org/mrus/caldr)                                    ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
 function caldr() {
@@ -1115,7 +1115,7 @@ function caldr() {
 
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
-# ║ planor (https://github.com/mrusme/planor)                                  ║
+# ║ planor (https://codeberg.org/mrus/planor)                                  ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
 function planor() {
@@ -1140,7 +1140,7 @@ function gh() {
 # ║ Dotfiles management                                                        ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
-export DOTFILES="${HOME}/projects/@mrusme/dotfiles"
+export DOTFILES="${HOME}/projects/@mrus/dotfiles"
 
 function dotfiles-update-remote() {
   cp "${HOME}/.zshrc" "${DOTFILES}/.zshrc"
