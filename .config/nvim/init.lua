@@ -457,7 +457,7 @@ vim.lsp.config("tailwindcss", {
     ".git",
   },
 })
-vim.lsp.enable("tailwindcss")
+-- vim.lsp.enable("tailwindcss")
 
 -- [ Terraform ]------------------------------------------------------------- --
 vim.lsp.config("terraformls", {
@@ -480,7 +480,7 @@ vim.lsp.config("yamlls", {
   filetypes = { "yaml", "yaml.docker-compose", "yaml.gitlab" },
   root_markers = { ".git" },
 })
-vim.lsp.enable("yamlls")
+-- vim.lsp.enable("yamlls")
 
 -- [ Zig ]------------------------------------------------------------------- --
 vim.lsp.config("zls", {
