@@ -15,9 +15,11 @@ github.com/fullstorydev/grpcurl/cmd/grpcurl
 github.com/josharian/impl
 github.com/minio/mc
 github.com/charmbracelet/mods
+github.com/arimxyer/pass-cli
 github.com/siddhantac/puffin
 github.com/ericchiang/pup
 github.com/mgechev/revive
+github.com/karol-broda/snitch
 github.com/sqls-server/sqls
 github.com/swaggo/swag/cmd/swag
 github.com/a-h/templ/cmd/templ
