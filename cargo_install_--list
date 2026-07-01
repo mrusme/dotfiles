@@ -1,99 +1,115 @@
-age-plugin-yubikey v0.5.0:
+age-plugin-yubikey v0.5.1:
     age-plugin-yubikey
-angry_oxide v0.9.1 (https://github.com/Ragnt/AngryOxide#036766c6):
+angry_oxide v0.9.1 (https://github.com/Ragnt/AngryOxide#9a924eab):
     angryoxide
-ast-grep v0.40.3:
+ast-grep v0.44.0:
     ast-grep
     sg
-binsider v0.3.0:
+binsider v0.3.2:
     binsider
-bpf-linker v0.9.15:
+bpf-linker v0.10.3:
     bpf-linker
-cargo-update v18.0.0:
+cargo-update v20.0.2:
     cargo-install-update
     cargo-install-update-config
 csview v1.3.4:
     csview
-deno v2.6.3:
+deno v2.9.0:
     deno
-difftastic v0.67.0:
+difftastic v0.69.0:
     difft
 eva v0.3.1:
     eva
 eza v0.23.4:
     eza
-fd-find v10.3.0:
+fd-find v10.4.2:
     fd
-gfold v2025.12.0:
+gfold v2026.3.0:
     gfold
-git-delta v0.18.2:
+git-delta v0.19.2:
     delta
-gitui v0.28.0:
+gitlogue v0.9.0:
+    gitlogue
+gitui v0.28.1:
     gitui
-gpg-tui v0.11.1:
+gpg-tui v0.11.2:
     gpg-tui
     gpg-tui-completions
-gping v1.20.1:
+gping v1.20.4:
     gping
-halloy v0.1.0 (https://github.com/squidowl/halloy#1bdeb2d3):
+halloy v0.1.0 (https://github.com/squidowl/halloy#9335f137):
     halloy
-harper-ls v1.3.0:
+harper-ls v2.5.0:
     harper-ls
-havn v0.3.3:
+havn v0.3.7:
     havn
 heretek v0.6.0:
     heretek
-hexyl v0.16.0:
+hexyl v0.17.0:
     hexyl
-jnv v0.6.1:
+jellyfin-tui v1.5.0 (https://github.com/dhonus/jellyfin-tui#444732b1):
+    jellyfin-tui
+jnv v0.7.1:
     jnv
+jolt-tui v1.2.0:
+    jolt
 kmon v1.7.1:
     kmon
 lemmeknow v0.8.0:
     lemmeknow
-lychee v0.22.0:
+lychee v0.24.2:
     lychee
-neovide v0.15.2 (https://github.com/neovide/neovide#ef83b976):
+mq-run v0.6.3:
+    mq
+neovide v0.16.2 (https://github.com/neovide/neovide#618605b7):
     neovide
-netscanner v0.6.3:
+netscanner v0.6.41:
     netscanner
-oxipng v10.0.0:
+oxipng v10.1.1:
     oxipng
 paperback v0.0.0 (https://github.com/cyphar/paperback#aed348b9):
     paperback
-pastel v0.11.0:
+pastel v0.12.0:
     pastel
-pipe-rename v1.6.6:
+pioneer v0.1.0 (https://github.com/ChampionBuffalo1/pioneer#deb0fbf2):
+    pioneer
+pipe-rename v1.6.7:
     renamer
-procs v0.14.10:
+procs v0.14.12:
     procs
-protols v0.13.1:
+protols v0.14.0:
     protols
 qrtool v0.13.2:
     qrtool
-rainfrog v0.3.13:
+rainfrog v0.3.19:
     rainfrog
-rubyfmt-main v0.11.0 (https://github.com/fables-tales/rubyfmt#256602ed):
+rubyfmt-main v0.14.1 (https://github.com/fables-tales/rubyfmt#d3d433ca):
     rubyfmt-main
 rustscan v2.4.1:
     rustscan
-serie v0.5.7:
+serie v0.8.0:
     serie
 so v0.4.10:
     so
-sqruff v0.32.0:
+sqruff v0.38.0:
     sqruff
-starship v1.24.2:
+starship v1.26.0:
     starship
 tealdeer v1.8.1:
     tldr
 trippy v0.13.0:
     trip
+vortix v0.4.2:
+    vortix
 websocat v4.0.0-alpha3:
     websocat
 wiki-tui v0.9.2:
     wiki-tui
-xan v0.54.1:
+wiremix v0.11.0:
+    wiremix
+xan v0.59.0:
     xan
-zoxide v0.9.8:
+xleak v0.2.6:
+    xleak
+zoxide v0.9.9:
     zoxide
