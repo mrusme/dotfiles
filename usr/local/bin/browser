@@ -67,7 +67,7 @@ case $selected_browser in
     exec /usr/local/bin/lw "$url"
     ;; 
   "chromium")
-    exec chromium --force-dark-mode --enable-features=WebUIDarkMode "$url"
+    exec ungoogled-chromium --force-dark-mode --enable-features=WebUIDarkMode "$url"
     ;;
   "tor-browser")
     exec /usr/local/bin/tb "$url"
