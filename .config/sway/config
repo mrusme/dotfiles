@@ -130,8 +130,8 @@ set {
 
 #                         border bgrnd  text    indic   chld
 client.focused            $fcdBd $fcdBg $fcdTxt $fcdInd $fcdChd
-client.unfocused          $dark  $dark  $dim2   $dark   $winterBlue
-client.focused_inactive   $dark  $dark  $white  $dark   $winterBlue
+client.unfocused          $dark  $dark  $fcdBg  $dark   $winterBlue
+client.focused_inactive   $dark  $dark  $fcdBg  $dark   $winterBlue
 client.focused_tab_title  $dim   $dim   $dark   $dim    $winterBlue
 client.urgent             $red   $red   $white  $red    $red
 client.placeholder        $dark  $dark  $white  $white  $dark
@@ -163,9 +163,10 @@ focus_on_window_activation smart
 output * bg ~/.wallpaper fill
 
 # StarBook
-output "Chimei Innolux Corporation 0x14F2 Unknown" {
-  mode 1920x1080@60Hz
+output eDP-1 {
+  mode 2880x1800@120Hz
   pos 0 0
+  scale 1.5
 }
 
 # LG 32UN500-W
@@ -208,8 +209,8 @@ exec gentoo-pipewire-launcher
 
 # swayidle
 exec swayidle -w \
-timeout 600 'swaylock' \
-timeout 900 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
+timeout 300 'swaylock' \
+timeout 360 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
 before-sleep 'swaylock'
 
 
@@ -268,7 +269,7 @@ bindsym $mod+Ctrl+backspace   exec /usr/local/bin/ff
 bindsym $mod+Ctrl+Shift+backspace exec /usr/local/bin/ff -private-window
 
 # Open ungoogled Chromium
-bindsym $mod+backspace        exec /usr/bin/chromium \
+bindsym $mod+backspace        exec /usr/bin/ungoogled-chromium \
                                 --force-dark-mode \
                                 --enable-features=WebUIDarkMode
 
@@ -307,35 +308,35 @@ bindsym $mod+Shift+e          exec swaynag -t msg -e bottom \
 # === Media keys ===
 
 # Decrease display brightness
-bindsym $mod+F1               exec ddcutil setvcp 10 - 25
-bindsym XF86MonBrightnessDown exec doas /usr/bin/brightnessctl -d amdgpu_bl0 set 10-
+bindsym $mod+F8               exec ddcutil setvcp 10 - 25
+bindsym XF86MonBrightnessDown exec doas /usr/bin/brightnessctl -d amdgpu_bl0 set 10%-
 
 # Increase display brightness
-bindsym $mod+F2               exec ddcutil setvcp 10 + 25
-bindsym XF86MonBrightnessUp   exec doas /usr/bin/brightnessctl -d amdgpu_bl0 set +10
+bindsym $mod+F9               exec ddcutil setvcp 10 + 25
+bindsym XF86MonBrightnessUp   exec doas /usr/bin/brightnessctl -d amdgpu_bl0 set +10%
 
 # Toggle playback
-bindsym $mod+F8               exec playerctl play-pause
+bindsym $mod+F6               exec playerctl play-pause
 bindsym XF86AudioPlay         exec playerctl play-pause
 
 # Next song
-bindsym $mod+F9               exec playerctl next
+bindsym $mod+F7               exec playerctl next
 bindsym XF86AudioNext         exec playerctl next
 
 # Previous song
-bindsym $mod+F7               exec playerctl previous
+bindsym $mod+F5               exec playerctl previous
 bindsym XF86AudioPrev         exec playerctl previous
 
 # Mute audio volume
-bindsym $mod+F10              exec /usr/local/bin/audio-router volume "0%"
+bindsym $mod+F1               exec /usr/local/bin/audio-router volume "0%"
 bindsym XF86AudioMute         exec /usr/local/bin/audio-router volume "0%"
 
 # Decrease audio volume
-bindsym $mod+F11              exec /usr/local/bin/audio-router volume -0.10
+bindsym $mod+F2               exec /usr/local/bin/audio-router volume -0.10
 bindsym XF86AudioLowerVolume  exec /usr/local/bin/audio-router volume -0.10
 
 # Increase audio volume
-bindsym $mod+F12              exec /usr/local/bin/audio-router volume +0.10
+bindsym $mod+F3               exec /usr/local/bin/audio-router volume +0.10
 bindsym XF86AudioRaiseVolume  exec /usr/local/bin/audio-router volume +0.10
 
 # Route audio to display
@@ -517,13 +518,13 @@ bindsym $mod+minus splitv
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
 # Activate stacking layout
-bindsym $mod+Shift+s layout stacking
+bindsym $mod+s layout stacking
 
 # Activate tabbed layout
 bindsym $mod+t layout tabbed
 
 # Toggle split layout
-bindsym $mod+s layout toggle split
+bindsym $mod+Shift+s layout toggle split
 
 # Toggle floating mode
 bindsym $mod+Shift+z floating toggle
