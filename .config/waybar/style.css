@@ -1,18 +1,18 @@
 * {
   border: none;
   border-radius: 0;
-  font-family: 'Berkeley Mono';
+  font-family: "Berkeley Mono";
   font-weight: 400;
   font-size: 11px;
   min-height: 26px;
 }
 
 window#waybar {
-  background-color: rgba(0, 0, 0, 0.92);
+  background-color: rgba(0, 0, 0, 1);
   border-bottom: none;
-  color: #eeeeee;
+  color: #536161;
   transition-property: background-color;
-  transition-duration: .5s;
+  transition-duration: 0.5s;
 }
 
 window#waybar.hidden {
@@ -20,7 +20,7 @@ window#waybar.hidden {
 }
 
 label#window {
-  text-shadow: 0px 0px 3px #18181e;
+  /* text-shadow: 0px 0px 3px #18181e; */
 }
 
 /* tooltip { */
@@ -33,7 +33,8 @@ label#window {
 /* } */
 
 .module {
-  margin: 0px 0px 0px 20px;
+  margin: 0px 10px 0px 10px;
+  padding: 0px 0px;
 }
 
 #bluetooth {
@@ -41,10 +42,12 @@ label#window {
 }
 
 #cpu.warning {
+  color: #ff5f1f;
   background-color: rgba(0, 0, 0, 0);
 }
 
 #cpu.critical {
+  color: #ff3131;
   background-color: rgba(0, 0, 0, 0);
 }
 
@@ -54,53 +57,53 @@ label#window {
   min-width: 32px;
 }
 
-
 #workspaces {
-  margin: 0px 0px 0px 0px;
+  margin: 0px 0px 0px 20px;
+  border-radius: 0px;
+  border: 0px;
 }
 
 #workspaces button {
   padding: 4px 6px;
-  color: #555555;
-  border-radius:  0px;
-  border: 0px solid #333;
+  color: #536161;
+  border-radius: 0px;
+  border: 0px;
   box-shadow: none;
   min-width: 32px;
-  background-color: rgba(0, 0, 0, 0);
 }
 
 #workspaces button.active {
-  border: 0px solid #333;
+  border: 0px;
   box-shadow: none;
 }
 
 #workspaces button.visible {
-  border: 0px solid #333;
+  border: 0px;
   box-shadow: none;
 }
 
 #workspaces button.urgent {
-  border: 0px solid #333;
+  border: 0px;
   box-shadow: none;
 }
 
 #workspaces button.empty {
-  border: 0px solid #333;
+  border: 0px;
   box-shadow: none;
 }
 
 #workspaces button.persistent {
-  border: 0px solid #333;
+  border: 0px;
   box-shadow: none;
 }
 
 #workspaces button.hidden {
-  border: 0px solid #333;
+  border: 0px;
   box-shadow: none;
 }
 
 #workspaces button.current_output {
-  border: 0px solid #333;
+  border: 0px;
   box-shadow: none;
 }
 
@@ -110,26 +113,26 @@ label#window {
   text-shadow: inherit;
   background: transparent;
   color: #ffffff;
-  border: 0px solid #333;
+  border: 0px;
   box-shadow: none;
 }
 
 #workspaces button.focused {
-  color: #eeeeee;
-  border: 0px solid #333;
+  color: #849696;
+  border: 0px;
   box-shadow: none;
 }
 
 #workspaces button.focused:hover {
   color: #ffffff;
-  border: 0px solid #333;
+  border: 0px;
   box-shadow: none;
 }
 
 #workspaces button.urgent {
   color: #ffffff;
   background-color: #e27878;
-  border: 0px solid #333;
+  border: 0px;
   box-shadow: none;
 }
 
@@ -138,11 +141,10 @@ label#window {
 }
 
 #tray {
-  background-color: rgba(0, 0, 0, 0);
 }
 
 #tray image {
-  margin: 0px 10px 0px 0px;
+  margin: 0px 0px 0px 0px;
 }
 
 #clock {
@@ -150,9 +152,8 @@ label#window {
 }
 
 #mode {
-  background-color: rgba(0, 0, 0, 0);
   border: 2px solid #e2a478;
-  margin: 0px 10px 0px 0px;
+  margin: 0px 0px 0px 0px;
   border-radius: 5px;
+  padding: 0px 8px;
 }
-

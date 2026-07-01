@@ -18,24 +18,21 @@
   "position": "top",
 
   "modules-left": [
-    "sway/workspaces",
-    //"sway/language",
-    "group/display",
     //"custom/screenrecord",
     "privacy",
     "group/network",
-    "group/market",
+    "group/hardware",
+    "group/resources"
+    //"group/market",
     //"custom/starshield",
-    "tray",
-    "sway/mode"
     // "custom/zeit"
   ],
   "modules-center": [
-    "sway/window"
+    "group/taskbar"
   ],
   "modules-right": [
-    "group/hardware",
-    "group/resources",
+    //"group/display",
+    "backlight",
     "group/audio",
     "battery",
     "group/clock"
@@ -46,55 +43,45 @@
   // modules-left
   // -------------------------------------------------------------------------
 
-  "sway/workspaces": {
-    "all-outputs": true,
-    "disable-scroll": true,
-    "format": "{name}"
-  },
+  //"group/display": {
+  //  "orientation": "horizontal",
+  //  "modules": [
+  //    "backlight",
+  //    "custom/display-dp-1",
+  //    "custom/display-hdmi-1",
+  //    "custom/display-hdmi-2"
+  //  ],
+  //  "drawer": {
+  //    "transition-left-to-right": false,
+  //    "transition-duration": 500
+  //  }
+  //},
 
-  "sway/language": {
-    "format": "<span text_transform='uppercase'>{short}</span> {variant}",
-  },
-
-  "group/display": {
-    "orientation": "horizontal",
-    "modules": [ 
-      "backlight",
-      "custom/display-dp-1",
-      "custom/display-hdmi-1",
-      "custom/display-hdmi-2"
-    ],
-    "drawer": {
-      "transition-left-to-right": true,
-      "transition-duration": 500
-    }
-  },
-  
   "backlight": {
-    "device": "amdgpu_bl0",
-    "format": "BRT {percent}%",
+   "device": "intel_backlight",
+   "format": "BRT {percent}%",
   },
 
-  "custom/display-dp-1": {
-    "format": "DP-1",
-    "tooltip-format": "DP-1",
-    "on-click": "ddcutil setvcp 60 0x0f",
-    "interval": "once"
-  },
+  //"custom/display-dp-1": {
+  //  "format": "DP-1",
+  //  "tooltip-format": "DP-1",
+  //  "on-click": "ddcutil setvcp 60 0x0f",
+  //  "interval": "once"
+  //},
 
-  "custom/display-hdmi-1": {
-    "format": "HDMI-1",
-    "tooltip-format": "HDMI-1",
-    "on-click": "ddcutil setvcp 60 0x11",
-    "interval": "once"
-  },
+  //"custom/display-hdmi-1": {
+  //  "format": "HDMI-1",
+  //  "tooltip-format": "HDMI-1",
+  //  "on-click": "ddcutil setvcp 60 0x11",
+  //  "interval": "once"
+  //},
 
-  "custom/display-hdmi-2": {
-    "format": "HDMI-2",
-    "tooltip-format": "HDMI-2",
-    "on-click": "ddcutil setvcp 60 0x12",
-    "interval": "once"
-  },
+  //"custom/display-hdmi-2": {
+  //  "format": "HDMI-2",
+  //  "tooltip-format": "HDMI-2",
+  //  "on-click": "ddcutil setvcp 60 0x12",
+  //  "interval": "once"
+  //},
 
   //"custom/screenrecord": {
   //  "format": "{}",
@@ -106,24 +93,31 @@
 
   "group/network": {
     "orientation": "horizontal",
-    "modules": [ 
-      "network",
+    "modules": [
+      "network#stats",
+      "network#connection",
       "custom/vpn",
-      "custom/docker",
-      "custom/cloudcash"
+      "custom/docker"
+      // "custom/cloudcash"
     ],
     "drawer": {
       "transition-left-to-right": true,
       "transition-duration": 500
     }
   },
-  
-  "network": {
+
+  "network#stats": {
+    "family": "ipv4",
+    "format": "BWD {bandwidthDownBytes} <span color='#849696'>{bandwidthUpBytes}</span>",
+    "tooltip-format": "{ifname}",
+  },
+
+  "network#connection": {
     "family": "ipv4",
     "format": "{ifname}",
-    "format-wifi": "WiFi {essid} <span color='#aaaaaa'>{signalStrength}%</span>",
-    "format-ethernet": "ETH {ipaddr}/<span color='#aaaaaa'>{cidr}</span>",
-    "format-disconnected": "DC'D",
+    "format-wifi": "WiFi {essid} <span color='#849696'>{signalStrength}%</span>",
+    "format-ethernet": "ETH {ipaddr}/<span color='#849696'>{cidr}</span>",
+    "format-disconnected": "OFF",
     "tooltip-format": "{ifname} via {gwaddr}",
     "tooltip-format-wifi": "{essid} ({signalStrength}%)",
     "tooltip-format-ethernet": "{ifname}",
@@ -131,7 +125,7 @@
   },
 
   "custom/vpn": {
-    "format": "VPN <span color='#aaaaaa'>{}</span>",
+    "format": "VPN <span color='#849696'>{}</span>",
     "return-type": "json",
     "exec": "/usr/local/bin/waybar-vpn current",
     "on-click": "/usr/local/bin/waybar-vpn connect",
@@ -148,13 +142,13 @@
     "interval": 30
   },
 
-  "custom/cloudcash": {
-    "format": "{}",
-    "return-type": "json",
-    "exec": "/usr/local/bin/cloudcash -waybar-pango",
-    "on-click": "",
-    "interval": 3600
-  },
+  // "custom/cloudcash": {
+  //   "format": "{}",
+  //   "return-type": "json",
+  //   "exec": "/usr/local/bin/cloudcash -waybar-pango",
+  //   "on-click": "",
+  //   "interval": 3600
+  // },
 
   //"custom/starshield": {
   //  "format": "{}",
@@ -164,33 +158,33 @@
   //  "interval": 20
   //},
 
-  "group/market": {
-    "orientation": "horizontal",
-    "modules": [ 
-      "custom/xmrig",
-      "custom/crypto"
-    ],
-    "drawer": {
-      "transition-left-to-right": true,
-      "transition-duration": 500
-    }
-  },
-  
-  "custom/xmrig": {
-    "format": "{}",
-    "return-type": "json",
-    "exec": "/usr/local/bin/waybar-xmrig",
-    "on-click": "",
-    "interval": 60
-  },
+  //"group/market": {
+  //  "orientation": "horizontal",
+  //  "modules": [
+  //    "custom/xmrig",
+  //    "custom/crypto"
+  //  ],
+  //  "drawer": {
+  //    "transition-left-to-right": true,
+  //    "transition-duration": 500
+  //  }
+  //},
 
-  "custom/crypto": {
-    "format": "{}",
-    "return-type": "json",
-    "exec": "/usr/local/bin/waybar-crypto2",
-    "on-click": "",
-    "interval": 3600
-  },
+  //"custom/xmrig": {
+  //  "format": "{}",
+  //  "return-type": "json",
+  //  "exec": "/usr/local/bin/waybar-xmrig",
+  //  "on-click": "",
+  //  "interval": 60
+  //},
+
+  //"custom/crypto": {
+  //  "format": "{}",
+  //  "return-type": "json",
+  //  "exec": "/usr/local/bin/waybar-crypto2",
+  //  "on-click": "",
+  //  "interval": 3600
+  //},
 
   "privacy": {
     "icon-spacing": 4,
@@ -210,16 +204,6 @@
     ]
   },
 
-  "tray": {
-    "icon-size": 12,
-    "spacing": 0
-  },
-
-  "sway/mode": {
-    "format": "{}",
-    "tooltip": false
-  },
-
   "custom/zeit": {
     "format": "{}",
     "exec": "/home/mrus/projects/@mrusme/zeit/extras/zeit-waybar-bemenu.sh",
@@ -231,6 +215,21 @@
   // -------------------------------------------------------------------------
   // modules-center
   // -------------------------------------------------------------------------
+
+  "group/taskbar": {
+    "orientation": "horizontal",
+    "modules": [
+      "sway/window",
+      "sway/workspaces",
+      //"sway/language",
+      "sway/mode",
+      "tray"
+    ],
+    "drawer": {
+      "transition-left-to-right": true,
+      "transition-duration": 500
+    }
+  },
 
   "sway/window": {
     "all-outputs": false,
@@ -251,6 +250,26 @@
     }
   },
 
+  "sway/workspaces": {
+    "all-outputs": true,
+    "disable-scroll": true,
+    "format": "{name}"
+  },
+
+  "sway/language": {
+    "format": "<span text_transform='uppercase'>{short}</span> {variant}",
+  },
+
+  "sway/mode": {
+    "format": "{}",
+    "tooltip": false
+  },
+
+  "tray": {
+    "icon-size": 12,
+    "spacing": 0
+  },
+
 
   // -------------------------------------------------------------------------
   // modules-right
@@ -258,22 +277,22 @@
 
   "group/hardware": {
     "orientation": "horizontal",
-    "modules": [ 
-      "cpu", 
+    "modules": [
+      "cpu",
       "temperature#cpu",
       "temperature#gpu",
       "temperature#nvme",
       "temperature#wifi"
     ],
     "drawer": {
-      "transition-left-to-right": false,
+      "transition-left-to-right": true,
       "transition-duration": 500
     }
   },
 
   "cpu": {
     "interval": 30,
-    "format": "FRQ {avg_frequency:3.2f}GHz <span color='#aaaaaa'>{usage}%</span>",
+    "format": "FRQ {avg_frequency:3.2f}GHz <span color='#849696'>{usage}%</span>",
     "states": {
       "warning": 70,
       "critical": 90
@@ -282,59 +301,53 @@
   },
 
   "temperature#cpu": {
-    "hwmon-path": "/sys/class/hwmon/hwmon3/temp1_input",
+    "hwmon-path": "/sys/class/hwmon/hwmon8/temp1_input",
     "critical-threshold": 80,
-    "format": "CPU <span color='#aaaaaa'>{temperatureC}°C</span>"
+    "format": "CPU <span color='#849696'>{temperatureC}°C</span>"
   },
 
   "temperature#gpu": {
-    "hwmon-path": "/sys/class/hwmon/hwmon5/temp1_input",
+    "hwmon-path": "/sys/class/hwmon/hwmon8/temp2_input",
     "critical-threshold": 80,
-    "format": "· GPU <span color='#aaaaaa'>{temperatureC}°C</span>"
+    "format": "· GPU <span color='#849696'>{temperatureC}°C</span>"
   },
 
   "temperature#nvme": {
-    "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+    "hwmon-path": "/sys/class/hwmon/hwmon4/temp1_input",
     "critical-threshold": 80,
-    "format": "· NVMe <span color='#aaaaaa'>{temperatureC}°C</span>"
+    "format": "· NVMe <span color='#849696'>{temperatureC}°C</span>"
   },
 
   "temperature#wifi": {
-    "hwmon-path": "/sys/class/hwmon/hwmon4/temp1_input",
+    "hwmon-path": "/sys/class/hwmon/hwmon10/temp1_input",
     "critical-threshold": 80,
-    "format": "· WiFi <span color='#aaaaaa'>{temperatureC}°C</span>"
+    "format": "· WiFi <span color='#849696'>{temperatureC}°C</span>"
   },
 
   "group/resources": {
     "orientation": "horizontal",
-    "modules": [ "memory", "disk#root", "disk#microsd" ],
+    "modules": [ "memory", "disk#root" ],
     "drawer": {
-      "transition-left-to-right": false,
+      "transition-left-to-right": true,
       "transition-duration": 500
     }
   },
 
   "memory": {
     "interval": 60,
-    "format": "MEM {used:3.1f}GiB/<span color='#aaaaaa'>{total:3.1f}GiB</span>"
+    "format": "MEM {used:3.1f}GiB/<span color='#849696'>{total:3.1f}GiB</span>"
   },
 
   "disk#root": {
     "interval": 360,
-    "format": "SSD {used}/<span color='#aaaaaa'>{total}</span>",
+    "format": "SSD {used}/<span color='#849696'>{total}</span>",
     "path": "/"
-  },
-
-  "disk#microsd": {
-    "interval": 360,
-    "format": "uSD {used}/<span color='#aaaaaa'>{total}</span>",
-    "path": "/mnt/microsd"
   },
 
   "bluetooth": {
     // "controller": "controller1",
     "on-click": "/usr/local/bin/waybar-bluetooth toggle",
-    "format": "<span color='#aaaaaa'>BT</span>",
+    "format": "<span color='#849696'>BT</span>",
     "format-disabled": "<span color='#333333'>BT</span>",
     "format-connected": "BT",
     "format-connected-battery": "BT {device_battery_percentage}",
@@ -347,8 +360,8 @@
 
   "group/audio": {
     "orientation": "horizontal",
-    "modules": [ 
-      "wireplumber", 
+    "modules": [
+      "wireplumber",
       "custom/audio-internal",
       "custom/audio-motu",
       "custom/audio-ifi",
@@ -362,7 +375,7 @@
   },
 
   "wireplumber": {
-    "format": "{icon} {node_name}/<span color='#aaaaaa'>{volume}</span>",
+    "format": "{icon} {node_name}/<span color='#849696'>{volume}</span>",
     "format-muted": " X ",
     "on-click": "pavucontrol",
     "on-click-right": "helvum",
@@ -405,13 +418,13 @@
       "critical": 5
     },
     "format-time": "{H}:{m}",
-    "format": "{icon} {time} <span color='#aaaaaa'>{capacity}%</span>",
+    "format": "{icon} {time} <span color='#849696'>{capacity}%</span>",
     "format-discharging": "{icon} <span color='#E4D00A'>{capacity}%</span>",
     "format-discharging-warning": "{icon} <span color='#FF5F1F'>{capacity}%</span>",
     "format-discharging-critical": "{icon} <span color='#FF3131'>{capacity}%</span>",
-    "format-charging": "CHG <span color='#DAF7A6'>{capacity}%</span><span color='#aaaaaa'> @ {power:2.0f}W</span>",
-    "format-full": "{icon} <span color='#aaaaaa'>{capacity}%</span>",
-    "format-not-charging": "NOP <span color='#aaaaaa'>{capacity}%</span>",
+    "format-charging": "CHG <span color='#DAF7A6'>{capacity}%</span><span color='#849696'> @ {power:2.0f}W</span>",
+    "format-full": "{icon} <span color='#849696'>{capacity}%</span>",
+    "format-not-charging": "NOP <span color='#849696'>{capacity}%</span>",
     "format-icons": ["---", "#--", "##-", "###", "PWR"],
   },
 
@@ -426,7 +439,7 @@
 
   "clock#date": {
     "interval": 60,
-    "format": "<span color='#ffffff'> {:%a %e %b %Y}</span>",
+    "format": "<span color='#849696'> {:%a %e %b %Y}</span>",
     "tooltip-format": "<big>{:%B %Y}</big>\n<tt>{calendar}</tt>",
     "calendar": {
       "mode"          : "year",
@@ -434,9 +447,9 @@
       "weeks-pos"     : "right",
       "on-scroll"     : 1,
       "format": {
-        "months":     "<span color='#633aff'><b>{}</b></span>",
+        "months":     "<span color='#536161'><b>{}</b></span>",
         "days":       "<span color='#111111'><b>{}</b></span>",
-        "weeks":      "<span color='#61E2FF'><b>W{}</b></span>",
+        "weeks":      "<span color='#849696'><b>W{}</b></span>",
         "weekdays":   "<span color='#222222'><b>{}</b></span>",
         "today":      "<span color='#f53fa1'><b><u>{}</u></b></span>"
       }
@@ -450,7 +463,7 @@
 
   "clock#time": {
     "interval": 60,
-    "format": "<span color='#aaaaaa'>{:%I:%M %p (%Z)}</span>",
+    "format": "{0:%I:%M %p} <span color='#849696'>{0:%Z}</span>",
     "tooltip": true,
     "tooltip-format": "{tz_list}",
     "timezones": [
@@ -461,6 +474,8 @@
         "Etc/UTC",
         "Europe/Zurich",
         "Asia/Bangkok",
+        "Asia/Hong_Kong",
+        "Asia/Seoul",
         "Asia/Tokyo",
         "Australia/Melbourne",
         "Pacific/Auckland"
