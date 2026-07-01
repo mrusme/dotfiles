@@ -1040,6 +1040,7 @@ function listen() {
 }
 
 function scale-and-crop-16-9() {
+  local iname=${1:-'*.jpg'}
   awkcommand='{ 
     if($1 < $2) { 
       system("convert " $3 " -resize 2160x " $3); 
@@ -1051,7 +1052,7 @@ function scale-and-crop-16-9() {
   }'
   find ./ \
     -type f \
-    -iname '*.jpg' \
+    -iname "$iname" \
     -exec identify -format '%w %h %i\n' '{}' \; \
       | awk "$awkcommand"
 }
