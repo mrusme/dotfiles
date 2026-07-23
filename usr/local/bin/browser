@@ -51,7 +51,7 @@ if [ "$(expr "$host" : '^.*\.onion$')" -gt 0 ]
 then
   selected_browser="tor-browser"
 else
-  # https://codeberg.org/mrus/cexec
+  # https://tty.fail/mrus/cexec
   selected_browser=$(printf "%s" "$browsers" \
   | cexec -t 10 bemenu -p "browser")
 fi
