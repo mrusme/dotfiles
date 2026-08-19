@@ -162,10 +162,17 @@ focus_on_window_activation smart
 
 output * bg ~/.wallpaper fill
 
-# StarBook
+# Integrated display
 output eDP-1 {
   mode 2880x1800@120Hz
   pos 0 0
+  scale 1.5
+  adaptive_sync off
+}
+
+output DP-1 {
+  mode 3840x2160@120Hz
+  pos 1920 -240
   scale 1.5
 }
 
@@ -218,27 +225,18 @@ before-sleep 'swaylock'
 # ║ Inputs                                                                     ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
+# TrackPoint
+input "2:10:TPPS/2_Elan_TrackPoint" {
+  accel_profile "flat"
+  natural_scroll disabled
+  pointer_accel 1.0
+}
+
 # Any mouse
 input "type:pointer" {
   natural_scroll enabled
   pointer_accel 0
   #accel_profile adaptive
-}
-
-# StarBook Touchpad
-input "2362:597:STAR0001:00_093A:0255_Touchpad" {
-  natural_scroll enabled
-  pointer_accel 0
-  #accel_profile adaptive
-  tap enabled
-  click_method clickfinger
-  dwt enabled
-  middle_emulation disabled
-  scroll_method two_finger
-  scroll_factor 0.2
-  tap_button_map lrm
-  # drag_lock enabled
-  drag disabled
 }
 
 # Any keyboard
@@ -263,15 +261,16 @@ bindsym $mod+Shift+Slash      exec /usr/local/bin/sway-help
 # Open terminal
 bindsym $mod+Return           exec $term
 
-# Open Firefox
-bindsym $mod+Ctrl+backspace   exec /usr/local/bin/ff
-# Open Firefox (private window)
-bindsym $mod+Ctrl+Shift+backspace exec /usr/local/bin/ff -private-window
+# Open Netrunner
+bindsym $mod+backspace        exec netrunner
 
 # Open ungoogled Chromium
-bindsym $mod+backspace        exec /usr/bin/ungoogled-chromium \
+bindsym $mod+Shift+backspace        exec ungoogled-chromium-beta \
                                 --force-dark-mode \
                                 --enable-features=WebUIDarkMode
+
+# Open LibreWolf
+bindsym $mod+Ctrl+backspace   exec librewolf
 
 # Show clipboard (for copying)
 bindsym $mod+Alt+Bar          exec cliphist list \
@@ -417,10 +416,10 @@ bindsym $mod+Control+$left  focus parent, focus left,  focus child
 # Focus parent
 bindsym $mod+Control+p focus parent
 
-# Focus browser 
-bindsym $mod+Control+w [app_id = "chromium-browser-chromium"] focus
+# Focus browser
+bindsym $mod+Control+w [app_id = "ungoogled-chromium-beta"] focus
 
-# Focus terminal 
+# Focus terminal
 bindsym $mod+Control+g [app_id = "com.mitchellh.ghostty"] focus
 
 # Focus next
@@ -438,16 +437,16 @@ bindsym $mod+Control+g [app_id = "com.mitchellh.ghostty"] focus
 
 # === Workspaces ===
 
-workspace 1   1:I    output DP-1 eDP-1
-workspace 2   2:II   output DP-1 eDP-1
-workspace 3   3:III  output DP-1 eDP-1
-workspace 4   4:IV   output DP-1 eDP-1
-workspace 5   5:V    output DP-1 eDP-1
-workspace 6   6:VI   output HDMI-A-1
-workspace 7   7:VII  output HDMI-A-1
-workspace 8   8:VIII output HDMI-A-1
-workspace 9   9:IX   output HDMI-A-1
-workspace 10 10:X    output HDMI-A-1
+workspace 1   1:I    output eDP-1
+workspace 2   2:II   output eDP-1
+workspace 3   3:III  output eDP-1
+workspace 4   4:IV   output eDP-1
+workspace 5   5:V    output eDP-1
+workspace 6   6:VI   output DP-1 HDMI-A-1
+workspace 7   7:VII  output DP-1 HDMI-A-1
+workspace 8   8:VIII output DP-1 HDMI-A-1
+workspace 9   9:IX   output DP-1 HDMI-A-1
+workspace 10 10:X    output DP-1 HDMI-A-1
 
 # Switch to workspace 1
 bindsym $mod+1 workspace 1   1:I
@@ -643,7 +642,6 @@ for_window [app_id = "chrome-*"] {
   resize set 1024 px 600 px
 }
 
-for_window [app_id = "ch.proton.bridge-gui"] floating enable
 # TODO: Needed for pairing the Chromium extension on Sway
 #for_window [app_id = "anytype"] floating enable
 #no_focus [app_id = "anytype"]
@@ -653,6 +651,7 @@ for_window [app_id = "ch.proton.bridge-gui"] floating enable
 for_window [title = "Firefox - Sharing Indicator"] floating enable
 for_window [title = "^Extension: .*" app_id = "firefox"] floating enable
 for_window [title = "^Open File$"] floating enable
+for_window [title = "^Open Files$"] floating enable
 # for_window [title="^Steam Keyboard$"] floating enable
 
 no_focus [app_id="waybar"]
@@ -680,19 +679,15 @@ bar {
 # ║ Tools                                                                      ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
-# wlsunset
-# https://sr.ht/~kennylevinsen/wlsunset/
-exec wlsunset -S '06:30' -s '19:30' -d 1800
+# Desktop notifications
+exec mako
+
+# Gnome Keyring
+exec --no-startup-id gnome-keyring-daemon --start --components=pkcs11,secrets,ssh
 
 # zpoweralertd
 # https://codeberg.org/mrus/zpoweralertd
 exec zpoweralertd
-
-# OpenSnitch
-exec opensnitch-ui
-
-# Syncthing
-exec syncthing serve --no-browser
 
 # yubikey-touch-detector
 # https://github.com/maximbaz/yubikey-touch-detector
@@ -702,18 +697,15 @@ exec yubikey-touch-detector -libnotify
 # https://codeberg.org/mrus/usbec
 exec usbec
 
-# Gnome Keyring
-exec --no-startup-id gnome-keyring-daemon --start --components=pkcs11,secrets,ssh
+# wlsunset
+# https://sr.ht/~kennylevinsen/wlsunset/
+exec wlsunset -S '06:30' -s '19:30' -d 1800
 
-# Desktop notifications
-exec mako
-# Fix for https://github.com/emersion/mako/issues/512
-# Merged: https://github.com/swaywm/sway/pull/8668
-# TODO: Remove when sway > 1.11
-exec /home/mrus/apps/makofix
+# OpenSnitch
+exec opensnitch-ui
 
-# Starshield
-# exec starshieldd /dev/serial/by-id/usb-Espressif_USB_JTAG_serial_debug_unit_40:4C:CA:48:3A:38-if00
+# Syncthing
+exec syncthing serve --no-browser
 
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
