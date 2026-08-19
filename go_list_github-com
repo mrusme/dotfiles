@@ -2,6 +2,7 @@ github.com/arduino/arduino-cli
 github.com/arduino/arduino-language-server
 github.com/bufbuild/buf/cmd/buf
 github.com/spf13/cobra-cli
+github.com/charmbracelet/crush
 github.com/tomwright/dasel/v2/cmd/dasel
 github.com/dlvhdr/diffnav
 github.com/go-delve/delve/cmd/dlv
@@ -12,6 +13,7 @@ github.com/fatih/gomodifytags
 github.com/goreleaser/goreleaser/v2
 github.com/fedeztk/got/cmd/got
 github.com/fullstorydev/grpcurl/cmd/grpcurl
+github.com/gohugoio/hugo
 github.com/josharian/impl
 github.com/minio/mc
 github.com/charmbracelet/mods
