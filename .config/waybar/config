@@ -147,7 +147,7 @@
   //   "return-type": "json",
   //   "exec": "/usr/local/bin/cloudcash -waybar-pango",
   //   "on-click": "",
-  //   "interval": 3600
+  //   "interval": 60
   // },
 
   //"custom/starshield": {
