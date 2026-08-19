@@ -1,34 +1,36 @@
 age-plugin-yubikey v0.5.1:
     age-plugin-yubikey
-angry_oxide v0.9.1 (https://github.com/Ragnt/AngryOxide#9a924eab):
+angry_oxide v0.9.1 (https://github.com/Ragnt/AngryOxide#cc32d96e):
     angryoxide
-ast-grep v0.44.0:
+ast-grep v0.45.1:
     ast-grep
     sg
 binsider v0.3.2:
     binsider
-bpf-linker v0.10.3:
+bpf-linker v0.11.0:
     bpf-linker
-cargo-update v20.0.2:
+cargo-update v22.1.1:
     cargo-install-update
     cargo-install-update-config
 csview v1.3.4:
     csview
-deno v2.9.0:
+deno v2.9.5:
     deno
-difftastic v0.69.0:
+difftastic v0.70.0:
     difft
 eva v0.3.1:
     eva
-eza v0.23.4:
+eza v0.23.5:
     eza
 fd-find v10.4.2:
     fd
+fin v0.2.0 (/home/mrus/projects/github/fin/crates/fin):
+    fin
 gfold v2026.3.0:
     gfold
 git-delta v0.19.2:
     delta
-gitlogue v0.9.0:
+gitlogue v0.10.0:
     gitlogue
 gitui v0.28.1:
     gitui
@@ -37,17 +39,17 @@ gpg-tui v0.11.2:
     gpg-tui-completions
 gping v1.20.4:
     gping
-halloy v0.1.0 (https://github.com/squidowl/halloy#9335f137):
+halloy v0.1.0 (https://github.com/squidowl/halloy#9cd2e014):
     halloy
-harper-ls v2.5.0:
+harper-ls v2.8.0:
     harper-ls
-havn v0.3.7:
+havn v0.3.8:
     havn
 heretek v0.6.0:
     heretek
 hexyl v0.17.0:
     hexyl
-jellyfin-tui v1.5.0 (https://github.com/dhonus/jellyfin-tui#444732b1):
+jellyfin-tui v1.5.2 (https://github.com/dhonus/jellyfin-tui#7684c5a3):
     jellyfin-tui
 jnv v0.7.1:
     jnv
@@ -59,13 +61,13 @@ lemmeknow v0.8.0:
     lemmeknow
 lychee v0.24.2:
     lychee
-mq-run v0.6.3:
+mq-run v0.8.2:
     mq
-neovide v0.16.2 (https://github.com/neovide/neovide#618605b7):
+neovide v0.16.2 (https://github.com/neovide/neovide#ba8c41f4):
     neovide
-netscanner v0.6.41:
+netscanner v0.6.43:
     netscanner
-oxipng v10.1.1:
+oxipng v10.2.0:
     oxipng
 paperback v0.0.0 (https://github.com/cyphar/paperback#aed348b9):
     paperback
@@ -77,21 +79,21 @@ pipe-rename v1.6.7:
     renamer
 procs v0.14.12:
     procs
-protols v0.14.0:
+protols v0.14.1:
     protols
 qrtool v0.13.2:
     qrtool
 rainfrog v0.3.19:
     rainfrog
-rubyfmt-main v0.14.1 (https://github.com/fables-tales/rubyfmt#d3d433ca):
+rubyfmt-main v0.14.1 (https://github.com/fables-tales/rubyfmt#5185d3be):
     rubyfmt-main
 rustscan v2.4.1:
     rustscan
-serie v0.8.0:
+serie v0.8.1:
     serie
 so v0.4.10:
     so
-sqruff v0.38.0:
+sqruff v0.40.0:
     sqruff
 starship v1.26.0:
     starship
@@ -99,7 +101,7 @@ tealdeer v1.8.1:
     tldr
 trippy v0.13.0:
     trip
-vortix v0.4.2:
+vortix v0.4.3:
     vortix
 websocat v4.0.0-alpha3:
     websocat
@@ -107,9 +109,9 @@ wiki-tui v0.9.2:
     wiki-tui
 wiremix v0.11.0:
     wiremix
-xan v0.59.0:
+xan v0.60.0:
     xan
 xleak v0.2.6:
     xleak
-zoxide v0.9.9:
+zoxide v0.10.0:
     zoxide
