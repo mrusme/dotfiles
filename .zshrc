@@ -49,6 +49,11 @@ export LC_ALL="en_US.UTF-8"
 export XCURSOR_THEME="Vimix-White"
 export XCURSOR_SIZE="32"
 
+export CLOUD_DIR="${HOME}/cloud"
+export PROJECTS_DIR="${HOME}/projects"
+export MY_PROJECTS_DIR="${HOME}/projects/@mrus"
+export ICONS_PATH="${HOME}/cloud/library/icons/winicons"
+
 export XDG_CONFIG_HOME="${HOME}/.config"
 export XDG_CACHE_HOME="${HOME}/.cache"
 export XDG_DATA_HOME="${HOME}/.local/share"
@@ -56,13 +61,11 @@ export XDG_DOWNLOAD_DIR="${HOME}/downloads"
 export XDG_DESKTOP_DIR="${HOME}/desktop"
 export XDG_TEMPLATES_DIR="${HOME}/"
 export XDG_PUBLICSHARE_DIR="${HOME}/shared/public"
-export XDG_DOCUMENTS_DIR="${HOME}/cloud/documents"
-export XDG_MUSIC_DIR="${HOME}/cloud/music"
-export XDG_PICTURES_DIR="${HOME}/cloud/photos"
-export XDG_VIDEOS_DIR="${HOME}/cloud/videos"
+export XDG_DOCUMENTS_DIR="${CLOUD_DIR}/documents"
+export XDG_MUSIC_DIR="${CLOUD_DIR}/music"
+export XDG_PICTURES_DIR="${CLOUD_DIR}/photos"
+export XDG_VIDEOS_DIR="${CLOUD_DIR}/videos"
 # On change adjust `${XDG_CONFIG_HOME}/user-dirs.dirs` as well!
-
-export ICONS_PATH="${HOME}/cloud/library/icons/winicons"
 
 # if [ "$(lspci | grep -i geforce)" ]
 # then
@@ -119,7 +122,7 @@ then
   export BROWSER="w3m"
   export OPENER="w3m"
 else
-  export BROWSER="/usr/local/bin/browser"
+  export BROWSER="/usr/local/bin/browserselect"
   export OPENER="xdg-open"
 fi
 
@@ -128,10 +131,13 @@ fi
 # ║ Programs & tools                                                           ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
+# SSH
 export SSH_KEY_PATH="${HOME}/.ssh/id_ed25519"
+export SSH_ASKPASS="${MY_PROJECTS_DIR}/ssh-askpass-zigtk/zig-out/bin/ssh-askpass-zigtk"
+export SSH_ASKPASS_REQUIRE="prefer"
 
 # Pass 
-export PASSWORD_STORE_DIR="${HOME}/cloud/library/pass"
+export PASSWORD_STORE_DIR="${CLOUD_DIR}/library/pass"
 
 # Enable Erlang/IEx shell history
 export ERL_AFLAGS="-kernel shell_history enabled"
@@ -161,7 +167,7 @@ Australia/Melbourne;Pacific/Auckland;"
 export NOTMUCH_PROFILE="01"
 
 # https://codeberg.org/mrus/zeit
-export ZEIT_DB="${HOME}/cloud/library/tools/zeit.db"
+export ZEIT_DB="${CLOUD_DIR}/library/tools/zeit.db"
 
 # https://codeberg.org/mrus/addrb
 export ADDRB_DB="${HOME}/.cache/addrb.db"
@@ -249,7 +255,9 @@ then
   # export GTK_THEME="Windows-95"
 
   # https://github.com/B00merang-Project/Mac-OS-9
-  export GTK_THEME="Mac-OS-9"
+  #export GTK_THEME="Mac-OS-9"
+
+  export GTK_THEME="Everforest-BL-MB-Dark"
 
   export GTK2_RC_FILES="${HOME}/.themes/${GTK_THEME}/gtk-2.0/gtkrc"
   #gsettings set org.gnome.desktop.interface gtk-theme "$GTK_THEME"
@@ -263,7 +271,7 @@ fi
 autoload -U compaudit compinit zrecompile
 
 if [[ -z "$ZSH_COMPDUMP" ]]; then
-  ZSH_COMPDUMP="${ZDOTDIR:-$HOME}/.zcompdump-${SHORT_HOST}-${ZSH_VERSION}"
+  ZSH_COMPDUMP="${ZDOTDIR:-$XDG_CACHE_HOME}/.zcompdump-${SHORT_HOST}-${ZSH_VERSION}"
 fi 
 
 compinit -i -d "$ZSH_COMPDUMP"
@@ -581,9 +589,7 @@ bindkey '^ ' __bemenu
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
 if [[ -o login ]]; then
-  export ANTHROPIC_API_KEY="$(pass show anthropic/api-key)"
   export COINGECKO_API_KEY="$(pass show coingecko/api-key)"
-  export OPENAI_API_KEY="$(pass show openai/api-key)"
 fi
 
 
@@ -640,10 +646,6 @@ __is_available fzf \
 __is_available eva \
 && alias calc='eva'
 
-# https://github.com/TomNomNom/gron
-__is_available gron \
-&& alias json='gron'
-
 # https://github.com/sharkdp/hexyl
 __is_available hexyl \
 && alias hex='hexyl'
@@ -656,9 +658,9 @@ __is_available hyperfine \
 __is_available irssi \
 && alias irc='irssi'
 
-# https://github.com/kdheepak/taskwarrior-tui
-__is_available taskwarrior-tui \
-&& alias todo='taskwarrior-tui'
+# https://github.com/profanity-im/profanity
+__is_available profanity \
+&& alias profanity='stty -ixon && profanity'
 
 __is_available xdg-open linux \
 && alias open='xdg-open'
@@ -667,24 +669,19 @@ __is_available doas linux \
 && alias fucking='doas' \
 || alias fucking='sudo'
 
+alias root='su -l -s /bin/bash root -'
+
 alias uuid=uuidgen
 alias wget='wget --no-hsts'
 alias rmrf='rm -rf'
 alias ehco=echo
 
-alias tgz='tar -czf'
-alias ugz='tar -xzf'
-alias tbz='tar -cjf'
-alias ubz='tar -xjf'
-
 alias tailall='tail -f $(find /var/log -type f | grep -v '.gz$')'
 
 alias my-ip="curl http://ipecho.net/plain; echo"
 
-alias element=iamb
-
 # Journal (https://xn--gckvb8fzb.com)
-export JRNL="${HOME}/projects/@mrus/xn--gckvb8fzb.com/content"
+export JRNL="${MY_PROJECTS_DIR}/xn--gckvb8fzb.com/content"
 alias jrnl="cd ${JRNL}"
 alias bookmarks="git -C ${JRNL} checkout develop \
   && vim ${JRNL}/bookmarks/index.md \
@@ -1043,11 +1040,11 @@ function scale-and-crop-16-9() {
   local iname=${1:-'*.jpg'}
   awkcommand='{ 
     if($1 < $2) { 
-      system("convert " $3 " -resize 2160x " $3); 
-      system("convert " $3 " -crop 2160x3840+0+0 " $3) 
+      system("magick " $3 " -resize 2160x " $3); 
+      system("magick " $3 " -crop 2160x3840+0+0 " $3) 
     } else { 
-      system("convert " $3 " -resize 3840x " $3); 
-      system("convert " $3 " -crop 3840x2160+0+0 " $3) 
+      system("magick " $3 " -resize 3840x " $3); 
+      system("magick " $3 " -crop 3840x2160+0+0 " $3) 
     }
   }'
   find ./ \
@@ -1060,9 +1057,9 @@ function scale-and-crop-16-9() {
 function crop-16-9() {
   awkcommand='{ 
     if($1 < $2) { 
-      system("convert " $3 " -crop 2160x3840+0+0 " $3) 
+      system("magick " $3 " -crop 2160x3840+0+0 " $3) 
     } else { 
-      system("convert " $3 " -crop 3840x2160+0+0 " $3) 
+      system("magick " $3 " -crop 3840x2160+0+0 " $3) 
     }
   }'
   find ./ \
@@ -1141,7 +1138,7 @@ function gh() {
 # ║ Dotfiles management                                                        ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
-export DOTFILES="${HOME}/projects/@mrus/dotfiles"
+export DOTFILES="${MY_PROJECTS_DIR}/dotfiles"
 
 function dotfiles-update-remote() {
   cp "${HOME}/.zshrc" "${DOTFILES}/.zshrc"
