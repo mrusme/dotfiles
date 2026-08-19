@@ -18,7 +18,7 @@ return {
         css = { "prettier" },
         eruby = { "erb_format" },
         go = { "gofumpt", "goimports" },
-        html = { "djlint" },
+        html = { "superhtml" },
         javascript = { "prettier" },
         json = { "prettier" },
         lua = { "stylua" },
