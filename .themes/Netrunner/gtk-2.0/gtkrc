@@ -1,0 +1,24 @@
+# Netrunner for GTK 2
+#
+# https://netrunner.surf
+
+# Foreground/background: muted text on the panel-hi ground
+gtk-color-scheme = "fg_color:#7a85a6\nbg_color:#121726"
+# Text/base: full-strength text on the void ground
+gtk-color-scheme = "text_color:#e8f0f8\nbase_color:#05060a"
+# Selection: amber, with the void reading back out of it
+gtk-color-scheme = "selected_fg_color:#05060a\nselected_bg_color:#e0a868"
+# Insensitive and hairlines
+gtk-color-scheme = "insensitive_fg_color:#4d5772\nborder_color:#2b344d"
+# Menus, panels and tooltips
+gtk-color-scheme = "menu_color:#0b0e16\npanel_color:#0b0e16"
+gtk-color-scheme = "tooltip_fg_color:#e8f0f8\ntooltip_bg_color:#0b0e16"
+# Titlebars
+gtk-color-scheme = "titlebar_fg_color:#e8f0f8\ntitlebar_bg_color:#121726"
+# Links
+gtk-color-scheme = "link_color:#e0a868\nvisited_link_color:#8a6a3a"
+
+gtk-auto-mnemonics = 1
+gtk-primary-button-warps-slider = 1
+
+include "main.rc"

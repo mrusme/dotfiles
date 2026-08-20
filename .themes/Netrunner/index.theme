@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=X-GNOME-Metatheme
+Name=Netrunner
+Comment=Flat dark GTK theme in the Netrunner colors
+Encoding=UTF-8
+
+[X-GNOME-Metatheme]
+GtkTheme=Netrunner

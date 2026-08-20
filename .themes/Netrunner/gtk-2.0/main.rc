@@ -1,0 +1,640 @@
+# Netrunner for GTK 2: widget styles.
+# vim:set ft=gtkrc ts=2 sw=2 et:
+
+style "netrunner-default" {
+  xthickness = 1
+  ythickness = 1
+
+  GtkWidget::focus-line-width   = 1
+  GtkWidget::focus-padding      = 1
+  GtkWidget::interior-focus     = 1
+  GtkWidget::link-color         = @link_color
+  GtkWidget::visited-link-color = @visited_link_color
+  GtkWidget::tooltip-alpha      = 255
+  GtkWidget::tooltip-radius     = 0
+  GtkWidget::new-tooltip-style  = 1
+
+  GtkButton::default-border         = { 0, 0, 0, 0 }
+  GtkButton::default-outside-border = { 0, 0, 0, 0 }
+  GtkButton::inner-border           = { 4, 4, 2, 2 }
+  GtkButton::child-displacement-x   = 0
+  GtkButton::child-displacement-y   = 0
+
+  GtkEntry::inner-border = { 6, 6, 3, 3 }
+  GtkEntry::state-hint   = 1
+
+  GtkRange::trough-border   = 0
+  GtkRange::slider-width    = 10
+  GtkRange::stepper-size    = 0
+  GtkRange::activate-slider = 1
+
+  GtkScrollbar::has-backward-stepper   = 0
+  GtkScrollbar::has-forward-stepper    = 0
+  GtkScrollbar::min-slider-length      = 32
+  GtkScrollbar::activate-slider        = 1
+  GtkScrolledWindow::scrollbar-spacing = 0
+
+  GtkScale::slider-length       = 14
+  GtkScale::slider-width        = 14
+  GtkScale::trough-side-details = 1
+
+  GtkProgressBar::min-horizontal-bar-height = 4
+  GtkProgressBar::min-vertical-bar-width    = 4
+
+  GtkMenuBar::shadow-type      = GTK_SHADOW_NONE
+  GtkMenuBar::internal-padding = 0
+  GtkMenuItem::horizontal-padding = 6
+  GtkToolbar::shadow-type      = GTK_SHADOW_NONE
+  GtkStatusbar::shadow-type    = GTK_SHADOW_NONE
+  GtkSpinButton::shadow-type   = GTK_SHADOW_NONE
+
+  GtkCheckButton::indicator-size    = 16
+  GtkCheckMenuItem::indicator-size  = 14
+  GtkTreeView::expander-size        = 11
+  GtkTreeView::vertical-separator   = 0
+  GtkTreeView::horizontal-separator = 4
+  GtkExpander::expander-size        = 11
+  GtkPaned::handle-size             = 4
+  GtkNotebook::tab-overlap          = 0
+  GtkSeparatorMenuItem::wide-separators  = 1
+  GtkSeparatorMenuItem::separator-height = 1
+
+  fg[NORMAL]      = @fg_color
+  fg[PRELIGHT]    = @selected_bg_color
+  fg[ACTIVE]      = @selected_fg_color
+  fg[SELECTED]    = @selected_fg_color
+  fg[INSENSITIVE] = @insensitive_fg_color
+
+  bg[NORMAL]      = @bg_color
+  bg[PRELIGHT]    = @bg_color
+  bg[ACTIVE]      = @bg_color
+  bg[SELECTED]    = @selected_bg_color
+  bg[INSENSITIVE] = @bg_color
+
+  base[NORMAL]      = @base_color
+  base[PRELIGHT]    = @selected_bg_color
+  base[ACTIVE]      = @selected_bg_color
+  base[SELECTED]    = @selected_bg_color
+  base[INSENSITIVE] = @menu_color
+
+  text[NORMAL]      = @text_color
+  text[PRELIGHT]    = @text_color
+  text[ACTIVE]      = @selected_fg_color
+  text[SELECTED]    = @selected_fg_color
+  text[INSENSITIVE] = @insensitive_fg_color
+
+  engine "pixmap" {
+    image {
+      function = FLAT_BOX
+      file     = "assets/base.png"
+      border   = { 0, 0, 0, 0 }
+      stretch  = TRUE
+      detail   = "entry_bg"
+    }
+    image {
+      function = SHADOW
+      shadow   = IN
+      file     = "assets/frame.png"
+      border   = { 1, 1, 1, 1 }
+      stretch  = TRUE
+    }
+    image {
+      function = SHADOW
+      shadow   = OUT
+      file     = "assets/frame.png"
+      border   = { 1, 1, 1, 1 }
+      stretch  = TRUE
+    }
+    image {
+      function = SHADOW
+      shadow   = ETCHED_IN
+      file     = "assets/frame.png"
+      border   = { 1, 1, 1, 1 }
+      stretch  = TRUE
+    }
+    image {
+      function = VLINE
+      file     = "assets/handle.png"
+      border   = { 0, 0, 0, 0 }
+      stretch  = TRUE
+    }
+    image {
+      function = HLINE
+      file     = "assets/handle.png"
+      border   = { 0, 0, 0, 0 }
+      stretch  = TRUE
+    }
+    image {
+      function = HANDLE
+      file     = "assets/handle.png"
+      border   = { 0, 0, 0, 0 }
+      stretch  = TRUE
+    }
+    image {
+      function = RESIZE_GRIP
+      file     = "assets/handle.png"
+      border   = { 0, 0, 0, 0 }
+      stretch  = TRUE
+    }
+    image {
+      function = FOCUS
+      file     = "assets/button-hover.png"
+      border   = { 1, 1, 1, 1 }
+      stretch  = TRUE
+    }
+  }
+}
+
+style "netrunner-button" {
+  xthickness = 3
+  ythickness = 3
+
+  fg[NORMAL]      = @fg_color
+  fg[PRELIGHT]    = @selected_bg_color
+  fg[ACTIVE]      = @selected_fg_color
+  fg[SELECTED]    = @selected_fg_color
+  fg[INSENSITIVE] = @insensitive_fg_color
+
+  engine "pixmap" {
+    image {
+      function = BOX
+      state    = NORMAL
+      file     = "assets/button.png"
+      border   = { 1, 1, 1, 1 }
+      stretch  = TRUE
+    }
+    image {
+      function = BOX
+      state    = PRELIGHT
+      file     = "assets/button-hover.png"
+      border   = { 1, 1, 1, 1 }
+      stretch  = TRUE
+    }
+    image {
+      function = BOX
+      state    = ACTIVE
+      file     = "assets/button-active.png"
+      border   = { 1, 1, 1, 1 }
+      stretch  = TRUE
+    }
+    image {
+      function = BOX
+      state    = SELECTED
+      file     = "assets/button-active.png"
+      border   = { 1, 1, 1, 1 }
+      stretch  = TRUE
+    }
+    image {
+      function = BOX
+      state    = INSENSITIVE
+      file     = "assets/button-disabled.png"
+      border   = { 1, 1, 1, 1 }
+      stretch  = TRUE
+    }
+  }
+}
+
+style "netrunner-entry" {
+  xthickness = 3
+  ythickness = 3
+
+  base[NORMAL]      = @base_color
+  base[INSENSITIVE] = @menu_color
+  text[NORMAL]      = @text_color
+  text[INSENSITIVE] = @insensitive_fg_color
+
+  engine "pixmap" {
+    image {
+      function = SHADOW
+      state    = NORMAL
+      file     = "assets/entry.png"
+      border   = { 1, 1, 1, 1 }
+      stretch  = TRUE
+    }
+    image {
+      function = SHADOW
+      state    = ACTIVE
+      file     = "assets/entry-focus.png"
+      border   = { 1, 1, 1, 1 }
+      stretch  = TRUE
+    }
+    image {
+      function = SHADOW
+      state    = PRELIGHT
+      file     = "assets/entry.png"
+      border   = { 1, 1, 1, 1 }
+      stretch  = TRUE
+    }
+    image {
+      function = SHADOW
+      state    = INSENSITIVE
+      file     = "assets/entry-disabled.png"
+      border   = { 1, 1, 1, 1 }
+      stretch  = TRUE
+    }
+    image {
+      function = FLAT_BOX
+      state    = NORMAL
+      file     = "assets/base.png"
+      border   = { 0, 0, 0, 0 }
+      stretch  = TRUE
+      detail   = "entry_bg"
+    }
+    image {
+      function = FLAT_BOX
+      state    = INSENSITIVE
+      file     = "assets/base-disabled.png"
+      border   = { 0, 0, 0, 0 }
+      stretch  = TRUE
+      detail   = "entry_bg"
+    }
+  }
+}
+
+style "netrunner-check" {
+  engine "pixmap" {
+    image {
+      function      = CHECK
+      shadow        = OUT
+      state         = NORMAL
+      overlay_file  = "assets/checkbox-unchecked.png"
+      overlay_stretch = FALSE
+    }
+    image {
+      function      = CHECK
+      shadow        = OUT
+      state         = PRELIGHT
+      overlay_file  = "assets/checkbox-unchecked-hover.png"
+      overlay_stretch = FALSE
+    }
+    image {
+      function      = CHECK
+      shadow        = OUT
+      state         = INSENSITIVE
+      overlay_file  = "assets/checkbox-unchecked-disabled.png"
+      overlay_stretch = FALSE
+    }
+    image {
+      function      = CHECK
+      shadow        = IN
+      state         = INSENSITIVE
+      overlay_file  = "assets/checkbox-checked-disabled.png"
+      overlay_stretch = FALSE
+    }
+    image {
+      function      = CHECK
+      shadow        = IN
+      overlay_file  = "assets/checkbox-checked.png"
+      overlay_stretch = FALSE
+    }
+    image {
+      function      = CHECK
+      shadow        = ETCHED_IN
+      overlay_file  = "assets/checkbox-mixed.png"
+      overlay_stretch = FALSE
+    }
+    image {
+      function      = OPTION
+      shadow        = OUT
+      state         = NORMAL
+      overlay_file  = "assets/radio-unchecked.png"
+      overlay_stretch = FALSE
+    }
+    image {
+      function      = OPTION
+      shadow        = OUT
+      state         = PRELIGHT
+      overlay_file  = "assets/radio-unchecked-hover.png"
+      overlay_stretch = FALSE
+    }
+    image {
+      function      = OPTION
+      shadow        = OUT
+      state         = INSENSITIVE
+      overlay_file  = "assets/radio-unchecked-disabled.png"
+      overlay_stretch = FALSE
+    }
+    image {
+      function      = OPTION
+      shadow        = IN
+      state         = INSENSITIVE
+      overlay_file  = "assets/radio-checked-disabled.png"
+      overlay_stretch = FALSE
+    }
+    image {
+      function      = OPTION
+      shadow        = IN
+      overlay_file  = "assets/radio-checked.png"
+      overlay_stretch = FALSE
+    }
+    image {
+      function      = OPTION
+      shadow        = ETCHED_IN
+      overlay_file  = "assets/radio-mixed.png"
+      overlay_stretch = FALSE
+    }
+  }
+}
+
+style "netrunner-menubar" {
+  bg[NORMAL] = @menu_color
+
+  engine "pixmap" {
+    image {
+      function = BOX
+      file     = "assets/menubar.png"
+      border   = { 0, 0, 0, 0 }
+      stretch  = TRUE
+    }
+  }
+}
+
+style "netrunner-menu" {
+  xthickness = 1
+  ythickness = 1
+
+  bg[NORMAL] = @menu_color
+  fg[NORMAL] = @fg_color
+
+  engine "pixmap" {
+    image {
+      function = BOX
+      file     = "assets/menu.png"
+      border   = { 1, 1, 1, 1 }
+      stretch  = TRUE
+    }
+  }
+}
+
+style "netrunner-menuitem" {
+  xthickness = 2
+  ythickness = 3
+
+  fg[PRELIGHT]   = @selected_fg_color
+  text[PRELIGHT] = @selected_fg_color
+
+  engine "pixmap" {
+    image {
+      function = BOX
+      state    = PRELIGHT
+      file     = "assets/menuitem.png"
+      border   = { 0, 0, 0, 0 }
+      stretch  = TRUE
+    }
+  }
+}
+
+style "netrunner-separator" {
+  engine "pixmap" {
+    image {
+      function = BOX
+      file     = "assets/handle.png"
+      border   = { 0, 0, 0, 0 }
+      stretch  = TRUE
+    }
+  }
+}
+
+style "netrunner-toolbar" {
+  bg[NORMAL] = @panel_color
+
+  engine "pixmap" {
+    image {
+      function = BOX
+      file     = "assets/toolbar.png"
+      border   = { 0, 0, 0, 0 }
+      stretch  = TRUE
+    }
+  }
+}
+
+style "netrunner-notebook" {
+  xthickness = 2
+  ythickness = 2
+
+  bg[NORMAL]   = @bg_color
+  bg[ACTIVE]   = @menu_color
+  fg[NORMAL]   = @text_color
+  fg[ACTIVE]   = @insensitive_fg_color
+
+  engine "pixmap" {
+    image {
+      function = EXTENSION
+      state    = ACTIVE
+      file     = "assets/tab-inactive.png"
+      border   = { 0, 0, 0, 0 }
+      stretch  = TRUE
+    }
+    image {
+      function = EXTENSION
+      file     = "assets/tab-active.png"
+      border   = { 0, 0, 0, 0 }
+      stretch  = TRUE
+    }
+    image {
+      function = BOX_GAP
+      file     = "assets/notebook.png"
+      border   = { 1, 1, 1, 1 }
+      stretch  = TRUE
+      gap_file = "assets/notebook.png"
+      gap_border = { 1, 1, 1, 1 }
+    }
+    image {
+      function = BOX
+      file     = "assets/notebook.png"
+      border   = { 1, 1, 1, 1 }
+      stretch  = TRUE
+    }
+  }
+}
+
+style "netrunner-scrollbar" {
+  engine "pixmap" {
+    image {
+      function = BOX
+      detail   = "trough"
+      file     = "assets/scrollbar-trough.png"
+      border   = { 0, 0, 0, 0 }
+      stretch  = TRUE
+    }
+    image {
+      function = SLIDER
+      state    = NORMAL
+      file     = "assets/slider.png"
+      border   = { 0, 0, 0, 0 }
+      stretch  = TRUE
+    }
+    image {
+      function = SLIDER
+      state    = PRELIGHT
+      file     = "assets/slider-hover.png"
+      border   = { 0, 0, 0, 0 }
+      stretch  = TRUE
+    }
+    image {
+      function = SLIDER
+      state    = ACTIVE
+      file     = "assets/slider-active.png"
+      border   = { 0, 0, 0, 0 }
+      stretch  = TRUE
+    }
+    image {
+      function = SLIDER
+      state    = INSENSITIVE
+      file     = "assets/trough.png"
+      border   = { 0, 0, 0, 0 }
+      stretch  = TRUE
+    }
+  }
+}
+
+style "netrunner-scale" {
+  engine "pixmap" {
+    image {
+      function = BOX
+      detail   = "trough"
+      file     = "assets/trough.png"
+      border   = { 0, 0, 0, 0 }
+      stretch  = TRUE
+    }
+    image {
+      function = BOX
+      detail   = "trough-upper"
+      file     = "assets/progress.png"
+      border   = { 0, 0, 0, 0 }
+      stretch  = TRUE
+    }
+    image {
+      function = SLIDER
+      state    = INSENSITIVE
+      file     = "assets/scale-slider-disabled.png"
+      border   = { 0, 0, 0, 0 }
+      stretch  = TRUE
+    }
+    image {
+      function = SLIDER
+      file     = "assets/scale-slider.png"
+      border   = { 0, 0, 0, 0 }
+      stretch  = TRUE
+    }
+  }
+}
+
+style "netrunner-progressbar" {
+  xthickness = 0
+  ythickness = 0
+
+  fg[PRELIGHT] = @selected_fg_color
+
+  engine "pixmap" {
+    image {
+      function = BOX
+      detail   = "trough"
+      file     = "assets/trough.png"
+      border   = { 0, 0, 0, 0 }
+      stretch  = TRUE
+    }
+    image {
+      function = BOX
+      detail   = "bar"
+      file     = "assets/progress.png"
+      border   = { 0, 0, 0, 0 }
+      stretch  = TRUE
+    }
+  }
+}
+
+style "netrunner-treeview-header" {
+  xthickness = 2
+  ythickness = 1
+
+  fg[NORMAL]   = @fg_color
+  fg[PRELIGHT] = @selected_bg_color
+
+  engine "pixmap" {
+    image {
+      function = BOX
+      state    = NORMAL
+      file     = "assets/tab-inactive.png"
+      border   = { 0, 0, 0, 0 }
+      stretch  = TRUE
+    }
+    image {
+      function = BOX
+      state    = PRELIGHT
+      file     = "assets/tab-active.png"
+      border   = { 0, 0, 0, 0 }
+      stretch  = TRUE
+    }
+    image {
+      function = BOX
+      state    = ACTIVE
+      file     = "assets/tab-active.png"
+      border   = { 0, 0, 0, 0 }
+      stretch  = TRUE
+    }
+  }
+}
+
+style "netrunner-tooltip" {
+  xthickness = 4
+  ythickness = 4
+
+  bg[NORMAL] = @tooltip_bg_color
+  fg[NORMAL] = @tooltip_fg_color
+
+  engine "pixmap" {
+    image {
+      function = BOX
+      file     = "assets/tooltip.png"
+      border   = { 1, 1, 1, 1 }
+      stretch  = TRUE
+    }
+  }
+}
+
+style "netrunner-frame" {
+  engine "pixmap" {
+    image {
+      function = SHADOW
+      file     = "assets/frame.png"
+      border   = { 1, 1, 1, 1 }
+      stretch  = TRUE
+    }
+  }
+}
+
+# Wire the styles to the widgets. Later rules win, so the app-specific
+# ones come last.
+
+class "GtkWidget"        style "netrunner-default"
+class "GtkButton"        style "netrunner-button"
+class "GtkToggleButton"  style "netrunner-button"
+class "GtkEntry"         style "netrunner-entry"
+class "GtkOldEditable"   style "netrunner-entry"
+class "GtkCheckButton"   style "netrunner-check"
+class "GtkRadioButton"   style "netrunner-check"
+class "GtkMenuBar"       style "netrunner-menubar"
+class "GtkMenu"          style "netrunner-menu"
+class "GtkMenuItem"      style "netrunner-menuitem"
+class "GtkSeparator*"    style "netrunner-separator"
+class "GtkToolbar"       style "netrunner-toolbar"
+class "GtkHandleBox"     style "netrunner-toolbar"
+class "GtkNotebook"      style "netrunner-notebook"
+class "GtkScrollbar"     style "netrunner-scrollbar"
+class "GtkScale"         style "netrunner-scale"
+class "GtkProgressBar"   style "netrunner-progressbar"
+class "GtkFrame"         style "netrunner-frame"
+class "GtkStatusbar"     style "netrunner-toolbar"
+
+widget_class "*<GtkMenuItem>*"      style "netrunner-menuitem"
+widget_class "*<GtkCheckMenuItem>*" style "netrunner-check"
+widget_class "*<GtkRadioMenuItem>*" style "netrunner-check"
+widget_class "*<GtkNotebook>*<GtkEventBox>"  style "netrunner-notebook"
+widget_class "*<GtkNotebook>*<GtkDrawingArea>" style "netrunner-notebook"
+widget_class "*<GtkTreeView>*<GtkButton>" style "netrunner-treeview-header"
+widget_class "*<GtkCList>*<GtkButton>"    style "netrunner-treeview-header"
+widget_class "*<GtkComboBox>*<GtkButton>" style "netrunner-button"
+widget_class "*<GtkSpinButton>"           style "netrunner-entry"
+
+widget "gtk-tooltip*" style "netrunner-tooltip"
