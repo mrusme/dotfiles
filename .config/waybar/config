@@ -18,13 +18,12 @@
   "position": "top",
 
   "modules-left": [
-    //"custom/screenrecord",
     "privacy",
     "group/network",
     "group/hardware",
-    "group/resources"
+    "group/resources",
     //"group/market",
-    //"custom/starshield",
+    "custom/screenrecord"
     // "custom/zeit"
   ],
   "modules-center": [
@@ -83,13 +82,13 @@
   //  "interval": "once"
   //},
 
-  //"custom/screenrecord": {
-  //  "format": "{}",
-  //  "return-type": "json",
-  //  "exec": "/usr/local/bin/waybar-screenrecord",
-  //  "on-click": "/usr/local/bin/waybar-screenrecord toggle",
-  //  "interval": 3
-  //},
+  "custom/screenrecord": {
+   "format": "{}",
+   "return-type": "json",
+   "exec": "/usr/local/bin/waybar-screenrecord",
+   "on-click": "/usr/local/bin/waybar-screenrecord toggle",
+   "interval": 3
+  },
 
   "group/network": {
     "orientation": "horizontal",
