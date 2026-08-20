@@ -40,7 +40,8 @@ return {
         },
       })
 
-      vim.cmd.colorscheme("kanagawa")
+      -- Active colorscheme is set in netrunner.lua
+      -- vim.cmd.colorscheme("kanagawa")
     end,
   },
 }
