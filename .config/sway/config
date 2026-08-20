@@ -41,8 +41,8 @@ set {
 
 #                         border bgrnd  text   indic    chld
 client.focused            $panel $panel $amber $amberLt $panel
-client.unfocused          $black $black $muted $black   $line
-client.focused_inactive   $black $black $muted $black   $line
+client.unfocused          $black $black $muted $panel   $panel
+client.focused_inactive   $black $black $muted $black   $black
 client.focused_tab_title  $panel $panel $muted
 client.urgent             $red   $red   $text  $red     $red
 client.placeholder        $black $black $text  $text    $black
