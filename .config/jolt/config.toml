@@ -1,0 +1,25 @@
+appearance = "dark"
+theme = "default"
+refresh_ms = 2000
+show_graph = true
+graph_metric = "merged"
+process_count = 50
+energy_threshold = 0.5
+merge_mode = true
+forecast_window_secs = 300
+excluded_processes = []
+log_level = "info"
+
+[history]
+background_recording = false
+sample_interval_secs = 60
+retention_raw_days = 30
+retention_hourly_days = 180
+retention_daily_days = 0
+retention_sessions_days = 90
+max_database_mb = 500
+
+[units]
+energy = "wh"
+temperature = "celsius"
+data_size = "si"
