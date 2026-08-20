@@ -1,23 +1,36 @@
+// Netrunner, see ~/.themes/Netrunner and ~/.config/ghostty/themes/netrunner.conf
+//
+//   #4d5772   $dim        disabled entries
+//   #7a85a6   $muted      command bar, commit hashes
+//   #e8f0f8   $text       default foreground
+//   #121726   $panelHi    selection background
+//   #6e86e0   $blue       commit authors
+//   #86c8dc   $cyanLt     commit times, tags
+//   #b492ec   $violetLt   moved files
+//   #e0a868   $amber      selection, active tab, branches, modified files
+//   #05060a   $void       text on the amber gauge
+//   #48b878   $ok         additions
+//   #e05a6a   $bad        deletions, errors
 (
-    selected_tab: Some("#7EECC9"),
-    command_fg: Some("#F8F8F2"),
-    selection_bg: Some("#8785ec"),
-    selection_fg: Some("#F8F8F2"),
+    selected_tab: Some("#e0a868"),
+    command_fg: Some("#7a85a6"),
+    selection_bg: Some("#121726"),
+    selection_fg: Some("#e0a868"),
     cmdbar_bg: Some("Reset"),
-    cmdbar_extra_lines_bg: Some("#8785ec"),
-    disabled_fg: Some("#463465"),
-    diff_line_add: Some("#72F1B8"),
-    diff_line_delete: Some("#FF79C6"),
-    diff_file_added: Some("#72F1B8"),
-    diff_file_removed: Some("#FF79C6"),
-    diff_file_moved: Some("#FF7EDB"),
-    diff_file_modified: Some("#FFCC00"),
-    commit_hash: Some("#FF79C6"),
-    commit_time: Some("#61E2FF"),
-    commit_author: Some("#72F1B8"),
-    danger_fg: Some("#FF79C6"),
-    push_gauge_bg: Some("#8785ec"),
-    push_gauge_fg: Some("Reset"),
-    tag_fg: Some("#7EECC9"),
-    branch_fg: Some("#FFCC00"),
+    cmdbar_extra_lines_bg: Some("#121726"),
+    disabled_fg: Some("#4d5772"),
+    diff_line_add: Some("#48b878"),
+    diff_line_delete: Some("#e05a6a"),
+    diff_file_added: Some("#48b878"),
+    diff_file_removed: Some("#e05a6a"),
+    diff_file_moved: Some("#b492ec"),
+    diff_file_modified: Some("#e0a868"),
+    commit_hash: Some("#7a85a6"),
+    commit_time: Some("#86c8dc"),
+    commit_author: Some("#6e86e0"),
+    danger_fg: Some("#e05a6a"),
+    push_gauge_bg: Some("#e0a868"),
+    push_gauge_fg: Some("#05060a"),
+    tag_fg: Some("#86c8dc"),
+    branch_fg: Some("#e0a868"),
 )
