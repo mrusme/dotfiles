@@ -16,7 +16,6 @@ github.com/fullstorydev/grpcurl/cmd/grpcurl
 github.com/gohugoio/hugo
 github.com/josharian/impl
 github.com/minio/mc
-github.com/charmbracelet/mods
 github.com/arimxyer/pass-cli
 github.com/siddhantac/puffin
 github.com/ericchiang/pup
