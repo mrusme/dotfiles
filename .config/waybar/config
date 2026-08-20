@@ -108,15 +108,15 @@
 
   "network#stats": {
     "family": "ipv4",
-    "format": "BWD {bandwidthDownBytes} <span color='#849696'>{bandwidthUpBytes}</span>",
+    "format": "BWD {bandwidthDownBytes} <span color='#7a85a6'>{bandwidthUpBytes}</span>",
     "tooltip-format": "{ifname}",
   },
 
   "network#connection": {
     "family": "ipv4",
     "format": "{ifname}",
-    "format-wifi": "WiFi {essid} <span color='#849696'>{signalStrength}%</span>",
-    "format-ethernet": "ETH {ipaddr}/<span color='#849696'>{cidr}</span>",
+    "format-wifi": "WiFi {essid} <span color='#7a85a6'>{signalStrength}%</span>",
+    "format-ethernet": "ETH {ipaddr}/<span color='#7a85a6'>{cidr}</span>",
     "format-disconnected": "OFF",
     "tooltip-format": "{ifname} via {gwaddr}",
     "tooltip-format-wifi": "{essid} ({signalStrength}%)",
@@ -125,7 +125,7 @@
   },
 
   "custom/vpn": {
-    "format": "VPN <span color='#849696'>{}</span>",
+    "format": "VPN <span color='#7a85a6'>{}</span>",
     "return-type": "json",
     "exec": "/usr/local/bin/waybar-vpn current",
     "on-click": "/usr/local/bin/waybar-vpn connect",
@@ -292,7 +292,7 @@
 
   "cpu": {
     "interval": 30,
-    "format": "FRQ {avg_frequency:3.2f}GHz <span color='#849696'>{usage}%</span>",
+    "format": "FRQ {avg_frequency:3.2f}GHz <span color='#7a85a6'>{usage}%</span>",
     "states": {
       "warning": 70,
       "critical": 90
@@ -303,25 +303,25 @@
   "temperature#cpu": {
     "hwmon-path": "/sys/class/hwmon/hwmon8/temp1_input",
     "critical-threshold": 80,
-    "format": "CPU <span color='#849696'>{temperatureC}°C</span>"
+    "format": "CPU <span color='#7a85a6'>{temperatureC}°C</span>"
   },
 
   "temperature#gpu": {
     "hwmon-path": "/sys/class/hwmon/hwmon8/temp2_input",
     "critical-threshold": 80,
-    "format": "· GPU <span color='#849696'>{temperatureC}°C</span>"
+    "format": "· GPU <span color='#7a85a6'>{temperatureC}°C</span>"
   },
 
   "temperature#nvme": {
     "hwmon-path": "/sys/class/hwmon/hwmon4/temp1_input",
     "critical-threshold": 80,
-    "format": "· NVMe <span color='#849696'>{temperatureC}°C</span>"
+    "format": "· NVMe <span color='#7a85a6'>{temperatureC}°C</span>"
   },
 
   "temperature#wifi": {
     "hwmon-path": "/sys/class/hwmon/hwmon10/temp1_input",
     "critical-threshold": 80,
-    "format": "· WiFi <span color='#849696'>{temperatureC}°C</span>"
+    "format": "· WiFi <span color='#7a85a6'>{temperatureC}°C</span>"
   },
 
   "group/resources": {
@@ -335,20 +335,20 @@
 
   "memory": {
     "interval": 60,
-    "format": "MEM {used:3.1f}GiB/<span color='#849696'>{total:3.1f}GiB</span>"
+    "format": "MEM {used:3.1f}GiB/<span color='#7a85a6'>{total:3.1f}GiB</span>"
   },
 
   "disk#root": {
     "interval": 360,
-    "format": "SSD {used}/<span color='#849696'>{total}</span>",
+    "format": "SSD {used}/<span color='#7a85a6'>{total}</span>",
     "path": "/"
   },
 
   "bluetooth": {
     // "controller": "controller1",
     "on-click": "/usr/local/bin/waybar-bluetooth toggle",
-    "format": "<span color='#849696'>BT</span>",
-    "format-disabled": "<span color='#333333'>BT</span>",
+    "format": "<span color='#7a85a6'>BT</span>",
+    "format-disabled": "<span color='#2b344d'>BT</span>",
     "format-connected": "BT",
     "format-connected-battery": "BT {device_battery_percentage}",
     "tooltip-format": "{controller_alias}\t\t[{controller_address}]",
@@ -375,7 +375,7 @@
   },
 
   "wireplumber": {
-    "format": "{icon} {node_name}/<span color='#849696'>{volume}</span>",
+    "format": "{icon} {node_name}/<span color='#7a85a6'>{volume}</span>",
     "format-muted": " X ",
     "on-click": "pavucontrol",
     "on-click-right": "helvum",
@@ -418,13 +418,13 @@
       "critical": 5
     },
     "format-time": "{H}:{m}",
-    "format": "{icon} {time} <span color='#849696'>{capacity}%</span>",
-    "format-discharging": "{icon} <span color='#E4D00A'>{capacity}%</span>",
-    "format-discharging-warning": "{icon} <span color='#FF5F1F'>{capacity}%</span>",
-    "format-discharging-critical": "{icon} <span color='#FF3131'>{capacity}%</span>",
-    "format-charging": "CHG <span color='#DAF7A6'>{capacity}%</span><span color='#849696'> @ {power:2.0f}W</span>",
-    "format-full": "{icon} <span color='#849696'>{capacity}%</span>",
-    "format-not-charging": "NOP <span color='#849696'>{capacity}%</span>",
+    "format": "{icon} {time} <span color='#7a85a6'>{capacity}%</span>",
+    "format-discharging": "{icon} <span color='#ffd79a'>{capacity}%</span>",
+    "format-discharging-warning": "{icon} <span color='#e0a868'>{capacity}%</span>",
+    "format-discharging-critical": "{icon} <span color='#e05a6a'>{capacity}%</span>",
+    "format-charging": "CHG <span color='#48b878'>{capacity}%</span><span color='#7a85a6'> @ {power:2.0f}W</span>",
+    "format-full": "{icon} <span color='#7a85a6'>{capacity}%</span>",
+    "format-not-charging": "NOP <span color='#7a85a6'>{capacity}%</span>",
     "format-icons": ["---", "#--", "##-", "###", "PWR"],
   },
 
@@ -439,7 +439,7 @@
 
   "clock#date": {
     "interval": 60,
-    "format": "<span color='#849696'> {:%a %e %b %Y}</span>",
+    "format": "<span color='#7a85a6'> {:%a %e %b %Y}</span>",
     "tooltip-format": "<big>{:%B %Y}</big>\n<tt>{calendar}</tt>",
     "calendar": {
       "mode"          : "year",
@@ -447,11 +447,11 @@
       "weeks-pos"     : "right",
       "on-scroll"     : 1,
       "format": {
-        "months":     "<span color='#536161'><b>{}</b></span>",
-        "days":       "<span color='#111111'><b>{}</b></span>",
-        "weeks":      "<span color='#849696'><b>W{}</b></span>",
-        "weekdays":   "<span color='#222222'><b>{}</b></span>",
-        "today":      "<span color='#f53fa1'><b><u>{}</u></b></span>"
+        "months":     "<span color='#7a85a6'><b>{}</b></span>",
+        "days":       "<span color='#e8f0f8'><b>{}</b></span>",
+        "weeks":      "<span color='#4d5772'><b>W{}</b></span>",
+        "weekdays":   "<span color='#7a85a6'><b>{}</b></span>",
+        "today":      "<span color='#e0a868'><b><u>{}</u></b></span>"
       }
     },
     "actions":  {
@@ -463,7 +463,7 @@
 
   "clock#time": {
     "interval": 60,
-    "format": "{0:%I:%M %p} <span color='#849696'>{0:%Z}</span>",
+    "format": "{0:%I:%M %p} <span color='#7a85a6'>{0:%Z}</span>",
     "tooltip": true,
     "tooltip-format": "{tz_list}",
     "timezones": [

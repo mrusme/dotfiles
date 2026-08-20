@@ -1,3 +1,14 @@
+/* Netrunner, see ~/.themes/Netrunner and ~/.config/sway/config */
+@define-color nr_void   #05060a;
+@define-color nr_panel  #0b0e16;
+@define-color nr_line   #2b344d;
+@define-color nr_amber  #e0a868;
+@define-color nr_amber_lt #ffd79a;
+@define-color nr_red    #e05a6a;
+@define-color nr_text   #e8f0f8;
+@define-color nr_muted  #7a85a6;
+@define-color nr_dim    #4d5772;
+
 * {
   border: none;
   border-radius: 0;
@@ -10,7 +21,7 @@
 window#waybar {
   background-color: rgba(0, 0, 0, 1);
   border-bottom: none;
-  color: #536161;
+  color: @nr_dim;
   transition-property: background-color;
   transition-duration: 0.5s;
 }
@@ -23,14 +34,14 @@ label#window {
   /* text-shadow: 0px 0px 3px #18181e; */
 }
 
-/* tooltip { */
-/*   background: rgba(43, 48, 59, 0.5); */
-/*   border: 1px solid rgba(100, 114, 125, 0.5); */
-/* } */
-/**/
-/* tooltip label { */
-/*   color: white; */
-/* } */
+tooltip {
+  background-color: @nr_panel;
+  border: 1px solid @nr_line;
+}
+
+tooltip label {
+  color: @nr_text;
+}
 
 .module {
   margin: 0px 10px 0px 10px;
@@ -42,12 +53,12 @@ label#window {
 }
 
 #cpu.warning {
-  color: #ff5f1f;
+  color: @nr_amber;
   background-color: rgba(0, 0, 0, 0);
 }
 
 #cpu.critical {
-  color: #ff3131;
+  color: @nr_red;
   background-color: rgba(0, 0, 0, 0);
 }
 
@@ -65,7 +76,7 @@ label#window {
 
 #workspaces button {
   padding: 4px 6px;
-  color: #536161;
+  color: @nr_dim;
   border-radius: 0px;
   border: 0px;
   box-shadow: none;
@@ -112,32 +123,32 @@ label#window {
   box-shadow: inherit;
   text-shadow: inherit;
   background: transparent;
-  color: #ffffff;
+  color: @nr_text;
   border: 0px;
   box-shadow: none;
 }
 
 #workspaces button.focused {
-  color: #849696;
+  color: @nr_amber;
   border: 0px;
   box-shadow: none;
 }
 
 #workspaces button.focused:hover {
-  color: #ffffff;
+  color: @nr_amber_lt;
   border: 0px;
   box-shadow: none;
 }
 
 #workspaces button.urgent {
-  color: #ffffff;
-  background-color: #e27878;
+  color: @nr_void;
+  background-color: @nr_red;
   border: 0px;
   box-shadow: none;
 }
 
 #language {
-  color: #cccccc;
+  color: @nr_muted;
 }
 
 #tray {
@@ -152,7 +163,7 @@ label#window {
 }
 
 #mode {
-  border: 2px solid #e2a478;
+  border: 2px solid @nr_amber;
   margin: 0px 0px 0px 0px;
   border-radius: 5px;
   padding: 0px 8px;
