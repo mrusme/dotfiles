@@ -2,6 +2,8 @@
 + bottom/*
 + eza/
 + eza/*
++ ghostty/
++ ghostty/**
 + gitui/
 + gitui/*
 + lf/
