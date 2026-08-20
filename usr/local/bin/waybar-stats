@@ -38,5 +38,5 @@ then
   zpool_free=$(zpool get -H -o value free rpool)
 fi
 
-echo -n "{\"text\": \"  CPU <span color='#aaaaaa'>$cpu_temp0°C</span> [<span color='#aaaaaa'>$cpu_temp1°C $cpu_temp2°C $cpu_temp3°C</span>] · GPU <span color='#aaaaaa'>$gpu_temp°C</span> [<span color='#aaaaaa'>$gpu_draw W</span>] · SSDs <span color='#aaaaaa'>$nvme_1_temp°C $nvme_2_temp°C</span> · WiFi <span color='#aaaaaa'>$wireless_temp°C</span>      RAM <span color='#aaaaaa'>$mem_free</span>      RAID <span color='#aaaaaa'>$zpool_free</span>\", \"tooltip\": \"\", \"alt\": \"\", \"class\": \"\" }"
+echo -n "{\"text\": \"  CPU <span color='#7a85a6'>$cpu_temp0°C</span> [<span color='#7a85a6'>$cpu_temp1°C $cpu_temp2°C $cpu_temp3°C</span>] · GPU <span color='#7a85a6'>$gpu_temp°C</span> [<span color='#7a85a6'>$gpu_draw W</span>] · SSDs <span color='#7a85a6'>$nvme_1_temp°C $nvme_2_temp°C</span> · WiFi <span color='#7a85a6'>$wireless_temp°C</span>      RAM <span color='#7a85a6'>$mem_free</span>      RAID <span color='#7a85a6'>$zpool_free</span>\", \"tooltip\": \"\", \"alt\": \"\", \"class\": \"\" }"
 

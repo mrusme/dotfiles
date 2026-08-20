@@ -22,6 +22,6 @@ ETH_H_CHANGE=$(printf "%s" "$ETH" | cut -d ',' -f 6)
 LTC_H_CHANGE=$(printf "%s" "$LTC" | cut -d ',' -f 6)
 XMR_H_CHANGE=$(printf "%s" "$XMR" | cut -d ',' -f 6)
 
-printf "{\"text\": \"BTC <span color='#aaaaaa'>$%'.2f</span> [<span color='#aaaaaa'>%s</span>] · ETH <span color='#aaaaaa'>$%'.2f</span> [<span color='#aaaaaa'>%s</span>] · LTC <span color='#aaaaaa'>$%'.2f</span> [<span color='#aaaaaa'>%s</span>] · XMR <span color='#aaaaaa'>$%'.2f</span> [<span color='#aaaaaa'>%s</span>]\", \"tooltip\": \"\", \"alt\": \"\", \"class\": \"\" }" \
+printf "{\"text\": \"BTC <span color='#7a85a6'>$%'.2f</span> [<span color='#7a85a6'>%s</span>] · ETH <span color='#7a85a6'>$%'.2f</span> [<span color='#7a85a6'>%s</span>] · LTC <span color='#7a85a6'>$%'.2f</span> [<span color='#7a85a6'>%s</span>] · XMR <span color='#7a85a6'>$%'.2f</span> [<span color='#7a85a6'>%s</span>]\", \"tooltip\": \"\", \"alt\": \"\", \"class\": \"\" }" \
   "$BTC_PRICE" "$BTC_H_CHANGE" "$ETH_PRICE" "$ETH_H_CHANGE" "$LTC_PRICE" "$LTC_H_CHANGE" "$XMR_PRICE" "$XMR_H_CHANGE"
 
