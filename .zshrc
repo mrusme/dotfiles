@@ -179,23 +179,35 @@ export CALDR_TEMPLATE="${HOME}/.config/caldr.tmpl"
 
 # https://github.com/Cloudef/bemenu
 export DMENU_PROGRAM="bemenu"
-export BEMENU_COLOR_BORDER="$(rg -Nr '$1' '^ *\$fcdBg (#.*)' \
-  $HOME/.config/sway/config)"
-export BEMENU_COLOR_SCROLL="$(rg -Nr '$1' '^ *\$fcdInd (#.*)' \
-  $HOME/.config/sway/config)"
+
+# Colors are read from the Netrunner palette in the sway config, so the menu
+# tracks whatever is set there.
+__sway_color() {
+  rg -Nr '$1' "^ *\\\$${1} +(#.*)" "${HOME}/.config/sway/config"
+}
+__nrBlack="$(__sway_color black)"
+__nrVoid="$(__sway_color void)"
+__nrBlue="$(__sway_color blue)"
+__nrAmber="$(__sway_color amber)"
+__nrAmberLt="$(__sway_color amberLt)"
+__nrText="$(__sway_color text)"
+
 export BEMENU_OPTS="-n -c -s -i \
   -W 0.3 -H 26 -B 2 -l 10 \
   -p '▲' -P '' --ch 16 --scrollbar always \
   --fn 'Berkeley Mono 11' \
-  --nb #040606cc --nf #FFFFFF \
-  --ab #040606cc --af #FFFFFF \
-  --hb $BEMENU_COLOR_BORDER --hf #FFFFFF \
-  --sb $BEMENU_COLOR_BORDER --sf #FFFFFF \
-  --fb #040606cc --ff #FFFFFF \
-  --fbb #040606cc --fbf #FFFFFF \
-  --tb #040606cc --tf #FFFFFF \
-  --scb #040606ff --scf $BEMENU_COLOR_SCROLL \
-  --bdr $BEMENU_COLOR_BORDER"
+  --nb ${__nrBlack}cc --nf ${__nrText} \
+  --ab ${__nrBlack}cc --af ${__nrText} \
+  --hb ${__nrBlue} --hf ${__nrVoid} \
+  --sb ${__nrBlue} --sf ${__nrVoid} \
+  --fb ${__nrBlack}cc --ff ${__nrAmber} \
+  --fbb ${__nrBlack}cc --fbf ${__nrText} \
+  --tb ${__nrBlack}cc --tf ${__nrText} \
+  --scb ${__nrBlack}ff --scf ${__nrAmberLt} \
+  --bdr ${__nrBlue}"
+
+unset __nrBlack __nrVoid __nrBlue __nrAmber __nrAmberLt __nrText
+unfunction __sway_color
 
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
@@ -257,7 +269,7 @@ then
   # https://github.com/B00merang-Project/Mac-OS-9
   #export GTK_THEME="Mac-OS-9"
 
-  export GTK_THEME="Everforest-BL-MB-Dark"
+  export GTK_THEME="Netrunner"
 
   export GTK2_RC_FILES="${HOME}/.themes/${GTK_THEME}/gtk-2.0/gtkrc"
   #gsettings set org.gnome.desktop.interface gtk-theme "$GTK_THEME"
