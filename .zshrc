@@ -186,10 +186,10 @@ __sway_color() {
   rg -Nr '$1' "^ *\\\$${1} +(#.*)" "${HOME}/.config/sway/config"
 }
 __nrBlack="$(__sway_color black)"
-__nrVoid="$(__sway_color void)"
-__nrBlue="$(__sway_color blue)"
+__nrPanel="$(__sway_color panel)"
 __nrAmber="$(__sway_color amber)"
 __nrAmberLt="$(__sway_color amberLt)"
+__nrMuted="$(__sway_color muted)"
 __nrText="$(__sway_color text)"
 
 export BEMENU_OPTS="-n -c -s -i \
@@ -198,15 +198,15 @@ export BEMENU_OPTS="-n -c -s -i \
   --fn 'Berkeley Mono 11' \
   --nb ${__nrBlack}cc --nf ${__nrText} \
   --ab ${__nrBlack}cc --af ${__nrText} \
-  --hb ${__nrBlue} --hf ${__nrVoid} \
-  --sb ${__nrBlue} --sf ${__nrVoid} \
+  --hb ${__nrPanel} --hf ${__nrAmber} \
+  --sb ${__nrPanel} --sf ${__nrAmber} \
   --fb ${__nrBlack}cc --ff ${__nrAmber} \
   --fbb ${__nrBlack}cc --fbf ${__nrText} \
   --tb ${__nrBlack}cc --tf ${__nrText} \
   --scb ${__nrBlack}ff --scf ${__nrAmberLt} \
-  --bdr ${__nrBlue}"
+  --bdr ${__nrMuted}"
 
-unset __nrBlack __nrVoid __nrBlue __nrAmber __nrAmberLt __nrText
+unset __nrBlack __nrPanel __nrAmber __nrAmberLt __nrMuted __nrText
 unfunction __sway_color
 
 
