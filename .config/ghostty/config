@@ -48,7 +48,7 @@
 # ║ Appearance                                                                 ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
-theme                              = kanagawa.conf
+theme                              = netrunner.conf
 background-opacity                 = 0.90
 background-blur                    = true
 
