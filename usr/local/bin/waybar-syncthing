@@ -1,4 +1,5 @@
 #!/bin/sh
+. "$(dirname "$0")/waybar-colors"
 results=$(syncthing cli show connections \
   | jq '.connections[].connected')
 total=$(echo "$results" \
@@ -14,5 +15,5 @@ out_total=$(syncthing cli show connections \
   | jq '.total.outBytesTotal' \
   | xargs -I {} eva -f 2 "{} / 1024 / 1024")
 
-echo -n "{\"text\": \"  $connected/<span color='#7a85a6'>$total</span> [<span color='#7a85a6'>$in_total MB $out_total MB</span>]\", \"tooltip\": \"\", \"alt\": \"\", \"class\": \"\" }"
+echo -n "{\"text\": \"  $connected/<span color='${nr_muted}'>$total</span> [<span color='${nr_muted}'>$in_total MB $out_total MB</span>]\", \"tooltip\": \"\", \"alt\": \"\", \"class\": \"\" }"
 

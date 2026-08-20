@@ -1,4 +1,5 @@
 #!/bin/sh
+. "$(dirname "$0")/waybar-colors"
 
 # PRICES=$(cointop price -c btc,eth,ltc,xmr)
 # BTC=$(echo "$PRICES" | head -n 1 | tail -n 1)
@@ -22,6 +23,6 @@ ETH_H_CHANGE=$(printf "%s" "$ETH" | cut -d ',' -f 6)
 LTC_H_CHANGE=$(printf "%s" "$LTC" | cut -d ',' -f 6)
 XMR_H_CHANGE=$(printf "%s" "$XMR" | cut -d ',' -f 6)
 
-printf "{\"text\": \"BTC <span color='#7a85a6'>$%'.2f</span> [<span color='#7a85a6'>%s</span>] · ETH <span color='#7a85a6'>$%'.2f</span> [<span color='#7a85a6'>%s</span>] · LTC <span color='#7a85a6'>$%'.2f</span> [<span color='#7a85a6'>%s</span>] · XMR <span color='#7a85a6'>$%'.2f</span> [<span color='#7a85a6'>%s</span>]\", \"tooltip\": \"\", \"alt\": \"\", \"class\": \"\" }" \
+printf "{\"text\": \"BTC <span color='${nr_muted}'>$%'.2f</span> [<span color='${nr_muted}'>%s</span>] · ETH <span color='${nr_muted}'>$%'.2f</span> [<span color='${nr_muted}'>%s</span>] · LTC <span color='${nr_muted}'>$%'.2f</span> [<span color='${nr_muted}'>%s</span>] · XMR <span color='${nr_muted}'>$%'.2f</span> [<span color='${nr_muted}'>%s</span>]\", \"tooltip\": \"\", \"alt\": \"\", \"class\": \"\" }" \
   "$BTC_PRICE" "$BTC_H_CHANGE" "$ETH_PRICE" "$ETH_H_CHANGE" "$LTC_PRICE" "$LTC_H_CHANGE" "$XMR_PRICE" "$XMR_H_CHANGE"
 

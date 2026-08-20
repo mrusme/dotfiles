@@ -1,4 +1,5 @@
 #!/bin/sh
+. "$(dirname "$0")/waybar-colors"
 
 cpu_temp0="0.00"
 cpu_temp1="0.00"
@@ -38,5 +39,5 @@ then
   zpool_free=$(zpool get -H -o value free rpool)
 fi
 
-echo -n "{\"text\": \"  CPU <span color='#7a85a6'>$cpu_temp0°C</span> [<span color='#7a85a6'>$cpu_temp1°C $cpu_temp2°C $cpu_temp3°C</span>] · GPU <span color='#7a85a6'>$gpu_temp°C</span> [<span color='#7a85a6'>$gpu_draw W</span>] · SSDs <span color='#7a85a6'>$nvme_1_temp°C $nvme_2_temp°C</span> · WiFi <span color='#7a85a6'>$wireless_temp°C</span>      RAM <span color='#7a85a6'>$mem_free</span>      RAID <span color='#7a85a6'>$zpool_free</span>\", \"tooltip\": \"\", \"alt\": \"\", \"class\": \"\" }"
+echo -n "{\"text\": \"  CPU <span color='${nr_muted}'>$cpu_temp0°C</span> [<span color='${nr_muted}'>$cpu_temp1°C $cpu_temp2°C $cpu_temp3°C</span>] · GPU <span color='${nr_muted}'>$gpu_temp°C</span> [<span color='${nr_muted}'>$gpu_draw W</span>] · SSDs <span color='${nr_muted}'>$nvme_1_temp°C $nvme_2_temp°C</span> · WiFi <span color='${nr_muted}'>$wireless_temp°C</span>      RAM <span color='${nr_muted}'>$mem_free</span>      RAID <span color='${nr_muted}'>$zpool_free</span>\", \"tooltip\": \"\", \"alt\": \"\", \"class\": \"\" }"
 

@@ -1,4 +1,5 @@
 #!/bin/sh
+. "$(dirname "$0")/waybar-colors"
 
 cmd="$1"
 
@@ -99,7 +100,7 @@ case "$cmd" in
       TRANSFERRED=$(sudo wg show \
         | rg -r '$1 $2' \
         '.*transfer: ([0-9]*\.[0-9]* ...) received, ([0-9]*\.[0-9]* ...) sent')
-      printf "{\"text\": \"%s <span color='#e8f0f8'>[</span>%s<span color='#e8f0f8'>]</span>\", \"class\": \"custom-openvpn\", \"alt\": \"connected\" }\n" \
+      printf "{\"text\": \"%s <span color='${nr_text}'>[</span>%s<span color='${nr_text}'>]</span>\", \"class\": \"custom-openvpn\", \"alt\": \"connected\" }\n" \
         "$wg" \
         "$TRANSFERRED"
     else

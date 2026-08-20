@@ -1,4 +1,5 @@
 #!/bin/sh
+. "$(dirname "$0")/waybar-colors"
 feed="$1"
 title="$2"
 cmd="$3"
@@ -27,7 +28,7 @@ if [ "$rssitemnr" -ge "$maxrssitemnr" ]
 then 
   rssitemnr=0 
 fi
-jq -c ".[$rssitemnr] | { text: (\"<span color='#ffffff'>$title</span> <span color='#aaaaaa'>\" + .title + \"</span>\"), tooltip: .link, class: \"rss-item\" }" "$rssfile" 
+jq -c ".[$rssitemnr] | { text: (\"<span color='${nr_text}'>$title</span> <span color='${nr_muted}'>\" + .title + \"</span>\"), tooltip: .link, class: \"rss-item\" }" "$rssfile" 
 
 printf "%s" "$rssitemnr" > "$rssnrfile"
 

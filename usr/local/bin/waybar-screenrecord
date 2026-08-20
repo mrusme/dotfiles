@@ -1,7 +1,8 @@
 #!/bin/sh
+. "$(dirname "$0")/waybar-colors"
 
-output_off="{\"text\": \"<span color='#7a85a6'> </span>\", \"tooltip\": \"Not recording\", \"alt\": \"\", \"class\": \"\" }"
-output_rec="{\"text\": \"<span color='#e05a6a'> </span>\", \"tooltip\": \"Recording\", \"alt\": \"\", \"class\": \"\" }"
+output_off="{\"text\": \"<span color='${nr_muted}'> </span>\", \"tooltip\": \"Not recording\", \"alt\": \"\", \"class\": \"\" }"
+output_rec="{\"text\": \"<span color='${nr_red}'> </span>\", \"tooltip\": \"Recording\", \"alt\": \"\", \"class\": \"\" }"
 
 pidof wf-recorder > /dev/null 2>&1
 if [ $? -eq 0 ]

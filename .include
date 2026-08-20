@@ -50,6 +50,7 @@
 + bin/sway-whats
 + bin/touchpad-toggle-drag
 + bin/waybar-bluetooth
++ bin/waybar-colors
 + bin/waybar-command
 + bin/waybar-cpu
 + bin/waybar-crypto

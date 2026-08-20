@@ -1,0 +1,20 @@
+#!/bin/sh
+# Source via:
+#
+#   . "$(dirname "$0")/waybar-colors"
+#   printf "<span color='%s'>%s</span>" "$nr_muted" "$value"
+#
+# Every @define-color in the waybar stylesheet becomes a shell variable of the
+# same name.
+
+waybar_style="${XDG_CONFIG_HOME:-${HOME}/.config}/waybar/style.css"
+
+if [ -r "$waybar_style" ]; then
+	eval "$(sed -n 's/^@define-color[[:space:]]\{1,\}\([a-zA-Z_][a-zA-Z0-9_]*\)[[:space:]]\{1,\}\(#[0-9a-fA-F]\{3,8\}\)[[:space:]]*;.*/\1="\2"/p' \
+		"$waybar_style")"
+fi
+
+# Only reached when the stylesheet is missing or unreadable:
+: "${nr_text:=#ffffff}"
+: "${nr_muted:=#aaaaaa}"
+: "${nr_red:=#ff0000}"
