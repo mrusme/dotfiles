@@ -53,7 +53,7 @@ background-opacity                 = 0.90
 background-blur                    = true
 
 #custom-shader                     = ~/.config/ghostty/bettercrt.glsl
-#custom-shader                     = ~/.config/ghostty/tft.glsl
+custom-shader                     = ~/.config/ghostty/tft.glsl
 #custom-shader                     = ~/.config/ghostty/bloom.glsl
 #custom-shader                     = ~/.config/ghostty/glitchy.glsl
 
