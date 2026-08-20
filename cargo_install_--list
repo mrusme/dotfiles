@@ -1,6 +1,6 @@
 age-plugin-yubikey v0.5.1:
     age-plugin-yubikey
-angry_oxide v0.9.1 (https://github.com/Ragnt/AngryOxide#cc32d96e):
+angry_oxide v0.9.1 (https://github.com/Ragnt/AngryOxide#88528007):
     angryoxide
 ast-grep v0.45.1:
     ast-grep
@@ -39,13 +39,13 @@ gpg-tui v0.11.2:
     gpg-tui-completions
 gping v1.20.4:
     gping
-halloy v0.1.0 (https://github.com/squidowl/halloy#9cd2e014):
+halloy v0.1.0 (https://github.com/squidowl/halloy#6c77155b):
     halloy
 harper-ls v2.8.0:
     harper-ls
 havn v0.3.8:
     havn
-heretek v0.6.0:
+heretek v0.9.0:
     heretek
 hexyl v0.17.0:
     hexyl
@@ -61,7 +61,7 @@ lemmeknow v0.8.0:
     lemmeknow
 lychee v0.24.2:
     lychee
-mq-run v0.8.2:
+mq-run v0.8.3:
     mq
 neovide v0.16.2 (https://github.com/neovide/neovide#ba8c41f4):
     neovide
