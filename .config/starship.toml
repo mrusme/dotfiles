@@ -1,17 +1,35 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
+# Netrunner, see ~/.themes/Netrunner and ~/.config/ghostty/themes/netrunner.conf
+#
+#   $lineHi   #2b344d   brackets
+#   $dim      #4d5772   faint text
+#   $muted    #7a85a6   secondary text, also ANSI 8 in netrunner.conf
+#   $textDk   #c6d0e0   renamed files
+#   $text     #e8f0f8   default foreground
+#   $blue     #6e86e0   identity, staged changes
+#   $cyan     #4e93a8   python
+#   $cyanLt   #86c8dc   modified files, go
+#   $violet   #8a68c8   terraform
+#   $violetLt #b492ec   hugo
+#   $amber    #e0a868   directory, rust, behind
+#   $amberLt  #ffd79a   stashed, zig
+#   $ok       #48b878   up to date, ahead
+#   $redDk    #b84856   deleted files
+#   $bad      #e05a6a   errors, conflicts, ruby
+
 add_newline=false
 #scan_timeout = 10
 format = '$character$directory'
-right_format = '$terraform$c$zig$odin$golang$rust$ruby$python${custom.hugo}([\[](#49443C)$git_state$git_status$git_metrics$git_branch$git_commit[\]](#49443C))$battery'
+right_format = '$terraform$c$zig$odin$golang$rust$ruby$python${custom.hugo}([\[](#2b344d)$git_state$git_status$git_metrics$git_branch$git_commit[\]](#2b344d))$battery'
 
 [character]
-success_symbol = '[](#54487A)'
-error_symbol = '[](#FF5D62)'
-vicmd_symbol = '[△](#6A9589)'
+success_symbol = '[](#6e86e0)'
+error_symbol = '[](#e05a6a)'
+vicmd_symbol = '[△](#48b878)'
 
 [directory]
-style = '#FFA066'
+style = '#e0a868'
 
 [git_state]
 format = '[\($state( $progress_current of $progress_total)\)]($style) '
@@ -26,17 +44,17 @@ am_or_rebase = '[applying/rebasing](bold yellow)'
 [git_status]
 format = '($all_status$ahead_behind )'
 style = '8'
-up_to_date = '[](#7AA89F)'
-untracked = '[.](#727169)'
-conflicted = '[#](#C34043)'
-ahead = '[⇡](#98BB6C)'
-behind = '[⇣](#FFA066)'
-diverged = '[⇕](#E82424)'
-stashed = '[^](#FF9E3B)'
-modified = '[*](#A3D4D5)'
-staged = '[+](#7E9CD8)'
-renamed = '[»](#C8C093)'
-deleted = '[x](#D27E99)'
+up_to_date = '[](#48b878)'
+untracked = '[.](#7a85a6)'
+conflicted = '[#](#e05a6a)'
+ahead = '[⇡](#48b878)'
+behind = '[⇣](#e0a868)'
+diverged = '[⇕](#e05a6a)'
+stashed = '[^](#ffd79a)'
+modified = '[*](#86c8dc)'
+staged = '[+](#6e86e0)'
+renamed = '[»](#c6d0e0)'
+deleted = '[x](#b84856)'
 
 [git_branch]
 format = '[$symbol$branch(:$remote_branch)]($style)'
@@ -55,54 +73,54 @@ tag_symbol = ''
 
 [git_metrics]
 disabled = true
-added_style = '#2D4F67'
-deleted_style = '#D27E99'
+added_style = '#48b878'
+deleted_style = '#e05a6a'
 format = '([+$added]($added_style))([-$deleted]($deleted_style)) '
 
-[c] 
+[c]
 format = '[$symbol($version )]($style)'
-style = '#717C7C'
-symbol = ' '
+style = '#7a85a6'
+symbol = ' '
 
-[golang] 
+[golang]
 format = '[$symbol($version )]($style)'
-style = '#67CFDC'
-symbol = ' '
+style = '#86c8dc'
+symbol = ' '
 
-[odin] 
+[odin]
 format = '[$symbol($version )]($style)'
-style = '#3882D2'
+style = '#6e86e0'
 symbol = 'Ø '
 
-[python] 
+[python]
 format = '[$symbol($version )]($style)'
-style = '#3B78A8'
-symbol = ' '
+style = '#4e93a8'
+symbol = ' '
 
-[ruby] 
+[ruby]
 format = '[$symbol($version )]($style)'
-style = '#CC342D'
-symbol = ' '
+style = '#e05a6a'
+symbol = ' '
 
-[rust] 
+[rust]
 format = '[$symbol($version )]($style)'
-style = '#F85009'
-symbol = ' '
+style = '#e0a868'
+symbol = ' '
 
-[terraform] 
+[terraform]
 format = '[$symbol$workspace]($style)'
-style = '#7F48BE'
-symbol = ' '
+style = '#8a68c8'
+symbol = ' '
 
-[zig] 
+[zig]
 format = '[$symbol($version )]($style)'
-style = '#F7A724'
-symbol = ' '
+style = '#ffd79a'
+symbol = ' '
 
 [custom.hugo]
 format = '[$symbol($output )]($style)'
-style = '#FF42B7'
-symbol = ' '
+style = '#b492ec'
+symbol = ' '
 command = "hugo version | cut -d ' ' -f2 | cut -d '+' -f1"
 when = "test -f $(git rev-parse --show-toplevel)/config/_default/config.*"
 require_repo = true
@@ -113,8 +131,7 @@ charging_symbol = '\[+\]'
 discharging_symbol = '\[-\]'
 empty_symbol = '\[ \]'
 unknown_symbol = '\[?\]'
-format = ' [$percentage](black) [$symbol]($style)'
+format = ' [$percentage](#7a85a6) [$symbol]($style)'
 [[battery.display]]
 threshold = 25
-style = 'yellow'
-
+style = '#e0a868'
