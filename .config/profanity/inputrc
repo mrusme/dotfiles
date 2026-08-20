@@ -1,0 +1,5 @@
+$if profanity
+  "\C-h": prof_win_prev
+  "\C-l": prof_win_next
+  "\C-q": "/quit\r"
+$endif

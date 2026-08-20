@@ -1,0 +1,118 @@
+# Netrunner, see ~/.themes/Netrunner and ~/.config/ghostty/themes/netrunner.conf
+#
+# Profanity 0.18 has no hex colors, only the 256 xterm names, and the nearest
+# of those are a poor match: $bad #e05a6a becomes lightcoral #ff8787. Hence
+# this theme uses the 16 ANSI slots, which the Ghostty palette already fills
+# with the Netrunner colors.
+#
+#   black         $panel     #0b0e16   titlebar and statusbar background
+#   lightblack    $muted     #7a85a6   brackets, timestamps, offline, history
+#   lightred      $bad       #e05a6a   errors, dnd, unencrypted, untrusted
+#   lightgreen    $ok        #48b878   online, subscribed, trusted, encrypted
+#   lightyellow   $amber     #e0a868   focus, own nick, incoming, mentions
+#   lightblue     $blue      #6e86e0   identity: headers, splash, contacts
+#   lightcyan     $cyanLt    #86c8dc   statusbar clock
+#   white         $white     #c6d0e0   away and extended away
+#   lightwhite    $text      #e8f0f8   default foreground
+#
+# bkgnd stays at default so the terminal background $void #05060a and its
+# transparency show through. In Ghostty bold is a glow, since the config sets
+# bold-is-glow with font-style-bold=false, and it marks the focused tab plus
+# anything unread or aimed at you.
+
+[colours]
+bkgnd=default
+
+titlebar=black
+titlebar.text=lightwhite
+titlebar.brackets=lightblack
+titlebar.scrolled=lightyellow
+titlebar.unencrypted=lightred
+titlebar.encrypted=lightgreen
+titlebar.untrusted=lightyellow
+titlebar.trusted=lightgreen
+titlebar.online=lightgreen
+titlebar.chat=lightgreen
+titlebar.away=white
+titlebar.xa=white
+titlebar.dnd=lightred
+titlebar.offline=lightblack
+
+statusbar=black
+statusbar.text=lightwhite
+statusbar.brackets=lightblack
+statusbar.time=lightcyan
+statusbar.active=lightblue
+statusbar.new=lightyellow
+statusbar.current=bold_lightyellow
+
+main.text=lightwhite
+main.text.me=lightwhite
+main.text.them=lightwhite
+main.text.history=lightblack
+main.time=lightblack
+main.splash=lightblue
+main.help.header=lightblue
+main.trackbar=lightblack
+
+input.text=lightwhite
+input.misspelled=lightred
+
+me=lightyellow
+them=lightblue
+incoming=lightyellow
+mention=bold_lightyellow
+trigger=bold_lightyellow
+typing=lightyellow
+gone=lightblack
+error=lightred
+receipt.sent=lightblack
+cmd.wins.unread=lightyellow
+
+online=lightgreen
+chat=lightgreen
+away=white
+xa=white
+dnd=lightred
+offline=lightblack
+subscribed=lightgreen
+unsubscribed=lightred
+untrusted=lightred
+
+otr.started.trusted=lightgreen
+otr.started.untrusted=lightyellow
+otr.trusted=lightgreen
+otr.untrusted=lightyellow
+otr.ended=lightred
+
+roominfo=lightblack
+roommention=lightyellow
+roommention.term=bold_lightyellow
+roomtrigger=lightyellow
+roomtrigger.term=bold_lightyellow
+
+roster.header=lightblue
+roster.online=lightgreen
+roster.chat=lightgreen
+roster.away=white
+roster.xa=white
+roster.dnd=lightred
+roster.offline=lightblack
+roster.online.active=lightgreen
+roster.chat.active=lightgreen
+roster.away.active=white
+roster.xa.active=white
+roster.dnd.active=lightred
+roster.offline.active=lightblack
+roster.online.unread=bold_lightgreen
+roster.chat.unread=bold_lightgreen
+roster.away.unread=bold_white
+roster.xa.unread=bold_white
+roster.dnd.unread=bold_lightred
+roster.offline.unread=bold_lightblack
+roster.room=lightblue
+roster.room.unread=bold_lightblue
+roster.room.trigger=lightyellow
+roster.room.mention=bold_lightyellow
+
+occupants.header=lightblue
