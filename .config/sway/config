@@ -30,9 +30,8 @@ set $dmenu bemenu
 # Netrunner, see ~/.themes/Netrunner and ghostty/themes/netrunner.conf
 set {
   $black    #040606
-  $void     #05060a
+  $panel    #121726
   $line     #1c2233
-  $blue     #6e86e0
   $amber    #e0a868
   $amberLt  #ffd79a
   $muted    #7a85a6
@@ -41,10 +40,10 @@ set {
 }
 
 #                         border bgrnd  text   indic    chld
-client.focused            $blue  $void  $amber $amberLt $blue
+client.focused            $panel $panel $amber $amberLt $panel
 client.unfocused          $black $black $muted $black   $line
 client.focused_inactive   $black $black $muted $black   $line
-client.focused_tab_title  $line  $line  $muted
+client.focused_tab_title  $panel $panel $muted
 client.urgent             $red   $red   $text  $red     $red
 client.placeholder        $black $black $text  $text    $black
 
