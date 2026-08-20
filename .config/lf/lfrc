@@ -1,11 +1,42 @@
 set shell zsh
 set shellopts '-eu'
-set promptfmt "\033[37;1m%u@%h\033[0m:\033[34;1m%d\033[0m\033[1m%f\033[0m"
+# Netrunner, see ~/.themes/Netrunner and ~/.config/ghostty/themes/netrunner.conf
+#   38;2;43;52;77      $lineHi    #2b344d   pane borders
+#   38;2;77;87;114     $dim       #4d5772   line numbers
+#   38;2;122;133;166   $muted     #7a85a6   user@host, parent cursor
+#   38;2;232;240;248   $text      #e8f0f8   default foreground
+#   48;2;18;23;38      $panelHi   #121726   cursor line background
+#   38;2;110;134;224   $blue      #6e86e0   directory path, permissions
+#   38;2;134;200;220   $cyanLt    #86c8dc   modification time
+#   38;2;138;104;200   $violet    #8a68c8   link targets
+#   38;2;180;146;236   $violetLt  #b492ec   tags
+#   38;2;224;168;104   $amber     #e0a868   cursor, current file, selection
+#   38;2;72;184;120    $ok        #48b878   files marked for copying
+#   38;2;224;90;106    $bad       #e05a6a   errors, files marked for cutting
+
+set promptfmt "\033[38;2;122;133;166m%u@%h\033[0m:\033[1;38;2;110;134;224m%d\033[0m\033[1;38;2;224;168;104m%f\033[0m"
 set ifs "\n"
 set scrolloff 10
 set drawbox
-set borderfmt "\033[02;1m"
+set borderfmt "\033[38;2;43;52;77m"
 set ratios '1:2:3'
+
+# The cursor line repeats the focused window title from sway: amber on the
+# panel background, muted in the panes that only show a parent directory.
+set cursoractivefmt "\033[48;2;18;23;38;38;2;224;168;104m"
+set cursorparentfmt "\033[48;2;18;23;38;38;2;122;133;166m"
+set cursorpreviewfmt "\033[48;2;18;23;38m"
+
+set copyfmt "\033[48;2;72;184;120;38;2;5;6;10m"
+set cutfmt "\033[48;2;224;90;106;38;2;5;6;10m"
+set selectfmt "\033[48;2;224;168;104;38;2;5;6;10m"
+set tagfmt "\033[38;2;180;146;236m"
+set errorfmt "\033[48;2;224;90;106;38;2;232;240;248m"
+set numberfmt "\033[38;2;77;87;114m"
+
+# statfmt only takes effect once rulerfmt is set, so both are spelled out.
+set statfmt "\033[38;2;110;134;224m%p\033[0m| %c| \033[38;2;224;168;104m%u\033[0m| %g| \033[38;2;232;240;248m%S\033[0m| \033[38;2;134;200;220m%t\033[0m| -> \033[38;2;138;104;200m%l\033[0m"
+set rulerfmt "\033[38;2;224;168;104m%a\033[0m| %p| \033[38;2;72;184;120m%c\033[0m| \033[38;2;224;90;106m%m\033[0m| \033[38;2;224;168;104m%s\033[0m| \033[38;2;180;146;236m%f\033[0m| %i/%t| %P| %d"
 set icons
 set mouse false
 set sixel false
