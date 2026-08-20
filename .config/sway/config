@@ -176,7 +176,7 @@ bindsym $mod+Return           exec $term
 bindsym $mod+backspace        exec netrunner
 
 # Open ungoogled Chromium
-bindsym $mod+Shift+backspace        exec ungoogled-chromium-beta \
+bindsym $mod+Shift+backspace        exec ungoogled-chromium \
                                 --force-dark-mode \
                                 --enable-features=WebUIDarkMode
 
