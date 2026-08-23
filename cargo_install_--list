@@ -59,6 +59,8 @@ kmon v1.7.1:
     kmon
 lemmeknow v0.8.0:
     lemmeknow
+localsend-cli v1.18.2 (/home/mrus/projects/github/localsend/cli):
+    localsend-cli
 lychee v0.24.2:
     lychee
 mq-run v0.8.3:
