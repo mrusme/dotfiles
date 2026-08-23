@@ -30,7 +30,7 @@ case "$cmd" in
       OPENVPN_CONFIG=$(nmcli connection show \
         | rg -i 'wireguard' \
 	| awk '{ print $1 }' \
-	| bemenu)
+	| sysdeck --dmenu)
       if [ "$OPENVPN_CONFIG" = "" ]
       then
         exit
@@ -53,7 +53,7 @@ case "$cmd" in
       | xargs -n 1 basename \
       | sed 's/wg-quick\./Wireguard: /g' \
       | sed -E -e 's/openvpn\.([a-z0-9]+).*/OpenVPN: \1/g' \
-      | bemenu \
+      | sysdeck --dmenu \
       | sed -E -e 's/OpenVPN: ([a-z0-9]+)/\1\.nordvpn\.com\.udp\.ovpn/g' \
       | sed -E -e 's/Wireguard: ([a-z0-9]+)/wg-quick\.\1/g')
     if [ "$OPENVPN_CONFIG" = "" ]

@@ -4,5 +4,5 @@ max_fps=60
 exec_before=disable_notifications.sh
 exec_after=enable_notifications.sh
 chooser_type=dmenu
-chooser_cmd=bemenu
+chooser_cmd=sysdeck --dmenu
 

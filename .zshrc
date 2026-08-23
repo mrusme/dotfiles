@@ -177,37 +177,8 @@ export ADDRB_TEMPLATE="${HOME}/.config/addrb.tmpl"
 export CALDR_DB="${HOME}/.cache/caldr.db"
 export CALDR_TEMPLATE="${HOME}/.config/caldr.tmpl"
 
-# https://github.com/Cloudef/bemenu
-export DMENU_PROGRAM="bemenu"
-
-# Colors are read from the Netrunner palette in the sway config, so the menu
-# tracks whatever is set there.
-__sway_color() {
-  rg -Nr '$1' "^ *\\\$${1} +(#.*)" "${HOME}/.config/sway/config"
-}
-__nrBlack="$(__sway_color black)"
-__nrPanel="$(__sway_color panel)"
-__nrAmber="$(__sway_color amber)"
-__nrAmberLt="$(__sway_color amberLt)"
-__nrMuted="$(__sway_color muted)"
-__nrText="$(__sway_color text)"
-
-export BEMENU_OPTS="-n -c -s -i \
-  -W 0.3 -H 26 -B 2 -l 10 \
-  -p '▲' -P '' --ch 16 --scrollbar always \
-  --fn 'Berkeley Mono 11' \
-  --nb ${__nrBlack}cc --nf ${__nrText} \
-  --ab ${__nrBlack}cc --af ${__nrText} \
-  --hb ${__nrPanel} --hf ${__nrAmber} \
-  --sb ${__nrPanel} --sf ${__nrAmber} \
-  --fb ${__nrBlack}cc --ff ${__nrAmber} \
-  --fbb ${__nrBlack}cc --fbf ${__nrText} \
-  --tb ${__nrBlack}cc --tf ${__nrText} \
-  --scb ${__nrBlack}ff --scf ${__nrAmberLt} \
-  --bdr ${__nrMuted}"
-
-unset __nrBlack __nrPanel __nrAmber __nrAmberLt __nrMuted __nrText
-unfunction __sway_color
+# https://tty.fail/mrus/sysdeck
+export DMENU_PROGRAM="sysdeck --dmenu"
 
 
 # ╔════════════════════════════════════════════════════════════════════════════╗

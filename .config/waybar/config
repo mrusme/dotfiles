@@ -205,8 +205,8 @@
 
   "custom/zeit": {
     "format": "{}",
-    "exec": "/home/mrus/projects/@mrusme/zeit/extras/zeit-waybar-bemenu.sh",
-    "on-click": "/home/mrus/projects/@mrusme/zeit/extras/zeit-waybar-bemenu.sh click",
+    "exec": "/home/mrus/projects/@mrusme/zeit/extras/zeit-waybar-dmenu.sh",
+    "on-click": "/home/mrus/projects/@mrusme/zeit/extras/zeit-waybar-dmenu.sh click",
     "interval": 10
   },
 
