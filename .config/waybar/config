@@ -180,7 +180,7 @@
   //"custom/crypto": {
   //  "format": "{}",
   //  "return-type": "json",
-  //  "exec": "/usr/local/bin/waybar-crypto2",
+  //  "exec": "/usr/local/bin/waybar-crypto",
   //  "on-click": "",
   //  "interval": 3600
   //},

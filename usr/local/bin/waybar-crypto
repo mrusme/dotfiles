@@ -1,0 +1,40 @@
+#!/bin/sh
+
+PRICES=$(curl -s --request GET \
+              --url 'https://api.coingecko.com/api/v3/simple/price?vs_currencies=usd&ids=bitcoin%2Cethereum%2Cmonero%2Clitecoin%2Cxrp%2Cstellar%2Czcash%2Cdash%2Cminotari%2Cripple' \
+              --header 'accept: application/json' \
+              --header "x-cg-demo-api-key: $COINGECKO_API_KEY")
+
+BTC=$(printf "%s" "$PRICES" | jq '.bitcoin.usd')
+ETH=$(printf "%s" "$PRICES" | jq '.ethereum.usd')
+LTC=$(printf "%s" "$PRICES" | jq '.litecoin.usd')
+XMR=$(printf "%s" "$PRICES" | jq '.monero.usd')
+XLM=$(printf "%s" "$PRICES" | jq '.stellar.usd')
+XRP=$(printf "%s" "$PRICES" | jq '.ripple.usd')
+DASH=$(printf "%s" "$PRICES" | jq '.dash.usd')
+ZEC=$(printf "%s" "$PRICES" | jq '.zcash.usd')
+XTM=$(printf "%s" "$PRICES" | jq '.minotari.usd')
+    
+printf "{\"text\": \"\
+BTC <span color='#aaaaaa'>$%'.2f</span>\
+ · ETH <span color='#aaaaaa'>$%'.2f</span>\
+ · LTC <span color='#aaaaaa'>$%'.2f</span>\
+ · XMR <span color='#aaaaaa'>$%'.2f</span>\
+ · XLM <span color='#aaaaaa'>$%'.2f</span>\
+ · XRP <span color='#aaaaaa'>$%'.2f</span>\
+ · DASH <span color='#aaaaaa'>$%'.2f</span>\
+ · ZEC <span color='#aaaaaa'>$%'.2f</span>\
+ · XTM <span color='#aaaaaa'>$%'.2f</span>\
+\",\
+ \"tooltip\": \"\", \
+ \"alt\": \"\", \
+ \"class\": \"\" }" \
+  "$BTC" \
+  "$ETH" \
+  "$LTC" \
+  "$XMR" \
+  "$XLM" \
+  "$XRP" \
+  "$DASH" \
+  "$ZEC" \
+  "$XTM"
