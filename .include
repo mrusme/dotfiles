@@ -65,14 +65,5 @@
 + bin/sway-nametab
 + bin/sway-whats
 + bin/touchpad-toggle-drag
-+ bin/waybar-bluetooth
-+ bin/waybar-colors
-+ bin/waybar-command
-+ bin/waybar-cpu
-+ bin/waybar-crypto
-+ bin/waybar-docker
-+ bin/waybar-screenrecord
-+ bin/waybar-stats
-+ bin/waybar-syncthing
-+ bin/waybar-vpn
++ bin/waybar-*
 - *

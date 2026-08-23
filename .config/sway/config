@@ -24,8 +24,8 @@ set $down j
 set $up k
 set $right l
 set $term ghostty
-set $menu bemenu-run
-set $dmenu bemenu
+set $menu sysdeck
+set $dmenu sysdeck --dmenu
 
 # Netrunner, see ~/.themes/Netrunner and ghostty/themes/netrunner.conf
 set {
@@ -282,20 +282,11 @@ bindsym $mod+Shift+P          exec --no-startup-id hyprpicker -n -a
 
 # === Various ===
 
-# https://codeberg.org/mrus/bookmarkdown
-bindsym Alt+Space             exec /usr/local/bin/bmd
-
-# Open QtFM
-bindsym $mod+Ctrl+f           exec qtfm
-
 # Open mepo
 bindsym $mod+Ctrl+m           exec mepo
 
 # Rename Sway "tab"
 bindsym $mod+Ctrl+t           exec /usr/local/bin/sway-nametab
-
-# Show this help
-bindsym $mod+Ctrl+Slash      exec /usr/local/bin/sway-whats
 
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
@@ -536,6 +527,10 @@ for_window [app_id = "yad"] floating enable
 for_window [app_id = "opensnitch_ui"] floating enable
 for_window [app_id = "org.pipewire.Helvum"] floating enable
 for_window [app_id = "eu.qtfm"] floating enable
+for_window [app_id = "sysdeck"] {
+  floating enable
+  move up 300 px
+}
 for_window [app_id = "mepo"] {
   floating enable
   resize set 1024 px 600 px

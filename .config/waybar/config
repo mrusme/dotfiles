@@ -345,7 +345,6 @@
 
   "bluetooth": {
     // "controller": "controller1",
-    "on-click": "/usr/local/bin/waybar-bluetooth toggle",
     "format": "<span color='#7a85a6'>BT</span>",
     "format-disabled": "<span color='#2b344d'>BT</span>",
     "format-connected": "BT",

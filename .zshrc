@@ -1165,12 +1165,7 @@ function dotfiles-update-remote() {
   mkdir -p "${DOTFILES}/usr/local/bin/"
   rsync -avH \
     --include-from="${DOTFILES}/.include" \
-    "/usr/local/" "${DOTFILES}/usr/local/"
-
-  mkdir -p "${DOTFILES}/.local/share/applications/"
-  rsync -avH \
-    "${HOME}/.local/share/applications/browser.desktop" \
-    "${DOTFILES}/.local/share/applications/browser.desktop"
+    "/usr/local/" "${DOTFILES}/usr/local/" --delete
 
   cargo install --list > "${DOTFILES}/cargo_install_--list"
 
@@ -1209,9 +1204,6 @@ function dotfiles-update-local() {
 
   cp "${DOTFILES}/usr/local/bin/"* /usr/local/bin/
 
-  mkdir -p "${HOME}/.local/share/applications/" 
-  cp "${DOTFILES}/local/share/applications/browser.desktop" \
-    "${HOME}/.local/share/applications/browser.desktop"
   return 0
 }
 
