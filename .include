@@ -14,6 +14,9 @@
 + halloy/
 + halloy/themes/
 + halloy/themes/*
++ helix/
+- helix/runtime
++ helix/**
 + jolt/
 + jolt/**
 + lf/

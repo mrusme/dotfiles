@@ -1,0 +1,58 @@
+theme = "ayu_dark"
+
+[editor]
+mouse = false
+middle-click-paste = false
+scrolloff = 10
+scroll-lines = 1
+line-number = "absolute"
+cursorline = true
+continue-comments = true
+gutters = ["diagnostics", "spacer", "line-numbers", "spacer", "diff"]
+auto-completion = true
+path-completion = true
+auto-format = true
+rulers = [80]
+end-of-line-diagnostics = "hint"
+default-yank-register="+"
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.file-picker]
+hidden = false
+
+[editor.indent-guides]
+render = true
+character = "˽"
+skip-levels = 0
+
+[editor.inline-diagnostics]
+cursor-line = "disable"
+
+[editor.soft-wrap]
+wrap-indicator = ""
+
+[keys.normal]
+C-s = ":w"
+C-q = ":q"
+V = ["extend_line_below", "select_mode"]
+D = "@t<ret>d"
+G = "@ge"
+"C-\"" = "@f\"lmi\""
+"C-'" = "@f'lmi'"
+"C-(" = "@f(lmi("
+"C-[" = "@f[lmi["
+"C-{" = "@f{lmi{"
+"," = {
+  "," = "keep_primary_selection",
+  f = "@X:reflow<ret>"
+}
+C-v = "save_selection"
+
+[keys.insert]
+"C-c" = "normal_mode"
+C-s = ":w"
+C-q = ":q"
