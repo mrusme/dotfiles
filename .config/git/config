@@ -1,0 +1,360 @@
+# ╔════════════════════════════════════════════════════════════════════════════╗ 
+# ║____________________________________________________________________________║
+# ║_____________/\\\\\\\\\\\\__/\\\\\\\\\\\__/\\\\\\\\\\\\\\\__________________║
+# ║____________/\\\//////////__\/////\\\///__\///////\\\/////__________________║
+# ║____________/\\\_________________\/\\\___________\/\\\______________________║
+# ║____________\/\\\____/\\\\\\\_____\/\\\___________\/\\\_____________________║
+# ║_____________\/\\\___\/////\\\_____\/\\\___________\/\\\____________________║
+# ║______________\/\\\_______\/\\\_____\/\\\___________\/\\\___________________║
+# ║_______________\/\\\_______\/\\\_____\/\\\___________\/\\\__________________║
+# ║________________\//\\\\\\\\\\\\/___/\\\\\\\\\\\_______\/\\\_________________║
+# ║__________________\////////////____\///////////________\///_________________║
+# ║____________________________________________________________________________║
+# ║      xn--gckvb8fzb.com  *  tty.fail/mrus  *  marius@xn--gckvb8fzb.com      ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ General                                                                    ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+[user]
+  name = マリウス
+  email = marius@xn--gckvb8fzb.com
+  signingkey = 4D3899AF73E7F5FE9B39C822272ED814BF63261F
+
+[core]
+  fileMode = true
+  ignoreCase = false
+  symlinks = true
+  compression = 9
+  excludesFile = ~/.config/git/ignore
+  attributesFile = ~/.config/git/attributes
+  hooksPath = ~/.config/git/hooks
+  ; pager = delta
+  ; Testing difftastic (https://difftastic.wilfred.me.uk)
+  editor = hx
+
+[format]
+  signOff = yes
+
+[gpg]
+  program = gpg
+  format = openpgp
+
+[init]
+  defaultBranch = master
+
+[commit]
+  gpgSign = true
+  verbose = true
+
+[fetch]
+  prune = true
+  parallel = 3
+
+[submodule] 
+  fetchJobs = 3
+
+[pull]
+  rebase = true
+
+[push]
+  gpgSign = if-asked
+  default = simple
+  autoSetupRemote = true
+  followTags = yes
+
+[help]
+  autoCorrect = prompt
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ Colors                                                                     ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+[color]
+  ui = true
+
+[color "branch"]
+  current = yellow
+  local = blue
+  remote = yellow
+  upstream = magenta
+  plain = cyan
+
+[color "diff"]
+  meta = blue
+  frag = magenta
+  old = red
+  new = green
+  whitespace = magenta
+
+[color "status"]
+  added = cyan
+  changed = yellow
+  untracked = red
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ Delta (https://dandavison.github.io/delta/)                                ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+[delta]
+  navigate = true
+  features = style
+
+[delta "style"]
+  side-by-side = true
+  commit-decoration-style = "blue" box
+  dark = true
+  file-decoration-style = none
+  file-style = cyan
+  file-added-label = [+]
+  file-copied-label = [=]
+  file-modified-label = [~]
+  file-removed-label = [-]
+  file-renamed-label = [>]
+  hunk-header-decoration-style = "#022b45" box ul
+  hunk-header-file-style = "blue"
+  hunk-header-line-number-style = "yellow"
+  hunk-header-style = file line-number syntax
+  line-numbers = true
+  line-numbers-left-style = "#022b45"
+  line-numbers-minus-style = "#80002a"
+  line-numbers-plus-style = "#003300"
+  line-numbers-right-style = "#022b45"
+  line-numbers-zero-style = "#999999"
+  minus-emph-style = normal "#80002a"
+  minus-style = normal "#330011"
+  plus-emph-style = syntax "#003300"
+  plus-style = syntax "#001a00"
+  whitespace-error-style = reverse red
+  syntax-theme = Nord
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ Merging & Diffing                                                          ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+[merge]
+  tool = ec
+
+[mergetool]
+  prompt = true
+
+[mergetool "ec"]
+  cmd = ec "$BASE" "$LOCAL" "$REMOTE" "$MERGED"
+  trustExitCode = true
+
+[interactive]
+  diffFilter = delta --color-only
+
+[difftool]
+  prompt = false
+
+[diff]
+  ; tool = nvimdiff
+  ; Testing difftastic (https://difftastic.wilfred.me.uk)
+  external = difft
+
+[pager]
+  difftool = true
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ Includes                                                                   ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+[include]
+  # ┌──────────────────────────────────────────────────────────────────────────┐
+  # │ remotes                                                                  │
+  # └──────────────────────────────────────────────────────────────────────────┘
+  path = ~/.config/git/remotes
+
+  # ┌──────────────────────────────────────────────────────────────────────────┐
+  # │ sendemail                                                                │
+  # └──────────────────────────────────────────────────────────────────────────┘
+  path = ~/.config/git/sendemail
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ rerere                                                                     ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+[rerere]
+  enabled = true
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ Git Flow                                                                   ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+[gitflow "branch"]
+  master = master
+  develop = develop
+
+[gitflow "prefix"]
+  feature = feature/
+  release = release/
+  hotfix = hotfix/
+  bugfix = bugfix/
+  support = support/
+  versiontag = v
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ go.mod replace                                                             ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+#[filter "gomodreplace"]
+#  clean = rg -U -v 'replace ((?s)\\(.*\\)|.*)'
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ LFS                                                                        ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+[filter "lfs"]
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+  required = true
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ Aliases                                                                    ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+[alias]
+  a = "add"
+  aa = "add --all"
+  ce = "git commit --allow-empty"
+  am = "am"
+  ama = "am --abort"
+  amc = "am --continue"
+  ams = "am --skip"
+  amscp = "am --show-current-patch"
+  ap = "apply"
+  apa = "add --patch"
+  apt = "apply --3way"
+  au = "add --update"
+  av = "add --verbose"
+  b = "branch"
+  bD = "branch -D"
+  ba = "branch -a"
+  bd = "branch -d"
+  bl = "blame -b -w"
+  bnm = "branch --no-merged"
+  br = "branch --remote"
+  bs = "bisect"
+  bsb = "bisect bad"
+  bsg = "bisect good"
+  bsr = "bisect reset"
+  bss = "bisect start"
+  c = "commit -v"
+  ca = "commit -v -a"
+  cam = "commit -a -m"
+  cas = "commit -a -s"
+  casm = "commit -a -s -m"
+  cb = "checkout -b"
+  cf = "config --list"
+  cl = "clone --recurse-submodules"
+  clnid = "clean -id"
+  cmsg = "commit -m"
+  cn = "commit -v --no-edit"
+  co = "checkout"
+  cor = "checkout --recurse-submodules"
+  count = "shortlog -sn"
+  cp = "cherry-pick"
+  cpa = "cherry-pick --abort"
+  cpc = "cherry-pick --continue"
+  cs = "commit -S"
+  csm = "commit -s -m"
+  css = "commit -S -s"
+  cssm = "commit -S -s -m"
+  d = "diff"
+  dca = "diff --cached"
+  dcw = "diff --cached --word-diff"
+  ds = "diff --staged"
+  dt = "diff-tree --no-commit-id --name-only -r"
+  dup = "diff @{upstream}"
+  dw = "diff --word-diff"
+  f = "fetch"
+  fa = "fetch --all --prune --jobs=10"
+  fg = "ls-files | grep"
+  fl = "flow"
+  flf = "flow feature"
+  flff = "flow feature finish"
+  flfp = "flow feature publish"
+  flfpll = "flow feature pull"
+  flfs = "flow feature start"
+  flh = "flow hotfix"
+  flhf = "flow hotfix finish"
+  flhp = "flow hotfix publish"
+  flhs = "flow hotfix start"
+  fli = "flow init"
+  flr = "flow release"
+  flrf = "flow release finish"
+  flrp = "flow release publish"
+  flrs = "flow release start"
+  fo = "fetch origin"
+  hh = "help"
+  ign = "update-index --assume-unchanged"
+  ignd = "ls-files -v | grep "^[[:lower:]]""
+  l = "pull"
+  lg = "log --stat"
+  lgg = "log --graph"
+  lgga = "log --graph --decorate --all"
+  lgm = "log --graph --max-count=10"
+  lgp = "log --stat -p"
+  lo = "log --oneline --decorate"
+  logg = "log --oneline --decorate --graph"
+  loga = "log --oneline --decorate --graph --all"
+  m = "merge"
+  ma = "merge --abort"
+  mtl = "mergetool --no-prompt"
+  mtlvim = "mergetool --no-prompt --tool=nvimdiff"
+  p = "push"
+  pd = "push --dry-run"
+  pf = "push --force-with-lease"
+  poat = "push origin --all && git push origin --tags"
+  pr = "pull --rebase"
+  pristine = "reset --hard && git clean -dffx"
+  pu = "push upstream"
+  pv = "push -v"
+  r = "remote"
+  ra = "remote add"
+  rb = "rebase"
+  rba = "rebase --abort"
+  rbc = "rebase --continue"
+  rbi = "rebase -i"
+  rbo = "rebase --onto"
+  rbs = "rebase --skip"
+  rep = "grep --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn,.idea,.tox}"
+  rev = "revert"
+  rh = "reset"
+  rhh = "reset --hard"
+  rmc = "rm --cached"
+  rmv = "remote rename"
+  rrm = "remote remove"
+  rs = "restore"
+  rset = "remote set-url"
+  rss = "restore --source"
+  rst = "restore --staged"
+  ru = "reset --"
+  rup = "remote update"
+  rv = "remote -v"
+  sb = "status -sb"
+  sd = "svn dcommit"
+  sh = "show"
+  si = "submodule init"
+  sps = "show --pretty=short --show-signature"
+  sr = "svn rebase"
+  ss = "status -s"
+  st = "status"
+  sta = "stash push"
+  staa = "stash apply"
+  stall = "stash --all"
+  stc = "stash clear"
+  std = "stash drop"
+  stl = "stash list"
+  stp = "stash pop"
+  sts = "stash show --text"
+  su = "submodule update"
+  sw = "switch"
+  swc = "switch -c"
+  ts = "tag -s"
+  tv = "tag | sort -V"
+  unign = "update-index --no-assume-unchanged"
+  up = "pull --rebase"
+  upa = "pull --rebase --autostash"
+  upav = "pull --rebase --autostash -v"
+  upv = "pull --rebase -v"
+  wch = "whatchanged -p --abbrev-commit --pretty=medium"
+  wt = "worktree"
+  wta = "worktree add"
+  wtls = "worktree list"
+  wtmv = "worktree move"
+  wtrm = "worktree remove"
+  

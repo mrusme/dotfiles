@@ -4,6 +4,9 @@
 + eza/*
 + ghostty/
 + ghostty/**
++ git/
++ git/config
++ git/attributes
 + gitui/
 + gitui/*
 + glow/
