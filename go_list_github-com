@@ -6,6 +6,7 @@ github.com/charmbracelet/crush
 github.com/tomwright/dasel/v2/cmd/dasel
 github.com/dlvhdr/diffnav
 github.com/go-delve/delve/cmd/dlv
+github.com/chojs23/ec/cmd/ec
 github.com/kisielk/errcheck
 github.com/charmbracelet/freeze
 github.com/golangci/golangci-lint/cmd/golangci-lint
