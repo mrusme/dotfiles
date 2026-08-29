@@ -17,9 +17,6 @@
 + lf/*
 + mako/
 + mako/*
-+ nvim/
-+ nvim/*
-+ nvim/lua/**
 + profanity/
 + profanity/**
 + ripgrep/

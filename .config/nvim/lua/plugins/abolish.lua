@@ -1,5 +1,0 @@
-return {
-  {
-    "tpope/vim-abolish",
-  },
-}

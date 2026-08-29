@@ -114,7 +114,7 @@ setopt SHARE_HISTORY
 export TERM="xterm-256color"
 export COLUMNS="80"
 
-# INFO: `nvim` check further down below
+# INFO: `EDITOR` check further down below
 export EDITOR="vim"
 
 if [ -n "${SSH_CONNECTION}" ]
@@ -615,11 +615,11 @@ __is_available btop \
 __is_available neomutt \
 && alias mutt=neomutt
 
-# https://github.com/neovim/neovim
-__is_available nvim \
-&& alias vi=nvim \
-&& alias vim=nvim \
-&& export EDITOR="nvim"
+# https://github.com/helix-editor/helix
+__is_available hx \
+&& alias vi=hx \
+&& alias vim=hx \
+&& export EDITOR="hx"
 
 # https://github.com/junegunn/fzf
 __is_available fzf \
