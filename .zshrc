@@ -587,7 +587,8 @@ alias zmv='noglob zmv -vW'
 __is_available zoxide \
 && [ "${USER}" != "root" ] \
 && eval "$(zoxide init --cmd cd zsh)" \
-&& alias cdd=cdi
+&& alias cdd=cdi \
+&& alias re='cd -'
 
 # https://github.com/sharkdp/bat
 __is_available bat \
@@ -617,8 +618,11 @@ __is_available neomutt \
 
 # https://github.com/helix-editor/helix
 __is_available hx \
+&& alias ed=hx \
 && alias vi=hx \
 && alias vim=hx \
+&& alias nvim=hx \
+&& alias helix=hx \
 && export EDITOR="hx"
 
 # https://github.com/junegunn/fzf
