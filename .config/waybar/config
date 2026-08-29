@@ -241,10 +241,10 @@
        "(.*) - Chromium"       : "WEB $1",
        "(.*) — Tor Browser"    : "TOR $1",
        "nvim (.*)"             : "VIM $1",
+       "hx (.*)"               : "HELIX $1",
        "zsh (.*)"              : "ZSH $1",
        "irssi"                 : "IRC",
-       "Element | (.*)"        : "MTX $1",
-       "iamb ((.*))"           : "MTX $1",
+       "profanity"             : "XMPP",
        "(.*) - (.*) - Mozilla Thunderbird": "MAIL $2::$1"
     }
   },
