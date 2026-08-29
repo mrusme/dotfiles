@@ -24,8 +24,6 @@ set $down j
 set $up k
 set $right l
 set $term ghostty
-set $menu sysdeck
-set $dmenu sysdeck --dmenu
 
 # Netrunner, see ~/.themes/Netrunner and ghostty/themes/netrunner.conf
 set {
@@ -119,8 +117,7 @@ exec gsettings set org.gnome.desktop.interface cursor-size 32
 exec dbus-update-activation-environment \
   --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 
-# Clipboard (https://github.com/sentriz/cliphist)
-exec wl-paste --watch cliphist store
+exec wl-paste --watch sysdeck --clipboard-capture > /dev/null
 
 # Pipewire
 exec gentoo-pipewire-launcher
@@ -183,16 +180,8 @@ bindsym $mod+Shift+backspace        exec ungoogled-chromium \
 # Open LibreWolf
 bindsym $mod+Ctrl+backspace   exec librewolf
 
-# Show clipboard (for copying)
-bindsym $mod+Alt+Bar          exec cliphist list \
-                              | $dmenu \
-                              | cliphist decode \
-                              | wl-copy
-
-# Show clipboard (for deleting)
-bindsym $mod+Alt+Backslash    exec cliphist list \
-                              | $dmenu \
-                              | cliphist delete
+# Show clipboard
+bindsym $mod+Alt+Bar          exec sysdeck --clipboard-history
 
 # Recall last notifications
 bindsym $mod+asciitildE       exec makoctl restore
@@ -201,7 +190,7 @@ bindsym $mod+asciitildE       exec makoctl restore
 bindsym $mod+Escape           kill
 
 # Open launcher
-bindsym $mod+Space            exec $menu
+bindsym $mod+Space            exec sysdeck
 
 # Reload Sway
 bindsym $mod+Shift+c          reload
