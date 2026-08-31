@@ -1,143 +1,131 @@
 colourful: true
 
-## Netrunner, see ~/.themes/Netrunner and ~/.config/ghostty/themes/netrunner.conf
-
-## Deepest background (terminal background)
-#  $void           #05060a
-## Panel background
-#  $panel          #0b0e16
-## Raised panel background (window chrome)
-#  $panelHi        #121726
-## Hairline
-#  $line           #1c2233
-## Brighter hairline, faint text
-#  $lineHi         #2b344d
-## Dimmed text
-#  $dim            #4d5772
-## Secondary text
-#  $muted          #7a85a6
-## Default foreground
-#  $text           #e8f0f8
-## Identity blue (directories, sources)
-#  $blue           #6e86e0
-## Light blue (write access, links)
-#  $blueLt         #a8bcf0
-## Cyan (images)
-#  $cyan           #4e93a8
-## Light cyan (symlinks, dates)
-#  $cyanLt         #86c8dc
-## Violet (link counts, symlink targets)
-#  $violet         #8a68c8
-## Light violet (devices, media)
-#  $violetLt       #b492ec
-## Action amber (executables, ownership)
-#  $amber          #e0a868
-## Light amber (sizes, octal permissions)
-#  $amberLt        #ffd79a
-## Dark amber (octal permission background)
-#  $amberBg        #3a2c14
-## Status ok
-#  $ok             #48b878
-## Status bad
-#  $bad            #e05a6a
+## Netrunner, see ~/.themes/Netrunner and .config/ghostty/themes/netrunner.conf
+#
+## Ground
+#  $void           #05060a   terminal background, text on a red chip
+#  $panelHi        #121726   background behind directories and mount points
+#  $line           #1c2233   background behind symlinks
+#  $lineHi         #2b344d   the dashes in the permission block
+## Text
+#  $dim            #4d5772   inode, blocks, xattr marker, temporary files
+#  $muted          #7a85a6   dates, read bits, other users, build output
+#  $white          #c6d0e0   regular files
+#  $text           #e8f0f8   documents
+## Identity
+#  $blueMd         #4f5fb4   kilobyte sizes
+#  $blue           #6e86e0   sources, megabyte sizes, root group
+#  $blueLt         #a8bcf0   directories, write bits, header, root user
+#  $cyanLt         #86c8dc   symlinks
+#  $purple         #8a68c8   archives
+#  $purpleLt       #b492ec   images, video, audio
+## Action
+#  $amberMd        #c08e52   build files, your group, device nodes
+#  $amber          #e0a868   execute bits, your user, executables, modified
+#  $amberLt        #ffd79a   octal mode, huge sizes
+#  $amberBg        #3a2c14   background behind the octal mode
+## Status
+#  $ok             #48b878   new in git, clean repository
+#  $bad            #e05a6a   broken, deleted, conflicted, keys and certificates
 
 filekinds:
-  normal: {foreground: "#e8f0f8"}
-  directory: {foreground: "#6e86e0", background: "#121726"}
-  symlink: {foreground: "#86c8dc", background: "#1c2233"}
-  pipe: {foreground: "#7a85a6"}
-  block_device: {foreground: "#b492ec"}
-  char_device: {foreground: "#b492ec"}
-  socket: {foreground: "#7a85a6"}
-  special: {foreground: "#e05a6a"}
-  executable: {foreground: "#e0a868"}
-  mount_point: {foreground: "#a8bcf0"}
+  normal: { foreground: "#c6d0e0" }
+  directory: { foreground: "#a8bcf0", background: "#121726" }
+  symlink: { foreground: "#86c8dc", background: "#1c2233" }
+  mount_point: { foreground: "#6e86e0", background: "#121726" }
+  pipe: { foreground: "#c08e52" }
+  socket: { foreground: "#c08e52" }
+  block_device: { foreground: "#c08e52" }
+  char_device: { foreground: "#c08e52" }
+  special: { foreground: "#e05a6a" }
+  executable: { foreground: "#e0a868" }
 
 perms:
-  user_read: {foreground: "#e8f0f8"}
-  user_write: {foreground: "#a8bcf0"}
-  user_execute_file: {foreground: "#e0a868"}
-  user_execute_other: {foreground: "#e0a868"}
-  group_read: {foreground: "#e8f0f8"}
-  group_write: {foreground: "#a8bcf0"}
-  group_execute: {foreground: "#e0a868"}
-  other_read: {foreground: "#e8f0f8"}
-  other_write: {foreground: "#a8bcf0"}
-  other_execute: {foreground: "#e0a868"}
-  special_user_file: {foreground: "#e05a6a"}
-  special_other: {foreground: "#7a85a6"}
-  attribute: {foreground: "#e8f0f8"}
+  user_read: { foreground: "#7a85a6" }
+  user_write: { foreground: "#a8bcf0" }
+  user_execute_file: { foreground: "#e0a868" }
+  user_execute_other: { foreground: "#e0a868" }
+  group_read: { foreground: "#7a85a6" }
+  group_write: { foreground: "#a8bcf0" }
+  group_execute: { foreground: "#e0a868" }
+  other_read: { foreground: "#7a85a6" }
+  other_write: { foreground: "#a8bcf0" }
+  other_execute: { foreground: "#e0a868" }
+  special_user_file: { foreground: "#e05a6a" }
+  special_other: { foreground: "#4d5772" }
+  attribute: { foreground: "#4d5772" }
 
 size:
-  major: {foreground: "#ffd79a"}
-  minor: {foreground: "#8a68c8"}
-  number_byte: {foreground: "#e8f0f8"}
-  number_kilo: {foreground: "#e8f0f8"}
-  number_mega: {foreground: "#6e86e0"}
-  number_giga: {foreground: "#e05a6a"}
-  number_huge: {foreground: "#e05a6a"}
-  unit_byte: {foreground: "#e8f0f8"}
-  unit_kilo: {foreground: "#6e86e0"}
-  unit_mega: {foreground: "#e05a6a"}
-  unit_giga: {foreground: "#e05a6a"}
-  unit_huge: {foreground: "#a8bcf0"}
+  number_byte: { foreground: "#4d5772" }
+  number_kilo: { foreground: "#4f5fb4" }
+  number_mega: { foreground: "#6e86e0" }
+  number_giga: { foreground: "#e0a868" }
+  number_huge: { foreground: "#ffd79a" }
+  unit_byte: { foreground: "#4d5772" }
+  unit_kilo: { foreground: "#4f5fb4" }
+  unit_mega: { foreground: "#6e86e0" }
+  unit_giga: { foreground: "#e0a868" }
+  unit_huge: { foreground: "#ffd79a" }
+  major: { foreground: "#a8bcf0" }
+  minor: { foreground: "#6e86e0" }
 
 users:
-  user_you: {foreground: "#e0a868"}
-  user_root: {foreground: "#b492ec"}
-  user_other: {foreground: "#e05a6a"}
-  group_yours: {foreground: "#e0a868"}
-  group_other: {foreground: "#2b344d"}
-  group_root: {foreground: "#b492ec"}
+  user_you: { foreground: "#e0a868" }
+  group_yours: { foreground: "#c08e52" }
+  user_root: { foreground: "#a8bcf0" }
+  group_root: { foreground: "#6e86e0" }
+  user_other: { foreground: "#7a85a6" }
+  group_other: { foreground: "#4d5772" }
 
 links:
-  normal: {foreground: "#8a68c8"}
-  multi_link_file: {foreground: "#a8bcf0"}
+  normal: { foreground: "#4d5772" }
+  multi_link_file: { foreground: "#a8bcf0" }
 
 git:
-  new: {foreground: "#48b878"}
-  modified: {foreground: "#e0a868"}
-  deleted: {foreground: "#e05a6a"}
-  renamed: {foreground: "#6e86e0"}
-  typechange: {foreground: "#b492ec"}
-  ignored: {foreground: "#2b344d"}
-  conflicted: {foreground: "#e05a6a"}
+  new: { foreground: "#48b878" }
+  modified: { foreground: "#e0a868" }
+  deleted: { foreground: "#e05a6a" }
+  renamed: { foreground: "#6e86e0" }
+  typechange: { foreground: "#b492ec" }
+  ignored: { foreground: "#4d5772" }
+  conflicted: { foreground: "#e05a6a" }
 
 git_repo:
-  branch_main: {foreground: "#e8f0f8"}
-  branch_other: {foreground: "#a8bcf0"}
-  git_clean: {foreground: "#48b878"}
-  git_dirty: {foreground: "#e05a6a"}
+  branch_main: { foreground: "#6e86e0" }
+  branch_other: { foreground: "#a8bcf0" }
+  git_clean: { foreground: "#48b878" }
+  git_dirty: { foreground: "#e0a868" }
 
 security_context:
-  colon: {foreground: "#2b344d"}
-  user: {foreground: "#e8f0f8"}
-  role: {foreground: "#7a85a6"}
-  typ: {foreground: "#2b344d"}
-  range: {foreground: "#7a85a6"}
+  selinux:
+    colon: { foreground: "#4d5772" }
+    user: { foreground: "#a8bcf0" }
+    role: { foreground: "#7a85a6" }
+    typ: { foreground: "#6e86e0" }
+    range: { foreground: "#4d5772" }
 
 file_type:
-  image: {foreground: "#4e93a8" }
-  video: {foreground: "#b492ec"}
-  music: {foreground: "#e0a868"}
-  lossless: {foreground: "#e0a868"}
-  crypto: {foreground: "#7a85a6"}
-  document: {foreground: "#e8f0f8"}
-  compressed: {foreground: "#e05a6a"}
-  temp: {foreground: "#b492ec"}
-  compiled: {foreground: "#6e86e0"}
-  build: {foreground: "#7a85a6", is_underline: false }
-  source: {foreground: "#6e86e0"}
+  source: { foreground: "#6e86e0" }
+  document: { foreground: "#e8f0f8" }
+  build: { foreground: "#c08e52" }
+  compiled: { foreground: "#7a85a6" }
+  temp: { foreground: "#4d5772" }
+  image: { foreground: "#b492ec" }
+  video: { foreground: "#b492ec" }
+  music: { foreground: "#b492ec" }
+  lossless: { foreground: "#b492ec" }
+  compressed: { foreground: "#8a68c8" }
+  crypto: { foreground: "#e05a6a" }
 
-punctuation: {foreground: "#2b344d"}
-date: {foreground: "#86c8dc"}
-inode: {foreground: "#e8f0f8"}
-blocks: {foreground: "#e8f0f8"}
-header: {foreground: "#e8f0f8"}
-octal: {foreground: "#ffd79a", background: "#3a2c14"}
-flags: {foreground: "#e05a6a"}
+punctuation: { foreground: "#2b344d" }
+date: { foreground: "#7a85a6" }
+inode: { foreground: "#4d5772" }
+blocks: { foreground: "#4d5772" }
+header: { foreground: "#a8bcf0" }
+octal: { foreground: "#ffd79a", background: "#3a2c14" }
+flags: { foreground: "#c08e52" }
 
-symlink_path: {foreground: "#8a68c8"}
-control_char: {foreground: "#6e86e0"}
-broken_symlink: {foreground: "#e8f0f8", background: "#e05a6a"}
-broken_path_overlay: {foreground: "#05060a"}
+symlink_path: { foreground: "#7a85a6" }
+control_char: { foreground: "#e05a6a" }
+broken_symlink: { foreground: "#05060a", background: "#e05a6a" }
+broken_path_overlay: { foreground: "#05060a" }
