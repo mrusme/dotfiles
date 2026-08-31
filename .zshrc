@@ -153,7 +153,7 @@ export MOZ_USE_XINPUT2="1"
 # Qt
 #export QT_STYLE_OVERRIDE="kvantum"
 export QT_QPA_PLATFORM="wayland-egl"
-export QT_QPA_PLATFORMTHEME="qt5ct"
+export QT_QPA_PLATFORMTHEME="qt6ct"
 
 # https://github.com/oz/tz/
 export TZ_LIST="\
@@ -1132,6 +1132,7 @@ function dotfiles-update-remote() {
   cp "${HOME}/.motd" "${DOTFILES}/.motd"
   cp "${HOME}/.vale.ini" "${DOTFILES}/.vale.ini"
   cp "${HOME}/.wallpaper" "${DOTFILES}/.wallpaper"
+  cp -R "${HOME}/.themes/Netrunner" "${DOTFILES}/.themes/"
 
   rsync -avH \
     --include-from="${DOTFILES}/.include" \
@@ -1172,6 +1173,7 @@ function dotfiles-update-local() {
   cp "${DOTFILES}/.motd" "${HOME}/.motd"
   cp "${DOTFILES}/.vale.ini" "${HOME}/.vale.ini"
   cp "${DOTFILES}/.wallpaper" "${HOME}/.wallpaper"
+  cp -R "${DOTFILES}/.themes/Netrunner" "${HOME}/.themes/"
 
   rsync -avH \
     --include-from="${DOTFILES}/.include" \
