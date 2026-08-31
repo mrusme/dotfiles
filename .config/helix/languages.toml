@@ -2114,6 +2114,8 @@ block-comment-tokens = { start = "<!--", end = "-->" }
 word-completion.trigger-length = 4
 text-width = 80
 soft-wrap = { enable = true, wrap-at-text-width = true }
+auto-format = true
+formatter = { command = "deno", args = ["fmt", "--ext", "md", "-"] }
 
 [language.auto-pairs]
 '(' = ')'

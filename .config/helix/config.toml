@@ -1,6 +1,7 @@
-theme = "ayu_dark"
+theme = "netrunner"
 
 [editor]
+color-modes = true
 mouse = false
 middle-click-paste = false
 scrolloff = 10
@@ -36,11 +37,15 @@ cursor-line = "disable"
 wrap-indicator = ""
 
 [keys.normal]
+"C-c" = "normal_mode"
 C-s = ":w"
 C-q = ":q"
+C-r = ":reload"
+C-a = "select_all"
 V = ["extend_line_below", "select_mode"]
 D = "@t<ret>d"
 G = "@ge"
+"C-/" = "toggle_comments"
 "C-\"" = "@f\"lmi\""
 "C-'" = "@f'lmi'"
 "C-(" = "@f(lmi("
@@ -54,5 +59,7 @@ C-v = "save_selection"
 
 [keys.insert]
 "C-c" = "normal_mode"
-C-s = ":w"
-C-q = ":q"
+C-s = [":w", "normal_mode"]
+C-q = "normal_mode"
+C-a = ["normal_mode", "select_all"]
+"C-/" = "toggle_comments"

@@ -1,0 +1,264 @@
+# Netrunner, see ~/.themes/Netrunner and ~/.config/ghostty/themes/netrunner.conf
+
+# ── Ground ───────────────────────────────────────────────────────────────────
+
+"ui.background" = { fg = "text" }
+"ui.background.separator" = { fg = "line_hi" }
+"ui.window" = { fg = "line_hi" }
+"ui.text" = { fg = "text" }
+"ui.text.focus" = { fg = "amber", bg = "panel_hi" }
+"ui.text.inactive" = { fg = "dim" }
+"ui.text.info" = { fg = "blue_lt" }
+"ui.text.directory" = { fg = "blue" }
+
+# ── Gutter ───────────────────────────────────────────────────────────────────
+
+"ui.gutter" = { fg = "dim" }
+"ui.gutter.selected" = { fg = "amber" }
+"ui.linenr" = { fg = "dim" }
+"ui.linenr.selected" = { fg = "amber", modifiers = ["bold"] }
+
+# ── Cursor and selection ─────────────────────────────────────────────────────
+
+"ui.cursor" = { fg = "void", bg = "muted" }
+"ui.cursor.normal" = { fg = "void", bg = "muted" }
+"ui.cursor.insert" = { fg = "void", bg = "muted" }
+"ui.cursor.select" = { fg = "void", bg = "muted" }
+"ui.cursor.secondary" = { fg = "void", bg = "muted" }
+"ui.cursor.primary" = { fg = "void", bg = "amber" }
+"ui.cursor.primary.normal" = { fg = "void", bg = "amber" }
+"ui.cursor.primary.insert" = { fg = "void", bg = "blue" }
+"ui.cursor.primary.select" = { fg = "void", bg = "amber" }
+"ui.cursor.match" = { fg = "amber_lt", bg = "amber_dk" }
+
+"ui.selection" = { bg = "line" }
+"ui.selection.primary" = { bg = "line_hi" }
+"ui.highlight" = { bg = "panel_hi" }
+"ui.highlight.frameline" = { bg = "amber_dk" }
+
+"ui.cursorline.primary" = { bg = "panel" }
+"ui.cursorline.secondary" = { bg = "panel" }
+"ui.cursorcolumn.primary" = { bg = "panel" }
+"ui.cursorcolumn.secondary" = { bg = "panel" }
+
+# ── Statusline and bufferline ────────────────────────────────────────────────
+
+"ui.statusline" = { fg = "muted", bg = "panel" }
+"ui.statusline.inactive" = { fg = "dim", bg = "panel" }
+"ui.statusline.normal" = { fg = "void", bg = "blue", modifiers = ["bold"] }
+"ui.statusline.insert" = { fg = "void", bg = "ok", modifiers = ["bold"] }
+"ui.statusline.select" = { fg = "void", bg = "amber", modifiers = ["bold"] }
+"ui.statusline.separator" = { fg = "line_hi", bg = "panel" }
+
+"ui.bufferline" = { fg = "muted", bg = "panel" }
+"ui.bufferline.active" = { fg = "amber", bg = "panel_hi", modifiers = ["bold"] }
+"ui.bufferline.background" = { bg = "panel" }
+
+# ── Popups, menus and the picker ─────────────────────────────────────────────
+
+"ui.popup" = { fg = "text", bg = "panel" }
+"ui.popup.info" = { fg = "muted", bg = "panel" }
+"ui.help" = { fg = "text", bg = "panel" }
+"ui.menu" = { fg = "text", bg = "panel" }
+"ui.menu.selected" = { fg = "void", bg = "amber" }
+"ui.menu.scroll" = { fg = "line_hi", bg = "panel" }
+"ui.picker.header" = { fg = "muted", bg = "panel_hi" }
+"ui.picker.header.column" = { fg = "muted" }
+"ui.picker.header.column.active" = { fg = "amber", modifiers = ["bold"] }
+
+# ── Virtual text ─────────────────────────────────────────────────────────────
+
+"ui.virtual" = { fg = "dim" }
+"ui.virtual.ruler" = { bg = "panel_hi" }
+"ui.virtual.whitespace" = { fg = "line_hi" }
+"ui.virtual.indent-guide" = { fg = "line" }
+"ui.virtual.wrap" = { fg = "dim" }
+"ui.virtual.inlay-hint" = { fg = "dim", bg = "panel" }
+"ui.virtual.inlay-hint.parameter" = { fg = "dim", bg = "panel" }
+"ui.virtual.inlay-hint.type" = { fg = "blue_dk", bg = "panel" }
+"ui.virtual.jump-label" = { fg = "void", bg = "amber_lt", modifiers = ["bold"] }
+
+# ── Debugger ─────────────────────────────────────────────────────────────────
+
+"ui.debug" = { fg = "amber_dk" }
+"ui.debug.breakpoint" = { fg = "bad" }
+"ui.debug.active" = { fg = "amber" }
+
+# ── Diagnostics ──────────────────────────────────────────────────────────────
+
+"error" = { fg = "bad" }
+"warning" = { fg = "warn" }
+"info" = { fg = "cyan_lt" }
+"hint" = { fg = "muted" }
+"debug" = { fg = "purple_lt" }
+
+"diagnostic" = { underline = { color = "muted", style = "dotted" } }
+"diagnostic.error" = { underline = { color = "bad", style = "curl" } }
+"diagnostic.warning" = { underline = { color = "warn", style = "curl" } }
+"diagnostic.info" = { underline = { color = "cyan_lt", style = "dotted" } }
+"diagnostic.hint" = { underline = { color = "muted", style = "dotted" } }
+"diagnostic.unnecessary" = { fg = "dim", modifiers = ["dim"] }
+"diagnostic.deprecated" = { modifiers = ["crossed_out"] }
+
+# ── Diff ─────────────────────────────────────────────────────────────────────
+
+"diff.plus" = { fg = "ok" }
+"diff.minus" = { fg = "bad" }
+"diff.delta" = { fg = "amber" }
+"diff.delta.moved" = { fg = "blue" }
+"diff.delta.conflict" = { fg = "bad", modifiers = ["bold"] }
+"diff.plus.gutter" = { fg = "green_dk" }
+"diff.minus.gutter" = { fg = "red_dk" }
+"diff.delta.gutter" = { fg = "amber_dk" }
+
+# ── Syntax: comments ─────────────────────────────────────────────────────────
+
+"comment" = { fg = "dim", modifiers = ["italic"] }
+"comment.line" = { fg = "dim", modifiers = ["italic"] }
+"comment.block" = { fg = "dim", modifiers = ["italic"] }
+"comment.line.documentation" = { fg = "muted", modifiers = ["italic"] }
+"comment.block.documentation" = { fg = "muted", modifiers = ["italic"] }
+"comment.unused" = { fg = "dim", modifiers = ["dim"] }
+
+# ── Syntax: identifiers ──────────────────────────────────────────────────────
+
+"variable" = { fg = "text" }
+"variable.parameter" = { fg = "white" }
+"variable.other" = { fg = "text" }
+"variable.other.member" = { fg = "cyan_lt" }
+"variable.builtin" = { fg = "purple_lt", modifiers = ["italic"] }
+
+"function" = { fg = "blue_lt" }
+"function.call" = { fg = "blue_lt" }
+"function.method" = { fg = "blue_lt" }
+"function.declaration" = { fg = "blue_lt" }
+"function.builtin" = { fg = "cyan_lt" }
+"function.macro" = { fg = "purple_lt" }
+"function.special" = { fg = "purple_lt" }
+
+"constructor" = { fg = "blue_lt" }
+"type" = { fg = "blue" }
+"type.builtin" = { fg = "blue" }
+"type.definition" = { fg = "blue" }
+"type.enum" = { fg = "blue" }
+"type.enum.variant" = { fg = "cyan_lt" }
+"type.enum.variant.builtin" = { fg = "cyan_lt" }
+"type.parameter" = { fg = "white" }
+
+"namespace" = { fg = "blue", modifiers = ["italic"] }
+"module" = { fg = "blue", modifiers = ["italic"] }
+"label" = { fg = "amber_md" }
+"tag" = { fg = "blue" }
+"tag.builtin" = { fg = "blue" }
+"attribute" = { fg = "purple_lt" }
+"special" = { fg = "purple_lt" }
+
+# ── Syntax: literals ─────────────────────────────────────────────────────────
+
+"string" = { fg = "ok" }
+"string.regexp" = { fg = "amber_lt" }
+"string.special" = { fg = "cyan_lt" }
+"string.special.path" = { fg = "cyan_lt" }
+"string.special.symbol" = { fg = "cyan_lt" }
+"string.special.url" = { fg = "blue_lt", underline = { style = "line" } }
+
+"constant" = { fg = "cyan_lt" }
+"constant.numeric" = { fg = "purple_lt" }
+"constant.numeric.integer" = { fg = "purple_lt" }
+"constant.numeric.float" = { fg = "purple_lt" }
+"constant.character" = { fg = "ok" }
+"constant.character.escape" = { fg = "amber_lt" }
+"constant.builtin" = { fg = "purple_lt" }
+"constant.builtin.boolean" = { fg = "purple_lt" }
+"constant.macro" = { fg = "purple_lt" }
+
+# ── Syntax: keywords and operators ───────────────────────────────────────────
+
+"keyword" = { fg = "amber" }
+"keyword.function" = { fg = "amber" }
+"keyword.operator" = { fg = "amber" }
+"keyword.control" = { fg = "amber_lt" }
+"keyword.control.conditional" = { fg = "amber_lt" }
+"keyword.control.repeat" = { fg = "amber_lt" }
+"keyword.control.return" = { fg = "amber_lt" }
+"keyword.control.exception" = { fg = "bad" }
+"keyword.control.import" = { fg = "amber_md" }
+"keyword.storage" = { fg = "amber_md" }
+"keyword.storage.type" = { fg = "amber_md" }
+"keyword.storage.modifier" = { fg = "amber_md" }
+"keyword.storage.modifier.ref" = { fg = "amber_md" }
+"keyword.storage.modifier.mut" = { fg = "amber_md" }
+"keyword.directive" = { fg = "purple" }
+
+"operator" = { fg = "amber" }
+"punctuation" = { fg = "muted" }
+"punctuation.delimiter" = { fg = "muted" }
+"punctuation.bracket" = { fg = "muted" }
+"punctuation.special" = { fg = "amber" }
+
+# ── Markup ───────────────────────────────────────────────────────────────────
+
+"markup.heading" = { fg = "blue_lt", modifiers = ["bold"] }
+"markup.heading.marker" = { fg = "dim" }
+"markup.heading.1" = { fg = "amber_lt", modifiers = ["bold"] }
+"markup.heading.2" = { fg = "amber", modifiers = ["bold"] }
+"markup.heading.3" = { fg = "blue_lt", modifiers = ["bold"] }
+"markup.heading.4" = { fg = "blue", modifiers = ["bold"] }
+"markup.heading.5" = { fg = "cyan_lt", modifiers = ["bold"] }
+"markup.heading.6" = { fg = "muted", modifiers = ["bold"] }
+
+"markup.list" = { fg = "amber" }
+"markup.list.numbered" = { fg = "amber" }
+"markup.list.unnumbered" = { fg = "amber" }
+"markup.list.checked" = { fg = "ok" }
+"markup.list.unchecked" = { fg = "muted" }
+
+"markup.bold" = { fg = "amber_lt", modifiers = ["bold"] }
+"markup.italic" = { fg = "blue_lt", modifiers = ["italic"] }
+"markup.strikethrough" = { fg = "dim", modifiers = ["crossed_out"] }
+"markup.quote" = { fg = "muted", modifiers = ["italic"] }
+
+"markup.link" = { fg = "blue_lt" }
+"markup.link.label" = { fg = "cyan_lt" }
+"markup.link.text" = { fg = "blue" }
+"markup.link.url" = { fg = "blue_lt", underline = { style = "line" } }
+
+"markup.raw" = { fg = "cyan_lt" }
+"markup.raw.inline" = { fg = "cyan_lt" }
+"markup.raw.block" = { fg = "cyan_lt" }
+"markup.normal" = { fg = "text" }
+
+# ── Palette ──────────────────────────────────────────────────────────────────
+
+[palette]
+void = "#05060a"
+panel = "#0b0e16"
+panel_hi = "#121726"
+line = "#1c2233"
+line_hi = "#2b344d"
+
+blue_dk = "#303888"
+blue = "#6e86e0"
+blue_lt = "#a8bcf0"
+blue_hi = "#e8f8f8"
+
+amber_dk = "#8a6a3a"
+amber_md = "#c08e52"
+amber = "#e0a868"
+amber_lt = "#ffd79a"
+
+text = "#e8f0f8"
+white = "#c6d0e0"
+muted = "#7a85a6"
+dim = "#4d5772"
+
+ok = "#48b878"
+warn = "#e0a868"
+bad = "#e05a6a"
+
+green_dk = "#389060"
+red_dk = "#b84856"
+cyan = "#4e93a8"
+cyan_lt = "#86c8dc"
+purple = "#8a68c8"
+purple_lt = "#b492ec"
