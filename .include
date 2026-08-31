@@ -25,6 +25,8 @@
 + mako/*
 + profanity/
 + profanity/**
++ qt6ct/
++ qt6ct/qt6ct.conf
 + ripgrep/
 + ripgrep/**
 + sc-im/
