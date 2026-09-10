@@ -14,7 +14,7 @@
 # ║          '    '          '      )/       '      '          '               ║
 # ║                                 '                                          ║
 # ║                                                                            ║
-# ║      xn--gckvb8fzb.com * codeberg.org/mrus * marius@xn--gckvb8fzb.com      ║
+# ║      xn--gckvb8fzb.com  *  tty.fail/mrus  *  marius@xn--gckvb8fzb.com      ║
 # ║                                                                            ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
@@ -515,7 +515,10 @@ for_window [app_id = "zenity"] floating enable
 for_window [app_id = "yad"] floating enable
 for_window [app_id = "opensnitch_ui"] floating enable
 for_window [app_id = "org.pipewire.Helvum"] floating enable
-for_window [app_id = "eu.qtfm"] floating enable
+for_window [app_id = "me.proton.Pass"] {
+  floating enable
+  resize set 1200 px 800 px
+}
 for_window [app_id = "sysdeck"] {
   floating enable
   move up 300 px
@@ -581,7 +584,7 @@ exec mako
 exec --no-startup-id gnome-keyring-daemon --start --components=pkcs11,secrets,ssh
 
 # zpoweralertd
-# https://codeberg.org/mrus/zpoweralertd
+# https://tty.fail/mrus/zpoweralertd
 exec zpoweralertd
 
 # yubikey-touch-detector
@@ -589,7 +592,7 @@ exec zpoweralertd
 exec yubikey-touch-detector -libnotify
 
 # usbec
-# https://codeberg.org/mrus/usbec
+# https://tty.fail/mrus/usbec
 exec usbec
 
 # wlsunset
