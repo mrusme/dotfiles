@@ -1,20 +1,20 @@
 age-plugin-yubikey v0.5.1:
     age-plugin-yubikey
-angry_oxide v0.9.1 (https://github.com/Ragnt/AngryOxide#88528007):
+angry_oxide v0.9.1 (https://github.com/Ragnt/AngryOxide#736c48ad):
     angryoxide
-ast-grep v0.45.1:
+ast-grep v0.45.3:
     ast-grep
     sg
 binsider v0.3.2:
     binsider
-bpf-linker v0.11.0:
+bpf-linker v0.11.1:
     bpf-linker
 cargo-update v22.1.1:
     cargo-install-update
     cargo-install-update-config
 csview v1.3.4:
     csview
-deno v2.9.5:
+deno v2.9.6:
     deno
 difftastic v0.70.0:
     difft
@@ -22,7 +22,7 @@ eva v0.3.1:
     eva
 eza v0.23.5:
     eza
-fd-find v10.4.2:
+fd-find v10.5.0:
     fd
 fin v0.2.0 (/home/mrus/projects/github/fin/crates/fin):
     fin
@@ -30,20 +30,20 @@ gfold v2026.3.0:
     gfold
 git-delta v0.19.2:
     delta
-gitlogue v0.10.0:
+gitlogue v0.11.0:
     gitlogue
 gitui v0.28.1:
     gitui
 gpg-tui v0.11.2:
     gpg-tui
     gpg-tui-completions
-gping v1.20.4:
+gping v1.21.0:
     gping
-halloy v0.1.0 (https://github.com/squidowl/halloy#96322c9f):
+halloy v0.1.0 (https://github.com/squidowl/halloy#d6ad0239):
     halloy
 harper-ls v2.8.0:
     harper-ls
-havn v0.3.8:
+havn v0.3.9:
     havn
 helix-term v25.7.1 (https://github.com/helix-editor/helix#079a789e):
     hx
@@ -65,11 +65,11 @@ localsend-cli v1.18.2 (/home/mrus/projects/github/localsend/cli):
     localsend-cli
 lychee v0.24.2:
     lychee
-mq-run v0.8.3:
+mq-run v0.8.5:
     mq
 netscanner v0.6.43:
     netscanner
-oxipng v10.2.0:
+oxipng v10.2.1:
     oxipng
 paperback v0.0.0 (https://github.com/cyphar/paperback#aed348b9):
     paperback
@@ -91,7 +91,7 @@ rubyfmt-main v0.14.1 (https://github.com/fables-tales/rubyfmt#5185d3be):
     rubyfmt-main
 rustscan v2.4.1:
     rustscan
-serie v0.8.1:
+serie v0.9.0:
     serie
 so v0.4.10:
     so
@@ -99,7 +99,7 @@ sqruff v0.40.0:
     sqruff
 starship v1.26.0:
     starship
-tealdeer v1.8.1:
+tealdeer v1.9.0:
     tldr
 trippy v0.13.0:
     trip
