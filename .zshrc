@@ -15,6 +15,8 @@
 # ╚════════════════════════════════════════════════════════════════════════════╝
 # zmodload zsh/zprof
 
+[[ -o interactive ]] || return
+
 unset LS_COLORS
 unset LSCOLORS
 
