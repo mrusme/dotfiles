@@ -1082,90 +1082,64 @@ function listen() {
     "$url"
 }
 
+function __process_image() (
+  emulate -L zsh
+  local mode="$1" input="${2:a}" workdir output dimensions width height geometry
+  local -a resize
+  local -A info
+  workdir=$(mktemp -d "${input:h}/.zsh-image.XXXXXX") || return
+  output="$workdir/output.${input:e}"
+  trap 'command rm -f -- "$output"; command rmdir -- "$workdir"' EXIT
+  trap 'exit 130' INT
+  trap 'exit 143' TERM
+  trap 'exit 129' HUP
+  if [[ "$mode" == compress ]]; then
+    imager -f jpeg -i "$input" -o "$output" || return
+  else
+    dimensions=$(magick identify -format '%w %h' "$input") || return
+    read -r width height <<< "$dimensions"
+    [[ "$width" == <-> && "$height" == <-> ]] || return 1
+    if (( width < height )); then
+      geometry=2160x3840
+    else
+      geometry=3840x2160
+    fi
+    [[ "$mode" != scale ]] || resize=(-resize "${geometry}^")
+    magick "$input" "${resize[@]}" -gravity NorthWest \
+      -crop "${geometry}+0+0" +repage "$output" || return
+  fi
+  [[ -s "$output" ]] || return 1
+  zmodload -F zsh/stat b:zstat || return
+  zstat -H info -- "$input" || return
+  command chmod -- "$(( [##8] ${info[mode]} & 8#7777 ))" "$output" || return
+  __replace_file "$output" "$input"
+)
+
 function scale-and-crop-16-9() {
-  local iname=${1:-'*.jpg'}
-  awkcommand='{ 
-    if($1 < $2) { 
-      system("magick " $3 " -resize 2160x " $3); 
-      system("magick " $3 " -crop 2160x3840+0+0 " $3) 
-    } else { 
-      system("magick " $3 " -resize 3840x " $3); 
-      system("magick " $3 " -crop 3840x2160+0+0 " $3) 
-    }
-  }'
-  find ./ \
-    -type f \
-    -iname "$iname" \
-    -exec identify -format '%w %h %i\n' '{}' \; \
-      | awk "$awkcommand"
+  setopt localoptions pipefail
+  local file
+  find . -type f -iname "${1:-*.jpg}" -print0 |
+    while IFS= read -r -d '' file; do
+      __process_image scale "$file" || return
+    done
 }
 
 function crop-16-9() {
-  awkcommand='{ 
-    if($1 < $2) { 
-      system("magick " $3 " -crop 2160x3840+0+0 " $3) 
-    } else { 
-      system("magick " $3 " -crop 3840x2160+0+0 " $3) 
-    }
-  }'
-  find ./ \
-    -type f \
-    -iname '*.jpg' \
-    -exec identify -format '%w %h %i\n' '{}' \; \
-      | awk "$awkcommand"
+  setopt localoptions pipefail
+  local file
+  find . -type f -iname '*.jpg' -print0 |
+    while IFS= read -r -d '' file; do
+      __process_image crop "$file" || return
+    done
 }
 
 function compress-all-jpgs() {
-  find ./ \
-    -iname '*.jpg' \
-    -type f \
-    -size +2M \
-    -exec imager -f jpeg -i "{}" -o "{}" \;
-}
-
-
-# ╔════════════════════════════════════════════════════════════════════════════╗
-# ║ addrb (https://codeberg.org/mrus/addrb)                                    ║
-# ╚════════════════════════════════════════════════════════════════════════════╝
-
-function addrb() {
-  match=$(echo "$*" | grep -o '\-r')
-  if [ "$match" != "" ]
-  then 
-    export CARDDAV_USERNAME="$(pass show dav/username)"
-    export CARDDAV_PASSWORD="$(pass show dav/password)"
-    export CARDDAV_ENDPOINT="$(pass show dav/endpoint)"
-  fi
-  
-  command addrb $@
-}
-
-
-# ╔════════════════════════════════════════════════════════════════════════════╗
-# ║ caldr (https://codeberg.org/mrus/caldr)                                    ║
-# ╚════════════════════════════════════════════════════════════════════════════╝
-
-function caldr() {
-  match=$(echo "$*" | grep -o '\-r')
-  if [ "$match" != "" ]
-  then 
-    export CARDDAV_USERNAME="$(pass show dav/username)"
-    export CARDDAV_PASSWORD="$(pass show dav/password)"
-    export CARDDAV_ENDPOINT="$(pass show dav/endpoint)"
-  fi
-  
-  command caldr $@
-}
-
-
-# ╔════════════════════════════════════════════════════════════════════════════╗
-# ║ planor (https://codeberg.org/mrus/planor)                                  ║
-# ╚════════════════════════════════════════════════════════════════════════════╝
-
-function planor() {
-  export VULTR_API_KEY="$(pass show vultr/api-key)"
-  
-  command planor $@
+  setopt localoptions pipefail
+  local file
+  find . -type f -iname '*.jpg' -size +2097152c -print0 |
+    while IFS= read -r -d '' file; do
+      __process_image compress "$file" || return
+    done
 }
 
 
