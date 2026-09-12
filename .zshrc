@@ -492,23 +492,21 @@ unfunction _start_agent _add_identities
 function fzf_setup_using_fzf() {
   (( ${+commands[fzf]} )) || return 1
 
-  local fzf_ver=${"$(fzf --version)"#fzf }
+  local fzf_ver integration
+  fzf_ver=$(fzf --version) || return
+  fzf_ver=${fzf_ver#fzf }
 
   autoload -Uz is-at-least
-  is-at-least 0.48.0 ${${(s: :)fzf_ver}[1]} || return 1
+  if ! is-at-least 0.48.0 ${${(s: :)fzf_ver}[1]}; then
+    print -u2 -- 'fzf shell integration requires fzf 0.48.0 or newer.'
+    return 1
+  fi
 
-  eval "$(fzf --zsh)"
+  integration=$(fzf --zsh) || return
+  eval "$integration"
 }
 
-function fzf_setup_error() {
-  cat >&2 <<'EOF'
-fzf plugin: Cannot find fzf installation directory.
-Please add `export FZF_BASE=/path/to/fzf/install/dir` to your .zshrc
-EOF
-}
-
-fzf_setup_using_fzf \
-  || fzf_setup_error
+__is_available fzf && fzf_setup_using_fzf
 
 unset -f -m 'fzf_setup_*'
 
