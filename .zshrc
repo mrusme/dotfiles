@@ -347,7 +347,9 @@ export GPG_TTY=$TTY
 # Fix for passphrase prompt on the correct tty
 # https://www.gnupg.org/documentation/manuals/gnupg/Agent-Options.html#option-_002d_002denable_002dssh_002dsupport
 function _gpg-agent_update-tty_preexec {
+  __is_available gpg-connect-agent || return 0
   gpg-connect-agent updatestartuptty /bye &>/dev/null
+  return 0
 }
 autoload -U add-zsh-hook
 add-zsh-hook preexec _gpg-agent_update-tty_preexec
