@@ -1010,8 +1010,10 @@ function ghcoi() {
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
 function jitsi-link() {
-  url=$(printf "https://meet.jit.si/%s" "$(uuidgen)")
-  printf "%s" "${url}" | wl-copy
+  local id url
+  id=$(uuidgen) || return
+  url="https://meet.jit.si/$id"
+  printf "%s" "${url}" | wl-copy || return
   printf "%s\n" "${url}"
 }
 
