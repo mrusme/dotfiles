@@ -125,8 +125,10 @@ fi
 
 # SSH
 export SSH_KEY_PATH="${HOME}/.ssh/id_ed25519"
-export SSH_ASKPASS="${MY_PROJECTS_DIR}/ssh-askpass-zigtk/zig-out/bin/ssh-askpass-zigtk"
-export SSH_ASKPASS_REQUIRE="prefer"
+if [[ -x "$MY_PROJECTS_DIR/ssh-askpass-zigtk/zig-out/bin/ssh-askpass-zigtk" ]]; then
+  export SSH_ASKPASS="$MY_PROJECTS_DIR/ssh-askpass-zigtk/zig-out/bin/ssh-askpass-zigtk"
+  export SSH_ASKPASS_REQUIRE="prefer"
+fi
 
 # Pass 
 export PASSWORD_STORE_DIR="${CLOUD_DIR}/library/pass"
