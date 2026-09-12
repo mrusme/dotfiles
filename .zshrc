@@ -207,6 +207,7 @@ export DMENU_PROGRAM="sysdeck --dmenu"
 }
 
 typeset -U path PATH
+
 # Ripgrep
 export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/config"
 
@@ -1226,62 +1227,94 @@ function gh() (
 
 export DOTFILES="${MY_PROJECTS_DIR}/dotfiles"
 
-function dotfiles-update-remote() {
-  cp "${HOME}/.zshrc" "${DOTFILES}/.zshrc"
-  cp "${HOME}/.motd" "${DOTFILES}/.motd"
-  cp "${HOME}/.vale.ini" "${DOTFILES}/.vale.ini"
-  cp "${HOME}/.wallpaper" "${DOTFILES}/.wallpaper"
-  cp -R "${HOME}/.themes/Netrunner" "${DOTFILES}/.themes/"
-
-  rsync -avH \
-    --include-from="${DOTFILES}/.include" \
-    "${XDG_CONFIG_HOME}/" "${DOTFILES}/.config/" --delete-before
-
-  mkdir -p "${DOTFILES}/usr/local/bin/"
-  rsync -avH \
-    --include-from="${DOTFILES}/.include" \
-    "/usr/local/" "${DOTFILES}/usr/local/" --delete
-
-  cargo install --list > "${DOTFILES}/cargo_install_--list"
-
-  npm list -g --depth=0 > "${DOTFILES}/npm_list_-g_--depth_0"
-
-  /bin/ls -1 ~/.go/bin/ \
-    | while read -r bin; \
-    do go version -m "${HOME}/.go/bin/${bin}" \
-    | grep '^[[:space:]]path' \
-    | awk '{ print $2 }' \
-    | grep '^github.com' \
-    | sort \
-    | uniq;\
-    done > "${DOTFILES}/go_list_github-com"
-
-  gh extension list > "${DOTFILES}/gh_extension_list"
-
-  git -C "${DOTFILES}" commit -a -S
-  return 0
+function __dotfiles_repository() {
+  local root
+  [[ "$DOTFILES" == /* && "${DOTFILES:A}" != / &&
+     "${DOTFILES:A}" != "${HOME:A}" ]] || return 1
+  root=$(git -C "$DOTFILES" rev-parse --show-toplevel) || return
+  [[ "${root:A}" == "${DOTFILES:A}" && -r "$DOTFILES/.include" ]] || return 1
 }
 
-function dotfiles-update-local() {
-  printf "are you sure? (y/n) "
-  read -r confirmation
+function dotfiles-update-remote() (
+  __require_commands git rsync cp mkdir mktemp mv cargo npm go gh pass || return
+  __dotfiles_repository \
+  || { print -u2 -- 'Invalid dotfiles repository or include file!'; return 1; }
+  local repo_status file stage
+  local -a inventories=(cargo_install_--list npm_list_-g_--depth_0
+    go_list_github-com gh_extension_list)
+  repo_status=$(git -C "$DOTFILES" status --porcelain) || return
+  if [[ -n "$repo_status" ]]; then
+    print -u2 -- 'Commit or stash existing dotfiles changes before exporting!'
+    return 1
+  fi
+  for file in .zshrc .motd .vale.ini .wallpaper .themes/Netrunner; do
+    [[ -r "$HOME/$file" ]] \
+    || { print -u2 -- "Missing source: $HOME/$file"; return 1; }
+  done
+  [[ -d "$XDG_CONFIG_HOME" && -d /usr/local ]] || return 1
+  for file in .zshrc .motd .vale.ini .wallpaper .config .themes \
+      .themes/Netrunner usr usr/local usr/local/bin "${inventories[@]}"; do
+    [[ ! -L "$DOTFILES/$file" ]] || return 1
+  done
 
-  [ "${confirmation}" != "y" ] && return 1
+  stage=$(mktemp -d "$DOTFILES/.dotfiles-export.XXXXXX") || return
+  trap 'command rm -f -- "${stage}/${^inventories[@]}"
+    command rmdir -- "$stage"' EXIT
+  trap 'exit 130' INT
+  trap 'exit 143' TERM
+  trap 'exit 129' HUP
+  cargo install --list > "$stage/cargo_install_--list" || return
+  npm list -g --depth=0 > "$stage/npm_list_-g_--depth_0" || return
+  __go_tool_paths > "$stage/go_list_github-com" || return
+  gh extension list > "$stage/gh_extension_list" || return
 
-  cp "${DOTFILES}/.zshrc" "${HOME}/.zshrc"
-  cp "${DOTFILES}/.motd" "${HOME}/.motd"
-  cp "${DOTFILES}/.vale.ini" "${HOME}/.vale.ini"
-  cp "${DOTFILES}/.wallpaper" "${HOME}/.wallpaper"
-  cp -R "${DOTFILES}/.themes/Netrunner" "${HOME}/.themes/"
+  for file in .zshrc .motd .vale.ini .wallpaper; do
+    command cp -- "$HOME/$file" "$DOTFILES/$file" || return
+  done
+  command mkdir -p -- "$DOTFILES/.themes" "$DOTFILES/.config" \
+    "$DOTFILES/usr/local/bin" || return
+  command cp -R -- "$HOME/.themes/Netrunner" "$DOTFILES/.themes/" || return
+  rsync -avH --include-from="$DOTFILES/.include" \
+    "$XDG_CONFIG_HOME/" "$DOTFILES/.config/" --delete-before || return
+  rsync -avH --include-from="$DOTFILES/.include" \
+    /usr/local/ "$DOTFILES/usr/local/" --delete || return
+  for file in "${inventories[@]}"; do
+    __replace_file "$stage/$file" "$DOTFILES/$file" || return
+  done
+)
 
-  rsync -avH \
-    --include-from="${DOTFILES}/.include" \
-    "${DOTFILES}/.config/" "${XDG_CONFIG_HOME}/" 
+function dotfiles-update-local() (
+  __require_commands git rsync cp mkdir || return
+  __dotfiles_repository \
+  || { print -u2 -- 'Invalid dotfiles repository or include file!'; return 1; }
+  local confirmation file
+  local -a binaries=("$DOTFILES"/usr/local/bin/*(N.))
+  integer install_binaries=1
+  for file in .zshrc .motd .vale.ini .wallpaper .themes/Netrunner .config; do
+    [[ -r "$DOTFILES/$file" ]] \
+      || { print -u2 -- "Missing source: $DOTFILES/$file"; return 1; }
+  done
+  [[ "$XDG_CONFIG_HOME" == /* && "$XDG_CONFIG_HOME" != / && -w "$HOME" ]] \
+    || return 1
+  if (( $#binaries )) && [[ ! -w /usr/local/bin ]]; then
+    print -u2 -- '/usr/local/bin is not writable, skipping binaries!'
+    install_binaries=0
+  fi
+  read -r 'confirmation?Apply dotfiles to this machine? [y/N] ' || return 1
+  [[ "$confirmation" == [yY] || "$confirmation" == [yY][eE][sS] ]] || return 1
 
-  cp "${DOTFILES}/usr/local/bin/"* /usr/local/bin/
-
+  for file in .zshrc .motd .vale.ini .wallpaper; do
+    command cp -- "$DOTFILES/$file" "$HOME/$file" || return
+  done
+  command mkdir -p -- "$HOME/.themes" "$XDG_CONFIG_HOME" || return
+  command cp -R -- "$DOTFILES/.themes/Netrunner" "$HOME/.themes/" || return
+  rsync -avH --include-from="$DOTFILES/.include" \
+    "$DOTFILES/.config/" "$XDG_CONFIG_HOME/" || return
+  if (( install_binaries && $#binaries )); then
+    command cp -- "${binaries[@]}" /usr/local/bin/ || return
+  fi
   return 0
-}
+)
 
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
