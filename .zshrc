@@ -180,7 +180,11 @@ export DMENU_PROGRAM="sysdeck --dmenu"
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
 # LD_LIBRARY_PATH
-export LD_LIBRARY_PATH="/usr/local/lib64:$LD_LIBRARY_PATH"
+() {
+  local -aU library_paths=(/usr/local/lib64 ${(@s/:/)LD_LIBRARY_PATH})
+  library_paths=("${(@)library_paths:#}")
+  export LD_LIBRARY_PATH="${(j/:/)library_paths}"
+}
 
 # Ripgrep
 export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/config"
