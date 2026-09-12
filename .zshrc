@@ -1054,11 +1054,12 @@ function rip() {
 }
 
 function listen() {
-  url="$1"
+  local url="$1"
   if [ "$1" = "to" ]
   then 
     url="$2"
   fi 
+  [[ -n "$url" ]] || { print -u2 -- 'usage: listen [to] <URL>'; return 1; }
 
   mpv \
     --quiet \
