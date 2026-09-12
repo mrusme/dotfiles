@@ -154,10 +154,12 @@ fi
 
 # SSH
 export SSH_KEY_PATH="${HOME}/.ssh/id_ed25519"
-if [[ -x "$MY_PROJECTS_DIR/ssh-askpass-zigtk/zig-out/bin/ssh-askpass-zigtk" ]]; then
-  export SSH_ASKPASS="$MY_PROJECTS_DIR/ssh-askpass-zigtk/zig-out/bin/ssh-askpass-zigtk"
+ssh_askpass_bin="$MY_PROJECTS_DIR/ssh-askpass-zigtk/zig-out/bin"
+if [[ -x "$ssh_askpass_bin/ssh-askpass-zigtk" ]]; then
+  export SSH_ASKPASS="$ssh_askpass_bin/ssh-askpass-zigtk"
   export SSH_ASKPASS_REQUIRE="prefer"
 fi
+unset ssh_askpass_bin
 
 # Pass 
 export PASSWORD_STORE_DIR="${CLOUD_DIR}/library/pass"
@@ -519,14 +521,15 @@ export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git/*"'
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
 if (( ${+terminfo[smkx]} )) && (( ${+terminfo[rmkx]} )); then
-  function zle-line-init() {
+  function __keypad_init() {
     echoti smkx
   }
-  function zle-line-finish() {
+  function __keypad_finish() {
     echoti rmkx
   }
-  zle -N zle-line-init
-  zle -N zle-line-finish
+  autoload -Uz add-zle-hook-widget
+  add-zle-hook-widget line-init __keypad_init
+  add-zle-hook-widget line-finish __keypad_finish
 fi
 
 # Use emacs key bindings
