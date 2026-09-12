@@ -101,8 +101,9 @@ export XDG_VIDEOS_DIR="${CLOUD_DIR}/videos"
 # ║ Ghostty                                                                    ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
-if [[ -n "$GHOSTTY_RESOURCES_DIR" &&
-      -r "$GHOSTTY_RESOURCES_DIR/shell-integration/zsh/ghostty-integration" ]]; then
+if [[ -n "$GHOSTTY_RESOURCES_DIR" && -r \
+      "$GHOSTTY_RESOURCES_DIR/shell-integration/zsh/ghostty-integration" ]]
+then
   builtin source \
     "${GHOSTTY_RESOURCES_DIR}/shell-integration/zsh/ghostty-integration"
 fi
