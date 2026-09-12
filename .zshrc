@@ -186,6 +186,7 @@ export DMENU_PROGRAM="sysdeck --dmenu"
   export LD_LIBRARY_PATH="${(j/:/)library_paths}"
 }
 
+typeset -U path PATH
 # Ripgrep
 export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/config"
 
