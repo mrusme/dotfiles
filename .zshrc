@@ -669,7 +669,15 @@ alias wget='wget --no-hsts'
 alias rmrf='rm -rf'
 alias ehco=echo
 
-alias tailall='tail -f $(find /var/log -type f | grep -v '.gz$')'
+function tailall() {
+  local file
+  local -a files
+  while IFS= read -r -d '' file; do
+    files+=("$file")
+  done < <(find /var/log -type f ! -name '*.gz' -print0)
+  (( $#files )) || return 1
+  command tail -f -- "${files[@]}"
+}
 
 alias my-ip="curl http://ipecho.net/plain; echo"
 
