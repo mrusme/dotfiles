@@ -802,23 +802,29 @@ alias d64=decode64
 # ║ Mosh/SSH wrapper                                                           ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
+function __mosh_host() {
+  emulate -L zsh
+  local host="${(L)1}" config="$2" line previous=''
+  [[ -r "$config" ]] || return 1
+  while IFS= read -r line || [[ -n "$line" ]]; do
+    line=${(L)line}
+    [[ "$previous" == \#*features:*mosh* && "$line" == "host $host"* ]] &&
+      return 0
+    previous=$line
+  done < "$config"
+  return 1
+}
+
 function ssh {
-  if [ "$2" = "" ]
-  then
-    conn="$1"
-    sshhost=$(printf "%s" "${conn}" | cut -d '@' -f2)
-    if rg -U -i "^#.*Features:.*mosh.*\nHost ${sshhost}" \
-      "${HOME}/.ssh/config" > /dev/null
-    then
-      printf "connecting with mosh ...\n"
-      command mosh ${conn}
-    else
-      printf "connecting with ssh ...\n"
-      command ssh ${conn}
-    fi
+  if (( $# == 1 )) && [[ -n "$1" && "$1" != -* ]] &&
+      __is_available mosh && __mosh_host "${1##*@}" "$HOME/.ssh/config"; then
+    print -u2 -- 'connecting with mosh ...'
+    command mosh "$1"
   else
-    printf "connecting with ssh ...\n"
-    command ssh $@
+    print -u2 -- 'connecting with ssh ...'
+    local term="$TERM"
+    [[ "$term" != xterm-ghostty ]] || term=xterm-256color
+    TERM="$term" command ssh "$@"
   fi
 }
 
