@@ -572,8 +572,12 @@ bindkey '\C-x\C-e' edit-command-line
 # ║ Global API keys                                                            ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
-if [[ -o login ]]; then
-  export COINGECKO_API_KEY="$(pass show coingecko/api-key)"
+if [[ -o login ]] && __is_available pass; then
+  () {
+    local key
+    key=$(pass show coingecko/api-key) && [[ -n "$key" ]] &&
+      export COINGECKO_API_KEY="$key"
+  }
 fi
 
 
