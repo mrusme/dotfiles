@@ -734,35 +734,77 @@ alias bookmarks="git -C ${JRNL} checkout develop \
 # ║ age encrypt/decrypt                                                        ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
-encrypt() {
-  if [[ $# -eq 0 ]]; then
-    printf "%s: <filename>\n" "$0"
+encrypt() (
+  emulate -L zsh
+  umask 077
+  if (( $# != 1 )) || [[ ! -f "$1" || ! -r "$1" || "$1" == *.age ]]; then
+    print -u2 -- 'usage: encrypt <readable file without .age suffix>'
     return 1
   fi
-  if [[ "$1" =~ \.age$ ]]; then
-    printf "%s: File is already an age file\n" "$0"
-    return 1
-  fi
-  /bin/cat "$1" \
-  | age -r $(pass show age/id1) -r $(pass show age/id2) -o "$1.age"
-}
+  local input="${1:a}" recipient1 recipient2 workdir
+  recipient1=$(pass show age/id1) && [[ -n "$recipient1" ]] || return 1
+  recipient2=$(pass show age/id2) && [[ -n "$recipient2" ]] || return 1
+  workdir=$(mktemp -d "${input:h}/.zsh-encrypt.XXXXXX") || return
+  trap 'command rm -f -- "$workdir/output"; command rmdir -- "$workdir"' EXIT
+  trap 'exit 130' INT
+  trap 'exit 143' TERM
+  trap 'exit 129' HUP
+  age -r "$recipient1" -r "$recipient2" -o "$workdir/output" "$input" || return
+  __replace_file "$workdir/output" "$input.age"
+)
 
-decrypt() {
-  if [[ $# -eq 0 ]]; then
-    printf "%s: <filename>\n" "$0"
+decrypt() (
+  emulate -L zsh
+  umask 077
+  if (( $# != 1 )) || [[ ! -f "$1" || ! -r "$1" || "$1" != *.age ]]; then
+    print -u2 -- 'usage: decrypt <readable .age file>'
     return 1
   fi
-  if [[ ! "$1" =~ \.age$ ]]; then
-    printf "%s: File is not an age file\n" "$0"
+  local input="${1:a}" destination="${${1:a}%.age}" confirmation fd
+  local keydir='' workdir=''
+  integer overwrite=0 claimed=0
+  if [[ -d "$destination" ]]; then
+    print -u2 -- "Destination is a directory: $destination"
     return 1
   fi
-  id1file=$(mktemp)
-  id2file=$(mktemp)
-  pass show age/id1-identity > "$id1file"
-  pass show age/id2-identity > "$id2file"
-  /bin/cat "$1" | age -d -i "$id1file" -i "$id2file" > "${1%.age}"
-  rm "$id1file" "$id2file"
-}
+  if [[ -e "$destination" || -L "$destination" ]]; then
+    read -r "confirmation?Replace $destination? [y/N] " || return 1
+    [[ "$confirmation" == [yY] || "$confirmation" == [yY][eE][sS] ]] \
+    || return 1
+    overwrite=1
+  fi
+  zmodload -F zsh/system b:sysopen || return
+  trap 'command rm -rf -- ${keydir:+"$keydir"} ${workdir:+"$workdir"}' EXIT
+  trap 'exit 130' INT
+  trap 'exit 143' TERM
+  trap 'exit 129' HUP
+  keydir=$(mktemp -d "${TMPDIR:-/tmp}/zsh-decrypt.XXXXXX") || return
+  pass show age/id1-identity > "$keydir/id1" && [[ -s "$keydir/id1" ]] \
+  || return 1
+  pass show age/id2-identity > "$keydir/id2" && [[ -s "$keydir/id2" ]] \
+  || return 1
+  workdir=$(mktemp -d "${destination:h}/.zsh-decrypt.XXXXXX") || return
+  age -d -i "$keydir/id1" -i "$keydir/id2" -o "$workdir/output" "$input" \
+  || return
+  command rm -rf -- "$keydir" && keydir=''
+  if (( ! overwrite )); then
+    if sysopen -w -o excl,creat -u fd -- "$destination" 2>/dev/null; then
+      exec {fd}>&-
+      claimed=1
+    elif [[ -e "$destination" || -L "$destination" ]]; then
+      read -r "confirmation?Replace $destination? [y/N] " || return 1
+      [[ "$confirmation" == [yY] || "$confirmation" == [yY][eE][sS] ]] \
+      || return 1
+    else
+      print -u2 -- "Cannot create $destination"
+      return 1
+    fi
+  fi
+  if ! __replace_file "$workdir/output" "$destination"; then
+    (( ! claimed )) || command rm -f -- "$destination"
+    return 1
+  fi
+)
 
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
