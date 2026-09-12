@@ -586,6 +586,7 @@ fi
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
 # https://github.com/zsh-users/zsh/blob/master/Functions/Misc/zmv
+autoload -Uz zmv
 alias zmv='noglob zmv -vW'
 
 # https://github.com/ajeetdsouza/zoxide
