@@ -324,7 +324,8 @@ ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 ZSH_AUTOSUGGESTIONS="${HOME}/.zsh/zsh-autosuggestions"
 ZSH_COMPDUMP="${XDG_CACHE_HOME}/.zcompdump-${HOST}"
 
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh 
+[[ -r "$ZSH_AUTOSUGGESTIONS/zsh-autosuggestions.zsh" ]] &&
+  source "$ZSH_AUTOSUGGESTIONS/zsh-autosuggestions.zsh"
 
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
