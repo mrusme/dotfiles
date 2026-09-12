@@ -256,11 +256,13 @@ then
   alias desk="sway-launch"
   if test -z "${XDG_RUNTIME_DIR}"
   then
-    export XDG_RUNTIME_DIR="/tmp/${UID}-runtime-dir"
-    if ! test -d "${XDG_RUNTIME_DIR}"
-    then
-      mkdir "${XDG_RUNTIME_DIR}"
-      chmod 0700 "${XDG_RUNTIME_DIR}"
+    if __private_directory "/run/user/$UID" 2>/dev/null; then
+      export XDG_RUNTIME_DIR="/run/user/$UID"
+    elif __private_directory "/tmp/${UID}-runtime-dir"; then
+      # Fallback for hosts without a session-managed runtime directory.
+      export XDG_RUNTIME_DIR="/tmp/${UID}-runtime-dir"
+    else
+      print -u2 -- 'Cannot establish a private XDG_RUNTIME_DIR.'
     fi
   fi
 
