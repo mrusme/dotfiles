@@ -96,21 +96,15 @@ __is_available tmux \
 # ║ General config                                                             ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
-export HISTFILE="${HOME}/.zsh_history"
-export HISTCONTROL="ignoredups:ignorespace"
-export HISTSIZE="100000"
-export HISTFILESIZE="200000"
-export SAVEHIST="${HISTSIZE}"
+HISTFILE="${HOME}/.zsh_history"
+HISTSIZE=600000
+SAVEHIST=500000
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_IGNORE_SPACE
 setopt EXTENDED_HISTORY
 setopt HIST_EXPIRE_DUPS_FIRST
-setopt HIST_IGNORE_DUPS 
 setopt HIST_VERIFY
 setopt SHARE_HISTORY
-
-export TERM="xterm-256color"
-export COLUMNS="80"
 
 # INFO: `EDITOR` check further down below
 export EDITOR="vim"
