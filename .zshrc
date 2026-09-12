@@ -567,11 +567,6 @@ autoload -U edit-command-line
 zle -N edit-command-line
 bindkey '\C-x\C-e' edit-command-line
 
-# Launch bemenu
-__bemenu() { BEMENU_BACKEND=curses bemenu-run; zle redisplay }
-zle -N __bemenu
-bindkey '^ ' __bemenu
-
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
 # ║ Global API keys                                                            ║
