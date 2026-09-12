@@ -185,19 +185,8 @@ Etc/UTC;Europe/Berlin;\
 Asia/Bangkok;Asia/Tokyo;\
 Australia/Melbourne;Pacific/Auckland;"
 
-# https://notmuchmail.org/manpages/notmuch-1/
-export NOTMUCH_PROFILE="01"
-
-# https://codeberg.org/mrus/zeit
+# https://tty.fail/mrus/zeit
 export ZEIT_DB="${CLOUD_DIR}/library/tools/zeit.db"
-
-# https://codeberg.org/mrus/addrb
-export ADDRB_DB="${HOME}/.cache/addrb.db"
-export ADDRB_TEMPLATE="${HOME}/.config/addrb.tmpl"
-
-# https://codeberg.org/mrus/caldr
-export CALDR_DB="${HOME}/.cache/caldr.db"
-export CALDR_TEMPLATE="${HOME}/.config/caldr.tmpl"
 
 # https://tty.fail/mrus/sysdeck
 export DMENU_PROGRAM="sysdeck --dmenu"
