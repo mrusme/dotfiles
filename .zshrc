@@ -209,9 +209,13 @@ fi
 #&& source "${HOME}/.local/share/pyenv/bin/activate"
 
 # Rubygems
-__is_available gem \
-&& export PATH="${HOME}/.gem/bin:${PATH}" \
-&& export PATH="$(ruby -r rubygems -e 'puts Gem.user_dir')/bin:${PATH}"
+if __is_available gem && __is_available ruby; then
+  () {
+    local gem_dir
+    gem_dir=$(ruby -r rubygems -e 'puts Gem.user_dir') || return
+    [[ -n "$gem_dir" ]] && path=("$gem_dir/bin" "$HOME/.gem/bin" "${path[@]}")
+  }
+fi
 
 # NPM
 export NPM_PACKAGES="${HOME}/.local/lib/node_modules"
