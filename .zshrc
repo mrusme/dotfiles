@@ -1141,11 +1141,11 @@ function compress-all-jpgs() {
 # ║ gh                                                                         ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
-function gh() {
-  export GITHUB_TOKEN="$(pass show github/token)"
-  
-  command gh $@
-}
+function gh() (
+  local -x GITHUB_TOKEN
+  GITHUB_TOKEN=$(pass show github/token) && [[ -n "$GITHUB_TOKEN" ]] || return 1
+  command gh "$@"
+)
 
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
