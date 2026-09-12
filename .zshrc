@@ -988,31 +988,14 @@ alias git-crypt-add-myself="git-crypt add-gpg-user \
 4D3899AF73E7F5FE9B39C822272ED814BF63261F"
 
 function git-find-modified-repos() {
-  find ./ -type d -name '.git' | while read -r dir
-  do 
-    repo=$(dirname "${dir}")
-    repostatus=$(git -C "${repo}" status -s)
-    if [ -n "${repostatus}" ]
-    then 
-      printf "%s\n" "${repo}"
-    fi 
-  done
-}
-
-# github checkout issue
-function ghcoi() {
-  if [ "$1" = "" ]
-  then
-    printf "usage: %s <issue number>\n" "$0"
-    exit 1
-  fi
-
-  git checkout -b "$1-$(gh issue view "$1" --json title \
-    | jq --raw-output '.title' \
-    | iconv -t ascii//TRANSLIT \
-    | sed -E 's/[^a-zA-Z0-9]+/-/g' \
-    | sed -E 's/^-+|-+$//g' \
-    | tr '[:upper:]' '[:lower:]')"
+  setopt localoptions pipefail
+  local dir repo repostatus
+  find . -name .git \( -type d -o -type f \) -print0 -prune |
+    while IFS= read -r -d '' dir; do
+      repo=${dir:h}
+      repostatus=$(git -C "$repo" status --short) || return
+      [[ -z "$repostatus" ]] || print -r -- "$repo"
+    done
 }
 
 
