@@ -198,11 +198,11 @@ export GOPROXY="direct"
 export GOTOOLCHAIN="local"
 
 # Cargo (Rust)
-[ -d "${HOME}/.cargo/bin" ] \
-&& export PATH="${HOME}/.cargo/bin:${PATH}"
-
-[ -e "${HOME}/.cargo/env" ] \
-&& source "${HOME}/.cargo/env"
+if [[ -r "$HOME/.cargo/env" ]]; then
+  source "$HOME/.cargo/env"
+elif [[ -d "$HOME/.cargo/bin" ]]; then
+  path=("$HOME/.cargo/bin" "${path[@]}")
+fi
 
 # Python
 #[ -e "${HOME}/.local/share/pyenv/bin/activate" ] \
