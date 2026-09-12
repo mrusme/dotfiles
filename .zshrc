@@ -1231,8 +1231,10 @@ DOT_MOTD="${HOME}/.motd"
 # ║ Stoicism                                                                   ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
-fortune stoic
-printf "\n"
+if __is_available fortune; then
+  fortune stoic
+  printf "\n"
+fi
 
 
 __is_available starship \
