@@ -689,7 +689,7 @@ __is_available doas linux \
 && alias fucking='doas' \
 || alias fucking='sudo'
 
-alias root='su -l -s /bin/bash root -'
+alias root="su -l -- root -c 'exec bash -l'"
 
 alias uuid=uuidgen
 alias wget='wget --no-hsts'
