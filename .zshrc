@@ -276,20 +276,32 @@ fi
 # ║ Completions                                                                ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
-autoload -U compaudit compinit zrecompile
-
-if [[ -z "$ZSH_COMPDUMP" ]]; then
-  ZSH_COMPDUMP="${ZDOTDIR:-$XDG_CACHE_HOME}/.zcompdump-${SHORT_HOST}-${ZSH_VERSION}"
-fi 
-
-compinit -i -d "$ZSH_COMPDUMP"
-
-if command mkdir "${ZSH_COMPDUMP}.lock" 2>/dev/null; then
-  zrecompile -q -p "$ZSH_COMPDUMP"
-  command rm -rf "$ZSH_COMPDUMP.zwc.old" "${ZSH_COMPDUMP}.lock"
-fi
-
+autoload -Uz compaudit compinit zrecompile
 zmodload -i zsh/complist
+ZSH_CACHE_DIR="$XDG_CACHE_HOME/zsh"
+ZSH_COMPDUMP="$ZSH_CACHE_DIR/.zcompdump-${SHORT_HOST}-${ZSH_VERSION}"
+
+() {
+  local lockfd
+  if __owned_directory "$ZSH_CACHE_DIR" && zmodload zsh/system; then
+    : >> "$ZSH_COMPDUMP.lock"
+    if zsystem flock -t 1 -f lockfd "$ZSH_COMPDUMP.lock"; then
+      {
+        compinit -i -d "$ZSH_COMPDUMP"
+        if [[ -f "$ZSH_COMPDUMP" && ( ! -f "$ZSH_COMPDUMP.zwc" ||
+              "$ZSH_COMPDUMP" -nt "$ZSH_COMPDUMP.zwc" ) ]]; then
+          zrecompile -q -p "$ZSH_COMPDUMP" &&
+            command rm -f -- "$ZSH_COMPDUMP.zwc.old"
+        fi
+      } always {
+        zsystem flock -u "$lockfd"
+      }
+      return
+    fi
+  fi
+  compinit -i -D -d /dev/null
+}
+
 WORDCHARS=''
 
 unsetopt menu_complete   # do not autoselect the first completion entry
