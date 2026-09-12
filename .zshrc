@@ -376,116 +376,116 @@ function _gpg-agent_update-tty_preexec {
 autoload -U add-zsh-hook
 add-zsh-hook preexec _gpg-agent_update-tty_preexec
 
-# If enable-ssh-support is set, fix ssh agent integration
-if [[ $(gpgconf --list-options gpg-agent 2>/dev/null \
-        | awk -F: '$1=="enable-ssh-support" {print $10}') = 1 ]]; then
-  unset SSH_AGENT_PID
-  if [[ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]]; then
-    export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
-  fi
-fi
-
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
 # ║ SSH                                                                        ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
-ssh_env_cache="$HOME/.ssh/environment-$SHORT_HOST"
+function __ssh_agent_alive() {
+  local sock="$1" REPLY
+  [[ -S "$sock" ]] || return 1
+  zmodload -F zsh/net/socket b:zsocket || return
+  zsocket -- "$sock" 2>/dev/null || return 1
+  exec {REPLY}>&-
+}
+
+function __read_ssh_agent_cache() {
+  local cache="$1" line sock pid
+  local -A info
+  [[ -f "$cache" && ! -L "$cache" && -O "$cache" ]] || return 1
+  zmodload -F zsh/stat b:zstat || return
+  zstat -H info -- "$cache" || return
+  (( (info[mode] & 8#022) == 0 )) || return 1
+  while IFS= read -r line; do
+    case "$line" in
+      SSH_AUTH_SOCK=*) sock=${${line#*=}%%;*}; sock=${(Q)sock} ;;
+      SSH_AGENT_PID=*) pid=${${line#*=}%%;*} ;;
+    esac
+  done < "$cache"
+  [[ "$pid" == <-> ]] && __ssh_agent_alive "$sock" || return 1
+  export SSH_AUTH_SOCK="$sock" SSH_AGENT_PID="$pid"
+}
 
 function _start_agent() {
-  # Check if ssh-agent is already running
-  if [[ -f "$ssh_env_cache" ]]; then
-    . "$ssh_env_cache" > /dev/null
+  __ssh_agent_alive "${SSH_AUTH_SOCK:-}" && return 0
+  __is_available ssh-agent || return 1
+  [[ -d "$HOME/.ssh" ]] || return 1
 
-    # Test if $SSH_AUTH_SOCK is visible
-    zmodload zsh/net/socket
-    if [[ -S "$SSH_AUTH_SOCK" ]] \
-    && zsocket "$SSH_AUTH_SOCK" 2>/dev/null; then
-      return 0
-    fi
-  fi
+  local agent_dir="$ZSH_CACHE_DIR/ssh-$SHORT_HOST"
+  local cache="$agent_dir/environment" lockfd output line sock pid tmp=''
+  __owned_directory "$ZSH_CACHE_DIR" && __private_directory "$agent_dir" \
+  || return 1
+  zmodload zsh/system || return
+  : >> "$agent_dir/lock"
+  zsystem flock -t 3 -f lockfd "$agent_dir/lock" || return
+  {
+    __read_ssh_agent_cache "$cache" && return 0
+    __read_ssh_agent_cache "$HOME/.ssh/environment-$SHORT_HOST" && return 0
+    __read_ssh_agent_cache "$HOME/.ssh/environment-" && return 0
 
-  if [[ ! -d "$HOME/.ssh" ]]; then
-    echo "ssh-agent plugin requires ~/.ssh directory"
-    return 1
-  fi
-
-  # Set a maximum lifetime for identities added to ssh-agent
-  local lifetime
-
-  # start ssh-agent and setup environment
-  echo >&2 "Starting ssh-agent ..."
-  ssh-agent -s ${lifetime:+-t} ${lifetime} \
-    | sed '/^echo/d' >! "$ssh_env_cache"
-  chmod 600 "$ssh_env_cache"
-  . "$ssh_env_cache" > /dev/null
+    print -u2 -- 'Starting ssh-agent ...'
+    output=$(ssh-agent -a "$agent_dir/agent.$$.sock" -s) || return
+    for line in "${(@f)output}"; do
+      case "$line" in
+        SSH_AUTH_SOCK=*) sock=${${line#*=}%%;*} ;;
+        SSH_AGENT_PID=*) pid=${${line#*=}%%;*} ;;
+      esac
+    done
+    [[ "$pid" == <-> ]] && __ssh_agent_alive "$sock" || return 1
+    export SSH_AUTH_SOCK="$sock" SSH_AGENT_PID="$pid"
+    tmp=$(mktemp "$agent_dir/environment.XXXXXX") || return
+    printf 'SSH_AUTH_SOCK=%s;\nSSH_AGENT_PID=%s;\n' "$sock" "$pid" > "$tmp" \
+    || return
+    __replace_file "$tmp" "$cache"
+  } always {
+    [[ -z "$tmp" ]] || command rm -f -- "$tmp"
+    zsystem flock -u "$lockfd"
+  }
 }
 
 function _add_identities() {
   local id file line sig lines
   local -a identities loaded_sigs loaded_ids not_loaded
 
-  # check for .ssh folder presence
   if [[ ! -d "$HOME/.ssh" ]]; then
     return
   fi
 
-  # add default keys if no identities were set up via zstyle
-  # this is to mimic the call to ssh-add with no identities
   if [[ ${#identities} -eq 0 ]]; then
-    # key list found on `ssh-add` man page's DESCRIPTION section
-    for id in id_rsa id_dsa id_ecdsa id_ed25519 id_ed25519_sk identity; do
-      # check if file exists
+    for id in id_rsa id_dsa id_ecdsa id_ecdsa_sk id_ed25519 id_ed25519_sk \
+        identity; do
       [[ -f "$HOME/.ssh/$id" ]] && identities+=($id)
     done
   fi
 
-  # get list of loaded identities' signatures and filenames
-  if lines=$(ssh-add -l); then
+  (( ${#identities} )) || return 0
+
+  if lines=$(ssh-add -l 2>/dev/null); then
     for line in ${(f)lines}; do
       loaded_sigs+=${${(z)line}[2]}
       loaded_ids+=${${(z)line}[3]}
     done
   fi
 
-  # add identities if not already loaded
   for id in $identities; do
-    # if id is an absolute path, make file equal to id
     [[ "$id" = /* ]] && file="$id" || file="$HOME/.ssh/$id"
-    # check for filename match, otherwise try for signature match
     if [[ -f $file && ${loaded_ids[(I)$file]} -le 0 ]]; then
-      sig="$(ssh-keygen -lf "$file" | awk '{print $2}')"
+      line=$(ssh-keygen -lf "$file") || return
+      sig=${${(z)line}[2]}
       [[ ${loaded_sigs[(I)$sig]} -le 0 ]] && not_loaded+=("$file")
     fi
   done
 
-  # abort if no identities need to be loaded
   if [[ ${#not_loaded} -eq 0 ]]; then
     return
   fi
 
-  local args
-
-  ssh-add "${args[@]}" ${^not_loaded}
+  ssh-add "${not_loaded[@]}"
 }
 
-# Add a nifty symlink for screen/tmux if agent forwarding is enabled
-if [[ -n "$SSH_AUTH_SOCK" ]]; then
-  if [[ ! -L "$SSH_AUTH_SOCK" ]]; then
-    if [[ -n "$TERMUX_VERSION" ]]; then
-      ln -sf "$SSH_AUTH_SOCK" "$PREFIX"/tmp/ssh-agent-$USERNAME-screen
-    else
-      ln -sf "$SSH_AUTH_SOCK" /tmp/ssh-agent-$USERNAME-screen
-    fi
-  fi
-else
-  _start_agent
+if __is_available ssh-add && _start_agent; then
+  _add_identities
 fi
-
-_add_identities
-
-unset agent_forwarding ssh_env_cache
-unfunction _start_agent _add_identities
 
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
