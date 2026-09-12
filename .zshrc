@@ -300,7 +300,7 @@ zstyle ':completion:*:*:*:*:processes' command \
 zstyle ':completion:*:cd:*' tag-order \
   local-directories directory-stack path-directories
 zstyle ':completion:*' use-cache yes
-zstyle ':completion:*' cache-path $ZSH_CACHE_DIR
+zstyle ':completion:*' cache-path "$ZSH_CACHE_DIR/completions"
 zstyle ':completion:*:*:*:users' ignored-patterns \
   adm amanda apache at avahi avahi-autoipd beaglidx bin cacti canna \
   clamav daemon dbus distcache dnsmasq dovecot fax ftp games gdm \
