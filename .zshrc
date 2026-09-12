@@ -1223,7 +1223,7 @@ function dotfiles-update-local() {
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
 DOT_MOTD="${HOME}/.motd"
-[ -e "${DOT_MOTD}" ] \
+[ -r "${DOT_MOTD}" ] \
 && source "${DOT_MOTD}"
 
 
