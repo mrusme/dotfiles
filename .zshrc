@@ -1022,25 +1022,36 @@ function jitsi-link() {
 # ║ Multimedia                                                                 ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
-function video-to-gif() {
-  fps="$3"
-  if [[ "$3" == "" ]];
-  then 
-    fps="10"
+function video-to-gif() (
+  emulate -L zsh
+  if (( $# < 2 || $# > 4 )) || [[ ! -f "$1" || ! -r "$1" || -z "$2" ]]; then
+    print -u2 -- 'usage: video-to-gif INPUT OUTPUT [FPS [SPEED]]' \
+      '(defaults: 10 FPS, 2x)'
+    return 1
   fi
-
-  ffmpeg \
-    -i "$1" \
-    -filter_complex \
-    $(printf "%s%s%s%s" \
-      "[0:v]setpts=0.5*PTS,fps=" \
-      $fps \
-      ",scale=800:-1:flags=lanczos,split[s0][s1];" \
-      "[s0]palettegen[p];[s1][p]paletteuse") \
-    -filter:a 'atempo=1,atempo=1' \
-    -loop 0 \
-    "$2"
-}
+  local fps="${3:-10}" speed="${4:-2}" number
+  for number in "$fps" "$speed"; do
+    if [[ ! "$number" =~ '^([0-9]+([.][0-9]*)?|[.][0-9]+)$' ]] ||
+        ! (( number > 0 && number < 1.7976931348623157e308 )); then
+      print -u2 -- 'FPS and speed must be positive finite decimal numbers.'
+      return 1
+    fi
+  done
+  local input="${1:a}" output="${2:a}" workdir filter
+  [[ ! "$input" -ef "$output" && ! -d "$output" ]] || return 1
+  workdir=$(mktemp -d "${output:h}/.zsh-gif.XXXXXX") || return
+  trap 'command rm -f -- "$workdir/output.gif"
+    command rmdir -- "$workdir"' EXIT
+  trap 'exit 130' INT
+  trap 'exit 143' TERM
+  trap 'exit 129' HUP
+  filter="[0:v]setpts=(PTS-STARTPTS)/$speed,fps=$fps"
+  filter+=",scale=800:-1:flags=lanczos,split[s0][s1]"
+  filter+=";[s0]palettegen[p];[s1][p]paletteuse"
+  ffmpeg -nostdin -y -i "$input" -filter_complex "$filter" \
+    -an -loop 0 "$workdir/output.gif" || return
+  __replace_file "$workdir/output.gif" "$output"
+)
 
 function rip() {
   if (( $# != 1 )) || [[ -z "$1" ]]; then
