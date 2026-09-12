@@ -191,9 +191,9 @@ typeset -U path PATH
 export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/config"
 
 # Go
-go env -w GOPATH="${HOME}/.go"
-export PATH="$(go env GOPATH)/bin:${PATH}"
-export GOTELEMETRY="off"
+# IMPRTANT: go telemetry off
+export GOPATH="${HOME}/.go"
+path=("$GOPATH/bin" "${path[@]}")
 export GOPROXY="direct"
 export GOTOOLCHAIN="local"
 
