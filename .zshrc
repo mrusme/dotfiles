@@ -1043,6 +1043,10 @@ function video-to-gif() {
 }
 
 function rip() {
+  if (( $# != 1 )) || [[ -z "$1" ]]; then
+    print -u2 -- 'usage: rip <URL>'
+    return 1
+  fi
   yt-dlp \
     -f bestaudio \
     --extract-audio \
