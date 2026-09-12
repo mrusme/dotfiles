@@ -34,6 +34,34 @@ function __is_available {
   && builtin whence -w -- "$prog" >/dev/null 2>&1
 }
 
+function __private_directory() {
+  local dir="$1"
+  local -A info
+  [[ -e "$dir" || -L "$dir" ]] || command mkdir -m 700 -p -- "$dir" || return
+  [[ -d "$dir" && ! -L "$dir" && -O "$dir" ]] || return 1
+  zmodload -F zsh/stat b:zstat || return
+  zstat -H info -- "$dir" || return
+  (( (info[mode] & 8#777) == 8#700 ))
+}
+
+function __owned_directory() {
+  local dir="$1"
+  local -A info
+  [[ -d "$dir" ]] || command mkdir -p -- "$dir" || return
+  [[ -d "$dir" && -O "$dir" ]] || return 1
+  zmodload -F zsh/stat b:zstat || return
+  zstat -H info -- "$dir" || return
+  (( (info[mode] & 8#002) == 0 ))
+}
+
+function __replace_file() {
+  if [[ -d "$2" ]]; then
+    print -u2 -- "Destination is a directory: $2"
+    return 1
+  fi
+  command mv -f -- "$1" "$2"
+}
+
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
 # ║ Exports                                                                    ║
