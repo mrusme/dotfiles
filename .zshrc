@@ -836,6 +836,7 @@ function ssh {
 if __is_available equery
 then
   function __packages_list() {
+    local repo
     case "$1" in 
       nongentoo)
         eselect --brief repository list -i \
