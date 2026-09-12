@@ -305,9 +305,6 @@ zstyle ':completion:*:*:*:users' ignored-patterns \
   usbmux uucp vcsa wwwrun xfs '_*'
 zstyle '*' single-ignored show 
 
-# automatically load bash completion functions
-autoload -U +X bashcompinit && bashcompinit
-
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
 # ║ Autosuggestions                                                            ║
