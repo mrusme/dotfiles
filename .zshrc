@@ -909,39 +909,69 @@ fi
 # ║ update-tools                                                               ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
-function update-tools() {
+function __require_commands() {
+  local program result=0
+  for program in "$@"; do
+    if ! __is_available "$program"; then
+      print -u2 -- "Required command is unavailable: $program"
+      result=1
+    fi
+  done
+  return "$result"
+}
+
+function __go_tool_paths() {
+  local bin info line
+  local -a fields
+  local -aU packages
+  for bin in "${GOPATH:-$HOME/.go}"/bin/*(N-.); do
+    info=$(go version -m "$bin") || return
+    for line in "${(@f)info}"; do
+      fields=("${(@z)line}")
+      if [[ "$fields[1]" == path && "$fields[2]" == github.com/* ]]; then
+        packages+=("$fields[2]")
+      fi
+    done
+  done
+  (( $#packages )) && print -rl -- "${(@o)packages}"
+  return 0
+}
+
+function update-tools() (
+  __require_commands cargo go gh pass vale tldr git || return
+  local go_packages package
+  go_packages=$(__go_tool_paths) || return
+
   printf "Updating Rust tools ...\n"
-  cargo install-update -a -g
+  cargo install-update -a -g || return
 
   printf "\nUpdating Go tools ...\n"
   unset GOPROXY
-  /bin/ls -1 ~/.go/bin/ \
-    | while read -r bin; do go version -m "${HOME}/.go/bin/${bin}" \
-    | grep '^[[:space:]]path' \
-    | awk '{ print $2 }' \
-    | grep '^github.com' \
-    | sort \
-    | uniq \
-    | xargs -I{} go install {}@latest; done
+  for package in "${(@f)go_packages}"; do
+    [[ -n "$package" ]] || continue
+    go install "$package@latest" || return
+  done
 
   printf "\nNot updating NPM tools, because NPM is a mess!\n"
   printf "Update at your own risk!\n"
   #npm update -g
 
   printf "\nUpdating gh extensions ...\n"
-  gh extension upgrade --all
+  gh extension upgrade --all || return
 
   printf "\nUpdating vale ...\n"
-  vale sync
+  vale sync || return
 
   printf "\nUpdating tealdeer ...\n"
-  tldr --update
+  tldr --update || return
 
   printf "\nUpdating Zsh plugins ...\n"
-  git -C ~/.zsh/zsh-autosuggestions pull
+  if [[ -d "$HOME/.zsh/zsh-autosuggestions/.git" ]]; then
+    git -C "$HOME/.zsh/zsh-autosuggestions" pull --ff-only || return
+  fi
 
   printf "\nTools updated\n"
-}
+)
 
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
