@@ -218,9 +218,19 @@ if __is_available gem && __is_available ruby; then
 fi
 
 # NPM
-export NPM_PACKAGES="${HOME}/.local/lib/node_modules"
-export PATH="${PATH}:${NPM_PACKAGES}/bin:${HOME}/.local/bin"
-export MANPATH="${MANPATH-$(manpath)}:${NPM_PACKAGES}/share/man"
+path+=("$HOME/.local/bin")
+if __is_available npm; then
+  () {
+    local npm_prefix
+    npm_prefix=$(npm config get prefix --global) || return
+    [[ "$npm_prefix" == /* ]] || return 1
+    export NPM_PACKAGES="$npm_prefix/lib/node_modules"
+    path+=("$npm_prefix/bin")
+    # An empty MANPATH component includes the system's default search path.
+    local -aU man_dirs=("${(@s/:/)MANPATH}" "$npm_prefix/share/man")
+    export MANPATH="${(j/:/)man_dirs}"
+  }
+fi
 
 # Wayland
 if __is_available sway linux
