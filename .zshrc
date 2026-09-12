@@ -25,19 +25,13 @@ unset LSCOLORS
 # ║ Basics                                                                     ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
-export OS="$(uname | tr '[:upper:]' '[:lower:]')"
+export OS="${OSTYPE%%-*}"
+SHORT_HOST="${HOST%%.*}"
 
 function __is_available {
-  prog="${1}"
-  os="${2}"
-
-  if [ "${os}" != "" ] && [ "${os}" != "${OS}" ]
-  then 
-    return 1
-  fi
-
-  type "${prog}" > /dev/null 
-  return "$?"
+  local prog="$1" os="${2:-}"
+  [[ -z "$os" || "$os" == "$OS" ]] \
+  && builtin whence -w -- "$prog" >/dev/null 2>&1
 }
 
 
